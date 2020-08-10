@@ -15,6 +15,7 @@ namespace Robbi.Movement
         public Grid grid;
         public Tilemap movement;
         public GameObject player;
+        public GameObject movementIndicator;
         public float speed = 1;
 
         private Stack<Vector3> waypoints = new Stack<Vector3>();
@@ -31,9 +32,15 @@ namespace Robbi.Movement
                 Vector3Int targetGridPosition = grid.WorldToCell(targetWorldPosition);
                 Vector3Int currentGridPosition = grid.WorldToCell(player.transform.localPosition);
 
-                if (movement.HasTile(targetGridPosition))
+                if (targetGridPosition != currentGridPosition && movement.HasTile(targetGridPosition))
                 {
                     CalculateWaypoints(currentGridPosition, targetGridPosition);
+
+                    if (waypoints.Count > 0)
+                    {
+                        GameObject indicator = GameObject.Instantiate(movementIndicator);
+                        indicator.transform.position = grid.GetCellCenterWorld(targetGridPosition);
+                    }
                 }
             }
         }
