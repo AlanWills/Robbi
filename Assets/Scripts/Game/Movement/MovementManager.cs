@@ -43,10 +43,7 @@ namespace Robbi.Movement
                     }
                 }
             }
-        }
 
-        private void FixedUpdate()
-        {
             if (waypoints.Count > 0)
             {
                 Vector3 currentWaypoint = waypoints.Peek();
