@@ -20,13 +20,18 @@ namespace Robbi.Movement
 
         private Stack<Vector3> waypoints = new Stack<Vector3>();
 
+#if UNITY_ANDROID || UNITY_IPHONE
+        private float timeSinceFingerDown = 0;
+        private const float TAP_THRESOLD = 0.4f;
+#endif
+
         #endregion
 
         #region Unity Methods
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (InputOnGrid())
             {
                 Vector3 targetWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 Vector3Int targetGridPosition = grid.WorldToCell(targetWorldPosition);
@@ -58,6 +63,45 @@ namespace Robbi.Movement
                     player.transform.localPosition = newPosition;
                 }
             }
+        }
+
+        #endregion
+
+        #region Input Methods
+
+        private bool InputOnGrid()
+        {
+#if UNITY_ANDROID || UNITY_IPHONE
+            if (Input.touchCount != 1)
+            {
+                return false;
+            }
+
+            TouchPhase touchPhase = Input.GetTouch(0).phase;
+            switch (Input.GetTouch(0).phase)
+            {
+                case TouchPhase.Began:
+                    timeSinceFingerDown = 0;
+                    return false;
+
+                case TouchPhase.Ended:
+                    return timeSinceFingerDown < TAP_THRESOLD;
+
+                case TouchPhase.Stationary:
+                    timeSinceFingerDown += Time.deltaTime;
+                    return false;
+
+                case TouchPhase.Moved:
+                    timeSinceFingerDown += 2 * Time.deltaTime;
+                    return false;
+
+                default:
+                    timeSinceFingerDown = TAP_THRESOLD;
+                    return false;
+            }
+#else
+            return Input.GetMouseButtonDown(0);
+#endif
         }
 
         #endregion
@@ -177,6 +221,6 @@ namespace Robbi.Movement
             }
         }
 
-        #endregion
+#endregion
     }
 }
