@@ -38,8 +38,8 @@ namespace Robbi.Movement
 
                     if (waypoints.Count > 0)
                     {
-                        GameObject indicator = GameObject.Instantiate(movementIndicator);
-                        indicator.transform.position = grid.GetCellCenterWorld(targetGridPosition);
+                        GameObject indicator = GameObject.Instantiate(movementIndicator, grid.transform);
+                        indicator.transform.position = grid.GetCellCenterLocal(targetGridPosition);
                     }
                 }
             }
