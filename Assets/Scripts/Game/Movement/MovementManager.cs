@@ -12,12 +12,13 @@ namespace Robbi.Movement
     {
         #region Properties and Fields
 
-        public Grid grid;
-        public Tilemap movement;
+        public Tilemap movementTilemap;
+        public Tilemap doorsTilemap;
         public GameObject player;
         public GameObject movementIndicator;
         public float speed = 1;
 
+        private Grid grid;
         private Stack<Vector3> waypoints = new Stack<Vector3>();
 
 #if UNITY_ANDROID || UNITY_IPHONE
@@ -29,6 +30,11 @@ namespace Robbi.Movement
 
         #region Unity Methods
 
+        private void Start()
+        {
+            grid = movementTilemap.layoutGrid;
+        }
+
         private void Update()
         {
             if (InputOnGrid())
@@ -37,13 +43,13 @@ namespace Robbi.Movement
                 Vector3Int targetGridPosition = grid.WorldToCell(targetWorldPosition);
                 Vector3Int currentGridPosition = grid.WorldToCell(player.transform.localPosition);
 
-                if (targetGridPosition != currentGridPosition && movement.HasTile(targetGridPosition))
+                if (targetGridPosition != currentGridPosition && movementTilemap.HasTile(targetGridPosition))
                 {
                     CalculateWaypoints(currentGridPosition, targetGridPosition);
 
                     if (waypoints.Count > 0)
                     {
-                        GameObject indicator = GameObject.Instantiate(movementIndicator, grid.transform);
+                        GameObject indicator = GameObject.Instantiate(movementIndicator, movementTilemap.transform);
                         indicator.transform.position = grid.GetCellCenterLocal(targetGridPosition);
                     }
                 }
@@ -173,7 +179,7 @@ namespace Robbi.Movement
             Dictionary<Vector3Int, float> costOverall)
         {
             Vector3Int neighbour = bestPosition + delta;
-            if (movement.HasTile(neighbour))
+            if (movementTilemap.HasTile(neighbour) && !doorsTilemap.HasTile(neighbour))
             {
                 const float distanceToNeighbour = 1;
                 float tentativeCostFromStart = costFromStart[bestPosition] + distanceToNeighbour;
