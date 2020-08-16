@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Robbi.Events;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +8,18 @@ using UnityEngine;
 
 namespace Robbi.Interactables
 {
+    [CreateAssetMenu(fileName = "Interactable", menuName = "Robbi/Interactables/Interactable")]
     public class Interactable : ScriptableObject
     {
-        public virtual void Interact() { }
+        #region Properties and Fields
+
+        public GameEvent onInteract;
+
+        #endregion
+
+        public void Interact()
+        {
+            onInteract.Raise();
+        }
     }
 }
