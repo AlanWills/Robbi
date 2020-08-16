@@ -18,15 +18,6 @@ namespace Robbi.Obstacles
 
         #endregion
 
-        #region Unity Methods
-
-        public void Start()
-        {
-            GetComponent<Vector3IntGameEventListener>().response.AddListener(OpenDoor);
-        }
-
-        #endregion
-
         #region Door Management
 
         public void OpenDoor(Vector3Int doorPosition)

@@ -8,13 +8,12 @@ using UnityEngine.Events;
 
 namespace Robbi.Events
 {
-    [AddComponentMenu("Robbi/Events/Vector3Int Game Event Listener")]
-    public class Vector3IntGameEventListener : MonoBehaviour
+    public class GameEventListener<TGameEvent, TUnityEvent> : MonoBehaviour
     {
         #region Properties and Fields
 
-        public Vector3IntGameEvent gameEvent;
-        public Vector3IntUnityEvent response;
+        public TGameEvent gameEvent;
+        public TUnityEvent response;
 
         #endregion
 
@@ -34,9 +33,9 @@ namespace Robbi.Events
 
         #region Response Methods
 
-        public void OnEventRaised(Vector3Int argument)
+        public void OnEventRaised()
         {
-            response.Invoke(argument);
+            response.Invoke();
         }
 
         #endregion

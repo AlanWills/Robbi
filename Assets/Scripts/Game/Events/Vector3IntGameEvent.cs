@@ -8,6 +8,7 @@ using UnityEngine.Events;
 
 namespace Robbi.Events
 {
+    [System.Serializable]
     public class Vector3IntUnityEvent : UnityEvent<Vector3Int> { }
 
     [CreateAssetMenu(fileName = "Vector3IntGameEvent", menuName = "Robbi/Events/Vector3Int Game Event")]
