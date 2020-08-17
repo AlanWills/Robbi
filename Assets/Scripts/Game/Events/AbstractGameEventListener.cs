@@ -8,7 +8,14 @@ using UnityEngine.Events;
 
 namespace Robbi.Events
 {
-    public class GameEventListener<TGameEvent, TUnityEvent> : MonoBehaviour
+    public interface IEventListener<T>
+    {
+        void OnEventRaised(T arguments);
+    }
+
+    public class AbstractGameEventListener<T, TGameEvent, TUnityEvent> : MonoBehaviour, IEventListener<T> 
+                                                                                       where TGameEvent : AbstractGameEvent<T>
+                                                                                       where TUnityEvent : UnityEvent<T>
     {
         #region Properties and Fields
 
@@ -33,9 +40,9 @@ namespace Robbi.Events
 
         #region Response Methods
 
-        public void OnEventRaised()
+        public void OnEventRaised(T arguments)
         {
-            response.Invoke();
+            response.Invoke(arguments);
         }
 
         #endregion

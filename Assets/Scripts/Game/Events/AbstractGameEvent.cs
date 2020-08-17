@@ -7,32 +7,31 @@ using UnityEngine;
 
 namespace Robbi.Events
 {
-    [CreateAssetMenu(fileName = "GameEvent", menuName = "Robbi/Events/Game Event")]
-    public class GameEvent : ScriptableObject
+    public class AbstractGameEvent<T> : ScriptableObject
     {
         #region Properties and Fields
 
-        private List<GameEventListener> gameEventListeners = new List<GameEventListener>();
+        private List<IEventListener<T>> gameEventListeners = new List<IEventListener<T>>();
 
         #endregion
 
         #region Event Management
 
-        public void AddEventListener(GameEventListener listener)
+        public void AddEventListener(IEventListener<T> listener)
         {
             gameEventListeners.Add(listener);
         }
 
-        public void RemoveEventListener(GameEventListener listener)
+        public void RemoveEventListener(IEventListener<T> listener)
         {
             gameEventListeners.Remove(listener);
         }
 
-        public void Raise()
+        public void Raise(T arguments)
         {
             for (int i = gameEventListeners.Count - 1; i >= 0; --i)
             {
-                gameEventListeners[i].OnEventRaised();
+                gameEventListeners[i].OnEventRaised(arguments);
             }
         }
 
