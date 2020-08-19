@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Robbi.Events;
+using Robbi.Parameters;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +16,10 @@ namespace Robbi.Movement
 
         public Tilemap movementTilemap;
         public Tilemap doorsTilemap;
-        public GameObject player;
+        public Vector3Value playerLocalPosition;
         public GameObject movementIndicator;
         public float speed = 1;
+        public Vector3IntEvent onMovedTo;
 
         private Grid grid;
         private Stack<Vector3> waypoints = new Stack<Vector3>();
@@ -41,7 +44,7 @@ namespace Robbi.Movement
             {
                 Vector3 targetWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 Vector3Int targetGridPosition = grid.WorldToCell(targetWorldPosition);
-                Vector3Int currentGridPosition = grid.WorldToCell(player.transform.localPosition);
+                Vector3Int currentGridPosition = grid.WorldToCell(playerLocalPosition.value);
 
                 if (targetGridPosition != currentGridPosition && movementTilemap.HasTile(targetGridPosition))
                 {
@@ -58,15 +61,16 @@ namespace Robbi.Movement
             if (waypoints.Count > 0)
             {
                 Vector3 currentWaypoint = waypoints.Peek();
-                Vector3 newPosition = Vector3.MoveTowards(player.transform.localPosition, currentWaypoint, speed * Time.deltaTime);
+                Vector3 newPosition = Vector3.MoveTowards(playerLocalPosition.value, currentWaypoint, speed * Time.deltaTime);
 
-                if (newPosition == player.transform.localPosition)
+                if (newPosition == playerLocalPosition.value)
                 {
+                    onMovedTo.Raise(new Vector3Int((int)newPosition.x, (int)newPosition.y, (int)newPosition.z));
                     waypoints.Pop();
                 }
                 else
                 {
-                    player.transform.localPosition = newPosition;
+                    playerLocalPosition.value = newPosition;
                 }
             }
         }
