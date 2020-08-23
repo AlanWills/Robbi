@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Robbi.Parameters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace Robbi.Interactables
         #region Properties and Fields
 
         public Tilemap interactablesTilemap;
-        public GameObject player;
+        public Vector3Value playerLocalPosition;
         public GameObject interactableMarker;
 
         private List<Tuple<Vector3Int, GameObject>> activeInteractableMarkers = new List<Tuple<Vector3Int, GameObject>>();
@@ -26,7 +27,7 @@ namespace Robbi.Interactables
         private void Update()
         {
             Grid grid = interactablesTilemap.layoutGrid;
-            Vector3Int playerCell = grid.WorldToCell(player.transform.position);
+            Vector3Int playerCell = grid.LocalToCell(playerLocalPosition.value);
 
             PurgeActiveMarkers(grid, playerCell);
 

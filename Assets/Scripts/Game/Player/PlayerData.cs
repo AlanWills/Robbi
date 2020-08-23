@@ -8,8 +8,8 @@ using UnityEngine;
 
 namespace Robbi.Player
 {
-    [AddComponentMenu("Robbi/Player/Player Info")]
-    public class PlayerInfo : MonoBehaviour
+    [AddComponentMenu("Robbi/Player/Player Data")]
+    public class PlayerData : MonoBehaviour
     {
         #region Properties and Fields
 
@@ -18,11 +18,6 @@ namespace Robbi.Player
         #endregion
 
         #region Unity Methods
-
-        private void Start()
-        {
-            localPosition.value = transform.localPosition;
-        }
 
         private void Update()
         {

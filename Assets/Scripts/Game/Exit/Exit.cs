@@ -14,27 +14,23 @@ namespace Robbi.Exit
     [CreateAssetMenu(fileName = "Exit", menuName = "Robbi/Exit/Exit")]
     public class Exit : ScriptableObject
     {
-#region Properties and Fields
+        #region Properties and Fields
 
         public Vector3Int position;
+        public Events.Event onExit;
 
-#endregion
+        #endregion
 
-#region Exit Checking
+        #region Exit Checking
 
         public void TryExit(Vector3Int speculativePosition)
         {
             if (speculativePosition == position)
             {
-                // Finish Level
-#if UNITY_EDITOR
-                EditorApplication.ExitPlaymode();
-#else
-                Application.Quit();
-#endif
+                onExit.Raise();
             }
         }
 
-#endregion
+        #endregion
     }
 }
