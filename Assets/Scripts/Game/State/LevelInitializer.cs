@@ -15,7 +15,7 @@ namespace Robbi.State
     {
         #region Unity Methods
 
-        public void Start()
+        private void Start()
         {
             LoadLevel();
         }

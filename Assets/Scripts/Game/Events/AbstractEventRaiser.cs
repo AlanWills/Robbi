@@ -8,9 +8,32 @@ using UnityEngine.Events;
 
 namespace Robbi.Events
 {
+    public interface IEventRaiser
+    {
+        void Raise();
+    }
+
     public interface IEventRaiser<T>
     {
         void Raise(T argument);
+    }
+
+    public class AbstractEventRaiser : MonoBehaviour, IEventRaiser
+    {
+        #region Properties and Fields
+
+        public Event gameEvent;
+
+        #endregion
+
+        #region Response Methods
+
+        public void Raise()
+        {
+            gameEvent.Raise();
+        }
+
+        #endregion
     }
 
     public class AbstractEventRaiser<T, TEvent, TUnityEvent> : MonoBehaviour, IEventRaiser<T>

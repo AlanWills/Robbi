@@ -8,6 +8,11 @@ using UnityEngine.Events;
 
 namespace Robbi.Events
 {
+    public interface IEventListener
+    {
+        void OnEventRaised();
+    }
+
     public interface IEventListener<T>
     {
         void OnEventRaised(T arguments);

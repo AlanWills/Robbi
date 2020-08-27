@@ -9,7 +9,7 @@ using UnityEngine.Events;
 namespace Robbi.Events
 {
     [AddComponentMenu("Robbi/Events/Event Listener")]
-    public class EventListener : MonoBehaviour
+    public class EventListener : MonoBehaviour, IEventListener
     {
         #region Properties and Fields
 

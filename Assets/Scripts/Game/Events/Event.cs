@@ -12,18 +12,18 @@ namespace Robbi.Events
     {
         #region Properties and Fields
 
-        private List<EventListener> gameEventListeners = new List<EventListener>();
+        private List<IEventListener> gameEventListeners = new List<IEventListener>();
 
         #endregion
 
         #region Event Management
 
-        public void AddEventListener(EventListener listener)
+        public void AddEventListener(IEventListener listener)
         {
             gameEventListeners.Add(listener);
         }
 
-        public void RemoveEventListener(EventListener listener)
+        public void RemoveEventListener(IEventListener listener)
         {
             gameEventListeners.Remove(listener);
         }
