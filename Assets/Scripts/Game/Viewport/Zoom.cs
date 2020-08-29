@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Robbi.Settings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,11 +14,10 @@ namespace Robbi.Viewport
     {
         #region Properties and Fields
 
-        public float minZoom = 20;
-        public float maxZoom = 2;
-        public float zoomSpeed = 1;
-        
         private Camera cameraToZoom;
+        private float minZoom = 20;
+        private float maxZoom = 2;
+        private float zoomSpeed = 1;
 
         #endregion
 
@@ -26,6 +26,11 @@ namespace Robbi.Viewport
         private void Start()
         {
             cameraToZoom = GetComponent<Camera>();
+
+            GameSettings gameSettings = GameSettings.Load();
+            minZoom = gameSettings.MinZoom;
+            maxZoom = gameSettings.MaxZoom;
+            zoomSpeed = gameSettings.ZoomSpeed;
         }
 
         private void Update()

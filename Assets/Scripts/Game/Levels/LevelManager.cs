@@ -29,6 +29,8 @@ namespace Robbi.Levels
 
         #endregion
 
+        private LevelManager() { }
+
         #region Save/Load Methods
 
         public static LevelManager Load()

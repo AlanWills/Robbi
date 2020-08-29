@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Robbi.Parameters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,12 +16,14 @@ namespace Robbi.FSM.Nodes
         #region Properties and Fields
 
         public string sceneName;
+        public LoadSceneMode loadSceneMode = LoadSceneMode.Single;
 
         #endregion
 
         public SceneLoaderNode()
         {
             AddDefaultInputPort();
+            AddDefaultOutputPort();
         }
 
         #region FSM Runtime Methods
@@ -28,8 +31,8 @@ namespace Robbi.FSM.Nodes
         protected override void OnEnter()
         {
             base.OnEnter();
-
-            SceneManager.LoadScene(sceneName);
+            
+            SceneManager.LoadScene(sceneName, loadSceneMode);
         }
 
         #endregion

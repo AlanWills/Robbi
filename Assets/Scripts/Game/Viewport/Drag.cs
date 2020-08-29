@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Robbi.Settings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,10 +14,8 @@ namespace Robbi.Viewport
     {
         #region Properties and Fields
 
-        [SerializeField]
-        private float scrollDelta = 1f;
-
         private Camera cameraToDrag;
+        private float dragSpeed = 1f;
 
 #if UNITY_ANDROID || UNITY_IPHONE
         private float timeSinceFingerDown = 0;
@@ -33,6 +32,9 @@ namespace Robbi.Viewport
         private void Start()
         {
             cameraToDrag = GetComponent<Camera>();
+
+            GameSettings gameSettings = GameSettings.Load();
+            dragSpeed = gameSettings.DragSpeed;
         }
 
         private void Update()
@@ -80,7 +82,7 @@ namespace Robbi.Viewport
                 if (mouseDownLastFrame)
                 {
                     Vector3 mouseDelta = previousMouseDownPosition - mousePosition;
-                    float scrollModifier = scrollDelta * Time.deltaTime * cameraToDrag.orthographicSize;
+                    float scrollModifier = dragSpeed * Time.deltaTime * cameraToDrag.orthographicSize;
 
                     transform.Translate(mouseDelta.x * scrollModifier, mouseDelta.y * scrollModifier, 0);
                 }

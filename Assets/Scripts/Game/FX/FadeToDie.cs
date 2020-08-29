@@ -4,10 +4,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.UI
+namespace Robbi.FX
 {
-    [AddComponentMenu("Robbi/UI/Destination Marker")]
-    public class DestinationMarker : MonoBehaviour
+    [AddComponentMenu("Robbi/FX/Fade To Die")]
+    public class FadeToDie : MonoBehaviour
     {
         #region Properties and Fields
 

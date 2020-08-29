@@ -17,12 +17,13 @@ namespace Robbi.Movement
         public Tilemap movementTilemap;
         public Tilemap doorsTilemap;
         public Vector3Value playerLocalPosition;
-        public GameObject movementIndicator;
+        public GameObject destinationMarkerPrefab;
         public float speed = 1;
         public Vector3IntEvent onMovedTo;
 
         private Grid grid;
         private Stack<Vector3> waypoints = new Stack<Vector3>();
+        private GameObject destinationMarkerInstance;
 
 #if UNITY_ANDROID || UNITY_IPHONE
         private float timeSinceFingerDown = 0;
@@ -36,6 +37,9 @@ namespace Robbi.Movement
         private void Start()
         {
             grid = movementTilemap.layoutGrid;
+
+            destinationMarkerInstance = GameObject.Instantiate(destinationMarkerPrefab, movementTilemap.transform);
+            destinationMarkerInstance.SetActive(false);
         }
 
         private void Update()
@@ -48,12 +52,13 @@ namespace Robbi.Movement
 
                 if (targetGridPosition != currentGridPosition && movementTilemap.HasTile(targetGridPosition))
                 {
-                    CalculateWaypoints(currentGridPosition, targetGridPosition);
-
-                    if (waypoints.Count > 0)
+                    Stack<Vector3> newWaypoints = CalculateWaypoints(currentGridPosition, targetGridPosition);
+                    if (newWaypoints.Count > 0)
                     {
-                        GameObject indicator = GameObject.Instantiate(movementIndicator, movementTilemap.transform);
-                        indicator.transform.position = grid.GetCellCenterLocal(targetGridPosition);
+                        waypoints = newWaypoints;
+
+                        destinationMarkerInstance.SetActive(true);
+                        destinationMarkerInstance.transform.position = grid.GetCellCenterLocal(targetGridPosition);
                     }
                 }
             }
@@ -72,6 +77,10 @@ namespace Robbi.Movement
                 {
                     playerLocalPosition.value = newPosition;
                 }
+            }
+            else
+            {
+                destinationMarkerInstance.SetActive(false);
             }
         }
 
@@ -118,10 +127,8 @@ namespace Robbi.Movement
 
         #region Pathfinding
 
-        private void CalculateWaypoints(Vector3Int startingPosition, Vector3Int targetPosition)
+        private Stack<Vector3> CalculateWaypoints(Vector3Int startingPosition, Vector3Int targetPosition)
         {
-            waypoints.Clear();
-
             HashSet<Vector3Int> openSet = new HashSet<Vector3Int>() { startingPosition };
             Dictionary<Vector3Int, Vector3Int> cameFrom = new Dictionary<Vector3Int, Vector3Int>();
             Dictionary<Vector3Int, float> costFromStart = new Dictionary<Vector3Int, float>();
@@ -135,8 +142,7 @@ namespace Robbi.Movement
                 Vector3Int bestPosition = GetBestPosition(openSet, costOverall);
                 if (bestPosition == targetPosition)
                 {
-                    ConstructWaypoints(targetPosition, cameFrom);
-                    return;
+                    return ConstructWaypoints(targetPosition, cameFrom);
                 }
 
                 openSet.Remove(bestPosition);
@@ -153,6 +159,8 @@ namespace Robbi.Movement
                 // Down
                 UpdateDirectional(new Vector3Int(0, -1, 0), bestPosition, targetPosition, openSet, cameFrom, costFromStart, costOverall);
             }
+
+            return new Stack<Vector3>();
         }
 
         private Vector3Int GetBestPosition(HashSet<Vector3Int> openSet, Dictionary<Vector3Int, float> costOverall)
@@ -222,13 +230,17 @@ namespace Robbi.Movement
             }
         }
 
-        private void ConstructWaypoints(Vector3Int targetGridPosition, Dictionary<Vector3Int, Vector3Int> cameFrom)
+        private Stack<Vector3> ConstructWaypoints(Vector3Int targetGridPosition, Dictionary<Vector3Int, Vector3Int> cameFrom)
         {
+            Stack<Vector3> newWaypoints = new Stack<Vector3>();
+
             while (cameFrom.ContainsKey(targetGridPosition))
             {
-                waypoints.Push(grid.GetCellCenterWorld(targetGridPosition));
+                newWaypoints.Push(grid.GetCellCenterWorld(targetGridPosition));
                 targetGridPosition = cameFrom[targetGridPosition];
             }
+
+            return newWaypoints;
         }
 
 #endregion
