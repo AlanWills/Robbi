@@ -6,19 +6,17 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using XNode;
 
 namespace Robbi.FSM.Nodes
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Scene Loader")]
+    [CreateNodeMenu("Robbi/Scene Unloader")]
     [NodeWidth(250)]
-    public class SceneLoaderNode : FSMNode
+    public class SceneUnloaderNode : FSMNode
     {
         #region Properties and Fields
 
         public StringReference sceneName;
-        public LoadSceneMode loadMode = LoadSceneMode.Single;
 
         #endregion
 
@@ -41,8 +39,8 @@ namespace Robbi.FSM.Nodes
         protected override void OnEnter()
         {
             base.OnEnter();
-            
-            SceneManager.LoadScene(sceneName.Value, loadMode);
+
+            SceneManager.UnloadSceneAsync(sceneName.Value);
         }
 
         #endregion

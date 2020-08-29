@@ -20,12 +20,6 @@ namespace Robbi.FSM.Nodes
 
         #endregion
 
-        public EventListenerNode()
-        {
-            AddDefaultInputPort();
-            AddDefaultOutputPort();
-        }
-
         #region FSM Runtime Methods
 
         protected override void OnEnter()
@@ -38,7 +32,7 @@ namespace Robbi.FSM.Nodes
 
         protected override FSMNode OnUpdate()
         {
-            return eventRaised ? GetConnectedNode(DEFAULT_OUTPUT_PORT_NAME) : null;
+            return eventRaised ? base.OnUpdate() : null;
         }
 
         protected override void OnExit()

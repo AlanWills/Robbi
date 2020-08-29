@@ -63,7 +63,7 @@ namespace Robbi.Viewport
                     if (timeSinceFingerDown >= DRAG_THRESHOLD)
                     {
                         Vector2 dragAmount = -touch.deltaPosition;
-                        float scrollModifier = scrollDelta * Time.deltaTime * cameraToDrag.orthographicSize;
+                        float scrollModifier = dragSpeed * Time.deltaTime * cameraToDrag.orthographicSize;
 
                         transform.Translate(dragAmount.x * scrollModifier, dragAmount.y * scrollModifier, 0);
                     }

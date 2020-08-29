@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace Robbi.Parameters
 {
+    [Serializable]
     public class ParameterValue<T> : ScriptableObject
     {
         public T value;

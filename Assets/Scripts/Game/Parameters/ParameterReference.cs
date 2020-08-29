@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace Robbi.Parameters
 {
+    [Serializable]
     public class ParameterReference<T, TValue> : ScriptableObject where TValue : ParameterValue<T>
     {
         public bool isConstant = true;

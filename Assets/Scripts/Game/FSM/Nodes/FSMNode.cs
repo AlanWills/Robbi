@@ -18,6 +18,12 @@ namespace Robbi.FSM.Nodes
 
         #endregion
 
+        public FSMNode()
+        {
+            AddDefaultInputPort();
+            AddDefaultOutputPort();
+        }
+
         #region FSM Runtime Methods
 
         public void Enter() 
@@ -37,7 +43,7 @@ namespace Robbi.FSM.Nodes
 
         protected virtual void OnEnter() { }
 
-        protected virtual FSMNode OnUpdate() { return null; }
+        protected virtual FSMNode OnUpdate() { return GetConnectedNode(DEFAULT_OUTPUT_PORT_NAME); }
 
         protected virtual void OnExit() { }
 
@@ -50,7 +56,7 @@ namespace Robbi.FSM.Nodes
             AddDynamicInput(typeof(void), connectionType, TypeConstraint.None, DEFAULT_INPUT_PORT_NAME);
         }
 
-        protected void AddDefaultOutputPort(ConnectionType connectionType = ConnectionType.Multiple)
+        protected void AddDefaultOutputPort(ConnectionType connectionType = ConnectionType.Override)
         {
             AddDynamicOutput(typeof(void), connectionType, TypeConstraint.None, DEFAULT_OUTPUT_PORT_NAME);
         }
@@ -67,8 +73,14 @@ namespace Robbi.FSM.Nodes
 
         protected FSMNode GetConnectedNode(string outputPortName)
         {
-            NodePort connection = GetOutputPort(outputPortName).GetConnection(0);
-            return connection.node as FSMNode;
+            NodePort nodePort = GetOutputPort(outputPortName);
+            if (nodePort == null || nodePort.ConnectionCount == 0)
+            {
+                return null;
+            }
+
+            NodePort connection = nodePort.GetConnection(0);
+            return connection != null ? connection.node as FSMNode : null;
         }
 
         #endregion
