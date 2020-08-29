@@ -22,7 +22,7 @@ namespace Robbi.Doors
 
         public void OpenDoor(Vector3Int doorPosition)
         {
-            Debug.Assert(doorTilemap.HasTile(doorPosition));
+            Debug.Assert(doorTilemap.HasTile(doorPosition), doorPosition + " not found in Door Tilemap");
             doorTilemap.SetTile(doorPosition, null);
         }
 

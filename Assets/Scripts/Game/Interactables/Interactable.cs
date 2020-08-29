@@ -13,6 +13,7 @@ namespace Robbi.Interactables
     {
         #region Properties and Fields
 
+        public Vector3Int position;
         public Events.Event onInteract;
 
         #endregion

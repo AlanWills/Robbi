@@ -64,5 +64,14 @@ namespace Robbi.Levels
         }
 
         #endregion
+
+        #region Level Methods
+
+        public void IncrementCurrentLevel()
+        {
+            ++CurrentLevelIndex;
+        }
+
+        #endregion
     }
 }

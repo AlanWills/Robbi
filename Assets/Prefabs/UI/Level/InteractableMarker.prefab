@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8976083479925092278}
   - component: {fileID: 8976083479925092279}
   - component: {fileID: -8638857653571360466}
+  - component: {fileID: 2699312936496431098}
   m_Layer: 0
   m_Name: InteractableMarker
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8976083479925092273}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
@@ -122,4 +123,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921d5644d52545f4e895fc43e3eab77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactable: {fileID: 11400000, guid: d88eebe593e5fdc418bce802e527a36b, type: 2}
+  interactable: {fileID: 0}
+  spriteRenderer: {fileID: 8976083479925092278}
+--- !u!114 &2699312936496431098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8976083479925092273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da7c16e816f5b7c479489d0c9a624d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -8638857653571360466}
+        m_TargetAssemblyTypeName: Robbi.Interactables.InteractableMarker, Assembly-CSharp
+        m_MethodName: UpdateVisibility
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
