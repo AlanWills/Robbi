@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Robbi.Events
 {
     [AddComponentMenu("Robbi/Events/String Event Listener")]
-    public class StringEventListener : AbstractEventListener<string, StringEvent, StringUnityEvent>
+    public class StringEventListener : ParameterisedEventListener<string, StringEvent, StringUnityEvent>
     {
     }
 }

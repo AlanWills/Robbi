@@ -11,7 +11,7 @@ namespace Robbi.Levels
     [Serializable]
     public struct LevelManagerDTO
     {
-        public int currentLevel;
+        public uint currentLevel;
 
         public LevelManagerDTO(LevelManager levelManager)
         {
@@ -23,13 +23,22 @@ namespace Robbi.Levels
     {
         #region Properties and Fields
 
-        private static string DEFAULT_FILE_PATH = Path.Combine(Application.persistentDataPath, "LevelManagerData.json");
+        private static string DEFAULT_FILE_PATH = "LevelManagerData.json";
 
-        public int CurrentLevelIndex { get; private set; }
+        public uint CurrentLevelIndex { get; set; }
 
         #endregion
 
         private LevelManager() { }
+
+        #region Unity Methods
+
+        private void OnEnable()
+        {
+            DEFAULT_FILE_PATH = Path.Combine(Application.persistentDataPath, "LevelManagerData.json");
+        }
+
+        #endregion
 
         #region Save/Load Methods
 
@@ -61,15 +70,6 @@ namespace Robbi.Levels
             LevelManagerDTO levelManagerDTO = new LevelManagerDTO(this);
             string json = JsonUtility.ToJson(levelManagerDTO);
             File.WriteAllText(fileName, json);
-        }
-
-        #endregion
-
-        #region Level Methods
-
-        public void IncrementCurrentLevel()
-        {
-            ++CurrentLevelIndex;
         }
 
         #endregion

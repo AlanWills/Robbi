@@ -7,8 +7,9 @@ using UnityEngine;
 
 namespace Robbi.Events
 {
+    [Serializable]
     [CreateAssetMenu(fileName = "Event", menuName = "Robbi/Events/Event")]
-    public class Event : ScriptableObject
+    public class Event : ScriptableObject, IEvent
     {
         #region Properties and Fields
 
@@ -30,6 +31,8 @@ namespace Robbi.Events
 
         public void Raise()
         {
+            Debug.Log(string.Format("Event {0} was raised", name));
+            
             for (int i = gameEventListeners.Count - 1; i >= 0; --i)
             {
                 gameEventListeners[i].OnEventRaised();

@@ -11,6 +11,7 @@ namespace Robbi.Events
     [Serializable]
     public class Vector3IntUnityEvent : UnityEvent<Vector3Int> { }
 
+    [Serializable]
     [CreateAssetMenu(fileName = "Vector3IntEvent", menuName = "Robbi/Events/Vector3Int Event")]
-    public class Vector3IntEvent : AbstractEvent<Vector3Int> { }
+    public class Vector3IntEvent : ParameterisedEvent<Vector3Int> { }
 }

@@ -71,8 +71,6 @@ namespace Robbi.Movement
                 if (newPosition == playerLocalPosition.value)
                 {
                     Vector3Int movedTo = new Vector3Int(Mathf.FloorToInt(newPosition.x), Mathf.FloorToInt(newPosition.y), Mathf.FloorToInt(newPosition.z));
-                    Debug.Log("Moved to " + movedTo);
-
                     onMovedTo.Raise(movedTo);
                     waypoints.Pop();
                 }

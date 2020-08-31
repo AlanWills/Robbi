@@ -11,13 +11,14 @@ using UnityEngine;
 
 namespace Robbi.Exit
 {
+    [Serializable]
     [CreateAssetMenu(fileName = "Exit", menuName = "Robbi/Exit/Exit")]
     public class Exit : ScriptableObject
     {
         #region Properties and Fields
 
         public Vector3Int position;
-        public Events.Event onExit;
+        public Events.Event onExitReached;
 
         #endregion
 
@@ -27,7 +28,7 @@ namespace Robbi.Exit
         {
             if (speculativePosition == position)
             {
-                onExit.Raise();
+                onExitReached.Raise();
             }
         }
 

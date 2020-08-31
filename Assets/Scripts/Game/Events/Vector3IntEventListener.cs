@@ -9,7 +9,7 @@ using UnityEngine.Events;
 namespace Robbi.Events
 {
     [AddComponentMenu("Robbi/Events/Vector3Int Event Listener")]
-    public class Vector3IntEventListener : AbstractEventListener<Vector3Int, Vector3IntEvent, Vector3IntUnityEvent>
+    public class Vector3IntEventListener : ParameterisedEventListener<Vector3Int, Vector3IntEvent, Vector3IntUnityEvent>
     {
     }
 }

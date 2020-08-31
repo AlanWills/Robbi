@@ -8,7 +8,21 @@ using UnityEngine;
 namespace Robbi.Events
 {
     [AddComponentMenu("Robbi/Events/Event Raiser")]
-    public class EventRaiser : AbstractEventRaiser
+    public class EventRaiser : MonoBehaviour, IEventRaiser
     {
+        #region Properties and Fields
+
+        public Event gameEvent;
+
+        #endregion
+
+        #region Response Methods
+
+        public void Raise()
+        {
+            gameEvent.Raise();
+        }
+
+        #endregion
     }
 }

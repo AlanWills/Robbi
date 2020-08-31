@@ -18,7 +18,7 @@ namespace Robbi.FSM.Nodes
             base.OnEnter();
 
             LevelManager levelManager = LevelManager.Load();
-            levelManager.IncrementCurrentLevel();
+            ++levelManager.CurrentLevelIndex;
             levelManager.Save();
         }
 

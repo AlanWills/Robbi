@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Robbi.Events
 {
-    public class AbstractEvent<T> : ScriptableObject
+    public class ParameterisedEvent<T> : ScriptableObject, IEvent<T>
     {
         #region Properties and Fields
 
@@ -29,6 +29,8 @@ namespace Robbi.Events
 
         public void Raise(T argument)
         {
+            Debug.Log(string.Format("Event {0} was raised with argument {1}", name, argument.ToString()));
+
             for (int i = gameEventListeners.Count - 1; i >= 0; --i)
             {
                 gameEventListeners[i].OnEventRaised(argument);

@@ -8,18 +8,8 @@ using UnityEngine.Events;
 
 namespace Robbi.Events
 {
-    public interface IEventListener
-    {
-        void OnEventRaised();
-    }
-
-    public interface IEventListener<T>
-    {
-        void OnEventRaised(T arguments);
-    }
-
-    public class AbstractEventListener<T, TEvent, TUnityEvent> : MonoBehaviour, IEventListener<T> 
-                                                                                       where TEvent : AbstractEvent<T>
+    public class ParameterisedEventListener<T, TEvent, TUnityEvent> : MonoBehaviour, IEventListener<T> 
+                                                                                       where TEvent : ParameterisedEvent<T>
                                                                                        where TUnityEvent : UnityEvent<T>
     {
         #region Properties and Fields
