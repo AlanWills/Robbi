@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Robbi.FSM;
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using UnityEditor;
 using UnityEngine;
 using XNodeEditor;
 
-namespace Robbi.FSM.Nodes
+namespace RobbiEditor.FSM.Nodes
 {
     public abstract class FSMNodeEditor : NodeEditor
     {

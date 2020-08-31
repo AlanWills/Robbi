@@ -123,6 +123,21 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &110290301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51fb886b9ab4e346897a43d978de61a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: Debug
+  referenceValue: {fileID: 0}
 --- !u!1 &376197661
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,6 +459,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 51078feda7fbef04aa4081657f18f6d7, type: 2}
+--- !u!114 &833598222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e295ed475d4fc14baf9165869777e35, type: 3}
+  m_Name: Scene Loader
+  m_EditorClassIdentifier: 
+  graph: {fileID: 1912327094}
+  position: {x: -568, y: -88}
+  ports:
+    keys:
+    - ' '
+    - 
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 833598222}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 833598222}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 1383482800}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  sceneName: {fileID: 110290301}
+  loadMode: 1
 --- !u!1 &1124999796
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,6 +614,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 1383482800}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 1383482800}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -599,6 +659,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 1140017974}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 1140017974}
         reroutePoints: []
@@ -891,6 +954,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 0}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 833598222}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -1049,4 +1115,5 @@ MonoBehaviour:
   - {fileID: 1383482800}
   - {fileID: 1140017974}
   - {fileID: 1275951999}
+  - {fileID: 833598222}
   startNode: {fileID: 1383482800}

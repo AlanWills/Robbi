@@ -68,7 +68,7 @@ namespace Robbi.FSM.Nodes
 
         protected void AddOutputPort(string portName, ConnectionType connectionType = ConnectionType.Override)
         {
-            AddDynamicInput(typeof(void), connectionType, TypeConstraint.None, portName);
+            AddDynamicOutput(typeof(void), connectionType, TypeConstraint.None, portName);
         }
 
         protected FSMNode GetConnectedNode(string outputPortName)

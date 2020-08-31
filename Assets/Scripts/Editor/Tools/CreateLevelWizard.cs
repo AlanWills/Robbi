@@ -1,6 +1,7 @@
 ﻿using Robbi.Doors;
 using Robbi.Events;
 using Robbi.Exit;
+using Robbi.FSM;
 using Robbi.Interactables;
 using Robbi.Levels;
 using Robbi.Parameters;
@@ -18,7 +19,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Event = Robbi.Events.Event;
 
-namespace RobbiEditor.Levels
+namespace RobbiEditor.Tools
 {
     public class CreateLevelWizard : ScriptableWizard
     {
@@ -79,6 +80,11 @@ namespace RobbiEditor.Levels
                 CreateInteractables();
             }
 
+            if (GUILayout.Button("Create FSM"))
+            {
+                CreateFSM();
+            }
+
             if (GUILayout.Button("Create Prefab"))
             {
                 CreatePrefab();
@@ -106,6 +112,7 @@ namespace RobbiEditor.Levels
             CreateDoors();
             CreateExits();
             CreateInteractables();
+            CreateFSM();
             CreatePrefab();
             CreateLevelData();  // Must happen last
 
@@ -125,6 +132,7 @@ namespace RobbiEditor.Levels
             AssetDatabase.CreateFolder(levelFolderFullPath, "Doors");
             AssetDatabase.CreateFolder(levelFolderFullPath, "Events");
             AssetDatabase.CreateFolder(levelFolderFullPath, "Exits");
+            AssetDatabase.CreateFolder(levelFolderFullPath, "FSMs");
             AssetDatabase.CreateFolder(levelFolderFullPath, "Prefabs");
             AssetDatabase.CreateFolder(levelFolderFullPath, "Interactables");
         }
@@ -188,6 +196,14 @@ namespace RobbiEditor.Levels
             return interactionEvent;
         }
 
+        private void CreateFSM()
+        {
+            FSMGraph fsm = ScriptableObject.CreateInstance<FSMGraph>();
+            fsm.name = string.Format("Level{0}FSM", levelIndex);
+
+            AssetDatabase.CreateAsset(fsm, Path.Combine(LevelFolderFullPath, "FSMs", fsm.name + ".asset"));
+        }
+
         private void CreatePrefab()
         {
             string levelFolderFullPath = LevelFolderFullPath;
@@ -241,6 +257,13 @@ namespace RobbiEditor.Levels
                 interactableMarker.name = string.Format("Interactable{0}", i);
                 interactableMarker.GetComponent<InteractableMarker>().interactable = interactable;
             }
+
+            FSMRuntime runtime = levelGameObject.GetComponent<FSMRuntime>();
+            if (runtime == null)
+            {
+                runtime = levelGameObject.AddComponent<FSMRuntime>();
+            }
+            runtime.graph = AssetDatabase.LoadAssetAtPath<FSMGraph>(Path.Combine(levelFolderFullPath, "FSMs", string.Format("Level{0}FSM.asset", levelIndex)));
 
             PrefabUtility.SaveAsPrefabAsset(levelGameObject, prefabPath);
             GameObject.DestroyImmediate(levelGameObject);

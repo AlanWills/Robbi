@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Robbi.FSM.Nodes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using UnityEditor;
 using UnityEngine;
 using XNodeEditor;
 
-namespace Robbi.FSM.Nodes
+namespace RobbiEditor.FSM.Nodes
 {
     [CustomNodeEditor(typeof(EventListenerNode))]
     public class EventListenerNodeEditor : FSMNodeEditor
