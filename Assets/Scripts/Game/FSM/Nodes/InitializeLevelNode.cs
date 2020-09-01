@@ -16,7 +16,7 @@ namespace Robbi.FSM.Nodes
     {
         #region Properties and Fields
 
-        public GameObject parent;
+        public GameObject robbi;
 
         private bool loadingCompleted = false;
 
@@ -29,19 +29,13 @@ namespace Robbi.FSM.Nodes
             base.OnEnter();
 
             loadingCompleted = false;
-            parent.SetActive(false);
+
+            GameObject.Instantiate(robbi);
 
             LevelManager levelManager = LevelManager.Load();
             //Addressables.LoadAssetAsync<Level>("Level" + levelManager.CurrentLevelIndex.ToString() + "Data").Completed += LoadLevelComplete; ;
-            Resources.Load<Level>("Levels/Level" + levelManager.CurrentLevelIndex + "/Level" + levelManager.CurrentLevelIndex.ToString() + "Data").Begin(parent);
+            Resources.Load<Level>("Levels/Level" + levelManager.CurrentLevelIndex + "/Level" + levelManager.CurrentLevelIndex.ToString() + "Data").Begin();
             loadingCompleted = true;
-        }
-
-        protected override void OnExit()
-        {
-            base.OnExit();
-
-            parent.SetActive(true);
         }
 
         protected override FSMNode OnUpdate()

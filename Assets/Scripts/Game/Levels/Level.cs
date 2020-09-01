@@ -21,9 +21,9 @@ namespace Robbi.Levels
 
         #region Properties and Fields
 
-        public void Begin(GameObject parentGameObject)
+        public void Begin()
         {
-            GameObject level = GameObject.Instantiate(levelPrefab, parentGameObject.transform);
+            GameObject level = GameObject.Instantiate(levelPrefab);
             Grid grid = level.GetComponent<Grid>();
             Debug.Assert(grid != null, "No grid component on level prefab");
 

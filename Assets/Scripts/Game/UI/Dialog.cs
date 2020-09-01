@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UnityEditor.Events;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,11 +22,19 @@ namespace Robbi.UI
             public string confirmButtonText;
             public bool showConfirmButton;
             public bool showCloseButton;
-            public Event confirmButtonPressed;
-            public Event closeButtonPressed;
         }
 
         #region Properties and Fields
+
+        public Event ConfirmButtonClicked
+        {
+            get { return confirmButtonClicked; }
+        }
+
+        public Event CloseButtonClicked
+        {
+            get { return closeButtonClicked; }
+        }
 
         [SerializeField]
         private Text title;
@@ -43,6 +50,12 @@ namespace Robbi.UI
 
         [SerializeField]
         private Button closeButton;
+
+        [SerializeField]
+        private Event confirmButtonClicked;
+
+        [SerializeField]
+        private Event closeButtonClicked;
 
         #endregion
 
@@ -66,9 +79,6 @@ namespace Robbi.UI
 
                 if (showDialogParams.showConfirmButton)
                 {
-                    UnityEventTools.AddVoidPersistentListener(confirmButton.onClick, showDialogParams.confirmButtonPressed.Raise);
-                    UnityEventTools.AddVoidPersistentListener(confirmButton.onClick, Hide);
-
                     if (confirmButtonText != null)
                     {
                         confirmButtonText.text = showDialogParams.confirmButtonText;
@@ -79,13 +89,22 @@ namespace Robbi.UI
             if (closeButton != null)
             {
                 closeButton.gameObject.SetActive(showDialogParams.showCloseButton);
-
-                UnityEventTools.AddVoidPersistentListener(closeButton.onClick, showDialogParams.closeButtonPressed.Raise);
-                UnityEventTools.AddVoidPersistentListener(confirmButton.onClick, Hide);
             }
         }
 
-        public void Hide()
+        public void Confirm()
+        {
+            confirmButtonClicked.Raise();
+            Hide();
+        }
+
+        public void Close()
+        {
+            closeButtonClicked.Raise();
+            Hide();
+        }
+
+        private void Hide()
         {
             GameObject.Destroy(gameObject);
         }

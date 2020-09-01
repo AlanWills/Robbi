@@ -29,6 +29,14 @@ namespace Robbi.FSM.Nodes
             if (sceneName == null)
             {
                 sceneName = ScriptableObject.CreateInstance<StringReference>();
+                sceneName.name = name + "_sceneName";
+
+#if UNITY_EDITOR
+                if (UnityEditor.AssetDatabase.IsMainAsset(graph))
+                {
+                    UnityEditor.AssetDatabase.AddObjectToAsset(sceneName, graph);
+                }
+#endif
             }
         }
 

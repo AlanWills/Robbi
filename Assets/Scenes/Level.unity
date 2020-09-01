@@ -124,220 +124,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &239225742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f51fb886b9ab4e346897a43d978de61a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isConstant: 1
-  constantValue: Loading
-  referenceValue: {fileID: 0}
---- !u!1 &473031687
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 473031688}
-  m_Layer: 0
-  m_Name: Level
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &473031688
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 473031687}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4008252506563153926}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &589035101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbac607ae008c7f42814cf23fbe54582, type: 3}
-  m_Name: Event Listener
-  m_EditorClassIdentifier: 
-  graph: {fileID: 2134456826}
-  position: {x: -504, y: -40}
-  ports:
-    keys:
-    - ' '
-    - 
-    values:
-    - _fieldName: ' '
-      _node: {fileID: 589035101}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 1276202403}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 1276202403}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 1276202403}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 1276202403}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 1276202403}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 1276202403}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 1276202403}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 1276202403}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 1276202403}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 1276202403}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 1276202403}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 1276202403}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: 
-      _node: {fileID: 589035101}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: 1566647657}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
-  listenFor: {fileID: 11400000, guid: c5904b182c49ced4299b98c783c4af60, type: 2}
---- !u!114 &1276202403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 049e253dd227e2a47b85ff185578181e, type: 3}
-  m_Name: Initialize Level
-  m_EditorClassIdentifier: 
-  graph: {fileID: 2134456826}
-  position: {x: -760, y: -24}
-  ports:
-    keys:
-    - 
-    values:
-    - _fieldName: 
-      _node: {fileID: 1276202403}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: 589035101}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
-  parent: {fileID: 473031687}
---- !u!114 &1309174718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e295ed475d4fc14baf9165869777e35, type: 3}
-  m_Name: Scene Loader
-  m_EditorClassIdentifier: 
-  graph: {fileID: 2134456826}
-  position: {x: 136, y: -40}
-  ports:
-    keys:
-    - ' '
-    - 
-    values:
-    - _fieldName: ' '
-      _node: {fileID: 1309174718}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: 
-        node: {fileID: 1528408499}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 1528408499}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 1528408499}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 1528408499}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 1528408499}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 1528408499}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: 
-      _node: {fileID: 1309174718}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-  sceneName: {fileID: 239225742}
-  loadMode: 0
 --- !u!1 &1441404530
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,58 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c653dedb909654bb1be4b8ba04e9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graph: {fileID: 2134456826}
---- !u!114 &1528408499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 997cd2260e5f7104cb591676fd0fcf10, type: 3}
-  m_Name: Set String Value
-  m_EditorClassIdentifier: 
-  graph: {fileID: 2134456826}
-  position: {x: -88, y: -40}
-  ports:
-    keys:
-    - ' '
-    - 
-    values:
-    - _fieldName: ' '
-      _node: {fileID: 1528408499}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: 
-        node: {fileID: 1566647657}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 1566647657}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 1566647657}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: 
-      _node: {fileID: 1528408499}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: 1309174718}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-  stringValue: {fileID: 11400000, guid: 91152ef4cb45e7e4db6aa64836c144e8, type: 2}
-  newValue: MainMenu
+  graph: {fileID: 11400000, guid: 24e8ed897d7cc0d428bd8494e159c089, type: 2}
 --- !u!1 &1536764604
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,147 +277,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a3ffb66dfb45e4087c1cc2ba69ab96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1566647657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff7ccf8b8c9f33a4aa9f4d32e5263cd1, type: 3}
-  m_Name: Finish Level
-  m_EditorClassIdentifier: 
-  graph: {fileID: 2134456826}
-  position: {x: -296, y: -24}
-  ports:
-    keys:
-    - ' '
-    - 
-    values:
-    - _fieldName: ' '
-      _node: {fileID: 1566647657}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: 
-        node: {fileID: 589035101}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 589035101}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 589035101}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: 
-      _node: {fileID: 1566647657}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: 1528408499}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
---- !u!114 &2134456826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae22ebe00c8798d4bb46b12fbdcffdfb, type: 3}
-  m_Name: FSMRuntime-graph
-  m_EditorClassIdentifier: 
-  nodes:
-  - {fileID: 589035101}
-  - {fileID: 0}
-  - {fileID: 1276202403}
-  - {fileID: 1528408499}
-  - {fileID: 1309174718}
-  - {fileID: 1566647657}
-  startNode: {fileID: 1276202403}
---- !u!1001 &4008252506563153925
+--- !u!1001 &4269732920425506568
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 473031688}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4008252506619596130, guid: 5a414555ca0cb0a43941df80eb95279a,
-        type: 3}
-      propertyPath: m_Name
-      value: Robbi
-      objectReference: {fileID: 0}
-    - target: {fileID: 4008252506619596140, guid: 5a414555ca0cb0a43941df80eb95279a,
+    - target: {fileID: 4269732920227332864, guid: a4adc726aecc7494e8fd098375fb4a6d,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4008252506619596140, guid: 5a414555ca0cb0a43941df80eb95279a,
+    - target: {fileID: 4269732920227332864, guid: a4adc726aecc7494e8fd098375fb4a6d,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4008252506619596140, guid: 5a414555ca0cb0a43941df80eb95279a,
+    - target: {fileID: 4269732920227332864, guid: a4adc726aecc7494e8fd098375fb4a6d,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4008252506619596140, guid: 5a414555ca0cb0a43941df80eb95279a,
+    - target: {fileID: 4269732920227332864, guid: a4adc726aecc7494e8fd098375fb4a6d,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4008252506619596140, guid: 5a414555ca0cb0a43941df80eb95279a,
+    - target: {fileID: 4269732920227332864, guid: a4adc726aecc7494e8fd098375fb4a6d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4008252506619596140, guid: 5a414555ca0cb0a43941df80eb95279a,
+    - target: {fileID: 4269732920227332864, guid: a4adc726aecc7494e8fd098375fb4a6d,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4008252506619596140, guid: 5a414555ca0cb0a43941df80eb95279a,
+    - target: {fileID: 4269732920227332864, guid: a4adc726aecc7494e8fd098375fb4a6d,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4008252506619596140, guid: 5a414555ca0cb0a43941df80eb95279a,
+    - target: {fileID: 4269732920227332864, guid: a4adc726aecc7494e8fd098375fb4a6d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4008252506619596140, guid: 5a414555ca0cb0a43941df80eb95279a,
+    - target: {fileID: 4269732920227332864, guid: a4adc726aecc7494e8fd098375fb4a6d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4008252506619596140, guid: 5a414555ca0cb0a43941df80eb95279a,
+    - target: {fileID: 4269732920227332864, guid: a4adc726aecc7494e8fd098375fb4a6d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4008252506619596140, guid: 5a414555ca0cb0a43941df80eb95279a,
+    - target: {fileID: 4269732920227332864, guid: a4adc726aecc7494e8fd098375fb4a6d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4269732920227332879, guid: a4adc726aecc7494e8fd098375fb4a6d,
+        type: 3}
+      propertyPath: m_Name
+      value: Level
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5a414555ca0cb0a43941df80eb95279a, type: 3}
---- !u!4 &4008252506563153926 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4008252506619596140, guid: 5a414555ca0cb0a43941df80eb95279a,
-    type: 3}
-  m_PrefabInstance: {fileID: 4008252506563153925}
-  m_PrefabAsset: {fileID: 0}
+  m_SourcePrefab: {fileID: 100100000, guid: a4adc726aecc7494e8fd098375fb4a6d, type: 3}

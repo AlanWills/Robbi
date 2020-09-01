@@ -19,6 +19,9 @@ namespace Robbi.FSM.Nodes
 
         public StringReference sceneName;
         public LoadSceneMode loadMode = LoadSceneMode.Single;
+        public bool makeActive = false;
+
+        private bool sceneLoaded = false;
 
         #endregion
 
@@ -31,6 +34,14 @@ namespace Robbi.FSM.Nodes
             if (sceneName == null)
             {
                 sceneName = ScriptableObject.CreateInstance<StringReference>();
+                sceneName.name = name + "_sceneName";
+
+#if UNITY_EDITOR
+                if (UnityEditor.AssetDatabase.IsMainAsset(graph))
+                {
+                    UnityEditor.AssetDatabase.AddObjectToAsset(sceneName, graph);
+                }
+#endif
             }
         }
 
@@ -41,8 +52,37 @@ namespace Robbi.FSM.Nodes
         protected override void OnEnter()
         {
             base.OnEnter();
-            
+
+            sceneLoaded = false;
+
+            SceneManager.sceneLoaded += SceneManager_sceneLoaded;
             SceneManager.LoadScene(sceneName.Value, loadMode);
+        }
+
+        protected override FSMNode OnUpdate()
+        {
+            return sceneLoaded ? base.OnUpdate() : null;
+        }
+
+        protected override void OnExit()
+        {
+            base.OnExit();
+
+            SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
+        }
+
+        #endregion
+
+        #region Callbacks
+
+        private void SceneManager_sceneLoaded(Scene scene, LoadSceneMode loadMode)
+        {
+            sceneLoaded = scene.name == sceneName.Value;
+            
+            if (makeActive && sceneLoaded)
+            {
+                SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName.Value));
+            }
         }
 
         #endregion

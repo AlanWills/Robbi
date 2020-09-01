@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using UnityEditor;
 using UnityEngine;
 using XNodeEditor;
@@ -27,7 +28,10 @@ namespace RobbiEditor.FSM
                 EditorUtility.SetDirty(fsmRuntime);
             }
 
-            base.OnInspectorGUI();
+            if (fsmRuntime.graph != null && GUILayout.Button("Open graph", GUILayout.Height(40)))
+            {
+                NodeEditorWindow.Open(fsmRuntime.graph);
+            }
         }
 
         #endregion

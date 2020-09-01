@@ -36,7 +36,7 @@ namespace Robbi.PropertyDrawers.Parameters
             }
 
             serializedReference.ApplyModifiedProperties();
-      
+
             EditorGUI.EndProperty();
         }
     }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static Robbi.UI.Dialog;
 
 namespace Robbi.FSM.Nodes.UI
@@ -58,10 +59,9 @@ namespace Robbi.FSM.Nodes.UI
             confirmDummyEventListener.eventRaised = false;
             closeDummyEventListener.eventRaised = false;
 
-            parameters.confirmButtonPressed.AddEventListener(confirmDummyEventListener);
-            parameters.closeButtonPressed.AddEventListener(closeDummyEventListener);
-
             dialogInstance = GameObject.Instantiate(dialog.gameObject).GetComponent<Dialog>();
+            dialogInstance.ConfirmButtonClicked.AddEventListener(confirmDummyEventListener);
+            dialogInstance.CloseButtonClicked.AddEventListener(closeDummyEventListener);
             dialogInstance.Show(parameters);
         }
 
@@ -83,8 +83,8 @@ namespace Robbi.FSM.Nodes.UI
         {
             base.OnExit();
 
-            parameters.confirmButtonPressed.RemoveEventListener(confirmDummyEventListener);
-            parameters.closeButtonPressed.RemoveEventListener(closeDummyEventListener);
+            dialogInstance.ConfirmButtonClicked.RemoveEventListener(confirmDummyEventListener);
+            dialogInstance.CloseButtonClicked.RemoveEventListener(closeDummyEventListener);
             dialogInstance = null;
         }
 

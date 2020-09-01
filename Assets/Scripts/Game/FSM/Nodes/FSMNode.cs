@@ -91,6 +91,10 @@ namespace Robbi.FSM.Nodes
         public void SetAsStart()
         {
             (graph as FSMGraph).startNode = this;
+
+#if UNITY_EDITOR
+            UnityEditor.EditorUtility.SetDirty(graph);
+#endif
         }
 
         #endregion
