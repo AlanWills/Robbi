@@ -8,6 +8,6 @@ namespace Robbi.Debugging.Commands
 {
     public interface IDebugCommand
     {
-        bool Execute(List<string> parameters);
+        bool Execute(List<string> parameters, StringBuilder output);
     }
 }

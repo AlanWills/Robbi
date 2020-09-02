@@ -9,7 +9,7 @@ using XNode;
 namespace Robbi.FSM.Nodes
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Event Listener Node")]
+    [CreateNodeMenu("Robbi/Events/Event Listener Node")]
     public class EventListenerNode : FSMNode, IEventListener
     {
         #region Properties and Fields

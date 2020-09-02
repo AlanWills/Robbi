@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae22ebe00c8798d4bb46b12fbdcffdfb, type: 3}
-  m_Name: Level0FSM
+  m_Name: Level1FSM
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: 8031065900426762465}
-  - {fileID: 7336797146505658954}
-  startNode: {fileID: 7336797146505658954}
---- !u!114 &7336797146505658954
+  - {fileID: 4731638223228773174}
+  - {fileID: 3215360751380570208}
+  startNode: {fileID: 4731638223228773174}
+--- !u!114 &3215360751380570208
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -29,7 +29,7 @@ MonoBehaviour:
   m_Name: Show Dialog
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -264, y: -152}
+  position: {x: -40, y: -136}
   ports:
     keys:
     - ' '
@@ -37,48 +37,48 @@ MonoBehaviour:
     - Close Pressed
     values:
     - _fieldName: ' '
-      _node: {fileID: 7336797146505658954}
+      _node: {fileID: 3215360751380570208}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: Confirm Pressed
+        node: {fileID: 4731638223228773174}
+        reroutePoints: []
+      - fieldName: Close Pressed
+        node: {fileID: 4731638223228773174}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
     - _fieldName: Confirm Pressed
-      _node: {fileID: 7336797146505658954}
+      _node: {fileID: 3215360751380570208}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: 8031065900426762465}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
     - _fieldName: Close Pressed
-      _node: {fileID: 7336797146505658954}
+      _node: {fileID: 3215360751380570208}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: 8031065900426762465}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
   dialog: {fileID: 595162996696123630, guid: c96c4da4f9fe1ad4581df6d85934c36e, type: 3}
   parameters:
-    title: Movement
-    image: {fileID: 21300000, guid: e0947e9db7bfd384ea74ce4dbe040c1a, type: 3}
-    description: Robbi can move along corridors.  Click on tiles like the one above
-      to send a move instruction.  Some tiles cannot be moved to.
+    title: Switches
+    image: {fileID: 21300000, guid: e38830da8b3fa854fb0e0b1069ea73b0, type: 3}
+    description: Switches can affect many parts of the factory.  Move on a neighbouring
+      tile and Robbi can give them a flick!
     confirmButtonText: Got It!
     showConfirmButton: 1
     showCloseButton: 0
---- !u!114 &8031065900426762465
+--- !u!114 &4731638223228773174
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: Show Dialog
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 24, y: -152}
+  position: {x: -312, y: -136}
   ports:
     keys:
     - ' '
@@ -99,51 +99,43 @@ MonoBehaviour:
     - Close Pressed
     values:
     - _fieldName: ' '
-      _node: {fileID: 8031065900426762465}
+      _node: {fileID: 4731638223228773174}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: Confirm Pressed
-        node: {fileID: 7336797146505658954}
-        reroutePoints: []
-      - fieldName: Close Pressed
-        node: {fileID: 7336797146505658954}
-        reroutePoints: []
+      connections: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
     - _fieldName: Confirm Pressed
-      _node: {fileID: 8031065900426762465}
+      _node: {fileID: 4731638223228773174}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: ' '
+        node: {fileID: 3215360751380570208}
+        reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
     - _fieldName: Close Pressed
-      _node: {fileID: 8031065900426762465}
+      _node: {fileID: 4731638223228773174}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: ' '
+        node: {fileID: 3215360751380570208}
+        reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
   dialog: {fileID: 595162996696123630, guid: c96c4da4f9fe1ad4581df6d85934c36e, type: 3}
   parameters:
-    title: Exits
-    image: {fileID: -1024222420897935036, guid: 124085e140aac434cb1860eae14e16c5,
-      type: 3}
-    description: This icon shows an exit for Robbi.  Move him onto this marker to
-      complete the level.
+    title: Doors
+    image: {fileID: 21300000, guid: f4f88d802b49a0c49944d958d9f40b5d, type: 3}
+    description: Doors will obstruct Robbi's movement if unopened.
     confirmButtonText: Got It!
     showConfirmButton: 1
     showCloseButton: 0

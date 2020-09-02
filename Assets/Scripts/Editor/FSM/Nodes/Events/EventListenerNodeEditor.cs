@@ -8,7 +8,7 @@ using UnityEditor;
 using UnityEngine;
 using XNodeEditor;
 
-namespace RobbiEditor.FSM.Nodes
+namespace RobbiEditor.FSM.Nodes.Events
 {
     [CustomNodeEditor(typeof(EventListenerNode))]
     public class EventListenerNodeEditor : FSMNodeEditor

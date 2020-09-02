@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Robbi.Debugging.Commands
 {
@@ -14,6 +15,7 @@ namespace Robbi.Debugging.Commands
         #region Properties and Fields
 
         public GameObject debugUI;
+        public Text outputText;
 
         private Dictionary<string, IDebugCommand> registeredCommands = new Dictionary<string, IDebugCommand>();
 
@@ -24,6 +26,7 @@ namespace Robbi.Debugging.Commands
         private void RegisterCommands()
         {
             RegisterCommand<SetCurrentLevelIndexDebugCommand>("scl");
+            RegisterCommand<GetCurrentLevelIndexDebugCommand>("gcl");
         }
 
         private void RegisterCommand<T>(string name) where T : IDebugCommand, new()
@@ -45,7 +48,9 @@ namespace Robbi.Debugging.Commands
                         commandParams.Add(parameters[i]);
                     }
 
-                    debugCommand.Execute(commandParams);
+                    StringBuilder output = new StringBuilder();
+                    debugCommand.Execute(commandParams, output);
+                    outputText.text = output.ToString();
                 }
             }
 #endif
@@ -71,7 +76,7 @@ namespace Robbi.Debugging.Commands
         {
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
 #if UNITY_ANDROID || UNITY_IOS
-            if (Input.touchCount == 3)
+            if (Input.touchCount == 3 && Input.GetTouch(0).phase == TouchPhase.Ended)
             {
                 debugUI.SetActive(!debugUI.activeSelf);
             }

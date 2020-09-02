@@ -10,11 +10,11 @@ namespace Robbi.Levels
 {
     public class SetCurrentLevelIndexDebugCommand : IDebugCommand
     {
-        public bool Execute(List<string> parameters)
+        public bool Execute(List<string> parameters, StringBuilder output)
         {
             if (parameters.Count < 1)
             {
-                Debug.LogAssertion("Insufficient parameters to SetCurrentLevelIndexDebugCommand.");
+                output.Append("Insufficient parameters to SetCurrentLevelIndexDebugCommand.");
                 return false;
             }
 
@@ -24,11 +24,12 @@ namespace Robbi.Levels
                 levelManager.CurrentLevelIndex = result;
                 levelManager.Save();
 
+                output.Append(string.Format("Current Level Index successfully set to {0}", levelManager.CurrentLevelIndex));
                 return true;
             }
             else
             {
-                Debug.LogAssertion(string.Format("Invalid parameter {0} to SetCurrentLevelIndexDebugCommand.", parameters[0]));
+                output.Append(string.Format("Invalid parameter {0} to SetCurrentLevelIndexDebugCommand.", parameters[0]));
                 return false;
             }
         }

@@ -18,6 +18,7 @@ namespace Robbi.UI
         public struct ShowDialogParams
         {
             public string title;
+            public Sprite image;
             public string description;
             public string confirmButtonText;
             public bool showConfirmButton;
@@ -38,6 +39,9 @@ namespace Robbi.UI
 
         [SerializeField]
         private Text title;
+
+        [SerializeField]
+        private Image image;
 
         [SerializeField]
         private Text description;
@@ -66,6 +70,12 @@ namespace Robbi.UI
             if (title != null)
             {
                 title.text = showDialogParams.title;
+            }
+
+            if (image != null)
+            {
+                image.enabled = showDialogParams.image != null;
+                image.sprite = showDialogParams.image;
             }
 
             if (description != null)
