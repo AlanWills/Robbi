@@ -85,6 +85,25 @@ namespace Robbi.FSM.Nodes
 
         #endregion
 
+        #region Value Methods
+
+        public T CreateParameter<T>(string name) where T : ScriptableObject
+        {
+            T parameter = ScriptableObject.CreateInstance<T>();
+            parameter.name = name + "_sceneName";
+
+#if UNITY_EDITOR
+            if (UnityEditor.AssetDatabase.IsMainAsset(graph))
+            {
+                UnityEditor.AssetDatabase.AddObjectToAsset(parameter, graph);
+            }
+#endif
+
+            return parameter;
+        }
+
+        #endregion
+
         #region Context Menu
 
         [ContextMenu("Set As Start")]
