@@ -1,5 +1,7 @@
 ﻿using Robbi.FSM.Nodes;
 using Robbi.FSM.Nodes.Events;
+using Robbi.FSM.Nodes.Events.Conditions;
+using RobbiEditor.FSM.Nodes.Events.Conditions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,46 +14,6 @@ using XNodeEditor;
 
 namespace RobbiEditor.FSM.Nodes.Events
 {
-    public abstract class EventConditionEditor
-    {
-        public void GUI(MultiEventListenerNode listenerNode, EventCondition eventCondition)
-        {
-            SerializedObject serializedObject = new SerializedObject(eventCondition);
-            serializedObject.Update();
-
-            OnGUI(listenerNode, serializedObject);
-
-            serializedObject.ApplyModifiedProperties();
-        }
-
-        protected abstract void OnGUI(MultiEventListenerNode listenerNode, SerializedObject eventConditionObject);
-    }
-
-    public class VoidEventConditionEditor : EventConditionEditor
-    {
-        protected override void OnGUI(MultiEventListenerNode listenerNode, SerializedObject eventConditionObject)
-        {
-            SerializedProperty listenForProperty = eventConditionObject.FindProperty("listenFor");
-            
-            EditorGUI.BeginChangeCheck();
-
-            UnityEngine.Object oldValue = listenForProperty.objectReferenceValue;
-            EditorGUILayout.PropertyField(listenForProperty);
-            
-            if (EditorGUI.EndChangeCheck())
-            {
-                UnityEngine.Object newValue = listenForProperty.objectReferenceValue;
-
-                if (oldValue == null && newValue != null)
-                {
-                    listenerNode.AddEventConditionPort(newValue.name);
-                }
-
-                // Handle other cases, e.g. set to null and switching from non-null
-            }
-        }
-    }
-
     [CustomNodeEditor(typeof(MultiEventListenerNode))]
     public class MultiEventListenerNodeEditor : FSMNodeEditor
     {
@@ -92,29 +54,29 @@ namespace RobbiEditor.FSM.Nodes.Events
                 eventListenerNode.AddEvent(eventOptions[selectedEventType]);
             }
 
-            foreach (EventCondition eventCondition in eventListenerNode.Events)
+            for (uint i = eventListenerNode.NumEvents; i > 0; --i)
             {
                 EditorGUILayout.BeginHorizontal();
 
-                if (eventConditionEditorFactory.TryGetValue(eventCondition.GetType(), out EventConditionEditor editor))
+                EventCondition eventCondition = eventListenerNode.GetEvent(i - 1);
+
+                if (GUILayout.Button("-", GUILayout.MaxWidth(16), GUILayout.MaxHeight(16)))
                 {
-                    editor.GUI(eventListenerNode, eventCondition);
+                    eventListenerNode.RemoveEvent(eventCondition);
+                }
+                else
+                {
+                    if (eventConditionEditorFactory.TryGetValue(eventCondition.GetType(), out EventConditionEditor editor))
+                    {
+                        editor.GUI(eventListenerNode, eventCondition);
+                    }
+
+                    Rect rect = GUILayoutUtility.GetLastRect();
+                    NodeEditorGUILayout.PortField(rect.position + new Vector2(rect.width, 0), eventListenerNode.GetOutputPort(eventCondition.name));
                 }
 
                 EditorGUILayout.EndHorizontal();
             }
-
-            Really want this to be on the same line as the event condition stuff
-            Specify rects maybe?
-            foreach (var port in eventListenerNode.DynamicOutputs)
-            {
-                if (port.fieldName != FSMNode.DEFAULT_OUTPUT_PORT_NAME)
-                {
-                    NodeEditorGUILayout.PortField(port);
-                }
-            }
-
-            //base.OnBodyGUI();
         }
 
         #endregion

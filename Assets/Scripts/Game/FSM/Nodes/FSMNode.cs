@@ -95,7 +95,7 @@ namespace Robbi.FSM.Nodes
 #if UNITY_EDITOR
             if (UnityEditor.AssetDatabase.IsMainAsset(graph))
             {
-                UnityEditor.AssetDatabase.AddObjectToAsset(parameter, graph);
+                UnityEditor.AssetDatabase.AddObjectToAsset(parameter, this);
                 UnityEditor.EditorUtility.SetDirty(graph);
             }
 #endif

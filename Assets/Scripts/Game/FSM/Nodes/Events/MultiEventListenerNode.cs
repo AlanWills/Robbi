@@ -1,4 +1,5 @@
 ﻿using Robbi.Events;
+using Robbi.FSM.Nodes.Events.Conditions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,72 +14,6 @@ using Event = Robbi.Events.Event;
 namespace Robbi.FSM.Nodes.Events
 {
     [Serializable]
-    public abstract class EventCondition : ScriptableObject
-    {
-        #region Properties and Fields
-
-        private bool hasEventFired = false;
-
-        public abstract new string name { get; }
-
-        #endregion
-
-        public void AddListener()
-        {
-            hasEventFired = false;
-            AddListenerInternal();
-        }
-
-        public void RemoveListener()
-        {
-            RemoveListenerInternal();
-        }
-
-        protected abstract void AddListenerInternal();
-
-        protected abstract void RemoveListenerInternal();
-
-        public bool HasEventFired()
-        {
-            return hasEventFired;
-        }
-
-        public void OnEventRaised()
-        {
-            hasEventFired = true;
-        }
-    }
-
-    [Serializable]
-    public class VoidEventCondition : EventCondition, IEventListener
-    {
-        #region Properties and Fields
-
-        public Event listenFor;
-
-        public override string name
-        {
-            get { return listenFor != null ? listenFor.name : ""; }
-        }
-
-        #endregion
-
-        #region IEventCondition
-
-        protected override void AddListenerInternal()
-        {
-            listenFor.AddEventListener(this);
-        }
-
-        protected override void RemoveListenerInternal()
-        {
-            listenFor.RemoveEventListener(this);
-        }
-
-        #endregion
-    }
-
-    [Serializable]
     [CreateNodeMenu("Robbi/Events/Multi Event Listener Node")]
     public class MultiEventListenerNode : FSMNode
     {
@@ -87,14 +22,24 @@ namespace Robbi.FSM.Nodes.Events
         [SerializeField]
         private List<EventCondition> events = new List<EventCondition>();
 
-        public IEnumerable<EventCondition> Events
+        public uint NumEvents
         {
-            get { return events; }
+            get { return (uint)events.Count; }
         }
 
         #endregion
 
+        public MultiEventListenerNode()
+        {
+            RemoveDynamicPort(DEFAULT_OUTPUT_PORT_NAME);
+        }
+
         #region Event Condition Utilities
+
+        public EventCondition GetEvent(uint index)
+        {
+            return index < NumEvents ? events[(int)index] : null;
+        }
 
         public T AddEvent<T>() where T : EventCondition
         {
@@ -107,12 +52,31 @@ namespace Robbi.FSM.Nodes.Events
             events.Add(_event);
 
 #if UNITY_EDITOR
-            UnityEditor.AssetDatabase.AddObjectToAsset(_event, graph);
+            UnityEditor.AssetDatabase.AddObjectToAsset(_event, this);
             UnityEditor.EditorUtility.SetDirty(this);
             UnityEditor.EditorUtility.SetDirty(graph);
 #endif
 
             return _event;
+        }
+
+        public void RemoveEvent(EventCondition eventCondition)
+        {
+            events.Remove(eventCondition);
+
+            bool hasPort = HasPort(eventCondition.name);
+            Debug.Assert(hasPort, string.Format("Missing port {0} for event condition being removed.", eventCondition.name));
+
+            if (hasPort)
+            {
+                RemoveDynamicPort(eventCondition.name);
+            }
+
+#if UNITY_EDITOR
+            UnityEditor.AssetDatabase.RemoveObjectFromAsset(eventCondition);
+            UnityEditor.EditorUtility.SetDirty(this);
+            UnityEditor.EditorUtility.SetDirty(graph);
+#endif
         }
 
         public void AddEventConditionPort(string name)
