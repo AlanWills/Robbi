@@ -1,4 +1,4 @@
-﻿using Robbi.FSM.Nodes;
+﻿using Robbi.FSM.Nodes.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;

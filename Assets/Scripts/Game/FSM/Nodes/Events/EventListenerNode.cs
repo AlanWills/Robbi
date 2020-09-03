@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using XNode;
 
-namespace Robbi.FSM.Nodes
+namespace Robbi.FSM.Nodes.Events
 {
     [Serializable]
     [CreateNodeMenu("Robbi/Events/Event Listener Node")]

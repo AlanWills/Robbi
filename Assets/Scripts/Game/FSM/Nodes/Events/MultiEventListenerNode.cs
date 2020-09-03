@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using XNode;
 using static XNode.Node;
 
 using Event = Robbi.Events.Event;
@@ -17,6 +18,8 @@ namespace Robbi.FSM.Nodes.Events
         #region Properties and Fields
 
         private bool hasEventFired = false;
+
+        public abstract new string name { get; }
 
         #endregion
 
@@ -53,7 +56,7 @@ namespace Robbi.FSM.Nodes.Events
 
         public Event listenFor;
 
-        public new string name
+        public override string name
         {
             get { return listenFor != null ? listenFor.name : ""; }
         }
@@ -104,12 +107,17 @@ namespace Robbi.FSM.Nodes.Events
             events.Add(_event);
 
 #if UNITY_EDITOR
-            UnityEditor.AssetDatabase.AddObjectToAsset(graph, _event);
+            UnityEditor.AssetDatabase.AddObjectToAsset(_event, graph);
             UnityEditor.EditorUtility.SetDirty(this);
             UnityEditor.EditorUtility.SetDirty(graph);
 #endif
 
             return _event;
+        }
+
+        public void AddEventConditionPort(string name)
+        {
+            AddOutputPort(name);
         }
 
         #endregion
@@ -132,7 +140,9 @@ namespace Robbi.FSM.Nodes.Events
             {
                 if (eventCondition.HasEventFired())
                 {
-                    return GetConnectedNode(eventCondition.name);
+                    string eventConditionName = eventCondition.name;
+                    Debug.Log("Name: " + eventConditionName);
+                    return GetConnectedNode(eventConditionName);
                 }
             }
 

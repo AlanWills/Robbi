@@ -13,8 +13,8 @@ namespace Robbi.FSM.Nodes
     {
         #region Properties and Fields
 
-        protected const string DEFAULT_INPUT_PORT_NAME = " ";
-        protected const string DEFAULT_OUTPUT_PORT_NAME = "";
+        public const string DEFAULT_INPUT_PORT_NAME = " ";
+        public const string DEFAULT_OUTPUT_PORT_NAME = "";
 
         #endregion
 
@@ -53,12 +53,12 @@ namespace Robbi.FSM.Nodes
 
         protected void AddDefaultInputPort(ConnectionType connectionType = ConnectionType.Multiple)
         {
-            AddDynamicInput(typeof(void), connectionType, TypeConstraint.None, DEFAULT_INPUT_PORT_NAME);
+            AddInputPort(DEFAULT_INPUT_PORT_NAME, connectionType);
         }
 
         protected void AddDefaultOutputPort(ConnectionType connectionType = ConnectionType.Override)
         {
-            AddDynamicOutput(typeof(void), connectionType, TypeConstraint.None, DEFAULT_OUTPUT_PORT_NAME);
+            AddOutputPort(DEFAULT_OUTPUT_PORT_NAME, connectionType);
         }
 
         protected void AddInputPort(string portName, ConnectionType connectionType = ConnectionType.Multiple)
@@ -96,6 +96,7 @@ namespace Robbi.FSM.Nodes
             if (UnityEditor.AssetDatabase.IsMainAsset(graph))
             {
                 UnityEditor.AssetDatabase.AddObjectToAsset(parameter, graph);
+                UnityEditor.EditorUtility.SetDirty(graph);
             }
 #endif
 
