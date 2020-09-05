@@ -233,6 +233,7 @@ MonoBehaviour:
   confirmButtonClicked: {fileID: 11400000, guid: b8412f65d2677e54398df94f7e10771e,
     type: 2}
   closeButtonClicked: {fileID: 11400000, guid: 421463337f1ed284a83b6ad48c142b25, type: 2}
+  animator: {fileID: 4596528568512606722}
 --- !u!1 &595162997810906664
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,6 +245,7 @@ GameObject:
   - component: {fileID: 595162997810906665}
   - component: {fileID: 595162997810906671}
   - component: {fileID: 595162997810906670}
+  - component: {fileID: 4596528568512606722}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -313,6 +315,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &4596528568512606722
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595162997810906664}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 579b0c2ec9e89ae4283b7996393da110, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &595162997817947245
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,6 +519,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 4596528568512606722}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Closed
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 595162996696123630}
         m_TargetAssemblyTypeName: Robbi.UI.Dialog, Assembly-CSharp
         m_MethodName: Close
@@ -630,6 +663,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 4596528568512606722}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Closed
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 595162996696123630}
         m_TargetAssemblyTypeName: Robbi.UI.Dialog, Assembly-CSharp
         m_MethodName: Confirm

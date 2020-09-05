@@ -52,7 +52,7 @@ namespace Robbi.FSM.Nodes.Events
             events.Add(_event);
 
 #if UNITY_EDITOR
-            UnityEditor.AssetDatabase.AddObjectToAsset(_event, this);
+            UnityEditor.AssetDatabase.AddObjectToAsset(_event, graph);
             UnityEditor.EditorUtility.SetDirty(this);
             UnityEditor.EditorUtility.SetDirty(graph);
 #endif

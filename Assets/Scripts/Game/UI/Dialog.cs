@@ -1,5 +1,6 @@
 ﻿using Robbi.Events;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,8 @@ namespace Robbi.UI
         }
 
         #region Properties and Fields
+
+        private static int CLOSED_ANIMATION_NAME = Animator.StringToHash("Closed");
 
         public Event ConfirmButtonClicked
         {
@@ -60,6 +63,11 @@ namespace Robbi.UI
 
         [SerializeField]
         private Event closeButtonClicked;
+
+        [SerializeField]
+        private Animator animator;
+
+        private Coroutine hideCoroutine;
 
         #endregion
 
@@ -104,18 +112,23 @@ namespace Robbi.UI
 
         public void Confirm()
         {
-            confirmButtonClicked.Raise();
-            Hide();
+            hideCoroutine = StartCoroutine(Hide(confirmButtonClicked));
         }
 
         public void Close()
         {
-            closeButtonClicked.Raise();
-            Hide();
+            hideCoroutine = StartCoroutine(Hide(closeButtonClicked));
         }
 
-        private void Hide()
+        private IEnumerator Hide(Event eventToTrigger)
         {
+            // The checking of the animation name is just to avoid this continuing on the first frame we transition from idle to closing
+            while (animator != null && (animator.GetBool(CLOSED_ANIMATION_NAME) || animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1f))
+            {
+                yield return null;
+            }
+
+            eventToTrigger.Raise();
             GameObject.Destroy(gameObject);
         }
 
