@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6135149094021871496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51fb886b9ab4e346897a43d978de61a, type: 3}
+  m_Name: _sceneName
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: HudLog
+  referenceValue: {fileID: 0}
 --- !u!114 &-5312520862218663089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13,8 +28,50 @@ MonoBehaviour:
   m_Name: _sceneName_sceneName
   m_EditorClassIdentifier: 
   isConstant: 1
-  constantValue: Debug
+  constantValue: DebugConsole
   referenceValue: {fileID: 0}
+--- !u!114 &-4367922556797926047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e295ed475d4fc14baf9165869777e35, type: 3}
+  m_Name: Scene Loader
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -664, y: -72}
+  ports:
+    keys:
+    - ' '
+    - 
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -4367922556797926047}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -4367922556797926047}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 3607410274553188397}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  sceneName: {fileID: 7970184853765670699}
+  loadMode: 1
 --- !u!114 &-2335568172543675516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39,6 +96,27 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 5151798752707338338}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5151798752707338338}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5151798752707338338}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5151798752707338338}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5151798752707338338}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5151798752707338338}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5151798752707338338}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 5151798752707338338}
         reroutePoints: []
@@ -74,7 +152,10 @@ MonoBehaviour:
   - {fileID: 147013120676380929}
   - {fileID: 5151798752707338338}
   - {fileID: -2335568172543675516}
-  startNode: {fileID: 2987079085870266413}
+  - {fileID: 0}
+  - {fileID: -4367922556797926047}
+  - {fileID: 3607410274553188397}
+  startNode: {fileID: -4367922556797926047}
 --- !u!114 &147013120676380929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,6 +180,27 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 2987079085870266413}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 2987079085870266413}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 2987079085870266413}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 2987079085870266413}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 2987079085870266413}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 2987079085870266413}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 2987079085870266413}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 2987079085870266413}
         reroutePoints: []
@@ -142,7 +244,10 @@ MonoBehaviour:
       _node: {fileID: 2987079085870266413}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: 
+        node: {fileID: 3607410274553188397}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -161,6 +266,50 @@ MonoBehaviour:
       _dynamic: 1
   sceneName: {fileID: -5312520862218663089}
   loadMode: 1
+--- !u!114 &3607410274553188397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 313b54e3f51f41a44901912b5badac8a, type: 3}
+  m_Name: Scene Unloader
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -392, y: -56}
+  ports:
+    keys:
+    - ' '
+    - 
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 3607410274553188397}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: -4367922556797926047}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 3607410274553188397}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 2987079085870266413}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  sceneName: {fileID: -6135149094021871496}
 --- !u!114 &4671358637381167762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,7 +323,7 @@ MonoBehaviour:
   m_Name: _sceneName
   m_EditorClassIdentifier: 
   isConstant: 1
-  constantValue: Debug
+  constantValue: DebugConsole
   referenceValue: {fileID: 0}
 --- !u!114 &5151798752707338338
 MonoBehaviour:
@@ -200,6 +349,27 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 147013120676380929}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 147013120676380929}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 147013120676380929}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 147013120676380929}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 147013120676380929}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 147013120676380929}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 147013120676380929}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 147013120676380929}
         reroutePoints: []
@@ -234,4 +404,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isConstant: 1
   constantValue: MainMenu
+  referenceValue: {fileID: 0}
+--- !u!114 &7970184853765670699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51fb886b9ab4e346897a43d978de61a, type: 3}
+  m_Name: _sceneName_sceneName
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: HudLog
   referenceValue: {fileID: 0}

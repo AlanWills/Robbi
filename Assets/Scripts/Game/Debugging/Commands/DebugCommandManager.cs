@@ -1,4 +1,5 @@
-﻿using Robbi.Levels;
+﻿using Robbi.Debugging.Logging;
+using Robbi.Levels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,7 @@ namespace Robbi.Debugging.Commands
         {
             RegisterCommand<SetCurrentLevelIndexDebugCommand>("scl");
             RegisterCommand<GetCurrentLevelIndexDebugCommand>("gcl");
+            RegisterCommand<HudLoggerConsoleDebugCommand>("hlog");
         }
 
         private void RegisterCommand<T>(string name) where T : IDebugCommand, new()
@@ -40,6 +42,8 @@ namespace Robbi.Debugging.Commands
             string[] parameters = commandText.Split(' ');
             if (parameters.Length > 0)
             {
+                StringBuilder output = new StringBuilder();
+
                 if (registeredCommands.TryGetValue(parameters[0], out IDebugCommand debugCommand))
                 {
                     List<string> commandParams = new List<string>(parameters.Length - 1);
@@ -48,10 +52,14 @@ namespace Robbi.Debugging.Commands
                         commandParams.Add(parameters[i]);
                     }
 
-                    StringBuilder output = new StringBuilder();
                     debugCommand.Execute(commandParams, output);
-                    outputText.text = output.ToString();
                 }
+                else
+                {
+                    output.AppendFormat("Could not find command {0}", parameters[0]);
+                }
+
+                outputText.text = output.ToString();
             }
 #endif
         }

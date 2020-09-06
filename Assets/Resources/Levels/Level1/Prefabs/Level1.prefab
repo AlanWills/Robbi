@@ -946,15 +946,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4386922664730790704}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da7c16e816f5b7c479489d0c9a624d07, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 370797b9e4dc2454c930db836a46057f, type: 2}
+  gameEvent: {fileID: 0}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3345592727389680237}
-        m_TargetAssemblyTypeName: Robbi.Obstacles.DoorManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: Robbi.Doors.DoorManager, Assembly-CSharp
         m_MethodName: OpenDoor
         m_Mode: 0
         m_Arguments:
@@ -1222,6 +1222,8 @@ GameObject:
   - component: {fileID: 4386922665733860810}
   - component: {fileID: 4386922665733860852}
   - component: {fileID: 4386922665733860853}
+  - component: {fileID: 5542427262500875880}
+  - component: {fileID: 2226416039817643615}
   m_Layer: 0
   m_Name: Movement
   m_TagString: Untagged
@@ -1512,6 +1514,60 @@ MonoBehaviour:
     type: 3}
   speed: 4
   onMovedTo: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
+--- !u!61 &5542427262500875880
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4386922665733860808}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 6, y: 11}
+  m_EdgeRadius: 0
+--- !u!114 &2226416039817643615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4386922665733860808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08fe44caecb1a444890e076001b375c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 74245c4526e3f0144b8534774b224924, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4386922665733860853}
+        m_TargetAssemblyTypeName: Robbi.Movement.MovementManager, Assembly-CSharp
+        m_MethodName: Move
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4431962789135764467
 GameObject:
   m_ObjectHideFlags: 0
@@ -1552,7 +1608,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4431962789135764467}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da7c16e816f5b7c479489d0c9a624d07, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
@@ -1568,7 +1624,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: LevelCompleteTransition
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &6348871370650984634
@@ -1611,15 +1667,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6348871370650984634}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6505c29383c30649a7e3251999688ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 0237404b5b9513b418a74e7454de4ba6, type: 2}
+  gameEvent: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: ebac723781409f048b3be4198bc6283b, type: 2}
-        m_TargetAssemblyTypeName: Robbi.Obstacles.Door, Assembly-CSharp
+        m_TargetAssemblyTypeName: Robbi.Doors.Door, Assembly-CSharp
         m_MethodName: Open
         m_Mode: 1
         m_Arguments:
