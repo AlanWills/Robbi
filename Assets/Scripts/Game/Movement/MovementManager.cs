@@ -44,25 +44,6 @@ namespace Robbi.Movement
 
         private void Update()
         {
-            if (InputOnGrid())
-            {
-                Vector3 targetWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Vector3Int targetGridPosition = grid.WorldToCell(targetWorldPosition);
-                Vector3Int currentGridPosition = grid.WorldToCell(playerLocalPosition.value);
-
-                if (targetGridPosition != currentGridPosition && movementTilemap.HasTile(targetGridPosition))
-                {
-                    Stack<Vector3> newWaypoints = CalculateWaypoints(currentGridPosition, targetGridPosition);
-                    if (newWaypoints.Count > 0)
-                    {
-                        waypoints = newWaypoints;
-
-                        destinationMarkerInstance.SetActive(true);
-                        destinationMarkerInstance.transform.position = grid.GetCellCenterLocal(targetGridPosition);
-                    }
-                }
-            }
-
             if (waypoints.Count > 0)
             {
                 Vector3 currentWaypoint = waypoints.Peek();
@@ -82,6 +63,28 @@ namespace Robbi.Movement
             else
             {
                 destinationMarkerInstance.SetActive(false);
+            }
+        }
+
+        #endregion
+
+        #region Movement Methods
+
+        public void Move(Vector3 targetWorldPosition)
+        {
+            Vector3Int targetGridPosition = grid.WorldToCell(targetWorldPosition);
+            Vector3Int currentGridPosition = grid.WorldToCell(playerLocalPosition.value);
+
+            if (targetGridPosition != currentGridPosition && movementTilemap.HasTile(targetGridPosition))
+            {
+                Stack<Vector3> newWaypoints = CalculateWaypoints(currentGridPosition, targetGridPosition);
+                if (newWaypoints.Count > 0)
+                {
+                    waypoints = newWaypoints;
+
+                    destinationMarkerInstance.SetActive(true);
+                    destinationMarkerInstance.transform.position = grid.GetCellCenterLocal(targetGridPosition);
+                }
             }
         }
 

@@ -5,15 +5,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Robbi.Game.Inputs
 {
     [AddComponentMenu("Robbi/Input/Input Listener")]
-    public class InputListener : MonoBehaviour, IEventListener<GameObject>
+    [RequireComponent(typeof(Collider2D))]
+    public class InputListener : MonoBehaviour, IEventListener<GameObjectClickEventArgs>
     {
-        public void OnEventRaised(GameObject arguments)
+        #region Properties and Fields
+
+        public GameObjectClickEvent gameEvent;
+        public Vector3UnityEvent response;
+
+        #endregion
+
+        #region Unity Methods
+
+        private void OnEnable()
         {
-            throw new NotImplementedException();
+            gameEvent.AddEventListener(this);
         }
+
+        private void OnDisable()
+        {
+            gameEvent.RemoveEventListener(this);
+        }
+
+        #endregion
+
+        #region Response Methods
+
+        public void OnEventRaised(GameObjectClickEventArgs clickedGameObjectArgs)
+        {
+            if (clickedGameObjectArgs.gameObject == gameObject)
+            {
+                response.Invoke(clickedGameObjectArgs.clickWorldPosition);
+            }
+        }
+
+        #endregion
     }
 }
