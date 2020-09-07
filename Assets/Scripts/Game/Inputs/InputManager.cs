@@ -21,6 +21,8 @@ namespace Robbi.Game.Inputs
 
         [Header("Desktop Events)")]
         public Event leftMouseButtonDown;
+        public Event middleMouseButtonDown;
+        public Event rightMouseButtonDown;
 
         #endregion
 
@@ -28,6 +30,8 @@ namespace Robbi.Game.Inputs
 
         [Header("Phone Events")]
         public TouchEvent singleTouchEvent;
+        public MultiTouchEvent doubleTouchEvent;
+        public MultiTouchEvent tripleTouchEvent;
 
         #endregion
 
@@ -64,10 +68,26 @@ namespace Robbi.Game.Inputs
                 {
                     gameObjectLeftClicked.Raise(new GameObjectClickEventArgs() 
                     { 
-                        gameObjectClicked = hitGameObject, 
+                        gameObject = hitGameObject, 
                         clickWorldPosition = touchWorldPosition 
                     });
                 }
+            }
+            else if (Input.touchCount == 2)
+            {
+                doubleTouchEvent.Raise(new MultiTouchEventArgs()
+                {
+                    touchCount = 2,
+                    touches = Input.touches,
+                });
+            }
+            else if (Input.touchCount == 3)
+            {
+                tripleTouchEvent.Raise(new MultiTouchEventArgs()
+                {
+                    touchCount = 3,
+                    touches = Input.touches,
+                });
             }
 #else
             if (Input.GetMouseButtonDown(0))
@@ -85,6 +105,16 @@ namespace Robbi.Game.Inputs
                         clickWorldPosition = mouseWorldPosition 
                     });
                 }
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                rightMouseButtonDown.Raise();
+            }
+
+            if (Input.GetMouseButtonDown(2))
+            {
+                middleMouseButtonDown.Raise();
             }
 #endif
         }

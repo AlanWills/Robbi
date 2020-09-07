@@ -1,4 +1,5 @@
 ﻿using Robbi.Debugging.Logging;
+using Robbi.Events;
 using Robbi.Levels;
 using System;
 using System.Collections.Generic;
@@ -80,21 +81,30 @@ namespace Robbi.Debugging.Commands
 #endif
         }
 
-        private void Update()
+        #endregion
+
+        #region Activation
+
+        public void TryToggle(MultiTouchEventArgs multiTouchEventArgs)
         {
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
-#if UNITY_ANDROID || UNITY_IOS
-            if (Input.touchCount == 3 && Input.GetTouch(0).phase == TouchPhase.Ended)
+#if UNITY_ANDROID || UNITY_IOS || true
+            for (int i = 0; i < multiTouchEventArgs.touchCount; ++i)
             {
-                debugUI.SetActive(!debugUI.activeSelf);
-            }
-#else
-            // Middle mouse button down
-            if (Input.GetMouseButtonDown(2))
-            {
-                debugUI.SetActive(!debugUI.activeSelf);
+                if (multiTouchEventArgs.touches[i].phase == TouchPhase.Ended)
+                {
+                    Toggle();
+                    return;
+                }
             }
 #endif
+#endif
+        }
+
+        public void Toggle()
+        {
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
+            debugUI.SetActive(!debugUI.activeSelf);
 #endif
         }
 

@@ -8,6 +8,7 @@ using UnityEngine.Events;
 
 namespace Robbi.Events
 {
+    [Serializable]
     public struct MultiTouchEventArgs
     {
         public int touchCount;
