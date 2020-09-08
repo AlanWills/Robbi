@@ -1,4 +1,5 @@
-﻿using Robbi.Settings;
+﻿using Robbi.Events;
+using Robbi.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,9 +34,21 @@ namespace Robbi.Viewport
             zoomSpeed = gameSettings.ZoomSpeed;
         }
 
-        private void Update()
+        #endregion
+
+        #region Zoom Utility Methods
+
+        public void ZoomUsingScroll(float scrollAmount)
         {
-#if UNITY_ANDROID || UNITY_IPHONE
+            if (scrollAmount != 0)
+            {
+                cameraToZoom.orthographicSize = Mathf.Clamp(cameraToZoom.orthographicSize - scrollAmount, minZoom, maxZoom);
+            }
+        }
+
+        public void ZoomUsingPinch(MultiTouchEventArgs touchEventArgs)
+        {
+            Debug.AssertFormat(touchEventArgs.touchCount == 2, "Expected 2 touches for ZoomUsingPinch, but got {0}", touchEventArgs.touchCount);
             if (Input.touchCount == 2)
             {
                 // Store both touches.
@@ -55,13 +68,6 @@ namespace Robbi.Viewport
 
                 cameraToZoom.orthographicSize = Mathf.Clamp(cameraToZoom.orthographicSize + deltaMagnitudeDiff * zoomSpeed, minZoom, maxZoom);
             }
-#else
-            float mouseScrollDelta = Input.mouseScrollDelta.y;
-            if (mouseScrollDelta != 0)
-            {
-                cameraToZoom.orthographicSize = Mathf.Clamp(cameraToZoom.orthographicSize - mouseScrollDelta, minZoom, maxZoom);
-            }
-#endif
         }
 
         #endregion

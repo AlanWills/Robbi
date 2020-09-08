@@ -20,9 +20,19 @@ namespace Robbi.Game.Inputs
         #region Desktop Events
 
         [Header("Desktop Events)")]
-        public Event leftMouseButtonDown;
-        public Event middleMouseButtonDown;
-        public Event rightMouseButtonDown;
+        public Vector3Event leftMouseButtonFirstDown;
+        public Vector3Event leftMouseButtonDown;
+        public Vector3Event leftMouseButtonFirstUp;
+
+        public Vector3Event middleMouseButtonFirstDown;
+        public Vector3Event middleMouseButtonDown;
+        public Vector3Event middleMouseButtonFirstUp;
+
+        public Vector3Event rightMouseButtonFirstDown;
+        public Vector3Event rightMouseButtonDown;
+        public Vector3Event rightMouseButtonFirstUp;
+
+        public FloatEvent mouseScrolled;
 
         #endregion
 
@@ -90,33 +100,54 @@ namespace Robbi.Game.Inputs
                 });
             }
 #else
-            if (Input.GetMouseButtonDown(0))
+            CheckMouseButton(0, leftMouseButtonFirstDown, leftMouseButtonDown, leftMouseButtonFirstUp);
+            CheckMouseButton(1, rightMouseButtonFirstDown, rightMouseButtonDown, rightMouseButtonFirstUp);
+            CheckMouseButton(2, middleMouseButtonFirstDown, middleMouseButtonDown, middleMouseButtonFirstUp);
+
+            float mouseScrollDelta = Input.mouseScrollDelta.y;
+            if (mouseScrollDelta != 0)
             {
-                leftMouseButtonDown.Raise();
+                mouseScrolled.Raise(mouseScrollDelta);
+            }
+#endif
+        }
+
+        #endregion
+
+        #region Utility Functions
+
+        private void CheckMouseButton(
+            int mouseButton, 
+            Vector3Event mouseButtonFirstDown,
+            Vector3Event mouseButtonDown,
+            Vector3Event mouseButtonFirstUpEvent)
+        {
+            if (Input.GetMouseButtonDown(mouseButton))
+            {
+                mouseButtonFirstDown.Raise(Input.mousePosition);
 
                 Vector3 mouseWorldPosition = raycastCamera.ScreenToWorldPoint(Input.mousePosition);
                 GameObject hitGameObject = Raycast(new Vector2(mouseWorldPosition.x, mouseWorldPosition.y));
 
                 if (hitGameObject != null)
                 {
-                    gameObjectLeftClicked.Raise(new GameObjectClickEventArgs() 
-                    { 
-                        gameObject = hitGameObject, 
-                        clickWorldPosition = mouseWorldPosition 
+                    gameObjectLeftClicked.Raise(new GameObjectClickEventArgs()
+                    {
+                        gameObject = hitGameObject,
+                        clickWorldPosition = mouseWorldPosition
                     });
                 }
             }
 
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButton(mouseButton))
             {
-                rightMouseButtonDown.Raise();
+                mouseButtonDown.Raise(Input.mousePosition);
             }
 
-            if (Input.GetMouseButtonDown(2))
+            if (Input.GetMouseButtonUp(mouseButton))
             {
-                middleMouseButtonDown.Raise();
+                mouseButtonFirstUpEvent.Raise(Input.mousePosition);
             }
-#endif
         }
 
         #endregion

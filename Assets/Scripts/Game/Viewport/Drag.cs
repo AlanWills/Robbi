@@ -17,13 +17,10 @@ namespace Robbi.Viewport
         private Camera cameraToDrag;
         private float dragSpeed = 1f;
 
-#if UNITY_ANDROID || UNITY_IPHONE
         private float timeSinceFingerDown = 0;
         private const float DRAG_THRESHOLD = 0.1f;
-#else
         private bool mouseDownLastFrame = false;
         private Vector3 previousMouseDownPosition = new Vector3();
-#endif
 
         #endregion
 
@@ -37,16 +34,31 @@ namespace Robbi.Viewport
             dragSpeed = gameSettings.DragSpeed;
         }
 
-        private void Update()
+        #endregion
+
+        #region Utility Functions
+
+        public void DragUsingMouse(Vector3 mousePosition)
         {
-#if UNITY_ANDROID || UNITY_IPHONE
-            if (Input.touchCount != 1)
+            if (mouseDownLastFrame)
             {
-                return;
+                Vector3 mouseDelta = previousMouseDownPosition - mousePosition;
+                float scrollModifier = dragSpeed * Time.deltaTime * cameraToDrag.orthographicSize;
+
+                transform.Translate(mouseDelta.x * scrollModifier, mouseDelta.y * scrollModifier, 0);
             }
 
-            Touch touch = Input.GetTouch(0);
+            previousMouseDownPosition = mousePosition;
+            mouseDownLastFrame = true;
+        }
 
+        public void EndDrag()
+        {
+            mouseDownLastFrame = false;
+        }
+
+        public void DragUsingTouch(Touch touch)
+        {
             switch (touch.phase)
             {
                 case TouchPhase.Began:
@@ -73,25 +85,6 @@ namespace Robbi.Viewport
                     timeSinceFingerDown = 0;
                     break;
             }
-#else
-            bool isMouseDown = Input.GetMouseButton(1);
-            if (isMouseDown)
-            {
-                Vector3 mousePosition = Input.mousePosition;
-
-                if (mouseDownLastFrame)
-                {
-                    Vector3 mouseDelta = previousMouseDownPosition - mousePosition;
-                    float scrollModifier = dragSpeed * Time.deltaTime * cameraToDrag.orthographicSize;
-
-                    transform.Translate(mouseDelta.x * scrollModifier, mouseDelta.y * scrollModifier, 0);
-                }
-                
-                previousMouseDownPosition = mousePosition;
-            }
-
-            mouseDownLastFrame = isMouseDown;
-#endif
         }
 
         #endregion

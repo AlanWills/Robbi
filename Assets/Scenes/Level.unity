@@ -380,7 +380,12 @@ GameObject:
   - component: {fileID: 1536764606}
   - component: {fileID: 1536764605}
   - component: {fileID: 1536764608}
+  - component: {fileID: 1536764612}
+  - component: {fileID: 1536764611}
+  - component: {fileID: 1536764610}
   - component: {fileID: 1536764609}
+  - component: {fileID: 1536764613}
+  - component: {fileID: 1536764614}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -477,6 +482,146 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a3ffb66dfb45e4087c1cc2ba69ab96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1536764610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536764604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b5b7ff941f32ea40a8b6f17033d5c09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 37e0aca46014b9841871ead0befaf08b, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1536764608}
+        m_TargetAssemblyTypeName: Robbi.Viewport.Drag, Assembly-CSharp
+        m_MethodName: DragUsingTouch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1536764611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536764604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a15f8a86d9068a343b886c8d891866c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 6b24855a0df84f0489dad6539ff8bdaf, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1536764608}
+        m_TargetAssemblyTypeName: Robbi.Viewport.Drag, Assembly-CSharp
+        m_MethodName: EndDrag
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1536764612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536764604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a15f8a86d9068a343b886c8d891866c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: d97d5093f285431468ca545520e07264, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1536764608}
+        m_TargetAssemblyTypeName: Robbi.Viewport.Drag, Assembly-CSharp
+        m_MethodName: DragUsingMouse
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1536764613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536764604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbba3fe6533080d45b74c03931ba399d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: f9dab1739fbc16d40b3c511bfe345edf, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1536764609}
+        m_TargetAssemblyTypeName: Robbi.Viewport.Zoom, Assembly-CSharp
+        m_MethodName: ZoomUsingScroll
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1536764614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536764604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f68a0bc4df798b04589ae1071527eab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 74de251840af2d349b0b26c4666d77c7, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1536764609}
+        m_TargetAssemblyTypeName: Robbi.Viewport.Zoom, Assembly-CSharp
+        m_MethodName: ZoomUsingPinch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1868824003
 PrefabInstance:
   m_ObjectHideFlags: 0
