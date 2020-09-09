@@ -35,7 +35,7 @@ namespace RobbiEditor.Tools
             get { return Path.Combine(destinationFolder, LevelFolderName); }
         }
 
-        private string destinationFolder = Directories.LEVELS;
+        private string destinationFolder = LevelDirectories.FULL_PATH;
         private uint levelIndex = 0;
         private uint numDoors = 1;
         private uint numExits = 1;
@@ -129,12 +129,12 @@ namespace RobbiEditor.Tools
             string levelFolderFullPath = LevelFolderFullPath;
 
             AssetDatabase.CreateFolder(destinationFolder, LevelFolderName);
-            AssetDatabase.CreateFolder(levelFolderFullPath, "Doors");
-            AssetDatabase.CreateFolder(levelFolderFullPath, "Events");
-            AssetDatabase.CreateFolder(levelFolderFullPath, "Exits");
-            AssetDatabase.CreateFolder(levelFolderFullPath, "FSMs");
-            AssetDatabase.CreateFolder(levelFolderFullPath, "Prefabs");
-            AssetDatabase.CreateFolder(levelFolderFullPath, "Interactables");
+            AssetDatabase.CreateFolder(levelFolderFullPath, LevelDirectories.DOORS_NAME);
+            AssetDatabase.CreateFolder(levelFolderFullPath, LevelDirectories.EVENTS_NAME);
+            AssetDatabase.CreateFolder(levelFolderFullPath, LevelDirectories.EXITS_NAME);
+            AssetDatabase.CreateFolder(levelFolderFullPath, LevelDirectories.FSMS_NAME);
+            AssetDatabase.CreateFolder(levelFolderFullPath, LevelDirectories.PREFABS_NAME);
+            AssetDatabase.CreateFolder(levelFolderFullPath, LevelDirectories.INTERACTABLES_NAME);
         }
 
         private void CreateDoors()
@@ -144,13 +144,13 @@ namespace RobbiEditor.Tools
             for (uint i = 0; i < numDoors; ++i)
             {
                 Door door = ScriptableObject.CreateInstance<Door>();
-                door.name = string.Format("Door{0}", levelIndex);
+                door.name = string.Format("Door{0}", i);
                 
-                Vector3IntEvent doorOpenedEvent = AssetDatabase.LoadAssetAtPath<Vector3IntEvent>(Path.Combine("Assets", "Events", "Level", "DoorOpened.asset"));
+                Vector3IntEvent doorOpenedEvent = AssetDatabase.LoadAssetAtPath<Vector3IntEvent>(EventFiles.DOOR_OPENED_EVENT);
                 Debug.Assert(doorOpenedEvent, "On Door Opened event could not be found automatically");
                 door.onDoorOpened = doorOpenedEvent;
 
-                AssetDatabase.CreateAsset(door, Path.Combine(levelFolderFullPath, "Doors", door.name + ".asset"));
+                AssetDatabase.CreateAsset(door, Path.Combine(levelFolderFullPath, LevelDirectories.DOORS_NAME, door.name + ".asset"));
             }
         }
 
@@ -161,13 +161,13 @@ namespace RobbiEditor.Tools
             for (uint i = 0; i < numExits; ++i)
             {
                 Exit exit = ScriptableObject.CreateInstance<Exit>();
-                exit.name = string.Format("Exit{0}", levelIndex);
+                exit.name = string.Format("Exit{0}", i);
                 
-                Event exitReachedEvent = AssetDatabase.LoadAssetAtPath<Event>(Path.Combine("Assets", "Events", "Level", "ExitReached.asset"));
+                Event exitReachedEvent = AssetDatabase.LoadAssetAtPath<Event>(EventFiles.EXIT_REACHED_EVENT);
                 Debug.Assert(exitReachedEvent != null, "On Exit Reached event could not be found automatically");
                 exit.onExitReached = exitReachedEvent;
 
-                AssetDatabase.CreateAsset(exit, Path.Combine(levelFolderFullPath, "Exits", exit.name + ".asset"));
+                AssetDatabase.CreateAsset(exit, Path.Combine(levelFolderFullPath, LevelDirectories.EXITS_NAME, exit.name + ".asset"));
             }
         }
 
@@ -178,12 +178,12 @@ namespace RobbiEditor.Tools
             for (uint i = 0; i < numInteractables; ++i)
             {
                 Interactable interactable = ScriptableObject.CreateInstance<Interactable>();
-                interactable.name = string.Format("Interactable{0}", levelIndex);
+                interactable.name = string.Format("Interactable{0}", i);
                 interactable.onInteract = CreateInteractionEvent(string.Format("OnInteractable{0}Activated", levelIndex));
 
                 Debug.Assert(interactable.onInteract != null, "On Interact event could not be created successfully");
 
-                AssetDatabase.CreateAsset(interactable, Path.Combine(levelFolderFullPath, "Interactables", interactable.name + ".asset"));
+                AssetDatabase.CreateAsset(interactable, Path.Combine(levelFolderFullPath, LevelDirectories.INTERACTABLES_NAME, interactable.name + ".asset"));
             }
         }
 
@@ -192,7 +192,7 @@ namespace RobbiEditor.Tools
             Event interactionEvent = ScriptableObject.CreateInstance<Event>();
             interactionEvent.name = name;
 
-            AssetDatabase.CreateAsset(interactionEvent, Path.Combine(LevelFolderFullPath, "Events", interactionEvent.name + ".asset"));
+            AssetDatabase.CreateAsset(interactionEvent, Path.Combine(LevelFolderFullPath, LevelDirectories.EVENTS_NAME, interactionEvent.name + ".asset"));
             return interactionEvent;
         }
 
@@ -201,16 +201,16 @@ namespace RobbiEditor.Tools
             FSMGraph fsm = ScriptableObject.CreateInstance<FSMGraph>();
             fsm.name = string.Format("Level{0}FSM", levelIndex);
 
-            AssetDatabase.CreateAsset(fsm, Path.Combine(LevelFolderFullPath, "FSMs", fsm.name + ".asset"));
+            AssetDatabase.CreateAsset(fsm, Path.Combine(LevelFolderFullPath, LevelDirectories.FSMS_NAME, fsm.name + ".asset"));
         }
 
         private void CreatePrefab()
         {
             string levelFolderFullPath = LevelFolderFullPath;
-            string prefabPath = Path.Combine(levelFolderFullPath, "Prefabs", string.Format("Level{0}.prefab", levelIndex));
+            string prefabPath = Path.Combine(levelFolderFullPath, LevelDirectories.PREFABS_NAME, string.Format("Level{0}.prefab", levelIndex));
 
             GameObject levelGameObject = GameObject.Instantiate(levelPrefabToCopy);
-            GameObject interactableMarkerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(Path.Combine("Assets", "Prefabs", "Level", "InteractableMarker.prefab"));
+            GameObject interactableMarkerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(PrefabFiles.INTERACTABLE_MARKER_PREFAB);
 
             Transform doors = levelGameObject.transform.Find("Doors");
             Transform exits = levelGameObject.transform.Find("Exits");
@@ -222,7 +222,7 @@ namespace RobbiEditor.Tools
 
             for (uint i = 0; i < numDoors; ++i)
             {
-                Door door = AssetDatabase.LoadAssetAtPath<Door>(Path.Combine(levelFolderFullPath, "Doors", string.Format("Door{0}.asset", i)));
+                Door door = AssetDatabase.LoadAssetAtPath<Door>(Path.Combine(levelFolderFullPath, LevelDirectories.DOORS_NAME, string.Format("Door{0}.asset", i)));
 
                 GameObject doorGameObject = new GameObject(string.Format("Door{0}", i), typeof(EventListener));
                 doorGameObject.transform.parent = doors;
@@ -230,14 +230,14 @@ namespace RobbiEditor.Tools
 
             for (uint i = 0; i < numExits; ++i)
             {
-                Exit exit = AssetDatabase.LoadAssetAtPath<Exit>(Path.Combine(levelFolderFullPath, "Exits", string.Format("Exit{0}.asset", i)));
+                Exit exit = AssetDatabase.LoadAssetAtPath<Exit>(Path.Combine(levelFolderFullPath, LevelDirectories.EXITS_NAME, string.Format("Exit{0}.asset", i)));
                 Debug.Assert(exit != null, string.Format("Exit{0} could not be found automatically", i));
 
                 GameObject exitGameObject = new GameObject(string.Format("Exit{0}", i));
                 exitGameObject.transform.parent = exits;
 
                 Vector3IntEventListener movedToListener = exitGameObject.AddComponent<Vector3IntEventListener>();
-                Vector3IntEvent movedToEvent = AssetDatabase.LoadAssetAtPath<Vector3IntEvent>(Path.Combine("Assets", "Events", "Level", "MovedTo.asset"));
+                Vector3IntEvent movedToEvent = AssetDatabase.LoadAssetAtPath<Vector3IntEvent>(EventFiles.MOVED_TO_EVENT);
                 Debug.Assert(movedToEvent != null, "Moved To event could not be found automatically");
 
                 if (movedToEvent != null)
@@ -250,7 +250,7 @@ namespace RobbiEditor.Tools
 
             for (uint i = 0; i < numInteractables; ++i)
             {
-                Interactable interactable = AssetDatabase.LoadAssetAtPath<Interactable>(Path.Combine(levelFolderFullPath, "Interactables", string.Format("Interactable{0}.asset", i)));
+                Interactable interactable = AssetDatabase.LoadAssetAtPath<Interactable>(Path.Combine(levelFolderFullPath, LevelDirectories.INTERACTABLES_NAME, string.Format("Interactable{0}.asset", i)));
                 Debug.Assert(interactable != null, string.Format("Interactable{0} could not be loaded", i));
 
                 GameObject interactableMarker = PrefabUtility.InstantiatePrefab(interactableMarkerPrefab, interactables) as GameObject;
@@ -263,7 +263,7 @@ namespace RobbiEditor.Tools
             {
                 runtime = levelGameObject.AddComponent<FSMRuntime>();
             }
-            runtime.graph = AssetDatabase.LoadAssetAtPath<FSMGraph>(Path.Combine(levelFolderFullPath, "FSMs", string.Format("Level{0}FSM.asset", levelIndex)));
+            runtime.graph = AssetDatabase.LoadAssetAtPath<FSMGraph>(Path.Combine(levelFolderFullPath, LevelDirectories.FSMS_NAME, string.Format("Level{0}FSM.asset", levelIndex)));
 
             PrefabUtility.SaveAsPrefabAsset(levelGameObject, prefabPath);
             GameObject.DestroyImmediate(levelGameObject);
@@ -274,8 +274,8 @@ namespace RobbiEditor.Tools
             string levelFolderFullPath = LevelFolderFullPath;
 
             Level level = ScriptableObject.CreateInstance<Level>();
-            level.playerLocalPosition = AssetDatabase.LoadAssetAtPath<Vector3Value>(Path.Combine("Assets", "Data", "Player", "PlayerLocalPosition.asset"));
-            level.levelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(Path.Combine(levelFolderFullPath, "Prefabs", string.Format("Level{0}.prefab", levelIndex)));
+            level.playerLocalPosition = AssetDatabase.LoadAssetAtPath<Vector3Value>(DataFiles.PLAYER_LOCAL_POSITION_DATA);
+            level.levelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(Path.Combine(levelFolderFullPath, LevelDirectories.PREFABS_NAME, string.Format("Level{0}.prefab", levelIndex)));
 
             Debug.Assert(level.playerLocalPosition != null, "Player Local Position value could not be found automatically");
             Debug.Assert(level.levelPrefab != null, "Level Prefab could not be found automatically");

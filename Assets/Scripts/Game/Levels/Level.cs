@@ -19,7 +19,7 @@ namespace Robbi.Levels
 
         #endregion
 
-        #region Properties and Fields
+        #region Initialization
 
         public void Begin()
         {

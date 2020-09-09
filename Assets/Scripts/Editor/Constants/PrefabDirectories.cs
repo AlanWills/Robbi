@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace RobbiEditor
 {
-    public static class Directories
+    public static class PrefabDirectories
     {
-        public const string LEVELS = "Assets/Resources/Levels";
+        public const string PREFABS_FULL_PATH = "Assets/Prefabs";
+        public const string LEVEL_NAME = "Level";
     }
 }

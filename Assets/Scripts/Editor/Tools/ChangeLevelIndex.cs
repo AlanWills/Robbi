@@ -26,12 +26,12 @@ namespace RobbiEditor.Tools
 
         private string OldLevelFolderFullPath
         {
-            get { return Path.Combine(Directories.LEVELS, OldLevelFolderName); }
+            get { return Path.Combine(LevelDirectories.FULL_PATH, OldLevelFolderName); }
         }
 
         private string NewLevelFolderFullPath
         {
-            get { return Path.Combine(Directories.LEVELS, NewLevelFolderName); }
+            get { return Path.Combine(LevelDirectories.FULL_PATH, NewLevelFolderName); }
         }
 
         private uint oldLevelIndex = 0;
@@ -87,7 +87,7 @@ namespace RobbiEditor.Tools
 
         private void RenameFSM()
         {
-            string oldFSMPath = Path.Combine(NewLevelFolderFullPath, "FSMs", string.Format("Level{0}FSM.asset", oldLevelIndex));
+            string oldFSMPath = Path.Combine(NewLevelFolderFullPath, LevelDirectories.FSMS_NAME, string.Format("Level{0}FSM.asset", oldLevelIndex));
             string errorMessage = AssetDatabase.RenameAsset(oldFSMPath, string.Format("Level{0}FSM.asset", newLevelIndex));
 
             if (!string.IsNullOrEmpty(errorMessage))
@@ -99,7 +99,7 @@ namespace RobbiEditor.Tools
 
         private void RenamePrefab()
         {
-            string oldPrefabPath = Path.Combine(NewLevelFolderFullPath, "Prefabs", string.Format("Level{0}.prefab", oldLevelIndex));
+            string oldPrefabPath = Path.Combine(NewLevelFolderFullPath, LevelDirectories.PREFABS_NAME, string.Format("Level{0}.prefab", oldLevelIndex));
             string errorMessage = AssetDatabase.RenameAsset(oldPrefabPath, string.Format("Level{0}.prefab", newLevelIndex));
 
             if (!string.IsNullOrEmpty(errorMessage))

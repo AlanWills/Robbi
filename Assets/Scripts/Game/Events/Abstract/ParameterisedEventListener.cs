@@ -23,13 +23,13 @@ namespace Robbi.Events
 
         private void OnEnable()
         {
-            Debug.Assert(gameEvent != null, string.Format("{0} has a null game event", name));
+            Debug.Assert(gameEvent != null, string.Format("{0} has a null game event on listener {1}", name, GetType().Name));
             gameEvent.AddEventListener(this);
         }
 
         private void OnDisable()
         {
-            Debug.Assert(gameEvent != null, string.Format("{0} has a null game event", name));
+            Debug.Assert(gameEvent != null, string.Format("{0} has a null game event on listener {1}", name, GetType().Name));
             gameEvent.RemoveEventListener(this);
         }
 

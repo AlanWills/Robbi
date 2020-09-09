@@ -1,4 +1,5 @@
-﻿using Robbi.Levels;
+﻿using Robbi.Debugging.Logging;
+using Robbi.Levels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,6 @@ namespace Robbi.FSM.Nodes
 
         public GameObject robbi;
 
-        private bool loadingCompleted = false;
-
         #endregion
 
         #region FSM Runtime
@@ -29,26 +28,16 @@ namespace Robbi.FSM.Nodes
         {
             base.OnEnter();
 
-            loadingCompleted = false;
-
             GameObject.Instantiate(robbi);
 
             LevelManager levelManager = LevelManager.Load();
-            //Addressables.LoadAssetAsync<Level>("Level" + levelManager.CurrentLevelIndex.ToString() + "Data").Completed += LoadLevelComplete; ;
             Resources.Load<Level>("Levels/Level" + levelManager.CurrentLevelIndex + "/Level" + levelManager.CurrentLevelIndex.ToString() + "Data").Begin();
-            loadingCompleted = true;
         }
 
         protected override FSMNode OnUpdate()
         {
-            return loadingCompleted ? base.OnUpdate() : null;
+            return base.OnUpdate();
         }
-
-        //private void LoadLevelComplete(AsyncOperationHandle<Level> level)
-        //{
-        //    level.Result.Begin(parent);
-        //    loadingCompleted = true;
-        //}
 
         #endregion
     }
