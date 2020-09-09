@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-1538399673727130404
+--- !u!114 &-7188686314725981022
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,53 +9,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 782fbac58d8c2a54ab423895f63a4938, type: 3}
-  m_Name: Show Dialog
+  m_Script: {fileID: 11500000, guid: dacecb1e910f63e419f3f2d0de6baf4c, type: 3}
+  m_Name: Wait
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -254.69899, y: -106.011}
+  position: {x: -24, y: 8}
   ports:
     keys:
     - ' '
-    - Confirm Pressed
-    - Close Pressed
+    - 
     values:
     - _fieldName: ' '
-      _node: {fileID: -1538399673727130404}
+      _node: {fileID: -7188686314725981022}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: Close Pressed
+        node: {fileID: 4731638223228773174}
+        reroutePoints: []
+      - fieldName: Confirm Pressed
+        node: {fileID: 4731638223228773174}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
-    - _fieldName: Confirm Pressed
-      _node: {fileID: -1538399673727130404}
+    - _fieldName: 
+      _node: {fileID: -7188686314725981022}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: ' '
+        node: {fileID: 3215360751380570208}
+        reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-    - _fieldName: Close Pressed
-      _node: {fileID: -1538399673727130404}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-  dialog: {fileID: 595162996696123630, guid: c96c4da4f9fe1ad4581df6d85934c36e, type: 3}
-  parameters:
-    title: Multiple Exits
-    image: {fileID: -1024222420897935036, guid: 124085e140aac434cb1860eae14e16c5,
-      type: 3}
-    description: Sometimes there is more than one way out.
-    confirmButtonText: Handy!
-    showConfirmButton: 1
-    showCloseButton: 0
+  time: 0.5
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,5 +60,128 @@ MonoBehaviour:
   m_Name: Level2FSM
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: -1538399673727130404}
-  startNode: {fileID: -1538399673727130404}
+  - {fileID: 4731638223228773174}
+  - {fileID: 3215360751380570208}
+  - {fileID: -7188686314725981022}
+  startNode: {fileID: 4731638223228773174}
+  parameters: []
+--- !u!114 &3215360751380570208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 782fbac58d8c2a54ab423895f63a4938, type: 3}
+  m_Name: Show Dialog
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 216, y: -136}
+  ports:
+    keys:
+    - ' '
+    - Confirm Pressed
+    - Close Pressed
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 3215360751380570208}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: -7188686314725981022}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Confirm Pressed
+      _node: {fileID: 3215360751380570208}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Close Pressed
+      _node: {fileID: 3215360751380570208}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  dialog: {fileID: 595162996696123630, guid: c96c4da4f9fe1ad4581df6d85934c36e, type: 3}
+  parameters:
+    title: Switches
+    image: {fileID: 21300000, guid: e38830da8b3fa854fb0e0b1069ea73b0, type: 3}
+    description: Switches can affect many parts of the factory.  Move on a neighbouring
+      tile and Robbi can give them a flick!
+    confirmButtonText: Got It!
+    showConfirmButton: 1
+    showCloseButton: 0
+--- !u!114 &4731638223228773174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 782fbac58d8c2a54ab423895f63a4938, type: 3}
+  m_Name: Show Dialog
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -312, y: -136}
+  ports:
+    keys:
+    - ' '
+    - Confirm Pressed
+    - Close Pressed
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 4731638223228773174}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Confirm Pressed
+      _node: {fileID: 4731638223228773174}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -7188686314725981022}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Close Pressed
+      _node: {fileID: 4731638223228773174}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -7188686314725981022}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  dialog: {fileID: 595162996696123630, guid: c96c4da4f9fe1ad4581df6d85934c36e, type: 3}
+  parameters:
+    title: Doors
+    image: {fileID: 21300000, guid: f4f88d802b49a0c49944d958d9f40b5d, type: 3}
+    description: Doors will obstruct Robbi's movement if unopened.
+    confirmButtonText: Got It!
+    showConfirmButton: 1
+    showCloseButton: 0

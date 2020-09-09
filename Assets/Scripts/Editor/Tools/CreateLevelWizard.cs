@@ -35,7 +35,7 @@ namespace RobbiEditor.Tools
             get { return Path.Combine(destinationFolder, LevelFolderName); }
         }
 
-        private string destinationFolder = Path.Combine("Assets", "Resources", "Levels");
+        private string destinationFolder = Directories.LEVELS;
         private uint levelIndex = 0;
         private uint numDoors = 1;
         private uint numExits = 1;

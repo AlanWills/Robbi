@@ -1,0 +1,136 @@
+﻿using RobbiEditor.Utils;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using UnityEditor;
+using UnityEngine;
+
+namespace RobbiEditor.Tools
+{
+    public class ChangeLevelIndex : ScriptableWizard
+    {
+        #region Properties and Fields
+
+        private string OldLevelFolderName
+        {
+            get { return string.Format("Level{0}", oldLevelIndex); }
+        }
+
+        private string NewLevelFolderName
+        {
+            get { return string.Format("Level{0}", newLevelIndex); }
+        }
+
+        private string OldLevelFolderFullPath
+        {
+            get { return Path.Combine(Directories.LEVELS, OldLevelFolderName); }
+        }
+
+        private string NewLevelFolderFullPath
+        {
+            get { return Path.Combine(Directories.LEVELS, NewLevelFolderName); }
+        }
+
+        private uint oldLevelIndex = 0;
+        private uint newLevelIndex = 0;
+
+        #endregion
+
+        #region GUI
+
+        protected override bool DrawWizardGUI()
+        {
+            bool propertiesChanged = base.DrawWizardGUI();
+            EditorGUI.BeginChangeCheck();
+
+            oldLevelIndex = RobbiEditorGUILayout.UIntField("Old Level Index", oldLevelIndex);
+            newLevelIndex = RobbiEditorGUILayout.UIntField("New Level Index", newLevelIndex);
+
+            return propertiesChanged || EditorGUI.EndChangeCheck();
+        }
+
+        private void OnWizardCreate()
+        {
+            if (oldLevelIndex == newLevelIndex)
+            {
+                EditorUtility.DisplayDialog("Error", "New level index is the same as the old level index", "OK");
+                return;
+            }
+
+            Log.Clear();
+
+            RenameDirectory();
+            RenameFSM();
+            RenamePrefab();
+            RenameLevelData();
+
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+        }
+
+        #endregion
+
+        #region Creation Methods
+
+        private void RenameDirectory()
+        {
+            string errorMessage = AssetDatabase.RenameAsset(OldLevelFolderFullPath, NewLevelFolderName);
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                errorString = errorMessage;
+                Debug.LogError(errorString);
+            }
+        }
+
+        private void RenameFSM()
+        {
+            string oldFSMPath = Path.Combine(NewLevelFolderFullPath, "FSMs", string.Format("Level{0}FSM.asset", oldLevelIndex));
+            string errorMessage = AssetDatabase.RenameAsset(oldFSMPath, string.Format("Level{0}FSM.asset", newLevelIndex));
+
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                errorString = errorMessage;
+                Debug.LogError(errorString);
+            }
+        }
+
+        private void RenamePrefab()
+        {
+            string oldPrefabPath = Path.Combine(NewLevelFolderFullPath, "Prefabs", string.Format("Level{0}.prefab", oldLevelIndex));
+            string errorMessage = AssetDatabase.RenameAsset(oldPrefabPath, string.Format("Level{0}.prefab", newLevelIndex));
+
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                errorString = errorMessage;
+                Debug.LogError(errorString);
+            }
+        }
+
+        private void RenameLevelData()
+        {
+            string oldLevelDataPath = Path.Combine(NewLevelFolderFullPath, string.Format("Level{0}Data.asset", oldLevelIndex));
+            string errorMessage = AssetDatabase.RenameAsset(oldLevelDataPath, string.Format("Level{0}Data.asset", newLevelIndex));
+
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                errorString = errorMessage;
+                Debug.LogError(errorString);
+            }
+        }
+
+        #endregion
+
+        #region Menu Item
+
+        [MenuItem("Window/Robbi/Tools/Change Level Index")]
+        public static void ShowChangeLevelIndexWizard()
+        {
+            ScriptableWizard.DisplayWizard<ChangeLevelIndex>("Change Level Index", "Change", "Close");
+        }
+
+        #endregion
+    }
+}

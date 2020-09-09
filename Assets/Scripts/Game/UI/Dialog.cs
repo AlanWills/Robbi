@@ -67,8 +67,6 @@ namespace Robbi.UI
         [SerializeField]
         private Animator animator;
 
-        private Coroutine hideCoroutine;
-
         #endregion
 
         #region Show/Hide
@@ -112,12 +110,12 @@ namespace Robbi.UI
 
         public void Confirm()
         {
-            hideCoroutine = StartCoroutine(Hide(confirmButtonClicked));
+            StartCoroutine(Hide(confirmButtonClicked));
         }
 
         public void Close()
         {
-            hideCoroutine = StartCoroutine(Hide(closeButtonClicked));
+            StartCoroutine(Hide(closeButtonClicked));
         }
 
         private IEnumerator Hide(Event eventToTrigger)
