@@ -1,4 +1,5 @@
 ﻿using Robbi.FSM;
+using Robbi.FSM.Nodes;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -11,11 +12,10 @@ using XNodeEditor;
 
 namespace RobbiEditor.FSM.Nodes
 {
-    public abstract class FSMNodeEditor : NodeEditor
+    [CustomNodeEditor(typeof(FSMNode))]
+    public class FSMNodeEditor : NodeEditor
     {
         #region Properties and Fields
-
-        public virtual Color NodeColour { get { return base.GetTint(); } }
 
         private static Color SELECTED_COLOUR = new Color(1, 0.5f, 0);
 
@@ -24,7 +24,7 @@ namespace RobbiEditor.FSM.Nodes
         public sealed override Color GetTint()
         {
             FSMGraph fsmGraph = target.graph as FSMGraph;
-            return fsmGraph.startNode == target ? SELECTED_COLOUR : NodeColour;
+            return fsmGraph.startNode == target ? SELECTED_COLOUR : base.GetTint();
         }
     }
 }

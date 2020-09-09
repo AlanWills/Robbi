@@ -13,6 +13,7 @@ namespace Robbi.FSM.Nodes.UI
 {
     [Serializable]
     [CreateNodeMenu("Robbi/UI/Show Dialog Node")]
+    [NodeWidth(250), NodeTint(0.8f, 0.9f, 0)]
     public class ShowDialogNode : FSMNode
     {
         private class DummyEventListener : IEventListener

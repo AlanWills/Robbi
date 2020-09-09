@@ -17,7 +17,7 @@ namespace Robbi.PropertyDrawers.Parameters
             EditorGUI.BeginProperty(position, label, property);
 
             position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
-
+            
             SerializedObject serializedReference = new SerializedObject(property.objectReferenceValue);
             SerializedProperty isConstantProperty = serializedReference.FindProperty("isConstant");
 

@@ -90,9 +90,6 @@ namespace Robbi.Debugging.Logging
                 cachedMessageInstances.Push(messageText);
             }
             
-            DontDestroyOnLoad(gameObject);
-#else
-            GameObject.Destroy(gameObject);
 #endif
         }
 

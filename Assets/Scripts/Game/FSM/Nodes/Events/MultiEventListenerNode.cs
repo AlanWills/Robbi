@@ -15,6 +15,7 @@ namespace Robbi.FSM.Nodes.Events
 {
     [Serializable]
     [CreateNodeMenu("Robbi/Events/Multi Event Listener Node")]
+    [NodeTint(0.8f, 0.9f, 0)]
     public class MultiEventListenerNode : FSMNode
     {
         #region Properties and Fields

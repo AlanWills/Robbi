@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Robbi.Objects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -85,7 +86,32 @@ namespace Robbi.FSM.Nodes
 
         #endregion
 
-        #region Value Methods
+        #region Add/Remove/Copy
+
+        public void AddToGraph() 
+        {
+            OnAddToGraph();
+        }
+
+        protected virtual void OnAddToGraph() { }
+
+        public void RemoveFromGraph() 
+        {
+            OnRemoveFromGraph();
+        }
+
+        protected virtual void OnRemoveFromGraph() { }
+
+        public void CopyInGraph(FSMNode original) 
+        {
+            OnCopyInGraph(original);
+        }
+
+        protected virtual void OnCopyInGraph(FSMNode original) { }
+
+        #endregion
+
+        #region Parameter Methods
 
         public T CreateParameter<T>(string name) where T : ScriptableObject
         {
@@ -101,6 +127,25 @@ namespace Robbi.FSM.Nodes
 #endif
 
             return parameter;
+        }
+
+        public T CreateParameter<T>(T original) where T : ScriptableObject, ICopyable<T>
+        {
+            T parameter = CreateParameter<T>(original.name);
+            parameter.CopyFrom(original);
+
+            return parameter;
+        }
+
+        public void RemoveParameter<T>(T parameter) where T : ScriptableObject
+        {
+            if (parameter != null)
+            {
+#if UNITY_EDITOR
+                UnityEditor.AssetDatabase.RemoveObjectFromAsset(parameter);
+#endif
+                ScriptableObject.DestroyImmediate(parameter);
+            }
         }
 
         #endregion

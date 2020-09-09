@@ -22,14 +22,27 @@ namespace Robbi.FSM
 
         public override Node AddNode(Type type)
         {
-            Node node = base.AddNode(type);
-
-            if (startNode == null)
-            {
-                startNode = node as FSMNode;
-            }
+            FSMNode node = base.AddNode(type) as FSMNode;
+            startNode = startNode == null ? node : startNode;
+            node.AddToGraph();
 
             return node;
+        }
+
+        public override void RemoveNode(Node node)
+        {
+            FSMNode fsmNode = node as FSMNode;
+            fsmNode.RemoveFromGraph();
+
+            base.RemoveNode(node);
+        }
+
+        public override Node CopyNode(Node original)
+        {
+            FSMNode copy = base.CopyNode(original) as FSMNode;
+            copy.CopyInGraph(original as FSMNode);
+
+            return copy;
         }
 
         #endregion
