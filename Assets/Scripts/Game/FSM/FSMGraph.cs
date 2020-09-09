@@ -1,4 +1,5 @@
 ﻿using Robbi.FSM.Nodes;
+using Robbi.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,11 @@ namespace Robbi.FSM
         #region Properties and Fields
 
         public FSMNode startNode;
+
+#if UNITY_EDITOR
+        [SerializeField]
+        private List<ScriptableObject> parameters;
+#endif
 
         #endregion
 
@@ -43,6 +49,44 @@ namespace Robbi.FSM
             copy.CopyInGraph(original as FSMNode);
 
             return copy;
+        }
+
+        #endregion
+
+        #region Parameter Utility Methods
+
+        public T CreateParameter<T>(string name) where T : ScriptableObject
+        {
+            T parameter = ScriptableObject.CreateInstance<T>();
+            parameter.name = name + "_sceneName";
+
+#if UNITY_EDITOR
+            parameters.Add(parameter);
+            UnityEditor.AssetDatabase.AddObjectToAsset(parameter, this);
+            UnityEditor.EditorUtility.SetDirty(this);
+#endif
+
+            return parameter;
+        }
+
+        public T CreateParameter<T>(T original) where T : ScriptableObject, ICopyable<T>
+        {
+            T parameter = CreateParameter<T>(original.name);
+            parameter.CopyFrom(original);
+
+            return parameter;
+        }
+
+        public void RemoveParameter(ScriptableObject parameter)
+        {
+            if (parameter != null)
+            {
+#if UNITY_EDITOR
+                UnityEditor.AssetDatabase.RemoveObjectFromAsset(parameter);
+                parameters.Remove(parameter);
+#endif
+                ScriptableObject.DestroyImmediate(parameter);
+            }
         }
 
         #endregion

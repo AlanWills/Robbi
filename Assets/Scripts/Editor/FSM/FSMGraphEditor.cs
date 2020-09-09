@@ -22,4 +22,35 @@ namespace Robbi.FSM
 
         #endregion
     }
+
+    [CustomEditor(typeof(FSMGraph))]
+    public class FSMGraphInspector : GlobalGraphEditor
+    {
+        #region Properties and Fields
+
+        private ScriptableObject removeParameter;
+
+        #endregion
+
+        #region Editor Methods
+
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+
+            EditorGUILayout.BeginHorizontal();
+
+            removeParameter = EditorGUILayout.ObjectField(removeParameter, typeof(ScriptableObject), false) as ScriptableObject;
+
+            if (GUILayout.Button("Remove Parameter"))
+            {
+                (target as FSMGraph).RemoveParameter(removeParameter);
+                EditorUtility.SetDirty(target);
+            }
+
+            EditorGUILayout.EndHorizontal();
+        }
+
+        #endregion
+    }
 }

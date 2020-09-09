@@ -115,37 +115,17 @@ namespace Robbi.FSM.Nodes
 
         public T CreateParameter<T>(string name) where T : ScriptableObject
         {
-            T parameter = ScriptableObject.CreateInstance<T>();
-            parameter.name = name + "_sceneName";
-
-#if UNITY_EDITOR
-            if (UnityEditor.AssetDatabase.IsMainAsset(graph))
-            {
-                UnityEditor.AssetDatabase.AddObjectToAsset(parameter, graph);
-                UnityEditor.EditorUtility.SetDirty(graph);
-            }
-#endif
-
-            return parameter;
+            return (graph as FSMGraph).CreateParameter<T>(name);
         }
 
         public T CreateParameter<T>(T original) where T : ScriptableObject, ICopyable<T>
         {
-            T parameter = CreateParameter<T>(original.name);
-            parameter.CopyFrom(original);
-
-            return parameter;
+            return (graph as FSMGraph).CreateParameter(original);
         }
 
         public void RemoveParameter<T>(T parameter) where T : ScriptableObject
         {
-            if (parameter != null)
-            {
-#if UNITY_EDITOR
-                UnityEditor.AssetDatabase.RemoveObjectFromAsset(parameter);
-#endif
-                ScriptableObject.DestroyImmediate(parameter);
-            }
+            (graph as FSMGraph).RemoveParameter(parameter);
         }
 
         #endregion
