@@ -113,17 +113,17 @@ namespace Robbi.FSM.Nodes
 
         #region Parameter Methods
 
-        public T CreateParameter<T>(string name) where T : ScriptableObject
+        protected T CreateParameter<T>(string name) where T : ScriptableObject
         {
             return (graph as FSMGraph).CreateParameter<T>(name);
         }
 
-        public T CreateParameter<T>(T original) where T : ScriptableObject, ICopyable<T>
+        protected T CreateParameter<T>(T original) where T : ScriptableObject, ICopyable<T>
         {
             return (graph as FSMGraph).CreateParameter(original);
         }
 
-        public void RemoveParameter<T>(T parameter) where T : ScriptableObject
+        protected void RemoveParameter<T>(T parameter) where T : ScriptableObject
         {
             (graph as FSMGraph).RemoveParameter(parameter);
         }

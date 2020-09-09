@@ -1,5 +1,6 @@
 ﻿using Robbi.FSM.Nodes;
 using Robbi.Objects;
+using Robbi.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ using XNode;
 namespace Robbi.FSM
 {
     [CreateAssetMenu(fileName = "FSMGraph", menuName = "Robbi/FSM/FSM Graph")]
-    public class FSMGraph : NodeGraph
+    public class FSMGraph : NodeGraph, IParameterContainer
     {
         #region Properties and Fields
 

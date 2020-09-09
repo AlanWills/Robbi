@@ -1,0 +1,96 @@
+﻿using Robbi.FSM.Nodes;
+using Robbi.FSM.Nodes.Events;
+using Robbi.FSM.Nodes.Events.Conditions;
+using Robbi.FSM.Nodes.Logic;
+using Robbi.FSM.Nodes.Logic.Conditions;
+using RobbiEditor.FSM.Nodes.Events.Conditions;
+using RobbiEditor.FSM.Nodes.Logic.Conditions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using UnityEditor;
+using UnityEngine;
+using XNode;
+using XNodeEditor;
+
+namespace RobbiEditor.FSM.Nodes.Logic
+{
+    [CustomNodeEditor(typeof(IfNode))]
+    public class IfNodeEditor : FSMNodeEditor
+    {
+        #region Properties and Fields
+
+        private static Type[] valueConditionOptions = new Type[]
+        {
+            typeof(BoolValueCondition),
+        };
+
+        private static string[] valueConditionDisplayNames = new string[]
+        {
+            "Bool",
+        };
+
+        private static Dictionary<Type, ValueConditionEditor> valueConditionEditorFactory = new Dictionary<Type, ValueConditionEditor>()
+        {
+            { typeof(BoolValueCondition), new BoolValueConditionEditor() },
+        };
+
+        private int selectedEventType = 0;
+        private string conditionName = "";
+
+        #endregion
+
+        #region GUI
+
+        public override void OnBodyGUI()
+        {
+            Color oldTextColour = EditorStyles.label.normal.textColor;
+            EditorStyles.label.normal.textColor = Color.black;
+
+            IfNode ifNode = target as IfNode;
+
+            NodeEditorGUILayout.PortPair(
+                ifNode.GetInputPort(FSMNode.DEFAULT_INPUT_PORT_NAME),
+                ifNode.GetOutputPort(FSMNode.DEFAULT_OUTPUT_PORT_NAME));
+
+            conditionName = EditorGUILayout.TextField("Condition Name", conditionName);
+            selectedEventType = EditorGUILayout.Popup(selectedEventType, valueConditionDisplayNames);
+
+            if (GUILayout.Button("Add Condition"))
+            {
+                ifNode.AddCondition(conditionName, valueConditionOptions[selectedEventType]);
+                conditionName = "";
+            }
+
+            for (uint i = ifNode.NumConditions; i > 0; --i)
+            {
+                ValueCondition valueCondition = ifNode.GetCondition(i - 1);
+
+                EditorGUILayout.Separator();
+                EditorGUILayout.BeginHorizontal();
+                
+                bool removeCondition = GUILayout.Button("-", GUILayout.MaxWidth(16), GUILayout.MaxHeight(16));
+                EditorGUILayout.LabelField(valueCondition.name);
+                Rect rect = GUILayoutUtility.GetLastRect();
+                NodeEditorGUILayout.PortField(rect.position + new Vector2(rect.width, 0), ifNode.GetOutputPort(valueCondition.name));
+
+                EditorGUILayout.EndHorizontal();
+
+                if (removeCondition)
+                {
+                    ifNode.RemoveCondition(valueCondition);
+                }
+                else if (valueConditionEditorFactory.TryGetValue(valueCondition.GetType(), out ValueConditionEditor editor))
+                {
+                    editor.GUI(ifNode, valueCondition);
+                }
+            }
+
+            EditorStyles.label.normal.textColor = oldTextColour;
+        }
+
+        #endregion
+    }
+}

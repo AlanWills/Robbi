@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace Robbi.PropertyDrawers.Parameters
+namespace RobbiEditor.PropertyDrawers.Parameters
 {
-    [CustomPropertyDrawer(typeof(StringReference))]
-    public class StringReferencePropertyDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(BoolReference))]
+    public class BoolReferencePropertyDrawer : ParameterReferencePropertyDrawer
     {
     }
 }
