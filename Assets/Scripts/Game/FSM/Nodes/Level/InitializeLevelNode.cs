@@ -12,7 +12,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 namespace Robbi.FSM.Nodes
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Level/Initialize Level Node")]
+    [CreateNodeMenu("Robbi/Level/Initialize Level")]
     [NodeTint(0.2f, 0.2f, 0.6f)]
     public class InitializeLevelNode : FSMNode
     {
@@ -29,9 +29,15 @@ namespace Robbi.FSM.Nodes
             base.OnEnter();
 
             GameObject.Instantiate(robbi);
-
             LevelManager levelManager = LevelManager.Load();
-            Resources.Load<Level>("Levels/Level" + levelManager.CurrentLevelIndex + "/Level" + levelManager.CurrentLevelIndex.ToString() + "Data").Begin();
+
+            Level level = Resources.Load<Level>("Levels/Level" + levelManager.CurrentLevelIndex + "/Level" + levelManager.CurrentLevelIndex.ToString() + "Data");
+            Debug.AssertFormat(level != null, "Level {0} could not be loaded", levelManager.CurrentLevelIndex);
+
+            if (level != null)
+            {
+                level.Begin();
+            }
         }
 
         protected override FSMNode OnUpdate()

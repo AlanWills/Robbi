@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Robbi.FSM.Nodes
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Flow/Wait Node")]
+    [CreateNodeMenu("Robbi/Flow/Wait")]
     [NodeTint(0, 0.4f, 0)]
     public class WaitNode : FSMNode
     {

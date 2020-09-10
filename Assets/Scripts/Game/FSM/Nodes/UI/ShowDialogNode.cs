@@ -12,7 +12,7 @@ using static Robbi.UI.Dialog;
 namespace Robbi.FSM.Nodes.UI
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/UI/Show Dialog Node")]
+    [CreateNodeMenu("Robbi/UI/Show Dialog")]
     [NodeWidth(250), NodeTint(0.8f, 0.9f, 0)]
     public class ShowDialogNode : FSMNode
     {

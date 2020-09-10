@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Robbi.FSM.Nodes
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Level/Finish Level Node")]
+    [CreateNodeMenu("Robbi/Level/Finish Level")]
     [NodeTint(0.2f, 0.2f, 0.6f)]
     public class FinishLevelNode : FSMNode
     {

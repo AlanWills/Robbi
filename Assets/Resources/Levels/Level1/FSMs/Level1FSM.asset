@@ -1,5 +1,196 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4559539106910657870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 737d89550a2e2194db247d1e3f3c19db, type: 3}
+  m_Name: If
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -328, y: 24}
+  ports:
+    keys:
+    - ' '
+    - 
+    - IsMobile
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -4559539106910657870}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -4559539106910657870}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -4247812517524592777}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: IsMobile
+      _node: {fileID: -4559539106910657870}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -1414260985532483121}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  conditions:
+  - {fileID: -1296592567513109998}
+--- !u!114 &-4247812517524592777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 782fbac58d8c2a54ab423895f63a4938, type: 3}
+  m_Name: Show Dialog
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 8, y: -168}
+  ports:
+    keys:
+    - ' '
+    - Confirm Pressed
+    - Close Pressed
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -4247812517524592777}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: -4559539106910657870}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -4559539106910657870}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Confirm Pressed
+      _node: {fileID: -4247812517524592777}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Close Pressed
+      _node: {fileID: -4247812517524592777}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  dialog: {fileID: 595162996696123630, guid: c96c4da4f9fe1ad4581df6d85934c36e, type: 3}
+  parameters:
+    title: Having A Look
+    image: {fileID: 0}
+    description: Right click and drag the mouse to check out the whole level.  Scroll
+      in or out to zoom.
+    confirmButtonText: Got It!
+    showConfirmButton: 1
+    showCloseButton: 0
+--- !u!114 &-1414260985532483121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 782fbac58d8c2a54ab423895f63a4938, type: 3}
+  m_Name: Show Dialog
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 8, y: 152}
+  ports:
+    keys:
+    - ' '
+    - Confirm Pressed
+    - Close Pressed
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -1414260985532483121}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: IsMobile
+        node: {fileID: -4559539106910657870}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Confirm Pressed
+      _node: {fileID: -1414260985532483121}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Close Pressed
+      _node: {fileID: -1414260985532483121}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  dialog: {fileID: 595162996696123630, guid: c96c4da4f9fe1ad4581df6d85934c36e, type: 3}
+  parameters:
+    title: Having A Look
+    image: {fileID: 0}
+    description: Drag a single finger to check out the whole level.  Pinch with two
+      fingers to zoom .
+    confirmButtonText: Got It!
+    showConfirmButton: 1
+    showCloseButton: 1
+--- !u!114 &-1296592567513109998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc36a5f6598a84646bc68016fd41856d, type: 3}
+  m_Name: IsMobile
+  m_EditorClassIdentifier: 
+  value: {fileID: 11400000, guid: e2eb51b1797e92649b8f6af6bd28c6c7, type: 2}
+  condition: 0
+  target: {fileID: 7670112471380146481}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,6 +203,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae22ebe00c8798d4bb46b12fbdcffdfb, type: 3}
   m_Name: Level1FSM
   m_EditorClassIdentifier: 
-  nodes: []
-  startNode: {fileID: 0}
-  parameters: []
+  nodes:
+  - {fileID: -4559539106910657870}
+  - {fileID: -1414260985532483121}
+  - {fileID: -4247812517524592777}
+  - {fileID: 0}
+  startNode: {fileID: -4559539106910657870}
+  parameters:
+  - {fileID: 7670112471380146481}
+--- !u!114 &7670112471380146481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec718764ed3a234cb86bb3efc892b05, type: 3}
+  m_Name: IsMobile_target_sceneName
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 0
+  referenceValue: {fileID: 0}

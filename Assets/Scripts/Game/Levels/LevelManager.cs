@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Robbi.Debugging.Logging;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace Robbi.Levels
     {
         #region Properties and Fields
 
-        private static string DEFAULT_FILE_PATH = "LevelManagerData.json";
+        private static string DEFAULT_FILE_PATH = Path.Combine(Application.persistentDataPath, "LevelManagerData.json");
 
         public uint CurrentLevelIndex { get; set; }
 
@@ -47,14 +48,18 @@ namespace Robbi.Levels
             return Load(DEFAULT_FILE_PATH);
         }
 
-        public static LevelManager Load(string fileName)
+        public static LevelManager Load(string filePath)
         {
             LevelManager levelManager = ScriptableObject.CreateInstance<LevelManager>();
 
-            if (File.Exists(fileName))
+            if (File.Exists(filePath))
             {
-                LevelManagerDTO levelManagerDTO = JsonUtility.FromJson<LevelManagerDTO>(File.ReadAllText(fileName));
+                LevelManagerDTO levelManagerDTO = JsonUtility.FromJson<LevelManagerDTO>(File.ReadAllText(filePath));
                 levelManager.CurrentLevelIndex = levelManagerDTO.currentLevel;
+            }
+            else
+            {
+                Debug.LogWarningFormat("Could not find LevelManager file {0} so using default values.", filePath);
             }
 
             return levelManager;
@@ -65,11 +70,13 @@ namespace Robbi.Levels
             Save(DEFAULT_FILE_PATH);
         }
 
-        public void Save(string fileName)
+        public void Save(string filePath)
         {
             LevelManagerDTO levelManagerDTO = new LevelManagerDTO(this);
             string json = JsonUtility.ToJson(levelManagerDTO);
-            File.WriteAllText(fileName, json);
+            File.WriteAllText(filePath, json);
+
+            HudLogger.LogInfo(string.Format("Level Manager saved with CurrentLevelIndex {0}", CurrentLevelIndex));
         }
 
         #endregion

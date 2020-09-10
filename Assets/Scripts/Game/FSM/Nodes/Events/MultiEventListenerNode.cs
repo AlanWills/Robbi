@@ -14,7 +14,7 @@ using Event = Robbi.Events.Event;
 namespace Robbi.FSM.Nodes.Events
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Events/Multi Event Listener Node")]
+    [CreateNodeMenu("Robbi/Events/Multi Event Listener")]
     [NodeTint(0.8f, 0.9f, 0)]
     public class MultiEventListenerNode : FSMNode
     {
