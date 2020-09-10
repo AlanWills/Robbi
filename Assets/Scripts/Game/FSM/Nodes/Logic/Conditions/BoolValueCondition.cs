@@ -52,5 +52,17 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
         }
 
         #endregion
+
+        #region ICopyable
+
+        public override void CopyFrom(ValueCondition original)
+        {
+            BoolValueCondition boolValueCondition = original as BoolValueCondition;
+            boolValueCondition.value = value;
+            boolValueCondition.condition = condition;
+            boolValueCondition.target = target;
+        }
+
+        #endregion
     }
 }

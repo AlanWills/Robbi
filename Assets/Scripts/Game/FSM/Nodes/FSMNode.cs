@@ -125,7 +125,7 @@ namespace Robbi.FSM.Nodes
 
         protected void RemoveParameter<T>(T parameter) where T : ScriptableObject
         {
-            (graph as FSMGraph).RemoveParameter(parameter);
+            (graph as FSMGraph).RemoveAsset(parameter);
         }
 
         #endregion

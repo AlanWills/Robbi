@@ -34,5 +34,15 @@ namespace Robbi.FSM.Nodes.Events.Conditions
         }
 
         #endregion
+
+        #region ICopyable
+
+        public override void CopyFrom(EventCondition original)
+        {
+            VoidEventCondition voidEventCondition = original as VoidEventCondition;
+            voidEventCondition.listenFor = listenFor;
+        }
+
+        #endregion
     }
 }

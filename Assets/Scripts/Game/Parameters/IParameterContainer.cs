@@ -14,6 +14,6 @@ namespace Robbi.Parameters
 
         T CreateParameter<T>(T original) where T : ScriptableObject, ICopyable<T>;
 
-        void RemoveParameter(ScriptableObject parameter);
+        void RemoveAsset(ScriptableObject parameter);
     }
 }

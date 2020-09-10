@@ -35,6 +35,34 @@ namespace Robbi.FSM.Nodes.Events
             RemoveDynamicPort(DEFAULT_OUTPUT_PORT_NAME);
         }
 
+        #region Add/Remove/Copy
+
+        protected override void OnCopyInGraph(FSMNode original)
+        {
+            base.OnCopyInGraph(original);
+
+            MultiEventListenerNode originalListenerNode = original as MultiEventListenerNode;
+
+            for (uint i = 0; i < originalListenerNode.NumEvents; ++i)
+            {
+                EventCondition originalCondition = originalListenerNode.GetEvent(i);
+                EventCondition newCondition = AddEvent(originalCondition.GetType());
+                newCondition.CopyFrom(originalCondition);
+            }
+        }
+
+        protected override void OnRemoveFromGraph()
+        {
+            base.OnRemoveFromGraph();
+
+            for (uint i = NumEvents; i > 0; --i)
+            {
+                RemoveEvent(GetEvent(i));
+            }
+        }
+
+        #endregion
+
         #region Event Condition Utilities
 
         public EventCondition GetEvent(uint index)

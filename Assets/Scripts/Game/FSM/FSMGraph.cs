@@ -78,15 +78,15 @@ namespace Robbi.FSM
             return parameter;
         }
 
-        public void RemoveParameter(ScriptableObject parameter)
+        public void RemoveAsset(ScriptableObject asset)
         {
-            if (parameter != null)
+            if (asset != null)
             {
 #if UNITY_EDITOR
-                UnityEditor.AssetDatabase.RemoveObjectFromAsset(parameter);
-                parameters.Remove(parameter);
+                UnityEditor.AssetDatabase.RemoveObjectFromAsset(asset);
+                parameters.Remove(asset);
 #endif
-                ScriptableObject.DestroyImmediate(parameter);
+                ScriptableObject.DestroyImmediate(asset);
             }
         }
 

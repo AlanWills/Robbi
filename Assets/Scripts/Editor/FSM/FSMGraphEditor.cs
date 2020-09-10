@@ -28,7 +28,7 @@ namespace Robbi.FSM
     {
         #region Properties and Fields
 
-        private ScriptableObject removeParameter;
+        private ScriptableObject removeAsset;
 
         #endregion
 
@@ -40,12 +40,14 @@ namespace Robbi.FSM
 
             EditorGUILayout.BeginHorizontal();
 
-            removeParameter = EditorGUILayout.ObjectField(removeParameter, typeof(ScriptableObject), false) as ScriptableObject;
+            removeAsset = EditorGUILayout.ObjectField(removeAsset, typeof(ScriptableObject), false) as ScriptableObject;
 
-            if (GUILayout.Button("Remove Parameter"))
+            if (GUILayout.Button("Remove Asset"))
             {
-                (target as FSMGraph).RemoveParameter(removeParameter);
+                (target as FSMGraph).RemoveAsset(removeAsset);
                 EditorUtility.SetDirty(target);
+                
+                removeAsset = null;
             }
 
             EditorGUILayout.EndHorizontal();

@@ -1,4 +1,5 @@
 ﻿using Robbi.Events;
+using Robbi.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using UnityEngine;
 namespace Robbi.FSM.Nodes.Events.Conditions
 {
     [Serializable]
-    public abstract class EventCondition : ScriptableObject
+    public abstract class EventCondition : ScriptableObject, ICopyable<EventCondition>
     {
         #region Properties and Fields
 
@@ -49,6 +50,12 @@ namespace Robbi.FSM.Nodes.Events.Conditions
         {
             hasEventFired = true;
         }
+
+        #endregion
+
+        #region ICopyable
+
+        public abstract void CopyFrom(EventCondition original);
 
         #endregion
     }

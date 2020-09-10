@@ -25,6 +25,34 @@ namespace Robbi.FSM.Nodes.Logic
 
         #endregion
 
+        #region Add/Remove/Copy
+
+        protected override void OnCopyInGraph(FSMNode original)
+        {
+            base.OnCopyInGraph(original);
+
+            IfNode originalIfNode = original as IfNode;
+
+            for (uint i = 0; i < originalIfNode.NumConditions; ++i)
+            {
+                ValueCondition originalCondition = originalIfNode.GetCondition(i);
+                ValueCondition newCondition = AddCondition(originalCondition.name, originalCondition.GetType());
+                newCondition.CopyFrom(originalCondition);
+            }
+        }
+
+        protected override void OnRemoveFromGraph()
+        {
+            base.OnRemoveFromGraph();
+
+            for (uint i = NumConditions; i > 0; --i)
+            {
+                RemoveCondition(GetCondition(i));
+            }
+        }
+
+        #endregion
+
         #region Condition Methods
 
         public ValueCondition AddCondition(string conditionName, Type conditionType)
