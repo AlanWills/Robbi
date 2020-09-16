@@ -1,13 +1,8 @@
-﻿using Robbi.FSM.Nodes.Events;
-using Robbi.FSM.Nodes.Events.Conditions;
-using Robbi.FSM.Nodes.Logic;
+﻿using Robbi.FSM.Nodes.Logic;
 using Robbi.FSM.Nodes.Logic.Conditions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using RobbiEditor.PropertyDrawers.Parameters;
 using UnityEditor;
+using UnityEngine;
 
 namespace RobbiEditor.FSM.Nodes.Logic.Conditions
 {
@@ -24,5 +19,23 @@ namespace RobbiEditor.FSM.Nodes.Logic.Conditions
         }
 
         protected abstract void OnGUI(IfNode ifNode, SerializedObject eventConditionObject);
+
+        protected void DrawDefaultGUI(SerializedObject valueCondition, string[] operatorDisplayNames, int[] operators, Object conditionTarget)
+        {
+            EditorGUILayout.BeginVertical();
+
+            SerializedProperty valueProperty = valueCondition.FindProperty("value");
+            SerializedProperty conditionProperty = valueCondition.FindProperty("condition");
+
+            EditorGUILayout.PropertyField(valueProperty, GUIContent.none);
+
+            int chosenOperator = conditionProperty.enumValueIndex;
+            chosenOperator = EditorGUILayout.IntPopup(chosenOperator, operatorDisplayNames, operators);
+            conditionProperty.enumValueIndex = chosenOperator;
+
+            ParameterReferencePropertyDrawer.OnGUI(conditionTarget);
+
+            EditorGUILayout.EndVertical();
+        }
     }
 }

@@ -24,22 +24,16 @@ namespace Robbi.Levels
     {
         #region Properties and Fields
 
-        private static string DEFAULT_FILE_PATH = "";
+        private static string DEFAULT_FILE_PATH
+        {
+            get { return Path.Combine(Application.persistentDataPath, "LevelManagerData.json"); }
+        }
 
         public uint CurrentLevelIndex { get; set; }
 
         #endregion
 
         private LevelManager() { }
-
-        #region Unity Methods
-
-        private void OnEnable()
-        {
-            DEFAULT_FILE_PATH = Path.Combine(Application.persistentDataPath, "LevelManagerData.json");
-        }
-
-        #endregion
 
         #region Save/Load Methods
 

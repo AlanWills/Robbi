@@ -21,12 +21,20 @@ namespace RobbiEditor.FSM.Nodes.Events
 
         private static Type[] eventOptions = new Type[]
         {
-            typeof(VoidEventCondition)
+            typeof(VoidEventCondition),
+            typeof(Vector3IntEventCondition),
+        };
+
+        private static string[] eventDisplayNames = new string[]
+        {
+            "Void",
+            "Vector3Int",
         };
 
         private static Dictionary<Type, EventConditionEditor> eventConditionEditorFactory = new Dictionary<Type, EventConditionEditor>()
         {
-            { typeof(VoidEventCondition), new VoidEventConditionEditor() },
+            { typeof(VoidEventCondition), new EventConditionEditor() },
+            { typeof(Vector3IntEventCondition), new EventConditionEditor() },
         };
 
         private int selectedEventType = 0;
@@ -41,11 +49,10 @@ namespace RobbiEditor.FSM.Nodes.Events
 
             NodeEditorGUILayout.PortField(eventListenerNode.GetInputPort(FSMNode.DEFAULT_INPUT_PORT_NAME));
 
-            if (EditorGUILayout.DropdownButton(new GUIContent("Add Event"), FocusType.Keyboard))
-            {
-                string[] options = eventOptions.Select(x => x.Name).ToArray();
-                selectedEventType = EditorGUILayout.Popup(selectedEventType, options);
+            selectedEventType = EditorGUILayout.Popup(selectedEventType, eventDisplayNames);
 
+            if (GUILayout.Button("Add Condition"))
+            {
                 eventListenerNode.AddEvent(eventOptions[selectedEventType]);
             }
 

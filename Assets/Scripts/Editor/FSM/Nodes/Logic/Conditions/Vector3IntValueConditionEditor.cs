@@ -13,7 +13,7 @@ using UnityEngine;
 
 namespace RobbiEditor.FSM.Nodes.Logic.Conditions
 {
-    public class BoolValueConditionEditor : ValueConditionEditor
+    public class Vector3IntValueConditionEditor : ValueConditionEditor
     {
         protected override void OnGUI(IfNode ifNode, SerializedObject valueCondition)
         {
@@ -29,7 +29,7 @@ namespace RobbiEditor.FSM.Nodes.Logic.Conditions
                 (int)ConditionOperator.NotEquals
             };
 
-            BoolReference reference = (valueCondition.targetObject as BoolValueCondition).target;
+            Vector3IntReference reference = (valueCondition.targetObject as Vector3IntValueCondition).target;
             DrawDefaultGUI(valueCondition, operatorDisplayNames, operators, reference);
         }
     }

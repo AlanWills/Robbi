@@ -26,16 +26,22 @@ namespace RobbiEditor.FSM.Nodes.Logic
         private static Type[] valueConditionOptions = new Type[]
         {
             typeof(BoolValueCondition),
+            typeof(IntValueCondition),
+            typeof(Vector3IntValueCondition),
         };
 
         private static string[] valueConditionDisplayNames = new string[]
         {
             "Bool",
+            "Int",
+            "Vector3Int",
         };
 
         private static Dictionary<Type, ValueConditionEditor> valueConditionEditorFactory = new Dictionary<Type, ValueConditionEditor>()
         {
             { typeof(BoolValueCondition), new BoolValueConditionEditor() },
+            { typeof(IntValueCondition), new IntValueConditionEditor() },
+            { typeof(Vector3IntValueCondition), new Vector3IntValueConditionEditor() },
         };
 
         private int selectedEventType = 0;

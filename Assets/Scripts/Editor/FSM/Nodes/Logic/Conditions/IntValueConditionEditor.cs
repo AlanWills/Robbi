@@ -13,23 +13,31 @@ using UnityEngine;
 
 namespace RobbiEditor.FSM.Nodes.Logic.Conditions
 {
-    public class BoolValueConditionEditor : ValueConditionEditor
+    public class IntValueConditionEditor : ValueConditionEditor
     {
         protected override void OnGUI(IfNode ifNode, SerializedObject valueCondition)
         {
             string[] operatorDisplayNames = new string[]
             {
                 "Equals",
-                "Not Equals"
+                "Not Equals",
+                "Less Than",
+                "Less Than Or Equal To",
+                "Greater Than",
+                "Greater Than Or Equal To"
             };
 
             int[] operators = new int[]
             {
                 (int)ConditionOperator.Equals,
-                (int)ConditionOperator.NotEquals
+                (int)ConditionOperator.NotEquals,
+                (int)ConditionOperator.LessThan,
+                (int)ConditionOperator.LessThanOrEqualTo,
+                (int)ConditionOperator.GreaterThan,
+                (int)ConditionOperator.GreaterThanOrEqualTo,
             };
 
-            BoolReference reference = (valueCondition.targetObject as BoolValueCondition).target;
+            IntReference reference = (valueCondition.targetObject as IntValueCondition).target;
             DrawDefaultGUI(valueCondition, operatorDisplayNames, operators, reference);
         }
     }

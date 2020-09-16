@@ -29,7 +29,10 @@ namespace Robbi.Settings
     {
         #region Properties and Fields
 
-        private static string DEFAULT_FILE_PATH = "";
+        private static string DEFAULT_FILE_PATH
+        {
+            get { return Path.Combine(Application.persistentDataPath, "GameSettings.json"); }
+        }
 
         #region Mobile Specific Settings
 
@@ -147,18 +150,9 @@ namespace Robbi.Settings
 
         private GameSettings() { }
 
-        #region Unity Methods
-
-        private void OnEnable()
-        {
-            DEFAULT_FILE_PATH = Path.Combine(Application.persistentDataPath, "GameSettings.json");
-        }
-
-        #endregion
-
         #region Save/Load Methods
 
-    public static GameSettings Load()
+        public static GameSettings Load()
         {
             return Load(DEFAULT_FILE_PATH);
         }

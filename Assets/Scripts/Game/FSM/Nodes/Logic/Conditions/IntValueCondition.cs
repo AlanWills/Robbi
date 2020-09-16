@@ -10,7 +10,7 @@ using UnityEngine;
 namespace Robbi.FSM.Nodes.Logic.Conditions
 {
     [Serializable]
-    public class BoolValueCondition : ParameterizedValueCondition<bool, BoolValue, BoolReference>
+    public class IntValueCondition : ParameterizedValueCondition<int, IntValue, IntReference>
     {
         #region Condition Methods
 
@@ -24,8 +24,20 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
                 case ConditionOperator.NotEquals:
                     return value.value != target.Value;
 
+                case ConditionOperator.LessThan:
+                    return value.value < target.Value;
+
+                case ConditionOperator.LessThanOrEqualTo:
+                    return value.value <= target.Value;
+
+                case ConditionOperator.GreaterThan:
+                    return value.value > target.Value;
+
+                case ConditionOperator.GreaterThanOrEqualTo:
+                    return value.value >= target.Value;
+
                 default:
-                    Debug.LogAssertionFormat("Condition Operator {0} is not supported in Bool Condition", condition);
+                    Debug.LogAssertionFormat("Condition Operator {0} is not supported in Int Condition", condition);
                     return false;
             }
         }

@@ -10,7 +10,7 @@ using UnityEngine;
 namespace Robbi.FSM.Nodes.Logic.Conditions
 {
     [Serializable]
-    public class BoolValueCondition : ParameterizedValueCondition<bool, BoolValue, BoolReference>
+    public class Vector3IntValueCondition : ParameterizedValueCondition<Vector3Int, Vector3IntValue, Vector3IntReference>
     {
         #region Condition Methods
 
@@ -25,7 +25,7 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
                     return value.value != target.Value;
 
                 default:
-                    Debug.LogAssertionFormat("Condition Operator {0} is not supported in Bool Condition", condition);
+                    Debug.LogAssertionFormat("Condition Operator {0} is not supported in Vector3Int Condition", condition);
                     return false;
             }
         }
