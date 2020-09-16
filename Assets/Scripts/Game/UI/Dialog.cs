@@ -23,6 +23,7 @@ namespace Robbi.UI
             [TextArea]
             public string description;
             public string confirmButtonText;
+            public string closeButtonText;
             public bool showConfirmButton;
             public bool showCloseButton;
         }
@@ -52,6 +53,9 @@ namespace Robbi.UI
 
         [SerializeField]
         private Text confirmButtonText;
+
+        [SerializeField]
+        private Text closeButtonText;
 
         [SerializeField]
         private Button confirmButton;
@@ -106,6 +110,14 @@ namespace Robbi.UI
             if (closeButton != null)
             {
                 closeButton.gameObject.SetActive(showDialogParams.showCloseButton);
+
+                if (showDialogParams.showCloseButton)
+                {
+                    if (closeButtonText != null)
+                    {
+                        closeButtonText.text = showDialogParams.closeButtonText;
+                    }
+                }
             }
         }
 

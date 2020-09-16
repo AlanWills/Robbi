@@ -11,31 +11,29 @@ namespace Robbi.DataSystem.Nodes.UI
 {
     [Serializable]
     [CreateNodeMenu("Robbi/UI/Text")]
-    public class TextNode : DataNode, IUpdateable, INeedsGameObject
+    public class TextNode : DataNode, IUpdateable
     {
         #region Properties and Fields
-
-        public GameObject GameObject
-        {
-            set { text = value.GetComponent<Text>(); }
-        }
 
         [Input]
         public string value;
 
+        [Input]
         public string format;
 
-        private Text text;
+        public Text text;
+
         private string oldValue;
 
         #endregion
 
         public void Update()
         {
-            string currentValue = GetInputValue("value", "");
+            string currentValue = GetInputValue("value", value);
             if (currentValue != oldValue)
             {
-                text.GetComponent<Text>().text = string.Format(format, currentValue);
+                string _format = GetInputValue("format", format);
+                text.GetComponent<Text>().text = string.Format(_format, currentValue);
                 oldValue = currentValue;
             }
         }

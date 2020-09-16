@@ -48,7 +48,8 @@ namespace Robbi.Movement
         [Header("Parameters")]
         public Vector3Value playerLocalPosition;
         public Vector3IntEvent onMovedTo;
-        public IntValue waypointsRemaining;
+        public IntValue remainingWaypointsPlaceable;
+        public IntValue waypointsPlaced;
 
         [Header("Other")]
         public GameObject destinationMarkerPrefab;
@@ -86,7 +87,7 @@ namespace Robbi.Movement
                     if (currentWaypoint.stepsFromPrevious.Count == 0)
                     {
                         // We have completed all the steps required to get to the waypoint
-                        RemoveLastWaypoint();
+                        ConsumeLastWaypoint();
                     }
 
                     isMoving = waypoints.Count > 0;
@@ -123,7 +124,7 @@ namespace Robbi.Movement
                 return;
             }
 
-            if (waypointsRemaining.value == 0)
+            if (remainingWaypointsPlaceable.value == 0)
             {
                 // Cannot add waypoints if we have run out of our allotted amount
             }
@@ -146,7 +147,8 @@ namespace Robbi.Movement
                     destinationMarkerInstance.transform.position = grid.GetCellCenterLocal(waypointGridPosition);
                     
                     waypoints.Push(new Waypoint(waypointGridPosition, gridSteps, destinationMarkerInstance));
-                    --waypointsRemaining.value;
+                    --remainingWaypointsPlaceable.value;
+                    ++waypointsPlaced.value;
                 }
                 else
                 {
@@ -178,17 +180,23 @@ namespace Robbi.Movement
 
             for (int i = 0; i <= duplicateIndex; ++i)
             {
-                RemoveLastWaypoint();
-                ++waypointsRemaining.value;
+                UndoLastWaypoint();
             }
 
             return true;
         }
 
-        public void RemoveLastWaypoint()
+        public void UndoLastWaypoint()
+        {
+            ConsumeLastWaypoint();
+            ++remainingWaypointsPlaceable.value;
+        }
+
+        private void ConsumeLastWaypoint()
         {
             Waypoint waypoint = waypoints.Pop();
             waypoint.OnReached();
+            --waypointsPlaced.value;
         }
 
         #endregion

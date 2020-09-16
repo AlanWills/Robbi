@@ -15,7 +15,8 @@ namespace Robbi.DataSystem.Nodes.Conversion
         [Input]
         public int input;
 
-        public string format = "";
+        [Input]
+        public string format;
 
         [Output]
         public string output;
@@ -26,8 +27,9 @@ namespace Robbi.DataSystem.Nodes.Conversion
 
         public override object GetValue(NodePort port)
         {
-            int inputValue = GetInputValue<int>("input");
-            return inputValue.ToString(format);
+            int _input = GetInputValue("input", input);
+            string _format = GetInputValue("format", format);
+            return _input.ToString(_format);
         }
 
         #endregion

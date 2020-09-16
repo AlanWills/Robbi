@@ -1,23 +1,26 @@
-﻿using Robbi.Parameters;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XNode;
 
-namespace Robbi.DataSystem.Nodes.Values
+namespace Robbi.DataSystem.Nodes.Logic
 {
     [Serializable]
-    public abstract class ValueReaderNode<T, TValue> : DataNode where TValue : ParameterValue<T>
+    [CreateNodeMenu("Robbi/Logic/And")]
+    public class AndNode : DataNode
     {
         #region Properties and Fields
 
         [Input]
-        public TValue value;
+        public bool input1;
+
+        [Input]
+        public bool input2;
 
         [Output]
-        public T output;
+        public bool result;
 
         #endregion
 
@@ -25,7 +28,7 @@ namespace Robbi.DataSystem.Nodes.Values
 
         public override object GetValue(NodePort port)
         {
-            return GetInputValue("value", value).value;
+            return GetInputValue("input1", input1) && GetInputValue("input2", input2);
         }
 
         #endregion

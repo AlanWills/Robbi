@@ -11,19 +11,14 @@ namespace Robbi.DataSystem.Nodes.UI
 {
     [Serializable]
     [CreateNodeMenu("Robbi/UI/Image")]
-    public class ImageNode : DataNode, IUpdateable, INeedsGameObject
+    public class ImageNode : DataNode, IUpdateable
     {
         #region Properties and Fields
-
-        public GameObject GameObject
-        {
-            set { image = value.GetComponent<Image>(); }
-        }
 
         [Input]
         public bool isEnabled;
 
-        private Image image;
+        public Image image;
 
         #endregion
 
@@ -31,7 +26,7 @@ namespace Robbi.DataSystem.Nodes.UI
 
         public void Update()
         {
-            image.enabled = GetInputValue<bool>("isEnabled");
+            image.enabled = GetInputValue("isEnabled", isEnabled);
         }
 
         #endregion

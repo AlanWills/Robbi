@@ -17,11 +17,11 @@ namespace Robbi.Levels
 
         [Header("Parameters")]
         public Vector3Value playerLocalPosition;
-        public IntValue waypointsRemaining;
+        public IntValue remainingWaypointsPlaceable;
 
         [Header("Level Conditions")]
         public Vector3Int playerStartPosition;
-        public int waypointsAvailable;
+        public int maxWaypointsPlaceable;
 
         #endregion
 
@@ -34,7 +34,7 @@ namespace Robbi.Levels
             Debug.Assert(grid != null, "No grid component on level prefab");
 
             playerLocalPosition.value = grid.GetCellCenterLocal(playerStartPosition);
-            waypointsRemaining.value = waypointsAvailable;
+            remainingWaypointsPlaceable.value = maxWaypointsPlaceable;
         }
 
         #endregion

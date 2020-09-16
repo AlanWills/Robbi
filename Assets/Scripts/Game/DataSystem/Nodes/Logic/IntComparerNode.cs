@@ -34,8 +34,8 @@ namespace Robbi.DataSystem.Nodes.Logic
 
         public override object GetValue(NodePort port)
         {
-            int lhsValue = GetInputValue<int>("lhs");
-            int rhsValue = GetInputValue<int>("rhs");
+            int lhsValue = GetInputValue("lhs", lhs);
+            int rhsValue = GetInputValue("rhs", rhs);
 
             switch (condition)
             {
