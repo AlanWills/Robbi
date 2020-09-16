@@ -20,6 +20,7 @@ namespace Robbi.UI
         {
             public string title;
             public Sprite image;
+            [TextArea]
             public string description;
             public string confirmButtonText;
             public bool showConfirmButton;

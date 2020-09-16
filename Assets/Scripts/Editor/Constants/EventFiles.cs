@@ -10,8 +10,8 @@ namespace RobbiEditor
 {
     public static class EventFiles
     {
-        public const string EXIT_REACHED_EVENT = FULL_PATH + "/" + LEVELS_NAME + "/" + "ExitReached.asset";
-        public const string DOOR_OPENED_EVENT = FULL_PATH + "/" + LEVELS_NAME + "/" + "DoorOpened.asset";
-        public const string MOVED_TO_EVENT = FULL_PATH + "/" + LEVELS_NAME + "/" + "MovedTo.asset";
+        public const string EXIT_REACHED_EVENT = FULL_PATH + "/" + LEVEL_NAME + "/" + "ExitReached.asset";
+        public const string DOOR_OPENED_EVENT = FULL_PATH + "/" + LEVEL_NAME + "/" + "DoorOpened.asset";
+        public const string MOVED_TO_EVENT = FULL_PATH + "/" + LEVEL_NAME + "/" + "MovedTo.asset";
     }
 }

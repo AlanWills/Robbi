@@ -39,7 +39,7 @@ namespace Robbi.FSM
             base.OnInspectorGUI();
 
             EditorGUILayout.BeginHorizontal();
-
+            
             removeAsset = EditorGUILayout.ObjectField(removeAsset, typeof(ScriptableObject), false) as ScriptableObject;
 
             if (GUILayout.Button("Remove Asset"))

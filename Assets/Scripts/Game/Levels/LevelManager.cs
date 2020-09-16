@@ -24,7 +24,7 @@ namespace Robbi.Levels
     {
         #region Properties and Fields
 
-        private static string DEFAULT_FILE_PATH = Path.Combine(Application.persistentDataPath, "LevelManagerData.json");
+        private static string DEFAULT_FILE_PATH = "";
 
         public uint CurrentLevelIndex { get; set; }
 

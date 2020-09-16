@@ -56,14 +56,6 @@ namespace Robbi.Game.Inputs
 
         #region Unity Methods
 
-        // Have events fired in particular input situations
-        // Also have a function for doing raycasting etc.
-        // This will listen out for those events being fired and then do appropriate behaviour (e.g. raycasting)
-        // Then we can simulate input
-        // Finally, will have to have a component which can be notified it's been clicked or maybe an event where we passed the clicked game object
-        // Can have a component which derives from the listener interface, but also does the check internally to see if it's this clicked game object
-        // before Invoking on UnityEvent.  Will save boilerplate at listener sites everywhere (call it InputListener)
-
         public void Update()
         {
 #if UNITY_ANDROID || UNITY_IOS
@@ -104,6 +96,21 @@ namespace Robbi.Game.Inputs
             CheckMouseButton(1, rightMouseButtonFirstDown, rightMouseButtonDown, rightMouseButtonFirstUp);
             CheckMouseButton(2, middleMouseButtonFirstDown, middleMouseButtonDown, middleMouseButtonFirstUp);
 
+            if (Input.GetMouseButtonDown(0))
+            {
+                Vector3 mouseWorldPosition = raycastCamera.ScreenToWorldPoint(Input.mousePosition);
+                GameObject hitGameObject = Raycast(new Vector2(mouseWorldPosition.x, mouseWorldPosition.y));
+
+                if (hitGameObject != null)
+                {
+                    gameObjectLeftClicked.Raise(new GameObjectClickEventArgs()
+                    {
+                        gameObject = hitGameObject,
+                        clickWorldPosition = mouseWorldPosition
+                    });
+                }
+            }
+
             float mouseScrollDelta = Input.mouseScrollDelta.y;
             if (mouseScrollDelta != 0)
             {
@@ -125,18 +132,6 @@ namespace Robbi.Game.Inputs
             if (Input.GetMouseButtonDown(mouseButton))
             {
                 mouseButtonFirstDown.Raise(Input.mousePosition);
-
-                Vector3 mouseWorldPosition = raycastCamera.ScreenToWorldPoint(Input.mousePosition);
-                GameObject hitGameObject = Raycast(new Vector2(mouseWorldPosition.x, mouseWorldPosition.y));
-
-                if (hitGameObject != null)
-                {
-                    gameObjectLeftClicked.Raise(new GameObjectClickEventArgs()
-                    {
-                        gameObject = hitGameObject,
-                        clickWorldPosition = mouseWorldPosition
-                    });
-                }
             }
 
             if (Input.GetMouseButton(mouseButton))

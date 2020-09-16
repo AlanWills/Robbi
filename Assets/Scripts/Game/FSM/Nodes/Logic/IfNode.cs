@@ -84,6 +84,8 @@ namespace Robbi.FSM.Nodes.Logic
             conditions.Remove(condition);
 
 #if UNITY_EDITOR
+            condition.Cleanup_EditorOnly(graph as FSMGraph);
+
             AssetUtils.EditorOnly.RemoveObjectFromAsset(condition);
             AssetUtils.EditorOnly.SaveAndRefresh();
 #endif

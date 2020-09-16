@@ -24,6 +24,7 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
     {
 #if UNITY_EDITOR
         public abstract void Init_EditorOnly(IParameterContainer parameterContainer);
+        public abstract void Cleanup_EditorOnly(IParameterContainer parameterContainer);
 #endif
 
         public abstract bool Check();

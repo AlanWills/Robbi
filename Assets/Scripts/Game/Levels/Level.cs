@@ -16,6 +16,7 @@ namespace Robbi.Levels
         public GameObject levelPrefab;
         public Vector3Value playerLocalPosition;
         public Vector3Int playerStartPosition;
+        public int waypointLimit;
 
         #endregion
 

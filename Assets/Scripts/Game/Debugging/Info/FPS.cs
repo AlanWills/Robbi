@@ -40,7 +40,7 @@ namespace Robbi.Debugging.Info
         {
             if (Application.isPlaying)
             {
-                StartCoroutine(MeasureFPS());
+                measurementCoroutine = StartCoroutine(MeasureFPS());
             }
         }
 

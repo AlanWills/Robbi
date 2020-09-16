@@ -8,7 +8,7 @@ namespace RobbiEditor
 {
     public static class EventDirectories
     {
-        public const string FULL_PATH = "Assets/Events/Levels";
-        public const string LEVELS_NAME = "Levels";
+        public const string FULL_PATH = "Assets/Events";
+        public const string LEVEL_NAME = "Level";
     }
 }

@@ -28,8 +28,8 @@ namespace Robbi.FSM.Nodes.UI
 
         #region Properties and Fields
 
-        private const string CONFIRM_PRESSED_PORT_NAME = "Confirm Pressed";
-        private const string CLOSE_PRESSED_PORT_NAME = "Close Pressed";
+        public const string CONFIRM_PRESSED_PORT_NAME = "Confirm Pressed";
+        public const string CLOSE_PRESSED_PORT_NAME = "Close Pressed";
 
         public Dialog dialog;
         public ShowDialogParams parameters = new ShowDialogParams();

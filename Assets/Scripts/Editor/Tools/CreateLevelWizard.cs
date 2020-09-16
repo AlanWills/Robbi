@@ -274,7 +274,7 @@ namespace RobbiEditor.Tools
             string levelFolderFullPath = LevelFolderFullPath;
 
             Level level = ScriptableObject.CreateInstance<Level>();
-            level.playerLocalPosition = AssetDatabase.LoadAssetAtPath<Vector3Value>(DataFiles.PLAYER_LOCAL_POSITION_DATA);
+            level.playerLocalPosition = AssetDatabase.LoadAssetAtPath<Vector3Value>(ParameterFiles.PLAYER_LOCAL_POSITION_DATA);
             level.levelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(Path.Combine(levelFolderFullPath, LevelDirectories.PREFABS_NAME, string.Format("Level{0}.prefab", levelIndex)));
 
             Debug.Assert(level.playerLocalPosition != null, "Player Local Position value could not be found automatically");

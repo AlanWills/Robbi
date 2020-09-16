@@ -5,6 +5,7 @@ using Robbi.FSM.Nodes.Logic;
 using Robbi.FSM.Nodes.Logic.Conditions;
 using RobbiEditor.FSM.Nodes.Events.Conditions;
 using RobbiEditor.FSM.Nodes.Logic.Conditions;
+using RobbiEditor.Popups;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,6 @@ namespace RobbiEditor.FSM.Nodes.Logic
         };
 
         private int selectedEventType = 0;
-        private string conditionName = "";
 
         #endregion
 
@@ -54,13 +54,14 @@ namespace RobbiEditor.FSM.Nodes.Logic
                     ifNode.GetInputPort(FSMNode.DEFAULT_INPUT_PORT_NAME),
                     ifNode.GetOutputPort(FSMNode.DEFAULT_OUTPUT_PORT_NAME));
 
-                conditionName = EditorGUILayout.TextField("Condition Name", conditionName);
                 selectedEventType = EditorGUILayout.Popup(selectedEventType, valueConditionDisplayNames);
 
                 if (GUILayout.Button("Add Condition"))
                 {
-                    ifNode.AddCondition(conditionName, valueConditionOptions[selectedEventType]);
-                    conditionName = "";
+                    TextInputPopup.Display("New Condition...", (string conditionName) =>
+                    {
+                        ifNode.AddCondition(conditionName, valueConditionOptions[selectedEventType]);
+                    });
                 }
 
                 for (uint i = ifNode.NumConditions; i > 0; --i)

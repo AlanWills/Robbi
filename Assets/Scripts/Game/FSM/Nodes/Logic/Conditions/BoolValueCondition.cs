@@ -29,6 +29,14 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
                 target = parameterContainer.CreateParameter<BoolReference>(name + "_target");
             }
         }
+
+        public override void Cleanup_EditorOnly(IParameterContainer parameterContainer)
+        {
+            if (target != null)
+            {
+                parameterContainer.RemoveAsset(target);
+            }
+        }
 #endif
 
         #endregion
