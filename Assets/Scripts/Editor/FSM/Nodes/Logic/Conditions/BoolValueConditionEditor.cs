@@ -1,6 +1,6 @@
 ﻿using Robbi.FSM.Nodes.Logic;
 using Robbi.FSM.Nodes.Logic.Conditions;
-using Robbi.PropertyDrawers.Parameters;
+using Robbi.Logic;
 using RobbiEditor.PropertyDrawers.Parameters;
 using System;
 using System.Collections.Generic;

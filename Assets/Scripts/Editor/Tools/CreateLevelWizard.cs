@@ -275,9 +275,11 @@ namespace RobbiEditor.Tools
 
             Level level = ScriptableObject.CreateInstance<Level>();
             level.playerLocalPosition = AssetDatabase.LoadAssetAtPath<Vector3Value>(ParameterFiles.PLAYER_LOCAL_POSITION_DATA);
+            level.waypointsRemaining = AssetDatabase.LoadAssetAtPath<IntValue>(ParameterFiles.WAYPOINTS_REMAINING_DATA);
             level.levelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(Path.Combine(levelFolderFullPath, LevelDirectories.PREFABS_NAME, string.Format("Level{0}.prefab", levelIndex)));
 
             Debug.Assert(level.playerLocalPosition != null, "Player Local Position value could not be found automatically");
+            Debug.Assert(level.waypointsRemaining != null, "Waypoints Remaining value could not be found automatically");
             Debug.Assert(level.levelPrefab != null, "Level Prefab could not be found automatically");
 
             AssetDatabase.CreateAsset(level, Path.Combine(levelFolderFullPath, string.Format("Level{0}Data", levelIndex) + ".asset"));

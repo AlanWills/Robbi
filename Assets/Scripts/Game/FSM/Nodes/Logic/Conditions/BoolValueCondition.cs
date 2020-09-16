@@ -1,4 +1,5 @@
-﻿using Robbi.Parameters;
+﻿using Robbi.Logic;
+using Robbi.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;

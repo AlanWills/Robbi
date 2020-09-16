@@ -9,8 +9,8 @@ using UnityEngine;
 
 namespace RobbiEditor.PropertyDrawers.Parameters
 {
-    [CustomPropertyDrawer(typeof(StringReference))]
-    public class StringReferencePropertyDrawer : ParameterReferencePropertyDrawer
+    [CustomPropertyDrawer(typeof(IntReference))]
+    public class IntReferencePropertyDrawer : ParameterReferencePropertyDrawer
     {
     }
 }

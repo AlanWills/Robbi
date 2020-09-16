@@ -9,16 +9,6 @@ using UnityEngine;
 
 namespace Robbi.FSM.Nodes.Logic.Conditions
 {
-    public enum ConditionOperator
-    { 
-        Equals,
-        NotEquals,
-        GreaterThan,
-        GreaterThanOrEqualTo,
-        LessThan,
-        LessThanOrEqualTo
-    }
-
     [Serializable]
     public abstract class ValueCondition : ScriptableObject, ICopyable<ValueCondition>
     {
