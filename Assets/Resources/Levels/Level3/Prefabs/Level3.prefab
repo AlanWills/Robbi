@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 66963634}
-  - component: {fileID: 66963635}
+  - component: {fileID: 2913202420096550894}
   m_Layer: 0
   m_Name: BottomDoor
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 4386922664730790705}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &66963635
+--- !u!114 &2913202420096550894
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,10 +40,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 66963633}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
+  m_Script: {fileID: 11500000, guid: c3c2c167d8138f94b8f96ff1b82578d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
+  gameEvent: {fileID: 11400000, guid: b8540f7449e93754eaac1505b08f53ac, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
@@ -127,7 +127,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1452434143}
-  - component: {fileID: 1452434144}
+  - component: {fileID: 7252664740214863213}
   m_Layer: 0
   m_Name: MiddleDoor
   m_TagString: Untagged
@@ -149,7 +149,7 @@ Transform:
   m_Father: {fileID: 4386922664730790705}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1452434144
+--- !u!114 &7252664740214863213
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,10 +158,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1452434142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
+  m_Script: {fileID: 11500000, guid: c3c2c167d8138f94b8f96ff1b82578d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
+  gameEvent: {fileID: 11400000, guid: b2efd03355b502d41b7cd0fa384390c3, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
@@ -245,7 +245,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3066796131135877594}
-  - component: {fileID: 5876772187029843500}
+  - component: {fileID: 2020080040583860413}
   m_Layer: 0
   m_Name: TopDoor
   m_TagString: Untagged
@@ -267,7 +267,7 @@ Transform:
   m_Father: {fileID: 4386922664730790705}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5876772187029843500
+--- !u!114 &2020080040583860413
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -276,10 +276,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3609970684047460359}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
+  m_Script: {fileID: 11500000, guid: c3c2c167d8138f94b8f96ff1b82578d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
+  gameEvent: {fileID: 11400000, guid: b8540f7449e93754eaac1505b08f53ac, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
@@ -1760,6 +1760,8 @@ GameObject:
   - component: {fileID: 4386922665733860853}
   - component: {fileID: 4059214091557317872}
   - component: {fileID: 4564512510032665120}
+  - component: {fileID: 5560836494103846277}
+  - component: {fileID: 5706221353948551912}
   m_Layer: 0
   m_Name: Movement
   m_TagString: Untagged
@@ -2095,10 +2097,13 @@ MonoBehaviour:
   doorsTilemap: {fileID: 4386922664730790707}
   playerLocalPosition: {fileID: 11400000, guid: ddb88a6bd2594e6419cb8c238d69285a,
     type: 2}
+  onMovedTo: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
+  remainingWaypointsPlaceable: {fileID: 11400000, guid: 5795522ed653b6947a2cfc5b86742695,
+    type: 2}
+  waypointsPlaced: {fileID: 11400000, guid: ab2db721a5c983a40963c20d01bb3cc3, type: 2}
   destinationMarkerPrefab: {fileID: 6031862308839941411, guid: aca8e985d226d3648b1a4c98c7c70a75,
     type: 3}
   speed: 4
-  onMovedTo: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
 --- !u!61 &4059214091557317872
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2145,6 +2150,62 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Robbi.Movement.MovementManager, Assembly-CSharp
         m_MethodName: AddWaypoint
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5560836494103846277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4386922665733860808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c2c167d8138f94b8f96ff1b82578d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 6b4a72f1879c01b41a7a4d34b806e2ae, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4386922665733860853}
+        m_TargetAssemblyTypeName: Robbi.Movement.MovementManager, Assembly-CSharp
+        m_MethodName: ExecuteMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5706221353948551912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4386922665733860808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c2c167d8138f94b8f96ff1b82578d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: e3c8b767428d0c646abf19d60a178be9, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4386922665733860853}
+        m_TargetAssemblyTypeName: Robbi.Movement.MovementManager, Assembly-CSharp
+        m_MethodName: UndoLastWaypoint
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -226,6 +226,9 @@ namespace RobbiEditor.Tools
 
                 GameObject doorGameObject = new GameObject(string.Format("Door{0}", i), typeof(EventListener));
                 doorGameObject.transform.parent = doors;
+
+                EventListener eventListener = doorGameObject.GetComponent<EventListener>();
+                UnityEventTools.AddVoidPersistentListener(eventListener.response, door.Open);
             }
 
             for (uint i = 0; i < numExits; ++i)

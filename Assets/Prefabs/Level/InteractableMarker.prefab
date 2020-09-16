@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8976083479925092279}
   - component: {fileID: -8638857653571360466}
   - component: {fileID: 6757012455088861177}
+  - component: {fileID: 1243245326350370176}
   m_Layer: 0
   m_Name: InteractableMarker
   m_TagString: Untagged
@@ -145,6 +146,34 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Robbi.Interactables.InteractableMarker, Assembly-CSharp
         m_MethodName: Interact
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1243245326350370176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8976083479925092273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -8638857653571360466}
+        m_TargetAssemblyTypeName: Robbi.Interactables.InteractableMarker, Assembly-CSharp
+        m_MethodName: UpdateVisibility
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
