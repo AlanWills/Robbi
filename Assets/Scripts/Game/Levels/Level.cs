@@ -15,19 +15,16 @@ namespace Robbi.Levels
 
         public GameObject levelPrefab;
 
-        [Header("Parameters")]
-        public Vector3Value playerLocalPosition;
-        public IntValue remainingWaypointsPlaceable;
-
         [Header("Level Conditions")]
         public Vector3Int playerStartPosition;
         public int maxWaypointsPlaceable;
+        [SerializeField] private List<Vector3Int> exits = new List<Vector3Int>();
 
         #endregion
 
         #region Initialization
 
-        public void Begin()
+        public void Begin(Vector3Value playerLocalPosition, IntValue remainingWaypointsPlaceable, Vector3IntArrayValue exitPositions)
         {
             GameObject level = GameObject.Instantiate(levelPrefab);
             Grid grid = level.GetComponent<Grid>();
@@ -35,6 +32,7 @@ namespace Robbi.Levels
 
             playerLocalPosition.value = grid.GetCellCenterLocal(playerStartPosition);
             remainingWaypointsPlaceable.value = maxWaypointsPlaceable;
+            exitPositions.value.AddRange(exits);
         }
 
         #endregion

@@ -1,5 +1,6 @@
 ﻿using Robbi.Debugging.Logging;
 using Robbi.Levels;
+using Robbi.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,12 @@ namespace Robbi.FSM.Nodes
     {
         #region Properties and Fields
 
+        [Header("Parameters")]
+        public Vector3Value playerLocalPosition;
+        public IntValue remainingWaypointsPlaceable;
+        public Vector3IntArrayValue exitPositions;
+
+        [Header("Objects")]
         public GameObject robbi;
 
         #endregion
@@ -36,7 +43,7 @@ namespace Robbi.FSM.Nodes
 
             if (level != null)
             {
-                level.Begin();
+                level.Begin(playerLocalPosition, remainingWaypointsPlaceable, exitPositions);
             }
         }
 

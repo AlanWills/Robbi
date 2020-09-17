@@ -1,19 +1,12 @@
 ﻿using Robbi.FSM.Nodes;
-using Robbi.FSM.Nodes.Events;
-using Robbi.FSM.Nodes.Events.Conditions;
 using Robbi.FSM.Nodes.Logic;
 using Robbi.FSM.Nodes.Logic.Conditions;
-using RobbiEditor.FSM.Nodes.Events.Conditions;
 using RobbiEditor.FSM.Nodes.Logic.Conditions;
 using RobbiEditor.Popups;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
-using XNode;
 using XNodeEditor;
 
 namespace RobbiEditor.FSM.Nodes.Logic
@@ -28,6 +21,7 @@ namespace RobbiEditor.FSM.Nodes.Logic
             typeof(BoolValueCondition),
             typeof(IntValueCondition),
             typeof(Vector3IntValueCondition),
+            typeof(InVector3IntArrayCondition),
         };
 
         private static string[] valueConditionDisplayNames = new string[]
@@ -35,6 +29,7 @@ namespace RobbiEditor.FSM.Nodes.Logic
             "Bool",
             "Int",
             "Vector3Int",
+            "In Vector3IntArray"
         };
 
         private static Dictionary<Type, ValueConditionEditor> valueConditionEditorFactory = new Dictionary<Type, ValueConditionEditor>()
@@ -42,6 +37,7 @@ namespace RobbiEditor.FSM.Nodes.Logic
             { typeof(BoolValueCondition), new BoolValueConditionEditor() },
             { typeof(IntValueCondition), new IntValueConditionEditor() },
             { typeof(Vector3IntValueCondition), new Vector3IntValueConditionEditor() },
+            { typeof(InVector3IntArrayCondition), new InVector3IntArrayConditionEditor() },
         };
 
         private int selectedEventType = 0;
