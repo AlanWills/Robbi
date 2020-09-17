@@ -47,7 +47,9 @@ namespace RobbiEditor.FSM.Nodes.Events
         {
             MultiEventListenerNode eventListenerNode = target as MultiEventListenerNode;
 
-            NodeEditorGUILayout.PortField(eventListenerNode.GetInputPort(FSMNode.DEFAULT_INPUT_PORT_NAME));
+            NodeEditorGUILayout.PortPair(
+                eventListenerNode.GetInputPort(FSMNode.DEFAULT_INPUT_PORT_NAME),
+                eventListenerNode.GetOutputPort(nameof(eventListenerNode.argument)));
 
             selectedEventType = EditorGUILayout.Popup(selectedEventType, eventDisplayNames);
 

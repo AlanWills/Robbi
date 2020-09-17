@@ -15,7 +15,21 @@ namespace Robbi.Parameters
     {
         #region Properties and Fields
 
-        public bool isConstant = true;
+        [SerializeField]
+        private bool isConstant = true;
+        public bool IsConstant
+        {
+            get { return isConstant; }
+            set 
+            { 
+                isConstant = value; 
+
+                if (isConstant)
+                {
+                    referenceValue = null;
+                }
+            }
+        }
 
         [SerializeField]
         private T constantValue;
@@ -31,6 +45,7 @@ namespace Robbi.Parameters
                 if (isConstant)
                 {
                     constantValue = value;
+                    referenceValue = null;
                 }
                 else
                 {

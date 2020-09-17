@@ -32,6 +32,11 @@ namespace Robbi.Exit
             }
         }
 
+        public void TryExit()
+        {
+            onExitReached.Raise();
+        }
+
         #endregion
     }
 }

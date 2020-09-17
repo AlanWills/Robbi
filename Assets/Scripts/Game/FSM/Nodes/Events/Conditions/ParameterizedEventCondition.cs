@@ -4,15 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.Events;
 
 namespace Robbi.FSM.Nodes.Events.Conditions
 {
     [Serializable]
-    public class VoidEventCondition : EventCondition, IEventListener
+    public class ParameterizedEventCondition<T, TEvent> : EventCondition, IEventListener<T>
+        where TEvent : ParameterisedEvent<T>
     {
         #region Properties and Fields
 
-        public Event listenFor;
+        public TEvent listenFor;
 
         public override string name
         {
@@ -33,9 +36,9 @@ namespace Robbi.FSM.Nodes.Events.Conditions
             listenFor.RemoveEventListener(this);
         }
 
-        public void OnEventRaised()
+        public void OnEventRaised(T arg)
         {
-            RegisterEventRaised(null);
+            RegisterEventRaised(arg);
         }
 
         #endregion
@@ -44,8 +47,8 @@ namespace Robbi.FSM.Nodes.Events.Conditions
 
         public override void CopyFrom(EventCondition original)
         {
-            VoidEventCondition voidEventCondition = original as VoidEventCondition;
-            voidEventCondition.listenFor = listenFor;
+            ParameterizedEventCondition<T, TEvent> eventCondition = original as ParameterizedEventCondition<T, TEvent>;
+            eventCondition.listenFor = listenFor;
         }
 
         #endregion

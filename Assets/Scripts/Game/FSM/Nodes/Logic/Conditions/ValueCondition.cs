@@ -17,7 +17,7 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
         public abstract void Cleanup_EditorOnly(IParameterContainer parameterContainer);
 #endif
 
-        public abstract bool Check();
+        public abstract bool Check(object arg);
 
         #region ICopyable
 

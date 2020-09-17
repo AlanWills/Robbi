@@ -14,7 +14,7 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
     {
         #region Condition Methods
 
-        public override bool Check()
+        protected override bool Check()
         {
             switch (condition)
             {

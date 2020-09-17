@@ -20,6 +20,9 @@ namespace Robbi.FSM.Nodes.Events
     {
         #region Properties and Fields
 
+        [Output]
+        public object argument;
+
         [SerializeField]
         private List<EventCondition> events = new List<EventCondition>();
 
@@ -115,6 +118,15 @@ namespace Robbi.FSM.Nodes.Events
 
         #endregion
 
+        #region Node Overrides
+
+        public override object GetValue(NodePort port)
+        {
+            return argument;
+        }
+
+        #endregion
+
         #region FSM Runtime Methods
 
         protected override void OnEnter()
@@ -134,7 +146,8 @@ namespace Robbi.FSM.Nodes.Events
                 if (eventCondition.HasEventFired())
                 {
                     string eventConditionName = eventCondition.name;
-                    Debug.Log("Name: " + eventConditionName);
+                    argument = eventCondition.Argument;
+                    Debug.LogFormat("Name: {0} with Argument: {1}", eventConditionName, argument != null ? argument : "");
                     return GetConnectedNode(eventConditionName);
                 }
             }

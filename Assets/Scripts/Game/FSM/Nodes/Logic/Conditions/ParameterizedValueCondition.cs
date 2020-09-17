@@ -19,6 +19,7 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
 
         public TValue value;
         public ConditionOperator condition;
+        public bool useArgument = false;
         public TReference target;
 
         #endregion
@@ -42,6 +43,23 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
             }
         }
 #endif
+
+        #endregion
+
+        #region Check Methods
+
+        public sealed override bool Check(object arg)
+        {
+            if (useArgument)
+            {
+                target.IsConstant = true;
+                target.Value = arg != null ? (T)arg : default;
+            }
+
+            return Check();
+        }
+
+        protected abstract bool Check();
 
         #endregion
 

@@ -26,6 +26,7 @@ namespace RobbiEditor.FSM.Nodes.Logic.Conditions
 
             SerializedProperty valueProperty = valueCondition.FindProperty("value");
             SerializedProperty conditionProperty = valueCondition.FindProperty("condition");
+            SerializedProperty useArgumentProperty = valueCondition.FindProperty("useArgument");
 
             EditorGUILayout.PropertyField(valueProperty, GUIContent.none);
 
@@ -33,7 +34,12 @@ namespace RobbiEditor.FSM.Nodes.Logic.Conditions
             chosenOperator = EditorGUILayout.IntPopup(chosenOperator, operatorDisplayNames, operators);
             conditionProperty.enumValueIndex = chosenOperator;
 
-            ParameterReferencePropertyDrawer.OnGUI(conditionTarget);
+            EditorGUILayout.PropertyField(useArgumentProperty);
+
+            if (!useArgumentProperty.boolValue)
+            {
+                ParameterReferencePropertyDrawer.OnGUI(conditionTarget);
+            }
 
             EditorGUILayout.EndVertical();
         }

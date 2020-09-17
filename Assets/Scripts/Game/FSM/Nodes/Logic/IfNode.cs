@@ -15,6 +15,9 @@ namespace Robbi.FSM.Nodes.Logic
     {
         #region Properties and Fields
 
+        [Input]
+        public object argument;
+
         public uint NumConditions
         {
             get { return (uint)conditions.Count; }
@@ -102,9 +105,11 @@ namespace Robbi.FSM.Nodes.Logic
 
         protected override FSMNode OnUpdate()
         {
+            object _argument = GetInputValue("argument", argument);
+
             foreach (ValueCondition condition in conditions)
             {
-                if (condition.Check())
+                if (condition.Check(_argument))
                 {
                     return GetConnectedNode(condition.name);
                 }

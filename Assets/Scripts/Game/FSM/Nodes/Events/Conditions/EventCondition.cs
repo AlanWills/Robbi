@@ -14,9 +14,11 @@ namespace Robbi.FSM.Nodes.Events.Conditions
     {
         #region Properties and Fields
 
-        private bool hasEventFired = false;
+        private bool hasEventBeenRaised = false;
 
         public abstract new string name { get; }
+
+        public object Argument { get; protected set; }
 
         #endregion
 
@@ -24,7 +26,7 @@ namespace Robbi.FSM.Nodes.Events.Conditions
 
         public void AddListener()
         {
-            hasEventFired = false;
+            hasEventBeenRaised = false;
             AddListenerInternal();
         }
 
@@ -43,12 +45,13 @@ namespace Robbi.FSM.Nodes.Events.Conditions
 
         public bool HasEventFired()
         {
-            return hasEventFired;
+            return hasEventBeenRaised;
         }
 
-        public void OnEventRaised()
+        public void RegisterEventRaised(object argument)
         {
-            hasEventFired = true;
+            hasEventBeenRaised = true;
+            Argument = argument;
         }
 
         #endregion

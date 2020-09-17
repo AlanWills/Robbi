@@ -19,7 +19,13 @@ namespace RobbiEditor.PropertyDrawers.Parameters
             SerializedProperty isConstantProperty = serializedReference.FindProperty("isConstant");
 
             position = new Rect(position.x, position.y, 16, position.height);
-            EditorGUI.PropertyField(position, isConstantProperty, GUIContent.none);
+            if (EditorGUI.PropertyField(position, isConstantProperty, GUIContent.none))
+            {
+                if (isConstantProperty.boolValue)
+                {
+                    serializedReference.FindProperty("referenceValue").objectReferenceValue = null;
+                }
+            }
 
             if (isConstantProperty.boolValue)
             {
