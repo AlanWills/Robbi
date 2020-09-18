@@ -18,20 +18,15 @@ namespace Robbi.Movement
         private class Waypoint
         {
             public Vector3Int gridPosition;
-            public Stack<Vector3> stepsFromPrevious;
             public GameObject destinationMarkerInstance;
 
-            public Waypoint(
-                Vector3Int gridPosition, 
-                Stack<Vector3> stepsFromPrevious,
-                GameObject destinationMarkerInstance)
+            public Waypoint(Vector3Int gridPosition, GameObject destinationMarkerInstance)
             {
                 this.gridPosition = gridPosition;
-                this.stepsFromPrevious = stepsFromPrevious;
                 this.destinationMarkerInstance = destinationMarkerInstance;
             }
 
-            public void OnReached()
+            public void OnRemoved()
             {
                 GameObject.Destroy(destinationMarkerInstance);
             }
@@ -64,7 +59,8 @@ namespace Robbi.Movement
         public float speed = 1;
 
         private Grid grid;
-        private Stack<Waypoint> waypoints = new Stack<Waypoint>();
+        private List<Waypoint> waypoints = new List<Waypoint>();
+        private Stack<Vector3> stepsToNextWaypoint;
         private bool isMoving = false;
 
         #endregion
@@ -76,33 +72,42 @@ namespace Robbi.Movement
             grid = movementTilemap.layoutGrid;
         }
 
-        private void Update()
+        private void LateUpdate()
         {
             if (isMoving)
             {
-                Waypoint currentWaypoint = waypoints.Peek();
-                Vector3 nextStepPosition = currentWaypoint.stepsFromPrevious.Peek();
-                Vector3 newPosition = Vector3.MoveTowards(playerLocalPosition.value, nextStepPosition, speed * Time.deltaTime);
-
-                if (newPosition == playerLocalPosition.value)
+                if (stepsToNextWaypoint.Count > 0)
                 {
-                    Vector3Int movedTo = new Vector3Int(Mathf.FloorToInt(newPosition.x), Mathf.FloorToInt(newPosition.y), Mathf.FloorToInt(newPosition.z));
-                    onMovedTo.Raise(movedTo);
+                    // We are moving towards our next waypoint along the steps
+                    Vector3 nextStepPosition = stepsToNextWaypoint.Peek();
+                    Vector3 newPosition = Vector3.MoveTowards(playerLocalPosition.value, nextStepPosition, speed * Time.deltaTime);
 
-                    // This step of movement is completed
-                    currentWaypoint.stepsFromPrevious.Pop();
-
-                    if (currentWaypoint.stepsFromPrevious.Count == 0)
+                    if (newPosition == playerLocalPosition.value)
                     {
-                        // We have completed all the steps required to get to the waypoint
-                        ConsumeLastWaypoint();
-                    }
+                        Vector3Int movedTo = new Vector3Int(Mathf.FloorToInt(newPosition.x), Mathf.FloorToInt(newPosition.y), Mathf.FloorToInt(newPosition.z));
+                        onMovedTo.Raise(movedTo);
 
-                    isMoving = waypoints.Count > 0;
+                        // This step of movement is completed
+                        stepsToNextWaypoint.Pop();
+
+                        if (stepsToNextWaypoint.Count == 0)
+                        {
+                            // We have reached the next waypoint
+                            ConsumeWaypoint(0);
+                            MoveToNextWaypoint();
+                        }
+                    }
+                    else
+                    {
+                        playerLocalPosition.value = newPosition;
+                    }
                 }
                 else
                 {
-                    playerLocalPosition.value = newPosition;
+                    // We are moving, but currently blocked
+                    // This could be due to a delay opening a door or a timed event
+                    // We keep trying to move to the next waypoint
+                    MoveToNextWaypoint();
                 }
             }
         }
@@ -111,17 +116,14 @@ namespace Robbi.Movement
 
         #region Movement Methods
 
-        public void ExecuteMove()
+        public void MoveToNextWaypoint()
         {
-            isMoving = true;
-
-            Stack<Waypoint> reverseStack = new Stack<Waypoint>(waypoints.Count);
-            while (waypoints.Count > 0)
+            isMoving = waypoints.Count > 0;
+            
+            if (isMoving)
             {
-                reverseStack.Push(waypoints.Pop());
+                stepsToNextWaypoint = CalculateGridSteps(grid.LocalToCell(playerLocalPosition.value), waypoints[0].gridPosition);
             }
-
-            waypoints = reverseStack;
         }
 
         public void AddWaypoint(Vector3 waypointWorldPosition)
@@ -145,24 +147,18 @@ namespace Robbi.Movement
                 return;
             }
 
-            Vector3Int lastWaypointGridPosition = waypoints.Count != 0 ? waypoints.Peek().gridPosition : grid.WorldToCell(playerLocalPosition.value); ;
+            Vector3Int lastWaypointGridPosition = waypoints.Count != 0 ? waypoints[waypoints.Count - 1].gridPosition : grid.WorldToCell(playerLocalPosition.value); ;
 
             if (waypointGridPosition != lastWaypointGridPosition && movementTilemap.HasTile(waypointGridPosition))
             {
-                Stack<Vector3> gridSteps = CalculateGridSteps(lastWaypointGridPosition, waypointGridPosition);
-                if (gridSteps.Count > 0)
-                {
-                    GameObject destinationMarkerInstance = GameObject.Instantiate(destinationMarkerPrefab, movementTilemap.transform);
-                    destinationMarkerInstance.transform.position = grid.GetCellCenterLocal(waypointGridPosition);
-                    
-                    waypoints.Push(new Waypoint(waypointGridPosition, gridSteps, destinationMarkerInstance));
-                    --remainingWaypointsPlaceable.value;
-                    ++waypointsPlaced.value;
-                }
-                else
-                {
-                    HudLogger.LogWarning(string.Format("Invalid location {0} for movement", waypointGridPosition));
-                }
+                GameObject destinationMarkerInstance = GameObject.Instantiate(destinationMarkerPrefab, movementTilemap.transform);
+                destinationMarkerInstance.transform.position = grid.GetCellCenterLocal(waypointGridPosition);
+
+                waypoints.Add(new Waypoint(waypointGridPosition, destinationMarkerInstance));
+                --remainingWaypointsPlaceable.value;
+                ++waypointsPlaced.value;
+
+                HudLogger.LogInfo(string.Format("Waypoint added at {0}", waypointGridPosition));
             }
         }
 
@@ -197,14 +193,16 @@ namespace Robbi.Movement
 
         public void UndoLastWaypoint()
         {
-            ConsumeLastWaypoint();
+            ConsumeWaypoint(waypoints.Count - 1);
             ++remainingWaypointsPlaceable.value;
         }
 
-        private void ConsumeLastWaypoint()
+        private void ConsumeWaypoint(int waypointIndex)
         {
-            Waypoint waypoint = waypoints.Pop();
-            waypoint.OnReached();
+            Waypoint waypoint = waypoints[waypointIndex];
+            waypoint.OnRemoved();
+
+            waypoints.RemoveAt(waypointIndex);
             --waypointsPlaced.value;
         }
 

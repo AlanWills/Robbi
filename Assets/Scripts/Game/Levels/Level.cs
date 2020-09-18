@@ -32,6 +32,8 @@ namespace Robbi.Levels
 
             playerLocalPosition.value = grid.GetCellCenterLocal(playerStartPosition);
             remainingWaypointsPlaceable.value = maxWaypointsPlaceable;
+
+            exitPositions.value.Clear();
             exitPositions.value.AddRange(exits);
         }
 
