@@ -1,6 +1,7 @@
 ﻿using Robbi.Debugging.Logging;
 using Robbi.Events;
 using Robbi.Levels;
+using Robbi.Movement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,7 @@ namespace Robbi.Debugging.Commands
         private void RegisterCommands()
         {
             RegisterCommand<ConsoleLevelManager>("lm");
+            RegisterCommand<ConsoleMovementManager>("mm");
             RegisterCommand<ConsoleHudLogger>("hlog");
         }
 

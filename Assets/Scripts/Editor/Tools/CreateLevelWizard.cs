@@ -51,7 +51,6 @@ namespace RobbiEditor.Tools
 
             destinationFolder = EditorGUILayout.TextField(destinationFolder);
             levelIndex = RobbiEditorGUILayout.UIntField("Level Index", levelIndex);
-            numDoors = RobbiEditorGUILayout.UIntField("Num Doors", numDoors);
             numInteractables = RobbiEditorGUILayout.UIntField("Num Interactables", numInteractables);
             levelPrefabToCopy = EditorGUILayout.ObjectField("Level Prefab To Copy", levelPrefabToCopy, typeof(GameObject), false) as GameObject;
 
@@ -60,11 +59,6 @@ namespace RobbiEditor.Tools
             if (GUILayout.Button("Create Directories"))
             {
                 CreateDirectories();
-            }
-
-            if (GUILayout.Button("Create Doors"))
-            {
-                CreateDoors();
             }
 
             if (GUILayout.Button("Create Interactables"))
@@ -101,7 +95,6 @@ namespace RobbiEditor.Tools
             Log.Clear();
 
             CreateDirectories();
-            CreateDoors();
             CreateInteractables();
             CreateFSM();
             CreatePrefab();
@@ -120,28 +113,10 @@ namespace RobbiEditor.Tools
             string levelFolderFullPath = LevelFolderFullPath;
 
             AssetDatabase.CreateFolder(destinationFolder, LevelFolderName);
-            AssetDatabase.CreateFolder(levelFolderFullPath, LevelDirectories.DOORS_NAME);
             AssetDatabase.CreateFolder(levelFolderFullPath, LevelDirectories.EVENTS_NAME);
             AssetDatabase.CreateFolder(levelFolderFullPath, LevelDirectories.FSMS_NAME);
             AssetDatabase.CreateFolder(levelFolderFullPath, LevelDirectories.PREFABS_NAME);
             AssetDatabase.CreateFolder(levelFolderFullPath, LevelDirectories.INTERACTABLES_NAME);
-        }
-
-        private void CreateDoors()
-        {
-            string levelFolderFullPath = LevelFolderFullPath;
-            
-            for (uint i = 0; i < numDoors; ++i)
-            {
-                Door door = ScriptableObject.CreateInstance<Door>();
-                door.name = string.Format("Door{0}", i);
-                
-                Vector3IntEvent doorOpenedEvent = AssetDatabase.LoadAssetAtPath<Vector3IntEvent>(EventFiles.DOOR_OPENED_EVENT);
-                Debug.Assert(doorOpenedEvent, "On Door Opened event could not be found automatically");
-                door.onDoorOpened = doorOpenedEvent;
-
-                AssetDatabase.CreateAsset(door, Path.Combine(levelFolderFullPath, LevelDirectories.DOORS_NAME, door.name + ".asset"));
-            }
         }
 
         private void CreateInteractables()
@@ -185,24 +160,8 @@ namespace RobbiEditor.Tools
             GameObject levelGameObject = GameObject.Instantiate(levelPrefabToCopy);
             GameObject interactableMarkerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(PrefabFiles.INTERACTABLE_MARKER_PREFAB);
 
-            Transform doors = levelGameObject.transform.Find("Doors");
-            Transform exits = levelGameObject.transform.Find("Exits");
             Transform interactables = levelGameObject.transform.Find("Interactables");
-
-            DeleteAllChildren(doors);
-            DeleteAllChildren(exits);
             DeleteAllChildren(interactables);
-
-            for (uint i = 0; i < numDoors; ++i)
-            {
-                Door door = AssetDatabase.LoadAssetAtPath<Door>(Path.Combine(levelFolderFullPath, LevelDirectories.DOORS_NAME, string.Format("Door{0}.asset", i)));
-
-                GameObject doorGameObject = new GameObject(string.Format("Door{0}", i), typeof(EventListener));
-                doorGameObject.transform.parent = doors;
-
-                EventListener eventListener = doorGameObject.GetComponent<EventListener>();
-                UnityEventTools.AddVoidPersistentListener(eventListener.response, door.Open);
-            }
 
             for (uint i = 0; i < numInteractables; ++i)
             {

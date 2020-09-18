@@ -41,6 +41,14 @@ namespace Robbi.Movement
 
         #region Properties and Fields
 
+        public bool DebugMovement
+        {
+            set
+            {
+                GetComponent<TilemapRenderer>().enabled = value;
+            }
+        }
+
         [Header("Tilemaps")]
         public Tilemap movementTilemap;
         public Tilemap doorsTilemap;

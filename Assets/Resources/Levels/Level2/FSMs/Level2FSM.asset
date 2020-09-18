@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8032276450509494491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f73e5c005b2c6ee4a929080332770ff6, type: 3}
+  m_Name: IsAtSwitch
+  m_EditorClassIdentifier: 
+  value: {fileID: 0}
+  condition: 0
+  useArgument: 1
+  target: {fileID: -4894527806150770384}
 --- !u!114 &-7188686314725981022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,6 +63,154 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   time: 0.5
+--- !u!114 &-6689589955663605059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d3d684a2fdcd6e4e8336fa62bb135eb, type: 3}
+  m_Name: Multi Event Listener
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 536, y: 72}
+  ports:
+    keys:
+    - ' '
+    - argument
+    - DoorSwitchActivated
+    - MovedTo
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -6689589955663605059}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: Confirm Pressed
+        node: {fileID: 3215360751380570208}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2274075346523259705}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2274075346523259705}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: argument
+      _node: {fileID: -6689589955663605059}
+      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: argument
+        node: {fileID: 4211602068089572154}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: DoorSwitchActivated
+      _node: {fileID: -6689589955663605059}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -2274075346523259705}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: MovedTo
+      _node: {fileID: -6689589955663605059}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 4211602068089572154}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  events:
+  - {fileID: 3060474048253188077}
+  - {fileID: 2988546669762116995}
+--- !u!114 &-4894527806150770384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74932df3e79c946469c896e470e3a0df, type: 3}
+  m_Name: IsAtSwitch_target_sceneName
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: {x: 0, y: 0, z: 0}
+  referenceValue: {fileID: 0}
+--- !u!114 &-2274075346523259705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8256bbc25b7d68244bb28700e7cc3cf8, type: 3}
+  m_Name: Vector 3 Int Event Raiser
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 904, y: 280}
+  ports:
+    keys:
+    - ' '
+    - 
+    - argument
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -2274075346523259705}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: DoorSwitchActivated
+        node: {fileID: -6689589955663605059}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -2274075346523259705}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -6689589955663605059}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: argument
+      _node: {fileID: -2274075346523259705}
+      _typeQualifiedName: UnityEngine.Vector3Int, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  argument: {x: 0, y: 4, z: 0}
+  toRaise: {fileID: 11400000, guid: 370797b9e4dc2454c930db836a46057f, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,8 +227,39 @@ MonoBehaviour:
   - {fileID: 4731638223228773174}
   - {fileID: 3215360751380570208}
   - {fileID: -7188686314725981022}
+  - {fileID: -6689589955663605059}
+  - {fileID: -2274075346523259705}
+  - {fileID: 0}
+  - {fileID: 4211602068089572154}
   startNode: {fileID: 4731638223228773174}
-  parameters: []
+  parameters:
+  - {fileID: -4894527806150770384}
+--- !u!114 &2988546669762116995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb6a7a35a7901c24aac97811c2577cce, type: 3}
+  m_Name: MovedTo
+  m_EditorClassIdentifier: 
+  listenFor: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
+--- !u!114 &3060474048253188077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
+  m_Name: DoorSwitchActivated
+  m_EditorClassIdentifier: 
+  listenFor: {fileID: 11400000, guid: 0237404b5b9513b418a74e7454de4ba6, type: 2}
 --- !u!114 &3215360751380570208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,6 +288,30 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -7188686314725981022}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7188686314725981022}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7188686314725981022}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7188686314725981022}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7188686314725981022}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7188686314725981022}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7188686314725981022}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7188686314725981022}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7188686314725981022}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -101,7 +320,10 @@ MonoBehaviour:
       _node: {fileID: 3215360751380570208}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: ' '
+        node: {fileID: -6689589955663605059}
+        reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
@@ -122,8 +344,74 @@ MonoBehaviour:
     description: Switches can affect many parts of the factory.  Move on a neighbouring
       tile and Robbi can give them a flick!
     confirmButtonText: Got It!
+    closeButtonText: 
     showConfirmButton: 1
     showCloseButton: 0
+--- !u!114 &4211602068089572154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 737d89550a2e2194db247d1e3f3c19db, type: 3}
+  m_Name: If
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 808, y: -24}
+  ports:
+    keys:
+    - ' '
+    - 
+    - argument
+    - IsAtSwitch
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 4211602068089572154}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: MovedTo
+        node: {fileID: -6689589955663605059}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 4211602068089572154}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: argument
+      _node: {fileID: 4211602068089572154}
+      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: argument
+        node: {fileID: -6689589955663605059}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: IsAtSwitch
+      _node: {fileID: 4211602068089572154}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  conditions:
+  - {fileID: -8032276450509494491}
 --- !u!114 &4731638223228773174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,5 +471,6 @@ MonoBehaviour:
     image: {fileID: 21300000, guid: f4f88d802b49a0c49944d958d9f40b5d, type: 3}
     description: Doors will obstruct Robbi's movement if unopened.
     confirmButtonText: Got It!
+    closeButtonText: 
     showConfirmButton: 1
     showCloseButton: 0

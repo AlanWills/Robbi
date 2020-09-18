@@ -13,23 +13,33 @@ namespace Robbi.Movement
     {
         #region Properties and Fields
 
-        [SerializeField]
-        private bool debugEnabled = true;
+        private static MovementDebug instance;
 
-        private TilemapRenderer tilemapRenderer;
+        private MovementManager movementManager;
 
         #endregion
 
         #region Unity Methods
 
+        private void Awake()
+        {
+            Debug.Assert(instance == null, "Multiple MovementDebug scripts found");
+            instance = this;
+            movementManager = GetComponent<MovementManager>();
+        }
+
         private void Start()
         {
-            tilemapRenderer = GetComponent<TilemapRenderer>();
+            movementManager.DebugMovement = false;
+        }
 
-            if (Application.isPlaying)
-            {
-                tilemapRenderer.enabled = debugEnabled;
-            }
+        #endregion
+
+        #region Debug API
+
+        public static void SetPlaceableWaypoints(int waypoints)
+        {
+            instance.movementManager.remainingWaypointsPlaceable.value = waypoints;
         }
 
         #endregion
