@@ -132,15 +132,16 @@ namespace Robbi.Movement
                 return;
             }
 
-            if (remainingWaypointsPlaceable.value == 0)
-            {
-                // Cannot add waypoints if we have run out of our allotted amount
-            }
-
             Vector3Int waypointGridPosition = grid.WorldToCell(waypointWorldPosition);
             if (WaypointExists(waypointGridPosition))
             {
                 // Cannot add waypoints to a position that already has one
+                return;
+            }
+
+            if (remainingWaypointsPlaceable.value <= 0)
+            {
+                // Cannot add waypoints if we have run out of our allotted amount
                 return;
             }
 

@@ -17,7 +17,7 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
     {
         #region Properties and Fields
 
-        public TValue value;
+        public TReference value;
         public ConditionOperator condition;
         public bool useArgument = false;
         public TReference target;
@@ -29,6 +29,11 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
 #if UNITY_EDITOR
         public override void Init_EditorOnly(IParameterContainer parameterContainer)
         {
+            if (value == null)
+            {
+                value = parameterContainer.CreateParameter<TReference>(name + "_value");
+            }
+
             if (target == null)
             {
                 target = parameterContainer.CreateParameter<TReference>(name + "_target");
@@ -37,6 +42,11 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
 
         public override void Cleanup_EditorOnly(IParameterContainer parameterContainer)
         {
+            if (value != null)
+            {
+                parameterContainer.RemoveAsset(value);
+            }
+
             if (target != null)
             {
                 parameterContainer.RemoveAsset(target);

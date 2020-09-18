@@ -19,10 +19,10 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
             switch (condition)
             {
                 case ConditionOperator.Equals:
-                    return value.value == target.Value;
+                    return value.Value == target.Value;
 
                 case ConditionOperator.NotEquals:
-                    return value.value != target.Value;
+                    return value.Value != target.Value;
 
                 default:
                     Debug.LogAssertionFormat("Condition Operator {0} is not supported in Vector3Int Condition", condition);

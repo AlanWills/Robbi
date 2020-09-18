@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8160752275916483402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3c9a38be80386d4ea8852ca12654382, type: 3}
+  m_Name: AllWaypointsPlaced_value_sceneName
+  m_EditorClassIdentifier: 
+  isConstant: 0
+  constantValue: 0
+  referenceValue: {fileID: 11400000, guid: 5795522ed653b6947a2cfc5b86742695, type: 2}
 --- !u!114 &-7988021321898407185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,7 +99,7 @@ MonoBehaviour:
   m_Name: IsAtExit_value_sceneName
   m_EditorClassIdentifier: 
   isConstant: 1
-  constantValue: {x: 0, y: 0, z: 0}
+  constantValue: {x: -4, y: 6, z: 0}
   referenceValue: {fileID: 0}
 --- !u!114 &-7377273327687933818
 MonoBehaviour:
@@ -166,6 +181,15 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: 
         node: {fileID: -3226388243556060441}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -3226388243556060441}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4846410750942909886}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 9195191347592438943}
         reroutePoints: []
       - fieldName: 
         node: {fileID: -3226388243556060441}
@@ -344,6 +368,21 @@ MonoBehaviour:
       _dynamic: 1
   stringValue: {fileID: 11400000, guid: 91152ef4cb45e7e4db6aa64836c144e8, type: 2}
   newValue: MainMenu
+--- !u!114 &-5635268605871233741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3c9a38be80386d4ea8852ca12654382, type: 3}
+  m_Name: AllWaypointsReached_target_sceneName
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 0
+  referenceValue: {fileID: 0}
 --- !u!114 &-4110953380443883460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,22 +427,6 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   time: 1
---- !u!114 &-3784034624510016271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ef069c1ce8780243b544595a22f436c, type: 3}
-  m_Name: AllWaypointsReached
-  m_EditorClassIdentifier: 
-  value: {fileID: 11400000, guid: ab2db721a5c983a40963c20d01bb3cc3, type: 2}
-  condition: 0
-  useArgument: 0
-  target: {fileID: 2302174923413066752}
 --- !u!114 &-3226388243556060441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,6 +473,22 @@ MonoBehaviour:
     type: 2}
   exitPositions: {fileID: 11400000, guid: cc5131f13c80a0b408b6a477b9806cb3, type: 2}
   robbi: {fileID: 4008252506619596130, guid: 5a414555ca0cb0a43941df80eb95279a, type: 3}
+--- !u!114 &-1179114208763463036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef069c1ce8780243b544595a22f436c, type: 3}
+  m_Name: AllWaypointsReached
+  m_EditorClassIdentifier: 
+  value: {fileID: 1584946836932762402}
+  condition: 0
+  useArgument: 0
+  target: {fileID: -5635268605871233741}
 --- !u!114 &-929300572386406679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -486,14 +525,16 @@ MonoBehaviour:
   - {fileID: 9195191347592438943}
   - {fileID: 9213852190274206339}
   - {fileID: -4110953380443883460}
-  - {fileID: 0}
   - {fileID: -7251751857722457111}
   - {fileID: -7988021321898407185}
+  - {fileID: 0}
   startNode: {fileID: -3226388243556060441}
   parameters:
-  - {fileID: 8154217485447116059}
-  - {fileID: 2302174923413066752}
   - {fileID: -7499153965534871138}
+  - {fileID: -8160752275916483402}
+  - {fileID: 2388696643598481082}
+  - {fileID: 1584946836932762402}
+  - {fileID: -5635268605871233741}
 --- !u!114 &49694340644505846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -609,6 +650,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 3892101143549946520}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3892101143549946520}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -661,7 +705,7 @@ MonoBehaviour:
   isConstant: 1
   constantValue: Loading
   referenceValue: {fileID: 0}
---- !u!114 &2302174923413066752
+--- !u!114 &1584946836932762402
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -671,7 +715,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3c9a38be80386d4ea8852ca12654382, type: 3}
-  m_Name: AllWaypointsReached_target_sceneName
+  m_Name: AllWaypointsReached_value_sceneName
+  m_EditorClassIdentifier: 
+  isConstant: 0
+  constantValue: 0
+  referenceValue: {fileID: 11400000, guid: ab2db721a5c983a40963c20d01bb3cc3, type: 2}
+--- !u!114 &2388696643598481082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3c9a38be80386d4ea8852ca12654382, type: 3}
+  m_Name: AllWaypointsPlaced_target_sceneName
   m_EditorClassIdentifier: 
   isConstant: 1
   constantValue: 0
@@ -761,12 +820,12 @@ MonoBehaviour:
   m_Name: If
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -296, y: -488}
+  position: {x: -312, y: -488}
   ports:
     keys:
     - ' '
     - 
-    - WaypointsAllPlaced
+    - AllWaypointsPlaced
     - argument
     values:
     - _fieldName: ' '
@@ -774,6 +833,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -7988021321898407185}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -7988021321898407185}
         reroutePoints: []
@@ -793,7 +855,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-    - _fieldName: WaypointsAllPlaced
+    - _fieldName: AllWaypointsPlaced
       _node: {fileID: 4846410750942909886}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
@@ -815,7 +877,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   conditions:
-  - {fileID: 6771470199892188141}
+  - {fileID: 9182672092251330527}
 --- !u!114 &6268894465983792065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -829,37 +891,6 @@ MonoBehaviour:
   m_Name: MovedTo
   m_EditorClassIdentifier: 
   listenFor: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
---- !u!114 &6771470199892188141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ef069c1ce8780243b544595a22f436c, type: 3}
-  m_Name: WaypointsAllPlaced
-  m_EditorClassIdentifier: 
-  value: {fileID: 11400000, guid: 5795522ed653b6947a2cfc5b86742695, type: 2}
-  condition: 0
-  useArgument: 0
-  target: {fileID: 8154217485447116059}
---- !u!114 &8154217485447116059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3c9a38be80386d4ea8852ca12654382, type: 3}
-  m_Name: WaypointsAllPlaced_target_sceneName
-  m_EditorClassIdentifier: 
-  isConstant: 1
-  constantValue: 0
-  referenceValue: {fileID: 0}
 --- !u!114 &8435693903720371869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -971,6 +1002,12 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -7251751857722457111}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 49694340644505846}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7251751857722457111}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -986,6 +1023,22 @@ MonoBehaviour:
       _dynamic: 1
   sceneName: {fileID: 1230639232908838748}
   loadMode: 0
+--- !u!114 &9182672092251330527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef069c1ce8780243b544595a22f436c, type: 3}
+  m_Name: AllWaypointsPlaced
+  m_EditorClassIdentifier: 
+  value: {fileID: -8160752275916483402}
+  condition: 0
+  useArgument: 0
+  target: {fileID: 2388696643598481082}
 --- !u!114 &9195191347592438943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -999,7 +1052,7 @@ MonoBehaviour:
   m_Name: If
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -24, y: -488}
+  position: {x: 24, y: -472}
   ports:
     keys:
     - ' '
@@ -1012,7 +1065,7 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: WaypointsAllPlaced
+      - fieldName: AllWaypointsPlaced
         node: {fileID: 4846410750942909886}
         reroutePoints: []
       _direction: 0
@@ -1053,7 +1106,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   conditions:
-  - {fileID: -3784034624510016271}
+  - {fileID: -1179114208763463036}
 --- !u!114 &9213852190274206339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1079,6 +1132,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -4110953380443883460}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -4110953380443883460}
         reroutePoints: []

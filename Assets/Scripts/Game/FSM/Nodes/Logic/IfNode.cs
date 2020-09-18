@@ -105,7 +105,7 @@ namespace Robbi.FSM.Nodes.Logic
 
         protected override FSMNode OnUpdate()
         {
-            object _argument = GetInputValue("argument", argument);
+            object _argument = GetInputValue(nameof(argument), argument);
 
             foreach (ValueCondition condition in conditions)
             {

@@ -16,7 +16,7 @@ namespace Robbi.FSM.Nodes.Info
 
         public BoolValue isEditor;
         public BoolValue isMobile;
-        public BoolValue isDevBuild;
+        public BoolValue isDebugBuild;
 
         #endregion
 
@@ -36,13 +36,9 @@ namespace Robbi.FSM.Nodes.Info
                 isMobile.value = Application.isMobilePlatform;
             }
 
-            if (isDevBuild != null)
+            if (isDebugBuild != null)
             {
-#if DEVELOPMENT_BUILD
-                isDevBuild.value = true;
-#else
-                isDevBuild.value = false;
-#endif
+                isDebugBuild.value = Debug.isDebugBuild;
             }
         }
 

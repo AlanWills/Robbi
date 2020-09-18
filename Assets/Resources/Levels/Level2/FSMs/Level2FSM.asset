@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8032276450509494491
+--- !u!114 &-8894461001818921843
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f73e5c005b2c6ee4a929080332770ff6, type: 3}
-  m_Name: IsAtSwitch
+  m_Script: {fileID: 11500000, guid: 74932df3e79c946469c896e470e3a0df, type: 3}
+  m_Name: IsAtSwitch_value_sceneName
   m_EditorClassIdentifier: 
-  value: {fileID: 0}
-  condition: 0
-  useArgument: 1
-  target: {fileID: -4894527806150770384}
+  isConstant: 1
+  constantValue: {x: -2, y: 3, z: 0}
+  referenceValue: {fileID: 0}
 --- !u!114 &-7188686314725981022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,7 +80,6 @@ MonoBehaviour:
     keys:
     - ' '
     - argument
-    - DoorSwitchActivated
     - MovedTo
     values:
     - _fieldName: ' '
@@ -97,6 +95,36 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: 
         node: {fileID: -2274075346523259705}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4211602068089572154}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2274075346523259705}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2274075346523259705}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4211602068089572154}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2274075346523259705}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4211602068089572154}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2274075346523259705}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4211602068089572154}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2274075346523259705}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4211602068089572154}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -114,18 +142,6 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: DoorSwitchActivated
-      _node: {fileID: -6689589955663605059}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: -2274075346523259705}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
     - _fieldName: MovedTo
       _node: {fileID: -6689589955663605059}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
@@ -139,23 +155,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   events:
-  - {fileID: 3060474048253188077}
   - {fileID: 2988546669762116995}
---- !u!114 &-4894527806150770384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74932df3e79c946469c896e470e3a0df, type: 3}
-  m_Name: IsAtSwitch_target_sceneName
-  m_EditorClassIdentifier: 
-  isConstant: 1
-  constantValue: {x: 0, y: 0, z: 0}
-  referenceValue: {fileID: 0}
 --- !u!114 &-2274075346523259705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: Vector 3 Int Event Raiser
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 904, y: 280}
+  position: {x: 1064, y: 8}
   ports:
     keys:
     - ' '
@@ -181,8 +181,8 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: DoorSwitchActivated
-        node: {fileID: -6689589955663605059}
+      - fieldName: IsAtSwitch
+        node: {fileID: 4211602068089572154}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -229,11 +229,12 @@ MonoBehaviour:
   - {fileID: -7188686314725981022}
   - {fileID: -6689589955663605059}
   - {fileID: -2274075346523259705}
-  - {fileID: 0}
   - {fileID: 4211602068089572154}
+  - {fileID: 0}
   startNode: {fileID: 4731638223228773174}
   parameters:
-  - {fileID: -4894527806150770384}
+  - {fileID: -8894461001818921843}
+  - {fileID: 7520217273283929432}
 --- !u!114 &2988546669762116995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,19 +248,6 @@ MonoBehaviour:
   m_Name: MovedTo
   m_EditorClassIdentifier: 
   listenFor: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
---- !u!114 &3060474048253188077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
-  m_Name: DoorSwitchActivated
-  m_EditorClassIdentifier: 
-  listenFor: {fileID: 11400000, guid: 0237404b5b9513b418a74e7454de4ba6, type: 2}
 --- !u!114 &3215360751380570208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,6 +273,21 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -7188686314725981022}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7188686314725981022}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7188686314725981022}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7188686314725981022}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7188686314725981022}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -7188686314725981022}
         reroutePoints: []
@@ -342,7 +345,7 @@ MonoBehaviour:
     title: Switches
     image: {fileID: 21300000, guid: e38830da8b3fa854fb0e0b1069ea73b0, type: 3}
     description: Switches can affect many parts of the factory.  Move on a neighbouring
-      tile and Robbi can give them a flick!
+      tile and Robbi can give them a flick automatically!
     confirmButtonText: Got It!
     closeButtonText: 
     showConfirmButton: 1
@@ -384,7 +387,10 @@ MonoBehaviour:
       _node: {fileID: 4211602068089572154}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: ' '
+        node: {fileID: -6689589955663605059}
+        reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
@@ -405,13 +411,16 @@ MonoBehaviour:
       _node: {fileID: 4211602068089572154}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: ' '
+        node: {fileID: -2274075346523259705}
+        reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
   conditions:
-  - {fileID: -8032276450509494491}
+  - {fileID: 8932495591410278176}
 --- !u!114 &4731638223228773174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,3 +483,34 @@ MonoBehaviour:
     closeButtonText: 
     showConfirmButton: 1
     showCloseButton: 0
+--- !u!114 &7520217273283929432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74932df3e79c946469c896e470e3a0df, type: 3}
+  m_Name: IsAtSwitch_target_sceneName
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: {x: 0, y: 5, z: 0}
+  referenceValue: {fileID: 0}
+--- !u!114 &8932495591410278176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f73e5c005b2c6ee4a929080332770ff6, type: 3}
+  m_Name: IsAtSwitch
+  m_EditorClassIdentifier: 
+  value: {fileID: -8894461001818921843}
+  condition: 0
+  useArgument: 1
+  target: {fileID: 7520217273283929432}

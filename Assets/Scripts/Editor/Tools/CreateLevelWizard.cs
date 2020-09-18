@@ -1,7 +1,6 @@
 ﻿using Robbi.Doors;
 using Robbi.Events;
 using Robbi.FSM;
-using Robbi.Interactables;
 using Robbi.Levels;
 using Robbi.Parameters;
 using RobbiEditor.Utils;
@@ -61,11 +60,6 @@ namespace RobbiEditor.Tools
                 CreateDirectories();
             }
 
-            if (GUILayout.Button("Create Interactables"))
-            {
-                CreateInteractables();
-            }
-
             if (GUILayout.Button("Create FSM"))
             {
                 CreateFSM();
@@ -95,7 +89,6 @@ namespace RobbiEditor.Tools
             Log.Clear();
 
             CreateDirectories();
-            CreateInteractables();
             CreateFSM();
             CreatePrefab();
             CreateLevelData();  // Must happen last
@@ -113,35 +106,8 @@ namespace RobbiEditor.Tools
             string levelFolderFullPath = LevelFolderFullPath;
 
             AssetDatabase.CreateFolder(destinationFolder, LevelFolderName);
-            AssetDatabase.CreateFolder(levelFolderFullPath, LevelDirectories.EVENTS_NAME);
             AssetDatabase.CreateFolder(levelFolderFullPath, LevelDirectories.FSMS_NAME);
             AssetDatabase.CreateFolder(levelFolderFullPath, LevelDirectories.PREFABS_NAME);
-            AssetDatabase.CreateFolder(levelFolderFullPath, LevelDirectories.INTERACTABLES_NAME);
-        }
-
-        private void CreateInteractables()
-        {
-            string levelFolderFullPath = LevelFolderFullPath;
-
-            for (uint i = 0; i < numInteractables; ++i)
-            {
-                Interactable interactable = ScriptableObject.CreateInstance<Interactable>();
-                interactable.name = string.Format("Interactable{0}", i);
-                interactable.onInteract = CreateInteractionEvent(string.Format("OnInteractable{0}Activated", levelIndex));
-
-                Debug.Assert(interactable.onInteract != null, "On Interact event could not be created successfully");
-
-                AssetDatabase.CreateAsset(interactable, Path.Combine(levelFolderFullPath, LevelDirectories.INTERACTABLES_NAME, interactable.name + ".asset"));
-            }
-        }
-
-        private Event CreateInteractionEvent(string name)
-        {
-            Event interactionEvent = ScriptableObject.CreateInstance<Event>();
-            interactionEvent.name = name;
-
-            AssetDatabase.CreateAsset(interactionEvent, Path.Combine(LevelFolderFullPath, LevelDirectories.EVENTS_NAME, interactionEvent.name + ".asset"));
-            return interactionEvent;
         }
 
         private void CreateFSM()
@@ -165,12 +131,8 @@ namespace RobbiEditor.Tools
 
             for (uint i = 0; i < numInteractables; ++i)
             {
-                Interactable interactable = AssetDatabase.LoadAssetAtPath<Interactable>(Path.Combine(levelFolderFullPath, LevelDirectories.INTERACTABLES_NAME, string.Format("Interactable{0}.asset", i)));
-                Debug.Assert(interactable != null, string.Format("Interactable{0} could not be loaded", i));
-
                 GameObject interactableMarker = PrefabUtility.InstantiatePrefab(interactableMarkerPrefab, interactables) as GameObject;
                 interactableMarker.name = string.Format("Interactable{0}", i);
-                interactableMarker.GetComponent<InteractableMarker>().interactable = interactable;
             }
 
             FSMRuntime runtime = levelGameObject.GetComponent<FSMRuntime>();

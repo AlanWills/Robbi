@@ -1,20 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9213432322574544677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc36a5f6598a84646bc68016fd41856d, type: 3}
-  m_Name: IsDevBuild
-  m_EditorClassIdentifier: 
-  value: {fileID: 11400000, guid: be4ab27445561154ab86b5e2516b75eb, type: 2}
-  condition: 0
-  target: {fileID: -2205966278261671832}
 --- !u!114 &-7916415647596848166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,12 +64,19 @@ MonoBehaviour:
     - ' '
     - 
     - IsDevBuild
+    - argument
     values:
     - _fieldName: ' '
       _node: {fileID: -5917080910987807551}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 7737611287889089507}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7737611287889089507}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 7737611287889089507}
         reroutePoints: []
@@ -140,9 +132,18 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
+    - _fieldName: argument
+      _node: {fileID: -5917080910987807551}
+      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   conditions:
-  - {fileID: -9213432322574544677}
---- !u!114 &-2205966278261671832
+  - {fileID: 5458697979185377235}
+--- !u!114 &-2089175217242918010
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,7 +156,7 @@ MonoBehaviour:
   m_Name: IsDevBuild_target_sceneName
   m_EditorClassIdentifier: 
   isConstant: 1
-  constantValue: 0
+  constantValue: 1
   referenceValue: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -178,7 +179,8 @@ MonoBehaviour:
   - {fileID: 0}
   startNode: {fileID: 7737611287889089507}
   parameters:
-  - {fileID: -2205966278261671832}
+  - {fileID: 4733944583242364951}
+  - {fileID: -2089175217242918010}
 --- !u!114 &3339456177136296621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -785,6 +787,12 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 5151798752707338338}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5151798752707338338}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5151798752707338338}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -800,6 +808,21 @@ MonoBehaviour:
       _dynamic: 1
   sceneName: {fileID: 8808940734964762224}
   loadMode: 0
+--- !u!114 &4733944583242364951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec718764ed3a234cb86bb3efc892b05, type: 3}
+  m_Name: IsDevBuild_value_sceneName
+  m_EditorClassIdentifier: 
+  isConstant: 0
+  constantValue: 0
+  referenceValue: {fileID: 11400000, guid: be4ab27445561154ab86b5e2516b75eb, type: 2}
 --- !u!114 &5151798752707338338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1688,6 +1711,18 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -5917080910987807551}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7916415647596848166}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -5917080910987807551}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7916415647596848166}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -5917080910987807551}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -1705,6 +1740,22 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   time: 1
+--- !u!114 &5458697979185377235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc36a5f6598a84646bc68016fd41856d, type: 3}
+  m_Name: IsDevBuild
+  m_EditorClassIdentifier: 
+  value: {fileID: 4733944583242364951}
+  condition: 0
+  useArgument: 0
+  target: {fileID: -2089175217242918010}
 --- !u!114 &7737611287889089507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1747,7 +1798,7 @@ MonoBehaviour:
       _dynamic: 1
   isEditor: {fileID: 11400000, guid: cca8ae09bf5fabb48b28414c673d0587, type: 2}
   isMobile: {fileID: 11400000, guid: e2eb51b1797e92649b8f6af6bd28c6c7, type: 2}
-  isDevBuild: {fileID: 11400000, guid: be4ab27445561154ab86b5e2516b75eb, type: 2}
+  isDebugBuild: {fileID: 11400000, guid: be4ab27445561154ab86b5e2516b75eb, type: 2}
 --- !u!114 &8808940734964762224
 MonoBehaviour:
   m_ObjectHideFlags: 0
