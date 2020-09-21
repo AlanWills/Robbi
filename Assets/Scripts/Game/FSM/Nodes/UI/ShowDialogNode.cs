@@ -77,7 +77,7 @@ namespace Robbi.FSM.Nodes.UI
                 return GetConnectedNode(CLOSE_PRESSED_PORT_NAME);
             }
 
-            return null;
+            return this;
         }
 
         protected override void OnExit()

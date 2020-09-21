@@ -65,7 +65,7 @@ namespace Robbi.FSM.Nodes
 
         protected override FSMNode OnUpdate()
         {
-            return loadOperation.isDone ? base.OnUpdate() : null;
+            return loadOperation.isDone ? base.OnUpdate() : this;
         }
 
         #endregion

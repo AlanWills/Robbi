@@ -152,7 +152,7 @@ namespace Robbi.FSM.Nodes.Events
                 }
             }
 
-            return null;
+            return this;
         }
 
         protected override void OnExit()

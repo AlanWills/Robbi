@@ -53,6 +53,7 @@ namespace Robbi.Movement
         public Vector3IntEvent onMovedTo;
         public IntValue remainingWaypointsPlaceable;
         public IntValue waypointsPlaced;
+        public BoolValue isProgramRunning;
 
         [Header("Other")]
         public GameObject destinationMarkerPrefab;
@@ -61,7 +62,6 @@ namespace Robbi.Movement
         private Grid grid;
         private List<Waypoint> waypoints = new List<Waypoint>();
         private Stack<Vector3> stepsToNextWaypoint;
-        private bool isMoving = false;
 
         #endregion
 
@@ -74,7 +74,7 @@ namespace Robbi.Movement
 
         private void LateUpdate()
         {
-            if (isMoving)
+            if (isProgramRunning.value)
             {
                 if (stepsToNextWaypoint.Count > 0)
                 {
@@ -118,9 +118,9 @@ namespace Robbi.Movement
 
         public void MoveToNextWaypoint()
         {
-            isMoving = waypoints.Count > 0;
+            isProgramRunning.value = waypoints.Count > 0;
             
-            if (isMoving)
+            if (isProgramRunning.value)
             {
                 stepsToNextWaypoint = CalculateGridSteps(grid.LocalToCell(playerLocalPosition.value), waypoints[0].gridPosition);
             }
@@ -128,7 +128,7 @@ namespace Robbi.Movement
 
         public void AddWaypoint(Vector3 waypointWorldPosition)
         {
-            if (isMoving)
+            if (isProgramRunning.value)
             {
                 // Cannot add waypoints whilst movement program is running
                 return;
@@ -174,27 +174,23 @@ namespace Robbi.Movement
                 }
                 else
                 {
-                    break;
+                    RemoveWaypoint(duplicateIndex);
+                    return true;
                 }
             }
 
-            if (duplicateIndex == waypoints.Count)
-            {
-                return false;
-            }
-
-            for (int i = 0; i <= duplicateIndex; ++i)
-            {
-                UndoLastWaypoint();
-            }
-
-            return true;
+            return false;
         }
 
-        public void UndoLastWaypoint()
+        public void RemoveWaypoint(int waypointIndex)
         {
-            ConsumeWaypoint(waypoints.Count - 1);
+            ConsumeWaypoint(waypointIndex);
             ++remainingWaypointsPlaceable.value;
+        }
+
+        public void RemoveLastWaypoint()
+        {
+            RemoveWaypoint(waypoints.Count - 1);
         }
 
         private void ConsumeWaypoint(int waypointIndex)

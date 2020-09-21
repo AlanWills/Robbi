@@ -16,7 +16,7 @@ namespace Robbi.Movement
                 if (int.TryParse(parameters[0], out int modifier))
                 {
                     MovementDebug.SetPlaceableWaypoints(modifier);
-                    output.AppendFormat("Placeable Waypoints modified by {0}", modifier);
+                    output.AppendFormat("Placeable Waypoints set to {0}", modifier);
                     return true;
                 }
                 else

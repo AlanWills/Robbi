@@ -24,27 +24,24 @@ namespace Robbi.FSM
 
         private void Start()
         {
-            nodeToTransitionTo = graph.startNode;
+            CurrentNode = graph.startNode;
+            CurrentNode.Enter();
         }
 
         private void Update()
         {
-            if (nodeToTransitionTo != null)
+            FSMNode newNode = null;
+
+            while (CurrentNode != newNode)
             {
-                if (CurrentNode != null)
+                newNode = CurrentNode.Update();
+
+                if (newNode != CurrentNode)
                 {
                     CurrentNode.Exit();
+                    CurrentNode = newNode;
+                    CurrentNode.Enter();
                 }
-
-                CurrentNode = nodeToTransitionTo;
-                CurrentNode.Enter();
-
-                nodeToTransitionTo = null;
-            }
-
-            if (CurrentNode != null)
-            {
-                nodeToTransitionTo = CurrentNode.Update();
             }
         }
 

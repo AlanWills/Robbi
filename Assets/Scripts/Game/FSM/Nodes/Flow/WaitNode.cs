@@ -33,7 +33,7 @@ namespace Robbi.FSM.Nodes
         {
             currentTime += Time.deltaTime;
 
-            return currentTime >= time ? base.OnUpdate() : null;
+            return currentTime >= time ? base.OnUpdate() : this;
         }
 
         #endregion

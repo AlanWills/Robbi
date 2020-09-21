@@ -33,7 +33,7 @@ namespace Robbi.FSM.Nodes.Events
 
         protected override FSMNode OnUpdate()
         {
-            return eventRaised ? base.OnUpdate() : null;
+            return eventRaised ? base.OnUpdate() : this;
         }
 
         protected override void OnExit()
