@@ -17,7 +17,7 @@ namespace Robbi.Game.Inputs
 
         public Camera raycastCamera;
 
-        #region Desktop Events
+        #region Desktop Variables
 
         [Header("Desktop Events)")]
         public Vector3Event leftMouseButtonFirstDown;
@@ -36,16 +36,18 @@ namespace Robbi.Game.Inputs
 
         #endregion
 
-        #region Phone Events
+        #region Phone Variables
 
         [Header("Phone Events")]
         public TouchEvent singleTouchEvent;
         public MultiTouchEvent doubleTouchEvent;
         public MultiTouchEvent tripleTouchEvent;
 
+        private const float TOUCH_THRESHOLD = 5;
+
         #endregion
 
-        #region Common Events
+        #region Common Variables
 
         [Header("Common Events")]
         public GameObjectClickEvent gameObjectLeftClicked;
@@ -67,7 +69,7 @@ namespace Robbi.Game.Inputs
                 Vector3 touchWorldPosition = raycastCamera.ScreenToWorldPoint(touch.position);
                 GameObject hitGameObject = Raycast(new Vector2(touchWorldPosition.x, touchWorldPosition.y));
 
-                if (hitGameObject != null && touch.phase == TouchPhase.Began)
+                if (hitGameObject != null && touch.phase == TouchPhase.Ended && touch.deltaPosition.sqrMagnitude <= TOUCH_THRESHOLD)
                 {
                     gameObjectLeftClicked.Raise(new GameObjectClickEventArgs() 
                     { 
