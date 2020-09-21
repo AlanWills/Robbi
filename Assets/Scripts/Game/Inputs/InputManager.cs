@@ -61,12 +61,13 @@ namespace Robbi.Game.Inputs
 #if UNITY_ANDROID || UNITY_IOS
             if (Input.touchCount == 1)
             {
-                singleTouchEvent.Raise(Input.GetTouch(0));
+                Touch touch = Input.GetTouch(0);
+                singleTouchEvent.Raise(touch);
 
-                Vector3 touchWorldPosition = raycastCamera.ScreenToWorldPoint(Input.GetTouch(0).position);
+                Vector3 touchWorldPosition = raycastCamera.ScreenToWorldPoint(touch.position);
                 GameObject hitGameObject = Raycast(new Vector2(touchWorldPosition.x, touchWorldPosition.y));
 
-                if (hitGameObject != null)
+                if (hitGameObject != null && touch.phase == TouchPhase.Began)
                 {
                     gameObjectLeftClicked.Raise(new GameObjectClickEventArgs() 
                     { 
