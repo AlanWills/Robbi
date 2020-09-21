@@ -40,7 +40,7 @@ namespace Robbi.Movement
         {
             set
             {
-                GetComponent<TilemapRenderer>().enabled = value;
+                movementTilemap.GetComponent<TilemapRenderer>().enabled = value;
             }
         }
 

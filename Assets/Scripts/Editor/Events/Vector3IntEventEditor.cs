@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Robbi.Events
 {
     [CustomEditor(typeof(Vector3IntEvent))]
-    public class Vector3EventEditor : Editor
+    public class Vector3IntEventEditor : Editor
     {
         #region Properties and Fields
 
