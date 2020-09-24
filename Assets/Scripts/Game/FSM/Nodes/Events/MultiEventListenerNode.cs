@@ -147,7 +147,8 @@ namespace Robbi.FSM.Nodes.Events
                 {
                     string eventConditionName = eventCondition.name;
                     argument = eventCondition.Argument;
-                    Debug.LogFormat("Name: {0} with Argument: {1}", eventConditionName, argument != null ? argument : "");
+
+                    Debug.LogFormat("Name: {0} with Argument: {1} was consumed by MEL Node", eventConditionName, argument != null ? argument : "");
                     return GetConnectedNode(eventConditionName);
                 }
             }

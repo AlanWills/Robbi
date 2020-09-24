@@ -20,9 +20,7 @@ namespace Robbi.FSM.Nodes
         #region Properties and Fields
 
         [Header("Parameters")]
-        public Vector3Value playerLocalPosition;
-        public IntValue remainingWaypointsPlaceable;
-        public Vector3IntArrayValue exitPositions;
+        public LevelData levelData;
 
         [Header("Objects")]
         public GameObject robbi;
@@ -43,13 +41,8 @@ namespace Robbi.FSM.Nodes
 
             if (level != null)
             {
-                level.Begin(playerLocalPosition, remainingWaypointsPlaceable, exitPositions);
+                level.Begin(levelData);
             }
-        }
-
-        protected override FSMNode OnUpdate()
-        {
-            return base.OnUpdate();
         }
 
         #endregion

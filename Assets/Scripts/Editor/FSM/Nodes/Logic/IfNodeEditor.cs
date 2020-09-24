@@ -22,6 +22,7 @@ namespace RobbiEditor.FSM.Nodes.Logic
             typeof(IntValueCondition),
             typeof(Vector3IntValueCondition),
             typeof(InVector3IntArrayCondition),
+            typeof(InTilemapCondition),
         };
 
         private static string[] valueConditionDisplayNames = new string[]
@@ -29,7 +30,8 @@ namespace RobbiEditor.FSM.Nodes.Logic
             "Bool",
             "Int",
             "Vector3Int",
-            "In Vector3IntArray"
+            "In Vector3IntArray",
+            "In Tilemap",
         };
 
         private static Dictionary<Type, ValueConditionEditor> valueConditionEditorFactory = new Dictionary<Type, ValueConditionEditor>()
@@ -38,6 +40,7 @@ namespace RobbiEditor.FSM.Nodes.Logic
             { typeof(IntValueCondition), new IntValueConditionEditor() },
             { typeof(Vector3IntValueCondition), new Vector3IntValueConditionEditor() },
             { typeof(InVector3IntArrayCondition), new InVector3IntArrayConditionEditor() },
+            { typeof(InTilemapCondition), new InTilemapConditionEditor() },
         };
 
         private int selectedEventType = 0;

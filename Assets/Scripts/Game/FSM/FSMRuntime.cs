@@ -30,17 +30,17 @@ namespace Robbi.FSM
 
         private void Update()
         {
-            FSMNode newNode = null;
+            FSMNode newNode = CurrentNode.Update();
 
-            while (CurrentNode != newNode)
+            while (newNode != CurrentNode)
             {
-                newNode = CurrentNode.Update();
+                CurrentNode.Exit();
+                CurrentNode = newNode;
 
-                if (newNode != CurrentNode)
+                if (CurrentNode != null)
                 {
-                    CurrentNode.Exit();
-                    CurrentNode = newNode;
                     CurrentNode.Enter();
+                    newNode = CurrentNode.Update();
                 }
             }
         }

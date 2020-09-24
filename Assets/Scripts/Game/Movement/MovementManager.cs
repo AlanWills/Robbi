@@ -61,7 +61,7 @@ namespace Robbi.Movement
 
         private Grid grid;
         private List<Waypoint> waypoints = new List<Waypoint>();
-        private Stack<Vector3> stepsToNextWaypoint;
+        private Stack<Vector3> stepsToNextWaypoint = new Stack<Vector3>();
 
         #endregion
 
@@ -101,13 +101,6 @@ namespace Robbi.Movement
                     {
                         playerLocalPosition.value = newPosition;
                     }
-                }
-                else
-                {
-                    // We are moving, but currently blocked
-                    // This could be due to a delay opening a door or a timed event
-                    // We keep trying to move to the next waypoint
-                    MoveToNextWaypoint();
                 }
             }
         }
