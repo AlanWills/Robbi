@@ -25,8 +25,36 @@ namespace Robbi.Movement
                     return false;
                 }
             }
+            else if (parameters.Count == 2)
+            {
+                if (parameters[0] == "debug")
+                {
+                    if (parameters[1] == "on")
+                    {
+                        MovementDebug.SetDebugMovement(true);
+                        output.Append("Debug Movement On");
+                        return true;
+                    }
+                    else if (parameters[1] == "off")
+                    {
+                        MovementDebug.SetDebugMovement(false);
+                        output.Append("Debug Movement Off");
+                        return true;
+                    }
+                    else
+                    {
+                        output.AppendFormat("Unrecognised parameter {0} to debug movement", parameters[1]);
+                        return false;
+                    }
+                }
+                else
+                {
+                    output.AppendFormat("Unrecognised parameter {0}", parameters[0]);
+                    return false;
+                }
+            }
 
-            output.AppendFormat("Invalid parameters inputted into command.  Expected 1 numeric argument");
+            output.AppendFormat("Invalid parameters inputted into command");
             return false;
         }
     }

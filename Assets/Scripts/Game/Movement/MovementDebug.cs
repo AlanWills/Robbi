@@ -42,6 +42,11 @@ namespace Robbi.Movement
             instance.movementManager.remainingWaypointsPlaceable.value = waypoints;
         }
 
+        public static void SetDebugMovement(bool debugMovement)
+        {
+            instance.movementManager.DebugMovement = debugMovement;
+        }
+
         #endregion
     }
 }

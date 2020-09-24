@@ -59,7 +59,9 @@ namespace RobbiEditor.FSM.Nodes.Logic
                     ifNode.GetInputPort(FSMNode.DEFAULT_INPUT_PORT_NAME),
                     ifNode.GetOutputPort(FSMNode.DEFAULT_OUTPUT_PORT_NAME));
 
-                NodeEditorGUILayout.PortField(ifNode.GetInputPort(nameof(ifNode.argument)));
+                NodeEditorGUILayout.PortPair(
+                    ifNode.GetInputPort(nameof(ifNode.inArgument)),
+                    ifNode.GetOutputPort(nameof(ifNode.outArgument)));
 
                 selectedEventType = EditorGUILayout.Popup(selectedEventType, valueConditionDisplayNames);
 

@@ -16,7 +16,10 @@ namespace Robbi.FSM.Nodes.Logic
         #region Properties and Fields
 
         [Input]
-        public object argument;
+        public object inArgument;
+
+        [Output]
+        public object outArgument;
 
         public uint NumConditions
         {
@@ -105,7 +108,8 @@ namespace Robbi.FSM.Nodes.Logic
 
         protected override FSMNode OnUpdate()
         {
-            object _argument = GetInputValue(nameof(argument), argument);
+            object _argument = GetInputValue(nameof(inArgument), inArgument);
+            outArgument = _argument;
 
             foreach (ValueCondition condition in conditions)
             {

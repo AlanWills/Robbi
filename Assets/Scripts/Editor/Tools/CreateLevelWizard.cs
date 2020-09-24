@@ -106,11 +106,12 @@ namespace RobbiEditor.Tools
         {
             string levelFolderFullPath = LevelFolderFullPath;
             string prefabPath = Path.Combine(levelFolderFullPath, string.Format("Level{0}.prefab", levelIndex));
-
-            GameObject levelGameObject = GameObject.Instantiate(levelPrefabToCopy);
+            AssetDatabase.CopyAsset(AssetDatabase.GetAssetPath(levelPrefabToCopy), prefabPath);
+            
+            GameObject createdPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
             GameObject interactableMarkerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(PrefabFiles.INTERACTABLE_MARKER_PREFAB);
-
-            Transform interactables = levelGameObject.transform.Find("Interactables");
+            
+            Transform interactables = createdPrefab.transform.Find("Interactables");
             DeleteAllChildren(interactables);
 
             for (uint i = 0; i < numInteractables; ++i)
@@ -119,15 +120,14 @@ namespace RobbiEditor.Tools
                 interactableMarker.name = string.Format("Interactable{0}", i);
             }
 
-            FSMRuntime runtime = levelGameObject.GetComponent<FSMRuntime>();
+            FSMRuntime runtime = createdPrefab.GetComponent<FSMRuntime>();
             if (runtime == null)
             {
-                runtime = levelGameObject.AddComponent<FSMRuntime>();
+                runtime = createdPrefab.AddComponent<FSMRuntime>();
             }
             runtime.graph = AssetDatabase.LoadAssetAtPath<FSMGraph>(Path.Combine(levelFolderFullPath, string.Format("Level{0}FSM.asset", levelIndex)));
 
-            PrefabUtility.SaveAsPrefabAsset(levelGameObject, prefabPath);
-            GameObject.DestroyImmediate(levelGameObject);
+            EditorUtility.SetDirty(createdPrefab);
         }
 
         private void CreateLevelData()
