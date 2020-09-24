@@ -51,6 +51,7 @@ namespace Robbi.Movement
         [Header("Parameters")]
         public Vector3Value playerLocalPosition;
         public Vector3IntEvent onMovedTo;
+        public Vector3IntEvent onMovedFrom;
         public IntValue remainingWaypointsPlaceable;
         public IntValue waypointsPlaced;
         public BoolValue isProgramRunning;
@@ -72,19 +73,22 @@ namespace Robbi.Movement
             grid = movementTilemap.layoutGrid;
         }
 
-        private void LateUpdate()
+        private void Update()
         {
             if (isProgramRunning.value)
             {
                 if (stepsToNextWaypoint.Count > 0)
                 {
                     // We are moving towards our next waypoint along the steps
+                    Vector3 playerLocalPos = playerLocalPosition.value;
                     Vector3 nextStepPosition = stepsToNextWaypoint.Peek();
-                    Vector3 newPosition = Vector3.MoveTowards(playerLocalPosition.value, nextStepPosition, speed * Time.deltaTime);
+                    Vector3 newPosition = Vector3.MoveTowards(playerLocalPos, nextStepPosition, speed * Time.deltaTime);
 
+                    Vector3Int movedFrom = new Vector3Int(Mathf.RoundToInt(playerLocalPos.x - 0.5f), Mathf.RoundToInt(playerLocalPos.y - 0.5f), Mathf.RoundToInt(playerLocalPos.z));
+                    Vector3Int movedTo = new Vector3Int(Mathf.RoundToInt(newPosition.x - 0.5f), Mathf.RoundToInt(newPosition.y - 0.5f), Mathf.RoundToInt(newPosition.z));
+                    
                     if (newPosition == playerLocalPosition.value)
                     {
-                        Vector3Int movedTo = new Vector3Int(Mathf.FloorToInt(newPosition.x), Mathf.FloorToInt(newPosition.y), Mathf.FloorToInt(newPosition.z));
                         onMovedTo.Raise(movedTo);
 
                         // This step of movement is completed
@@ -100,6 +104,11 @@ namespace Robbi.Movement
                     else
                     {
                         playerLocalPosition.value = newPosition;
+
+                        if (movedFrom != movedTo)
+                        {
+                            onMovedFrom.Raise(movedFrom);
+                        }
                     }
                 }
             }

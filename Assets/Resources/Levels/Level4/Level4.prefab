@@ -191,7 +191,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7182852178973333665}
+  - {fileID: 5611491235856575691}
   m_Father: {fileID: 9185820876711003896}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -440,217 +440,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000, guid: 3e9b72ae989bede48abbb8c65bc43e83, type: 2}
---- !u!1 &5233002663342936474
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7182852178973333665}
-  - component: {fileID: 3104151553279249373}
-  - component: {fileID: 3559549627653325979}
-  - component: {fileID: 7418501034225074498}
-  - component: {fileID: 4594150046653184543}
-  - component: {fileID: 2263939871436530543}
-  - component: {fileID: 5132843837601634108}
-  - component: {fileID: 4461819000550016628}
-  m_Layer: 0
-  m_Name: MovementManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7182852178973333665
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5233002663342936474}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7234430741861336575}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3104151553279249373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5233002663342936474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 730b5b258e5ef0a4aa3bdab8db2bd95b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3559549627653325979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5233002663342936474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ab537e308e68b540822533a43825ea5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementTilemap: {fileID: 8422369206773885131}
-  doorsTilemap: {fileID: 4110153410030090696}
-  playerLocalPosition: {fileID: 11400000, guid: ddb88a6bd2594e6419cb8c238d69285a,
-    type: 2}
-  onMovedTo: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
-  remainingWaypointsPlaceable: {fileID: 11400000, guid: 5795522ed653b6947a2cfc5b86742695,
-    type: 2}
-  waypointsPlaced: {fileID: 11400000, guid: ab2db721a5c983a40963c20d01bb3cc3, type: 2}
-  isProgramRunning: {fileID: 11400000, guid: 36c66e683e05d134495c04803619774f, type: 2}
-  destinationMarkerPrefab: {fileID: 6031862308839941411, guid: aca8e985d226d3648b1a4c98c7c70a75,
-    type: 3}
-  speed: 4
---- !u!61 &7418501034225074498
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5233002663342936474}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.5}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 4, y: 7}
-  m_EdgeRadius: 0
---- !u!114 &4594150046653184543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5233002663342936474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08fe44caecb1a444890e076001b375c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 74245c4526e3f0144b8534774b224924, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3559549627653325979}
-        m_TargetAssemblyTypeName: Robbi.Movement.MovementManager, Assembly-CSharp
-        m_MethodName: AddWaypoint
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &2263939871436530543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5233002663342936474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3c2c167d8138f94b8f96ff1b82578d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 6b4a72f1879c01b41a7a4d34b806e2ae, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3559549627653325979}
-        m_TargetAssemblyTypeName: Robbi.Movement.MovementManager, Assembly-CSharp
-        m_MethodName: MoveToNextWaypoint
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &5132843837601634108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5233002663342936474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3c2c167d8138f94b8f96ff1b82578d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: e3c8b767428d0c646abf19d60a178be9, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3559549627653325979}
-        m_TargetAssemblyTypeName: Robbi.Movement.MovementManager, Assembly-CSharp
-        m_MethodName: RemoveLastWaypoint
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &4461819000550016628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5233002663342936474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3c2c167d8138f94b8f96ff1b82578d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 5bb336e8d44fa7f4e9895bfdf197a063, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3559549627653325979}
-        m_TargetAssemblyTypeName: Robbi.Movement.MovementManager, Assembly-CSharp
-        m_MethodName: MoveToNextWaypoint
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &5559415607600513887
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,3 +1378,88 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!1001 &5805524773204872312
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7234430741861336575}
+    m_Modifications:
+    - target: {fileID: 2121577547680030863, guid: 7fd878db72d343a4980dee27c1d7a321,
+        type: 3}
+      propertyPath: movementTilemap
+      value: 
+      objectReference: {fileID: 8422369206773885131}
+    - target: {fileID: 2121577547680030863, guid: 7fd878db72d343a4980dee27c1d7a321,
+        type: 3}
+      propertyPath: doorsTilemap
+      value: 
+      objectReference: {fileID: 4110153410030090696}
+    - target: {fileID: 2121577547680030898, guid: 7fd878db72d343a4980dee27c1d7a321,
+        type: 3}
+      propertyPath: m_Name
+      value: MovementManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2121577547680030899, guid: 7fd878db72d343a4980dee27c1d7a321,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2121577547680030899, guid: 7fd878db72d343a4980dee27c1d7a321,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2121577547680030899, guid: 7fd878db72d343a4980dee27c1d7a321,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2121577547680030899, guid: 7fd878db72d343a4980dee27c1d7a321,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2121577547680030899, guid: 7fd878db72d343a4980dee27c1d7a321,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2121577547680030899, guid: 7fd878db72d343a4980dee27c1d7a321,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2121577547680030899, guid: 7fd878db72d343a4980dee27c1d7a321,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2121577547680030899, guid: 7fd878db72d343a4980dee27c1d7a321,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2121577547680030899, guid: 7fd878db72d343a4980dee27c1d7a321,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2121577547680030899, guid: 7fd878db72d343a4980dee27c1d7a321,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2121577547680030899, guid: 7fd878db72d343a4980dee27c1d7a321,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7fd878db72d343a4980dee27c1d7a321, type: 3}
+--- !u!4 &5611491235856575691 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2121577547680030899, guid: 7fd878db72d343a4980dee27c1d7a321,
+    type: 3}
+  m_PrefabInstance: {fileID: 5805524773204872312}
+  m_PrefabAsset: {fileID: 0}
