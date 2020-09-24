@@ -43,7 +43,7 @@ namespace Robbi.Game.Inputs
         public MultiTouchEvent doubleTouchEvent;
         public MultiTouchEvent tripleTouchEvent;
 
-        private const float TOUCH_THRESHOLD = 5;
+        private const float TOUCH_THRESHOLD = 0.2f;
 
         #endregion
 
@@ -69,7 +69,7 @@ namespace Robbi.Game.Inputs
                 Vector3 touchWorldPosition = raycastCamera.ScreenToWorldPoint(touch.position);
                 GameObject hitGameObject = Raycast(new Vector2(touchWorldPosition.x, touchWorldPosition.y));
 
-                if (hitGameObject != null && touch.phase == TouchPhase.Ended && touch.deltaPosition.sqrMagnitude <= TOUCH_THRESHOLD)
+                if (hitGameObject != null && touch.phase == TouchPhase.Ended && touch.deltaTime <= TOUCH_THRESHOLD)
                 {
                     gameObjectLeftClicked.Raise(new GameObjectClickEventArgs() 
                     { 
