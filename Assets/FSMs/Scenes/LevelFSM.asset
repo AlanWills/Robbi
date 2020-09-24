@@ -51,6 +51,7 @@ MonoBehaviour:
     - 
     - argument
     - AtExit
+    - AtDestructibleCorridor
     values:
     - _fieldName: ' '
       _node: {fileID: -7988021321898407185}
@@ -100,8 +101,21 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
+    - _fieldName: AtDestructibleCorridor
+      _node: {fileID: -7988021321898407185}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 8728680401380019588}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
   conditions:
   - {fileID: -8183505685502069767}
+  - {fileID: 7197438110062046733}
 --- !u!114 &-7377273327687933818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,6 +528,21 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -6106889522936513492}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -3226388243556060441}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4846410750942909886}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 9195191347592438943}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6106889522936513492}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4318333639739446011}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -565,6 +594,12 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: tilePosition
         node: {fileID: -5056474372191749057}
+        reroutePoints: []
+      - fieldName: tilePosition
+        node: {fileID: 8728680401380019588}
+        reroutePoints: []
+      - fieldName: tilePosition
+        node: {fileID: -4575448844665402538}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -648,7 +683,7 @@ MonoBehaviour:
   m_Name: AtExit_value_sceneName
   m_EditorClassIdentifier: 
   isConstant: 1
-  constantValue: {x: -2, y: 3, z: 0}
+  constantValue: {x: -4, y: 6, z: 0}
   referenceValue: {fileID: 0}
 --- !u!114 &-6106889522936513492
 MonoBehaviour:
@@ -674,6 +709,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -5056474372191749057}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -5056474372191749057}
         reroutePoints: []
@@ -783,6 +821,65 @@ MonoBehaviour:
   tilePosition: {x: 0, y: 0, z: 0}
   tilemap: {fileID: 11400000, guid: 30b77989832f303478f308bf685407be, type: 2}
   newTile: {fileID: 0}
+--- !u!114 &-4575448844665402538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24dd044bd39130649bf5c1821ea650a1, type: 3}
+  m_Name: Set Tile
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -104, y: -104}
+  ports:
+    keys:
+    - ' '
+    - 
+    - tilePosition
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -4575448844665402538}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: 8728680401380019588}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -4575448844665402538}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 4318333639739446011}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: tilePosition
+      _node: {fileID: -4575448844665402538}
+      _typeQualifiedName: UnityEngine.Vector3Int, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: argument
+        node: {fileID: -7377273327687933818}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  tilePosition: {x: 0, y: 0, z: 0}
+  tilemap: {fileID: 11400000, guid: 383b6f4d91bf25e4a924c5ca0f937a9a, type: 2}
+  newTile: {fileID: 0}
 --- !u!114 &-4110953380443883460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -872,6 +969,9 @@ MonoBehaviour:
       type: 2}
     remainingWaypointsPlaceable: {fileID: 11400000, guid: 5795522ed653b6947a2cfc5b86742695,
       type: 2}
+    destructibleCorridorsTilemap: {fileID: 11400000, guid: c3a18f136fb20f544992a909197a0feb,
+      type: 2}
+    movementTilemap: {fileID: 11400000, guid: 383b6f4d91bf25e4a924c5ca0f937a9a, type: 2}
     exitsTilemap: {fileID: 11400000, guid: c5368bd6237159742b3873ab3dcfbc0e, type: 2}
     doorsTilemap: {fileID: 11400000, guid: 30b77989832f303478f308bf685407be, type: 2}
   robbi: {fileID: 4008252506619596130, guid: 5a414555ca0cb0a43941df80eb95279a, type: 3}
@@ -932,6 +1032,9 @@ MonoBehaviour:
   - {fileID: -5056474372191749057}
   - {fileID: -6106889522936513492}
   - {fileID: 0}
+  - {fileID: 8728680401380019588}
+  - {fileID: -4575448844665402538}
+  - {fileID: 4318333639739446011}
   startNode: {fileID: -3226388243556060441}
   parameters:
   - {fileID: -8160752275916483402}
@@ -939,6 +1042,7 @@ MonoBehaviour:
   - {fileID: 1584946836932762402}
   - {fileID: -5635268605871233741}
   - {fileID: -6267063948223701022}
+  - {fileID: 4117198617082830184}
 --- !u!114 &49694340644505846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1015,6 +1119,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 3892101143549946520}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 3892101143549946520}
         reroutePoints: []
@@ -1270,6 +1377,65 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
+--- !u!114 &4117198617082830184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74932df3e79c946469c896e470e3a0df, type: 3}
+  m_Name: AtDestructibleCorridor_value_sceneName
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: {x: 0, y: 0, z: 0}
+  referenceValue: {fileID: 0}
+--- !u!114 &4318333639739446011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fea208f90a509b748afbdf6b52d79c33, type: 3}
+  m_Name: Event Raiser
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 136, y: -88}
+  ports:
+    keys:
+    - ' '
+    - 
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 4318333639739446011}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: -4575448844665402538}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 4318333639739446011}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -7377273327687933818}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  toRaise: {fileID: 11400000, guid: 5bb336e8d44fa7f4e9895bfdf197a063, type: 2}
 --- !u!114 &4846410750942909886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1296,6 +1462,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -7988021321898407185}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -7988021321898407185}
         reroutePoints: []
@@ -1442,6 +1611,22 @@ MonoBehaviour:
   m_Name: MovedTo
   m_EditorClassIdentifier: 
   listenFor: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
+--- !u!114 &7197438110062046733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6503866c428724419f918857c2faf6b, type: 3}
+  m_Name: AtDestructibleCorridor
+  m_EditorClassIdentifier: 
+  useArgument: 1
+  value: {fileID: 11400000, guid: c3a18f136fb20f544992a909197a0feb, type: 2}
+  condition: 0
+  target: {fileID: 4117198617082830184}
 --- !u!114 &8435693903720371869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1709,6 +1894,12 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -7251751857722457111}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 49694340644505846}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7251751857722457111}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -1724,6 +1915,65 @@ MonoBehaviour:
       _dynamic: 1
   sceneName: {fileID: 1230639232908838748}
   loadMode: 0
+--- !u!114 &8728680401380019588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24dd044bd39130649bf5c1821ea650a1, type: 3}
+  m_Name: Set Tile
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -344, y: -104}
+  ports:
+    keys:
+    - ' '
+    - 
+    - tilePosition
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 8728680401380019588}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: AtDestructibleCorridor
+        node: {fileID: -7988021321898407185}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 8728680401380019588}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -4575448844665402538}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: tilePosition
+      _node: {fileID: 8728680401380019588}
+      _typeQualifiedName: UnityEngine.Vector3Int, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: argument
+        node: {fileID: -7377273327687933818}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  tilePosition: {x: 0, y: 0, z: 0}
+  tilemap: {fileID: 11400000, guid: c3a18f136fb20f544992a909197a0feb, type: 2}
+  newTile: {fileID: 0}
 --- !u!114 &9182672092251330527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1833,6 +2083,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -4110953380443883460}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -4110953380443883460}
         reroutePoints: []

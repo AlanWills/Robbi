@@ -22,10 +22,18 @@ namespace Robbi.FSM
 
         #region Unity Methods
 
-        private void Start()
+        private void Awake()
         {
             CurrentNode = graph.startNode;
-            CurrentNode.Enter();
+
+            if (CurrentNode != null)
+            {
+                CurrentNode.Enter();
+            }
+            else 
+            {
+                enabled = false;
+            }
         }
 
         private void Update()

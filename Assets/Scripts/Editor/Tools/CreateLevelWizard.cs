@@ -1,21 +1,9 @@
-﻿using Robbi.Doors;
-using Robbi.Events;
-using Robbi.FSM;
+﻿using Robbi.FSM;
 using Robbi.Levels;
-using Robbi.Parameters;
 using RobbiEditor.Utils;
-using System;
-using System.Collections.Generic;
-using System.Data.Common;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEditor;
-using UnityEditor.Events;
 using UnityEngine;
-using UnityEngine.Events;
-using Event = Robbi.Events.Event;
 
 namespace RobbiEditor.Tools
 {
@@ -103,11 +91,7 @@ namespace RobbiEditor.Tools
 
         private void CreateDirectories()
         {
-            string levelFolderFullPath = LevelFolderFullPath;
-
             AssetDatabase.CreateFolder(destinationFolder, LevelFolderName);
-            AssetDatabase.CreateFolder(levelFolderFullPath, LevelDirectories.FSMS_NAME);
-            AssetDatabase.CreateFolder(levelFolderFullPath, LevelDirectories.PREFABS_NAME);
         }
 
         private void CreateFSM()
@@ -115,13 +99,13 @@ namespace RobbiEditor.Tools
             FSMGraph fsm = ScriptableObject.CreateInstance<FSMGraph>();
             fsm.name = string.Format("Level{0}FSM", levelIndex);
 
-            AssetDatabase.CreateAsset(fsm, Path.Combine(LevelFolderFullPath, LevelDirectories.FSMS_NAME, fsm.name + ".asset"));
+            AssetDatabase.CreateAsset(fsm, Path.Combine(LevelFolderFullPath, fsm.name + ".asset"));
         }
 
         private void CreatePrefab()
         {
             string levelFolderFullPath = LevelFolderFullPath;
-            string prefabPath = Path.Combine(levelFolderFullPath, LevelDirectories.PREFABS_NAME, string.Format("Level{0}.prefab", levelIndex));
+            string prefabPath = Path.Combine(levelFolderFullPath, string.Format("Level{0}.prefab", levelIndex));
 
             GameObject levelGameObject = GameObject.Instantiate(levelPrefabToCopy);
             GameObject interactableMarkerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(PrefabFiles.INTERACTABLE_MARKER_PREFAB);
@@ -140,7 +124,7 @@ namespace RobbiEditor.Tools
             {
                 runtime = levelGameObject.AddComponent<FSMRuntime>();
             }
-            runtime.graph = AssetDatabase.LoadAssetAtPath<FSMGraph>(Path.Combine(levelFolderFullPath, LevelDirectories.FSMS_NAME, string.Format("Level{0}FSM.asset", levelIndex)));
+            runtime.graph = AssetDatabase.LoadAssetAtPath<FSMGraph>(Path.Combine(levelFolderFullPath, string.Format("Level{0}FSM.asset", levelIndex)));
 
             PrefabUtility.SaveAsPrefabAsset(levelGameObject, prefabPath);
             GameObject.DestroyImmediate(levelGameObject);
@@ -151,7 +135,7 @@ namespace RobbiEditor.Tools
             string levelFolderFullPath = LevelFolderFullPath;
 
             Level level = ScriptableObject.CreateInstance<Level>();
-            level.levelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(Path.Combine(levelFolderFullPath, LevelDirectories.PREFABS_NAME, string.Format("Level{0}.prefab", levelIndex)));
+            level.levelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(Path.Combine(levelFolderFullPath, string.Format("Level{0}.prefab", levelIndex)));
 
             Debug.Assert(level.levelPrefab != null, "Level Prefab could not be found automatically");
 
