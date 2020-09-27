@@ -71,6 +71,7 @@ namespace Robbi.Movement
         private void Start()
         {
             grid = movementTilemap.layoutGrid;
+            waypointsPlaced.value = 0;
             isProgramRunning.value = false;
         }
 

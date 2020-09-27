@@ -4,18 +4,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 using XNode;
 
 namespace Robbi.FSM.Nodes.Events
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Events/Listeners/Event Listener")]
+    [CreateNodeMenu("Robbi/Events/Listeners/Vector3IntEvent Listener")]
     [NodeTint(0.8f, 0.9f, 0)]
-    public class EventListenerNode : FSMNode, IEventListener
+    public class Vector3IntEventListenerNode : FSMNode, IEventListener<Vector3Int>
     {
         #region Properties and Fields
 
-        public Event listenFor;
+        [Output]
+        public Vector3Int argument;
+
+        public Vector3IntEvent listenFor;
 
         private bool eventRaised = false;
 
@@ -46,11 +50,21 @@ namespace Robbi.FSM.Nodes.Events
 
         #endregion
 
+        #region Node Overrides
+
+        public override object GetValue(NodePort port)
+        {
+            return argument;
+        }
+
+        #endregion
+
         #region IEventListener Implementation
 
-        public void OnEventRaised()
+        public void OnEventRaised(Vector3Int argument)
         {
             eventRaised = true;
+            this.argument = argument;
         }
 
         #endregion

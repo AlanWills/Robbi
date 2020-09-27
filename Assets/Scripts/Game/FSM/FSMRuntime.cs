@@ -24,6 +24,7 @@ namespace Robbi.FSM
 
         private void Awake()
         {
+            Debug.Assert(graph.nodes.Count == 0 || graph.startNode != null, "FSMRuntime graph contains nodes, but no start node so will be disabled.");
             CurrentNode = graph.startNode;
 
             if (CurrentNode != null)
@@ -38,6 +39,11 @@ namespace Robbi.FSM
 
         private void Update()
         {
+            if (CurrentNode == null)
+            {
+                return;
+            }
+
             FSMNode newNode = CurrentNode.Update();
 
             while (newNode != CurrentNode)

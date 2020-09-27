@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Robbi.FSM.Nodes.Events
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Events/Vector3IntEvent Raiser")]
+    [CreateNodeMenu("Robbi/Events/Raisers/Vector3IntEvent Raiser")]
     public class Vector3IntEventRaiserNode : FSMNode
     {
         #region Properties and Fields

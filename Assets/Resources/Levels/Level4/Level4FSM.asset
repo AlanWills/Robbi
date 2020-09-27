@@ -12,6 +12,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae22ebe00c8798d4bb46b12fbdcffdfb, type: 3}
   m_Name: Level4FSM
   m_EditorClassIdentifier: 
-  nodes: []
-  startNode: {fileID: 0}
+  nodes:
+  - {fileID: 8858498994434711294}
+  startNode: {fileID: 8858498994434711294}
   parameters: []
+--- !u!114 &8858498994434711294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 782fbac58d8c2a54ab423895f63a4938, type: 3}
+  m_Name: Show Dialog
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -37.139038, y: -92.68601}
+  ports:
+    keys:
+    - ' '
+    - Confirm Pressed
+    - Close Pressed
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 8858498994434711294}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Confirm Pressed
+      _node: {fileID: 8858498994434711294}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Close Pressed
+      _node: {fileID: 8858498994434711294}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  dialog: {fileID: 595162996696123630, guid: c96c4da4f9fe1ad4581df6d85934c36e, type: 3}
+  parameters:
+    title: Unstable Floors
+    image: {fileID: 21300000, guid: 3886d188b6d63b247884a52582905f11, type: 3}
+    description: These floors will collapse after Robbi has moved off of them.
+    confirmButtonText: Got It!
+    closeButtonText: 
+    showConfirmButton: 1
+    showCloseButton: 0

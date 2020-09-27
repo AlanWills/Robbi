@@ -14,7 +14,7 @@ using Event = Robbi.Events.Event;
 namespace Robbi.FSM.Nodes.Events
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Events/Multi Event Listener")]
+    [CreateNodeMenu("Robbi/Events/Listeners/Multi Event Listener")]
     [NodeTint(0.8f, 0.9f, 0)]
     public class MultiEventListenerNode : FSMNode
     {
@@ -60,7 +60,7 @@ namespace Robbi.FSM.Nodes.Events
 
             for (uint i = NumEvents; i > 0; --i)
             {
-                RemoveEvent(GetEvent(i));
+                RemoveEvent(GetEvent(i - 1));
             }
         }
 
@@ -94,8 +94,6 @@ namespace Robbi.FSM.Nodes.Events
 
         public void RemoveEvent(EventCondition eventCondition)
         {
-            events.Remove(eventCondition);
-
             bool hasPort = HasPort(eventCondition.name);
             Debug.Assert(hasPort, string.Format("Missing port {0} for event condition being removed.", eventCondition.name));
 
@@ -103,6 +101,8 @@ namespace Robbi.FSM.Nodes.Events
             {
                 RemoveDynamicPort(eventCondition.name);
             }
+
+            events.Remove(eventCondition);
 
 #if UNITY_EDITOR
             UnityEditor.AssetDatabase.RemoveObjectFromAsset(eventCondition);

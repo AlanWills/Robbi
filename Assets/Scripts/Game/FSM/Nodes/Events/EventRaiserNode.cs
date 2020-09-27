@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Robbi.FSM.Nodes.Events
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Events/Event Raiser")]
+    [CreateNodeMenu("Robbi/Events/Raisers/Event Raiser")]
     public class EventRaiserNode : FSMNode
     {
         #region Properties and Fields
