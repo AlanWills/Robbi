@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using XNode;
 
 namespace Robbi.FSM.Nodes.Logic
 {
@@ -53,7 +54,7 @@ namespace Robbi.FSM.Nodes.Logic
 
             for (uint i = NumConditions; i > 0; --i)
             {
-                RemoveCondition(GetCondition(i));
+                RemoveCondition(GetCondition(i - 1));
             }
         }
 
@@ -100,6 +101,15 @@ namespace Robbi.FSM.Nodes.Logic
         public ValueCondition GetCondition(uint conditionIndex)
         {
             return conditionIndex < NumConditions ? conditions[(int)conditionIndex] : null;
+        }
+
+        #endregion
+
+        #region Node Overrides
+
+        public override object GetValue(NodePort port)
+        {
+            return outArgument;
         }
 
         #endregion

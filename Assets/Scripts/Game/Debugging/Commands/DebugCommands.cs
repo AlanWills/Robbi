@@ -1,4 +1,5 @@
-﻿using Robbi.Debugging.Logging;
+﻿using Robbi.App;
+using Robbi.Debugging.Logging;
 using Robbi.Events;
 using Robbi.Levels;
 using Robbi.Movement;
@@ -31,6 +32,7 @@ namespace Robbi.Debugging.Commands
             RegisterCommand<ConsoleLevelManager>("lm");
             RegisterCommand<ConsoleMovementManager>("mm");
             RegisterCommand<ConsoleHudLogger>("hlog");
+            RegisterCommand<ConsoleApplication>("app");
         }
 
         private void RegisterCommand<T>(string name) where T : IDebugCommand, new()

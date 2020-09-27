@@ -8,6 +8,8 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+using Event = Robbi.Events.Event;
+
 namespace Robbi.Movement
 {
     [AddComponentMenu("Robbi/Movement/Movement Manager")]
@@ -48,13 +50,15 @@ namespace Robbi.Movement
         public Tilemap movementTilemap;
         public Tilemap doorsTilemap;
         
-        [Header("Parameters")]
+        [Header("Events")]
         public Vector3Value playerLocalPosition;
         public Vector3IntEvent onMovedTo;
         public Vector3IntEvent onMovedFrom;
+        public Event onWaypointUnreachable;
+        
+        [Header("Parameters")]
         public IntValue remainingWaypointsPlaceable;
         public IntValue waypointsPlaced;
-        public IntValue numStepsToNextWaypoint;
         public BoolValue isProgramRunning;
 
         [Header("Other")]
@@ -73,7 +77,6 @@ namespace Robbi.Movement
         {
             grid = movementTilemap.layoutGrid;
             waypointsPlaced.value = 0;
-            numStepsToNextWaypoint.value = 0;
             isProgramRunning.value = false;
         }
 
@@ -115,6 +118,11 @@ namespace Robbi.Movement
                         }
                     }
                 }
+                else
+                {
+                    onWaypointUnreachable.Raise();
+                    isProgramRunning.value = false;
+                }
             }
         }
 
@@ -129,7 +137,6 @@ namespace Robbi.Movement
             if (isProgramRunning.value)
             {
                 stepsToNextWaypoint = CalculateGridSteps(grid.LocalToCell(playerLocalPosition.value), waypoints[0].gridPosition);
-                numStepsToNextWaypoint.value = stepsToNextWaypoint.Count;
             }
         }
 
