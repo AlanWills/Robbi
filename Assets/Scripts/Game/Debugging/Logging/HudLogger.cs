@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Robbi.Objects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ using UnityEngine.UI;
 namespace Robbi.Debugging.Logging
 {
     [AddComponentMenu("Robbi/Debugging/Hud Logger")]
-    public class HudLogger : MonoBehaviour
+    public class HudLogger : Singleton<HudLogger>
     {
         private class HudMessage
         {
@@ -32,25 +33,23 @@ namespace Robbi.Debugging.Logging
         private List<HudMessage> hudMessages = new List<HudMessage>();
         private Stack<Text> cachedMessageInstances = new Stack<Text>();
 
-        private static HudLogger instance;
-
         #endregion
 
         #region Logging Methods
 
         public static void LogInfo(string message)
         {
-            instance.Log(message, instance.infoColour);
+            Instance.Log(message, Instance.infoColour);
         }
 
         public static void LogWarning(string message)
         {
-            instance.Log(message, instance.warningColour);
+            Instance.Log(message, Instance.warningColour);
         }
 
         public static void LogError(string message)
         {
-            instance.Log(message, instance.errorColour);
+            Instance.Log(message, Instance.errorColour);
         }
 
         private void Log(string message, Color colour)
@@ -76,9 +75,9 @@ namespace Robbi.Debugging.Logging
 
         #region Unity Methods
 
-        private void Awake()
+        protected override void Awake()
         {
-            instance = this;
+            base.Awake();
 
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
             for (int i = 0; i < maxMessages; ++i)
@@ -89,7 +88,6 @@ namespace Robbi.Debugging.Logging
                 
                 cachedMessageInstances.Push(messageText);
             }
-            
 #endif
         }
 

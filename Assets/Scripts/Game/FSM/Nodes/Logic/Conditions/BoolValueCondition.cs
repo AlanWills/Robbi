@@ -19,6 +19,7 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
             switch (condition)
             {
                 case ConditionOperator.Equals:
+                    Debug.LogFormat("{0} condition has value.Value: {1} and target.Value: {2}", name, value.Value, target.Value);
                     return value.Value == target.Value;
 
                 case ConditionOperator.NotEquals:

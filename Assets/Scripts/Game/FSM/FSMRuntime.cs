@@ -22,13 +22,14 @@ namespace Robbi.FSM
 
         #region Unity Methods
 
-        private void Awake()
+        private void Start()
         {
             Debug.Assert(graph.nodes.Count == 0 || graph.startNode != null, "FSMRuntime graph contains nodes, but no start node so will be disabled.");
             CurrentNode = graph.startNode;
 
             if (CurrentNode != null)
             {
+                Debug.LogFormat("Spooling up FSM with starting node {0}", CurrentNode.name);
                 CurrentNode.Enter();
             }
             else 

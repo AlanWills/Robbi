@@ -12,7 +12,7 @@ namespace Robbi.App
     {
         public bool Execute(List<string> parameters, StringBuilder output)
         {
-            output.AppendLine("Is Mobile " + Application.isMobilePlatform);
+            output.AppendLine("Is Mobile: " + ApplicationInfo.IsMobile);
             return true;
         }
     }

@@ -29,16 +29,19 @@ namespace Robbi.FSM.Nodes.Info
             if (isEditor != null)
             {
                 isEditor.value = Application.isEditor;
+                Debug.LogFormat("isEditor set to {0}", isEditor.value);
             }
 
             if (isMobile != null)
             {
                 isMobile.value = Application.isMobilePlatform;
+                Debug.LogFormat("isMobile set to {0}", isMobile.value);
             }
 
             if (isDebugBuild != null)
             {
                 isDebugBuild.value = Debug.isDebugBuild;
+                Debug.LogFormat("isDebugBuild set to {0}", isDebugBuild.value);
             }
         }
 
