@@ -25,6 +25,8 @@ namespace Robbi.FSM.Nodes
         [Header("Objects")]
         public GameObject robbi;
 
+        private AsyncOperationHandle<Level> levelLoadingHandle;
+
         #endregion
 
         #region FSM Runtime
@@ -33,16 +35,21 @@ namespace Robbi.FSM.Nodes
         {
             base.OnEnter();
 
-            GameObject.Instantiate(robbi);
             LevelManager levelManager = LevelManager.Load();
+            levelLoadingHandle = Addressables.LoadAssetAsync<Level>(string.Format("Levels/Level{0}Data.asset", levelManager.CurrentLevelIndex));
+        }
 
-            Level level = Resources.Load<Level>("Levels/Level" + levelManager.CurrentLevelIndex + "/Level" + levelManager.CurrentLevelIndex.ToString() + "Data");
-            Debug.AssertFormat(level != null, "Level {0} could not be loaded", levelManager.CurrentLevelIndex);
-
-            if (level != null)
+        protected override FSMNode OnUpdate()
+        {
+            if (levelLoadingHandle.IsDone)
             {
-                level.Begin(levelData);
+                levelLoadingHandle.Result.Begin(levelData);
+                GameObject.Instantiate(robbi);
+                
+                return base.OnUpdate();
             }
+
+            return this;
         }
 
         #endregion

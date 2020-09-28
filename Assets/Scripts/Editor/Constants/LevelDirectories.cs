@@ -8,6 +8,6 @@ namespace RobbiEditor
 {
     public static class LevelDirectories
     {
-        public const string FULL_PATH = "Assets/Resources/Levels";
+        public const string FULL_PATH = "Assets/Levels";
     }
 }
