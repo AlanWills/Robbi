@@ -41,7 +41,7 @@ namespace Robbi.FSM.Nodes
 
         protected override FSMNode OnUpdate()
         {
-            if (levelLoadingHandle.IsDone)
+            if (levelLoadingHandle.IsDone && levelLoadingHandle.Result != null)
             {
                 levelLoadingHandle.Result.Begin(levelData);
                 GameObject.Instantiate(robbi);
