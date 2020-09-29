@@ -1,5 +1,7 @@
 ﻿using Robbi.FSM;
 using Robbi.Levels;
+using RobbiEditor.Assets;
+using RobbiEditor.Constants;
 using RobbiEditor.Utils;
 using System.IO;
 using UnityEditor;
@@ -23,8 +25,7 @@ namespace RobbiEditor.Tools
 
         private string destinationFolder = LevelDirectories.FULL_PATH;
         private uint levelIndex = 0;
-        private uint numDoors = 1;
-        private uint numInteractables = 1;
+        private uint numInteractables = 0;
         private GameObject levelPrefabToCopy;
 
         #endregion
@@ -100,6 +101,7 @@ namespace RobbiEditor.Tools
             fsm.name = string.Format("Level{0}FSM", levelIndex);
 
             AssetDatabase.CreateAsset(fsm, Path.Combine(LevelFolderFullPath, fsm.name + ".asset"));
+            fsm.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
         }
 
         private void CreatePrefab()
@@ -127,6 +129,7 @@ namespace RobbiEditor.Tools
             }
             runtime.graph = AssetDatabase.LoadAssetAtPath<FSMGraph>(Path.Combine(levelFolderFullPath, string.Format("Level{0}FSM.asset", levelIndex)));
 
+            createdPrefab.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
             EditorUtility.SetDirty(createdPrefab);
         }
 
@@ -140,6 +143,7 @@ namespace RobbiEditor.Tools
             Debug.Assert(level.levelPrefab != null, "Level Prefab could not be found automatically");
 
             AssetDatabase.CreateAsset(level, Path.Combine(levelFolderFullPath, string.Format("Level{0}Data", levelIndex) + ".asset"));
+            level.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
         }
 
         #endregion

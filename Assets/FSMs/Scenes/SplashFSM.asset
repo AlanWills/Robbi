@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7665391561149468369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec718764ed3a234cb86bb3efc892b05, type: 3}
+  m_Name: HasInternetConnection_value_sceneName
+  m_EditorClassIdentifier: 
+  isConstant: 0
+  constantValue: 0
+  referenceValue: {fileID: 11400000, guid: 3ab5339a1c89f3e43a960b34eb62963b, type: 2}
 --- !u!114 &-6252756817084066662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23,7 +38,19 @@ MonoBehaviour:
       _node: {fileID: -6252756817084066662}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: 
+        node: {fileID: 6109522385757364281}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6109522385757364281}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6109522385757364281}
+        reroutePoints: []
+      - fieldName: HasInternetConnection
+        node: {fileID: 6109522385757364281}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -80,6 +107,21 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -6252756817084066662}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6252756817084066662}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6252756817084066662}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6252756817084066662}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6252756817084066662}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6252756817084066662}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -112,10 +154,29 @@ MonoBehaviour:
   nodes:
   - {fileID: 3339456177136296621}
   - {fileID: -5204483579326729688}
-  - {fileID: 0}
   - {fileID: -6252756817084066662}
-  startNode: {fileID: -6252756817084066662}
-  parameters: []
+  - {fileID: 6109522385757364281}
+  - {fileID: 6184054730030396226}
+  - {fileID: 0}
+  startNode: {fileID: 6109522385757364281}
+  parameters:
+  - {fileID: -7665391561149468369}
+  - {fileID: 964050645243706385}
+--- !u!114 &964050645243706385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec718764ed3a234cb86bb3efc892b05, type: 3}
+  m_Name: HasInternetConnection_target_sceneName
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 1
+  referenceValue: {fileID: 0}
 --- !u!114 &3339456177136296621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -758,6 +819,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -5204483579326729688}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -5204483579326729688}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -774,6 +838,159 @@ MonoBehaviour:
   sceneName: {fileID: 8808940734964762224}
   loadMode: 0
   isAddressable: 1
+--- !u!114 &6109522385757364281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 737d89550a2e2194db247d1e3f3c19db, type: 3}
+  m_Name: If
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 88, y: -88}
+  ports:
+    keys:
+    - ' '
+    - 
+    - inArgument
+    - outArgument
+    - HasInternetConnection
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 6109522385757364281}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: 6184054730030396226}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6184054730030396226}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6184054730030396226}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6184054730030396226}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6184054730030396226}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 6109522385757364281}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 6184054730030396226}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: inArgument
+      _node: {fileID: 6109522385757364281}
+      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outArgument
+      _node: {fileID: 6109522385757364281}
+      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: HasInternetConnection
+      _node: {fileID: 6109522385757364281}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -6252756817084066662}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  conditions:
+  - {fileID: 8362374694816550060}
+--- !u!114 &6184054730030396226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dacecb1e910f63e419f3f2d0de6baf4c, type: 3}
+  m_Name: Wait
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 88, y: -248}
+  ports:
+    keys:
+    - ' '
+    - 
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 6184054730030396226}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: 6109522385757364281}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6109522385757364281}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 6184054730030396226}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 6109522385757364281}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  time: 1
+--- !u!114 &8362374694816550060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc36a5f6598a84646bc68016fd41856d, type: 3}
+  m_Name: HasInternetConnection
+  m_EditorClassIdentifier: 
+  value: {fileID: -7665391561149468369}
+  condition: 0
+  useArgument: 0
+  target: {fileID: 964050645243706385}
 --- !u!114 &8808940734964762224
 MonoBehaviour:
   m_ObjectHideFlags: 0
