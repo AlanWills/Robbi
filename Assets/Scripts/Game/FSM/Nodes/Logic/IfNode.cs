@@ -87,7 +87,11 @@ namespace Robbi.FSM.Nodes.Logic
 
         public void RemoveCondition(ValueCondition condition)
         {
-            RemoveDynamicPort(condition.name);
+            if (HasPort(condition.name))
+            {
+                RemoveDynamicPort(condition.name);
+            }
+
             conditions.Remove(condition);
 
 #if UNITY_EDITOR

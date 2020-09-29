@@ -20,7 +20,7 @@ namespace Robbi.FSM
 
 #if UNITY_EDITOR
         [SerializeField]
-        private List<ScriptableObject> parameters;
+        private List<ScriptableObject> parameters = new List<ScriptableObject>();
 #endif
 
         #endregion
