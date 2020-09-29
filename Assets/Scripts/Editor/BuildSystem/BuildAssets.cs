@@ -14,7 +14,6 @@ namespace RobbiEditor.BuildSystem
         public static void BuildAndroidAssets()
         {
             EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
-            AddressableAssetSettings.CleanPlayerContent(AddressableAssetSettingsDefaultObject.Settings.ActivePlayerDataBuilder);
             AddressableAssetSettings.BuildPlayerContent();
         }
     }
