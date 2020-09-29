@@ -38,7 +38,7 @@ namespace Robbi.FSM.Nodes
 
             LevelManager levelManager = LevelManager.Load();
             levelLoadingHandle = Addressables.LoadAssetAsync<Level>(string.Format("Assets/Levels/Level{0}/Level{0}Data.asset", levelManager.CurrentLevelIndex));
-            robbiLoadingHandle = Addressables.InstantiateAsync("Assets/Prefabs/Levels/Robbi.prefab");
+            robbiLoadingHandle = Addressables.InstantiateAsync("Assets/Prefabs/Level/Robbi.prefab");
         }
 
         protected override FSMNode OnUpdate()

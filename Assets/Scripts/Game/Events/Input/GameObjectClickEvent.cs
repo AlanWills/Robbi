@@ -12,6 +12,11 @@ namespace Robbi.Events
     {
         public GameObject gameObject;
         public Vector3 clickWorldPosition;
+
+        public override string ToString()
+        {
+            return string.Format("{0}, {1}", gameObject.name, clickWorldPosition);
+        }
     }
 
     [Serializable]

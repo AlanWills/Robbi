@@ -39,17 +39,26 @@ namespace Robbi.Debugging.Logging
 
         public static void LogInfo(string message)
         {
-            Instance.Log(message, Instance.infoColour);
+            if (Instance != null)
+            {
+                Instance.Log(message, Instance.infoColour);
+            }
         }
 
         public static void LogWarning(string message)
         {
-            Instance.Log(message, Instance.warningColour);
+            if (Instance != null)
+            {
+                Instance.Log(message, Instance.warningColour);
+            }
         }
 
         public static void LogError(string message)
         {
-            Instance.Log(message, Instance.errorColour);
+            if (Instance != null)
+            {
+                Instance.Log(message, Instance.errorColour);
+            }
         }
 
         private void Log(string message, Color colour)

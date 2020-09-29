@@ -26,5 +26,17 @@ namespace RobbiEditor.FSM.Nodes
             FSMGraph fsmGraph = target.graph as FSMGraph;
             return fsmGraph.startNode == target ? SELECTED_COLOUR : base.GetTint();
         }
+
+        #region GUI Methods
+
+        protected void DrawDefaultPortPair()
+        {
+            FSMNode fsmNode = target as FSMNode;
+            NodeEditorGUILayout.PortPair(
+                fsmNode.GetInputPort(FSMNode.DEFAULT_INPUT_PORT_NAME),
+                fsmNode.GetOutputPort(FSMNode.DEFAULT_OUTPUT_PORT_NAME));
+        }
+
+        #endregion
     }
 }

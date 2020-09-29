@@ -52,7 +52,7 @@ namespace Robbi.FSM.Nodes.Assets
             }
             else if (downloadOperation.Status == AsyncOperationStatus.Succeeded)
             {
-                HudLogger.LogInfo("Dependencies downloaded correctly");
+                HudLogger.LogInfo(string.Format("{0} downloaded correctly", label));
             }
         }
 

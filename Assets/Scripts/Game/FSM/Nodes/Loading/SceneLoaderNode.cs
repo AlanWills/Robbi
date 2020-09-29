@@ -1,4 +1,5 @@
-﻿using Robbi.Objects;
+﻿using Robbi.Debugging.Logging;
+using Robbi.Objects;
 using Robbi.Parameters;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 using XNode;
 
@@ -20,8 +24,10 @@ namespace Robbi.FSM.Nodes
 
         public StringReference sceneName;
         public LoadSceneMode loadMode = LoadSceneMode.Single;
+        public bool isAddressable = false;
 
         private AsyncOperation loadOperation;
+        private AsyncOperationHandle<SceneInstance> addressablesOperation;
 
         #endregion
 
@@ -60,12 +66,37 @@ namespace Robbi.FSM.Nodes
         {
             base.OnEnter();
 
-            loadOperation = SceneManager.LoadSceneAsync(sceneName.Value, loadMode);
+            if (isAddressable)
+            {
+                addressablesOperation = Addressables.LoadSceneAsync(sceneName.Value, loadMode);
+            }
+            else
+            {
+                loadOperation = SceneManager.LoadSceneAsync(sceneName.Value, loadMode);
+            }
         }
 
         protected override FSMNode OnUpdate()
         {
-            return loadOperation.isDone ? base.OnUpdate() : this;
+            if (isAddressable)
+            {
+                return addressablesOperation.IsDone ? base.OnUpdate() : this;
+            }
+            else
+            {
+                return loadOperation.isDone ? base.OnUpdate() : this;
+            }
+        }
+
+        protected override void OnExit()
+        {
+            base.OnExit();
+
+            if (isAddressable && addressablesOperation.Status == AsyncOperationStatus.Failed)
+            {
+                HudLogger.LogError(addressablesOperation.OperationException.Message);
+                Debug.LogError(addressablesOperation.OperationException.Message);
+            }
         }
 
         #endregion
