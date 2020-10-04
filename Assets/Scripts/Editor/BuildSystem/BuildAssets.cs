@@ -16,5 +16,11 @@ namespace RobbiEditor.BuildSystem
             EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
             AddressableAssetSettings.BuildPlayerContent();
         }
+
+        public static void BuildWindowsAssets()
+        {
+            EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64);
+            AddressableAssetSettings.BuildPlayerContent();
+        }
     }
 }
