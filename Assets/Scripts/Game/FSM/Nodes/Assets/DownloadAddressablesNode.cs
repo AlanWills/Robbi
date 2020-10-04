@@ -11,8 +11,8 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 namespace Robbi.FSM.Nodes.Assets
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Assets/Load Addressables Dependency")]
-    public class LoadAddressablesDependencyNode : FSMNode
+    [CreateNodeMenu("Robbi/Assets/Download Addressables")]
+    public class DownloadAddressablesNode : FSMNode
     {
         #region Properties and Fields
 
