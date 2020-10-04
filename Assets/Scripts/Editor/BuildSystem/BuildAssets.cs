@@ -21,7 +21,7 @@ namespace RobbiEditor.BuildSystem
         [MenuItem("Robbi/Assets/Build Windows Assets")]
         public static void BuildWindowsAssets()
         {
-            EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows);
+            EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64);
             AddressableAssetSettings.BuildPlayerContent();
         }
     }

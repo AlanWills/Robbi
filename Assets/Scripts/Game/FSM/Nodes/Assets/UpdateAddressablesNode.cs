@@ -45,29 +45,19 @@ namespace Robbi.FSM.Nodes.Assets
             return this;
         }
 
-        protected override void OnExit()
-        {
-            base.OnExit();
-
-            if (updateCataloguesOperation.Status == AsyncOperationStatus.Failed)
-            {
-                HudLogger.LogError(updateCataloguesOperation.OperationException.Message);
-                Debug.LogError(updateCataloguesOperation.OperationException.Message);
-            }
-            else if (updateCataloguesOperation.Status == AsyncOperationStatus.Succeeded)
-            {
-                HudLogger.LogInfo("Addressables updated correctly");
-            }
-        }
-
         #endregion
 
         #region Callbacks
 
         private void CheckForCatalogueUpdatesOperation_Completed(AsyncOperationHandle<List<string>> obj)
         {
-            updateCataloguesOperation = Addressables.UpdateCatalogs(obj.Result);
-            updateCataloguesOperation.Completed += UpdateCataloguesOperation_Completed;
+            complete = obj.Result.Count == 0;
+
+            if (!complete)
+            {
+                updateCataloguesOperation = Addressables.UpdateCatalogs(obj.Result);
+                updateCataloguesOperation.Completed += UpdateCataloguesOperation_Completed;
+            }
         }
 
         private void UpdateCataloguesOperation_Completed(AsyncOperationHandle<List<IResourceLocator>> obj)
