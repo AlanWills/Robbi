@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
+using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace RobbiEditor.BuildSystem
 {
@@ -23,6 +25,12 @@ namespace RobbiEditor.BuildSystem
         {
             EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64);
             AddressableAssetSettings.BuildPlayerContent();
+        }
+
+        [MenuItem("Robbi/Assets/Clear Asset Cache")]
+        public static void ClearAssetCache()
+        {
+            Debug.Assert(Caching.ClearCache(), "Error clearing asset cache");
         }
     }
 }

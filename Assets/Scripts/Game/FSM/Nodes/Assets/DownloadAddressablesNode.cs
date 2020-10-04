@@ -28,7 +28,7 @@ namespace Robbi.FSM.Nodes.Assets
         protected override void OnEnter()
         {
             base.OnEnter();
-
+            
             downloadOperation = Addressables.DownloadDependenciesAsync(label);
             downloadOperation.Completed += DownloadOperation_Completed;
 
