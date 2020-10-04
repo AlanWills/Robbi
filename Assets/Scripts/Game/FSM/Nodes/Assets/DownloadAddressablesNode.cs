@@ -19,6 +19,7 @@ namespace Robbi.FSM.Nodes.Assets
         public string label;
 
         private AsyncOperationHandle downloadOperation;
+        private bool complete = false;
 
         #endregion
 
@@ -29,11 +30,14 @@ namespace Robbi.FSM.Nodes.Assets
             base.OnEnter();
 
             downloadOperation = Addressables.DownloadDependenciesAsync(label);
+            downloadOperation.Completed += DownloadOperation_Completed;
+
+            complete = false;
         }
 
         protected override FSMNode OnUpdate()
         {
-            if (downloadOperation.IsDone)
+            if (complete)
             {
                 return base.OnUpdate();
             }
@@ -54,6 +58,15 @@ namespace Robbi.FSM.Nodes.Assets
             {
                 HudLogger.LogInfo(string.Format("{0} downloaded correctly", label));
             }
+        }
+
+        #endregion
+
+        #region Callbacks
+
+        private void DownloadOperation_Completed(AsyncOperationHandle obj)
+        {
+            complete = true;
         }
 
         #endregion
