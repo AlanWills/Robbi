@@ -24,7 +24,7 @@ namespace RobbiEditor.Assets
             AddressableAssetSettings aaSettings = AddressableAssetSettingsDefaultObject.Settings;
             AssetDatabase.TryGetGUIDAndLocalFileIdentifier(o, out string guid, out long localID);
             AddressableAssetEntry entry = aaSettings.FindAssetEntry(guid);
-            entry.address = address;
+            entry.address = address.Replace('\\', '/');
         }
     }
 }

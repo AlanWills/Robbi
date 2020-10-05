@@ -46,17 +46,17 @@ namespace RobbiEditor.BuildSystem
 
         private static void Build(BuildTargetGroup buildTargetGroup, BuildTarget buildTarget)
         {
+            EditorUserBuildSettings.SwitchActiveBuildTarget(buildTargetGroup, buildTarget);
             SetProfileId("AWS");
 
-            EditorUserBuildSettings.SwitchActiveBuildTarget(buildTargetGroup, buildTarget);
             AddressableAssetSettings.BuildPlayerContent();
         }
 
         private static void Update(BuildTargetGroup buildTargetGroup, BuildTarget buildTarget)
         {
+            EditorUserBuildSettings.SwitchActiveBuildTarget(buildTargetGroup, buildTarget);
             SetProfileId("AWS");
 
-            EditorUserBuildSettings.SwitchActiveBuildTarget(buildTargetGroup, buildTarget);
             string contentStatePath = ContentUpdateScript.GetContentStateDataPath(false);
             ContentUpdateScript.BuildContentUpdate(AddressableAssetSettingsDefaultObject.Settings, contentStatePath);
         }

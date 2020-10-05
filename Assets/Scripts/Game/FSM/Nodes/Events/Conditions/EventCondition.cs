@@ -14,11 +14,9 @@ namespace Robbi.FSM.Nodes.Events.Conditions
     {
         #region Properties and Fields
 
-        private bool hasEventBeenRaised = false;
-
         public abstract new string name { get; }
 
-        public object Argument { get; protected set; }
+        private Queue<object> arguments = new Queue<object>();
 
         #endregion
 
@@ -26,7 +24,6 @@ namespace Robbi.FSM.Nodes.Events.Conditions
 
         public void AddListener()
         {
-            hasEventBeenRaised = false;
             AddListenerInternal();
         }
 
@@ -45,13 +42,18 @@ namespace Robbi.FSM.Nodes.Events.Conditions
 
         public bool HasEventFired()
         {
-            return hasEventBeenRaised;
+            return arguments.Count > 0;
         }
 
         public void RegisterEventRaised(object argument)
         {
-            hasEventBeenRaised = true;
-            Argument = argument;
+            arguments.Enqueue(argument);
+        }
+
+        public object ConsumeEvent()
+        {
+            Debug.Assert(HasEventFired());
+            return HasEventFired() ? arguments.Dequeue() : null;
         }
 
         #endregion
