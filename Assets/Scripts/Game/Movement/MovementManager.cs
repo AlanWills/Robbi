@@ -54,6 +54,8 @@ namespace Robbi.Movement
         public Vector3Value playerLocalPosition;
         public Vector3IntEvent onMovedTo;
         public Vector3IntEvent onMovedFrom;
+        public Vector3IntEvent onWaypointPlaced;
+        public Vector3IntEvent onWaypointRemoved;
         public Event onWaypointUnreachable;
         
         [Header("Parameters")]
@@ -171,6 +173,7 @@ namespace Robbi.Movement
                 waypoints.Add(new Waypoint(waypointGridPosition, destinationMarkerInstance));
                 --remainingWaypointsPlaceable.value;
                 ++waypointsPlaced.value;
+                onWaypointPlaced.Raise(waypointGridPosition);
 
                 HudLogger.LogInfo(string.Format("Waypoint added at {0}", waypointGridPosition));
             }
@@ -214,6 +217,7 @@ namespace Robbi.Movement
 
             waypoints.RemoveAt(waypointIndex);
             --waypointsPlaced.value;
+            onWaypointRemoved.Raise(waypoint.gridPosition);
         }
 
         #endregion

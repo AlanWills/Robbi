@@ -13,6 +13,11 @@ namespace Robbi.DataSystem
     {
         #region Unity Methods
 
+        private void Start()
+        {
+            graph.Initialize(gameObject);
+        }
+
         private void Update()
         {
             graph.Update();

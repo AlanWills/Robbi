@@ -116,6 +116,13 @@ namespace Robbi.FSM.Nodes.Events
             AddOutputPort(name);
         }
 
+        public void SwapEvents(uint firstIndex, uint secondIndex)
+        {
+            EventCondition temp = events[(int)firstIndex];
+            events[(int)firstIndex] = events[(int)secondIndex];
+            events[(int)secondIndex] = temp;
+        }
+
         #endregion
 
         #region Node Overrides
@@ -142,7 +149,7 @@ namespace Robbi.FSM.Nodes.Events
         protected override FSMNode OnUpdate()
         {
             FSMNode connectedNode = null;
-
+            
             foreach (EventCondition eventCondition in events)
             {
                 if (eventCondition.HasEventFired())
@@ -157,6 +164,7 @@ namespace Robbi.FSM.Nodes.Events
                     }
                     else
                     {
+                        Debug.LogFormat("Name: {0} silently consumed by MEL Node", eventCondition.name);
                         eventCondition.ConsumeEvent();
                     }
                 }

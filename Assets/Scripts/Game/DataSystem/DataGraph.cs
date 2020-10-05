@@ -14,6 +14,17 @@ namespace Robbi.DataSystem
     {
         #region Data Updating
 
+        public void Initialize(GameObject gameObject)
+        {
+            foreach (Node node in nodes)
+            {
+                if (node is IRequiresGameObject)
+                {
+                    (node as IRequiresGameObject).GameObject = gameObject;
+                }
+            }
+        }
+
         public void Update()
         {
             foreach (Node node in nodes)

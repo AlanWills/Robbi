@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace Robbi.FSM.Nodes.Parameters
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Parameters/Set String Value")]
+    [CreateNodeMenu("Robbi/Parameters/Set Bool Value")]
     [NodeWidth(250)]
-    public class SetStringValueNode : SetValueNode<string, StringValue, StringReference>
+    public class SetBoolValueNode : SetValueNode<bool, BoolValue, BoolReference>
     {
     }
 }

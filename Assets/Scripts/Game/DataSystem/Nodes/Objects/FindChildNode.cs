@@ -10,17 +10,20 @@ namespace Robbi.DataSystem.Nodes.Objects
 {
     [Serializable]
     [CreateNodeMenu("Robbi/Objects/Find Child")]
-    public class FindChildNode : DataNode
+    public class FindChildNode : DataNode, IRequiresGameObject
     {
         #region Properties and Fields
+
+        public GameObject GameObject { get; set; }
 
         [Input]
         public string childName;
 
+        public bool cache = true;
+
         [Output]
         public GameObject child;
 
-        private GameObject gameObject;
         private GameObject foundChild;
 
         #endregion
@@ -29,10 +32,10 @@ namespace Robbi.DataSystem.Nodes.Objects
 
         public override object GetValue(NodePort port)
         {
-            if (foundChild == null)
+            if (!cache || foundChild == null)
             {
                 string _childName = GetInputValue("childName", childName);
-                foundChild = gameObject.transform.Find(_childName).gameObject;
+                foundChild = GameObject.transform.Find(_childName).gameObject;
             }
 
             return foundChild;

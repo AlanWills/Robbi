@@ -68,16 +68,24 @@ namespace RobbiEditor.FSM.Nodes.Events
                 {
                     eventListenerNode.RemoveEvent(eventCondition);
                 }
-                else
+                else if (i > 0 &&
+                         GUILayout.Button("v", GUILayout.MaxWidth(16), GUILayout.MaxHeight(16)))
                 {
-                    if (eventConditionEditorFactory.TryGetValue(eventCondition.GetType(), out EventConditionEditor editor))
-                    {
-                        editor.GUI(eventListenerNode, eventCondition);
-                    }
-
-                    Rect rect = GUILayoutUtility.GetLastRect();
-                    NodeEditorGUILayout.PortField(rect.position + new Vector2(rect.width, 0), eventListenerNode.GetOutputPort(eventCondition.name));
+                    eventListenerNode.SwapEvents(i - 1, i - 2);
                 }
+                else if (i < eventListenerNode.NumEvents &&
+                         GUILayout.Button("^", GUILayout.MaxWidth(16), GUILayout.MaxHeight(16)))
+                {
+                    eventListenerNode.SwapEvents(i - 1, i);
+                }
+
+                if (eventConditionEditorFactory.TryGetValue(eventCondition.GetType(), out EventConditionEditor editor))
+                {
+                    editor.GUI(eventListenerNode, eventCondition);
+                }
+
+                Rect rect = GUILayoutUtility.GetLastRect();
+                NodeEditorGUILayout.PortField(rect.position + new Vector2(rect.width, 0), eventListenerNode.GetOutputPort(eventCondition.name));
 
                 EditorGUILayout.EndHorizontal();
             }
