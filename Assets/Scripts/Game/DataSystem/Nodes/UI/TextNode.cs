@@ -19,7 +19,7 @@ namespace Robbi.DataSystem.Nodes.UI
         public string value;
 
         [Input]
-        public string format;
+        public string format = "{0}";
 
         public Text text;
 

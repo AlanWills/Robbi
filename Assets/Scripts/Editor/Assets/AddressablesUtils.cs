@@ -18,5 +18,13 @@ namespace RobbiEditor.Assets
             AddressableAssetEntry entry = aaSettings.CreateOrMoveEntry(guid, aaSettings.FindGroup(group));
             entry.labels.Add(group);
         }
+
+        public static void SetAddressableAddress(this Object o, string address)
+        {
+            AddressableAssetSettings aaSettings = AddressableAssetSettingsDefaultObject.Settings;
+            AssetDatabase.TryGetGUIDAndLocalFileIdentifier(o, out string guid, out long localID);
+            AddressableAssetEntry entry = aaSettings.FindAssetEntry(guid);
+            entry.address = address;
+        }
     }
 }

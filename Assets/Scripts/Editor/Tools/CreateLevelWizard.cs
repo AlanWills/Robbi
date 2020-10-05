@@ -86,6 +86,11 @@ namespace RobbiEditor.Tools
             AssetDatabase.Refresh();
         }
 
+        private void OnWizardOtherButton()
+        {
+            Close();
+        }
+
         #endregion
 
         #region Creation Methods

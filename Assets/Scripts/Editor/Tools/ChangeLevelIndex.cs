@@ -1,4 +1,7 @@
-﻿using RobbiEditor.Utils;
+﻿using Robbi.FSM;
+using Robbi.Levels;
+using RobbiEditor.Assets;
+using RobbiEditor.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -71,6 +74,11 @@ namespace RobbiEditor.Tools
             AssetDatabase.Refresh();
         }
 
+        private void OnWizardOtherButton()
+        {
+            Close();
+        }
+
         #endregion
 
         #region Creation Methods
@@ -88,7 +96,9 @@ namespace RobbiEditor.Tools
         private void RenameFSM()
         {
             string oldFSMPath = Path.Combine(NewLevelFolderFullPath, string.Format("Level{0}FSM.asset", oldLevelIndex));
+            string newFSMPath = Path.Combine(NewLevelFolderFullPath, string.Format("Level{0}FSM.asset", newLevelIndex));
             string errorMessage = AssetDatabase.RenameAsset(oldFSMPath, string.Format("Level{0}FSM.asset", newLevelIndex));
+            AssetDatabase.LoadAssetAtPath<FSMGraph>(newFSMPath).SetAddressableAddress(newFSMPath);
 
             if (!string.IsNullOrEmpty(errorMessage))
             {
@@ -100,7 +110,9 @@ namespace RobbiEditor.Tools
         private void RenamePrefab()
         {
             string oldPrefabPath = Path.Combine(NewLevelFolderFullPath, string.Format("Level{0}.prefab", oldLevelIndex));
+            string newPrefabPath = Path.Combine(NewLevelFolderFullPath, string.Format("Level{0}.prefab", newLevelIndex));
             string errorMessage = AssetDatabase.RenameAsset(oldPrefabPath, string.Format("Level{0}.prefab", newLevelIndex));
+            AssetDatabase.LoadAssetAtPath<GameObject>(newPrefabPath).SetAddressableAddress(newPrefabPath);
 
             if (!string.IsNullOrEmpty(errorMessage))
             {
@@ -112,7 +124,9 @@ namespace RobbiEditor.Tools
         private void RenameLevelData()
         {
             string oldLevelDataPath = Path.Combine(NewLevelFolderFullPath, string.Format("Level{0}Data.asset", oldLevelIndex));
+            string newLevelDataPath = Path.Combine(NewLevelFolderFullPath, string.Format("Level{0}Data.asset", newLevelIndex));
             string errorMessage = AssetDatabase.RenameAsset(oldLevelDataPath, string.Format("Level{0}Data.asset", newLevelIndex));
+            AssetDatabase.LoadAssetAtPath<Level>(newLevelDataPath).SetAddressableAddress(newLevelDataPath);
 
             if (!string.IsNullOrEmpty(errorMessage))
             {

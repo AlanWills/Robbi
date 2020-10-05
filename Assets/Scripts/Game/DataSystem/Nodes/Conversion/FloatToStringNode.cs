@@ -7,8 +7,8 @@ using XNode;
 
 namespace Robbi.DataSystem.Nodes.Conversion
 {
-    [CreateNodeMenu("Robbi/Conversion/Int To String")]
-    public class IntToStringNode : ToStringNode<int>
+    [CreateNodeMenu("Robbi/Conversion/Float To String")]
+    public class FloatToStringNode : ToStringNode<float>
     {
     }
 }

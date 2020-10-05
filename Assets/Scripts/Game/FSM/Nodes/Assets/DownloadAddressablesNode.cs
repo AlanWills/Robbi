@@ -1,4 +1,5 @@
 ﻿using Robbi.Debugging.Logging;
+using Robbi.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace Robbi.FSM.Nodes.Assets
         #region Properties and Fields
 
         public string label;
+        public FloatValue progress;
 
         private AsyncOperationHandle downloadOperation;
         private bool complete = false;
@@ -33,10 +35,20 @@ namespace Robbi.FSM.Nodes.Assets
             downloadOperation.Completed += DownloadOperation_Completed;
 
             complete = false;
+
+            if (progress != null)
+            {
+                progress.value = 0;
+            }
         }
 
         protected override FSMNode OnUpdate()
         {
+            if (progress != null && downloadOperation.IsValid() && !downloadOperation.IsDone)
+            {
+                progress.value = downloadOperation.PercentComplete;
+            }
+
             if (complete)
             {
                 return base.OnUpdate();
@@ -67,6 +79,11 @@ namespace Robbi.FSM.Nodes.Assets
         private void DownloadOperation_Completed(AsyncOperationHandle obj)
         {
             complete = true;
+
+            if (progress != null)
+            {
+                progress.value = 100;
+            }
         }
 
         #endregion
