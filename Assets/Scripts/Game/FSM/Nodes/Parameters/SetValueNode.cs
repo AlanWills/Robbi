@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Robbi.FSM.Nodes.Parameters
 {
     [Serializable]
-    public class SetValueNode<T, TValue, TReference> : FSMNode
+    public abstract class SetValueNode<T, TValue, TReference> : FSMNode
         where TValue : ParameterValue<T>
         where TReference : ParameterReference<T, TValue, TReference>
     {
