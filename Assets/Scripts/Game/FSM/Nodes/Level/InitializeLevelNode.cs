@@ -43,11 +43,17 @@ namespace Robbi.FSM.Nodes
 
         protected override FSMNode OnUpdate()
         {
-            if (levelLoadingHandle.IsDone && levelLoadingHandle.Result != null &&
-                robbiLoadingHandle.IsDone && robbiLoadingHandle.Result != null)
+            if (levelLoadingHandle.IsDone && robbiLoadingHandle.IsDone)
             {
-                levelLoadingHandle.Result.Begin(levelData);
-                
+                if (levelLoadingHandle.Result != null && robbiLoadingHandle.Result != null)
+                {
+                    levelLoadingHandle.Result.Begin(levelData);
+                }
+                else
+                {
+                    HudLogger.LogError("Error loading Level");
+                }
+
                 return base.OnUpdate();
             }
 

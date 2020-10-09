@@ -46,19 +46,27 @@ namespace RobbiEditor.BuildSystem
 
         private static void Build(BuildTargetGroup buildTargetGroup, BuildTarget buildTarget)
         {
+            Debug.Log("Beginning to build content");
+
             EditorUserBuildSettings.SwitchActiveBuildTarget(buildTargetGroup, buildTarget);
             SetProfileId("AWS");
 
             AddressableAssetSettings.BuildPlayerContent();
+
+            Debug.Log("Finished building content");
         }
 
         private static void Update(BuildTargetGroup buildTargetGroup, BuildTarget buildTarget)
         {
+            Debug.Log("Beginning to update content");
+
             EditorUserBuildSettings.SwitchActiveBuildTarget(buildTargetGroup, buildTarget);
             SetProfileId("AWS");
 
             string contentStatePath = ContentUpdateScript.GetContentStateDataPath(false);
-            ContentUpdateScript.BuildContentUpdate(AddressableAssetSettingsDefaultObject.Settings, contentStatePath);
+            AddressableAssetBuildResult result = ContentUpdateScript.BuildContentUpdate(AddressableAssetSettingsDefaultObject.Settings, contentStatePath);
+
+            Debug.LogFormat("Finished updating content{0}", string.IsNullOrEmpty(result.Error) ? "" : " with error: " + result.Error);
         }
 
         private static void SetProfileId(string profile)
