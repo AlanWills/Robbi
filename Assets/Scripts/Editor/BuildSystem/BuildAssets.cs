@@ -68,9 +68,9 @@ namespace RobbiEditor.BuildSystem
             SetProfileId("AWS");
 
             string contentStatePath = ContentUpdateScript.GetContentStateDataPath(false);
-            AddressableAssetBuildResult result = ContentUpdateScript.BuildContentUpdate(AddressableAssetSettingsDefaultObject.Settings, contentStatePath);
+            AddressableAssetBuildResult buildResult = ContentUpdateScript.BuildContentUpdate(AddressableAssetSettingsDefaultObject.Settings, contentStatePath);
 
-            Debug.LogFormat("Finished updating content{0}", string.IsNullOrEmpty(result.Error) ? "" : " with error: " + result.Error);
+            Debug.LogFormat("Finished updating content{0}", string.IsNullOrEmpty(buildResult.Error) ? "" : " with error: " + buildResult.Error);
         }
 
         private static void SetProfileId(string profile)
