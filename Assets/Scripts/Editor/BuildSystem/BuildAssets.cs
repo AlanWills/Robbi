@@ -51,8 +51,7 @@ namespace RobbiEditor.BuildSystem
             bool result = EditorUserBuildSettings.SwitchActiveBuildTarget(buildTargetGroup, buildTarget);
             Debug.Log(result ? string.Format("Successfully switched to {0}", buildTarget) : string.Format("Failed to switch to {0}", buildTarget));
             Debug.LogFormat("Active build target is {0}", EditorUserBuildSettings.activeBuildTarget);
-
-            SetProfileId("AWS");
+            Debug.LogFormat("Active Profile Id: {0}", AddressableAssetSettingsDefaultObject.Settings.activeProfileId);
 
             AddressableAssetSettings.BuildPlayerContent();
 
@@ -64,10 +63,10 @@ namespace RobbiEditor.BuildSystem
             Debug.Log("Beginning to update content");
 
             bool result = EditorUserBuildSettings.SwitchActiveBuildTarget(buildTargetGroup, buildTarget);
+            
             Debug.Log(result ? string.Format("Successfully switched to {0}", buildTarget) : string.Format("Failed to switch to {0}", buildTarget));
             Debug.LogFormat("Active build target is {0}", EditorUserBuildSettings.activeBuildTarget);
-
-            SetProfileId("AWS");
+            Debug.LogFormat("Active Profile Id: {0}", AddressableAssetSettingsDefaultObject.Settings.activeProfileId);
 
             string contentStatePath = ContentUpdateScript.GetContentStateDataPath(false);
             AddressableAssetBuildResult buildResult = ContentUpdateScript.BuildContentUpdate(AddressableAssetSettingsDefaultObject.Settings, contentStatePath);
