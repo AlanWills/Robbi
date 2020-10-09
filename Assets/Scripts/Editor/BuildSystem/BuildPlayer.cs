@@ -20,6 +20,8 @@ namespace RobbiEditor.BuildSystem
 
         private static void BuildAndroid(BuildPlayerOptions buildPlayerOptions)
         {
+            EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
+            
             buildPlayerOptions.locationPathName = "Builds/Robbi.apk";
             buildPlayerOptions.scenes = EditorBuildSettings.scenes.Select(x => x.path).ToArray();
             buildPlayerOptions.target = BuildTarget.Android;
