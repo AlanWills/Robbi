@@ -62,7 +62,7 @@ namespace RobbiEditor.BuildSystem
         {
             Debug.Log("Beginning to update content");
 
-            EditorUserBuildSettings.SwitchActiveBuildTarget(buildTargetGroup, buildTarget);
+            bool result = EditorUserBuildSettings.SwitchActiveBuildTarget(buildTargetGroup, buildTarget);
             Debug.Log(result ? string.Format("Successfully switched to {0}", buildTarget) : string.Format("Failed to switch to {0}", buildTarget));
 
             SetProfileId("AWS");
