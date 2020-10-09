@@ -50,7 +50,8 @@ namespace RobbiEditor.BuildSystem
 
             bool result = EditorUserBuildSettings.SwitchActiveBuildTarget(buildTargetGroup, buildTarget);
             Debug.Log(result ? string.Format("Successfully switched to {0}", buildTarget) : string.Format("Failed to switch to {0}", buildTarget));
-            
+            Debug.LogFormat("Active build target is {0}", EditorUserBuildSettings.activeBuildTarget);
+
             SetProfileId("AWS");
 
             AddressableAssetSettings.BuildPlayerContent();
@@ -64,6 +65,7 @@ namespace RobbiEditor.BuildSystem
 
             bool result = EditorUserBuildSettings.SwitchActiveBuildTarget(buildTargetGroup, buildTarget);
             Debug.Log(result ? string.Format("Successfully switched to {0}", buildTarget) : string.Format("Failed to switch to {0}", buildTarget));
+            Debug.LogFormat("Active build target is {0}", EditorUserBuildSettings.activeBuildTarget);
 
             SetProfileId("AWS");
 
