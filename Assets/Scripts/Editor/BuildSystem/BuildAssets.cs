@@ -66,6 +66,7 @@ namespace RobbiEditor.BuildSystem
             SetProfileId("AWS");
 
             string contentStatePath = ContentUpdateScript.GetContentStateDataPath(false);
+            Debug.LogFormat("Using content state path {0}", contentStatePath);
             AddressableAssetBuildResult buildResult = ContentUpdateScript.BuildContentUpdate(AddressableAssetSettingsDefaultObject.Settings, contentStatePath);
 
             if (buildResult != null)
