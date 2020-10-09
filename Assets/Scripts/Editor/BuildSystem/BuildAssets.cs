@@ -75,8 +75,9 @@ namespace RobbiEditor.BuildSystem
 
         private static void SetProfileId(string profile)
         {
-            Debug.Assert(AddressableAssetSettingsDefaultObject.SettingsExists);
+            Debug.Assert(AddressableAssetSettingsDefaultObject.SettingsExists, "AddressableAssetSettingsDefaultObject does not exist");
             AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.Settings;
+            Debug.Assert(settings != null, "AddressableAssetSettingsDefaultObject is null");
 
             if (settings.profileSettings != null)
             {
