@@ -71,9 +71,10 @@ namespace RobbiEditor.BuildSystem
 
         private static void SetProfileId(string profile)
         {
-            AddressableAssetProfileSettings profileSettings = AddressableAssetSettingsDefaultObject.Settings.profileSettings;
-            string profileId = profileSettings.GetProfileId(profile);
-            AddressableAssetSettingsDefaultObject.Settings.activeProfileId = profileId;
+            Debug.Assert(AddressableAssetSettingsDefaultObject.SettingsExists);
+            AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.Settings;
+            string profileId = settings.profileSettings.GetProfileId(profile);
+            settings.activeProfileId = profileId;
         }
     }
 }
