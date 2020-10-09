@@ -68,7 +68,14 @@ namespace RobbiEditor.BuildSystem
             string contentStatePath = ContentUpdateScript.GetContentStateDataPath(false);
             AddressableAssetBuildResult buildResult = ContentUpdateScript.BuildContentUpdate(AddressableAssetSettingsDefaultObject.Settings, contentStatePath);
 
-            Debug.LogFormat("Finished updating content{0}", string.IsNullOrEmpty(buildResult.Error) ? "" : " with error: " + buildResult.Error);
+            if (buildResult != null)
+            {
+                Debug.LogFormat("Finished updating content{0}", string.IsNullOrEmpty(buildResult.Error) ? "" : " with error: " + buildResult.Error);
+            }
+            else
+            {
+                Debug.LogFormat("Finished updating content with no build result");
+            }
         }
 
         private static void SetAddressableAssetSettings()
