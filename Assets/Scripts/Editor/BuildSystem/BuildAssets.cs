@@ -48,10 +48,9 @@ namespace RobbiEditor.BuildSystem
         {
             Debug.Log("Beginning to build content");
 
-            bool result = EditorUserBuildSettings.SwitchActiveBuildTarget(buildTargetGroup, buildTarget);
-            Debug.Log(result ? string.Format("Successfully switched to {0}", buildTarget) : string.Format("Failed to switch to {0}", buildTarget));
-            Debug.LogFormat("Active build target is {0}", EditorUserBuildSettings.activeBuildTarget);
-            Debug.LogFormat("Active Profile Id: {0}", AddressableAssetSettingsDefaultObject.Settings.activeProfileId);
+            SetAddressableAssetSettings();
+            SetActiveBuildTarget(buildTargetGroup, buildTarget);
+            SetProfileId("AWS");
 
             AddressableAssetSettings.BuildPlayerContent();
 
@@ -62,16 +61,32 @@ namespace RobbiEditor.BuildSystem
         {
             Debug.Log("Beginning to update content");
 
-            bool result = EditorUserBuildSettings.SwitchActiveBuildTarget(buildTargetGroup, buildTarget);
-            
-            Debug.Log(result ? string.Format("Successfully switched to {0}", buildTarget) : string.Format("Failed to switch to {0}", buildTarget));
-            Debug.LogFormat("Active build target is {0}", EditorUserBuildSettings.activeBuildTarget);
-            Debug.LogFormat("Active Profile Id: {0}", AddressableAssetSettingsDefaultObject.Settings.activeProfileId);
+            SetAddressableAssetSettings();
+            SetActiveBuildTarget(buildTargetGroup, buildTarget);
+            SetProfileId("AWS");
 
             string contentStatePath = ContentUpdateScript.GetContentStateDataPath(false);
             AddressableAssetBuildResult buildResult = ContentUpdateScript.BuildContentUpdate(AddressableAssetSettingsDefaultObject.Settings, contentStatePath);
 
             Debug.LogFormat("Finished updating content{0}", string.IsNullOrEmpty(buildResult.Error) ? "" : " with error: " + buildResult.Error);
+        }
+
+        private static void SetAddressableAssetSettings()
+        {
+            if (AddressableAssetSettingsDefaultObject.Settings == null)
+            {
+                Debug.Log("Loading settings from asset database");
+                AddressableAssetSettingsDefaultObject.Settings = AssetDatabase.LoadAssetAtPath<AddressableAssetSettings>(AddressableAssetSettingsDefaultObject.DefaultAssetPath);
+            }
+
+            Debug.Assert(AddressableAssetSettingsDefaultObject.Settings != null, "AddressableAssetSettingsDefaultObject is null");
+        }
+
+        private static void SetActiveBuildTarget(BuildTargetGroup buildTargetGroup, BuildTarget buildTarget)
+        {
+            bool result = EditorUserBuildSettings.SwitchActiveBuildTarget(buildTargetGroup, buildTarget);
+            Debug.Log(result ? string.Format("Successfully switched to {0}", buildTarget) : string.Format("Failed to switch to {0}", buildTarget));
+            Debug.LogFormat("Active build target is {0}", EditorUserBuildSettings.activeBuildTarget);
         }
 
         private static void SetProfileId(string profile)
