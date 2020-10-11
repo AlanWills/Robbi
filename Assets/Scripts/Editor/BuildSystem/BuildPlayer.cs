@@ -29,5 +29,11 @@ namespace RobbiEditor.BuildSystem
 
             BuildPipeline.BuildPlayer(buildPlayerOptions);
         }
+
+        public static void Test()
+        {
+            BuildAndroidDebug();
+            BuildAssets.UpdateAndroidAssets();
+        }
     }
 }
