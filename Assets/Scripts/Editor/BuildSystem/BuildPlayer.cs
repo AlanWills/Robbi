@@ -33,7 +33,7 @@ namespace RobbiEditor.BuildSystem
         public static void Test()
         {
             BuildAndroidDebug();
-            BuildAssets.UpdateAndroidAssets();
+            BuildAssets.BuildAndroidAssets();
         }
     }
 }
