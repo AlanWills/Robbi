@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using XNode;
 
 namespace Robbi.FSM.Nodes.Assets
 {
@@ -65,6 +66,15 @@ namespace Robbi.FSM.Nodes.Assets
                 HudLogger.LogError(string.Format("Failed to check download size for {0}", label));
                 Debug.LogErrorFormat("ailed to check download size for {0}", label);
             }
+        }
+
+        #endregion
+
+        #region Node Overrides
+
+        public override object GetValue(NodePort port)
+        {
+            return size;
         }
 
         #endregion
