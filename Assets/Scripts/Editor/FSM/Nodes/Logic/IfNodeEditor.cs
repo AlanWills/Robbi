@@ -20,6 +20,7 @@ namespace RobbiEditor.FSM.Nodes.Logic
         {
             typeof(BoolValueCondition),
             typeof(IntValueCondition),
+            typeof(LongValueCondition),
             typeof(Vector3IntValueCondition),
             typeof(InVector3IntArrayCondition),
             typeof(InTilemapCondition),
@@ -29,6 +30,7 @@ namespace RobbiEditor.FSM.Nodes.Logic
         {
             "Bool",
             "Int",
+            "Long",
             "Vector3Int",
             "In Vector3IntArray",
             "In Tilemap",
@@ -38,6 +40,7 @@ namespace RobbiEditor.FSM.Nodes.Logic
         {
             { typeof(BoolValueCondition), new BoolValueConditionEditor() },
             { typeof(IntValueCondition), new IntValueConditionEditor() },
+            { typeof(LongValueCondition), new LongValueConditionEditor() },
             { typeof(Vector3IntValueCondition), new Vector3IntValueConditionEditor() },
             { typeof(InVector3IntArrayCondition), new InVector3IntArrayConditionEditor() },
             { typeof(InTilemapCondition), new InTilemapConditionEditor() },
