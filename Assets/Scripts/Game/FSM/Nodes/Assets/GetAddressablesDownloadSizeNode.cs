@@ -64,7 +64,7 @@ namespace Robbi.FSM.Nodes.Assets
             else
             {
                 HudLogger.LogError(string.Format("Failed to check download size for {0}", label));
-                Debug.LogErrorFormat("ailed to check download size for {0}", label);
+                Debug.LogErrorFormat("Failed to check download size for {0}", label);
             }
         }
 
