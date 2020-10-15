@@ -1,4 +1,5 @@
-﻿using Robbi.FSM;
+﻿using Robbi.DataSystem;
+using Robbi.FSM;
 using Robbi.Levels;
 using RobbiEditor.Assets;
 using RobbiEditor.Constants;
@@ -20,13 +21,15 @@ namespace RobbiEditor.Tools
 
         private string LevelFolderFullPath
         {
-            get { return Path.Combine(destinationFolder, LevelFolderName); }
+            get { return destinationFolder + "/" + LevelFolderName; }
         }
 
         private string destinationFolder = LevelDirectories.FULL_PATH;
         private uint levelIndex = 0;
         private uint numInteractables = 0;
+        private bool hasTutorial = false;
         private GameObject levelPrefabToCopy;
+        private GameObject tutorialPrefabToCopy;
 
         #endregion
 
@@ -40,7 +43,9 @@ namespace RobbiEditor.Tools
             destinationFolder = EditorGUILayout.TextField(destinationFolder);
             levelIndex = RobbiEditorGUILayout.UIntField("Level Index", levelIndex);
             numInteractables = RobbiEditorGUILayout.UIntField("Num Interactables", numInteractables);
+            hasTutorial = EditorGUILayout.Toggle("Has Tutorial", hasTutorial);
             levelPrefabToCopy = EditorGUILayout.ObjectField("Level Prefab To Copy", levelPrefabToCopy, typeof(GameObject), false) as GameObject;
+            tutorialPrefabToCopy = EditorGUILayout.ObjectField("Tutorial Prefab To Copy", tutorialPrefabToCopy, typeof(GameObject), false) as GameObject;
 
             EditorGUILayout.Space();
 
@@ -64,6 +69,11 @@ namespace RobbiEditor.Tools
                 CreateLevelData();
             }
 
+            if (GUILayout.Button("Create Tutorial"))
+            {
+                CreateTutorial();
+            }
+
             return propertiesChanged || EditorGUI.EndChangeCheck();
         }
 
@@ -80,7 +90,8 @@ namespace RobbiEditor.Tools
             CreateDirectories();
             CreateFSM();
             CreatePrefab();
-            CreateLevelData();  // Must happen last
+            CreateLevelData();
+            CreateTutorial();
 
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
@@ -106,7 +117,7 @@ namespace RobbiEditor.Tools
             fsm.name = string.Format("Level{0}FSM", levelIndex);
 
             AssetDatabase.CreateAsset(fsm, Path.Combine(LevelFolderFullPath, fsm.name + ".asset"));
-            fsm.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
+            //fsm.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
         }
 
         private void CreatePrefab()
@@ -134,7 +145,7 @@ namespace RobbiEditor.Tools
             }
             runtime.graph = AssetDatabase.LoadAssetAtPath<FSMGraph>(Path.Combine(levelFolderFullPath, string.Format("Level{0}FSM.asset", levelIndex)));
 
-            createdPrefab.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
+            //createdPrefab.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
             EditorUtility.SetDirty(createdPrefab);
         }
 
@@ -148,7 +159,50 @@ namespace RobbiEditor.Tools
             Debug.Assert(level.levelPrefab != null, "Level Prefab could not be found automatically");
 
             AssetDatabase.CreateAsset(level, Path.Combine(levelFolderFullPath, string.Format("Level{0}Data", levelIndex) + ".asset"));
-            level.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
+            //level.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
+        }
+
+        private void CreateTutorial()
+        {
+            if (!hasTutorial)
+            {
+                return;
+            }
+
+            FSMGraph tutorialFsm = ScriptableObject.CreateInstance<FSMGraph>();
+            tutorialFsm.name = string.Format("Level{0}TutorialsFSM", levelIndex);
+
+            AssetDatabase.CreateAsset(tutorialFsm, Path.Combine(LevelFolderFullPath, tutorialFsm.name + ".asset"));
+            tutorialFsm.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
+
+            DataGraph tutorialDataGraph = ScriptableObject.CreateInstance<DataGraph>();
+            tutorialDataGraph.name = string.Format("Level{0}TutorialsDataGraph", levelIndex);
+
+            AssetDatabase.CreateAsset(tutorialDataGraph, Path.Combine(LevelFolderFullPath, tutorialDataGraph.name + ".asset"));
+            tutorialDataGraph.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
+
+            string levelFolderFullPath = LevelFolderFullPath;
+            string prefabPath = Path.Combine(levelFolderFullPath, string.Format("Level{0}Tutorials.prefab", levelIndex));
+            AssetDatabase.CopyAsset(AssetDatabase.GetAssetPath(tutorialPrefabToCopy), prefabPath);
+
+            GameObject createdPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
+
+            FSMRuntime fsmRuntime = createdPrefab.GetComponent<FSMRuntime>();
+            if (fsmRuntime == null)
+            {
+                fsmRuntime = createdPrefab.AddComponent<FSMRuntime>();
+            }
+            fsmRuntime.graph = tutorialFsm;
+
+            DataRuntime dataRuntime = createdPrefab.GetComponent<DataRuntime>();
+            if (dataRuntime == null)
+            {
+                dataRuntime = createdPrefab.AddComponent<DataRuntime>();
+            }
+            dataRuntime.graph = tutorialDataGraph;
+
+            createdPrefab.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
+            EditorUtility.SetDirty(createdPrefab);
         }
 
         #endregion

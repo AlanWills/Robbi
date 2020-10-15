@@ -9,6 +9,6 @@ namespace RobbiEditor
 {
     public static class LevelDirectories
     {
-        public static readonly string FULL_PATH = Path.Combine("Assets", "Levels");
+        public static readonly string FULL_PATH = "Assets/Levels";
     }
 }
