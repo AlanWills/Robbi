@@ -139,7 +139,7 @@ namespace RobbiEditor.Tools
 
         #region Menu Item
 
-        [MenuItem("Window/Robbi/Tools/Change Level Index")]
+        [MenuItem("Robbi/Tools/Change Level Index")]
         public static void ShowChangeLevelIndexWizard()
         {
             ScriptableWizard.DisplayWizard<ChangeLevelIndex>("Change Level Index", "Change", "Close");

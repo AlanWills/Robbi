@@ -33,7 +33,7 @@ namespace RobbiEditor.Debugging
 
         #region Menu Item
 
-        [MenuItem("Window/Robbi/Debug/Debug Window")]
+        [MenuItem("Robbi/Debug/Debug Window")]
 
         public static void ShowDebugWindow()
         {

@@ -45,7 +45,11 @@ namespace RobbiEditor.Tools
             numInteractables = RobbiEditorGUILayout.UIntField("Num Interactables", numInteractables);
             hasTutorial = EditorGUILayout.Toggle("Has Tutorial", hasTutorial);
             levelPrefabToCopy = EditorGUILayout.ObjectField("Level Prefab To Copy", levelPrefabToCopy, typeof(GameObject), false) as GameObject;
-            tutorialPrefabToCopy = EditorGUILayout.ObjectField("Tutorial Prefab To Copy", tutorialPrefabToCopy, typeof(GameObject), false) as GameObject;
+
+            if (hasTutorial)
+            {
+                tutorialPrefabToCopy = EditorGUILayout.ObjectField("Tutorial Prefab To Copy", tutorialPrefabToCopy, typeof(GameObject), false) as GameObject;
+            }
 
             EditorGUILayout.Space();
 
@@ -69,7 +73,7 @@ namespace RobbiEditor.Tools
                 CreateLevelData();
             }
 
-            if (GUILayout.Button("Create Tutorial"))
+            if (hasTutorial && GUILayout.Button("Create Tutorial"))
             {
                 CreateTutorial();
             }
@@ -129,13 +133,20 @@ namespace RobbiEditor.Tools
             GameObject createdPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
             GameObject interactableMarkerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(PrefabFiles.INTERACTABLE_MARKER_PREFAB);
             
-            Transform interactables = createdPrefab.transform.Find("Interactables");
-            DeleteAllChildren(interactables);
+            // Have to delete the interactables in the prefab
+            DeleteAllChildren(createdPrefab.transform.Find("Interactables"));
+            
+            // Then instantiate the prefab so we can add the interactables
+            // I kept having a crash in Unity when I tried adding these directly to the prefab
+            GameObject instantiatedPrefab = PrefabUtility.InstantiatePrefab(createdPrefab) as GameObject;
+            Transform interactables = instantiatedPrefab.transform.Find("Interactables");
 
             for (uint i = 0; i < numInteractables; ++i)
             {
                 GameObject interactableMarker = PrefabUtility.InstantiatePrefab(interactableMarkerPrefab, interactables) as GameObject;
                 interactableMarker.name = string.Format("Interactable{0}", i);
+                
+                PrefabUtility.ApplyAddedGameObject(interactableMarker, prefabPath, InteractionMode.AutomatedAction);
             }
 
             FSMRuntime runtime = createdPrefab.GetComponent<FSMRuntime>();
@@ -145,6 +156,7 @@ namespace RobbiEditor.Tools
             }
             runtime.graph = AssetDatabase.LoadAssetAtPath<FSMGraph>(Path.Combine(levelFolderFullPath, string.Format("Level{0}FSM.asset", levelIndex)));
 
+            GameObject.DestroyImmediate(instantiatedPrefab);
             createdPrefab.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
             EditorUtility.SetDirty(createdPrefab);
         }
@@ -221,7 +233,7 @@ namespace RobbiEditor.Tools
 
         #region Menu Item
 
-        [MenuItem("Window/Robbi/Tools/Create Level Wizard")]
+        [MenuItem("Robbi/Tools/Create Level Wizard")]
         public static void ShowCreateLevelWizard()
         {
             ScriptableWizard.DisplayWizard<CreateLevelWizard>("Create Level Wizard", "Create All", "Close");
