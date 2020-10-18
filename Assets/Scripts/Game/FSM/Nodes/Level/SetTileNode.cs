@@ -30,7 +30,11 @@ namespace Robbi.FSM.Nodes
             base.OnEnter();
 
             Vector3Int _tilePosition = GetInputValue(nameof(tilePosition), tilePosition);
-            Debug.AssertFormat(newTile != null || tilemap.value.HasTile(_tilePosition), "NewTile null: {0}  Position: {1}", newTile == null, _tilePosition);
+            Debug.AssertFormat(newTile != null || tilemap.value.HasTile(_tilePosition), 
+                "NewTile null: {0} Has Tile: {1} Position: {2}", 
+                newTile == null, 
+                tilemap.value.HasTile(_tilePosition), 
+                _tilePosition);
             tilemap.value.SetTile(_tilePosition, newTile);
         }
 
