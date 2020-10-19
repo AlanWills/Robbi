@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace RobbiEditor.PropertyDrawers.Parameters
 {
-    public class ParameterReferencePropertyDrawer : PropertyDrawer
+    public abstract class ParameterReferencePropertyDrawer : PropertyDrawer
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
@@ -16,6 +16,8 @@ namespace RobbiEditor.PropertyDrawers.Parameters
             position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
 
             SerializedObject serializedReference = new SerializedObject(property.objectReferenceValue);
+            serializedReference.Update();
+
             SerializedProperty isConstantProperty = serializedReference.FindProperty("isConstant");
 
             position = new Rect(position.x, position.y, 16, position.height);

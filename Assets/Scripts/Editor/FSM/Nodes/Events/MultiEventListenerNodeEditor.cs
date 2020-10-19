@@ -23,18 +23,21 @@ namespace RobbiEditor.FSM.Nodes.Events
         {
             typeof(VoidEventCondition),
             typeof(Vector3IntEventCondition),
+            typeof(DoorEventCondition),
         };
 
         private static string[] eventDisplayNames = new string[]
         {
             "Void",
             "Vector3Int",
+            "Door",
         };
 
         private static Dictionary<Type, EventConditionEditor> eventConditionEditorFactory = new Dictionary<Type, EventConditionEditor>()
         {
             { typeof(VoidEventCondition), new EventConditionEditor() },
             { typeof(Vector3IntEventCondition), new EventConditionEditor() },
+            { typeof(DoorEventCondition), new EventConditionEditor() },
         };
 
         private int selectedEventType = 0;

@@ -1,12 +1,14 @@
 ﻿using Robbi.DataSystem;
 using Robbi.FSM;
 using Robbi.Levels;
+using Robbi.Levels.Elements;
 using RobbiEditor.Assets;
 using RobbiEditor.Constants;
 using RobbiEditor.Utils;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace RobbiEditor.Tools
 {
@@ -27,6 +29,8 @@ namespace RobbiEditor.Tools
         private string destinationFolder = LevelDirectories.FULL_PATH;
         private uint levelIndex = 0;
         private uint numInteractables = 0;
+        private uint numHorizontalDoors = 0;
+        private uint numVerticalDoors = 0;
         private bool hasTutorial = false;
         private GameObject levelPrefabToCopy;
         private GameObject tutorialPrefabToCopy;
@@ -43,6 +47,8 @@ namespace RobbiEditor.Tools
             destinationFolder = EditorGUILayout.TextField(destinationFolder);
             levelIndex = RobbiEditorGUILayout.UIntField("Level Index", levelIndex);
             numInteractables = RobbiEditorGUILayout.UIntField("Num Interactables", numInteractables);
+            numHorizontalDoors = RobbiEditorGUILayout.UIntField("Num Horizontal Doors", numHorizontalDoors);
+            numVerticalDoors = RobbiEditorGUILayout.UIntField("Num Vertical Doors", numVerticalDoors);
             hasTutorial = EditorGUILayout.Toggle("Has Tutorial", hasTutorial);
             levelPrefabToCopy = EditorGUILayout.ObjectField("Level Prefab To Copy", levelPrefabToCopy, typeof(GameObject), false) as GameObject;
 
@@ -66,6 +72,11 @@ namespace RobbiEditor.Tools
             if (GUILayout.Button("Create Prefab"))
             {
                 CreatePrefab();
+            }
+
+            if (GUILayout.Button("Create Doors"))
+            {
+                CreateDoors();
             }
 
             if (GUILayout.Button("Create Level Data"))
@@ -94,6 +105,7 @@ namespace RobbiEditor.Tools
             CreateDirectories();
             CreateFSM();
             CreatePrefab();
+            CreateDoors();
             CreateLevelData();
             CreateTutorial();
 
@@ -159,6 +171,39 @@ namespace RobbiEditor.Tools
             GameObject.DestroyImmediate(instantiatedPrefab);
             createdPrefab.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
             EditorUtility.SetDirty(createdPrefab);
+        }
+
+        private void CreateDoors()
+        {
+            string levelFolderFullPath = LevelFolderFullPath;
+
+            for (int i = 0; i < numHorizontalDoors; ++i)
+            {
+                Door door = ScriptableObject.CreateInstance<Door>();
+                door.direction = Direction.Horizontal;
+                door.leftOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_LEFT_TILE);
+                door.rightOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_RIGHT_TILE);
+
+                Debug.Assert(door.leftOpenTile != null, "Could not find default horizontal left tile");
+                Debug.Assert(door.rightOpenTile != null, "Could not find default horizontal right tile");
+
+                AssetDatabase.CreateAsset(door, Path.Combine(levelFolderFullPath, string.Format("Level{0}Door{1}", levelIndex, i) + ".asset"));
+                door.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
+            }
+
+            for (int i = 0; i < numVerticalDoors; ++i)
+            {
+                Door door = ScriptableObject.CreateInstance<Door>();
+                door.direction = Direction.Vertical;
+                door.leftOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_LEFT_TILE);
+                door.rightOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_RIGHT_TILE);
+
+                Debug.Assert(door.leftOpenTile != null, "Could not find default vertical left tile");
+                Debug.Assert(door.rightOpenTile != null, "Could not find default vertical right tile");
+
+                AssetDatabase.CreateAsset(door, Path.Combine(levelFolderFullPath, string.Format("Level{0}Door{1}", levelIndex, i) + ".asset"));
+                door.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
+            }
         }
 
         private void CreateLevelData()

@@ -53,8 +53,15 @@ namespace Robbi.FSM
         {
             base.OnInspectorGUI();
 
+            if (GUILayout.Button("Remove Null Nodes"))
+            {
+                (target as FSMGraph).RemoveNullNodes_EditorOnly();
+                EditorUtility.SetDirty(target);
+                AssetDatabase.SaveAssets();
+            }
+
             EditorGUILayout.BeginHorizontal();
-            
+
             removeAsset = EditorGUILayout.ObjectField(removeAsset, typeof(ScriptableObject), false) as ScriptableObject;
 
             if (GUILayout.Button("Remove Asset"))

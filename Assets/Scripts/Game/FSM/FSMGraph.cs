@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
 using XNode;
 
@@ -89,6 +90,17 @@ namespace Robbi.FSM
                 ScriptableObject.DestroyImmediate(asset);
             }
         }
+
+        #endregion
+
+        #region Validation Methods
+
+#if UNITY_EDITOR
+        public void RemoveNullNodes_EditorOnly()
+        {
+            nodes.RemoveAll(x => x == null);
+        }
+#endif
 
         #endregion
     }
