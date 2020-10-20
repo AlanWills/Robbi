@@ -7,9 +7,9 @@ using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
 using UnityEngine;
 
-namespace RobbiEditor.Assets
+namespace RobbiEditor.Utils
 {
-    public static class AddressableEditorExtension
+    public static class AddressablesUtility
     {
         public static void SetAddressableGroup(this Object o, string group)
         {

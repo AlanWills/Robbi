@@ -10,6 +10,7 @@ namespace Robbi.Parameters
     [Serializable]
     public class ParameterValue<T> : ScriptableObject
     {
+        [NonSerialized]
         public T value;
     }
 }

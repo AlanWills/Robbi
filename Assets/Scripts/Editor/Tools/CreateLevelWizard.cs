@@ -2,8 +2,8 @@
 using Robbi.FSM;
 using Robbi.Levels;
 using Robbi.Levels.Elements;
-using RobbiEditor.Assets;
 using RobbiEditor.Constants;
+using RobbiEditor.Levels.Elements;
 using RobbiEditor.Utils;
 using System.IO;
 using UnityEditor;
@@ -175,34 +175,14 @@ namespace RobbiEditor.Tools
 
         private void CreateDoors()
         {
-            string levelFolderFullPath = LevelFolderFullPath;
-
             for (int i = 0; i < numHorizontalDoors; ++i)
             {
-                Door door = ScriptableObject.CreateInstance<Door>();
-                door.direction = Direction.Horizontal;
-                door.leftOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_LEFT_TILE);
-                door.rightOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_RIGHT_TILE);
-
-                Debug.Assert(door.leftOpenTile != null, "Could not find default horizontal left tile");
-                Debug.Assert(door.rightOpenTile != null, "Could not find default horizontal right tile");
-
-                AssetDatabase.CreateAsset(door, Path.Combine(levelFolderFullPath, string.Format("Level{0}Door{1}", levelIndex, i) + ".asset"));
-                door.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
+                DoorEditor.CreateHorizontalDoor(string.Format("Level{0}Door{1}", levelIndex, i));
             }
 
             for (int i = 0; i < numVerticalDoors; ++i)
             {
-                Door door = ScriptableObject.CreateInstance<Door>();
-                door.direction = Direction.Vertical;
-                door.leftOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_LEFT_TILE);
-                door.rightOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_RIGHT_TILE);
-
-                Debug.Assert(door.leftOpenTile != null, "Could not find default vertical left tile");
-                Debug.Assert(door.rightOpenTile != null, "Could not find default vertical right tile");
-
-                AssetDatabase.CreateAsset(door, Path.Combine(levelFolderFullPath, string.Format("Level{0}Door{1}", levelIndex, i) + ".asset"));
-                door.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
+                DoorEditor.CreateVerticalDoor(string.Format("Level{0}Door{1}", levelIndex, i));
             }
         }
 

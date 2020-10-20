@@ -8,9 +8,9 @@ namespace RobbiEditor.Constants
 {
     public static class TileFiles
     {
-        public const string HORIZONTAL_LEFT_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "/obj_0019_Layer-20.asset";
-        public const string HORIZONTAL_RIGHT_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "/obj_0020_Layer-21.asset";
-        public const string VERTICAL_LEFT_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "/obj_0019_Layer-20.asset";
-        public const string VERTICAL_RIGHT_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "/obj_0020_Layer-21.asset";
+        public const string HORIZONTAL_LEFT_OPEN_DOOR_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "/HorizontalLeftOpenDoor.asset";
+        public const string HORIZONTAL_RIGHT_OPEN_DOOR_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "/HorizontalRightOpenDoor.asset";
+        public const string VERTICAL_LEFT_OPEN_DOOR_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "/VerticalLeftOpenDoor.asset";
+        public const string VERTICAL_RIGHT_OPEN_DOOR_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "/VerticalRightOpenDoor.asset";
     }
 }
