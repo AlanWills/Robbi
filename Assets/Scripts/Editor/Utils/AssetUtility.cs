@@ -16,18 +16,8 @@ namespace RobbiEditor.Utils
             EditorUtility.SetDirty(assetObject);
         }
 
-		public static void CreateAsset<T>(T asset) where T : ScriptableObject
+		public static void CreateAsset<T>(T asset, string path) where T : ScriptableObject
 		{
-			string path = AssetDatabase.GetAssetPath(Selection.activeObject);
-			if (path == "")
-			{
-				path = "Assets";
-			}
-			else if (Path.GetExtension(path) != "")
-			{
-				path = path.Replace(Path.GetFileName(AssetDatabase.GetAssetPath(Selection.activeObject)), "");
-			}
-
 			string assetPathAndName = AssetDatabase.GenerateUniqueAssetPath(string.Format("{0}/{1}.asset", path, asset.name));
 
 			AssetDatabase.CreateAsset(asset, assetPathAndName);

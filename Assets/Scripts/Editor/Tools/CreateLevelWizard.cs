@@ -177,12 +177,12 @@ namespace RobbiEditor.Tools
         {
             for (int i = 0; i < numHorizontalDoors; ++i)
             {
-                DoorEditor.CreateHorizontalDoor(string.Format("Level{0}Door{1}", levelIndex, i));
+                DoorEditor.CreateHorizontalDoor(string.Format("Level{0}Door{1}", levelIndex, i), LevelFolderFullPath);
             }
 
             for (int i = 0; i < numVerticalDoors; ++i)
             {
-                DoorEditor.CreateVerticalDoor(string.Format("Level{0}Door{1}", levelIndex, i));
+                DoorEditor.CreateVerticalDoor(string.Format("Level{0}Door{1}", levelIndex, i), LevelFolderFullPath);
             }
         }
 
