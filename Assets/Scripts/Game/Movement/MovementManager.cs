@@ -56,12 +56,12 @@ namespace Robbi.Movement
         public Vector3IntEvent onMovedFrom;
         public Vector3IntEvent onWaypointPlaced;
         public Vector3IntEvent onWaypointRemoved;
-        public Event onWaypointUnreachable;
         
         [Header("Parameters")]
         public IntValue remainingWaypointsPlaceable;
         public IntValue waypointsPlaced;
         public BoolValue isProgramRunning;
+        public BoolValue waypointUnreachable;
 
         [Header("Other")]
         public GameObject destinationMarkerPrefab;
@@ -122,7 +122,7 @@ namespace Robbi.Movement
                 }
                 else
                 {
-                    onWaypointUnreachable.Raise();
+                    waypointUnreachable.value = true;
                     isProgramRunning.value = false;
                 }
             }

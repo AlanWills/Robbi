@@ -28,7 +28,7 @@ namespace Robbi.FSM.Nodes.Parameters
 
             if (newValue == null)
             {
-                newValue = CreateParameter<TReference>(name + "_sceneName");
+                newValue = CreateParameter<TReference>(name + "_newValue");
             }
         }
 

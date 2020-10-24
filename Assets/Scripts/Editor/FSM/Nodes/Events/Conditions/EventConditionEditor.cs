@@ -12,17 +12,42 @@ namespace RobbiEditor.FSM.Nodes.Events.Conditions
 {
     public class EventConditionEditor
     {
-        public void GUI(MultiEventListenerNode listenerNode, EventCondition eventCondition)
+        #region Properties and Fields
+        
+        public static Type[] EventOptions = new Type[]
+        {
+            typeof(VoidEventCondition),
+            typeof(Vector3IntEventCondition),
+            typeof(DoorEventCondition),
+        };
+
+        public static string[] EventDisplayNames = new string[]
+        {
+            "Void",
+            "Vector3Int",
+            "Door",
+        };
+
+        public static Dictionary<Type, EventConditionEditor> EventConditionEditorFactory = new Dictionary<Type, EventConditionEditor>()
+        {
+            { typeof(VoidEventCondition), new EventConditionEditor() },
+            { typeof(Vector3IntEventCondition), new EventConditionEditor() },
+            { typeof(DoorEventCondition), new EventConditionEditor() },
+        };
+
+        #endregion
+
+        public void GUI(MultiEventNode eventNode, EventCondition eventCondition)
         {
             SerializedObject serializedObject = new SerializedObject(eventCondition);
             serializedObject.Update();
 
-            OnGUI(listenerNode, serializedObject);
+            OnGUI(eventNode, serializedObject);
 
             serializedObject.ApplyModifiedProperties();
         }
 
-        protected virtual void OnGUI(MultiEventListenerNode listenerNode, SerializedObject eventConditionObject)
+        protected virtual void OnGUI(MultiEventNode eventNode, SerializedObject eventConditionObject)
         {
             SerializedProperty nameProperty = eventConditionObject.FindProperty("m_Name");
             SerializedProperty listenForProperty = eventConditionObject.FindProperty("listenFor");
@@ -39,18 +64,18 @@ namespace RobbiEditor.FSM.Nodes.Events.Conditions
                 if (oldValue == null && newValue != null)
                 {
                     nameProperty.stringValue = newValue.name;
-                    listenerNode.AddEventConditionPort(newValue.name);
+                    eventNode.AddEventConditionPort(newValue.name);
                 }
                 else if (oldValue != null && newValue != null && oldValue != newValue)
                 {
                     nameProperty.stringValue = newValue.name;
-                    listenerNode.RemoveDynamicPort(oldValue.name);
-                    listenerNode.AddEventConditionPort(newValue.name);
+                    eventNode.RemoveDynamicPort(oldValue.name);
+                    eventNode.AddEventConditionPort(newValue.name);
                 }
                 else if (oldValue != null && newValue == null)
                 {
                     nameProperty.stringValue = "";
-                    listenerNode.RemoveDynamicPort(oldValue.name);
+                    eventNode.RemoveDynamicPort(oldValue.name);
                 }
             }
         }

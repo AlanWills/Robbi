@@ -10,5 +10,6 @@ namespace RobbiEditor
     {
         public const string PARAMETERS_FULL_PATH = "Assets/Parameters";
         public const string LEVEL_NAME = "Level";
+        public const string TILEMAPS_NAME = "Tilemaps";
     }
 }

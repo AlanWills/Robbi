@@ -5,6 +5,8 @@ using Robbi.Levels.Elements;
 using RobbiEditor.Constants;
 using RobbiEditor.Levels.Elements;
 using RobbiEditor.Utils;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -12,49 +14,104 @@ using UnityEngine.Tilemaps;
 
 namespace RobbiEditor.Tools
 {
+    public enum DoorColour
+    { 
+        Green,
+        Red,
+        Blue,
+        Grey
+    }
+
+    public enum InteractableMarker
+    {
+        DoorOpen,
+        DoorClose
+    }
+
+    [Serializable]
+    public class LevelInfo : ScriptableObject
+    {
+        public string destinationFolder = LevelDirectories.FULL_PATH;
+        public uint levelIndex = 0;
+        public GameObject levelPrefabToCopy;
+        public bool clearLevel = true;
+        public int maxWaypointsPlaceable = 3; 
+        public List<DoorColour> horizontalDoors = new List<DoorColour>();
+        public List<DoorColour> verticalDoors = new List<DoorColour>();
+        public List<InteractableMarker> interactableMarkers = new List<InteractableMarker>();
+        public bool hasTutorial = false;
+        public GameObject tutorialPrefabToCopy;
+    }
+
     public class CreateLevelWizard : ScriptableWizard
     {
         #region Properties and Fields
 
         private string LevelFolderName
         {
-            get { return string.Format("Level{0}", levelIndex); }
+            get { return string.Format("Level{0}", levelInfo.levelIndex); }
         }
 
         private string LevelFolderFullPath
         {
-            get { return destinationFolder + "/" + LevelFolderName; }
+            get { return levelInfo.destinationFolder + "/" + LevelFolderName; }
         }
 
-        private string destinationFolder = LevelDirectories.FULL_PATH;
-        private uint levelIndex = 0;
-        private uint numInteractables = 0;
-        private uint numHorizontalDoors = 0;
-        private uint numVerticalDoors = 0;
-        private bool hasTutorial = false;
-        private GameObject levelPrefabToCopy;
-        private GameObject tutorialPrefabToCopy;
+        private LevelInfo levelInfo;
+        private SerializedObject levelInfoObject;
+
+        private static Dictionary<DoorColour, string> horizontalDoorPrefabs = new Dictionary<DoorColour, string>()
+        {
+            { DoorColour.Green, TileFiles.HORIZONTAL_GREEN_CLOSED_DOOR_TILE },
+            { DoorColour.Red, TileFiles.HORIZONTAL_RED_CLOSED_DOOR_TILE },
+            { DoorColour.Blue, TileFiles.HORIZONTAL_BLUE_CLOSED_DOOR_TILE },
+            { DoorColour.Grey, TileFiles.HORIZONTAL_GREY_CLOSED_DOOR_TILE },
+        };
+
+        private static Dictionary<DoorColour, string> verticalDoorPrefabs = new Dictionary<DoorColour, string>()
+        {
+            { DoorColour.Green, TileFiles.VERTICAL_GREEN_CLOSED_DOOR_TILE },
+            { DoorColour.Red, TileFiles.VERTICAL_RED_CLOSED_DOOR_TILE },
+            { DoorColour.Blue, TileFiles.VERTICAL_BLUE_CLOSED_DOOR_TILE },
+            { DoorColour.Grey, TileFiles.VERTICAL_GREY_CLOSED_DOOR_TILE },
+        };
+
+        private static Dictionary<InteractableMarker, string> markerPrefabs = new Dictionary<InteractableMarker, string>()
+        {
+            { InteractableMarker.DoorOpen, PrefabFiles.DOOR_OPEN_MARKER_PREFAB },
+            { InteractableMarker.DoorClose, PrefabFiles.DOOR_CLOSE_MARKER_PREFAB },
+        };
 
         #endregion
 
         #region GUI
+
+        private void OnEnable()
+        {
+            levelInfo = ScriptableObject.CreateInstance<LevelInfo>();
+            levelInfoObject = new SerializedObject(levelInfo);
+        }
 
         protected override bool DrawWizardGUI()
         {
             bool propertiesChanged = base.DrawWizardGUI();
             EditorGUI.BeginChangeCheck();
 
-            destinationFolder = EditorGUILayout.TextField(destinationFolder);
-            levelIndex = RobbiEditorGUILayout.UIntField("Level Index", levelIndex);
-            numInteractables = RobbiEditorGUILayout.UIntField("Num Interactables", numInteractables);
-            numHorizontalDoors = RobbiEditorGUILayout.UIntField("Num Horizontal Doors", numHorizontalDoors);
-            numVerticalDoors = RobbiEditorGUILayout.UIntField("Num Vertical Doors", numVerticalDoors);
-            hasTutorial = EditorGUILayout.Toggle("Has Tutorial", hasTutorial);
-            levelPrefabToCopy = EditorGUILayout.ObjectField("Level Prefab To Copy", levelPrefabToCopy, typeof(GameObject), false) as GameObject;
+            levelInfoObject.Update();
 
-            if (hasTutorial)
+            levelInfo.destinationFolder = EditorGUILayout.TextField(levelInfo.destinationFolder);
+            levelInfo.levelIndex = RobbiEditorGUILayout.UIntField("Level Index", levelInfo.levelIndex);
+            levelInfo.levelPrefabToCopy = EditorGUILayout.ObjectField("Level Prefab To Copy", levelInfo.levelPrefabToCopy, typeof(GameObject), false) as GameObject;
+            levelInfo.clearLevel = EditorGUILayout.Toggle("Clear Level", levelInfo.clearLevel);
+            levelInfo.maxWaypointsPlaceable = EditorGUILayout.IntField("Max Waypoints Placeable", levelInfo.maxWaypointsPlaceable);
+            propertiesChanged |= EditorGUILayout.PropertyField(levelInfoObject.FindProperty(nameof(levelInfo.horizontalDoors)));
+            propertiesChanged |= EditorGUILayout.PropertyField(levelInfoObject.FindProperty(nameof(levelInfo.verticalDoors)));
+            propertiesChanged |= EditorGUILayout.PropertyField(levelInfoObject.FindProperty(nameof(levelInfo.interactableMarkers)));
+
+            levelInfo.hasTutorial = EditorGUILayout.Toggle("Has Tutorial", levelInfo.hasTutorial);
+            if (levelInfo.hasTutorial)
             {
-                tutorialPrefabToCopy = EditorGUILayout.ObjectField("Tutorial Prefab To Copy", tutorialPrefabToCopy, typeof(GameObject), false) as GameObject;
+                levelInfo.tutorialPrefabToCopy = EditorGUILayout.ObjectField("Tutorial Prefab To Copy", levelInfo.tutorialPrefabToCopy, typeof(GameObject), false) as GameObject;
             }
 
             EditorGUILayout.Space();
@@ -84,10 +141,12 @@ namespace RobbiEditor.Tools
                 CreateLevelData();
             }
 
-            if (hasTutorial && GUILayout.Button("Create Tutorial"))
+            if (levelInfo.hasTutorial && GUILayout.Button("Create Tutorial"))
             {
                 CreateTutorial();
             }
+
+            levelInfoObject.ApplyModifiedProperties();
 
             return propertiesChanged || EditorGUI.EndChangeCheck();
         }
@@ -96,7 +155,7 @@ namespace RobbiEditor.Tools
         {
             if (Directory.Exists(Path.Combine(Application.dataPath, LevelFolderFullPath)))
             {
-                EditorUtility.DisplayDialog("Error", string.Format("Folder for Level Index {0} already exists.  Abandoning creation.", levelIndex), "OK");
+                EditorUtility.DisplayDialog("Error", string.Format("Folder for Level Index {0} already exists.  Abandoning creation.", levelInfo.levelIndex), "OK");
                 return;
             }
 
@@ -124,13 +183,13 @@ namespace RobbiEditor.Tools
 
         private void CreateDirectories()
         {
-            AssetDatabase.CreateFolder(destinationFolder, LevelFolderName);
+            AssetDatabase.CreateFolder(levelInfo.destinationFolder, LevelFolderName);
         }
 
         private void CreateFSM()
         {
             FSMGraph fsm = ScriptableObject.CreateInstance<FSMGraph>();
-            fsm.name = string.Format("Level{0}FSM", levelIndex);
+            fsm.name = string.Format("Level{0}FSM", levelInfo.levelIndex);
 
             AssetDatabase.CreateAsset(fsm, Path.Combine(LevelFolderFullPath, fsm.name + ".asset"));
             fsm.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
@@ -139,11 +198,15 @@ namespace RobbiEditor.Tools
         private void CreatePrefab()
         {
             string levelFolderFullPath = LevelFolderFullPath;
-            string prefabPath = Path.Combine(levelFolderFullPath, string.Format("Level{0}.prefab", levelIndex));
-            AssetDatabase.CopyAsset(AssetDatabase.GetAssetPath(levelPrefabToCopy), prefabPath);
+            string prefabPath = Path.Combine(levelFolderFullPath, string.Format("Level{0}.prefab", levelInfo.levelIndex));
+            AssetDatabase.CopyAsset(AssetDatabase.GetAssetPath(levelInfo.levelPrefabToCopy), prefabPath);
             
             GameObject createdPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
-            GameObject interactableMarkerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(PrefabFiles.INTERACTABLE_MARKER_PREFAB);
+
+            if (levelInfo.clearLevel)
+            {
+                ClearAllTilemaps(createdPrefab);
+            }
             
             // Have to delete the interactables in the prefab
             DeleteAllChildren(createdPrefab.transform.Find("Interactables"));
@@ -153,10 +216,12 @@ namespace RobbiEditor.Tools
             GameObject instantiatedPrefab = PrefabUtility.InstantiatePrefab(createdPrefab) as GameObject;
             Transform interactables = instantiatedPrefab.transform.Find("Interactables");
 
-            for (uint i = 0; i < numInteractables; ++i)
+            for (uint i = 0; i < levelInfo.interactableMarkers.Count; ++i)
             {
+                InteractableMarker markerType = levelInfo.interactableMarkers[(int)i];
+                GameObject interactableMarkerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(markerPrefabs[markerType]);
                 GameObject interactableMarker = PrefabUtility.InstantiatePrefab(interactableMarkerPrefab, interactables) as GameObject;
-                interactableMarker.name = string.Format("Interactable{0}", i);
+                interactableMarker.name = string.Format("Interactable{0}{1}", markerType, i);
                 
                 PrefabUtility.ApplyAddedGameObject(interactableMarker, prefabPath, InteractionMode.AutomatedAction);
             }
@@ -166,7 +231,7 @@ namespace RobbiEditor.Tools
             {
                 runtime = createdPrefab.AddComponent<FSMRuntime>();
             }
-            runtime.graph = AssetDatabase.LoadAssetAtPath<FSMGraph>(Path.Combine(levelFolderFullPath, string.Format("Level{0}FSM.asset", levelIndex)));
+            runtime.graph = AssetDatabase.LoadAssetAtPath<FSMGraph>(Path.Combine(levelFolderFullPath, string.Format("Level{0}FSM.asset", levelInfo.levelIndex)));
 
             GameObject.DestroyImmediate(instantiatedPrefab);
             createdPrefab.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
@@ -175,14 +240,14 @@ namespace RobbiEditor.Tools
 
         private void CreateDoors()
         {
-            for (int i = 0; i < numHorizontalDoors; ++i)
+            foreach (DoorColour doorColour in levelInfo.horizontalDoors)
             {
-                DoorEditor.CreateHorizontalDoor(string.Format("Level{0}Door{1}", levelIndex, i), LevelFolderFullPath);
+                DoorEditor.CreateHorizontalDoor(string.Format("Level{0}{1}Door", levelInfo.levelIndex, doorColour), LevelFolderFullPath, horizontalDoorPrefabs[doorColour]);
             }
 
-            for (int i = 0; i < numVerticalDoors; ++i)
+            foreach (DoorColour doorColour in levelInfo.verticalDoors)
             {
-                DoorEditor.CreateVerticalDoor(string.Format("Level{0}Door{1}", levelIndex, i), LevelFolderFullPath);
+                DoorEditor.CreateVerticalDoor(string.Format("Level{0}{1}Door", levelInfo.levelIndex, doorColour), LevelFolderFullPath, verticalDoorPrefabs[doorColour]);
             }
         }
 
@@ -191,20 +256,23 @@ namespace RobbiEditor.Tools
             string levelFolderFullPath = LevelFolderFullPath;
 
             Level level = ScriptableObject.CreateInstance<Level>();
-            level.levelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(Path.Combine(levelFolderFullPath, string.Format("Level{0}.prefab", levelIndex)));
+            level.levelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(Path.Combine(levelFolderFullPath, string.Format("Level{0}.prefab", levelInfo.levelIndex)));
+            level.maxWaypointsPlaceable = levelInfo.maxWaypointsPlaceable;
 
             Debug.Assert(level.levelPrefab != null, "Level Prefab could not be found automatically");
 
-            AssetDatabase.CreateAsset(level, Path.Combine(levelFolderFullPath, string.Format("Level{0}Data", levelIndex) + ".asset"));
+            AssetDatabase.CreateAsset(level, Path.Combine(levelFolderFullPath, string.Format("Level{0}Data", levelInfo.levelIndex) + ".asset"));
             level.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
         }
 
         private void CreateTutorial()
         {
-            if (!hasTutorial)
+            if (!levelInfo.hasTutorial)
             {
                 return;
             }
+
+            uint levelIndex = levelInfo.levelIndex;
 
             FSMGraph tutorialFsm = ScriptableObject.CreateInstance<FSMGraph>();
             tutorialFsm.name = string.Format("Level{0}TutorialsFSM", levelIndex);
@@ -220,7 +288,7 @@ namespace RobbiEditor.Tools
 
             string levelFolderFullPath = LevelFolderFullPath;
             string prefabPath = Path.Combine(levelFolderFullPath, string.Format("Level{0}Tutorials.prefab", levelIndex));
-            AssetDatabase.CopyAsset(AssetDatabase.GetAssetPath(tutorialPrefabToCopy), prefabPath);
+            AssetDatabase.CopyAsset(AssetDatabase.GetAssetPath(levelInfo.tutorialPrefabToCopy), prefabPath);
 
             GameObject createdPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
 
@@ -245,6 +313,18 @@ namespace RobbiEditor.Tools
         #endregion
 
         #region Utility Methods
+
+        private void ClearAllTilemaps(GameObject gameObject)
+        {
+            for (int i = 0; i < gameObject.transform.childCount; ++i)
+            {
+                Tilemap tilemap = gameObject.transform.GetChild(i).GetComponent<Tilemap>();
+                if (tilemap != null)
+                {
+                    tilemap.ClearAllTiles();
+                }
+            }
+        }
 
         private void DeleteAllChildren(Transform transform)
         {

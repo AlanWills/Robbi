@@ -81,5 +81,10 @@ namespace Robbi.Levels.Elements
         }
 
         #endregion
+
+        public override string ToString()
+        {
+            return name;
+        }
     }
 }

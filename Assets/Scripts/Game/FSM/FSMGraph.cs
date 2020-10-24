@@ -60,7 +60,7 @@ namespace Robbi.FSM
         public T CreateParameter<T>(string name) where T : ScriptableObject
         {
             T parameter = ScriptableObject.CreateInstance<T>();
-            parameter.name = name + "_sceneName";
+            parameter.name = name;
 
 #if UNITY_EDITOR
             parameters.Add(parameter);

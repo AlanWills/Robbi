@@ -16,7 +16,7 @@ namespace Robbi.FSM.Nodes.Viewport
     }
 
     [Serializable]
-    [CreateNodeMenu("Robbi/Camera/Look At")]
+    [CreateNodeMenu("Robbi/Viewport/Look At")]
     [NodeWidth(250)]
     public class LookAtNode : FSMNode
     {
@@ -24,6 +24,11 @@ namespace Robbi.FSM.Nodes.Viewport
 
         public Vector3Reference targetPosition;
         public LookAxis lookAxis;
+        public float time = 0;
+
+        private float currentTime = 0;
+        private Vector3 currentStartingPosition;
+        private Vector3 currentTargetPosition;
 
         #endregion
 
@@ -62,23 +67,32 @@ namespace Robbi.FSM.Nodes.Viewport
         {
             base.OnEnter();
 
-            Vector3 cameraPosition = Camera.main.transform.position;
-            Vector3 position = targetPosition.Value;
+            currentTime = 0;
+            currentStartingPosition = Camera.main.transform.position;
 
             if (lookAxis == LookAxis.X)
             {
-                position.x = cameraPosition.x;
+                currentTargetPosition = targetPosition.Value;
+                currentTargetPosition.x = currentStartingPosition.x;
             }
             else if (lookAxis == LookAxis.Y)
             {
-                position.y = cameraPosition.y;
+                currentTargetPosition = targetPosition.Value;
+                currentTargetPosition.y = currentStartingPosition.y;
             }
             else if (lookAxis == LookAxis.Z)
             {
-                position.z = cameraPosition.z;
+                currentTargetPosition = targetPosition.Value;
+                currentTargetPosition.z = currentStartingPosition.z;
             }
+        }
 
-            Camera.main.transform.position = position;
+        protected override FSMNode OnUpdate()
+        {
+            currentTime = Math.Min(time, currentTime + Time.deltaTime);
+            Camera.main.transform.position = Vector3.Lerp(currentStartingPosition, currentTargetPosition, time != 0 ? currentTime / time : 1);
+
+            return currentTime < time ? this : base.OnUpdate();
         }
 
         #endregion
