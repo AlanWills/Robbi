@@ -27,29 +27,34 @@ namespace Robbi.FSM.Nodes.Events
 
         protected override FSMNode OnUpdate()
         {
-            FSMNode connectedNode = null;
-            
             foreach (EventCondition eventCondition in this)
             {
                 if (eventCondition.HasEventFired())
                 {
-                    if (connectedNode == null)
-                    {
-                        string eventConditionName = eventCondition.name;
-                        argument = eventCondition.ConsumeEvent();
+                    string eventConditionName = eventCondition.name;
+                    argument = eventCondition.ConsumeEvent();
 
-                        Debug.LogFormat("Name: {0} with Argument: {1} was consumed by MEL Node", eventConditionName, argument != null ? argument : "");
-                        connectedNode = GetConnectedNode(eventConditionName);
-                    }
-                    else
-                    {
-                        Debug.LogFormat("Name: {0} silently consumed by MEL Node", eventCondition.name);
-                        eventCondition.ConsumeEvent();
-                    }
+                    Debug.LogFormat("Name: {0} with Argument: {1} was consumed by MEL Node", eventConditionName, argument != null ? argument : "");
+                    return GetConnectedNode(eventConditionName);
                 }
             }
 
-            return connectedNode != null ? connectedNode : this;
+            return this;
+        }
+
+        protected override void OnExit()
+        {
+            base.OnExit();
+
+            foreach (EventCondition eventCondition in this)
+            {
+                // Consume all invocations of events - completely refresh
+                while (eventCondition.HasEventFired())
+                {
+                    Debug.LogFormat("Name: {0} silently consumed by MEL Node", eventCondition.name);
+                    eventCondition.ConsumeEvent();
+                }
+            }
         }
 
         #endregion

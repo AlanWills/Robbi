@@ -20,6 +20,11 @@ namespace Robbi.FSM.Nodes.Events
 
         #endregion
 
+        public MultiEventQueueNode()
+        {
+            RemoveDynamicPort(DEFAULT_OUTPUT_PORT_NAME);
+        }
+
         #region FSM Runtime Methods
 
         protected override FSMNode OnUpdate()
@@ -44,7 +49,6 @@ namespace Robbi.FSM.Nodes.Events
                 return GetConnectedNode(eventCondition.Item1.name);
             }
 
-            //return base.OnUpdate();
             return this;
         }
 

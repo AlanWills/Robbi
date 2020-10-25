@@ -1,5 +1,6 @@
 ﻿using Robbi.Debugging.Logging;
 using Robbi.Events;
+using Robbi.Memory;
 using Robbi.Parameters;
 using System;
 using System.Collections;
@@ -30,7 +31,7 @@ namespace Robbi.Movement
 
             public void OnRemoved()
             {
-                GameObject.Destroy(destinationMarkerInstance);
+                destinationMarkerInstance.SetActive(false);
             }
         }
 
@@ -56,20 +57,27 @@ namespace Robbi.Movement
         public Vector3IntEvent onMovedFrom;
         public Vector3IntEvent onWaypointPlaced;
         public Vector3IntEvent onWaypointRemoved;
+        public Event onWaypointUnreachable;
         
         [Header("Parameters")]
         public IntValue remainingWaypointsPlaceable;
         public IntValue waypointsPlaced;
         public BoolValue isProgramRunning;
-        public BoolValue waypointUnreachable;
 
         [Header("Other")]
-        public GameObject destinationMarkerPrefab;
+        public GameObjectAllocator destinationMarkerAllocator;
         public float speed = 1;
 
         private Grid grid;
         private List<Waypoint> waypoints = new List<Waypoint>();
         private Stack<Vector3> stepsToNextWaypoint = new Stack<Vector3>();
+
+        // Temporary structs for A*
+        private HashSet<Vector3Int> openSet = new HashSet<Vector3Int>();
+        private Dictionary<Vector3Int, Vector3Int> cameFrom = new Dictionary<Vector3Int, Vector3Int>();
+        private Dictionary<Vector3Int, float> costFromStart = new Dictionary<Vector3Int, float>();
+        private Dictionary<Vector3Int, float> costOverall = new Dictionary<Vector3Int, float>();
+        private List<Vector3Int> newWaypoints = new List<Vector3Int>();
 
         #endregion
 
@@ -105,9 +113,17 @@ namespace Robbi.Movement
 
                         if (stepsToNextWaypoint.Count == 0)
                         {
-                            // We have reached the next waypoint
-                            ConsumeWaypoint(0);
-                            MoveToNextWaypoint();
+                            if (movedTo == waypoints[0].gridPosition)
+                            {
+                                // We have reached the next waypoint
+                                ConsumeWaypoint(0);
+                                MoveToNextWaypoint();
+                            }
+                            else
+                            {
+                                onWaypointUnreachable.Raise();
+                                isProgramRunning.value = false;
+                            }
                         }
                     }
                     else
@@ -120,11 +136,14 @@ namespace Robbi.Movement
                         }
                     }
                 }
-                else
-                {
-                    waypointUnreachable.value = true;
-                    isProgramRunning.value = false;
-                }
+            }
+        }
+
+        private void OnValidate()
+        {
+            if (destinationMarkerAllocator == null)
+            {
+                destinationMarkerAllocator = GetComponent<GameObjectAllocator>();
             }
         }
 
@@ -138,7 +157,7 @@ namespace Robbi.Movement
             
             if (isProgramRunning.value)
             {
-                stepsToNextWaypoint = CalculateGridSteps(grid.LocalToCell(playerLocalPosition.value), waypoints[0].gridPosition);
+                CalculateGridSteps(grid.LocalToCell(playerLocalPosition.value), waypoints[0].gridPosition);
             }
         }
 
@@ -167,7 +186,12 @@ namespace Robbi.Movement
 
             if (waypointGridPosition != lastWaypointGridPosition && movementTilemap.HasTile(waypointGridPosition))
             {
-                GameObject destinationMarkerInstance = GameObject.Instantiate(destinationMarkerPrefab, movementTilemap.transform);
+                if (!destinationMarkerAllocator.CanAllocate(1))
+                {
+                    destinationMarkerAllocator.AddChunk();
+                }
+
+                GameObject destinationMarkerInstance = destinationMarkerAllocator.Allocate();
                 destinationMarkerInstance.transform.position = grid.GetCellCenterLocal(waypointGridPosition);
 
                 waypoints.Add(new Waypoint(waypointGridPosition, destinationMarkerInstance));
@@ -224,13 +248,14 @@ namespace Robbi.Movement
 
         #region Pathfinding
 
-        private Stack<Vector3> CalculateGridSteps(Vector3Int startingPosition, Vector3Int targetPosition)
+        private void CalculateGridSteps(Vector3Int startingPosition, Vector3Int targetPosition)
         {
-            HashSet<Vector3Int> openSet = new HashSet<Vector3Int>() { startingPosition };
-            Dictionary<Vector3Int, Vector3Int> cameFrom = new Dictionary<Vector3Int, Vector3Int>();
-            Dictionary<Vector3Int, float> costFromStart = new Dictionary<Vector3Int, float>();
-            Dictionary<Vector3Int, float> costOverall = new Dictionary<Vector3Int, float>();
+            openSet.Clear();
+            cameFrom.Clear();
+            costFromStart.Clear();
+            costOverall.Clear();
 
+            openSet.Add(startingPosition);
             costFromStart.Add(startingPosition, 0);
             costOverall.Add(startingPosition, Math.Abs(targetPosition.x - startingPosition.x) + Math.Abs(targetPosition.y - startingPosition.y));
 
@@ -239,7 +264,7 @@ namespace Robbi.Movement
                 Vector3Int bestPosition = GetBestPosition(openSet, costOverall);
                 if (bestPosition == targetPosition)
                 {
-                    return ConstructGridSteps(targetPosition, cameFrom);
+                    ConstructGridSteps(targetPosition);
                 }
 
                 openSet.Remove(bestPosition);
@@ -257,7 +282,7 @@ namespace Robbi.Movement
                 UpdateDirectional(new Vector3Int(0, -1, 0), bestPosition, targetPosition, openSet, cameFrom, costFromStart, costOverall);
             }
 
-            return new Stack<Vector3>();
+            ConstructGridSteps(targetPosition);
         }
 
         private Vector3Int GetBestPosition(HashSet<Vector3Int> openSet, Dictionary<Vector3Int, float> costOverall)
@@ -288,9 +313,9 @@ namespace Robbi.Movement
             Dictionary<Vector3Int, float> costOverall)
         {
             Vector3Int neighbour = bestPosition + delta;
-            if (movementTilemap.HasTile(neighbour) && !doorsTilemap.HasTile(neighbour))
+            if (movementTilemap.HasTile(neighbour))
             {
-                const float distanceToNeighbour = 1;
+                float distanceToNeighbour = doorsTilemap.HasTile(neighbour) ? 1000.0f : 1.0f;
                 float tentativeCostFromStart = costFromStart[bestPosition] + distanceToNeighbour;
                 float neighbourScore = costFromStart.ContainsKey(neighbour) ? costFromStart[neighbour] : float.MaxValue;
 
@@ -327,17 +352,34 @@ namespace Robbi.Movement
             }
         }
 
-        private Stack<Vector3> ConstructGridSteps(Vector3Int targetGridPosition, Dictionary<Vector3Int, Vector3Int> cameFrom)
+        private void ConstructGridSteps(Vector3Int targetGridPosition)
         {
-            Stack<Vector3> newWaypoints = new Stack<Vector3>();
+            newWaypoints.Clear();
+            stepsToNextWaypoint.Clear();
 
             while (cameFrom.ContainsKey(targetGridPosition))
             {
-                newWaypoints.Push(grid.GetCellCenterWorld(targetGridPosition));
+                newWaypoints.Add(targetGridPosition);
                 targetGridPosition = cameFrom[targetGridPosition];
             }
 
-            return newWaypoints;
+            for (int i = newWaypoints.Count - 1; i >= 0; --i)
+            {
+                if (doorsTilemap.HasTile(newWaypoints[i]))
+                {
+                    for (int j = i; j >= 0; --j)
+                    {
+                        newWaypoints.RemoveAt(j);
+                    }
+
+                    break;
+                }
+            }
+
+            foreach (Vector3Int waypoint in newWaypoints)
+            {
+                stepsToNextWaypoint.Push(grid.GetCellCenterWorld(waypoint));
+            }
         }
 
 #endregion
