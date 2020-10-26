@@ -1,5 +1,88 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8781642307630875191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25f09c6a45a7902459ba71a199952074, type: 3}
+  m_Name: Door Event Raiser
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -376, y: 616}
+  ports:
+    keys:
+    - ' '
+    - 
+    - argument
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -8781642307630875191}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: -6737855260705990993}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6737855260705990993}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6737855260705990993}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6737855260705990993}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6737855260705990993}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -8781642307630875191}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 4022612246313386551}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: argument
+      _node: {fileID: -8781642307630875191}
+      _typeQualifiedName: Robbi.Levels.Elements.Door, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  argument: {fileID: 11400000, guid: b0c42b0b81135b145aa4754df8524b47, type: 2}
+  toRaise: {fileID: 11400000, guid: cbeb0b6fbbf91f14b9cb44b5e98656f5, type: 2}
+--- !u!114 &-8555095403332900587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f73e5c005b2c6ee4a929080332770ff6, type: 3}
+  m_Name: IsAtGOSwitch
+  m_EditorClassIdentifier: 
+  value: {fileID: 6987420629324869859}
+  condition: 0
+  useArgument: 1
+  target: {fileID: -4940405686113855856}
 --- !u!114 &-7899655409310137449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13,7 +96,7 @@ MonoBehaviour:
   m_Name: IsAtGCBOSwitch_target
   m_EditorClassIdentifier: 
   isConstant: 1
-  constantValue: {x: 0, y: 0, z: 0}
+  constantValue: {x: 0, y: -2, z: 0}
   referenceValue: {fileID: 0}
 --- !u!114 &-7695898374415669709
 MonoBehaviour:
@@ -28,7 +111,7 @@ MonoBehaviour:
   m_Name: Door Event Raiser
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -600, y: 168}
+  position: {x: -344, y: 440}
   ports:
     keys:
     - ' '
@@ -49,6 +132,27 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 4466856284833468820}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4466856284833468820}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -883654243155384746}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -883654243155384746}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -883654243155384746}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -883654243155384746}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -883654243155384746}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -883654243155384746}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -59,7 +163,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: 4022612246313386551}
+        node: {fileID: 7676323328415429100}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -89,7 +193,7 @@ MonoBehaviour:
   m_Name: Door Event Raiser
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -600, y: 312}
+  position: {x: -600, y: 616}
   ports:
     keys:
     - ' '
@@ -110,6 +214,27 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 5553622771675845726}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5553622771675845726}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5553622771675845726}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5553622771675845726}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5553622771675845726}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5553622771675845726}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5553622771675845726}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5553622771675845726}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -120,7 +245,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: 4022612246313386551}
+        node: {fileID: -8781642307630875191}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -161,6 +286,8 @@ MonoBehaviour:
     - IsAtROBCSwitch
     - IsAtRCGrayOSwitch
     - IsAtGCBOSwitch
+    - IsAtGOSwitch
+    - IsAtROSwitch
     values:
     - _fieldName: ' '
       _node: {fileID: -6311685501640384691}
@@ -172,6 +299,39 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: 
         node: {fileID: 4022612246313386551}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4022612246313386551}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4022612246313386551}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4022612246313386551}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4022612246313386551}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5588882581862636979}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4022612246313386551}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5588882581862636979}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4022612246313386551}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5588882581862636979}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4022612246313386551}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5588882581862636979}
         reroutePoints: []
       - fieldName: 
         node: {fileID: 4022612246313386551}
@@ -261,11 +421,37 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
+    - _fieldName: IsAtGOSwitch
+      _node: {fileID: -6311685501640384691}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 7492195715518595472}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: IsAtROSwitch
+      _node: {fileID: -6311685501640384691}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -2501972512711239788}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
   conditions:
   - {fileID: 3788286991196446789}
   - {fileID: 7727802750880501955}
   - {fileID: -834028168283828324}
   - {fileID: 4087944155788788390}
+  - {fileID: -8555095403332900587}
+  - {fileID: -3181637703282129132}
 --- !u!114 &-6162862772789201648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,7 +465,7 @@ MonoBehaviour:
   m_Name: Door Event Raiser
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -824, y: 24}
+  position: {x: -792, y: 264}
   ports:
     keys:
     - ' '
@@ -342,6 +528,21 @@ MonoBehaviour:
   isConstant: 1
   constantValue: {x: -1, y: 5, z: 0}
   referenceValue: {fileID: 0}
+--- !u!114 &-4940405686113855856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74932df3e79c946469c896e470e3a0df, type: 3}
+  m_Name: IsAtGOSwitch_target
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: {x: 0, y: -2, z: 0}
+  referenceValue: {fileID: 0}
 --- !u!114 &-4431822153626344373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,7 +556,7 @@ MonoBehaviour:
   m_Name: Door Event Raiser
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -600, y: -120}
+  position: {x: -344, y: 104}
   ports:
     keys:
     - ' '
@@ -369,6 +570,27 @@ MonoBehaviour:
       connections:
       - fieldName: 
         node: {fileID: 2437053536048879019}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -883654243155384746}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 2437053536048879019}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7935331788148662356}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7935331788148662356}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7935331788148662356}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7935331788148662356}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7935331788148662356}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -412,6 +634,92 @@ MonoBehaviour:
   isConstant: 1
   constantValue: {x: -12, y: -4, z: 0}
   referenceValue: {fileID: 0}
+--- !u!114 &-3181637703282129132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f73e5c005b2c6ee4a929080332770ff6, type: 3}
+  m_Name: IsAtROSwitch
+  m_EditorClassIdentifier: 
+  value: {fileID: 5530612147137689362}
+  condition: 0
+  useArgument: 1
+  target: {fileID: -2237954692774433618}
+--- !u!114 &-2501972512711239788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25f09c6a45a7902459ba71a199952074, type: 3}
+  m_Name: Door Event Raiser
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -792, y: -200}
+  ports:
+    keys:
+    - ' '
+    - 
+    - argument
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -2501972512711239788}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: IsAtROSwitch
+        node: {fileID: -6311685501640384691}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -2501972512711239788}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 5588882581862636979}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: argument
+      _node: {fileID: -2501972512711239788}
+      _typeQualifiedName: Robbi.Levels.Elements.Door, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  argument: {fileID: 11400000, guid: cf8014afdc7271f459aa1b820d400712, type: 2}
+  toRaise: {fileID: 11400000, guid: d81432fd2c610fe42bfcd460d451945e, type: 2}
+--- !u!114 &-2237954692774433618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74932df3e79c946469c896e470e3a0df, type: 3}
+  m_Name: IsAtROSwitch_target
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: {x: 0, y: -2, z: 0}
+  referenceValue: {fileID: 0}
 --- !u!114 &-1719596807618615537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,6 +735,79 @@ MonoBehaviour:
   isConstant: 1
   constantValue: {x: -7, y: -4, z: 0}
   referenceValue: {fileID: 0}
+--- !u!114 &-883654243155384746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25f09c6a45a7902459ba71a199952074, type: 3}
+  m_Name: Door Event Raiser
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -568, y: 440}
+  ports:
+    keys:
+    - ' '
+    - 
+    - argument
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -883654243155384746}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: 2437053536048879019}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4466856284833468820}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4466856284833468820}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4466856284833468820}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4466856284833468820}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4466856284833468820}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4466856284833468820}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -883654243155384746}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -7695898374415669709}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: argument
+      _node: {fileID: -883654243155384746}
+      _typeQualifiedName: Robbi.Levels.Elements.Door, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  argument: {fileID: 11400000, guid: b0c42b0b81135b145aa4754df8524b47, type: 2}
+  toRaise: {fileID: 11400000, guid: d81432fd2c610fe42bfcd460d451945e, type: 2}
 --- !u!114 &-834028168283828324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,6 +847,14 @@ MonoBehaviour:
   - {fileID: -6162862772789201648}
   - {fileID: -4431822153626344373}
   - {fileID: 2437053536048879019}
+  - {fileID: 7492195715518595472}
+  - {fileID: -883654243155384746}
+  - {fileID: -2501972512711239788}
+  - {fileID: 5588882581862636979}
+  - {fileID: 5929434149541290268}
+  - {fileID: 7935331788148662356}
+  - {fileID: -8781642307630875191}
+  - {fileID: 7676323328415429100}
   - {fileID: 0}
   startNode: {fileID: 4022612246313386551}
   parameters:
@@ -477,6 +866,10 @@ MonoBehaviour:
   - {fileID: 3517697635355489299}
   - {fileID: 2008507751239569886}
   - {fileID: -7899655409310137449}
+  - {fileID: 6987420629324869859}
+  - {fileID: -4940405686113855856}
+  - {fileID: 5530612147137689362}
+  - {fileID: -2237954692774433618}
 --- !u!114 &2008507751239569886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,7 +898,7 @@ MonoBehaviour:
   m_Name: Door Event Raiser
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -824, y: -120}
+  position: {x: -792, y: 104}
   ports:
     keys:
     - ' '
@@ -536,7 +929,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: -4431822153626344373}
+        node: {fileID: 7935331788148662356}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -566,7 +959,7 @@ MonoBehaviour:
   m_Name: IsAtGORCSwitch_target
   m_EditorClassIdentifier: 
   isConstant: 1
-  constantValue: {x: 0, y: 0, z: 0}
+  constantValue: {x: 0, y: -2, z: 0}
   referenceValue: {fileID: 0}
 --- !u!114 &3517697635355489299
 MonoBehaviour:
@@ -581,7 +974,7 @@ MonoBehaviour:
   m_Name: IsAtRCGrayOSwitch_target
   m_EditorClassIdentifier: 
   isConstant: 1
-  constantValue: {x: 0, y: 0, z: 0}
+  constantValue: {x: 0, y: -2, z: 0}
   referenceValue: {fileID: 0}
 --- !u!114 &3572709646497294684
 MonoBehaviour:
@@ -596,7 +989,7 @@ MonoBehaviour:
   m_Name: Door Event Raiser
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -600, y: 24}
+  position: {x: -568, y: 264}
   ports:
     keys:
     - ' '
@@ -611,6 +1004,27 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -6162862772789201648}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6162862772789201648}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6162862772789201648}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6162862772789201648}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6162862772789201648}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6162862772789201648}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6162862772789201648}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6162862772789201648}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -621,7 +1035,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: 4022612246313386551}
+        node: {fileID: 5929434149541290268}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -724,6 +1138,129 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 3572709646497294684}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6311685501640384691}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6737855260705990993}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7695898374415669709}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3572709646497294684}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -4431822153626344373}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7492195715518595472}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6311685501640384691}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6737855260705990993}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7695898374415669709}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3572709646497294684}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -4431822153626344373}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7492195715518595472}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6311685501640384691}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -4431822153626344373}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7492195715518595472}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5929434149541290268}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -8781642307630875191}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7676323328415429100}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6311685501640384691}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -4431822153626344373}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7492195715518595472}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5929434149541290268}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -8781642307630875191}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7676323328415429100}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6311685501640384691}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -4431822153626344373}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7492195715518595472}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5929434149541290268}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7676323328415429100}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6311685501640384691}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -4431822153626344373}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7492195715518595472}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5929434149541290268}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7676323328415429100}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6311685501640384691}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -4431822153626344373}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7492195715518595472}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5929434149541290268}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -8781642307630875191}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7676323328415429100}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5588882581862636979}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -752,7 +1289,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  argument: {x: -1, y: 5, z: 0}
+  argument: {x: 0, y: -2, z: 0}
   listenFor: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
 --- !u!114 &4087944155788788390
 MonoBehaviour:
@@ -783,7 +1320,7 @@ MonoBehaviour:
   m_Name: Door Event Raiser
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -824, y: 168}
+  position: {x: -792, y: 440}
   ports:
     keys:
     - ' '
@@ -808,7 +1345,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: -7695898374415669709}
+        node: {fileID: -883654243155384746}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -838,7 +1375,22 @@ MonoBehaviour:
   m_Name: IsAtROBCSwitch_target
   m_EditorClassIdentifier: 
   isConstant: 1
-  constantValue: {x: 0, y: 0, z: 0}
+  constantValue: {x: 0, y: -2, z: 0}
+  referenceValue: {fileID: 0}
+--- !u!114 &5530612147137689362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74932df3e79c946469c896e470e3a0df, type: 3}
+  m_Name: IsAtROSwitch_value
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: {x: -12, y: 3, z: 0}
   referenceValue: {fileID: 0}
 --- !u!114 &5553622771675845726
 MonoBehaviour:
@@ -853,7 +1405,7 @@ MonoBehaviour:
   m_Name: Door Event Raiser
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -824, y: 312}
+  position: {x: -824, y: 616}
   ports:
     keys:
     - ' '
@@ -895,6 +1447,277 @@ MonoBehaviour:
       _dynamic: 0
   argument: {fileID: 11400000, guid: e6624eb27d734514d9e06858cdc8c504, type: 2}
   toRaise: {fileID: 11400000, guid: d81432fd2c610fe42bfcd460d451945e, type: 2}
+--- !u!114 &5588882581862636979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25f09c6a45a7902459ba71a199952074, type: 3}
+  m_Name: Door Event Raiser
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -568, y: -200}
+  ports:
+    keys:
+    - ' '
+    - 
+    - argument
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 5588882581862636979}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: -2501972512711239788}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2501972512711239788}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2501972512711239788}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2501972512711239788}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2501972512711239788}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 5588882581862636979}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 4022612246313386551}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: argument
+      _node: {fileID: 5588882581862636979}
+      _typeQualifiedName: Robbi.Levels.Elements.Door, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  argument: {fileID: 11400000, guid: b0c42b0b81135b145aa4754df8524b47, type: 2}
+  toRaise: {fileID: 11400000, guid: d81432fd2c610fe42bfcd460d451945e, type: 2}
+--- !u!114 &5929434149541290268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25f09c6a45a7902459ba71a199952074, type: 3}
+  m_Name: Door Event Raiser
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -344, y: 264}
+  ports:
+    keys:
+    - ' '
+    - 
+    - argument
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 5929434149541290268}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: 3572709646497294684}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3572709646497294684}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3572709646497294684}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3572709646497294684}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3572709646497294684}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 5929434149541290268}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 4022612246313386551}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: argument
+      _node: {fileID: 5929434149541290268}
+      _typeQualifiedName: Robbi.Levels.Elements.Door, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  argument: {fileID: 11400000, guid: b0c42b0b81135b145aa4754df8524b47, type: 2}
+  toRaise: {fileID: 11400000, guid: cbeb0b6fbbf91f14b9cb44b5e98656f5, type: 2}
+--- !u!114 &6987420629324869859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74932df3e79c946469c896e470e3a0df, type: 3}
+  m_Name: IsAtGOSwitch_value
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: {x: 2, y: 3, z: 0}
+  referenceValue: {fileID: 0}
+--- !u!114 &7492195715518595472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25f09c6a45a7902459ba71a199952074, type: 3}
+  m_Name: Door Event Raiser
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -792, y: -40}
+  ports:
+    keys:
+    - ' '
+    - 
+    - argument
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 7492195715518595472}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: IsAtGOSwitch
+        node: {fileID: -6311685501640384691}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 7492195715518595472}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 4022612246313386551}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: argument
+      _node: {fileID: 7492195715518595472}
+      _typeQualifiedName: Robbi.Levels.Elements.Door, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  argument: {fileID: 11400000, guid: e6624eb27d734514d9e06858cdc8c504, type: 2}
+  toRaise: {fileID: 11400000, guid: d81432fd2c610fe42bfcd460d451945e, type: 2}
+--- !u!114 &7676323328415429100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25f09c6a45a7902459ba71a199952074, type: 3}
+  m_Name: Door Event Raiser
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -120, y: 440}
+  ports:
+    keys:
+    - ' '
+    - 
+    - argument
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 7676323328415429100}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: -7695898374415669709}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7695898374415669709}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7695898374415669709}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7695898374415669709}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7695898374415669709}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 7676323328415429100}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 4022612246313386551}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: argument
+      _node: {fileID: 7676323328415429100}
+      _typeQualifiedName: Robbi.Levels.Elements.Door, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  argument: {fileID: 11400000, guid: d240d1b9c2eb52c489fcc748011af1cc, type: 2}
+  toRaise: {fileID: 11400000, guid: cbeb0b6fbbf91f14b9cb44b5e98656f5, type: 2}
 --- !u!114 &7727802750880501955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -911,3 +1734,70 @@ MonoBehaviour:
   condition: 0
   useArgument: 1
   target: {fileID: 4547707510442439916}
+--- !u!114 &7935331788148662356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25f09c6a45a7902459ba71a199952074, type: 3}
+  m_Name: Door Event Raiser
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -568, y: 104}
+  ports:
+    keys:
+    - ' '
+    - 
+    - argument
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 7935331788148662356}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: 2437053536048879019}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 2437053536048879019}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 2437053536048879019}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 2437053536048879019}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 2437053536048879019}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 7935331788148662356}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -4431822153626344373}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: argument
+      _node: {fileID: 7935331788148662356}
+      _typeQualifiedName: Robbi.Levels.Elements.Door, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  argument: {fileID: 11400000, guid: d240d1b9c2eb52c489fcc748011af1cc, type: 2}
+  toRaise: {fileID: 11400000, guid: d81432fd2c610fe42bfcd460d451945e, type: 2}
