@@ -3,6 +3,7 @@ using Robbi.Debugging.Logging;
 using Robbi.Events;
 using Robbi.Levels;
 using Robbi.Movement;
+using Robbi.Testing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,8 @@ namespace Robbi.Debugging.Commands
             RegisterCommand<ConsoleMovementManager>("mm");
             RegisterCommand<ConsoleHudLogger>("hlog");
             RegisterCommand<ConsoleApplication>("app");
+            RegisterCommand<ConsoleIntegrationTest>("it");
+            RegisterCommand<ConsoleCurrentLevelIntegrationTest>("clit");
         }
 
         private void RegisterCommand<T>(string name) where T : IDebugCommand, new()
