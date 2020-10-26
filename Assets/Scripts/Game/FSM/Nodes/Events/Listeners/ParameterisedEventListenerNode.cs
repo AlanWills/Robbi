@@ -61,6 +61,7 @@ namespace Robbi.FSM.Nodes.Events
 
         public void OnEventRaised(T argument)
         {
+            Debug.LogFormat("Event {0} raised with argument {1} in {2} in FSM {3}", listenFor.name, argument, name, graph.name);
             eventRaised = true;
             this.argument = argument;
         }

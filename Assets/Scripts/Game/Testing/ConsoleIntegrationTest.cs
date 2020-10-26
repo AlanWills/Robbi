@@ -1,5 +1,6 @@
 ﻿using Robbi.Debugging.Commands;
 using Robbi.Debugging.Logging;
+using Robbi.FSM;
 using Robbi.Levels;
 using System;
 using System.Collections.Generic;
@@ -23,18 +24,38 @@ namespace Robbi.Testing
             }
 
             // Wait for the integration test to load
-            AsyncOperationHandle<GameObject> integrationTest = Addressables.InstantiateAsync(parameters[0]);
-            integrationTest.Completed += IntegrationTest_Completed;
+            AsyncOperationHandle<GameObject> integrationTest = Addressables.InstantiateAsync("Assets/Prefabs/Testing/IntegrationTest.prefab");
+            integrationTest.Completed += (AsyncOperationHandle<GameObject> obj) =>
+            {
+                if (obj.Result == null)
+                {
+                    HudLogger.LogError("Failed to load integration test");
+                    Debug.LogError("Failed to load integration test");
+                }
+                else
+                {
+                    AsyncOperationHandle<FSMGraph> integrationTestFSM = Addressables.LoadAssetAsync<FSMGraph>(parameters[0]);
+                    integrationTestFSM.Completed += (AsyncOperationHandle<FSMGraph> fsmObj) =>
+                    {
+                        if (fsmObj.Result == null)
+                        {
+                            HudLogger.LogError("Failed to load integration test fsm");
+                            Debug.LogError("Failed to load integration test fsm");
+                        }
+                        else
+                        {
+                            obj.Result.name = fsmObj.Result.name;
+                            GameObject.DontDestroyOnLoad(obj.Result);
+
+                            FSMRuntime fsmRuntime = obj.Result.GetComponent<FSMRuntime>();
+                            fsmRuntime.graph = fsmObj.Result;
+                            fsmRuntime.Start();
+                        }
+                    };
+                }
+            };
             
             return true;
-        }
-
-        private void IntegrationTest_Completed(AsyncOperationHandle<GameObject> obj)
-        {
-            if (obj.Result == null)
-            {
-                HudLogger.LogError("Failed to run integration test");
-            }
         }
     }
 }

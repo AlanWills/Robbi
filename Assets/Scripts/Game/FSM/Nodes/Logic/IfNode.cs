@@ -129,13 +129,13 @@ namespace Robbi.FSM.Nodes.Logic
             {
                 if (condition.Check(_argument))
                 {
-                    Debug.LogFormat("If Node condition {0} passed with argument {1}", condition.name, _argument != null ? _argument : "null");
+                    Debug.LogFormat("If Node condition {0} passed with argument {1} in FSM {2}", condition.name, _argument != null ? _argument : "null", graph.name);
                     return GetConnectedNode(condition.name);
                 }
             }
 
             // Fall back to else port
-            Debug.LogFormat("If Node no conditions passed with argument {0}", _argument != null ? _argument : "null");
+            Debug.LogFormat("If Node no conditions passed with argument {0} in FSM {1}", _argument != null ? _argument : "null", graph.name);
             return base.OnUpdate();
         }
 

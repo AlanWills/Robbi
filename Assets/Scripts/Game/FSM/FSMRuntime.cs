@@ -16,14 +16,17 @@ namespace Robbi.FSM
 
         public FSMNode CurrentNode { get; private set; }
 
-        private FSMNode nodeToTransitionTo;
-
         #endregion
 
         #region Unity Methods
 
-        private void Start()
+        public void Start()
         {
+            if (graph == null)
+            {
+                return;
+            }
+
             Debug.Assert(graph.nodes.Count == 0 || graph.startNode != null, "FSMRuntime graph contains nodes, but no start node so will be disabled.");
             CurrentNode = graph.startNode;
 

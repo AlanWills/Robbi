@@ -17,6 +17,7 @@ namespace RobbiEditor.FSM.Nodes.Events.Conditions
         public static Type[] EventOptions = new Type[]
         {
             typeof(VoidEventCondition),
+            typeof(StringEventCondition),
             typeof(Vector3IntEventCondition),
             typeof(DoorEventCondition),
         };
@@ -24,6 +25,7 @@ namespace RobbiEditor.FSM.Nodes.Events.Conditions
         public static string[] EventDisplayNames = new string[]
         {
             "Void",
+            "String",
             "Vector3Int",
             "Door",
         };
@@ -31,6 +33,7 @@ namespace RobbiEditor.FSM.Nodes.Events.Conditions
         public static Dictionary<Type, EventConditionEditor> EventConditionEditorFactory = new Dictionary<Type, EventConditionEditor>()
         {
             { typeof(VoidEventCondition), new EventConditionEditor() },
+            { typeof(StringEventCondition), new EventConditionEditor() },
             { typeof(Vector3IntEventCondition), new EventConditionEditor() },
             { typeof(DoorEventCondition), new EventConditionEditor() },
         };

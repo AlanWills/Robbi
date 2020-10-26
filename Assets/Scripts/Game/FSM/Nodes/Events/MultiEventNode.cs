@@ -100,9 +100,10 @@ namespace Robbi.FSM.Nodes.Events
 #endif
         }
 
-        public void AddEventConditionPort(string name)
+        public NodePort AddEventConditionPort(string name)
         {
             AddOutputPort(name);
+            return GetOutputPort(name);
         }
 
         public void SwapEvents(uint firstIndex, uint secondIndex)

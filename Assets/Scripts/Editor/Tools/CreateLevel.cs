@@ -43,7 +43,7 @@ namespace RobbiEditor.Tools
         public GameObject tutorialPrefabToCopy;
     }
 
-    public class CreateLevelWizard : ScriptableWizard
+    public class CreateLevel : ScriptableWizard
     {
         #region Properties and Fields
 
@@ -338,10 +338,10 @@ namespace RobbiEditor.Tools
 
         #region Menu Item
 
-        [MenuItem("Robbi/Tools/Create Level Wizard")]
+        [MenuItem("Robbi/Tools/Create Level")]
         public static void ShowCreateLevelWizard()
         {
-            ScriptableWizard.DisplayWizard<CreateLevelWizard>("Create Level Wizard", "Create All", "Close");
+            ScriptableWizard.DisplayWizard<CreateLevel>("Create Level", "Create All", "Close");
         }
 
         #endregion

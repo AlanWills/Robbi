@@ -10,5 +10,6 @@ namespace RobbiEditor.Constants
     {
         public static string BOOTSTRAP_GROUP = "bootstrap";
         public static string LEVELS_GROUP = "levels";
+        public static string TESTS_GROUP = "tests";
     }
 }

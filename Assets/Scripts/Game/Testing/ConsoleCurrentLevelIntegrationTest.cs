@@ -14,24 +14,13 @@ namespace Robbi.Testing
 {
     public class ConsoleCurrentLevelIntegrationTest : IDebugCommand
     {
+        private ConsoleIntegrationTest consoleIntegrationTest = new ConsoleIntegrationTest();
+
         public bool Execute(List<string> parameters, StringBuilder output)
         {
             LevelManager levelManager = LevelManager.Load();
-            string automatedTestName = string.Format("Level{0}AutomatedTest", levelManager.CurrentLevelIndex);
-
-            // Wait for the integration test to load
-            AsyncOperationHandle<GameObject> integrationTest = Addressables.InstantiateAsync(automatedTestName);
-            integrationTest.Completed += IntegrationTest_Completed;
-
-            return true;
-        }
-
-        private void IntegrationTest_Completed(AsyncOperationHandle<GameObject> obj)
-        {
-            if (obj.Result == null)
-            {
-                HudLogger.LogError("Failed to run level integration test");
-            }
+            parameters.Add(string.Format("Level{0}IntegrationTest", levelManager.CurrentLevelIndex));
+            return consoleIntegrationTest.Execute(parameters, output);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Robbi.Movement
     {
         #region Waypoint
 
-        private class Waypoint
+        public class Waypoint
         {
             public Vector3Int gridPosition;
             public GameObject destinationMarkerInstance;
@@ -45,6 +45,11 @@ namespace Robbi.Movement
             {
                 movementTilemap.GetComponent<TilemapRenderer>().enabled = value;
             }
+        }
+
+        public int NumWaypoints
+        {
+            get { return waypoints.Count; }
         }
 
         [Header("Tilemaps")]
@@ -382,6 +387,15 @@ namespace Robbi.Movement
             }
         }
 
-#endregion
+        #endregion
+
+        #region Waypoint Access
+
+        public Waypoint GetWaypoint(int waypointIndex)
+        {
+            return 0 <= waypointIndex && waypointIndex < NumWaypoints ? waypoints[waypointIndex] : null;
+        }
+
+        #endregion
     }
 }
