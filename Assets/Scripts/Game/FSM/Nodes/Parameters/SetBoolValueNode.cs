@@ -12,5 +12,15 @@ namespace Robbi.FSM.Nodes.Parameters
     [NodeWidth(250)]
     public class SetBoolValueNode : SetValueNode<bool, BoolValue, BoolReference>
     {
+        #region FSM Runtime
+
+        protected override void OnEnter()
+        {
+            base.OnEnter();
+
+            value.value = newValue.Value;
+        }
+
+        #endregion
     }
 }

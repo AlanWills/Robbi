@@ -12,5 +12,21 @@ namespace Robbi.FSM.Nodes.Parameters
     [NodeWidth(250)]
     public class SetStringValueNode : SetValueNode<string, StringValue, StringReference>
     {
+        #region Properties and Fields
+
+        public SetMode setMode = SetMode.Absolute;
+
+        #endregion
+
+        #region FSM Runtime
+
+        protected override void OnEnter()
+        {
+            base.OnEnter();
+
+            value.value = setMode == SetMode.Absolute ? newValue.Value : value.value + newValue.Value;
+        }
+
+        #endregion
     }
 }

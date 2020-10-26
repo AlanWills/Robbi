@@ -8,6 +8,12 @@ using UnityEngine;
 
 namespace Robbi.FSM.Nodes.Parameters
 {
+    public enum SetMode
+    {
+        Absolute,
+        Delta
+    }
+
     [Serializable]
     public abstract class SetValueNode<T, TValue, TReference> : FSMNode
         where TValue : ParameterValue<T>
@@ -57,7 +63,6 @@ namespace Robbi.FSM.Nodes.Parameters
 
             Debug.AssertFormat(value != null, "Value is null in SetValueNode ({0})", graph.name);
             Debug.AssertFormat(newValue != null, "New Value is null in SetValueNode ({0})", graph.name);
-            value.value = newValue.Value;
         }
 
         #endregion

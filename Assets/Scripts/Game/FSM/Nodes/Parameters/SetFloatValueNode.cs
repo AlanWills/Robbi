@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace Robbi.FSM.Nodes.Parameters
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Parameters/Set Int Value")]
+    [CreateNodeMenu("Robbi/Parameters/Set Float Value")]
     [NodeWidth(250)]
-    public class SetIntValueNode : SetValueNode<int, IntValue, IntReference>
+    public class SetFloatValueNode : SetValueNode<float, FloatValue, FloatReference>
     {
         #region Properties and Fields
 

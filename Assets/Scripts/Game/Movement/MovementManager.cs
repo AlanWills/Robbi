@@ -71,7 +71,8 @@ namespace Robbi.Movement
 
         [Header("Other")]
         public GameObjectAllocator destinationMarkerAllocator;
-        public float speed = 1;
+        public float startingMovementSpeed = 4;
+        public FloatValue movementSpeed;
 
         private Grid grid;
         private List<Waypoint> waypoints = new List<Waypoint>();
@@ -93,6 +94,7 @@ namespace Robbi.Movement
             grid = movementTilemap.layoutGrid;
             waypointsPlaced.value = 0;
             isProgramRunning.value = false;
+            movementSpeed.value = startingMovementSpeed;
         }
 
         private void Update()
@@ -104,7 +106,7 @@ namespace Robbi.Movement
                     // We are moving towards our next waypoint along the steps
                     Vector3 playerLocalPos = playerLocalPosition.value;
                     Vector3 nextStepPosition = stepsToNextWaypoint.Peek();
-                    Vector3 newPosition = Vector3.MoveTowards(playerLocalPos, nextStepPosition, speed * Time.deltaTime);
+                    Vector3 newPosition = Vector3.MoveTowards(playerLocalPos, nextStepPosition, movementSpeed.value * Time.deltaTime);
 
                     Vector3Int movedFrom = new Vector3Int(Mathf.RoundToInt(playerLocalPos.x - 0.5f), Mathf.RoundToInt(playerLocalPos.y - 0.5f), Mathf.RoundToInt(playerLocalPos.z));
                     Vector3Int movedTo = new Vector3Int(Mathf.RoundToInt(newPosition.x - 0.5f), Mathf.RoundToInt(newPosition.y - 0.5f), Mathf.RoundToInt(newPosition.z));
@@ -394,6 +396,15 @@ namespace Robbi.Movement
         public Waypoint GetWaypoint(int waypointIndex)
         {
             return 0 <= waypointIndex && waypointIndex < NumWaypoints ? waypoints[waypointIndex] : null;
+        }
+
+        #endregion
+
+        #region Speed
+
+        public void DoubleSpeed()
+        {
+
         }
 
         #endregion
