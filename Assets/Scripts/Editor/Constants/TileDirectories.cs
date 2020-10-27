@@ -8,7 +8,7 @@ namespace RobbiEditor.Constants
 {
     public static class TileDirectories
     {
-        public const string TILES_FULL_PATH = "Assets/Tiles";
-        public const string DOOR_TILES_FULL_PATH = TILES_FULL_PATH + "/Doors";
+        public const string TILES_FULL_PATH = "Assets/Tiles/";
+        public const string DOOR_TILES_FULL_PATH = TILES_FULL_PATH + "Doors/";
     }
 }

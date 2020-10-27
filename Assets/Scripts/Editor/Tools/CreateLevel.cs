@@ -60,20 +60,20 @@ namespace RobbiEditor.Tools
         private LevelInfo levelInfo;
         private SerializedObject levelInfoObject;
 
-        private static Dictionary<DoorColour, string> horizontalDoorPrefabs = new Dictionary<DoorColour, string>()
+        private static Dictionary<DoorColour, Tuple<string, string, string>> horizontalTiles = new Dictionary<DoorColour, Tuple<string, string, string>>()
         {
-            { DoorColour.Green, TileFiles.HORIZONTAL_GREEN_CLOSED_DOOR_TILE },
-            { DoorColour.Red, TileFiles.HORIZONTAL_RED_CLOSED_DOOR_TILE },
-            { DoorColour.Blue, TileFiles.HORIZONTAL_BLUE_CLOSED_DOOR_TILE },
-            { DoorColour.Grey, TileFiles.HORIZONTAL_GREY_CLOSED_DOOR_TILE },
+            { DoorColour.Green, TileFiles.HORIZONTAL_BLUE_DOOR },
+            { DoorColour.Red, TileFiles.HORIZONTAL_RED_DOOR },
+            { DoorColour.Blue, TileFiles.HORIZONTAL_BLUE_DOOR },
+            { DoorColour.Grey, TileFiles.HORIZONTAL_GREY_DOOR },
         };
 
-        private static Dictionary<DoorColour, string> verticalDoorPrefabs = new Dictionary<DoorColour, string>()
+        private static Dictionary<DoorColour, Tuple<string, string, string>> verticalTiles = new Dictionary<DoorColour, Tuple<string, string, string>>()
         {
-            { DoorColour.Green, TileFiles.VERTICAL_GREEN_CLOSED_DOOR_TILE },
-            { DoorColour.Red, TileFiles.VERTICAL_RED_CLOSED_DOOR_TILE },
-            { DoorColour.Blue, TileFiles.VERTICAL_BLUE_CLOSED_DOOR_TILE },
-            { DoorColour.Grey, TileFiles.VERTICAL_GREY_CLOSED_DOOR_TILE },
+            { DoorColour.Green, TileFiles.HORIZONTAL_GREEN_DOOR },
+            { DoorColour.Red, TileFiles.HORIZONTAL_RED_DOOR },
+            { DoorColour.Blue, TileFiles.HORIZONTAL_BLUE_DOOR },
+            { DoorColour.Grey, TileFiles.HORIZONTAL_GREY_DOOR },
         };
 
         private static Dictionary<InteractableMarker, string> markerPrefabs = new Dictionary<InteractableMarker, string>()
@@ -242,12 +242,14 @@ namespace RobbiEditor.Tools
         {
             foreach (DoorColour doorColour in levelInfo.horizontalDoors)
             {
-                DoorEditor.CreateHorizontalDoor(string.Format("Level{0}{1}Door", levelInfo.levelIndex, doorColour), LevelFolderFullPath, horizontalDoorPrefabs[doorColour]);
+                Tuple<string, string, string> tiles = horizontalTiles[doorColour];
+                DoorEditor.CreateDoor(string.Format("Level{0}Horizontal{1}Door", levelInfo.levelIndex, doorColour), LevelFolderFullPath, Direction.Horizontal, tiles.Item1, tiles.Item2, tiles.Item3);
             }
 
             foreach (DoorColour doorColour in levelInfo.verticalDoors)
             {
-                DoorEditor.CreateVerticalDoor(string.Format("Level{0}{1}Door", levelInfo.levelIndex, doorColour), LevelFolderFullPath, verticalDoorPrefabs[doorColour]);
+                Tuple<string, string, string> tiles = verticalTiles[doorColour];
+                DoorEditor.CreateDoor(string.Format("Level{0}Vertical{1}Door", levelInfo.levelIndex, doorColour), LevelFolderFullPath, Direction.Vertical, tiles.Item1, tiles.Item2, tiles.Item3);
             }
         }
 

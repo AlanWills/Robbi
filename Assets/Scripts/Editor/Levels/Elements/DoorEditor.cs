@@ -21,54 +21,165 @@ namespace RobbiEditor.Levels.Elements
         [MenuItem("Assets/Create/Robbi/Horizontal Doors/Green")]
         public static void CreateHorizontalGreenDoor()
         {
-            CreateHorizontalDoor("Door", GetSelectionObjectPath(), TileFiles.HORIZONTAL_GREEN_CLOSED_DOOR_TILE);
+            CreateDoor("Door", GetSelectionObjectPath(), Direction.Horizontal,
+                TileFiles.HORIZONTAL_GREEN_CLOSED_DOOR_TILE,
+                TileFiles.HORIZONTAL_GREEN_OPEN_DOOR_LEFT_TILE,
+                TileFiles.HORIZONTAL_GREEN_OPEN_DOOR_LEFT_TILE);
         }
 
         [MenuItem("Assets/Create/Robbi/Horizontal Doors/Red")]
         public static void CreateHorizontalRedDoor()
         {
-            CreateHorizontalDoor("Door", GetSelectionObjectPath(), TileFiles.HORIZONTAL_RED_CLOSED_DOOR_TILE);
+            CreateDoor("Door", GetSelectionObjectPath(), Direction.Horizontal,
+                TileFiles.HORIZONTAL_RED_CLOSED_DOOR_TILE,
+                TileFiles.HORIZONTAL_RED_OPEN_DOOR_LEFT_TILE,
+                TileFiles.HORIZONTAL_RED_OPEN_DOOR_LEFT_TILE);
         }
 
         [MenuItem("Assets/Create/Robbi/Horizontal Doors/Blue")]
         public static void CreateHorizontalBlueDoor()
         {
-            CreateHorizontalDoor("Door", GetSelectionObjectPath(), TileFiles.HORIZONTAL_BLUE_CLOSED_DOOR_TILE);
+            CreateDoor("Door", GetSelectionObjectPath(), Direction.Horizontal,
+                TileFiles.HORIZONTAL_BLUE_CLOSED_DOOR_TILE,
+                TileFiles.HORIZONTAL_BLUE_OPEN_DOOR_LEFT_TILE,
+                TileFiles.HORIZONTAL_BLUE_OPEN_DOOR_LEFT_TILE);
+        }
+
+        [MenuItem("Assets/Create/Robbi/Horizontal Doors/Grey")]
+        public static void CreateHorizontalGreyDoor()
+        {
+            CreateDoor("Door", GetSelectionObjectPath(), Direction.Horizontal,
+                TileFiles.HORIZONTAL_GREY_CLOSED_DOOR_TILE,
+                TileFiles.HORIZONTAL_GREY_OPEN_DOOR_LEFT_TILE,
+                TileFiles.HORIZONTAL_GREY_OPEN_DOOR_LEFT_TILE);
         }
 
         [MenuItem("Assets/Create/Robbi/Vertical Doors/Green")]
         public static void CreateVerticalGreenDoor()
         {
-            CreateVerticalDoor("Door", GetSelectionObjectPath(), TileFiles.VERTICAL_GREEN_CLOSED_DOOR_TILE);
+            CreateDoor("Door", GetSelectionObjectPath(), Direction.Vertical,
+                TileFiles.VERTICAL_GREEN_CLOSED_DOOR_TILE,
+                TileFiles.VERTICAL_GREEN_OPEN_DOOR_LEFT_TILE,
+                TileFiles.VERTICAL_GREEN_OPEN_DOOR_LEFT_TILE);
         }
 
         [MenuItem("Assets/Create/Robbi/Vertical Doors/Red")]
         public static void CreateVerticalRedDoor()
         {
-            CreateVerticalDoor("Door", GetSelectionObjectPath(), TileFiles.VERTICAL_RED_CLOSED_DOOR_TILE);
+            CreateDoor("Door", GetSelectionObjectPath(), Direction.Vertical,
+                TileFiles.VERTICAL_RED_CLOSED_DOOR_TILE,
+                TileFiles.VERTICAL_RED_OPEN_DOOR_LEFT_TILE,
+                TileFiles.VERTICAL_RED_OPEN_DOOR_LEFT_TILE);
         }
 
         [MenuItem("Assets/Create/Robbi/Vertical Doors/Blue")]
         public static void CreateVerticalBlueDoor()
         {
-            CreateVerticalDoor("Door", GetSelectionObjectPath(), TileFiles.VERTICAL_BLUE_CLOSED_DOOR_TILE);
+            CreateDoor("Door", GetSelectionObjectPath(), Direction.Vertical,
+                TileFiles.VERTICAL_BLUE_CLOSED_DOOR_TILE,
+                TileFiles.VERTICAL_BLUE_OPEN_DOOR_LEFT_TILE,
+                TileFiles.VERTICAL_BLUE_OPEN_DOOR_LEFT_TILE);
+        }
+
+        [MenuItem("Assets/Create/Robbi/Vertical Doors/Grey")]
+        public static void CreateVerticalGreyDoor()
+        {
+            CreateDoor("Door", GetSelectionObjectPath(), Direction.Vertical,
+                TileFiles.VERTICAL_GREY_CLOSED_DOOR_TILE,
+                TileFiles.VERTICAL_GREY_OPEN_DOOR_LEFT_TILE,
+                TileFiles.VERTICAL_GREY_OPEN_DOOR_LEFT_TILE);
+        }
+
+        [MenuItem("Robbi/Migrate Doors")]
+        public static void MigrateHorizontalDoors()
+        {
+            foreach (string doorGuid in AssetDatabase.FindAssets("t:Door"))
+            {
+                string doorPath = AssetDatabase.GUIDToAssetPath(doorGuid);
+                Door door = AssetDatabase.LoadAssetAtPath<Door>(doorPath);
+
+                if (door.direction == Direction.Horizontal)
+                {
+                    string closedTilePath = AssetDatabase.GetAssetPath(door.closedTile);
+
+                    if (closedTilePath == TileFiles.HORIZONTAL_GREEN_CLOSED_DOOR_TILE)
+                    {
+                        door.leftOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_GREEN_OPEN_DOOR_LEFT_TILE);
+                        door.rightOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_GREEN_OPEN_DOOR_RIGHT_TILE);
+                        Debug.Assert(door.leftOpenTile, "Could not find green horizontal door left tile");
+                        Debug.Assert(door.rightOpenTile, "Could not find green horizontal door right tile");
+                    }
+                    else if (closedTilePath == TileFiles.HORIZONTAL_RED_CLOSED_DOOR_TILE)
+                    {
+                        door.leftOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_RED_OPEN_DOOR_LEFT_TILE);
+                        door.rightOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_RED_OPEN_DOOR_RIGHT_TILE);
+                        Debug.Assert(door.leftOpenTile, "Could not find red horizontal door left tile");
+                        Debug.Assert(door.rightOpenTile, "Could not find red horizontal door right tile");
+                    }
+                    else if (closedTilePath == TileFiles.HORIZONTAL_BLUE_CLOSED_DOOR_TILE)
+                    {
+                        door.leftOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_BLUE_OPEN_DOOR_LEFT_TILE);
+                        door.rightOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_BLUE_OPEN_DOOR_RIGHT_TILE);
+                        Debug.Assert(door.leftOpenTile, "Could not find blue horizontal door left tile");
+                        Debug.Assert(door.rightOpenTile, "Could not find blue horizontal door right tile");
+                    }
+                    else if (closedTilePath == TileFiles.HORIZONTAL_GREY_CLOSED_DOOR_TILE)
+                    {
+                        door.leftOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_GREY_OPEN_DOOR_LEFT_TILE);
+                        door.rightOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_GREY_OPEN_DOOR_RIGHT_TILE);
+                        Debug.Assert(door.leftOpenTile, "Could not find grey horizontal door left tile");
+                        Debug.Assert(door.rightOpenTile, "Could not find grey horizontal door right tile");
+                    }
+                    else
+                    {
+                        Debug.LogAssertionFormat("Could not find closed tile for {0}", doorPath);
+                    }
+                }
+                else if (door.direction == Direction.Vertical)
+                {
+                    string assetPath = AssetDatabase.GetAssetPath(door.closedTile);
+
+                    if (assetPath == TileFiles.VERTICAL_GREEN_CLOSED_DOOR_TILE)
+                    {
+                        door.leftOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_GREEN_OPEN_DOOR_LEFT_TILE);
+                        door.rightOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_GREEN_OPEN_DOOR_RIGHT_TILE);
+                        Debug.Assert(door.leftOpenTile, "Could not find green vertical door left tile");
+                        Debug.Assert(door.rightOpenTile, "Could not find green vertical door right tile");
+                    }
+                    else if (assetPath == TileFiles.VERTICAL_RED_CLOSED_DOOR_TILE)
+                    {
+                        door.leftOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_RED_OPEN_DOOR_LEFT_TILE);
+                        door.rightOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_RED_OPEN_DOOR_RIGHT_TILE);
+                        Debug.Assert(door.leftOpenTile, "Could not find red vertical door left tile");
+                        Debug.Assert(door.rightOpenTile, "Could not find red vertical door right tile");
+                    }
+                    else if (assetPath == TileFiles.VERTICAL_BLUE_CLOSED_DOOR_TILE)
+                    {
+                        door.leftOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_BLUE_OPEN_DOOR_LEFT_TILE);
+                        door.rightOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_BLUE_OPEN_DOOR_RIGHT_TILE);
+                        Debug.Assert(door.leftOpenTile, "Could not find blue vertical door left tile");
+                        Debug.Assert(door.rightOpenTile, "Could not find blue vertical door right tile");
+                    }
+                    else if (assetPath == TileFiles.VERTICAL_GREY_CLOSED_DOOR_TILE)
+                    {
+                        door.leftOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_GREY_OPEN_DOOR_LEFT_TILE);
+                        door.rightOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_GREY_OPEN_DOOR_RIGHT_TILE);
+                        Debug.Assert(door.leftOpenTile, "Could not find grey vertical door left tile");
+                        Debug.Assert(door.rightOpenTile, "Could not find grey vertical door right tile");
+                    }
+                    else
+                    {
+                        Debug.LogAssertionFormat("Could not find closed tile for {0}", assetPath);
+                    }
+                }
+            }
         }
 
         #endregion
 
         #region Utility
 
-        public static void CreateHorizontalDoor(string name, string path, string closedTile)
-        {
-            CreateDoor(name, path, Direction.Horizontal, closedTile, TileFiles.HORIZONTAL_LEFT_OPEN_DOOR_TILE, TileFiles.HORIZONTAL_RIGHT_OPEN_DOOR_TILE);
-        }
-
-        public static void CreateVerticalDoor(string name, string path, string closedTile)
-        {
-            CreateDoor(name, path, Direction.Vertical, closedTile, TileFiles.VERTICAL_LEFT_OPEN_DOOR_TILE, TileFiles.VERTICAL_RIGHT_OPEN_DOOR_TILE);
-        }
-
-        private static void CreateDoor(string name, string path, Direction direction, string closedTile, string leftTile, string rightTile)
+        public static void CreateDoor(string name, string path, Direction direction, string closedTile, string leftTile, string rightTile)
         {
             Door door = ScriptableObject.CreateInstance<Door>();
             door.name = name;
