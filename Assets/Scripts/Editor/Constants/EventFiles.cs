@@ -12,6 +12,7 @@ namespace RobbiEditor
     {
         public const string DOOR_OPENED_EVENT = FULL_PATH + LEVEL + "DoorOpened.asset";
         public const string MOVED_TO_EVENT = FULL_PATH + LEVEL + "MovedTo.asset";
+        public const string MODIFY_SPEED_EVENT = FULL_PATH + LEVEL + "ModifySpeed.asset";
         public const string RUN_PROGRAM_EVENT = FULL_PATH + LEVEL + "RunProgram.asset";
         public const string LEVEL_WON_EVENT = FULL_PATH + LEVEL + "LevelWon.asset";
         public const string LEVEL_LOST_EVENT = FULL_PATH + LEVEL + "LevelLost.asset";

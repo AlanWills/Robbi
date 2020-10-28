@@ -14,11 +14,9 @@ namespace Robbi.FSM.Nodes.Parameters
     {
         #region FSM Runtime
 
-        protected override void OnEnter()
+        protected override void SetValue(bool newValue)
         {
-            base.OnEnter();
-
-            value.value = newValue.Value;
+            value.value = newValue;
         }
 
         #endregion

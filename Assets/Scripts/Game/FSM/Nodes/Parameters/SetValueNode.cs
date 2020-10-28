@@ -22,6 +22,7 @@ namespace Robbi.FSM.Nodes.Parameters
         #region Properties and Fields
 
         public TValue value;
+        [Input]
         public TReference newValue;
 
         #endregion
@@ -63,7 +64,11 @@ namespace Robbi.FSM.Nodes.Parameters
 
             Debug.AssertFormat(value != null, "Value is null in SetValueNode ({0})", graph.name);
             Debug.AssertFormat(newValue != null, "New Value is null in SetValueNode ({0})", graph.name);
+
+            SetValue(newValue.IsConstant ? GetInputValue(nameof(newValue), newValue.Value) : newValue.Value);
         }
+
+        protected abstract void SetValue(T newValue);
 
         #endregion
     }

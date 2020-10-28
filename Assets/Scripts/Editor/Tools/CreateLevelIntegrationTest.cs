@@ -52,10 +52,18 @@ namespace RobbiEditor.Tools
             waitNode.time = 1;
             previousNode = waitNode;
 
+            // Add Node to increase speed
+            FloatEventRaiserNode modifySpeed = CreateNode<FloatEventRaiserNode>(fsmGraphEditor, previousNode);
+            modifySpeed.toRaise = AssetDatabase.LoadAssetAtPath<FloatEvent>(EventFiles.MODIFY_SPEED_EVENT);
+            Debug.Assert(modifySpeed.toRaise != null, "Default ModifySpeedEvent could not be found for EventRaiserNode");
+
+            ConnectNodes(previousNode, modifySpeed);
+            previousNode = modifySpeed;
+
             // Add Input node for each waypoint
             MovementManager movementManager = GameObject.Find("MovementManager").GetComponent<MovementManager>();
             GameObjectClickEvent gameObjectLeftClickEvent = AssetDatabase.LoadAssetAtPath<GameObjectClickEvent>(EventFiles.GAME_OBJECT_LEFT_CLICK_EVENT);
-            Debug.Assert(gameObjectLeftClickEvent, "Default GameObjectLeftClickEvent could not be found for InputRaiserNode");
+            Debug.Assert(gameObjectLeftClickEvent != null, "Default GameObjectLeftClickEvent could not be found for InputRaiserNode");
 
             for (int i = 0; i < movementManager.NumWaypoints; ++i)
             {
@@ -72,7 +80,7 @@ namespace RobbiEditor.Tools
             // Add Event Raiser to run the program
             EventRaiserNode runProgramNode = CreateNode<EventRaiserNode>(fsmGraphEditor, previousNode);
             runProgramNode.toRaise = AssetDatabase.LoadAssetAtPath<Event>(EventFiles.RUN_PROGRAM_EVENT);
-            Debug.Assert(runProgramNode.toRaise, "Default RunProgram event could not be found for EventRaiserNode");
+            Debug.Assert(runProgramNode.toRaise != null, "Default RunProgram event could not be found for EventRaiserNode");
 
             ConnectNodes(previousNode, runProgramNode);
             previousNode = runProgramNode;
@@ -81,11 +89,11 @@ namespace RobbiEditor.Tools
             MultiEventListenerNode multiEventListenerNode = CreateNode<MultiEventListenerNode>(fsmGraphEditor, previousNode);
             VoidEventCondition levelLostEvent = multiEventListenerNode.AddEvent<VoidEventCondition>();
             levelLostEvent.listenFor = AssetDatabase.LoadAssetAtPath<Event>(EventFiles.LEVEL_LOST_EVENT);
-            Debug.Assert(levelLostEvent.listenFor, "Default LevelLost event could not be found for MultiEventListenerNode");
+            Debug.Assert(levelLostEvent.listenFor != null, "Default LevelLost event could not be found for MultiEventListenerNode");
 
             VoidEventCondition levelWonEvent = multiEventListenerNode.AddEvent<VoidEventCondition>();
             levelWonEvent.listenFor = AssetDatabase.LoadAssetAtPath<Event>(EventFiles.LEVEL_WON_EVENT);
-            Debug.Assert(levelLostEvent.listenFor, "Default LevelWon event could not be found for MultiEventListenerNode");
+            Debug.Assert(levelLostEvent.listenFor != null, "Default LevelWon event could not be found for MultiEventListenerNode");
 
             ConnectNodes(previousNode, multiEventListenerNode);
             previousNode = multiEventListenerNode;
@@ -96,14 +104,14 @@ namespace RobbiEditor.Tools
             // Add Integration Test Fail node
             FinishIntegrationTestNode failTestNode = CreateNode<FinishIntegrationTestNode>(fsmGraphEditor, previousNode.position + new Vector2(300, 100));
             failTestNode.testResult = AssetDatabase.LoadAssetAtPath<StringEvent>(EventFiles.INTEGRATION_TEST_FAILED_EVENT);
-            Debug.Assert(levelLostEvent.listenFor, "Default TestFailed event could not be found for FinishIntegrationTestNode");
+            Debug.Assert(levelLostEvent.listenFor != null, "Default TestFailed event could not be found for FinishIntegrationTestNode");
 
             levelLostOutputPort.Connect(failTestNode.GetInputPort(FSMNode.DEFAULT_INPUT_PORT_NAME));
 
             // Add Integration Test Passed node
             FinishIntegrationTestNode passTestNode = CreateNode<FinishIntegrationTestNode>(fsmGraphEditor, previousNode.position + new Vector2(300, -100));
             passTestNode.testResult = AssetDatabase.LoadAssetAtPath<StringEvent>(EventFiles.INTEGRATION_TEST_PASSED_EVENT);
-            Debug.Assert(levelLostEvent.listenFor, "Default TestPassed event could not be found for FinishIntegrationTestNode");
+            Debug.Assert(levelLostEvent.listenFor != null, "Default TestPassed event could not be found for FinishIntegrationTestNode");
 
             levelWonOutputPort.Connect(passTestNode.GetInputPort(FSMNode.DEFAULT_INPUT_PORT_NAME));
 

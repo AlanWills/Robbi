@@ -20,11 +20,9 @@ namespace Robbi.FSM.Nodes.Parameters
 
         #region FSM Runtime
 
-        protected override void OnEnter()
+        protected override void SetValue(string newValue)
         {
-            base.OnEnter();
-
-            value.value = setMode == SetMode.Absolute ? newValue.Value : value.value + newValue.Value;
+            value.value = setMode == SetMode.Absolute ? newValue : value.value + newValue;
         }
 
         #endregion
