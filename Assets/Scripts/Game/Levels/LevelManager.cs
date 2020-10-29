@@ -68,9 +68,15 @@ namespace Robbi.Levels
 
         private static void Load_Completed(AsyncOperationHandle<LevelManager> obj)
         {
+            Debug.Log("LevelManager load complete");
+
             if (obj.IsValid() && obj.Result != null)
             {
                 Instance = obj.Result;
+            }
+            else
+            {
+                Debug.LogErrorFormat("LevelManager load failed.  IsValid: {0}", obj.IsValid());
             }
         }
 

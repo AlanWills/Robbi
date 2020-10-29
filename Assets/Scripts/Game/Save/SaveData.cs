@@ -34,7 +34,9 @@ namespace Robbi.Save
         {
             if (File.Exists(filePath))
             {
-                return JsonUtility.FromJson<SaveData>(File.ReadAllText(filePath));
+                SaveData saveData = JsonUtility.FromJson<SaveData>(File.ReadAllText(filePath));
+                Debug.LogFormat("SaveData loaded {0}", saveData != null ? "correctly" : "incorrectly");
+                return saveData;
             }
             else
             {

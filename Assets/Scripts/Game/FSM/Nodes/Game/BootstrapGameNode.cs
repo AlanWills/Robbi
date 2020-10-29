@@ -1,9 +1,11 @@
-﻿using Robbi.Levels;
+﻿using Robbi.Debugging.Logging;
+using Robbi.Levels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Robbi.FSM.Nodes.Game
@@ -24,12 +26,26 @@ namespace Robbi.FSM.Nodes.Game
         {
             base.OnEnter();
 
+            HudLogger.LogInfo("Beginning bootstrap");
+            Debug.Log("Beginning bootstrap");
             loadLevelManager = LevelManager.Load();
         }
 
         protected override FSMNode OnUpdate()
         {
-            return loadLevelManager.IsDone ? base.OnUpdate() : this;
+            return (loadLevelManager.IsValid() &&
+                   (loadLevelManager.IsDone || loadLevelManager.Status != AsyncOperationStatus.None)) ? base.OnUpdate() : this;
+        }
+
+        protected override void OnExit()
+        {
+            base.OnExit();
+
+            if (loadLevelManager.IsValid() && loadLevelManager.Status == AsyncOperationStatus.Failed)
+            {
+                HudLogger.LogError("Failed to load level manager");
+                Debug.LogError("Failed to load level manager");
+            }
         }
 
         #endregion
