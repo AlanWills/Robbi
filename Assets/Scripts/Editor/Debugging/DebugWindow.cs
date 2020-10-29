@@ -19,14 +19,8 @@ namespace RobbiEditor.Debugging
             boldText.fontStyle = FontStyle.Bold;
             EditorGUILayout.LabelField("Level", boldText);
 
-            EditorGUI.BeginChangeCheck();
-            LevelManager levelManager = LevelManager.Load();
+            LevelManager levelManager = LevelManager.Instance;
             levelManager.CurrentLevelIndex = RobbiEditorGUILayout.UIntField(new GUIContent("Current Level Index", "The 0-based index for the current level we are on"), levelManager.CurrentLevelIndex);
-
-            if (EditorGUI.EndChangeCheck())
-            {
-                levelManager.Save();
-            }
         }
 
         #endregion

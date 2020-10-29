@@ -32,7 +32,7 @@ namespace RobbiEditor.Tools
         public static void MenuItem()
         {
             FSMGraph integrationTest = ScriptableObject.CreateInstance<FSMGraph>();
-            LevelManager levelManager = LevelManager.Load();
+            LevelManager levelManager = LevelManager.Instance;
 
             string integrationTestPath = string.Format("{0}/Level{1}/Level{1}IntegrationTestFSM.asset", LevelDirectories.FULL_PATH, levelManager.CurrentLevelIndex);
             AssetDatabase.CreateAsset(integrationTest, integrationTestPath);

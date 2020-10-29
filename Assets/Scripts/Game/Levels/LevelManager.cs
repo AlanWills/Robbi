@@ -1,4 +1,5 @@
 ﻿using Robbi.Debugging.Logging;
+using Robbi.Parameters;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,30 +7,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Robbi.Levels
 {
-    [Serializable]
-    public struct LevelManagerDTO
-    {
-        public uint currentLevel;
-
-        public LevelManagerDTO(LevelManager levelManager)
-        {
-            currentLevel = levelManager.CurrentLevelIndex;
-        }
-    }
-
+    [CreateAssetMenu(menuName = "Robbi/Levels/Level Manager")]
     public class LevelManager : ScriptableObject
     {
         #region Properties and Fields
 
-        private static string DEFAULT_FILE_PATH
+        private const string ADDRESS = "Assets/Levels/LevelManager.asset";
+
+        private static LevelManager instance;
+        public static LevelManager Instance
         {
-            get { return Path.Combine(Application.persistentDataPath, "LevelManagerData.json"); }
+            get 
+            {
+                Debug.Assert(instance != null, "LevelManager is null.  Did you forget to wait for Load()");
+                return instance;
+            }
+            private set { instance = value; }
         }
 
-        public uint CurrentLevelIndex { get; set; }
+        public uint CurrentLevelIndex 
+        { 
+            get { return currentLevelIndex.value; }
+            set { currentLevelIndex.value = value; }
+        }
+
+        public uint LatestLevelIndex
+        {
+            get { return latestLevelIndex.value; }
+        }
+
+        [SerializeField]
+        private UIntValue currentLevelIndex;
+
+        [SerializeField]
+        private UIntValue latestLevelIndex;
 
         #endregion
 
@@ -37,40 +53,25 @@ namespace Robbi.Levels
 
         #region Save/Load Methods
 
-        public static LevelManager Load()
+        public static AsyncOperationHandle<LevelManager> Load()
         {
-            return Load(DEFAULT_FILE_PATH);
+            return Load(ADDRESS);
         }
 
-        public static LevelManager Load(string filePath)
+        public static AsyncOperationHandle<LevelManager> Load(string filePath)
         {
-            LevelManager levelManager = ScriptableObject.CreateInstance<LevelManager>();
+            AsyncOperationHandle<LevelManager> asyncOperationHandle = Addressables.LoadAssetAsync<LevelManager>(filePath);
+            asyncOperationHandle.Completed += Load_Completed;
 
-            if (File.Exists(filePath))
+            return asyncOperationHandle;
+        }
+
+        private static void Load_Completed(AsyncOperationHandle<LevelManager> obj)
+        {
+            if (obj.IsValid() && obj.Result != null)
             {
-                LevelManagerDTO levelManagerDTO = JsonUtility.FromJson<LevelManagerDTO>(File.ReadAllText(filePath));
-                levelManager.CurrentLevelIndex = levelManagerDTO.currentLevel;
+                Instance = obj.Result;
             }
-            else
-            {
-                Debug.LogWarningFormat("Could not find LevelManager file {0} so using default values.", filePath);
-            }
-
-            return levelManager;
-        }
-
-        public void Save()
-        {
-            Save(DEFAULT_FILE_PATH);
-        }
-
-        public void Save(string filePath)
-        {
-            LevelManagerDTO levelManagerDTO = new LevelManagerDTO(this);
-            string json = JsonUtility.ToJson(levelManagerDTO);
-            File.WriteAllText(filePath, json);
-
-            HudLogger.LogInfo(string.Format("Level Manager saved with CurrentLevelIndex {0}", CurrentLevelIndex));
         }
 
         #endregion

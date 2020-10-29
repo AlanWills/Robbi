@@ -12,9 +12,10 @@ namespace Robbi.Levels
     {
         public bool Execute(List<string> parameters, StringBuilder output)
         {
+            LevelManager levelManager = LevelManager.Instance;
+
             if (parameters.Count == 0)
             {
-                LevelManager levelManager = LevelManager.Load();
                 output.Append(string.Format("Current Level Index is {0}", levelManager.CurrentLevelIndex));
 
                 return true;
@@ -23,10 +24,7 @@ namespace Robbi.Levels
             {
                 if (uint.TryParse(parameters[0], out uint result))
                 {
-                    LevelManager levelManager = LevelManager.Load();
                     levelManager.CurrentLevelIndex = result;
-                    levelManager.Save();
-
                     output.Append(string.Format("Current Level Index successfully set to {0}", levelManager.CurrentLevelIndex));
                     return true;
                 }

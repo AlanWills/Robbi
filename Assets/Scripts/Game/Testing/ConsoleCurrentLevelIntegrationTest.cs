@@ -18,8 +18,7 @@ namespace Robbi.Testing
 
         public bool Execute(List<string> parameters, StringBuilder output)
         {
-            LevelManager levelManager = LevelManager.Load();
-            parameters.Add(string.Format("Level{0}IntegrationTest", levelManager.CurrentLevelIndex));
+            parameters.Add(string.Format("Level{0}IntegrationTest", LevelManager.Instance.CurrentLevelIndex));
             return consoleIntegrationTest.Execute(parameters, output);
         }
     }
