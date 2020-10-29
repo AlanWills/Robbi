@@ -43,7 +43,12 @@ namespace Robbi.FSM.Nodes.Loading
 
         protected override FSMNode OnUpdate()
         {
-            return !isAddressable || instantiateHandle.IsDone ? base.OnUpdate() : this;
+            if (!isAddressable || instantiateHandle.IsDone)
+            {
+                return base.OnUpdate();
+            }
+
+            return this;
         }
 
         protected override void OnExit()

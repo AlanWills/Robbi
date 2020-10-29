@@ -10,9 +10,9 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Robbi.FSM.Nodes.Game
 {
-    [CreateNodeMenu("Robbi/Game/Bootstrap")]
+    [CreateNodeMenu("Robbi/Game/Bootstrap Game")]
     [NodeTint(0.2f, 0.2f, 0.6f)]
-    public class BootstrapNode : FSMNode
+    public class BootstrapGameNode : FSMNode
     {
         #region Properties and Fields
 
