@@ -35,7 +35,8 @@ namespace Robbi.DataSystem.Nodes.Objects
             if (!cache || foundChild == null)
             {
                 string _childName = GetInputValue("childName", childName);
-                foundChild = GameObject.transform.Find(_childName).gameObject;
+                Transform childTransform = GameObject.transform.Find(_childName);
+                foundChild = childTransform == null ? GameObject.Find(_childName) : childTransform.gameObject;
             }
 
             return foundChild;

@@ -21,6 +21,7 @@ namespace Robbi.DataSystem.Nodes.UI
         [Input]
         public string format = "{0}";
 
+        [Input]
         public Text text;
 
         private string oldValue;
@@ -33,9 +34,28 @@ namespace Robbi.DataSystem.Nodes.UI
             if (currentValue != oldValue)
             {
                 string _format = GetInputValue("format", format);
-                text.GetComponent<Text>().text = string.Format(_format, currentValue);
+                GetText().text = string.Format(_format, currentValue);
                 oldValue = currentValue;
             }
         }
+
+        #region Utility Methods
+
+        private Text GetText()
+        {
+            Text _text = GetInputValue(nameof(text), text);
+            if (text == null)
+            {
+                GameObject gameObject = GetInputValue<GameObject>(nameof(text));
+                if (gameObject != null)
+                {
+                    _text = gameObject.GetComponent<Text>();
+                }
+            }
+
+            return _text;
+        }
+
+        #endregion
     }
 }
