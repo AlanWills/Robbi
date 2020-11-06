@@ -43,14 +43,15 @@ namespace Robbi.Game.Inputs
         public MultiTouchEvent doubleTouchEvent;
         public MultiTouchEvent tripleTouchEvent;
 
-        private const float TOUCH_THRESHOLD = 0.2f;
-
         #endregion
 
         #region Common Variables
 
         [Header("Common Events")]
         public GameObjectClickEvent gameObjectLeftClicked;
+
+        private GameObject firstHitGameObject;
+        private Vector3 firstHitGameObjectPosition;
 
         #endregion
 
@@ -61,6 +62,11 @@ namespace Robbi.Game.Inputs
         public void Update()
         {
 #if UNITY_ANDROID || UNITY_IOS
+            if (Input.touchCount != 1)
+            {
+                firstHitGameObject = null;
+            }
+
             if (Input.touchCount == 1)
             {
                 Touch touch = Input.GetTouch(0);
@@ -69,13 +75,25 @@ namespace Robbi.Game.Inputs
                 Vector3 touchWorldPosition = raycastCamera.ScreenToWorldPoint(touch.position);
                 GameObject hitGameObject = Raycast(new Vector2(touchWorldPosition.x, touchWorldPosition.y));
 
-                if (hitGameObject != null && touch.phase == TouchPhase.Ended && touch.deltaTime <= TOUCH_THRESHOLD)
+                if (touch.phase == TouchPhase.Began)
                 {
-                    gameObjectLeftClicked.Raise(new GameObjectClickEventArgs() 
-                    { 
-                        gameObject = hitGameObject, 
-                        clickWorldPosition = touchWorldPosition 
-                    });
+                    firstHitGameObject = hitGameObject;
+                    firstHitGameObjectPosition = touchWorldPosition;
+                }
+                else if (touch.phase == TouchPhase.Ended)
+                {
+                    if (firstHitGameObject != null && 
+                        firstHitGameObject == hitGameObject && 
+                        touchWorldPosition == firstHitGameObjectPosition)
+                    {
+                        gameObjectLeftClicked.Raise(new GameObjectClickEventArgs()
+                        {
+                            gameObject = hitGameObject,
+                            clickWorldPosition = touchWorldPosition
+                        });
+                    }
+
+                    firstHitGameObject = null;
                 }
             }
             else if (Input.touchCount == 2)
@@ -101,16 +119,25 @@ namespace Robbi.Game.Inputs
 
             if (Input.GetMouseButtonDown(0))
             {
-                Vector3 mouseWorldPosition = raycastCamera.ScreenToWorldPoint(Input.mousePosition);
-                GameObject hitGameObject = Raycast(new Vector2(mouseWorldPosition.x, mouseWorldPosition.y));
+                firstHitGameObjectPosition = raycastCamera.ScreenToWorldPoint(Input.mousePosition);
+                firstHitGameObject = Raycast(new Vector2(firstHitGameObjectPosition.x, firstHitGameObjectPosition.y));
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                Vector3 clickWorldPosition = raycastCamera.ScreenToWorldPoint(Input.mousePosition);
+                GameObject hitGameObject = Raycast(new Vector2(clickWorldPosition.x, clickWorldPosition.y));
 
-                if (hitGameObject != null)
+                if (firstHitGameObject != null && 
+                    firstHitGameObject == hitGameObject && 
+                    clickWorldPosition == firstHitGameObjectPosition)
                 {
                     gameObjectLeftClicked.Raise(new GameObjectClickEventArgs()
                     {
                         gameObject = hitGameObject,
-                        clickWorldPosition = mouseWorldPosition
+                        clickWorldPosition = clickWorldPosition
                     });
+
+                    firstHitGameObject = null;
                 }
             }
 
