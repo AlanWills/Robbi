@@ -84,7 +84,7 @@ namespace Robbi.Game.Inputs
                 {
                     if (firstHitGameObject != null && 
                         firstHitGameObject == hitGameObject && 
-                        touchWorldPosition == firstHitGameObjectPosition)
+                        (touchWorldPosition - firstHitGameObjectPosition).sqrMagnitude < 0.05f)
                     {
                         gameObjectLeftClicked.Raise(new GameObjectClickEventArgs()
                         {
