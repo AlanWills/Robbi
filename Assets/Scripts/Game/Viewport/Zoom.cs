@@ -28,10 +28,10 @@ namespace Robbi.Viewport
         {
             cameraToZoom = GetComponent<Camera>();
 
-            GameSettings gameSettings = GameSettings.Load();
-            minZoom = gameSettings.MinZoom;
-            maxZoom = gameSettings.MaxZoom;
-            zoomSpeed = gameSettings.ZoomSpeed;
+            SettingsManager settingsManager = SettingsManager.Instance;
+            minZoom = settingsManager.MinZoom;
+            maxZoom = settingsManager.MaxZoom;
+            zoomSpeed = settingsManager.ZoomSpeed;
         }
 
         #endregion

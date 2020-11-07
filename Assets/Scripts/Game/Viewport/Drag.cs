@@ -30,8 +30,7 @@ namespace Robbi.Viewport
         {
             cameraToDrag = GetComponent<Camera>();
 
-            GameSettings gameSettings = GameSettings.Load();
-            dragSpeed = gameSettings.DragSpeed;
+            dragSpeed = SettingsManager.Instance.DragSpeed;
         }
 
         #endregion
