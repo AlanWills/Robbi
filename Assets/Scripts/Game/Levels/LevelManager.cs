@@ -1,4 +1,5 @@
 ﻿using Robbi.Debugging.Logging;
+using Robbi.Managers;
 using Robbi.Parameters;
 using System;
 using System.Collections.Generic;
@@ -13,22 +14,11 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 namespace Robbi.Levels
 {
     [CreateAssetMenu(menuName = "Robbi/Levels/Level Manager")]
-    public class LevelManager : ScriptableObject
+    public class LevelManager : PersistentManager<LevelManager>
     {
         #region Properties and Fields
 
         private const string ADDRESS = "Assets/Levels/LevelManager.asset";
-
-        private static LevelManager instance;
-        public static LevelManager Instance
-        {
-            get 
-            {
-                Debug.Assert(instance != null, "LevelManager is null.  Did you forget to wait for Load()");
-                return instance;
-            }
-            private set { instance = value; }
-        }
 
         public uint CurrentLevelIndex 
         { 
@@ -53,31 +43,9 @@ namespace Robbi.Levels
 
         #region Save/Load Methods
 
-        public static AsyncOperationHandle<LevelManager> Load()
+        public static AsyncOperationHandle Load()
         {
             return Load(ADDRESS);
-        }
-
-        public static AsyncOperationHandle<LevelManager> Load(string filePath)
-        {
-            AsyncOperationHandle<LevelManager> asyncOperationHandle = Addressables.LoadAssetAsync<LevelManager>(filePath);
-            asyncOperationHandle.Completed += Load_Completed;
-
-            return asyncOperationHandle;
-        }
-
-        private static void Load_Completed(AsyncOperationHandle<LevelManager> obj)
-        {
-            Debug.Log("LevelManager load complete");
-
-            if (obj.IsValid() && obj.Result != null)
-            {
-                Instance = obj.Result;
-            }
-            else
-            {
-                Debug.LogErrorFormat("LevelManager load failed.  IsValid: {0}", obj.IsValid());
-            }
         }
 
         #endregion

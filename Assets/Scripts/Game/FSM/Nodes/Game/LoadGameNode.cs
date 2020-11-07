@@ -1,5 +1,7 @@
-﻿using Robbi.Parameters;
+﻿using Robbi.Levels;
+using Robbi.Parameters;
 using Robbi.Save;
+using Robbi.Settings;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,12 +14,6 @@ namespace Robbi.FSM.Nodes.Game
     [NodeTint(0.2f, 0.2f, 0.6f)]
     public class LoadGameNode : FSMNode
     {
-        #region Properties and Fields
-
-        public UIntValue currentLevel;
-
-        #endregion
-
         #region FSM Runtime Overrides
 
         protected override void OnEnter()
@@ -25,7 +21,9 @@ namespace Robbi.FSM.Nodes.Game
             base.OnEnter();
 
             SaveData saveData = SaveData.Load();
-            currentLevel.value = saveData.currentLevel;
+            LevelManager.Instance.CurrentLevelIndex = saveData.currentLevel;
+            SettingsManager.Instance.MusicEnabled = saveData.musicEnabled;
+            SettingsManager.Instance.SfxEnabled = saveData.sfxEnabled;
         }
 
         #endregion

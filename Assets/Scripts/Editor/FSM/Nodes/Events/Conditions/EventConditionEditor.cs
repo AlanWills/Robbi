@@ -19,6 +19,7 @@ namespace RobbiEditor.FSM.Nodes.Events.Conditions
             typeof(VoidEventCondition),
             typeof(StringEventCondition),
             typeof(FloatEventCondition),
+            typeof(BoolEventCondition),
             typeof(Vector3IntEventCondition),
             typeof(DoorEventCondition),
         };
@@ -28,18 +29,12 @@ namespace RobbiEditor.FSM.Nodes.Events.Conditions
             "Void",
             "String",
             "Float",
+            "Bool",
             "Vector3Int",
             "Door",
         };
 
-        public static Dictionary<Type, EventConditionEditor> EventConditionEditorFactory = new Dictionary<Type, EventConditionEditor>()
-        {
-            { typeof(VoidEventCondition), new EventConditionEditor() },
-            { typeof(StringEventCondition), new EventConditionEditor() },
-            { typeof(FloatEventCondition), new EventConditionEditor() },
-            { typeof(Vector3IntEventCondition), new EventConditionEditor() },
-            { typeof(DoorEventCondition), new EventConditionEditor() },
-        };
+        public static readonly EventConditionEditor DefaultEventConditionEditor = new EventConditionEditor();
 
         #endregion
 

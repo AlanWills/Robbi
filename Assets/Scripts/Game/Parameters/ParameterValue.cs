@@ -21,8 +21,8 @@ namespace Robbi.Parameters
         #endregion
 
         #region Unity Methods
-
-        private void Awake()
+        
+        private void OnEnable()
         {
             value = defaultValue;
         }

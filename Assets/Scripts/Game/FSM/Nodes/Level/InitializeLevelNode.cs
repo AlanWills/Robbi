@@ -42,21 +42,45 @@ namespace Robbi.FSM.Nodes
 
         protected override FSMNode OnUpdate()
         {
-            if (levelLoadingHandle.IsDone && robbiLoadingHandle.IsDone)
+            if (IsInvalid())
             {
-                if (levelLoadingHandle.Result != null && robbiLoadingHandle.Result != null)
+                HudLogger.LogError("Error loading Level - Invalid Handle");
+                return base.OnUpdate();
+            }
+            else if (IsDone())
+            {
+                if (IsBeginable())
                 {
                     levelLoadingHandle.Result.Begin(levelData);
                 }
                 else
                 {
-                    HudLogger.LogError("Error loading Level");
+                    HudLogger.LogError("Error loading Level - Result Null");
                 }
 
                 return base.OnUpdate();
             }
 
             return this;
+        }
+
+        #endregion
+
+        #region Utility Methods
+
+        private bool IsInvalid()
+        {
+            return !(levelLoadingHandle.IsValid() && robbiLoadingHandle.IsValid());
+        }
+
+        private bool IsDone()
+        {
+            return levelLoadingHandle.IsDone && robbiLoadingHandle.IsDone;
+        }
+
+        private bool IsBeginable()
+        {
+            return levelLoadingHandle.Result != null && robbiLoadingHandle.Result != null;
         }
 
         #endregion

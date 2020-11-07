@@ -60,10 +60,7 @@ namespace RobbiEditor.FSM.Nodes.Events
                     multiEventNode.SwapEvents(i - 1, i);
                 }
 
-                if (EventConditionEditor.EventConditionEditorFactory.TryGetValue(eventCondition.GetType(), out EventConditionEditor editor))
-                {
-                    editor.GUI(multiEventNode, eventCondition);
-                }
+                EventConditionEditor.DefaultEventConditionEditor.GUI(multiEventNode, eventCondition);
 
                 Rect rect = GUILayoutUtility.GetLastRect();
                 NodeEditorGUILayout.PortField(rect.position + new Vector2(rect.width, 0), multiEventNode.GetOutputPort(eventCondition.name));

@@ -1,5 +1,6 @@
 ﻿using Robbi.Debugging.Logging;
 using Robbi.Levels;
+using Robbi.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,23 @@ namespace Robbi.FSM.Nodes.Game
     {
         #region Properties and Fields
 
-        private AsyncOperationHandle<LevelManager> loadLevelManager;
+        private bool IsLoadingCompleted
+        {
+            get
+            {
+                foreach (AsyncOperationHandle managerHandle in loadManagers)
+                {
+                    if (!IsLoaded(managerHandle))
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+        }
+
+        private List<AsyncOperationHandle> loadManagers = new List<AsyncOperationHandle>();
 
         #endregion
 
@@ -28,23 +45,43 @@ namespace Robbi.FSM.Nodes.Game
 
             HudLogger.LogInfo("Beginning bootstrap");
             Debug.Log("Beginning bootstrap");
-            loadLevelManager = LevelManager.Load();
+
+            loadManagers.Clear();
+            loadManagers.Add(LevelManager.Load());
+            loadManagers.Add(SettingsManager.Load());
         }
 
         protected override FSMNode OnUpdate()
         {
-            return (loadLevelManager.IsValid() &&
-                   (loadLevelManager.IsDone || loadLevelManager.Status != AsyncOperationStatus.None)) ? base.OnUpdate() : this;
+            return IsLoadingCompleted ? base.OnUpdate() : this;
         }
 
         protected override void OnExit()
         {
             base.OnExit();
 
-            if (loadLevelManager.IsValid() && loadLevelManager.Status == AsyncOperationStatus.Failed)
+            foreach (AsyncOperationHandle managerHandle in loadManagers)
             {
-                HudLogger.LogError("Failed to load level manager");
-                Debug.LogError("Failed to load level manager");
+                CheckError(managerHandle);
+            }
+        }
+
+        #endregion
+
+        #region Utility Methods
+
+        private bool IsLoaded(AsyncOperationHandle loadingHandle)
+        {
+            return loadingHandle.IsValid() &&
+                   (loadingHandle.IsDone || loadingHandle.Status != AsyncOperationStatus.None);
+        }
+
+        private void CheckError(AsyncOperationHandle loadingHandle)
+        {
+            if (loadingHandle.IsValid() && loadingHandle.Status == AsyncOperationStatus.Failed)
+            {
+                HudLogger.LogError("Failed to load manager");
+                Debug.LogError("Failed to load manager");
             }
         }
 

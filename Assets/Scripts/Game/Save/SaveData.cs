@@ -19,7 +19,9 @@ namespace Robbi.Save
             get { return Path.Combine(Application.persistentDataPath, "SaveData.json"); }
         }
 
-        public uint currentLevel;
+        public uint currentLevel = 0;
+        public bool musicEnabled = true;
+        public bool sfxEnabled = true;
 
         #endregion
 
@@ -56,6 +58,8 @@ namespace Robbi.Save
             File.WriteAllText(filePath, json);
 
             HudLogger.LogInfo(string.Format("Save Data saved with current level {0}", currentLevel));
+            HudLogger.LogInfo(string.Format("Save Data saved with music enabled {0}", musicEnabled));
+            HudLogger.LogInfo(string.Format("Save Data saved with sfx enabled {0}", sfxEnabled));
         }
 
         #endregion
