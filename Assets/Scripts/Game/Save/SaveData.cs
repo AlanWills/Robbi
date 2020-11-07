@@ -22,6 +22,7 @@ namespace Robbi.Save
         public uint currentLevel = 0;
         public bool musicEnabled = true;
         public bool sfxEnabled = true;
+        public float defaultMovementSpeed = 4;
 
         #endregion
 
@@ -57,9 +58,11 @@ namespace Robbi.Save
             string json = JsonUtility.ToJson(this);
             File.WriteAllText(filePath, json);
 
-            HudLogger.LogInfo(string.Format("Save Data saved with current level {0}", currentLevel));
-            HudLogger.LogInfo(string.Format("Save Data saved with music enabled {0}", musicEnabled));
-            HudLogger.LogInfo(string.Format("Save Data saved with sfx enabled {0}", sfxEnabled));
+            HudLogger.LogInfo("Save Data correctly");
+            HudLogger.LogInfo(string.Format("Current Level: {0}", currentLevel));
+            HudLogger.LogInfo(string.Format("Music Enabled: {0}", musicEnabled));
+            HudLogger.LogInfo(string.Format("Sfx Enabled: {0}", sfxEnabled));
+            HudLogger.LogInfo(string.Format("Default Movement Speed: {0}", defaultMovementSpeed));
         }
 
         #endregion

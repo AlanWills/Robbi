@@ -1,6 +1,6 @@
 ﻿using Robbi.Debugging.Logging;
 using Robbi.Levels;
-using Robbi.Settings;
+using Robbi.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,7 +48,7 @@ namespace Robbi.FSM.Nodes.Game
 
             loadManagers.Clear();
             loadManagers.Add(LevelManager.Load());
-            loadManagers.Add(SettingsManager.Load());
+            loadManagers.Add(OptionsManager.Load());
         }
 
         protected override FSMNode OnUpdate()

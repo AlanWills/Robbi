@@ -9,14 +9,32 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-namespace Robbi.Settings
+namespace Robbi.Options
 {
-    [CreateAssetMenu(menuName = "Robbi/Settings/Settings Manager")]
-    public class SettingsManager : PersistentManager<SettingsManager>
+    [CreateAssetMenu(menuName = "Robbi/Options/Options Manager")]
+    public class OptionsManager : PersistentManager<OptionsManager>
     {
         #region Properties and Fields
 
-        private const string ADDRESS = "Assets/Settings/SettingsManager.asset";
+        private const string ADDRESS = "Assets/Options/OptionsManager.asset";
+
+        public bool MusicEnabled
+        {
+            get { return musicEnabled.value; }
+            set { musicEnabled.value = value; }
+        }
+
+        public bool SfxEnabled
+        {
+            get { return sfxEnabled.value; }
+            set { sfxEnabled.value = value; }
+        }
+
+        public float DefaultMovementSpeed
+        {
+            get { return defaultMovementSpeed.value; }
+            set { defaultMovementSpeed.value = value; }
+        }
 
         public float MinZoom
         {
@@ -98,18 +116,6 @@ namespace Robbi.Settings
             }
         }
 
-        public bool MusicEnabled
-        {
-            get { return musicEnabled.value; }
-            set { musicEnabled.value = value; }
-        }
-
-        public bool SfxEnabled
-        {
-            get { return sfxEnabled.value; }
-            set { sfxEnabled.value = value; }
-        }
-
         #region Common Settings
 
         [SerializeField]
@@ -117,6 +123,9 @@ namespace Robbi.Settings
 
         [SerializeField]
         private BoolValue sfxEnabled;
+
+        [SerializeField]
+        private FloatValue defaultMovementSpeed;
 
         #endregion
 
@@ -154,7 +163,7 @@ namespace Robbi.Settings
 
         #endregion
 
-        private SettingsManager() { }
+        private OptionsManager() { }
 
         #region Save/Load Methods
 

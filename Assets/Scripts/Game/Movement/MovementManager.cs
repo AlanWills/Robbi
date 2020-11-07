@@ -2,6 +2,7 @@
 using Robbi.Events;
 using Robbi.Memory;
 using Robbi.Parameters;
+using Robbi.Options;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -71,7 +72,6 @@ namespace Robbi.Movement
 
         [Header("Other")]
         public GameObjectAllocator destinationMarkerAllocator;
-        public float startingMovementSpeed = 4;
         public FloatValue movementSpeed;
 
         private Grid grid;
@@ -94,7 +94,7 @@ namespace Robbi.Movement
             grid = movementTilemap.layoutGrid;
             waypointsPlaced.value = 0;
             isProgramRunning.value = false;
-            movementSpeed.value = startingMovementSpeed;
+            movementSpeed.value = OptionsManager.Instance.DefaultMovementSpeed;
         }
 
         private void Update()

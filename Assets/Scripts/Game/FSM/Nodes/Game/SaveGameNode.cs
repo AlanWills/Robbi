@@ -1,7 +1,7 @@
 ﻿using Robbi.Levels;
 using Robbi.Parameters;
 using Robbi.Save;
-using Robbi.Settings;
+using Robbi.Options;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,8 +22,9 @@ namespace Robbi.FSM.Nodes.Game
 
             SaveData saveData = new SaveData();
             saveData.currentLevel = LevelManager.Instance.CurrentLevelIndex;
-            saveData.musicEnabled = SettingsManager.Instance.MusicEnabled;
-            saveData.sfxEnabled = SettingsManager.Instance.SfxEnabled;
+            saveData.musicEnabled = OptionsManager.Instance.MusicEnabled;
+            saveData.sfxEnabled = OptionsManager.Instance.SfxEnabled;
+            saveData.defaultMovementSpeed = OptionsManager.Instance.DefaultMovementSpeed;
             saveData.Save();
         }
 

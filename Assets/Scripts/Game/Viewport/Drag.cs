@@ -1,4 +1,4 @@
-﻿using Robbi.Settings;
+﻿using Robbi.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +30,7 @@ namespace Robbi.Viewport
         {
             cameraToDrag = GetComponent<Camera>();
 
-            dragSpeed = SettingsManager.Instance.DragSpeed;
+            dragSpeed = OptionsManager.Instance.DragSpeed;
         }
 
         #endregion

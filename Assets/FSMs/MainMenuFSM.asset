@@ -81,7 +81,10 @@ MonoBehaviour:
       _node: {fileID: -6563134954651634943}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: ' '
+        node: {fileID: 8949057610592942275}
+        reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
@@ -142,6 +145,19 @@ MonoBehaviour:
   parameters:
   - {fileID: 6763622180059568675}
   - {fileID: -6742958087492497517}
+--- !u!114 &268123166094736034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
+  m_Name: TransitionForward
+  m_EditorClassIdentifier: 
+  listenFor: {fileID: 11400000, guid: 51078feda7fbef04aa4081657f18f6d7, type: 2}
 --- !u!114 &1068220140599288726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +223,9 @@ MonoBehaviour:
         node: {fileID: 0}
         reroutePoints: []
       - fieldName: Transition
+        node: {fileID: 8949057610592942275}
+        reroutePoints: []
+      - fieldName: TransitionForward
         node: {fileID: 8949057610592942275}
         reroutePoints: []
       _direction: 0
@@ -327,6 +346,12 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 1196634488205166037}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 1196634488205166037}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 1196634488205166037}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -411,19 +436,6 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
---- !u!114 &8255511639422351748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
-  m_Name: Transition
-  m_EditorClassIdentifier: 
-  listenFor: {fileID: 11400000, guid: 51078feda7fbef04aa4081657f18f6d7, type: 2}
 --- !u!114 &8949057610592942275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,12 +457,19 @@ MonoBehaviour:
     - Transition
     - Quit
     - ShowOptions
+    - TransitionForward
     values:
     - _fieldName: ' '
       _node: {fileID: 8949057610592942275}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: 
+        node: {fileID: -6563134954651634943}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6563134954651634943}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -500,7 +519,19 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
+    - _fieldName: TransitionForward
+      _node: {fileID: 8949057610592942275}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 1196634488205166037}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
   events:
-  - {fileID: 8255511639422351748}
+  - {fileID: 268123166094736034}
   - {fileID: 6077517169944849923}
   - {fileID: -8080128260829500022}

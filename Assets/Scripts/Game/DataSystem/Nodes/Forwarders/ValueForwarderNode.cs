@@ -5,21 +5,24 @@ using System.Text;
 using System.Threading.Tasks;
 using XNode;
 
-namespace Robbi.DataSystem.Nodes.Conversion
+namespace Robbi.DataSystem.Nodes.Forwarders
 {
     [Serializable]
-    public abstract class ToStringNode<T> : DataNode
+    public abstract class ValueForwarderNode<T> : DataNode
     {
         #region Properties and Fields
 
         [Input]
-        public T input;
+        public T defaultValue;
 
         [Input]
-        public string format = "{0}";
+        public T forwardValue;
+
+        [Input]
+        public bool condition;
 
         [Output]
-        public string output;
+        public T value;
 
         #endregion
 
@@ -27,9 +30,9 @@ namespace Robbi.DataSystem.Nodes.Conversion
 
         public override object GetValue(NodePort port)
         {
-            T _input = GetInputValue("input", input);
-            string _format = GetInputValue("format", format);
-            return string.Format(_format, _input);
+            bool _condition = GetInputValue(nameof(condition), condition);
+            value = _condition ? forwardValue : defaultValue;
+            return value;
         }
 
         #endregion

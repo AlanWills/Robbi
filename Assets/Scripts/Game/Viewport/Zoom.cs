@@ -1,5 +1,5 @@
 ﻿using Robbi.Events;
-using Robbi.Settings;
+using Robbi.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +28,7 @@ namespace Robbi.Viewport
         {
             cameraToZoom = GetComponent<Camera>();
 
-            SettingsManager settingsManager = SettingsManager.Instance;
+            OptionsManager settingsManager = OptionsManager.Instance;
             minZoom = settingsManager.MinZoom;
             maxZoom = settingsManager.MaxZoom;
             zoomSpeed = settingsManager.ZoomSpeed;
