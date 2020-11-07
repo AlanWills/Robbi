@@ -1,6 +1,7 @@
 ﻿using Robbi.Debugging.Logging;
 using Robbi.Managers;
 using Robbi.Parameters;
+using Robbi.Save;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -46,6 +47,16 @@ namespace Robbi.Levels
         public static AsyncOperationHandle Load()
         {
             return Load(ADDRESS);
+        }
+
+        public override void Serialize(SaveData saveData)
+        {
+            saveData.currentLevel = CurrentLevelIndex;
+        }
+
+        public override void Deserialize(SaveData saveData)
+        {
+            CurrentLevelIndex = saveData.currentLevel;
         }
 
         #endregion

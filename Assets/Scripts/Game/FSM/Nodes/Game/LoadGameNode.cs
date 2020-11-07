@@ -21,10 +21,8 @@ namespace Robbi.FSM.Nodes.Game
             base.OnEnter();
 
             SaveData saveData = SaveData.Load();
-            LevelManager.Instance.CurrentLevelIndex = saveData.currentLevel;
-            OptionsManager.Instance.MusicEnabled = saveData.musicEnabled;
-            OptionsManager.Instance.SfxEnabled = saveData.sfxEnabled;
-            OptionsManager.Instance.DefaultMovementSpeed = saveData.defaultMovementSpeed;
+            LevelManager.Instance.Deserialize(saveData);
+            OptionsManager.Instance.Deserialize(saveData);
         }
 
         #endregion

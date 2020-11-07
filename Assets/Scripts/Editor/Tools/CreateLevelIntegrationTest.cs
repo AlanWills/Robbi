@@ -52,14 +52,6 @@ namespace RobbiEditor.Tools
             waitNode.time = 1;
             previousNode = waitNode;
 
-            // Add Node to increase speed
-            FloatEventRaiserNode modifySpeed = CreateNode<FloatEventRaiserNode>(fsmGraphEditor, previousNode);
-            modifySpeed.toRaise = AssetDatabase.LoadAssetAtPath<FloatEvent>(EventFiles.MODIFY_SPEED_EVENT);
-            Debug.Assert(modifySpeed.toRaise != null, "Default ModifySpeedEvent could not be found for EventRaiserNode");
-
-            ConnectNodes(previousNode, modifySpeed);
-            previousNode = modifySpeed;
-
             // Add Input node for each waypoint
             MovementManager movementManager = GameObject.Find("MovementManager").GetComponent<MovementManager>();
             GameObjectClickEvent gameObjectLeftClickEvent = AssetDatabase.LoadAssetAtPath<GameObjectClickEvent>(EventFiles.GAME_OBJECT_LEFT_CLICK_EVENT);

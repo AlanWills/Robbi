@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Robbi.Save;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,12 @@ namespace Robbi.Managers
         {
             get
             {
-                Debug.AssertFormat(instance != null, "{0} is null.  Did you forget to wait for Load()", typeof(T).Name);
+                if (instance == null)
+                {
+                    Debug.LogAssertionFormat("{0} is null so creating default instance.  Did you forget to wait for Load()", typeof(T).Name);
+                    instance = CreateInstance<T>();
+
+                }
                 return instance;
             }
             private set { instance = value; }
@@ -51,6 +57,9 @@ namespace Robbi.Managers
                 Debug.LogErrorFormat("{0} load failed.  IsValid: {1}", typeof(T).Name, obj.IsValid());
             }
         }
+
+        public abstract void Serialize(SaveData saveData);
+        public abstract void Deserialize(SaveData saveData);
 
         #endregion
     }

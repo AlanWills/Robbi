@@ -1,5 +1,6 @@
 ﻿using Robbi.Managers;
 using Robbi.Parameters;
+using Robbi.Save;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -170,6 +171,20 @@ namespace Robbi.Options
         public static AsyncOperationHandle Load()
         {
             return Load(ADDRESS);
+        }
+
+        public override void Serialize(SaveData saveData)
+        {
+            saveData.musicEnabled = MusicEnabled;
+            saveData.sfxEnabled = SfxEnabled;
+            saveData.defaultMovementSpeed = DefaultMovementSpeed;
+        }
+
+        public override void Deserialize(SaveData saveData)
+        {
+            MusicEnabled = saveData.musicEnabled;
+            SfxEnabled = saveData.sfxEnabled;
+            DefaultMovementSpeed = saveData.defaultMovementSpeed;
         }
 
         #endregion
