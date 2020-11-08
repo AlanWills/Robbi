@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Robbi.Parameters
 {
-    [CreateAssetMenu(fileName = "FloatReference", menuName = "Robbi/Parameters/Float Reference")]
+    [CreateAssetMenu(fileName = "FloatReference", menuName = "Robbi/Parameters/Numeric/Float Reference")]
     public class FloatReference : ParameterReference<float, FloatValue, FloatReference>
     {
     }

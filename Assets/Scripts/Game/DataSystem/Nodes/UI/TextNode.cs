@@ -28,6 +28,8 @@ namespace Robbi.DataSystem.Nodes.UI
 
         #endregion
 
+        #region IUpdateable
+
         public void Update()
         {
             string currentValue = GetInputValue("value", value);
@@ -38,6 +40,8 @@ namespace Robbi.DataSystem.Nodes.UI
                 oldValue = currentValue;
             }
         }
+
+        #endregion
 
         #region Utility Methods
 

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Robbi.Parameters
 {
-    [CreateAssetMenu(fileName = "Vector3IntArrayValue", menuName = "Robbi/Parameters/Vector3Int Array Value")]
+    [CreateAssetMenu(fileName = "Vector3IntArrayValue", menuName = "Robbi/Parameters/Vector/Vector3Int Array Value")]
     public class Vector3IntArrayValue : ParameterValue<List<Vector3Int>>
     {
     }

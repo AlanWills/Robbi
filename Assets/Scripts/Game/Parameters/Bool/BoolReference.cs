@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Robbi.Parameters
 {
-    [CreateAssetMenu(fileName = "BoolReference", menuName = "Robbi/Parameters/Bool Reference")]
+    [CreateAssetMenu(fileName = "BoolReference", menuName = "Robbi/Parameters/Bool/Bool Reference")]
     public class BoolReference : ParameterReference<bool, BoolValue, BoolReference>
     {
     }

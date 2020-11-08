@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Robbi.Parameters
 {
     [Serializable]
-    [CreateAssetMenu(fileName = "StringReference", menuName = "Robbi/Parameters/String Reference")]
+    [CreateAssetMenu(fileName = "StringReference", menuName = "Robbi/Parameters/String/String Reference")]
     public class StringReference : ParameterReference<string, StringValue, StringReference>
     {
     }

@@ -26,8 +26,8 @@ namespace Robbi.DataSystem.Nodes.Objects
 
         public void Update()
         {
-            bool _isActive = GetInputValue("isActive", isActive);
-            GameObject _gameObject = GetInputValue("gameObject", gameObject);
+            bool _isActive = GetInputValue(nameof(isActive), isActive);
+            GameObject _gameObject = GetInputValue(nameof(gameObject), gameObject);
             _gameObject.SetActive(_isActive);
         }
 

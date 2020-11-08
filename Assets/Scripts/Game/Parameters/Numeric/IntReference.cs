@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Robbi.Parameters
 {
-    [CreateAssetMenu(fileName = "IntReference", menuName = "Robbi/Parameters/Int Reference")]
+    [CreateAssetMenu(fileName = "IntReference", menuName = "Robbi/Parameters/Numeric/Int Reference")]
     public class IntReference : ParameterReference<int, IntValue, IntReference>
     {
     }
