@@ -1,9 +1,9 @@
-﻿using System.Collections;
+﻿using Robbi.Events;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEngine;
 
-namespace Robbi.Events
+namespace RobbiEditor.Events
 {
     [CustomEditor(typeof(Event))]
     public class EventEditor : Editor
@@ -14,7 +14,7 @@ namespace Robbi.Events
         {
             base.OnInspectorGUI();
 
-            if (GUILayout.Button("Raise"))
+            if (UnityEngine.GUILayout.Button("Raise"))
             {
                 (target as Event).Raise();
             }
