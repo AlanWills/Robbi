@@ -30,7 +30,11 @@ namespace Robbi.Events
         public void Raise(T argument)
         {
             Debug.Log(string.Format("Event {0} was raised with argument {1}", name, argument.ToString()));
+            RaiseSilently(argument);
+        }
 
+        public void RaiseSilently(T argument)
+        {
             for (int i = gameEventListeners.Count - 1; i >= 0; --i)
             {
                 gameEventListeners[i].OnEventRaised(argument);

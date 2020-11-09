@@ -11,6 +11,7 @@ namespace Robbi.Events
         void AddEventListener(IEventListener listener);
         void RemoveEventListener(IEventListener listener);
         void Raise();
+        void RaiseSilently();
     }
 
     public interface IEvent<T>
@@ -18,5 +19,6 @@ namespace Robbi.Events
         void AddEventListener(IEventListener<T> listener);
         void RemoveEventListener(IEventListener<T> listener);
         void Raise(T argument);
+        void RaiseSilently(T argument);
     }
 }

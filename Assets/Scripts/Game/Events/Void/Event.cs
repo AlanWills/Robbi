@@ -32,7 +32,11 @@ namespace Robbi.Events
         public void Raise()
         {
             Debug.Log(string.Format("Event {0} was raised", name));
-            
+            RaiseSilently();
+        }
+
+        public void RaiseSilently()
+        {
             for (int i = gameEventListeners.Count - 1; i >= 0; --i)
             {
                 gameEventListeners[i].OnEventRaised();

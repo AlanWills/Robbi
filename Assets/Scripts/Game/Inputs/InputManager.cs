@@ -70,7 +70,7 @@ namespace Robbi.Game.Inputs
             if (Input.touchCount == 1)
             {
                 Touch touch = Input.GetTouch(0);
-                singleTouchEvent.Raise(touch);
+                singleTouchEvent.RaiseSilently(touch);
 
                 Vector3 touchWorldPosition = raycastCamera.ScreenToWorldPoint(touch.position);
                 GameObject hitGameObject = Raycast(new Vector2(touchWorldPosition.x, touchWorldPosition.y));
@@ -98,7 +98,7 @@ namespace Robbi.Game.Inputs
             }
             else if (Input.touchCount == 2)
             {
-                doubleTouchEvent.Raise(new MultiTouchEventArgs()
+                doubleTouchEvent.RaiseSilently(new MultiTouchEventArgs()
                 {
                     touchCount = 2,
                     touches = Input.touches,
@@ -106,7 +106,7 @@ namespace Robbi.Game.Inputs
             }
             else if (Input.touchCount == 3)
             {
-                tripleTouchEvent.Raise(new MultiTouchEventArgs()
+                tripleTouchEvent.RaiseSilently(new MultiTouchEventArgs()
                 {
                     touchCount = 3,
                     touches = Input.touches,
@@ -144,7 +144,7 @@ namespace Robbi.Game.Inputs
             float mouseScrollDelta = Input.mouseScrollDelta.y;
             if (mouseScrollDelta != 0)
             {
-                mouseScrolled.Raise(mouseScrollDelta);
+                mouseScrolled.RaiseSilently(mouseScrollDelta);
             }
 #endif
         }
@@ -161,17 +161,17 @@ namespace Robbi.Game.Inputs
         {
             if (Input.GetMouseButtonDown(mouseButton))
             {
-                mouseButtonFirstDown.Raise(Input.mousePosition);
+                mouseButtonFirstDown.RaiseSilently(Input.mousePosition);
             }
 
             if (Input.GetMouseButton(mouseButton))
             {
-                mouseButtonDown.Raise(Input.mousePosition);
+                mouseButtonDown.RaiseSilently(Input.mousePosition);
             }
 
             if (Input.GetMouseButtonUp(mouseButton))
             {
-                mouseButtonFirstUpEvent.Raise(Input.mousePosition);
+                mouseButtonFirstUpEvent.RaiseSilently(Input.mousePosition);
             }
         }
 
