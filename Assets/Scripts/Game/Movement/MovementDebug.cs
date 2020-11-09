@@ -28,11 +28,6 @@ namespace Robbi.Movement
             movementManager = GetComponent<MovementManager>();
         }
 
-        private void Start()
-        {
-            movementManager.DebugMovement = false;
-        }
-
         #endregion
 
         #region Debug API

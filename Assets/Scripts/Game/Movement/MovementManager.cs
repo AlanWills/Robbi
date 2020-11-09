@@ -44,7 +44,7 @@ namespace Robbi.Movement
         {
             set
             {
-                movementTilemap.GetComponent<TilemapRenderer>().enabled = value;
+                movementTilemap.value.GetComponent<TilemapRenderer>().enabled = value;
             }
         }
 
@@ -54,8 +54,8 @@ namespace Robbi.Movement
         }
 
         [Header("Tilemaps")]
-        public Tilemap movementTilemap;
-        public Tilemap doorsTilemap;
+        public TilemapValue movementTilemap;
+        public TilemapValue doorsTilemap;
         
         [Header("Events")]
         public Vector3Value playerLocalPosition;
@@ -73,8 +73,8 @@ namespace Robbi.Movement
         [Header("Other")]
         public GameObjectAllocator destinationMarkerAllocator;
         public FloatValue movementSpeed;
+        public MovementDebug movementDebug;
 
-        private Grid grid;
         private List<Waypoint> waypoints = new List<Waypoint>();
         private Stack<Vector3> stepsToNextWaypoint = new Stack<Vector3>();
 
@@ -91,7 +91,6 @@ namespace Robbi.Movement
 
         private void Start()
         {
-            grid = movementTilemap.layoutGrid;
             waypointsPlaced.value = 0;
             isProgramRunning.value = false;
             movementSpeed.value = OptionsManager.Instance.DefaultMovementSpeed;
@@ -164,7 +163,7 @@ namespace Robbi.Movement
             
             if (isProgramRunning.value)
             {
-                CalculateGridSteps(grid.LocalToCell(playerLocalPosition.value), waypoints[0].gridPosition);
+                CalculateGridSteps(movementTilemap.value.LocalToCell(playerLocalPosition.value), waypoints[0].gridPosition);
             }
         }
 
@@ -176,7 +175,7 @@ namespace Robbi.Movement
                 return;
             }
 
-            Vector3Int waypointGridPosition = grid.WorldToCell(waypointWorldPosition);
+            Vector3Int waypointGridPosition = movementTilemap.value.WorldToCell(waypointWorldPosition);
             if (WaypointExists(waypointGridPosition))
             {
                 // Cannot add waypoints to a position that already has one
@@ -189,9 +188,9 @@ namespace Robbi.Movement
                 return;
             }
 
-            Vector3Int lastWaypointGridPosition = waypoints.Count != 0 ? waypoints[waypoints.Count - 1].gridPosition : grid.WorldToCell(playerLocalPosition.value); ;
+            Vector3Int lastWaypointGridPosition = waypoints.Count != 0 ? waypoints[waypoints.Count - 1].gridPosition : movementTilemap.value.WorldToCell(playerLocalPosition.value); ;
 
-            if (waypointGridPosition != lastWaypointGridPosition && movementTilemap.HasTile(waypointGridPosition))
+            if (waypointGridPosition != lastWaypointGridPosition && movementTilemap.value.HasTile(waypointGridPosition))
             {
                 if (!destinationMarkerAllocator.CanAllocate(1))
                 {
@@ -199,7 +198,7 @@ namespace Robbi.Movement
                 }
 
                 GameObject destinationMarkerInstance = destinationMarkerAllocator.Allocate();
-                destinationMarkerInstance.transform.position = grid.GetCellCenterLocal(waypointGridPosition);
+                destinationMarkerInstance.transform.position = movementTilemap.value.GetCellCenterLocal(waypointGridPosition);
 
                 waypoints.Add(new Waypoint(waypointGridPosition, destinationMarkerInstance));
                 --remainingWaypointsPlaceable.value;
@@ -320,9 +319,9 @@ namespace Robbi.Movement
             Dictionary<Vector3Int, float> costOverall)
         {
             Vector3Int neighbour = bestPosition + delta;
-            if (movementTilemap.HasTile(neighbour))
+            if (movementTilemap.value.HasTile(neighbour))
             {
-                float distanceToNeighbour = doorsTilemap.HasTile(neighbour) ? 1000.0f : 1.0f;
+                float distanceToNeighbour = doorsTilemap.value.HasTile(neighbour) ? 1000.0f : 1.0f;
                 float tentativeCostFromStart = costFromStart[bestPosition] + distanceToNeighbour;
                 float neighbourScore = costFromStart.ContainsKey(neighbour) ? costFromStart[neighbour] : float.MaxValue;
 
@@ -372,7 +371,7 @@ namespace Robbi.Movement
 
             for (int i = newWaypoints.Count - 1; i >= 0; --i)
             {
-                if (doorsTilemap.HasTile(newWaypoints[i]))
+                if (doorsTilemap.value.HasTile(newWaypoints[i]))
                 {
                     for (int j = i; j >= 0; --j)
                     {
@@ -385,7 +384,7 @@ namespace Robbi.Movement
 
             foreach (Vector3Int waypoint in newWaypoints)
             {
-                stepsToNextWaypoint.Push(grid.GetCellCenterWorld(waypoint));
+                stepsToNextWaypoint.Push(movementTilemap.value.GetCellCenterWorld(waypoint));
             }
         }
 
