@@ -1,6 +1,7 @@
-﻿using Robbi.Save;
+﻿using Robbi.Debugging.Logging;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,21 +37,32 @@ namespace Robbi.Managers
 
         #region Save/Load Methods
 
-        public static AsyncOperationHandle Load(string filePath)
+        protected static AsyncOperationHandle Load(string addressablePath, string persistentFilePath)
         {
-            AsyncOperationHandle asyncOperationHandle = Addressables.LoadAssetAsync<T>(filePath);
-            asyncOperationHandle.Completed += Load_Completed;
+            AsyncOperationHandle asyncOperationHandle = Addressables.LoadAssetAsync<T>(addressablePath);
+            asyncOperationHandle.Completed += (AsyncOperationHandle obj) => { Load_Completed(obj, persistentFilePath); };
             
             return asyncOperationHandle;
         }
 
-        private static void Load_Completed(AsyncOperationHandle obj)
+        private static void Load_Completed(AsyncOperationHandle obj, string persistentFilePath)
         {
             Debug.LogFormat("{0} load complete", typeof(T).Name);
 
             if (obj.IsValid() && obj.Result != null)
             {
                 Instance = obj.Result as T;
+                HudLogger.LogInfo(string.Format("{0} loaded", Instance.name));
+                Debug.LogFormat("{0} loaded", Instance.name);
+
+                if (File.Exists(persistentFilePath))
+                {
+                    Instance.Deserialize(File.ReadAllText(persistentFilePath));
+                }
+                else
+                {
+                    Debug.LogFormat("{0} not found for manager {1}", persistentFilePath, Instance.name);
+                }
             }
             else
             {
@@ -58,8 +70,16 @@ namespace Robbi.Managers
             }
         }
 
-        public abstract void Serialize(SaveData saveData);
-        public abstract void Deserialize(SaveData saveData);
+        public void Save(string filePath)
+        {
+            string serializedData = Instance.Serialize();
+            File.WriteAllText(filePath, serializedData);
+            HudLogger.LogInfo(string.Format("{0} saved", Instance.name));
+            Debug.LogFormat("{0} saved", Instance.name);
+        }
+
+        protected abstract string Serialize();
+        protected abstract void Deserialize(string fileText);
 
         #endregion
     }

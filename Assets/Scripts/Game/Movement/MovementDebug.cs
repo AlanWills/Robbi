@@ -25,7 +25,7 @@ namespace Robbi.Movement
 
         private void Start()
         {
-            movementTilemap.value.enabled = false;
+            SetDebugMovementImpl(false);
 
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
             Debug.Assert(instance == null, "Multiple MovementDebug scripts found");
@@ -41,12 +41,22 @@ namespace Robbi.Movement
 
         public static void SetPlaceableWaypoints(int waypoints)
         {
-            instance.remainingWaypointsPlaceable.value = waypoints;
+            instance.SetPlaceableWaypointsImpl(waypoints);
+        }
+
+        private void SetPlaceableWaypointsImpl(int waypoints)
+        {
+            remainingWaypointsPlaceable.value = waypoints;
         }
 
         public static void SetDebugMovement(bool debugMovement)
         {
-            instance.movementTilemap.value.enabled = debugMovement;
+            instance.SetDebugMovementImpl(debugMovement);
+        }
+
+        private void SetDebugMovementImpl(bool debugMovement)
+        {
+            movementTilemap.value.GetComponent<TilemapRenderer>().enabled = debugMovement;
         }
 
         #endregion

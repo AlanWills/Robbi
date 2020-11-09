@@ -25,6 +25,8 @@ namespace Robbi.Levels
                 if (uint.TryParse(parameters[0], out uint result))
                 {
                     levelManager.CurrentLevelIndex = result;
+                    levelManager.Save();
+
                     output.Append(string.Format("Current Level Index successfully set to {0}", levelManager.CurrentLevelIndex));
                     return true;
                 }

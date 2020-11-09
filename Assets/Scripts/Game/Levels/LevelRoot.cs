@@ -45,5 +45,21 @@ namespace Robbi.Levels
         }
 
         #endregion
+
+        #region Editor Only Functions
+
+#if UNITY_EDITOR
+        public void EditorOnly_CompressAllTilemaps()
+        {
+            corridorsTilemap.CompressBounds();
+            destructibleCorridorsTilemap.CompressBounds();
+            exitsTilemap.CompressBounds();
+            doorsTilemap.CompressBounds();
+            interactablesTilemap.CompressBounds();
+            movementTilemap.CompressBounds();
+        }
+#endif
+
+#endregion
     }
 }

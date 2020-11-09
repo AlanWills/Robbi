@@ -1,6 +1,5 @@
 ﻿using Robbi.Levels;
 using Robbi.Parameters;
-using Robbi.Save;
 using Robbi.Options;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +9,9 @@ using UnityEngine;
 
 namespace Robbi.FSM.Nodes.Game
 {
-    [CreateNodeMenu("Robbi/Game/Save Game")]
+    [CreateNodeMenu("Robbi/Saving/Save Level Manager")]
     [NodeTint(0.2f, 0.2f, 0.6f)]
-    public class SaveGameNode : FSMNode
+    public class SaveLevelManagerNode : FSMNode
     {
         #region FSM Runtime Overrides
 
@@ -20,10 +19,7 @@ namespace Robbi.FSM.Nodes.Game
         {
             base.OnEnter();
 
-            SaveData saveData = new SaveData();
-            LevelManager.Instance.Serialize(saveData);
-            OptionsManager.Instance.Serialize(saveData);
-            saveData.Save();
+            LevelManager.Instance.Save();
         }
 
         #endregion

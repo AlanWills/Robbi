@@ -13,7 +13,7 @@ namespace RobbiEditor.Levels.Migration
 {
     public static class AddLevelRootComponent
     {
-        [MenuItem("Robbi/Migration/Migrate Doors")]
+        [MenuItem("Robbi/Migration/Migrate Level Root")]
         public static void MigrateHorizontalDoors()
         {
             TilemapValue corridorsTilemapValue = AssetDatabase.LoadAssetAtPath<TilemapValue>(ParameterFiles.CORRIDORS_TILEMAP);

@@ -1,8 +1,9 @@
-﻿using Robbi.Managers;
+﻿using Robbi.Debugging.Logging;
+using Robbi.Managers;
 using Robbi.Parameters;
-using Robbi.Save;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,11 @@ namespace Robbi.Options
         #region Properties and Fields
 
         private const string ADDRESS = "Assets/Options/OptionsManager.asset";
+        
+        public static string DefaultSavePath
+        {
+            get { return Path.Combine(Application.persistentDataPath, "OptionsManager.json"); }
+        }
 
         public bool MusicEnabled
         {
@@ -170,23 +176,49 @@ namespace Robbi.Options
 
         public static AsyncOperationHandle Load()
         {
-            return Load(ADDRESS);
+            return Load(ADDRESS, DefaultSavePath);
         }
 
-        public override void Serialize(SaveData saveData)
+        public void Save()
         {
-            saveData.musicEnabled = MusicEnabled;
-            saveData.sfxEnabled = SfxEnabled;
-            saveData.defaultMovementSpeed = DefaultMovementSpeed;
+            Save(DefaultSavePath);
         }
 
-        public override void Deserialize(SaveData saveData)
+        protected override string Serialize()
         {
-            MusicEnabled = saveData.musicEnabled;
-            SfxEnabled = saveData.sfxEnabled;
-            DefaultMovementSpeed = saveData.defaultMovementSpeed;
+            return JsonUtility.ToJson(new OptionsManagerDTO(this));
+        }
+
+        protected override void Deserialize(string fileContents)
+        {
+            OptionsManagerDTO optionsManagerDTO = JsonUtility.FromJson<OptionsManagerDTO>(fileContents);
+
+            MusicEnabled = optionsManagerDTO.musicEnabled;
+            SfxEnabled = optionsManagerDTO.sfxEnabled;
+            DefaultMovementSpeed = optionsManagerDTO.defaultMovementSpeed;
+
+            HudLogger.LogInfo(string.Format("Music Enabled: {0}", MusicEnabled));
+            HudLogger.LogInfo(string.Format("Sfx Enabled: {0}", SfxEnabled));
+            HudLogger.LogInfo(string.Format("Default Movement Speed: {0}", DefaultMovementSpeed));
         }
 
         #endregion
+    }
+
+    [Serializable]
+    public class OptionsManagerDTO
+    {
+        public bool musicEnabled = true;
+        public bool sfxEnabled = true;
+        public float defaultMovementSpeed = 4;
+
+        public OptionsManagerDTO() { }
+
+        public OptionsManagerDTO(OptionsManager optionsManager)
+        {
+            musicEnabled = optionsManager.MusicEnabled;
+            sfxEnabled = optionsManager.SfxEnabled;
+            defaultMovementSpeed = optionsManager.DefaultMovementSpeed;
+        }
     }
 }

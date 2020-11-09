@@ -1,7 +1,6 @@
 ﻿using Robbi.Debugging.Logging;
 using Robbi.Managers;
 using Robbi.Parameters;
-using Robbi.Save;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,6 +19,11 @@ namespace Robbi.Levels
         #region Properties and Fields
 
         private const string ADDRESS = "Assets/Levels/LevelManager.asset";
+
+        public static string DefaultSavePath
+        {
+            get { return Path.Combine(Application.persistentDataPath, "LevelManager.json"); }
+        }
 
         public uint CurrentLevelIndex 
         { 
@@ -46,19 +50,41 @@ namespace Robbi.Levels
 
         public static AsyncOperationHandle Load()
         {
-            return Load(ADDRESS);
+            return Load(ADDRESS, DefaultSavePath);
         }
 
-        public override void Serialize(SaveData saveData)
+        public void Save()
         {
-            saveData.currentLevel = CurrentLevelIndex;
+            Save(DefaultSavePath);
         }
 
-        public override void Deserialize(SaveData saveData)
+        protected override string Serialize()
         {
-            CurrentLevelIndex = saveData.currentLevel;
+            return JsonUtility.ToJson(new LevelManagerDTO(this));
+        }
+
+        protected override void Deserialize(string fileContents)
+        {
+            LevelManagerDTO levelManagerDTO = JsonUtility.FromJson<LevelManagerDTO>(fileContents);
+
+            CurrentLevelIndex = levelManagerDTO.currentLevelIndex;
+
+            HudLogger.LogInfo(string.Format("Current Level Index: {0}", CurrentLevelIndex));
         }
 
         #endregion
+    }
+
+    [Serializable]
+    public class LevelManagerDTO
+    {
+        public uint currentLevelIndex = 0;
+
+        public LevelManagerDTO() { }
+
+        public LevelManagerDTO(LevelManager levelManager)
+        {
+            currentLevelIndex = levelManager.CurrentLevelIndex;
+        }
     }
 }

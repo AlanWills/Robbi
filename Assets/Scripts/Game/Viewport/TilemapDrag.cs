@@ -49,7 +49,7 @@ namespace Robbi.Viewport
                 float scrollModifier = dragSpeed * Time.deltaTime * cameraToDrag.orthographicSize;
 
                 transform.Translate(mouseDelta.x * scrollModifier, mouseDelta.y * scrollModifier, 0);
-                FitCamera();
+                ClampCamera();
             }
 
             previousMouseDownPosition = mousePosition;
@@ -82,7 +82,7 @@ namespace Robbi.Viewport
                         float scrollModifier = dragSpeed * Time.deltaTime * cameraToDrag.orthographicSize;
 
                         transform.Translate(dragAmount.x * scrollModifier, dragAmount.y * scrollModifier, 0);
-                        FitCamera();
+                        ClampCamera();
                     }
                     break;
 
@@ -92,7 +92,7 @@ namespace Robbi.Viewport
             }
         }
 
-        private void FitCamera()
+        private void ClampCamera()
         {
             Bounds bounds = tilemap.value.localBounds;
             Vector3 currentPosition = transform.position;
