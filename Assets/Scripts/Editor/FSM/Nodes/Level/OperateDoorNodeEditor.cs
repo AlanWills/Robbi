@@ -21,7 +21,7 @@ namespace RobbiEditor.FSM.Nodes.Level
             OperateDoorNode doorNode = target as OperateDoorNode;
             if (doorNode.doorsTilemap == null)
             {
-                doorNode.doorsTilemap = AssetDatabase.LoadAssetAtPath<TilemapValue>(ParameterFiles.DOORS_TILEMAP_DATA);
+                doorNode.doorsTilemap = AssetDatabase.LoadAssetAtPath<TilemapValue>(ParameterFiles.DOORS_TILEMAP);
             }
         }
 

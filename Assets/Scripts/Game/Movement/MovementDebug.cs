@@ -16,17 +16,23 @@ namespace Robbi.Movement
 
         private static MovementDebug instance;
 
-        public BoolValue debugMovement;
+        public TilemapValue movementTilemap;
         public IntValue remainingWaypointsPlaceable;
 
         #endregion
 
         #region Unity Methods
 
-        private void Awake()
+        private void Start()
         {
+            movementTilemap.value.enabled = false;
+
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
             Debug.Assert(instance == null, "Multiple MovementDebug scripts found");
             instance = this;
+#else
+            GameObject.Destroy(gameObject);
+#endif
         }
 
         #endregion
@@ -40,7 +46,7 @@ namespace Robbi.Movement
 
         public static void SetDebugMovement(bool debugMovement)
         {
-            instance.debugMovement.value = debugMovement;
+            instance.movementTilemap.value.enabled = debugMovement;
         }
 
         #endregion

@@ -15,10 +15,6 @@ namespace Robbi.Levels
     {
         public Vector3Value playerLocalPosition;
         public IntValue remainingWaypointsPlaceable;
-        public TilemapValue destructibleCorridorsTilemap;
-        public TilemapValue movementTilemap;
-        public TilemapValue exitsTilemap;
-        public TilemapValue doorsTilemap;
     }
 
     [CreateAssetMenu(fileName = "Level", menuName = "Robbi/Levels/Level")]
@@ -44,10 +40,6 @@ namespace Robbi.Levels
 
             levelData.playerLocalPosition.value = grid.GetCellCenterLocal(playerStartPosition);
             levelData.remainingWaypointsPlaceable.value = maxWaypointsPlaceable;
-            levelData.destructibleCorridorsTilemap.value = level.transform.Find("DestructibleCorridors").GetComponent<Tilemap>();
-            levelData.movementTilemap.value = level.transform.Find("Movement").GetComponent<Tilemap>();
-            levelData.exitsTilemap.value = level.transform.Find("Exits").GetComponent<Tilemap>();
-            levelData.doorsTilemap.value = level.transform.Find("Doors").GetComponent<Tilemap>();
         }
 
         #endregion
