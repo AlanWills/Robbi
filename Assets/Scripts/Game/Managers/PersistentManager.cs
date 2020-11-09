@@ -52,8 +52,7 @@ namespace Robbi.Managers
             if (obj.IsValid() && obj.Result != null)
             {
                 Instance = obj.Result as T;
-                HudLogger.LogInfo(string.Format("{0} loaded", Instance.name));
-                Debug.LogFormat("{0} loaded", Instance.name);
+                HudLogger.LogInfoFormat("{0} loaded", Instance.name);
 
                 if (File.Exists(persistentFilePath))
                 {
@@ -74,8 +73,7 @@ namespace Robbi.Managers
         {
             string serializedData = Instance.Serialize();
             File.WriteAllText(filePath, serializedData);
-            HudLogger.LogInfo(string.Format("{0} saved", Instance.name));
-            Debug.LogFormat("{0} saved", Instance.name);
+            HudLogger.LogInfoFormat("{0} saved", Instance.name);
         }
 
         protected abstract string Serialize();

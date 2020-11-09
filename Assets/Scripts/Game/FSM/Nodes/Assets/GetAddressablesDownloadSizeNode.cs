@@ -53,18 +53,15 @@ namespace Robbi.FSM.Nodes.Assets
                 if (downloadOperation.Status == AsyncOperationStatus.Failed)
                 {
                     HudLogger.LogError(downloadOperation.OperationException.Message);
-                    Debug.LogError(downloadOperation.OperationException.Message);
                 }
                 else if (downloadOperation.Status == AsyncOperationStatus.Succeeded)
                 {
-                    HudLogger.LogInfo(string.Format("{0} download size is {1}", label, size));
-                    Debug.LogFormat("{0} download size is {1}", label, size);
+                    HudLogger.LogInfoFormat("{0} download size is {1}", label, size);
                 }
             }
             else
             {
-                HudLogger.LogError(string.Format("Failed to check download size for {0}", label));
-                Debug.LogErrorFormat("Failed to check download size for {0}", label);
+                HudLogger.LogErrorFormat("Failed to check download size for {0}", label);
             }
         }
 

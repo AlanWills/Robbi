@@ -30,7 +30,6 @@ namespace Robbi.Testing
                 if (obj.Result == null)
                 {
                     HudLogger.LogError("Failed to load integration test");
-                    Debug.LogError("Failed to load integration test");
                 }
                 else
                 {
@@ -40,7 +39,6 @@ namespace Robbi.Testing
                         if (fsmObj.Result == null)
                         {
                             HudLogger.LogError("Failed to load integration test fsm");
-                            Debug.LogError("Failed to load integration test fsm");
                         }
                         else
                         {

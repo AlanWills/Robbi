@@ -44,7 +44,6 @@ namespace Robbi.FSM.Nodes.Game
             base.OnEnter();
 
             HudLogger.LogInfo("Beginning bootstrap");
-            Debug.Log("Beginning bootstrap");
 
             loadManagers.Clear();
             loadManagers.Add(LevelManager.Load());
@@ -81,7 +80,6 @@ namespace Robbi.FSM.Nodes.Game
             if (loadingHandle.IsValid() && loadingHandle.Status == AsyncOperationStatus.Failed)
             {
                 HudLogger.LogError("Failed to load manager");
-                Debug.LogError("Failed to load manager");
             }
         }
 

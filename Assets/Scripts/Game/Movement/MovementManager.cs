@@ -212,7 +212,7 @@ namespace Robbi.Movement
                 ++waypointsPlaced.value;
                 onWaypointPlaced.Raise(waypointGridPosition);
 
-                HudLogger.LogInfo(string.Format("Waypoint added at {0}", waypointGridPosition));
+                HudLogger.LogInfoFormat("Waypoint added at {0}", waypointGridPosition);
             }
         }
 

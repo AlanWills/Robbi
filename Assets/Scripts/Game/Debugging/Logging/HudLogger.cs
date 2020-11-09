@@ -42,7 +42,13 @@ namespace Robbi.Debugging.Logging
             if (Instance != null)
             {
                 Instance.Log(message, Instance.infoColour);
+                Debug.Log(message);
             }
+        }
+
+        public static void LogInfoFormat(string format, params object[] args)
+        {
+            LogInfo(string.Format(format, args));
         }
 
         public static void LogWarning(string message)
@@ -50,7 +56,13 @@ namespace Robbi.Debugging.Logging
             if (Instance != null)
             {
                 Instance.Log(message, Instance.warningColour);
+                Debug.LogWarning(message);
             }
+        }
+
+        public static void LogWarningFormat(string format, params object[] args)
+        {
+            LogWarning(string.Format(format, args));
         }
 
         public static void LogError(string message)
@@ -58,7 +70,13 @@ namespace Robbi.Debugging.Logging
             if (Instance != null)
             {
                 Instance.Log(message, Instance.errorColour);
+                Debug.LogError(message);
             }
+        }
+
+        public static void LogErrorFormat(string format, params object[] args)
+        {
+            LogError(string.Format(format, args));
         }
 
         private void Log(string message, Color colour)

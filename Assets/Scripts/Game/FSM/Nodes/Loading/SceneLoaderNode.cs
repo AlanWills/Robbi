@@ -95,7 +95,6 @@ namespace Robbi.FSM.Nodes
             if (isAddressable && addressablesOperation.Status == AsyncOperationStatus.Failed)
             {
                 HudLogger.LogError(addressablesOperation.OperationException.Message);
-                Debug.LogError(addressablesOperation.OperationException.Message);
             }
         }
 

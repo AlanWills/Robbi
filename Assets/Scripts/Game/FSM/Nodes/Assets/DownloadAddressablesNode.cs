@@ -66,18 +66,15 @@ namespace Robbi.FSM.Nodes.Assets
                 if (downloadOperation.Status == AsyncOperationStatus.Failed)
                 {
                     HudLogger.LogError(downloadOperation.OperationException.Message);
-                    Debug.LogError(downloadOperation.OperationException.Message);
                 }
                 else if (downloadOperation.Status == AsyncOperationStatus.Succeeded)
                 {
-                    HudLogger.LogInfo(string.Format("{0} downloaded correctly", label));
-                    Debug.LogFormat("{0} downloaded correctly", label);
+                    HudLogger.LogInfoFormat("{0} downloaded correctly", label);
                 }
             }
             else
             {
-                HudLogger.LogError(string.Format("Failed to download {0}", label));
-                Debug.LogErrorFormat("Failed to download {0}", label);
+                HudLogger.LogErrorFormat("Failed to download {0}", label);
             }
         }
 

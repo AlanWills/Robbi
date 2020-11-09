@@ -58,7 +58,6 @@ namespace Robbi.FSM.Nodes.Loading
             if (isAddressable && instantiateHandle.Status == AsyncOperationStatus.Failed)
             {
                 HudLogger.LogError(instantiateHandle.OperationException.Message);
-                Debug.LogError(instantiateHandle.OperationException.Message);
             }
         }
 

@@ -197,9 +197,9 @@ namespace Robbi.Options
             SfxEnabled = optionsManagerDTO.sfxEnabled;
             DefaultMovementSpeed = optionsManagerDTO.defaultMovementSpeed;
 
-            HudLogger.LogInfo(string.Format("Music Enabled: {0}", MusicEnabled));
-            HudLogger.LogInfo(string.Format("Sfx Enabled: {0}", SfxEnabled));
-            HudLogger.LogInfo(string.Format("Default Movement Speed: {0}", DefaultMovementSpeed));
+            HudLogger.LogInfoFormat("Music Enabled: {0}", MusicEnabled);
+            HudLogger.LogInfoFormat("Sfx Enabled: {0}", SfxEnabled);
+            HudLogger.LogInfoFormat("Default Movement Speed: {0}", DefaultMovementSpeed);
         }
 
         #endregion
