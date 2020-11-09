@@ -15,6 +15,7 @@ using Event = Robbi.Events.Event;
 namespace Robbi.Movement
 {
     [AddComponentMenu("Robbi/Movement/Movement Manager")]
+    [RequireComponent(typeof(BoxCollider2D))]
     public class MovementManager : MonoBehaviour
     {
         #region Waypoint
@@ -65,7 +66,7 @@ namespace Robbi.Movement
         [Header("Other")]
         public GameObjectAllocator destinationMarkerAllocator;
         public FloatValue movementSpeed;
-        public MovementDebug movementDebug;
+        public BoxCollider2D boundingBox;
 
         private List<Waypoint> waypoints = new List<Waypoint>();
         private Stack<Vector3> stepsToNextWaypoint = new Stack<Vector3>();
@@ -80,13 +81,6 @@ namespace Robbi.Movement
         #endregion
 
         #region Unity Methods
-
-        private void Start()
-        {
-            waypointsPlaced.value = 0;
-            isProgramRunning.value = false;
-            movementSpeed.value = OptionsManager.Instance.DefaultMovementSpeed;
-        }
 
         private void Update()
         {
@@ -143,6 +137,27 @@ namespace Robbi.Movement
             {
                 destinationMarkerAllocator = GetComponent<GameObjectAllocator>();
             }
+
+            if (boundingBox == null)
+            {
+                boundingBox = GetComponent<BoxCollider2D>();
+            }
+        }
+
+        #endregion
+
+        #region Initialization
+
+        private void Start()
+        {
+            waypointsPlaced.value = 0;
+            isProgramRunning.value = false;
+            movementSpeed.value = OptionsManager.Instance.DefaultMovementSpeed;
+
+            Vector3Int movementGridSize = movementTilemap.value.size;
+            Vector3Int movementOrigin = movementTilemap.value.origin;
+            boundingBox.size = new Vector2(movementGridSize.x, movementGridSize.y);
+            boundingBox.offset = new Vector2(movementOrigin.x + movementGridSize.x * 0.5f, movementOrigin.y + movementGridSize.y * 0.5f);
         }
 
         #endregion

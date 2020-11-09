@@ -14,7 +14,7 @@ namespace Robbi.Save
     {
         #region Properties and Fields
 
-        private static string DEFAULT_FILE_PATH
+        public static string DEFAULT_FILE_PATH
         {
             get { return Path.Combine(Application.persistentDataPath, "SaveData.json"); }
         }

@@ -133,10 +133,10 @@ namespace Robbi.Options
         #region Mobile Specific Settings
 
         [SerializeField]
-        private float mobileMinZoom = 8;
+        private float mobileMinZoom = 0.75f;
 
         [SerializeField]
-        private float mobileMaxZoom = 20;
+        private float mobileMaxZoom = 8;
 
         [SerializeField]
         private float mobileZoomSpeed = 0.02f;
@@ -149,10 +149,10 @@ namespace Robbi.Options
         #region Desktop Specific Settings
 
         [SerializeField]
-        private float desktopMinZoom = 2;
+        private float desktopMinZoom = 0.75f;
 
         [SerializeField]
-        private float desktopMaxZoom = 20;
+        private float desktopMaxZoom = 2;
 
         [SerializeField]
         private float desktopZoomSpeed = 1;
