@@ -31,7 +31,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121577547680030898}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -50,6 +50,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 730b5b258e5ef0a4aa3bdab8db2bd95b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugMovement: {fileID: 11400000, guid: 3b017867212925741962f7583291f2b7, type: 2}
+  remainingWaypointsPlaceable: {fileID: 11400000, guid: 5795522ed653b6947a2cfc5b86742695,
+    type: 2}
 --- !u!114 &2121577547680030863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,8 +65,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ab537e308e68b540822533a43825ea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementTilemap: {fileID: 0}
-  doorsTilemap: {fileID: 0}
+  movementTilemap: {fileID: 11400000, guid: 383b6f4d91bf25e4a924c5ca0f937a9a, type: 2}
+  doorsTilemap: {fileID: 11400000, guid: 30b77989832f303478f308bf685407be, type: 2}
   playerLocalPosition: {fileID: 11400000, guid: ddb88a6bd2594e6419cb8c238d69285a,
     type: 2}
   onMovedTo: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
@@ -77,8 +80,8 @@ MonoBehaviour:
   waypointsPlaced: {fileID: 11400000, guid: ab2db721a5c983a40963c20d01bb3cc3, type: 2}
   isProgramRunning: {fileID: 11400000, guid: 36c66e683e05d134495c04803619774f, type: 2}
   destinationMarkerAllocator: {fileID: -6531588881926113343}
-  startingMovementSpeed: 4
   movementSpeed: {fileID: 11400000, guid: 4129d939c3be32249934c9c778306861, type: 2}
+  movementDebug: {fileID: 0}
 --- !u!61 &1856917736182784394
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -92,7 +95,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.5, y: 1}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -103,7 +106,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7, y: 16}
+  m_Size: {x: 1000, y: 1000}
   m_EdgeRadius: 0
 --- !u!114 &2218100416834852698
 MonoBehaviour:

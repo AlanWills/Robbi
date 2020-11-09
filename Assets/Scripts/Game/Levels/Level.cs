@@ -48,8 +48,6 @@ namespace Robbi.Levels
             levelData.movementTilemap.value = level.transform.Find("Movement").GetComponent<Tilemap>();
             levelData.exitsTilemap.value = level.transform.Find("Exits").GetComponent<Tilemap>();
             levelData.doorsTilemap.value = level.transform.Find("Doors").GetComponent<Tilemap>();
-
-            MovementDebug.SetDebugMovement(false);
         }
 
         #endregion

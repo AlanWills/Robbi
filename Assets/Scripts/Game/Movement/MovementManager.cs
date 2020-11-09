@@ -40,14 +40,6 @@ namespace Robbi.Movement
 
         #region Properties and Fields
 
-        public bool DebugMovement
-        {
-            set
-            {
-                movementTilemap.value.GetComponent<TilemapRenderer>().enabled = value;
-            }
-        }
-
         public int NumWaypoints
         {
             get { return waypoints.Count; }

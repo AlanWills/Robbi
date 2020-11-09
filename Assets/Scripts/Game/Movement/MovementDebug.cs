@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Robbi.Parameters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,8 @@ namespace Robbi.Movement
 
         private static MovementDebug instance;
 
-        private MovementManager movementManager;
+        public BoolValue debugMovement;
+        public IntValue remainingWaypointsPlaceable;
 
         #endregion
 
@@ -25,7 +27,6 @@ namespace Robbi.Movement
         {
             Debug.Assert(instance == null, "Multiple MovementDebug scripts found");
             instance = this;
-            movementManager = GetComponent<MovementManager>();
         }
 
         #endregion
@@ -34,12 +35,12 @@ namespace Robbi.Movement
 
         public static void SetPlaceableWaypoints(int waypoints)
         {
-            instance.movementManager.remainingWaypointsPlaceable.value = waypoints;
+            instance.remainingWaypointsPlaceable.value = waypoints;
         }
 
         public static void SetDebugMovement(bool debugMovement)
         {
-            instance.movementManager.DebugMovement = debugMovement;
+            instance.debugMovement.value = debugMovement;
         }
 
         #endregion
