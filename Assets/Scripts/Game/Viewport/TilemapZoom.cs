@@ -96,6 +96,16 @@ namespace Robbi.Viewport
             }
         }
 
+        public void FullZoomOut()
+        {
+            Bounds bounds = tilemap.value.localBounds;
+            Vector3 bottomLeft = cameraToZoom.WorldToViewportPoint(bounds.min);
+            Vector3 topRight = cameraToZoom.WorldToViewportPoint(bounds.max);
+            float difference = Math.Max(topRight.x - bottomLeft.x, topRight.y - bottomLeft.y);
+
+            cameraToZoom.orthographicSize *= difference / minZoom;
+        }
+
         #endregion
     }
 }

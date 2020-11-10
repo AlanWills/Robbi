@@ -1,4 +1,5 @@
 ﻿using Robbi.Parameters;
+using Robbi.Viewport;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,10 @@ namespace Robbi.Levels
             doorsTilemapValue.value = doorsTilemap;
             interactablesTilemapValue.value = interactablesTilemap;
             movementTilemapValue.value = movementTilemap;
+
+            // Not great, but a hacky workaround for the fact the camera can't start zoomed out
+            // Maybe in the future this is resolved by a level started event or something
+            Camera.main.GetComponent<TilemapZoom>().FullZoomOut();
         }
 
         #endregion
