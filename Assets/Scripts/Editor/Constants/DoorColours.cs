@@ -13,5 +13,21 @@ namespace RobbiEditor.Constants
         public static readonly Color RED = new Color(1, 0, 41.0f / 255);
         public static readonly Color BLUE = new Color(0, 140.0f / 255, 1);
         public static readonly Color GREY = new Color(160.0f / 255, 160.0f / 255, 160.0f / 255);
+
+        public static readonly Color[] COLOURS = new Color[]
+        {
+            GREEN,
+            RED,
+            BLUE,
+            GREY,
+        };
+
+        public static readonly string[] COLOUR_NAMES = new string[]
+        {
+            "Green",
+            "Red",
+            "Blue",
+            "Grey",
+        };
     }
 }

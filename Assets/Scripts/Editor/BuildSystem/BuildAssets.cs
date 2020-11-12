@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RobbiEditor.Tools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -46,11 +47,9 @@ namespace RobbiEditor.BuildSystem
 
         private static void Build(BuildTargetGroup buildTargetGroup, BuildTarget buildTarget)
         {
-            Debug.Log("Beginning to build content");
+            PreBuildSteps(buildTargetGroup, buildTarget);
 
-            SetAddressableAssetSettings();
-            SetActiveBuildTarget(buildTargetGroup, buildTarget);
-            SetProfileId("AWS");
+            Debug.Log("Beginning to build content");
 
             AddressableAssetSettings.BuildPlayerContent();
 
@@ -59,11 +58,9 @@ namespace RobbiEditor.BuildSystem
 
         private static void Update(BuildTargetGroup buildTargetGroup, BuildTarget buildTarget)
         {
-            Debug.Log("Beginning to update content");
+            PreBuildSteps(buildTargetGroup, buildTarget);
 
-            SetAddressableAssetSettings();
-            SetActiveBuildTarget(buildTargetGroup, buildTarget);
-            SetProfileId("AWS");
+            Debug.Log("Beginning to update content");
 
             string contentStatePath = ContentUpdateScript.GetContentStateDataPath(false);
             Debug.LogFormat("Using content state path {0}", contentStatePath);
@@ -77,6 +74,18 @@ namespace RobbiEditor.BuildSystem
             {
                 Debug.LogFormat("Finished updating content with no build result");
             }
+        }
+
+        private static void PreBuildSteps(BuildTargetGroup buildTargetGroup, BuildTarget buildTarget)
+        {
+            Debug.Log("Beginning Pre Build steps");
+
+            CompressTilemaps.MenuItem();
+            SetAddressableAssetSettings();
+            SetActiveBuildTarget(buildTargetGroup, buildTarget);
+            SetProfileId("AWS");
+
+            Debug.Log("Finished Pre Build steps");
         }
 
         private static void SetAddressableAssetSettings()
