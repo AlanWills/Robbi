@@ -79,7 +79,7 @@ namespace RobbiEditor.BuildSystem
         private static void PreBuildSteps(BuildTargetGroup buildTargetGroup, BuildTarget buildTarget)
         {
             Debug.Log("Beginning Pre Build steps");
-
+            
             CompressTilemaps.MenuItem();
             SetAddressableAssetSettings();
             SetActiveBuildTarget(buildTargetGroup, buildTarget);
