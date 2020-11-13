@@ -1,20 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8927514392745397211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3c9a38be80386d4ea8852ca12654382, type: 3}
-  m_Name: _newValue
-  m_EditorClassIdentifier: 
-  isConstant: 1
-  constantValue: 0
-  referenceValue: {fileID: 0}
 --- !u!114 &-8831423632647727453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +155,15 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 7634838609770183560}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7634838609770183560}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7634838609770183560}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7634838609770183560}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -234,59 +228,6 @@ MonoBehaviour:
   conditions:
   - {fileID: 6594749013280596160}
   - {fileID: 3174147633479893022}
---- !u!114 &-3356013169048816799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06e317c46dcf91148b66e32179d2a8ff, type: 3}
-  m_Name: Set Int Value
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 390.54327, y: 127.89253}
-  ports:
-    keys:
-    - ' '
-    - 
-    - newValue
-    values:
-    - _fieldName: ' '
-      _node: {fileID: -3356013169048816799}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: 
-      _node: {fileID: -3356013169048816799}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: 7634838609770183560}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: newValue
-      _node: {fileID: -3356013169048816799}
-      _typeQualifiedName: Robbi.Parameters.IntReference, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  value: {fileID: 11400000, guid: d37cc83f2021bad4d9d24e7b7857ed5b, type: 2}
-  newValue: {fileID: -8927514392745397211}
-  setMode: 0
 --- !u!114 &-3105977017907211633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,14 +256,13 @@ MonoBehaviour:
   m_Name: Level4TutorialsFSM
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: -3356013169048816799}
   - {fileID: 7634838609770183560}
   - {fileID: -5707934806556057857}
   - {fileID: -7134538509136423240}
   - {fileID: -7215071614667744193}
-  startNode: {fileID: -3356013169048816799}
+  - {fileID: 0}
+  startNode: {fileID: 7634838609770183560}
   parameters:
-  - {fileID: -8927514392745397211}
   - {fileID: 8627044447357019551}
   - {fileID: -8831423632647727453}
   - {fileID: 106036645023556932}
@@ -432,7 +372,31 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: 
-        node: {fileID: -3356013169048816799}
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -5707934806556057857}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7134538509136423240}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -5707934806556057857}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7134538509136423240}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -5707934806556057857}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7134538509136423240}
         reroutePoints: []
       - fieldName: 
         node: {fileID: -5707934806556057857}

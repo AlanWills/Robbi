@@ -1,62 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7314105134728619943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06e317c46dcf91148b66e32179d2a8ff, type: 3}
-  m_Name: Set Int Value
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: -433.08914, y: 299.85532}
-  ports:
-    keys:
-    - ' '
-    - 
-    values:
-    - _fieldName: ' '
-      _node: {fileID: -7314105134728619943}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: 
-      _node: {fileID: -7314105134728619943}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: 6892811110948192973}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-  value: {fileID: 11400000, guid: d37cc83f2021bad4d9d24e7b7857ed5b, type: 2}
-  newValue: {fileID: -7179048524263192838}
---- !u!114 &-7179048524263192838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3c9a38be80386d4ea8852ca12654382, type: 3}
-  m_Name: _sceneName_sceneName
-  m_EditorClassIdentifier: 
-  isConstant: 1
-  constantValue: 0
-  referenceValue: {fileID: 0}
 --- !u!114 &-5308253885854209722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,12 +28,10 @@ MonoBehaviour:
   m_Name: Level1TutorialsFSM
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: -7314105134728619943}
   - {fileID: 6892811110948192973}
   - {fileID: 2136914687059093307}
-  startNode: {fileID: -7314105134728619943}
+  startNode: {fileID: 6892811110948192973}
   parameters:
-  - {fileID: -7179048524263192838}
   - {fileID: -5308253885854209722}
 --- !u!114 &2136914687059093307
 MonoBehaviour:
@@ -110,12 +51,16 @@ MonoBehaviour:
     keys:
     - ' '
     - 
+    - newValue
     values:
     - _fieldName: ' '
       _node: {fileID: 2136914687059093307}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 6892811110948192973}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 6892811110948192973}
         reroutePoints: []
@@ -132,8 +77,18 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
+    - _fieldName: newValue
+      _node: {fileID: 2136914687059093307}
+      _typeQualifiedName: Robbi.Parameters.IntReference, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   value: {fileID: 11400000, guid: d37cc83f2021bad4d9d24e7b7857ed5b, type: 2}
   newValue: {fileID: -5308253885854209722}
+  setMode: 0
 --- !u!114 &6892811110948192973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,7 +115,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: 
-        node: {fileID: -7314105134728619943}
+        node: {fileID: 0}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
