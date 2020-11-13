@@ -14,18 +14,17 @@ using UnityEngine.Tilemaps;
 
 namespace RobbiEditor.Tools
 {
-    public enum DoorColour
-    { 
-        Green,
-        Red,
-        Blue,
-        Grey
+    public enum DoorState
+    {
+        Open,
+        Close
     }
 
-    public enum InteractableMarker
+    [Serializable]
+    public struct DoorMarker
     {
-        DoorOpen,
-        DoorClose
+        public DoorColour doorColour;
+        public DoorState doorState;
     }
 
     [Serializable]
@@ -38,7 +37,7 @@ namespace RobbiEditor.Tools
         public int maxWaypointsPlaceable = 3; 
         public List<DoorColour> horizontalDoors = new List<DoorColour>();
         public List<DoorColour> verticalDoors = new List<DoorColour>();
-        public List<InteractableMarker> interactableMarkers = new List<InteractableMarker>();
+        public List<DoorMarker> doorMarkers = new List<DoorMarker>();
         public bool hasTutorial = false;
         public GameObject tutorialPrefabToCopy;
     }
@@ -62,7 +61,7 @@ namespace RobbiEditor.Tools
 
         private static Dictionary<DoorColour, Tuple<string, string, string>> horizontalTiles = new Dictionary<DoorColour, Tuple<string, string, string>>()
         {
-            { DoorColour.Green, TileFiles.HORIZONTAL_BLUE_DOOR },
+            { DoorColour.Green, TileFiles.HORIZONTAL_GREEN_DOOR },
             { DoorColour.Red, TileFiles.HORIZONTAL_RED_DOOR },
             { DoorColour.Blue, TileFiles.HORIZONTAL_BLUE_DOOR },
             { DoorColour.Grey, TileFiles.HORIZONTAL_GREY_DOOR },
@@ -70,16 +69,16 @@ namespace RobbiEditor.Tools
 
         private static Dictionary<DoorColour, Tuple<string, string, string>> verticalTiles = new Dictionary<DoorColour, Tuple<string, string, string>>()
         {
-            { DoorColour.Green, TileFiles.HORIZONTAL_GREEN_DOOR },
-            { DoorColour.Red, TileFiles.HORIZONTAL_RED_DOOR },
-            { DoorColour.Blue, TileFiles.HORIZONTAL_BLUE_DOOR },
-            { DoorColour.Grey, TileFiles.HORIZONTAL_GREY_DOOR },
+            { DoorColour.Green, TileFiles.VERTICAL_GREEN_DOOR },
+            { DoorColour.Red, TileFiles.VERTICAL_RED_DOOR },
+            { DoorColour.Blue, TileFiles.VERTICAL_BLUE_DOOR },
+            { DoorColour.Grey, TileFiles.VERTICAL_GREY_DOOR },
         };
 
-        private static Dictionary<InteractableMarker, string> markerPrefabs = new Dictionary<InteractableMarker, string>()
+        private static Dictionary<DoorState, string> markerPrefabs = new Dictionary<DoorState, string>()
         {
-            { InteractableMarker.DoorOpen, PrefabFiles.DOOR_OPEN_MARKER_PREFAB },
-            { InteractableMarker.DoorClose, PrefabFiles.DOOR_CLOSE_MARKER_PREFAB },
+            { DoorState.Open, PrefabFiles.DOOR_OPEN_MARKER_PREFAB },
+            { DoorState.Close, PrefabFiles.DOOR_CLOSE_MARKER_PREFAB },
         };
 
         #endregion
@@ -106,7 +105,7 @@ namespace RobbiEditor.Tools
             levelInfo.maxWaypointsPlaceable = EditorGUILayout.IntField("Max Waypoints Placeable", levelInfo.maxWaypointsPlaceable);
             propertiesChanged |= EditorGUILayout.PropertyField(levelInfoObject.FindProperty(nameof(levelInfo.horizontalDoors)));
             propertiesChanged |= EditorGUILayout.PropertyField(levelInfoObject.FindProperty(nameof(levelInfo.verticalDoors)));
-            propertiesChanged |= EditorGUILayout.PropertyField(levelInfoObject.FindProperty(nameof(levelInfo.interactableMarkers)));
+            propertiesChanged |= EditorGUILayout.PropertyField(levelInfoObject.FindProperty(nameof(levelInfo.doorMarkers)));
 
             levelInfo.hasTutorial = EditorGUILayout.Toggle("Has Tutorial", levelInfo.hasTutorial);
             if (levelInfo.hasTutorial)
@@ -202,38 +201,47 @@ namespace RobbiEditor.Tools
             AssetDatabase.CopyAsset(AssetDatabase.GetAssetPath(levelInfo.levelPrefabToCopy), prefabPath);
             
             GameObject createdPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
-
-            if (levelInfo.clearLevel)
             {
-                ClearAllTilemaps(createdPrefab);
+                LevelRoot createdPrefabLevelRoot = createdPrefab.GetComponent<LevelRoot>();
+
+                if (levelInfo.clearLevel)
+                {
+                    ClearAllTilemaps(createdPrefab);
+                }
+
+                // Have to delete the interactables in the prefab
+                DeleteAllChildren(createdPrefabLevelRoot.interactablesTilemap.transform);
             }
-            
-            // Have to delete the interactables in the prefab
-            DeleteAllChildren(createdPrefab.transform.Find("Interactables"));
-            
+
             // Then instantiate the prefab so we can add the interactables
             // I kept having a crash in Unity when I tried adding these directly to the prefab
-            GameObject instantiatedPrefab = PrefabUtility.InstantiatePrefab(createdPrefab) as GameObject;
-            Transform interactables = instantiatedPrefab.transform.Find("Interactables");
-
-            for (uint i = 0; i < levelInfo.interactableMarkers.Count; ++i)
             {
-                InteractableMarker markerType = levelInfo.interactableMarkers[(int)i];
-                GameObject interactableMarkerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(markerPrefabs[markerType]);
-                GameObject interactableMarker = PrefabUtility.InstantiatePrefab(interactableMarkerPrefab, interactables) as GameObject;
-                interactableMarker.name = string.Format("Interactable{0}{1}", markerType, i);
-                
-                PrefabUtility.ApplyAddedGameObject(interactableMarker, prefabPath, InteractionMode.AutomatedAction);
+                GameObject instantiatedPrefab = PrefabUtility.InstantiatePrefab(createdPrefab) as GameObject;
+                LevelRoot instantiatedLevelRoot = instantiatedPrefab.GetComponent<LevelRoot>();
+
+                for (uint i = 0; i < levelInfo.doorMarkers.Count; ++i)
+                {
+                    DoorMarker doorMarker = levelInfo.doorMarkers[(int)i];
+                    GameObject interactableMarkerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(markerPrefabs[doorMarker.doorState]);
+                    GameObject interactableMarker = PrefabUtility.InstantiatePrefab(interactableMarkerPrefab, instantiatedLevelRoot.interactablesTilemap.transform) as GameObject;
+                    interactableMarker.name = string.Format("{0}Switch{1}", doorMarker.doorColour, doorMarker.doorState);
+
+                    DoorColourHelper doorColourHelper = interactableMarker.GetComponentInChildren<DoorColourHelper>();
+                    doorColourHelper.icon.color = DoorColours.COLOURS[(int)doorMarker.doorColour];
+
+                    PrefabUtility.ApplyAddedGameObject(interactableMarker, prefabPath, InteractionMode.AutomatedAction);
+                }
+
+                FSMRuntime runtime = createdPrefab.GetComponent<FSMRuntime>();
+                if (runtime == null)
+                {
+                    runtime = createdPrefab.AddComponent<FSMRuntime>();
+                }
+                runtime.graph = AssetDatabase.LoadAssetAtPath<FSMGraph>(Path.Combine(levelFolderFullPath, string.Format("Level{0}FSM.asset", levelInfo.levelIndex)));
+
+                GameObject.DestroyImmediate(instantiatedPrefab);
             }
 
-            FSMRuntime runtime = createdPrefab.GetComponent<FSMRuntime>();
-            if (runtime == null)
-            {
-                runtime = createdPrefab.AddComponent<FSMRuntime>();
-            }
-            runtime.graph = AssetDatabase.LoadAssetAtPath<FSMGraph>(Path.Combine(levelFolderFullPath, string.Format("Level{0}FSM.asset", levelInfo.levelIndex)));
-
-            GameObject.DestroyImmediate(instantiatedPrefab);
             createdPrefab.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
             EditorUtility.SetDirty(createdPrefab);
         }

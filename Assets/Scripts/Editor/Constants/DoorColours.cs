@@ -7,6 +7,14 @@ using UnityEngine;
 
 namespace RobbiEditor.Constants
 {
+    public enum DoorColour
+    {
+        Green,
+        Red,
+        Blue,
+        Grey
+    }
+
     public static class DoorColours
     {
         public static readonly Color GREEN = new Color(41.0f / 255, 1.0f, 0);
