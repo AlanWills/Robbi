@@ -14,6 +14,7 @@ namespace Robbi.Levels
     [Serializable]
     public struct LevelData
     {
+        public IntValue tutorialProgression;
         public Vector3Value playerLocalPosition;
         public IntValue remainingWaypointsPlaceable;
     }
@@ -35,6 +36,9 @@ namespace Robbi.Levels
 
         public void Begin(LevelData levelData)
         {
+            // Set this before instantiating the level so the UI will correctly adapt
+            levelData.tutorialProgression.value = 0;
+
             GameObject level = GameObject.Instantiate(levelPrefab);
             Grid grid = level.GetComponent<Grid>();
             Debug.Assert(grid != null, "No grid component on level prefab");
