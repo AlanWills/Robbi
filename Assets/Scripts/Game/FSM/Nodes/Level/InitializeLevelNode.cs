@@ -46,6 +46,7 @@ namespace Robbi.FSM.Nodes
                 if (IsBeginable())
                 {
                     levelLoadingHandle.Result.Begin(levelData);
+                    movementManagerLoadingHandle.Result.name = "MovementManager";
                     movementManagerLoadingHandle.Result.SetActive(true);
                 }
                 else
