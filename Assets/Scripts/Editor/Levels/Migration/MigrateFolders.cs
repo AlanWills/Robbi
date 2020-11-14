@@ -79,9 +79,11 @@ namespace RobbiEditor.Levels.Migration
                         {
                             AssetDatabase.CreateFolder(levelFolderPath, "Doors");
 
-                            foreach (string doorPath in doors)
+                            foreach (string doorGuid in doors)
                             {
+                                string doorPath = AssetDatabase.GUIDToAssetPath(doorGuid);
                                 Door door = AssetDatabase.LoadAssetAtPath<Door>(doorPath);
+
                                 string newDoorPath = string.Format("{0}/{1}.asset", doorsFolderPath, door.name);
                                 string result = AssetDatabase.MoveAsset(doorPath, newDoorPath);
                                 Debug.Assert(string.IsNullOrEmpty(result), result);
