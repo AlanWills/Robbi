@@ -55,7 +55,7 @@ namespace RobbiEditor.Levels.Migration
                             }
 
                             {
-                                string tutorialsDGOldPath = string.Format("Assets/Levels/Level{0}/Level{0}TutorialsDG.asset", i);
+                                string tutorialsDGOldPath = string.Format("Assets/Levels/Level{0}/Level{0}TutorialsDataGraph.asset", i);
                                 string tutorialsDGNewPath = string.Format("{0}/Level{1}TutorialsDG.asset", tutorialsFolderPath, i);
                                 string result = AssetDatabase.MoveAsset(tutorialsDGOldPath, tutorialsDGNewPath);
                                 Debug.Assert(string.IsNullOrEmpty(result), result);
