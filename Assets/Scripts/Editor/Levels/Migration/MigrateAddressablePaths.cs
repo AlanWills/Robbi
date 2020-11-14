@@ -1,6 +1,7 @@
 ﻿using Robbi.Levels;
 using Robbi.Levels.Elements;
 using Robbi.Parameters;
+using RobbiEditor.Constants;
 using RobbiEditor.Utils;
 using System;
 using System.Collections.Generic;
@@ -33,16 +34,19 @@ namespace RobbiEditor.Levels.Migration
                         {
                             string tutorialsPath = string.Format("{0}Level{1}Tutorials.prefab", tutorialsFolderPath, i);
                             AddressablesUtility.SetAddressableAddress(tutorialsPath, tutorialsPath);
+                            AddressablesUtility.SetAddressableGroup(tutorialsPath, AddressablesConstants.LEVELS_GROUP);
                         }
 
                         {
                             string tutorialsFSMPath = string.Format("{0}Level{1}TutorialsFSM.asset", tutorialsFolderPath, i);
                             AddressablesUtility.SetAddressableAddress(tutorialsFSMPath, tutorialsFSMPath);
+                            AddressablesUtility.SetAddressableGroup(tutorialsFSMPath, AddressablesConstants.LEVELS_GROUP);
                         }
 
                         {
                             string tutorialsDGPath = string.Format("{0}Level{1}TutorialsDG.asset", tutorialsFolderPath, i);
                             AddressablesUtility.SetAddressableAddress(tutorialsDGPath, tutorialsDGPath);
+                            AddressablesUtility.SetAddressableGroup(tutorialsDGPath, AddressablesConstants.LEVELS_GROUP);
                         }
                     }
                 }
@@ -54,6 +58,7 @@ namespace RobbiEditor.Levels.Migration
                     {
                         string testFSMPath = string.Format("{0}Level{1}IntegrationTestFSM.asset", testsFolderPath, i);
                         AddressablesUtility.SetAddressableAddress(testFSMPath, string.Format("Level{0}IntegrationTest", i));
+                        AddressablesUtility.SetAddressableGroup(testFSMPath, AddressablesConstants.TESTS_GROUP);
                     }
                 }
 

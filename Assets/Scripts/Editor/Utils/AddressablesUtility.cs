@@ -19,6 +19,17 @@ namespace RobbiEditor.Utils
             entry.labels.Add(group);
         }
 
+        public static void SetAddressableGroup(string path, string group)
+        {
+            string guid = AssetDatabase.AssetPathToGUID(path);
+            if (!string.IsNullOrEmpty(guid))
+            {
+                AddressableAssetSettings aaSettings = AddressableAssetSettingsDefaultObject.Settings;
+                AddressableAssetEntry entry = aaSettings.CreateOrMoveEntry(guid, aaSettings.FindGroup(group));
+                entry.labels.Add(group);
+            }
+        }
+
         public static void SetAddressableAddress(this Object o, string address)
         {
             AddressableAssetSettings aaSettings = AddressableAssetSettingsDefaultObject.Settings;
