@@ -18,7 +18,11 @@ namespace RobbiEditor.Levels.Modifiers
             EditorGUILayout.LabelField(target.name, RobbiEditorStyles.BoldLabel);
             EditorGUILayout.Space();
 
+            serializedObject.Update();
+
             DrawPropertiesExcluding(serializedObject, "m_Script");
+
+            serializedObject.ApplyModifiedProperties();
         }
 
         #endregion

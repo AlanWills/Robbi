@@ -24,7 +24,12 @@ namespace Robbi.Environment
 
         public void TriggerInteraction(Interactable interactable)
         {
-            interactable.Interact(doorsTilemap.value);
+            InteractArgs interact = new InteractArgs()
+            {
+                doorsTilemap = doorsTilemap.value
+            };
+
+            interactable.Interact(interact);
         }
 
         #endregion

@@ -79,9 +79,10 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
         public override void CopyFrom(ValueCondition original)
         {
             AtSwitchCondition atSwitchCondition = original as AtSwitchCondition;
-            atSwitchCondition.value = value;
-            atSwitchCondition.condition = condition;
-            atSwitchCondition.target = target;
+            useArgument = atSwitchCondition.useArgument;
+            value = atSwitchCondition.value;
+            condition = atSwitchCondition.condition;
+            target.CopyFrom(atSwitchCondition.target);
         }
 
         #endregion

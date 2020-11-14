@@ -26,5 +26,16 @@ namespace RobbiEditor.Utils
             AddressableAssetEntry entry = aaSettings.FindAssetEntry(guid);
             entry.address = address.Replace('\\', '/');
         }
+
+        public static void SetAddressableAddress(string path, string address)
+        {
+            string guid = AssetDatabase.AssetPathToGUID(path);
+            if (!string.IsNullOrEmpty(guid))
+            {
+                AddressableAssetSettings aaSettings = AddressableAssetSettingsDefaultObject.Settings;
+                AddressableAssetEntry entry = aaSettings.FindAssetEntry(guid);
+                entry.address = address.Replace('\\', '/');
+            }
+        }
     }
 }

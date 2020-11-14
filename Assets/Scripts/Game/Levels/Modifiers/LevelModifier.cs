@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Robbi.Levels.Elements;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,6 @@ namespace Robbi.Levels.Modifiers
 {
     public abstract class LevelModifier : ScriptableObject
     {
-        public abstract void Execute(Tilemap doorTilemap);
+        public abstract void Execute(InteractArgs interactArgs);
     }
 }

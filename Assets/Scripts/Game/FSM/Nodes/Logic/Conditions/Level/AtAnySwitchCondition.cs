@@ -1,4 +1,5 @@
-﻿using Robbi.Logic;
+﻿using Robbi.Levels.Elements;
+using Robbi.Logic;
 using Robbi.Parameters;
 using System;
 using System.Collections.Generic;
@@ -9,12 +10,12 @@ using UnityEngine;
 
 namespace Robbi.FSM.Nodes.Logic.Conditions
 {
-    public class InVector3IntArrayCondition : ValueCondition
+    public class AtAnySwitchCondition : ValueCondition
     {
         #region Properties and Fields
 
         public bool useArgument = false;
-        public Vector3IntArrayValue value;
+        public Interactable value;
         public ConditionOperator condition;
         public Vector3IntReference target;
 
@@ -27,7 +28,7 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
         {
             if (target == null)
             {
-                target = parameterContainer.CreateParameter<Vector3IntReference>(name + "_value");
+                target = parameterContainer.CreateParameter<Vector3IntReference>(name + "_target");
             }
         }
 
@@ -60,13 +61,13 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
             switch (condition)
             {
                 case ConditionOperator.Equals:
-                    return value.value.Contains(target.Value);
+                    return value.position == target.Value;
 
                 case ConditionOperator.NotEquals:
-                    return !value.value.Contains(target.Value);
+                    return value.position != target.Value;
 
                 default:
-                    Debug.LogAssertionFormat("Condition Operator {0} is not supported in InVector3IntArray Condition", condition);
+                    Debug.LogAssertionFormat("Condition Operator {0} is not supported in AtAnySwitch Condition", condition);
                     return false;
             }
         }
@@ -77,11 +78,11 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
 
         public override void CopyFrom(ValueCondition original)
         {
-            InVector3IntArrayCondition valueCondition = original as InVector3IntArrayCondition;
-            useArgument = valueCondition.useArgument;
-            value = valueCondition.value;
-            condition = valueCondition.condition;
-            target = valueCondition.target;
+            AtAnySwitchCondition atAnySwitchCondition = original as AtAnySwitchCondition;
+            useArgument = atAnySwitchCondition.useArgument;
+            value = atAnySwitchCondition.value;
+            condition = atAnySwitchCondition.condition;
+            target.CopyFrom(atAnySwitchCondition.target);
         }
 
         #endregion

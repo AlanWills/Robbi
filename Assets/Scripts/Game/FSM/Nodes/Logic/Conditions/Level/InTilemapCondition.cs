@@ -78,9 +78,10 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
         public override void CopyFrom(ValueCondition original)
         {
             InTilemapCondition valueCondition = original as InTilemapCondition;
-            valueCondition.value = value;
-            valueCondition.condition = condition;
-            valueCondition.target = target;
+            useArgument = valueCondition.useArgument;
+            value = valueCondition.value;
+            condition = valueCondition.condition;
+            target.CopyFrom(valueCondition.target);
         }
 
         #endregion

@@ -9,7 +9,12 @@ using UnityEngine.Tilemaps;
 
 namespace Robbi.Levels.Elements
 {
-    [CreateAssetMenu(fileName = "Interactable", menuName = "Robbi/Levels/Interactable")]
+    public struct InteractArgs
+    {
+        public Tilemap doorsTilemap;
+    }
+
+    [CreateAssetMenu(fileName = "Interactable", menuName = "Robbi/Interactables/Interactable")]
     public class Interactable : ScriptableObject
     {
         #region Properties and Fields
@@ -67,11 +72,11 @@ namespace Robbi.Levels.Elements
 
         #region Interaction Methods
 
-        public void Interact(Tilemap doorsTilemap)
+        public void Interact(InteractArgs interactArgs)
         {
             foreach (LevelModifier modifier in interactedModifiers)
             {
-                modifier.Execute(doorsTilemap);
+                modifier.Execute(interactArgs);
             }
         }
 

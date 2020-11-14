@@ -78,9 +78,10 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
         public override void CopyFrom(ValueCondition original)
         {
             ParameterizedValueCondition<T, TValue, TReference> valueCondition = original as ParameterizedValueCondition<T, TValue, TReference>;
-            valueCondition.value = value;
-            valueCondition.condition = condition;
-            valueCondition.target = target;
+            useArgument = valueCondition.useArgument;
+            value.CopyFrom(valueCondition.value);
+            condition = valueCondition.condition;
+            target.CopyFrom(valueCondition.target);
         }
 
         #endregion

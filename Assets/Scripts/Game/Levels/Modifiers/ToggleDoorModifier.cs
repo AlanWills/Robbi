@@ -16,9 +16,9 @@ namespace Robbi.Levels.Modifiers
 
         #endregion
 
-        public override void Execute(Tilemap doorTilemap)
+        public override void Execute(InteractArgs interactArgs)
         {
-            door.Toggle(doorTilemap);
+            door.Toggle(interactArgs.doorsTilemap);
         }
     }
 }
