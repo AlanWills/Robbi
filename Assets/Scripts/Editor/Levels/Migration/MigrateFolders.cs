@@ -4,6 +4,7 @@ using Robbi.Parameters;
 using RobbiEditor.Utils;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,57 +30,63 @@ namespace RobbiEditor.Levels.Migration
                 // Tutorials
                 {
                     string tutorialsFolderPath = string.Format("{0}/Tutorials", levelFolderPath);
-                    AssetDatabase.CreateFolder(levelFolderPath, "Tutorials");
-
-                    string tutorialsOldPath = string.Format("Assets/Levels/Level{0}/Level{0}Tutorials.prefab", i);
-                    string tutorialsNewPath = string.Format("{0}/Level{1}Tutorials.prefab", tutorialsFolderPath, i);
-                    bool canMove = string.IsNullOrEmpty(AssetDatabase.ValidateMoveAsset(tutorialsOldPath, tutorialsNewPath));
-
-                    if (canMove)
+                    if (!Directory.Exists(tutorialsFolderPath))
                     {
-                        {
-                            string result = AssetDatabase.MoveAsset(tutorialsOldPath, tutorialsNewPath);
-                            Debug.Assert(string.IsNullOrEmpty(result), result);
-                            AddressablesUtility.SetAddressableAddress(tutorialsNewPath, tutorialsNewPath);
-                        }
+                        AssetDatabase.CreateFolder(levelFolderPath, "Tutorials");
 
-                        {
-                            string tutorialsFSMOldPath = string.Format("Assets/Levels/Level{0}/Level{0}TutorialsFSM.asset", i);
-                            string tutorialsFSMNewPath = string.Format("{0}/Level{1}TutorialsFSM.asset", tutorialsFolderPath, i);
-                            string result = AssetDatabase.MoveAsset(tutorialsFSMOldPath, tutorialsFSMNewPath);
-                            Debug.Assert(string.IsNullOrEmpty(result), result);
-                            AddressablesUtility.SetAddressableAddress(tutorialsFSMOldPath, tutorialsFSMNewPath);
-                        }
+                        string tutorialsOldPath = string.Format("Assets/Levels/Level{0}/Level{0}Tutorials.prefab", i);
+                        string tutorialsNewPath = string.Format("{0}/Level{1}Tutorials.prefab", tutorialsFolderPath, i);
+                        bool canMove = string.IsNullOrEmpty(AssetDatabase.ValidateMoveAsset(tutorialsOldPath, tutorialsNewPath));
 
+                        if (canMove)
                         {
-                            string tutorialsDGOldPath = string.Format("Assets/Levels/Level{0}/Level{0}TutorialsDG.asset", i);
-                            string tutorialsDGNewPath = string.Format("{0}/Level{1}TutorialsDG.asset", tutorialsFolderPath, i);
-                            string result = AssetDatabase.MoveAsset(tutorialsDGOldPath, tutorialsDGNewPath);
-                            Debug.Assert(string.IsNullOrEmpty(result), result);
-                            AddressablesUtility.SetAddressableAddress(tutorialsDGOldPath, tutorialsDGNewPath);
+                            {
+                                string result = AssetDatabase.MoveAsset(tutorialsOldPath, tutorialsNewPath);
+                                Debug.Assert(string.IsNullOrEmpty(result), result);
+                                AddressablesUtility.SetAddressableAddress(tutorialsNewPath, tutorialsNewPath);
+                            }
+
+                            {
+                                string tutorialsFSMOldPath = string.Format("Assets/Levels/Level{0}/Level{0}TutorialsFSM.asset", i);
+                                string tutorialsFSMNewPath = string.Format("{0}/Level{1}TutorialsFSM.asset", tutorialsFolderPath, i);
+                                string result = AssetDatabase.MoveAsset(tutorialsFSMOldPath, tutorialsFSMNewPath);
+                                Debug.Assert(string.IsNullOrEmpty(result), result);
+                                AddressablesUtility.SetAddressableAddress(tutorialsFSMOldPath, tutorialsFSMNewPath);
+                            }
+
+                            {
+                                string tutorialsDGOldPath = string.Format("Assets/Levels/Level{0}/Level{0}TutorialsDG.asset", i);
+                                string tutorialsDGNewPath = string.Format("{0}/Level{1}TutorialsDG.asset", tutorialsFolderPath, i);
+                                string result = AssetDatabase.MoveAsset(tutorialsDGOldPath, tutorialsDGNewPath);
+                                Debug.Assert(string.IsNullOrEmpty(result), result);
+                                AddressablesUtility.SetAddressableAddress(tutorialsDGOldPath, tutorialsDGNewPath);
+                            }
                         }
-                    }
-                    else
-                    {
-                        FileUtil.DeleteFileOrDirectory(tutorialsFolderPath);
+                        else
+                        {
+                            FileUtil.DeleteFileOrDirectory(tutorialsFolderPath);
+                        }
                     }
                 }
 
                 // Doors
                 {
-                    string[] doors = AssetDatabase.FindAssets("t:Door", new string[] { levelFolderPath });
-                    if (doors.Length > 0)
+                    string doorsFolderPath = string.Format("{0}/Doors", levelFolderPath);
+                    if (!Directory.Exists(doorsFolderPath))
                     {
-                        string doorsFolderPath = string.Format("{0}/Doors", levelFolderPath);
-                        AssetDatabase.CreateFolder(levelFolderPath, "Doors");
-
-                        foreach (string doorPath in doors)
+                        string[] doors = AssetDatabase.FindAssets("t:Door", new string[] { levelFolderPath });
+                        if (doors.Length > 0)
                         {
-                            Door door = AssetDatabase.LoadAssetAtPath<Door>(doorPath);
-                            string newDoorPath = string.Format("{0}/{1}.asset", doorsFolderPath, door.name);
-                            string result = AssetDatabase.MoveAsset(doorPath, newDoorPath);
-                            Debug.Assert(string.IsNullOrEmpty(result), result);
-                            AddressablesUtility.SetAddressableAddress(newDoorPath, newDoorPath);
+                            AssetDatabase.CreateFolder(levelFolderPath, "Doors");
+
+                            foreach (string doorPath in doors)
+                            {
+                                Door door = AssetDatabase.LoadAssetAtPath<Door>(doorPath);
+                                string newDoorPath = string.Format("{0}/{1}.asset", doorsFolderPath, door.name);
+                                string result = AssetDatabase.MoveAsset(doorPath, newDoorPath);
+                                Debug.Assert(string.IsNullOrEmpty(result), result);
+                                AddressablesUtility.SetAddressableAddress(newDoorPath, newDoorPath);
+                            }
                         }
                     }
                 }
@@ -87,21 +94,24 @@ namespace RobbiEditor.Levels.Migration
                 // Tests
                 {
                     string testsFolderPath = string.Format("{0}/Tests", levelFolderPath);
-                    AssetDatabase.CreateFolder(levelFolderPath, "Tests");
-
-                    string testsOldPath = string.Format("Assets/Levels/Level{0}/Level{0}IntegrationTestFSM.asset", i);
-                    string testsNewPath = string.Format("{0}/Level{1}IntegrationTestFSM.asset", testsFolderPath, i);
-                    bool canMove = string.IsNullOrEmpty(AssetDatabase.ValidateMoveAsset(testsOldPath, testsNewPath));
-
-                    if (canMove)
+                    if (!Directory.Exists(testsFolderPath))
                     {
-                        string result = AssetDatabase.MoveAsset(testsOldPath, testsNewPath);
-                        Debug.Assert(string.IsNullOrEmpty(result), result);
-                        AddressablesUtility.SetAddressableAddress(testsNewPath, testsNewPath);
-                    }
-                    else
-                    {
-                        FileUtil.DeleteFileOrDirectory(testsFolderPath);
+                        AssetDatabase.CreateFolder(levelFolderPath, "Tests");
+
+                        string testsOldPath = string.Format("Assets/Levels/Level{0}/Level{0}IntegrationTestFSM.asset", i);
+                        string testsNewPath = string.Format("{0}/Level{1}IntegrationTestFSM.asset", testsFolderPath, i);
+                        bool canMove = string.IsNullOrEmpty(AssetDatabase.ValidateMoveAsset(testsOldPath, testsNewPath));
+
+                        if (canMove)
+                        {
+                            string result = AssetDatabase.MoveAsset(testsOldPath, testsNewPath);
+                            Debug.Assert(string.IsNullOrEmpty(result), result);
+                            AddressablesUtility.SetAddressableAddress(testsNewPath, testsNewPath);
+                        }
+                        else
+                        {
+                            FileUtil.DeleteFileOrDirectory(testsFolderPath);
+                        }
                     }
                 }
 
