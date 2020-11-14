@@ -14,6 +14,7 @@ namespace Robbi.Levels.Elements
         Vertical
     }
 
+    [CreateAssetMenu(fileName = "Door", menuName = "Robbi/Levels/Door")]
     public class Door : ScriptableObject
     {
         #region Properties and Fields

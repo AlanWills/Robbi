@@ -26,6 +26,21 @@ namespace RobbiEditor
             }
         }
 
+        private static GUIStyle boldLabel;
+        public static GUIStyle BoldLabel
+        {
+            get
+            {
+                if (boldLabel == null)
+                {
+                    boldLabel = new GUIStyle(GUI.skin.label);
+                    boldLabel.fontStyle = FontStyle.Bold;
+                }
+
+                return boldLabel;
+            }
+        }
+
         #endregion
     }
 }

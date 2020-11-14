@@ -11,12 +11,13 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 using Event = Robbi.Events.Event;
+using Robbi.Managers;
 
 namespace Robbi.Movement
 {
     [AddComponentMenu("Robbi/Movement/Movement Manager")]
     [RequireComponent(typeof(BoxCollider2D))]
-    public class MovementManager : MonoBehaviour
+    public class MovementManager : NamedManager
     {
         #region Waypoint
 
@@ -56,8 +57,9 @@ namespace Robbi.Movement
         public Vector3IntEvent onMovedFrom;
         public Vector3IntEvent onWaypointPlaced;
         public Vector3IntEvent onWaypointRemoved;
-        public Event onWaypointUnreachable;
-        
+        public Event levelLoseWaypointUnreachable;
+        public Event levelLoseOutOfWaypoints;
+
         [Header("Parameters")]
         public IntValue remainingWaypointsPlaceable;
         public IntValue waypointsPlaced;
@@ -82,7 +84,19 @@ namespace Robbi.Movement
 
         #region Unity Methods
 
-        private void Update()
+        private void Start()
+        {
+            waypointsPlaced.value = 0;
+            isProgramRunning.value = false;
+            movementSpeed.value = OptionsManager.Instance.DefaultMovementSpeed;
+
+            Vector3Int movementGridSize = movementTilemap.value.size;
+            Vector3Int movementOrigin = movementTilemap.value.origin;
+            boundingBox.size = new Vector2(movementGridSize.x, movementGridSize.y);
+            boundingBox.offset = new Vector2(movementOrigin.x + movementGridSize.x * 0.5f, movementOrigin.y + movementGridSize.y * 0.5f);
+        }
+
+        private void LateUpdate()
         {
             if (isProgramRunning.value)
             {
@@ -123,7 +137,7 @@ namespace Robbi.Movement
                     }
                     else
                     {
-                        onWaypointUnreachable.Raise();
+                        levelLoseWaypointUnreachable.Raise();
                         isProgramRunning.value = false;
                     }
                 }
@@ -145,18 +159,14 @@ namespace Robbi.Movement
 
         #endregion
 
-        #region Initialization
+        #region Game Lost Methods
 
-        private void Start()
+        public void CheckForLevelLoseOutOfWaypoints()
         {
-            waypointsPlaced.value = 0;
-            isProgramRunning.value = false;
-            movementSpeed.value = OptionsManager.Instance.DefaultMovementSpeed;
-
-            Vector3Int movementGridSize = movementTilemap.value.size;
-            Vector3Int movementOrigin = movementTilemap.value.origin;
-            boundingBox.size = new Vector2(movementGridSize.x, movementGridSize.y);
-            boundingBox.offset = new Vector2(movementOrigin.x + movementGridSize.x * 0.5f, movementOrigin.y + movementGridSize.y * 0.5f);
+            if (waypointsPlaced.value == 0 && remainingWaypointsPlaceable.value == 0)
+            {
+                levelLoseOutOfWaypoints.Raise();
+            }
         }
 
         #endregion

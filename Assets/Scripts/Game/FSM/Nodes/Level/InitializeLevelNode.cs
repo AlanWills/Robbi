@@ -19,7 +19,7 @@ namespace Robbi.FSM.Nodes
 
         private AsyncOperationHandle<Level> levelLoadingHandle;
         private AsyncOperationHandle<GameObject> robbiLoadingHandle;
-        private AsyncOperationHandle<GameObject> movementManagerLoadingHandle;
+        private AsyncOperationHandle<GameObject> managersLoadingHandle;
 
         #endregion
 
@@ -31,7 +31,7 @@ namespace Robbi.FSM.Nodes
 
             levelLoadingHandle = Addressables.LoadAssetAsync<Level>(string.Format("Assets/Levels/Level{0}/Level{0}Data.asset", LevelManager.Instance.CurrentLevelIndex));
             robbiLoadingHandle = Addressables.InstantiateAsync("Assets/Prefabs/Level/Robbi.prefab");
-            movementManagerLoadingHandle = Addressables.InstantiateAsync("Assets/Prefabs/Level/MovementManager.prefab");
+            managersLoadingHandle = Addressables.InstantiateAsync("Assets/Prefabs/Level/Managers.prefab");
         }
 
         protected override FSMNode OnUpdate()
@@ -46,8 +46,7 @@ namespace Robbi.FSM.Nodes
                 if (IsBeginable())
                 {
                     levelLoadingHandle.Result.Begin(levelData);
-                    movementManagerLoadingHandle.Result.name = "MovementManager";
-                    movementManagerLoadingHandle.Result.SetActive(true);
+                    managersLoadingHandle.Result.SetActive(true);
                 }
                 else
                 {
@@ -66,17 +65,17 @@ namespace Robbi.FSM.Nodes
 
         private bool IsInvalid()
         {
-            return !(levelLoadingHandle.IsValid() && robbiLoadingHandle.IsValid() && movementManagerLoadingHandle.IsValid());
+            return !(levelLoadingHandle.IsValid() && robbiLoadingHandle.IsValid() && managersLoadingHandle.IsValid());
         }
 
         private bool IsDone()
         {
-            return levelLoadingHandle.IsDone && robbiLoadingHandle.IsDone && movementManagerLoadingHandle.IsDone;
+            return levelLoadingHandle.IsDone && robbiLoadingHandle.IsDone && managersLoadingHandle.IsDone;
         }
 
         private bool IsBeginable()
         {
-            return levelLoadingHandle.Result != null && robbiLoadingHandle.Result != null && movementManagerLoadingHandle.Result != null;
+            return levelLoadingHandle.Result != null && robbiLoadingHandle.Result != null && managersLoadingHandle.Result != null;
         }
 
         #endregion

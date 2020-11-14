@@ -10,7 +10,7 @@ using UnityEngine.Tilemaps;
 namespace Robbi.Events
 {
     [Serializable]
-    public class TileUnityEvent : UnityEvent<GameObject> { }
+    public class TileUnityEvent : UnityEvent<Tile> { }
 
     [Serializable]
     [CreateAssetMenu(fileName = "TileEvent", menuName = "Robbi/Events/Tile Event")]
