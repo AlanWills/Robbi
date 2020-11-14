@@ -33,7 +33,7 @@ namespace RobbiEditor.Levels.Migration
 
                     string tutorialsOldPath = string.Format("Assets/Levels/Level{0}/Level{0}Tutorials.prefab", i);
                     string tutorialsNewPath = string.Format("{0}/Level{1}Tutorials.prefab", tutorialsFolderPath, i);
-                    bool canMove = string.IsNullOrEmpty(AssetDatabase.MoveAsset(tutorialsOldPath, tutorialsNewPath));
+                    bool canMove = string.IsNullOrEmpty(AssetDatabase.ValidateMoveAsset(tutorialsOldPath, tutorialsNewPath));
 
                     if (canMove)
                     {
@@ -91,7 +91,7 @@ namespace RobbiEditor.Levels.Migration
 
                     string testsOldPath = string.Format("Assets/Levels/Level{0}/Level{0}IntegrationTestFSM.asset", i);
                     string testsNewPath = string.Format("{0}/Level{1}IntegrationTestFSM.asset", testsFolderPath, i);
-                    bool canMove = string.IsNullOrEmpty(AssetDatabase.MoveAsset(testsOldPath, testsNewPath));
+                    bool canMove = string.IsNullOrEmpty(AssetDatabase.ValidateMoveAsset(testsOldPath, testsNewPath));
 
                     if (canMove)
                     {
