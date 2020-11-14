@@ -64,7 +64,7 @@ namespace RobbiEditor.Levels.Migration
                         }
                         else
                         {
-                            FileUtil.DeleteFileOrDirectory(tutorialsFolderPath);
+                            AssetDatabase.DeleteAsset(tutorialsFolderPath);
                         }
                     }
                 }
@@ -112,7 +112,7 @@ namespace RobbiEditor.Levels.Migration
                         }
                         else
                         {
-                            FileUtil.DeleteFileOrDirectory(testsFolderPath);
+                            AssetDatabase.DeleteAsset(testsFolderPath);
                         }
                     }
                 }
