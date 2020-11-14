@@ -11,6 +11,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static RobbiEditor.LevelDirectories;
 
 namespace RobbiEditor.Tools
 {
@@ -30,14 +31,14 @@ namespace RobbiEditor.Tools
     [Serializable]
     public class LevelInfo : ScriptableObject
     {
-        public string destinationFolder = LevelDirectories.FULL_PATH;
+        public string destinationFolder = LevelDirectories.LEVELS_PATH;
         public uint levelIndex = 0;
         public GameObject levelPrefabToCopy;
         public bool clearLevel = true;
         public int maxWaypointsPlaceable = 3; 
         public List<DoorColour> horizontalDoors = new List<DoorColour>();
         public List<DoorColour> verticalDoors = new List<DoorColour>();
-        public List<DoorMarker> doorMarkers = new List<DoorMarker>();
+        public List<DoorMarker> interactableMarkers = new List<DoorMarker>();
         public bool hasTutorial = false;
         public GameObject tutorialPrefabToCopy;
     }
@@ -53,7 +54,7 @@ namespace RobbiEditor.Tools
 
         private string LevelFolderFullPath
         {
-            get { return levelInfo.destinationFolder + "/" + LevelFolderName; }
+            get { return levelInfo.destinationFolder + LevelFolderName; }
         }
 
         private LevelInfo levelInfo;
@@ -105,7 +106,7 @@ namespace RobbiEditor.Tools
             levelInfo.maxWaypointsPlaceable = EditorGUILayout.IntField("Max Waypoints Placeable", levelInfo.maxWaypointsPlaceable);
             propertiesChanged |= EditorGUILayout.PropertyField(levelInfoObject.FindProperty(nameof(levelInfo.horizontalDoors)));
             propertiesChanged |= EditorGUILayout.PropertyField(levelInfoObject.FindProperty(nameof(levelInfo.verticalDoors)));
-            propertiesChanged |= EditorGUILayout.PropertyField(levelInfoObject.FindProperty(nameof(levelInfo.doorMarkers)));
+            propertiesChanged |= EditorGUILayout.PropertyField(levelInfoObject.FindProperty(nameof(levelInfo.interactableMarkers)));
 
             levelInfo.hasTutorial = EditorGUILayout.Toggle("Has Tutorial", levelInfo.hasTutorial);
             if (levelInfo.hasTutorial)
@@ -183,6 +184,23 @@ namespace RobbiEditor.Tools
         private void CreateDirectories()
         {
             AssetDatabase.CreateFolder(levelInfo.destinationFolder, LevelFolderName);
+
+            string levelFolderPath = string.Format("{0}/{1}", levelInfo.destinationFolder, LevelFolderName);
+            
+            if (levelInfo.horizontalDoors.Count > 0 || levelInfo.verticalDoors.Count > 0)
+            {
+                AssetDatabase.CreateFolder(levelFolderPath, DOORS_NAME);
+            }
+
+            if (levelInfo.hasTutorial)
+            {
+                AssetDatabase.CreateFolder(levelFolderPath, TUTORIALS_NAME);
+            }
+
+            if (levelInfo.interactableMarkers.Count > 0)
+            {
+                AssetDatabase.CreateFolder(levelFolderPath, INTERACTABLES_NAME);
+            }
         }
 
         private void CreateFSM()
@@ -219,9 +237,9 @@ namespace RobbiEditor.Tools
                 GameObject instantiatedPrefab = PrefabUtility.InstantiatePrefab(createdPrefab) as GameObject;
                 LevelRoot instantiatedLevelRoot = instantiatedPrefab.GetComponent<LevelRoot>();
 
-                for (uint i = 0; i < levelInfo.doorMarkers.Count; ++i)
+                for (uint i = 0; i < levelInfo.interactableMarkers.Count; ++i)
                 {
-                    DoorMarker doorMarker = levelInfo.doorMarkers[(int)i];
+                    DoorMarker doorMarker = levelInfo.interactableMarkers[(int)i];
                     GameObject interactableMarkerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(markerPrefabs[doorMarker.doorState]);
                     GameObject interactableMarker = PrefabUtility.InstantiatePrefab(interactableMarkerPrefab, instantiatedLevelRoot.interactablesTilemap.transform) as GameObject;
                     interactableMarker.name = string.Format("{0}Switch{1}", doorMarker.doorColour, doorMarker.doorState);

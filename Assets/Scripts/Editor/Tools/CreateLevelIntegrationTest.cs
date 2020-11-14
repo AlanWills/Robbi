@@ -20,6 +20,7 @@ using UnityEditor.Experimental.SceneManagement;
 using UnityEngine;
 using XNode;
 using static Robbi.Movement.MovementManager;
+using static RobbiEditor.LevelDirectories;
 using Event = Robbi.Events.Event;
 
 namespace RobbiEditor.Tools
@@ -34,7 +35,9 @@ namespace RobbiEditor.Tools
             FSMGraph integrationTest = ScriptableObject.CreateInstance<FSMGraph>();
             LevelManager levelManager = LevelManager.Instance;
 
-            string integrationTestPath = string.Format("{0}/Level{1}/Level{1}IntegrationTestFSM.asset", LevelDirectories.FULL_PATH, levelManager.CurrentLevelIndex);
+            string levelsFolderPath = string.Format("{0}Level{1}/", LEVELS_PATH, levelManager.CurrentLevelIndex);
+            AssetDatabase.CreateFolder(levelsFolderPath, TESTS_NAME);
+            string integrationTestPath = string.Format("{0}{1}Level{2}IntegrationTestFSM.asset", levelsFolderPath, TESTS_NAME, levelManager.CurrentLevelIndex);
             AssetDatabase.CreateAsset(integrationTest, integrationTestPath);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();

@@ -28,12 +28,12 @@ namespace RobbiEditor.Tools
 
         private string OldLevelFolderFullPath
         {
-            get { return Path.Combine(LevelDirectories.FULL_PATH, OldLevelFolderName); }
+            get { return LevelDirectories.LEVELS_PATH + OldLevelFolderName; }
         }
 
         private string NewLevelFolderFullPath
         {
-            get { return Path.Combine(LevelDirectories.FULL_PATH, NewLevelFolderName); }
+            get { return LevelDirectories.LEVELS_PATH + NewLevelFolderName; }
         }
 
         private uint oldLevelIndex = 0;

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static RobbiEditor.LevelDirectories;
 
 namespace RobbiEditor.Levels.Migration
 {
@@ -20,22 +21,19 @@ namespace RobbiEditor.Levels.Migration
         public static void MigrateHorizontalDoors()
         {
             int i = 0;
-            string levelPath = string.Format("Assets/Levels/Level{0}/Level{0}.prefab", i);
-            GameObject levelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(levelPath);
+            string levelFolderPath = string.Format("{0}Level{1}/", LEVELS_PATH, i);
 
-            while (levelPrefab != null)
+            while (Directory.Exists(levelFolderPath))
             {
-                string levelFolderPath = string.Format("Assets/Levels/Level{0}", i);
-
                 // Tutorials
                 {
-                    string tutorialsFolderPath = string.Format("{0}/Tutorials", levelFolderPath);
+                    string tutorialsFolderPath = string.Format("{0}{1}/", levelFolderPath, TUTORIALS_NAME);
                     if (!Directory.Exists(tutorialsFolderPath))
                     {
-                        AssetDatabase.CreateFolder(levelFolderPath, "Tutorials");
+                        AssetDatabase.CreateFolder(levelFolderPath, TUTORIALS_NAME);
 
-                        string tutorialsOldPath = string.Format("Assets/Levels/Level{0}/Level{0}Tutorials.prefab", i);
-                        string tutorialsNewPath = string.Format("{0}/Level{1}Tutorials.prefab", tutorialsFolderPath, i);
+                        string tutorialsOldPath = string.Format("{0}Level{1}/Level{1}Tutorials.prefab", LEVELS_PATH, i);
+                        string tutorialsNewPath = string.Format("{0}Level{1}Tutorials.prefab", tutorialsFolderPath, i);
                         bool canMove = string.IsNullOrEmpty(AssetDatabase.ValidateMoveAsset(tutorialsOldPath, tutorialsNewPath));
 
                         if (canMove)
@@ -47,19 +45,19 @@ namespace RobbiEditor.Levels.Migration
                             }
 
                             {
-                                string tutorialsFSMOldPath = string.Format("Assets/Levels/Level{0}/Level{0}TutorialsFSM.asset", i);
-                                string tutorialsFSMNewPath = string.Format("{0}/Level{1}TutorialsFSM.asset", tutorialsFolderPath, i);
+                                string tutorialsFSMOldPath = string.Format("{0}Level{1}/Level{1}TutorialsFSM.asset", LEVELS_PATH, i);
+                                string tutorialsFSMNewPath = string.Format("{0}Level{1}TutorialsFSM.asset", tutorialsFolderPath, i);
                                 string result = AssetDatabase.MoveAsset(tutorialsFSMOldPath, tutorialsFSMNewPath);
                                 Debug.Assert(string.IsNullOrEmpty(result), result);
-                                AddressablesUtility.SetAddressableAddress(tutorialsFSMOldPath, tutorialsFSMNewPath);
+                                AddressablesUtility.SetAddressableAddress(tutorialsFSMNewPath, tutorialsFSMNewPath);
                             }
 
                             {
-                                string tutorialsDGOldPath = string.Format("Assets/Levels/Level{0}/Level{0}TutorialsDataGraph.asset", i);
-                                string tutorialsDGNewPath = string.Format("{0}/Level{1}TutorialsDG.asset", tutorialsFolderPath, i);
+                                string tutorialsDGOldPath = string.Format("{0}Level{1}/Level{1}TutorialsDataGraph.asset", LEVELS_PATH, i);
+                                string tutorialsDGNewPath = string.Format("{0}Level{1}TutorialsDG.asset", tutorialsFolderPath, i);
                                 string result = AssetDatabase.MoveAsset(tutorialsDGOldPath, tutorialsDGNewPath);
                                 Debug.Assert(string.IsNullOrEmpty(result), result);
-                                AddressablesUtility.SetAddressableAddress(tutorialsDGOldPath, tutorialsDGNewPath);
+                                AddressablesUtility.SetAddressableAddress(tutorialsDGNewPath, tutorialsDGNewPath);
                             }
                         }
                         else
@@ -71,20 +69,20 @@ namespace RobbiEditor.Levels.Migration
 
                 // Doors
                 {
-                    string doorsFolderPath = string.Format("{0}/Doors", levelFolderPath);
+                    string doorsFolderPath = string.Format("{0}{1}/", levelFolderPath, DOORS_NAME);
                     if (!Directory.Exists(doorsFolderPath))
                     {
                         string[] doors = AssetDatabase.FindAssets("t:Door", new string[] { levelFolderPath });
                         if (doors.Length > 0)
                         {
-                            AssetDatabase.CreateFolder(levelFolderPath, "Doors");
+                            AssetDatabase.CreateFolder(levelFolderPath, DOORS_NAME);
 
                             foreach (string doorGuid in doors)
                             {
                                 string doorPath = AssetDatabase.GUIDToAssetPath(doorGuid);
                                 Door door = AssetDatabase.LoadAssetAtPath<Door>(doorPath);
 
-                                string newDoorPath = string.Format("{0}/{1}.asset", doorsFolderPath, door.name);
+                                string newDoorPath = string.Format("{0}{1}.asset", doorsFolderPath, door.name);
                                 string result = AssetDatabase.MoveAsset(doorPath, newDoorPath);
                                 Debug.Assert(string.IsNullOrEmpty(result), result);
                                 AddressablesUtility.SetAddressableAddress(newDoorPath, newDoorPath);
@@ -95,20 +93,19 @@ namespace RobbiEditor.Levels.Migration
 
                 // Tests
                 {
-                    string testsFolderPath = string.Format("{0}/Tests", levelFolderPath);
+                    string testsFolderPath = string.Format("{0}{1}/", levelFolderPath, TESTS_NAME);
                     if (!Directory.Exists(testsFolderPath))
                     {
-                        AssetDatabase.CreateFolder(levelFolderPath, "Tests");
+                        AssetDatabase.CreateFolder(levelFolderPath, TESTS_NAME);
 
-                        string testsOldPath = string.Format("Assets/Levels/Level{0}/Level{0}IntegrationTestFSM.asset", i);
-                        string testsNewPath = string.Format("{0}/Level{1}IntegrationTestFSM.asset", testsFolderPath, i);
+                        string testsOldPath = string.Format("{0}Level{1}/Level{1}IntegrationTestFSM.asset", LEVELS_PATH, i);
+                        string testsNewPath = string.Format("{0}Level{1}IntegrationTestFSM.asset", testsFolderPath, i);
                         bool canMove = string.IsNullOrEmpty(AssetDatabase.ValidateMoveAsset(testsOldPath, testsNewPath));
 
                         if (canMove)
                         {
                             string result = AssetDatabase.MoveAsset(testsOldPath, testsNewPath);
                             Debug.Assert(string.IsNullOrEmpty(result), result);
-                            AddressablesUtility.SetAddressableAddress(testsNewPath, testsNewPath);
                         }
                         else
                         {
@@ -118,8 +115,7 @@ namespace RobbiEditor.Levels.Migration
                 }
 
                 ++i;
-                levelPath = string.Format("Assets/Levels/Level{0}/Level{0}.prefab", i);
-                levelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(levelPath);
+                levelFolderPath = string.Format("{0}Level{1}/", LEVELS_PATH, i);
             }
 
             AssetDatabase.SaveAssets();
