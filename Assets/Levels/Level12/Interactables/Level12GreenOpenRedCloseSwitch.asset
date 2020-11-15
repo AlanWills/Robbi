@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-973873891203637283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28df458f042be0e469a199cf6dfb920a, type: 3}
+  m_Name: CloseDoorModifier
+  m_EditorClassIdentifier: 
+  door: {fileID: 11400000, guid: 60595a826e991a64c8d8de8fbab351fa, type: 2}
+--- !u!114 &-142075244236389217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f50e7380d4541924c9121a6c86c3299f, type: 3}
+  m_Name: OpenDoorModifier
+  m_EditorClassIdentifier: 
+  door: {fileID: 11400000, guid: 0fd60501202cff54fa51f9206f3fdd70, type: 2}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180a43e3c2714ef48a0b19e420392339, type: 3}
+  m_Name: Level12GreenOpenRedCloseSwitch
+  m_EditorClassIdentifier: 
+  position: {x: -1, y: 5, z: 0}
+  interactedModifiers:
+  - {fileID: -142075244236389217}
+  - {fileID: 4490900860885302253}
+  - {fileID: -973873891203637283}
+--- !u!114 &4490900860885302253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28df458f042be0e469a199cf6dfb920a, type: 3}
+  m_Name: CloseDoorModifier
+  m_EditorClassIdentifier: 
+  door: {fileID: 11400000, guid: 87afb39bec27fef4a9b7dc43bcf72808, type: 2}

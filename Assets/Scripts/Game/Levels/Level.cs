@@ -1,4 +1,6 @@
-﻿using Robbi.Movement;
+﻿using Robbi.Environment;
+using Robbi.Levels.Elements;
+using Robbi.Movement;
 using Robbi.Parameters;
 using Robbi.Viewport;
 using System;
@@ -17,6 +19,7 @@ namespace Robbi.Levels
         public IntValue tutorialProgression;
         public Vector3Value playerLocalPosition;
         public IntValue remainingWaypointsPlaceable;
+        public InteractablesManager interactablesManager;
     }
 
     [CreateAssetMenu(fileName = "Level", menuName = "Robbi/Levels/Level")]
@@ -25,10 +28,15 @@ namespace Robbi.Levels
         #region Properties and Fields
 
         public GameObject levelPrefab;
+        public GameObject levelTutorial;
 
         [Header("Level Parameters")]
         public Vector3Int playerStartPosition;
         public int maxWaypointsPlaceable;
+
+        [Header("Level Elements")]
+        [SerializeField]
+        private List<Interactable> interactables = new List<Interactable>();
 
         #endregion
 
@@ -45,6 +53,12 @@ namespace Robbi.Levels
 
             levelData.playerLocalPosition.value = grid.GetCellCenterLocal(playerStartPosition);
             levelData.remainingWaypointsPlaceable.value = maxWaypointsPlaceable;
+            levelData.interactablesManager.Interactables = interactables;
+
+            if (levelTutorial != null)
+            {
+                GameObject.Instantiate(levelTutorial);
+            }
         }
 
         #endregion

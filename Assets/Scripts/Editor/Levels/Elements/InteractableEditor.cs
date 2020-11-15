@@ -56,7 +56,7 @@ namespace RobbiEditor.Levels.Elements
         {
             serializedObject.Update();
 
-            DrawPropertiesExcluding(serializedObject, "interatedModifiers");
+            DrawPropertiesExcluding(serializedObject, "interactedModifiers");
 
             EditorGUILayout.Space();
             RobbiEditorGUILayout.HorizontalLine();

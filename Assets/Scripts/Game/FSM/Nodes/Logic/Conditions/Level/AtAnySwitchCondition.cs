@@ -15,7 +15,7 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
         #region Properties and Fields
 
         public bool useArgument = false;
-        public Interactable value;
+        public List<Interactable> value = new List<Interactable>();
         public ConditionOperator condition;
         public Vector3IntReference target;
 
@@ -61,10 +61,26 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
             switch (condition)
             {
                 case ConditionOperator.Equals:
-                    return value.position == target.Value;
+                    foreach (Interactable interactable in value)
+                    {
+                        if (interactable.position == target.Value)
+                        {
+                            return true;
+                        }
+                    }
+                    
+                    return false;
 
                 case ConditionOperator.NotEquals:
-                    return value.position != target.Value;
+                    foreach (Interactable interactable in value)
+                    {
+                        if (interactable.position == target.Value)
+                        {
+                            return false;
+                        }
+                    };
+
+                    return true;
 
                 default:
                     Debug.LogAssertionFormat("Condition Operator {0} is not supported in AtAnySwitch Condition", condition);
@@ -80,7 +96,7 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
         {
             AtAnySwitchCondition atAnySwitchCondition = original as AtAnySwitchCondition;
             useArgument = atAnySwitchCondition.useArgument;
-            value = atAnySwitchCondition.value;
+            value.AddRange(atAnySwitchCondition.value);
             condition = atAnySwitchCondition.condition;
             target.CopyFrom(atAnySwitchCondition.target);
         }

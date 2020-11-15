@@ -19,7 +19,7 @@ namespace RobbiEditor.Levels.Migration
     public static class MigrateAddressablePaths
     {
         [MenuItem("Robbi/Migration/Migrate Addressable Paths")]
-        public static void MigrateHorizontalDoors()
+        public static void MenuItem()
         {
             int i = 0;
             string levelFolderPath = string.Format("{0}Level{1}/", LEVELS_PATH, i);
@@ -59,6 +59,42 @@ namespace RobbiEditor.Levels.Migration
                         string testFSMPath = string.Format("{0}Level{1}IntegrationTestFSM.asset", testsFolderPath, i);
                         AddressablesUtility.SetAddressableAddress(testFSMPath, string.Format("Level{0}IntegrationTest", i));
                         AddressablesUtility.SetAddressableGroup(testFSMPath, AddressablesConstants.TESTS_GROUP);
+                    }
+                }
+                
+                // Interactables
+                {
+                    string interactablesFolderPath = string.Format("{0}{1}/", levelFolderPath, INTERACTABLES_NAME);
+                    if (!Directory.Exists(interactablesFolderPath))
+                    {
+                        string[] interactables = AssetDatabase.FindAssets("t:Interactable", new string[] { levelFolderPath });
+                        if (interactables.Length > 0)
+                        {
+                            foreach (string interactableGuid in interactables)
+                            {
+                                string interactablePath = AssetDatabase.GUIDToAssetPath(interactableGuid);
+                                AddressablesUtility.SetAddressableAddress(interactablePath, interactablePath);
+                                AddressablesUtility.SetAddressableAddress(interactablePath, AddressablesConstants.LEVELS_GROUP);
+                            }
+                        }
+                    }
+                }
+
+                // Doors
+                {
+                    string doorsFolderPath = string.Format("{0}{1}/", levelFolderPath, DOORS_NAME);
+                    if (!Directory.Exists(doorsFolderPath))
+                    {
+                        string[] doors = AssetDatabase.FindAssets("t:Door", new string[] { levelFolderPath });
+                        if (doors.Length > 0)
+                        {
+                            foreach (string doorGuid in doors)
+                            {
+                                string doorPath = AssetDatabase.GUIDToAssetPath(doorGuid);
+                                AddressablesUtility.SetAddressableAddress(doorPath, doorPath);
+                                AddressablesUtility.SetAddressableAddress(doorPath, AddressablesConstants.LEVELS_GROUP);
+                            }
+                        }
                     }
                 }
 
