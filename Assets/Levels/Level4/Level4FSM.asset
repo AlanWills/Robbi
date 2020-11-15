@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7566183631569528185
+--- !u!114 &-8563171957703261285
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,13 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74932df3e79c946469c896e470e3a0df, type: 3}
-  m_Name: IsAtSwitch_target
+  m_Script: {fileID: 11500000, guid: 883e00b27ae6ee94a889e5249e993903, type: 3}
+  m_Name: IsAtSwitch
   m_EditorClassIdentifier: 
-  isConstant: 1
-  constantValue: {x: 0, y: 0, z: 0}
-  referenceValue: {fileID: 0}
---- !u!114 &-7545022120173845705
+  useArgument: 1
+  value: {fileID: 11400000, guid: 54d66b72356ca8e4d9fd78c56f61c5c5, type: 2}
+  condition: 0
+  target: {fileID: -70757220442727816}
+--- !u!114 &-5795931055911401434
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -24,12 +25,52 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74932df3e79c946469c896e470e3a0df, type: 3}
-  m_Name: IsAtSwitch_value
+  m_Script: {fileID: 11500000, guid: 8e752cecb9951c148886ea115aa1e5f3, type: 3}
+  m_Name: Interactable Event Raiser
   m_EditorClassIdentifier: 
-  isConstant: 1
-  constantValue: {x: 1, y: 0, z: 0}
-  referenceValue: {fileID: 0}
+  graph: {fileID: 11400000}
+  position: {x: 280, y: -56}
+  ports:
+    keys:
+    - ' '
+    - 
+    - argument
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -5795931055911401434}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: IsAtSwitch
+        node: {fileID: 1796756278436438762}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -5795931055911401434}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: argument
+      _node: {fileID: -5795931055911401434}
+      _typeQualifiedName: Robbi.Levels.Elements.Interactable, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: outArgument
+        node: {fileID: 1796756278436438762}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  argument: {fileID: 0}
+  toRaise: {fileID: 11400000, guid: d366fc23d692e4343acfe5707882afef, type: 2}
 --- !u!114 &-5286733508190745776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,7 +115,7 @@ MonoBehaviour:
   addressablePath: Assets/Levels/Level4/Tutorials/Level4Tutorials.prefab
   prefab: {fileID: 0}
   parent: {fileID: 0}
---- !u!114 &-3747252360727248500
+--- !u!114 &-70757220442727816
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -83,13 +124,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f73e5c005b2c6ee4a929080332770ff6, type: 3}
-  m_Name: IsAtSwitch
+  m_Script: {fileID: 11500000, guid: 74932df3e79c946469c896e470e3a0df, type: 3}
+  m_Name: IsAtSwitch_target
   m_EditorClassIdentifier: 
-  value: {fileID: -7545022120173845705}
-  condition: 0
-  useArgument: 1
-  target: {fileID: -7566183631569528185}
+  isConstant: 1
+  constantValue: {x: 0, y: 0, z: 0}
+  referenceValue: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,15 +143,14 @@ MonoBehaviour:
   m_Name: Level4FSM
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: 5975107874151795680}
   - {fileID: 6636921483878596437}
   - {fileID: 1796756278436438762}
   - {fileID: -5286733508190745776}
   - {fileID: 0}
+  - {fileID: -5795931055911401434}
   startNode: {fileID: -5286733508190745776}
   parameters:
-  - {fileID: -7545022120173845705}
-  - {fileID: -7566183631569528185}
+  - {fileID: -70757220442727816}
 --- !u!114 &1796756278436438762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,6 +178,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 6636921483878596437}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 6636921483878596437}
         reroutePoints: []
@@ -183,7 +225,10 @@ MonoBehaviour:
       _node: {fileID: 1796756278436438762}
       _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: argument
+        node: {fileID: -5795931055911401434}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -194,69 +239,14 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: 5975107874151795680}
+        node: {fileID: -5795931055911401434}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
   conditions:
-  - {fileID: -3747252360727248500}
---- !u!114 &5975107874151795680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25f09c6a45a7902459ba71a199952074, type: 3}
-  m_Name: Door Event Raiser
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 280, y: -56}
-  ports:
-    keys:
-    - ' '
-    - 
-    - argument
-    values:
-    - _fieldName: ' '
-      _node: {fileID: 5975107874151795680}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: IsAtSwitch
-        node: {fileID: 1796756278436438762}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: 
-      _node: {fileID: 5975107874151795680}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: 6636921483878596437}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: argument
-      _node: {fileID: 5975107874151795680}
-      _typeQualifiedName: Robbi.Levels.Elements.Door, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  argument: {fileID: 11400000, guid: 09ff4d938a6826e47a5cbe5023d91402, type: 2}
-  toRaise: {fileID: 11400000, guid: d81432fd2c610fe42bfcd460d451945e, type: 2}
+  - {fileID: -8563171957703261285}
 --- !u!114 &6636921483878596437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,22 +276,22 @@ MonoBehaviour:
         node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: 5975107874151795680}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: 5975107874151795680}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 1796756278436438762}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 5975107874151795680}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
         node: {fileID: 1796756278436438762}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: 5975107874151795680}
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 1796756278436438762}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
         node: {fileID: 1796756278436438762}
@@ -310,7 +300,13 @@ MonoBehaviour:
         node: {fileID: -5286733508190745776}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: 5975107874151795680}
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 1796756278436438762}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -5286733508190745776}
         reroutePoints: []
       - fieldName: 
         node: {fileID: 1796756278436438762}
@@ -346,5 +342,5 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  argument: {x: 1, y: 0, z: 0}
+  argument: {x: -1, y: 1, z: 0}
   listenFor: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}

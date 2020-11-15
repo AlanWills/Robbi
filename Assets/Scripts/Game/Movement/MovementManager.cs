@@ -159,14 +159,11 @@ namespace Robbi.Movement
 
         #endregion
 
-        #region Game Lost Methods
+        #region Callbacks
 
-        public void CheckForLevelLoseOutOfWaypoints()
+        public void OnLevelChanged()
         {
-            if (waypointsPlaced.value == 0 && remainingWaypointsPlaceable.value == 0)
-            {
-                levelLoseOutOfWaypoints.Raise();
-            }
+            MoveToNextWaypoint();
         }
 
         #endregion
@@ -180,6 +177,10 @@ namespace Robbi.Movement
             if (isProgramRunning.value)
             {
                 CalculateGridSteps(movementTilemap.value.LocalToCell(playerLocalPosition.value), waypoints[0].gridPosition);
+            }
+            else if (remainingWaypointsPlaceable.value == 0)
+            {
+                levelLoseOutOfWaypoints.Raise();
             }
         }
 

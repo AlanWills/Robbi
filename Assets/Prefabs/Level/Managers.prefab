@@ -61,7 +61,6 @@ GameObject:
   - component: {fileID: 6319845372555604902}
   - component: {fileID: 6172188389121340619}
   - component: {fileID: 2053414882922308567}
-  - component: {fileID: 6803567741992985201}
   - component: {fileID: 2185254429373469848}
   m_Layer: 0
   m_Name: MovementManager
@@ -244,35 +243,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2772506934692611030}
         m_TargetAssemblyTypeName: Robbi.Movement.MovementManager, Assembly-CSharp
-        m_MethodName: MoveToNextWaypoint
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &6803567741992985201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2772506934692611051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2772506934692611030}
-        m_TargetAssemblyTypeName: Robbi.Movement.MovementManager, Assembly-CSharp
-        m_MethodName: CheckForLevelLoseOutOfWaypoints
+        m_MethodName: OnLevelChanged
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

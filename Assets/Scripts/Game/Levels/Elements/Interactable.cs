@@ -27,7 +27,7 @@ namespace Robbi.Levels.Elements
         public Vector3Int position;
 
         [SerializeField]
-        private List<LevelModifier> interactedModifiers;
+        private List<LevelModifier> interactedModifiers = new List<LevelModifier>();
 
         #endregion
 
