@@ -35,6 +35,11 @@ namespace RobbiEditor.Utils
             AddressableAssetSettings aaSettings = AddressableAssetSettingsDefaultObject.Settings;
             AssetDatabase.TryGetGUIDAndLocalFileIdentifier(o, out string guid, out long localID);
             AddressableAssetEntry entry = aaSettings.FindAssetEntry(guid);
+
+            if (entry == null)
+            {
+                entry = aaSettings.CreateOrMoveEntry(guid, aaSettings.DefaultGroup);
+            }
             entry.address = address.Replace('\\', '/');
         }
 
@@ -45,6 +50,11 @@ namespace RobbiEditor.Utils
             {
                 AddressableAssetSettings aaSettings = AddressableAssetSettingsDefaultObject.Settings;
                 AddressableAssetEntry entry = aaSettings.FindAssetEntry(guid);
+
+                if (entry == null)
+                {
+                    entry = aaSettings.CreateOrMoveEntry(guid, aaSettings.DefaultGroup);
+                }
                 entry.address = address.Replace('\\', '/');
             }
         }

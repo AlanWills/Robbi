@@ -81,6 +81,7 @@ namespace RobbiEditor.BuildSystem
             Debug.Log("Beginning Pre Build steps");
             
             CompressTilemaps.MenuItem();
+            FindInteractables.MenuItem();
             SetAddressableAssetSettings();
             SetActiveBuildTarget(buildTargetGroup, buildTarget);
             SetProfileId("AWS");
