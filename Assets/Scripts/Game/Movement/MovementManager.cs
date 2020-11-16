@@ -112,10 +112,10 @@ namespace Robbi.Movement
                     
                     if (newPosition == playerLocalPosition.value)
                     {
-                        onMovedTo.Raise(movedTo);
-
                         // This step of movement is completed
                         stepsToNextWaypoint.Pop();
+
+                        onMovedTo.Raise(movedTo);
                     }
                     else
                     {

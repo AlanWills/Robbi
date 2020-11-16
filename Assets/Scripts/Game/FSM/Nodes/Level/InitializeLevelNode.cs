@@ -1,4 +1,5 @@
 ﻿using Robbi.Debugging.Logging;
+using Robbi.Environment;
 using Robbi.Levels;
 using System;
 using UnityEngine;
@@ -45,7 +46,10 @@ namespace Robbi.FSM.Nodes
             {
                 if (IsBeginable())
                 {
-                    levelLoadingHandle.Result.Begin(levelData);
+                    LevelManagers managers = new LevelManagers();
+                    managers.interactablesManager = managersLoadingHandle.Result.GetComponentInChildren<InteractablesManager>();
+
+                    levelLoadingHandle.Result.Begin(levelData, managers);
                     managersLoadingHandle.Result.SetActive(true);
                 }
                 else

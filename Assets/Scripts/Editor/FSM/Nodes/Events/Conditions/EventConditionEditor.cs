@@ -21,7 +21,6 @@ namespace RobbiEditor.FSM.Nodes.Events.Conditions
             typeof(FloatEventCondition),
             typeof(BoolEventCondition),
             typeof(Vector3IntEventCondition),
-            typeof(DoorEventCondition),
         };
 
         public static string[] EventDisplayNames = new string[]
@@ -31,7 +30,6 @@ namespace RobbiEditor.FSM.Nodes.Events.Conditions
             "Float",
             "Bool",
             "Vector3Int",
-            "Door",
         };
 
         public static readonly EventConditionEditor DefaultEventConditionEditor = new EventConditionEditor();

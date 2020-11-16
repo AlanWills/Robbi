@@ -387,7 +387,6 @@ GameObject:
   - component: {fileID: 8681021859159792560}
   - component: {fileID: 2915932516500803445}
   - component: {fileID: 7415379317088757677}
-  - component: {fileID: 45426059546024797}
   m_Layer: 0
   m_Name: InteractablesManager
   m_TagString: Untagged
@@ -422,6 +421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorsTilemap: {fileID: 11400000, guid: 30b77989832f303478f308bf685407be, type: 2}
+  levelChanged: {fileID: 11400000, guid: 5bb336e8d44fa7f4e9895bfdf197a063, type: 2}
 --- !u!114 &7415379317088757677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,31 +450,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 45426059546024797}
-        m_TargetAssemblyTypeName: Robbi.Events.EventRaiser, Assembly-CSharp
-        m_MethodName: Raise
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &45426059546024797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4443659954887257874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89a0d147401428146b5daed6a3cee729, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 5bb336e8d44fa7f4e9895bfdf197a063, type: 2}
 --- !u!1 &8197887247557088431
 GameObject:
   m_ObjectHideFlags: 0

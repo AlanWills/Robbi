@@ -19,6 +19,10 @@ namespace Robbi.Levels
         public IntValue tutorialProgression;
         public Vector3Value playerLocalPosition;
         public IntValue remainingWaypointsPlaceable;
+    }
+
+    public struct LevelManagers
+    {
         public InteractablesManager interactablesManager;
     }
 
@@ -42,7 +46,7 @@ namespace Robbi.Levels
 
         #region Initialization
 
-        public void Begin(LevelData levelData)
+        public void Begin(LevelData levelData, LevelManagers managers)
         {
             // Set this before instantiating the level so the UI will correctly adapt
             levelData.tutorialProgression.value = 0;
@@ -53,7 +57,8 @@ namespace Robbi.Levels
 
             levelData.playerLocalPosition.value = grid.GetCellCenterLocal(playerStartPosition);
             levelData.remainingWaypointsPlaceable.value = maxWaypointsPlaceable;
-            levelData.interactablesManager.Interactables = interactables;
+            
+            managers.interactablesManager.Interactables = interactables;
 
             if (levelTutorial != null)
             {
