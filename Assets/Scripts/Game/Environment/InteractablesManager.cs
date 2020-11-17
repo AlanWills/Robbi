@@ -19,7 +19,6 @@ namespace Robbi.Environment
         public List<Interactable> Interactables { get; set; }
 
         public TilemapValue doorsTilemap;
-        public Event levelChanged;
 
         #endregion
 
@@ -37,9 +36,23 @@ namespace Robbi.Environment
                     };
 
                     interactable.Interact(interact);
-                    levelChanged.Raise();
                 }
             }
+        }
+
+        public void OpenDoor(Door door)
+        {
+            door.Open(doorsTilemap.value);
+        }
+
+        public void CloseDoor(Door door)
+        {
+            door.Close(doorsTilemap.value);
+        }
+
+        public void ToggleDoor(Door door)
+        {
+            door.Toggle(doorsTilemap.value);
         }
 
         #endregion

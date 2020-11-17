@@ -26,16 +26,12 @@ namespace RobbiEditor.Levels.Elements
 
         private static Type[] modifierTypes = new Type[]
         {
-            typeof(OpenDoorModifier),
-            typeof(CloseDoorModifier),
-            typeof(ToggleDoorModifier),
+            typeof(RaiseDoorEvent),
         };
 
         private static string[] modifierDisplayNames = new string[]
         {
-            "Open Door",
-            "Close Door",
-            "Toggle Door",
+            "Raise Door Event",
         };
 
         #endregion
