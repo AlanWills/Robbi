@@ -29,7 +29,16 @@ namespace RobbiEditor.Utils
             Object o = AssetDatabase.LoadAssetAtPath<Object>(path);
             if (o != null)
             {
-                o.SetAddressableInfo(group, o.name);
+                o.SetAddressableInfo(group);
+            }
+        }
+
+        public static void SetAddressableInfo(string path, string group, string address)
+        {
+            Object o = AssetDatabase.LoadAssetAtPath<Object>(path);
+            if (o != null)
+            {
+                o.SetAddressableInfo(group, address);
             }
         }
     }

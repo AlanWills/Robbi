@@ -16,6 +16,7 @@ namespace Robbi.Environment
         #region Properties and Fields
 
         public TilemapValue destructibleCorridorsTilemap;
+        public TilemapValue movementTilemap;
 
         #endregion
 
@@ -24,6 +25,7 @@ namespace Robbi.Environment
         public void DestroyTile(Vector3Int tileCoords)
         {
             destructibleCorridorsTilemap.value.SetTile(tileCoords, null);
+            movementTilemap.value.SetTile(tileCoords, null);
         }
 
         #endregion

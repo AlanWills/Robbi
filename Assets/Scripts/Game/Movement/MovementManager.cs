@@ -96,7 +96,7 @@ namespace Robbi.Movement
             boundingBox.offset = new Vector2(movementOrigin.x + movementGridSize.x * 0.5f, movementOrigin.y + movementGridSize.y * 0.5f);
         }
 
-        private void LateUpdate()
+        private void Update()
         {
             if (isProgramRunning.value)
             {
@@ -110,7 +110,7 @@ namespace Robbi.Movement
                     Vector3 newPosition = Vector3.MoveTowards(playerLocalPos, nextStepPosition, movementSpeed.value * Time.deltaTime);
                     Vector3Int movedTo = new Vector3Int(Mathf.RoundToInt(newPosition.x - 0.5f), Mathf.RoundToInt(newPosition.y - 0.5f), Mathf.RoundToInt(newPosition.z));
                     
-                    if (newPosition == playerLocalPosition.value)
+                    if (newPosition == nextStepPosition)
                     {
                         // This step of movement is completed
                         stepsToNextWaypoint.Pop();
