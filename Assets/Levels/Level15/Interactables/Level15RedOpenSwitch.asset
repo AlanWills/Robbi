@@ -1,31 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8028889874371699879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f50e7380d4541924c9121a6c86c3299f, type: 3}
-  m_Name: OpenDoorModifier
-  m_EditorClassIdentifier: 
-  door: {fileID: 11400000, guid: b0c42b0b81135b145aa4754df8524b47, type: 2}
---- !u!114 &-3922954341412865660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f50e7380d4541924c9121a6c86c3299f, type: 3}
-  m_Name: OpenDoorModifier
-  m_EditorClassIdentifier: 
-  door: {fileID: 11400000, guid: cf8014afdc7271f459aa1b820d400712, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40,5 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: -1, y: 3, z: 0}
   interactedModifiers:
-  - {fileID: -8028889874371699879}
-  - {fileID: -3922954341412865660}
+  - {fileID: 9164616754566801901}
+  - {fileID: 5236953391635542248}
+--- !u!114 &5236953391635542248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d18122b71ff71904c9b5c30c5edf7eac, type: 3}
+  m_Name: RaiseDoorEvent
+  m_EditorClassIdentifier: 
+  doorEvent: {fileID: 11400000, guid: d3249d8ae5bd19141a7c3fe5b6b72ef5, type: 2}
+  door: {fileID: 11400000, guid: b0c42b0b81135b145aa4754df8524b47, type: 2}
+--- !u!114 &9164616754566801901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d18122b71ff71904c9b5c30c5edf7eac, type: 3}
+  m_Name: RaiseDoorEvent
+  m_EditorClassIdentifier: 
+  doorEvent: {fileID: 11400000, guid: d3249d8ae5bd19141a7c3fe5b6b72ef5, type: 2}
+  door: {fileID: 11400000, guid: cf8014afdc7271f459aa1b820d400712, type: 2}

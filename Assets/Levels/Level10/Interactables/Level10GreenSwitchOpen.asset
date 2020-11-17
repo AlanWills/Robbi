@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-100022328502774196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d18122b71ff71904c9b5c30c5edf7eac, type: 3}
+  m_Name: RaiseDoorEvent
+  m_EditorClassIdentifier: 
+  doorEvent: {fileID: 11400000, guid: d3249d8ae5bd19141a7c3fe5b6b72ef5, type: 2}
+  door: {fileID: 11400000, guid: dfdc2151ad3155b48921ea49c8a2f5cf, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14,9 +28,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: -7, z: 0}
   interactedModifiers:
-  - {fileID: 1912097234643096077}
-  - {fileID: 6743396909239112888}
---- !u!114 &1912097234643096077
+  - {fileID: 5216707107238412865}
+  - {fileID: -100022328502774196}
+--- !u!114 &5216707107238412865
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -25,20 +39,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f50e7380d4541924c9121a6c86c3299f, type: 3}
-  m_Name: OpenDoorModifier
+  m_Script: {fileID: 11500000, guid: d18122b71ff71904c9b5c30c5edf7eac, type: 3}
+  m_Name: RaiseDoorEvent
   m_EditorClassIdentifier: 
-  door: {fileID: 11400000, guid: dfdc2151ad3155b48921ea49c8a2f5cf, type: 2}
---- !u!114 &6743396909239112888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f50e7380d4541924c9121a6c86c3299f, type: 3}
-  m_Name: OpenDoorModifier
-  m_EditorClassIdentifier: 
+  doorEvent: {fileID: 11400000, guid: d3249d8ae5bd19141a7c3fe5b6b72ef5, type: 2}
   door: {fileID: 11400000, guid: 46668b7e8c43a2141b92ef91ccc23622, type: 2}

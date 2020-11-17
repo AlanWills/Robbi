@@ -11,7 +11,6 @@ namespace Robbi.Levels.Elements
 {
     public struct InteractArgs
     {
-        public Tilemap doorsTilemap;
     }
 
     [CreateAssetMenu(fileName = "Interactable", menuName = "Robbi/Interactables/Interactable")]

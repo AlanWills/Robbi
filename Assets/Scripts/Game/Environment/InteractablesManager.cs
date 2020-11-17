@@ -32,7 +32,6 @@ namespace Robbi.Environment
                 {
                     InteractArgs interact = new InteractArgs()
                     {
-                        doorsTilemap = doorsTilemap.value
                     };
 
                     interactable.Interact(interact);
