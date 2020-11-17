@@ -44,14 +44,6 @@ namespace RobbiEditor.Migration
                         multiEventListenerNode.RemoveEvent(eventCondition);
                     }
 
-                    // Level Won
-                    {
-                        VoidEventCondition levelWonEvent = multiEventListenerNode.AddEvent<VoidEventCondition>();
-                        levelWonEvent.listenFor = AssetDatabase.LoadAssetAtPath<Event>(EventFiles.LEVEL_WON_EVENT);
-                        NodePort levelWonPort = multiEventListenerNode.AddEventConditionPort(levelWonEvent.listenFor.name);
-                        levelWonPort.Connect(testPassed.GetInputPort(FSMNode.DEFAULT_INPUT_PORT_NAME));
-                    }
-
                     // Level Lose Waypoint Unreachable
                     {
                         VoidEventCondition levelLoseWaypointUnreachableEvent = multiEventListenerNode.AddEvent<VoidEventCondition>();
@@ -66,6 +58,14 @@ namespace RobbiEditor.Migration
                         levelLoseOutOfWaypointsEvent.listenFor = AssetDatabase.LoadAssetAtPath<Event>(EventFiles.LEVEL_LOSE_OUT_OF_WAYPOINTS_EVENT);
                         NodePort levelLosePort = multiEventListenerNode.AddEventConditionPort(levelLoseOutOfWaypointsEvent.listenFor.name);
                         levelLosePort.Connect(testFailed.GetInputPort(FSMNode.DEFAULT_INPUT_PORT_NAME));
+                    }
+
+                    // Level Won
+                    {
+                        VoidEventCondition levelWonEvent = multiEventListenerNode.AddEvent<VoidEventCondition>();
+                        levelWonEvent.listenFor = AssetDatabase.LoadAssetAtPath<Event>(EventFiles.LEVEL_WON_EVENT);
+                        NodePort levelWonPort = multiEventListenerNode.AddEventConditionPort(levelWonEvent.listenFor.name);
+                        levelWonPort.Connect(testPassed.GetInputPort(FSMNode.DEFAULT_INPUT_PORT_NAME));
                     }
 
                     Debug.LogFormat("Fixed up {0}", fsmGraph.name);
