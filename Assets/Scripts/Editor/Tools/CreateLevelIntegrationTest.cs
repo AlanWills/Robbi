@@ -35,9 +35,9 @@ namespace RobbiEditor.Tools
             FSMGraph integrationTest = ScriptableObject.CreateInstance<FSMGraph>();
             LevelManager levelManager = LevelManager.Instance;
 
-            string levelsFolderPath = string.Format("{0}Level{1}/", LEVELS_PATH, levelManager.CurrentLevelIndex);
-            AssetDatabase.CreateFolder(levelsFolderPath, TESTS_NAME);
-            string integrationTestPath = string.Format("{0}{1}Level{2}IntegrationTestFSM.asset", levelsFolderPath, TESTS_NAME, levelManager.CurrentLevelIndex);
+            string levelsFolderPath = string.Format("{0}Level{1}", LEVELS_PATH, levelManager.CurrentLevelIndex);
+            AssetDatabase.CreateFolder(levelsFolderPath, "Tests");
+            string integrationTestPath = string.Format("{0}/{1}Level{2}IntegrationTestFSM.asset", levelsFolderPath, TESTS_NAME, levelManager.CurrentLevelIndex);
             AssetDatabase.CreateAsset(integrationTest, integrationTestPath);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
@@ -82,31 +82,38 @@ namespace RobbiEditor.Tools
 
             // Add Multi Event Listener to check for level won/lost
             MultiEventListenerNode multiEventListenerNode = CreateNode<MultiEventListenerNode>(fsmGraphEditor, previousNode);
-            VoidEventCondition levelLostEvent = multiEventListenerNode.AddEvent<VoidEventCondition>();
-            levelLostEvent.listenFor = AssetDatabase.LoadAssetAtPath<Event>(EventFiles.LEVEL_LOST_EVENT);
-            Debug.Assert(levelLostEvent.listenFor != null, "Default LevelLost event could not be found for MultiEventListenerNode");
+
+            // Level Lose Waypoint Unreachable
+            VoidEventCondition levelLoseWaypointUnreachableEvent = multiEventListenerNode.AddEvent<VoidEventCondition>();
+            levelLoseWaypointUnreachableEvent.listenFor = AssetDatabase.LoadAssetAtPath<Event>(EventFiles.LEVEL_LOSE_WAYPOINT_UNREACHABLE_EVENT);
+            Debug.Assert(levelLoseWaypointUnreachableEvent.listenFor != null, "Default LevelLoseWaypointUnreachable event could not be found for MultiEventListenerNode");
+            NodePort levelLoseWaypointUnreachableOutputPort = multiEventListenerNode.AddEventConditionPort(levelLoseWaypointUnreachableEvent.listenFor.name);
+            
+            VoidEventCondition levelLoseOutOfWaypointsEvent = multiEventListenerNode.AddEvent<VoidEventCondition>();
+            levelLoseOutOfWaypointsEvent.listenFor = AssetDatabase.LoadAssetAtPath<Event>(EventFiles.LEVEL_LOSE_OUT_OF_WAYPOINTS_EVENT);
+            Debug.Assert(levelLoseOutOfWaypointsEvent.listenFor != null, "Default LevelLoseOutOfWaypoints event could not be found for MultiEventListenerNode");
+            NodePort levelLoseOutOfWaypointsOutputPort = multiEventListenerNode.AddEventConditionPort(levelLoseOutOfWaypointsEvent.listenFor.name);
 
             VoidEventCondition levelWonEvent = multiEventListenerNode.AddEvent<VoidEventCondition>();
             levelWonEvent.listenFor = AssetDatabase.LoadAssetAtPath<Event>(EventFiles.LEVEL_WON_EVENT);
-            Debug.Assert(levelLostEvent.listenFor != null, "Default LevelWon event could not be found for MultiEventListenerNode");
-
+            Debug.Assert(levelWonEvent.listenFor != null, "Default LevelWon event could not be found for MultiEventListenerNode");
+            NodePort levelWonOutputPort = multiEventListenerNode.AddEventConditionPort(levelWonEvent.listenFor.name);
+            
             ConnectNodes(previousNode, multiEventListenerNode);
             previousNode = multiEventListenerNode;
-
-            NodePort levelLostOutputPort = multiEventListenerNode.AddEventConditionPort("LevelLost");
-            NodePort levelWonOutputPort = multiEventListenerNode.AddEventConditionPort("LevelWon");
 
             // Add Integration Test Fail node
             FinishIntegrationTestNode failTestNode = CreateNode<FinishIntegrationTestNode>(fsmGraphEditor, previousNode.position + new Vector2(300, 100));
             failTestNode.testResult = AssetDatabase.LoadAssetAtPath<StringEvent>(EventFiles.INTEGRATION_TEST_FAILED_EVENT);
-            Debug.Assert(levelLostEvent.listenFor != null, "Default TestFailed event could not be found for FinishIntegrationTestNode");
+            Debug.Assert(failTestNode.testResult != null, "Default TestFailed event could not be found for FinishIntegrationTestNode");
 
-            levelLostOutputPort.Connect(failTestNode.GetInputPort(FSMNode.DEFAULT_INPUT_PORT_NAME));
+            levelLoseWaypointUnreachableOutputPort.Connect(failTestNode.GetInputPort(FSMNode.DEFAULT_INPUT_PORT_NAME));
+            levelLoseOutOfWaypointsOutputPort.Connect(failTestNode.GetInputPort(FSMNode.DEFAULT_INPUT_PORT_NAME));
 
             // Add Integration Test Passed node
             FinishIntegrationTestNode passTestNode = CreateNode<FinishIntegrationTestNode>(fsmGraphEditor, previousNode.position + new Vector2(300, -100));
             passTestNode.testResult = AssetDatabase.LoadAssetAtPath<StringEvent>(EventFiles.INTEGRATION_TEST_PASSED_EVENT);
-            Debug.Assert(levelLostEvent.listenFor != null, "Default TestPassed event could not be found for FinishIntegrationTestNode");
+            Debug.Assert(passTestNode.testResult != null, "Default TestPassed event could not be found for FinishIntegrationTestNode");
 
             levelWonOutputPort.Connect(passTestNode.GetInputPort(FSMNode.DEFAULT_INPUT_PORT_NAME));
 

@@ -2,6 +2,7 @@
 using Robbi.Levels.Elements;
 using Robbi.Parameters;
 using RobbiEditor.Constants;
+using RobbiEditor.Levels;
 using RobbiEditor.Utils;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using static RobbiEditor.LevelDirectories;
 
-namespace RobbiEditor.Levels.Migration
+namespace RobbiEditor.Migration
 {
     public static class MigrateLevels
     {

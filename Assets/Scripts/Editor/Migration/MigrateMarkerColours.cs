@@ -9,7 +9,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace RobbiEditor.Levels.Migration
+namespace RobbiEditor.Migration
 {
     public static class MigrateMarkerColours
     {
