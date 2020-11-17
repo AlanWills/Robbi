@@ -14,11 +14,11 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using static RobbiEditor.LevelDirectories;
 
-namespace RobbiEditor.Migration
+namespace RobbiEditor.Tools
 {
-    public static class MigrateAddressablePaths
+    public static class SetAddressablePaths
     {
-        [MenuItem("Robbi/Migration/Migrate Addressable Paths")]
+        [MenuItem("Robbi/Tools/Set Addressable Paths")]
         public static void MenuItem()
         {
             int i = 0;

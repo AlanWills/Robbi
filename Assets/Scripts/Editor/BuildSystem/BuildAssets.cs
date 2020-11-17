@@ -45,6 +45,14 @@ namespace RobbiEditor.BuildSystem
             Debug.Assert(Caching.ClearCache(), "Error clearing asset cache");
         }
 
+        [MenuItem("Robbi/Assets/Prepare Assets")]
+        public static void PrepareAssets()
+        {
+            CompressTilemaps.MenuItem();
+            FindInteractables.MenuItem();
+            SetAddressablePaths.MenuItem();
+        }
+
         private static void Build(BuildTargetGroup buildTargetGroup, BuildTarget buildTarget)
         {
             PreBuildSteps(buildTargetGroup, buildTarget);
@@ -79,9 +87,8 @@ namespace RobbiEditor.BuildSystem
         private static void PreBuildSteps(BuildTargetGroup buildTargetGroup, BuildTarget buildTarget)
         {
             Debug.Log("Beginning Pre Build steps");
-            
-            CompressTilemaps.MenuItem();
-            FindInteractables.MenuItem();
+
+            PrepareAssets();
             SetAddressableAssetSettings();
             SetActiveBuildTarget(buildTargetGroup, buildTarget);
             SetProfileId("AWS");
