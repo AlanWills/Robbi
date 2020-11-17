@@ -26,7 +26,7 @@ namespace RobbiEditor
                 {
                     Interactable interactable = AssetDatabase.LoadAssetAtPath<Interactable>(interactablePath);
 
-                    for (int i = interactable.NumInteractedModifiers; i > 0; ++i)
+                    for (int i = interactable.NumInteractedModifiers; i > 0; --i)
                     {
                         LevelModifier levelModifier = interactable.GetInteractedModifier(i - 1);
                         

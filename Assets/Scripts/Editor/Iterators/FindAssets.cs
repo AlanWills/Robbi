@@ -15,6 +15,11 @@ namespace RobbiEditor.Iterators
 
         public FindAssets(string folder)
         {
+            if (folder.EndsWith("/"))
+            {
+                folder = folder.Substring(0, folder.Length - 1);
+            }
+
             assetGuids = Directory.Exists(folder) ? AssetDatabase.FindAssets(string.Format("t:{0}", typeof(T).Name), new string[] { folder }) : new string[0];
         }
 
