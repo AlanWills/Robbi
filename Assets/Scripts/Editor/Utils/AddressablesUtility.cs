@@ -11,51 +11,25 @@ namespace RobbiEditor.Utils
 {
     public static class AddressablesUtility
     {
-        public static void SetAddressableGroup(this Object o, string group)
+        public static void SetAddressableInfo(this Object o, string group, string address)
         {
             AddressableAssetSettings aaSettings = AddressableAssetSettingsDefaultObject.Settings;
             AssetDatabase.TryGetGUIDAndLocalFileIdentifier(o, out string guid, out long localID);
             AddressableAssetEntry entry = aaSettings.CreateOrMoveEntry(guid, aaSettings.FindGroup(group));
-            entry.labels.Add(group);
+            entry.address = address;
         }
 
-        public static void SetAddressableGroup(string path, string group)
+        public static void SetAddressableInfo(this Object o, string group)
         {
-            string guid = AssetDatabase.AssetPathToGUID(path);
-            if (!string.IsNullOrEmpty(guid))
-            {
-                AddressableAssetSettings aaSettings = AddressableAssetSettingsDefaultObject.Settings;
-                AddressableAssetEntry entry = aaSettings.CreateOrMoveEntry(guid, aaSettings.FindGroup(group));
-                entry.labels.Add(group);
-            }
+            SetAddressableInfo(o, group, o.name);
         }
 
-        public static void SetAddressableAddress(this Object o, string address)
+        public static void SetAddressableInfo(string path, string group)
         {
-            AddressableAssetSettings aaSettings = AddressableAssetSettingsDefaultObject.Settings;
-            AssetDatabase.TryGetGUIDAndLocalFileIdentifier(o, out string guid, out long localID);
-            AddressableAssetEntry entry = aaSettings.FindAssetEntry(guid);
-
-            if (entry == null)
+            Object o = AssetDatabase.LoadAssetAtPath<Object>(path);
+            if (o != null)
             {
-                entry = aaSettings.CreateOrMoveEntry(guid, aaSettings.DefaultGroup);
-            }
-            entry.address = address.Replace('\\', '/');
-        }
-
-        public static void SetAddressableAddress(string path, string address)
-        {
-            string guid = AssetDatabase.AssetPathToGUID(path);
-            if (!string.IsNullOrEmpty(guid))
-            {
-                AddressableAssetSettings aaSettings = AddressableAssetSettingsDefaultObject.Settings;
-                AddressableAssetEntry entry = aaSettings.FindAssetEntry(guid);
-
-                if (entry == null)
-                {
-                    entry = aaSettings.CreateOrMoveEntry(guid, aaSettings.DefaultGroup);
-                }
-                entry.address = address.Replace('\\', '/');
+                o.SetAddressableInfo(group, o.name);
             }
         }
     }

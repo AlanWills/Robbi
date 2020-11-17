@@ -32,8 +32,10 @@ namespace RobbiEditor.Tools
         [MenuItem("Robbi/Tools/Create Level Integration Test")]
         public static void MenuItem()
         {
-            FSMGraph integrationTest = ScriptableObject.CreateInstance<FSMGraph>();
             LevelManager levelManager = LevelManager.Instance;
+
+            FSMGraph integrationTest = ScriptableObject.CreateInstance<FSMGraph>();
+            integrationTest.name = string.Format("Level{0}IntegrationTest", levelManager.CurrentLevelIndex);
 
             string levelsFolderPath = string.Format("{0}Level{1}", LEVELS_PATH, levelManager.CurrentLevelIndex);
             AssetDatabase.CreateFolder(levelsFolderPath, "Tests");
@@ -44,8 +46,7 @@ namespace RobbiEditor.Tools
 
             FSMNode previousNode;
             integrationTest = AssetDatabase.LoadAssetAtPath<FSMGraph>(integrationTestPath);
-            integrationTest.SetAddressableGroup(AddressablesConstants.TESTS_GROUP);
-            integrationTest.SetAddressableAddress(string.Format("Level{0}IntegrationTest", levelManager.CurrentLevelIndex));
+            integrationTest.SetAddressableInfo(AddressablesConstants.TESTS_GROUP);
 
             FSMGraphEditor fsmGraphEditor = new FSMGraphEditor();
             fsmGraphEditor.target = integrationTest;

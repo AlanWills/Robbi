@@ -97,7 +97,6 @@ namespace RobbiEditor.Tools
             string oldFSMPath = Path.Combine(NewLevelFolderFullPath, string.Format("Level{0}FSM.asset", oldLevelIndex));
             string newFSMPath = Path.Combine(NewLevelFolderFullPath, string.Format("Level{0}FSM.asset", newLevelIndex));
             string errorMessage = AssetDatabase.RenameAsset(oldFSMPath, string.Format("Level{0}FSM.asset", newLevelIndex));
-            AssetDatabase.LoadAssetAtPath<FSMGraph>(newFSMPath).SetAddressableAddress(newFSMPath);
 
             if (!string.IsNullOrEmpty(errorMessage))
             {
@@ -111,7 +110,6 @@ namespace RobbiEditor.Tools
             string oldPrefabPath = Path.Combine(NewLevelFolderFullPath, string.Format("Level{0}.prefab", oldLevelIndex));
             string newPrefabPath = Path.Combine(NewLevelFolderFullPath, string.Format("Level{0}.prefab", newLevelIndex));
             string errorMessage = AssetDatabase.RenameAsset(oldPrefabPath, string.Format("Level{0}.prefab", newLevelIndex));
-            AssetDatabase.LoadAssetAtPath<GameObject>(newPrefabPath).SetAddressableAddress(newPrefabPath);
 
             if (!string.IsNullOrEmpty(errorMessage))
             {
@@ -125,7 +123,6 @@ namespace RobbiEditor.Tools
             string oldLevelDataPath = Path.Combine(NewLevelFolderFullPath, string.Format("Level{0}Data.asset", oldLevelIndex));
             string newLevelDataPath = Path.Combine(NewLevelFolderFullPath, string.Format("Level{0}Data.asset", newLevelIndex));
             string errorMessage = AssetDatabase.RenameAsset(oldLevelDataPath, string.Format("Level{0}Data.asset", newLevelIndex));
-            AssetDatabase.LoadAssetAtPath<Level>(newLevelDataPath).SetAddressableAddress(newLevelDataPath);
 
             if (!string.IsNullOrEmpty(errorMessage))
             {

@@ -227,7 +227,7 @@ namespace RobbiEditor.Tools
             fsm.name = string.Format("Level{0}FSM", levelInfo.levelIndex);
 
             AssetDatabase.CreateAsset(fsm, string.Format("{0}{1}.asset", LevelFolderFullPath, fsm.name));
-            fsm.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
+            fsm.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
         }
 
         private void CreatePrefab()
@@ -283,7 +283,7 @@ namespace RobbiEditor.Tools
                 GameObject.DestroyImmediate(instantiatedPrefab);
             }
 
-            createdPrefab.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
+            createdPrefab.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
             EditorUtility.SetDirty(createdPrefab);
         }
 
@@ -313,6 +313,7 @@ namespace RobbiEditor.Tools
                 Interactable interactable = ScriptableObject.CreateInstance<Interactable>();
                 interactable.name = string.Format("Interactable{0}", i);
                 AssetDatabase.CreateAsset(interactable, string.Format("{0}{1}", interactablesPath, interactable.name));
+                interactable.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
             }
         }
 
@@ -330,13 +331,13 @@ namespace RobbiEditor.Tools
             tutorialFsm.name = string.Format("Level{0}TutorialsFSM", levelIndex);
 
             AssetDatabase.CreateAsset(tutorialFsm, Path.Combine(tutorialsPath, tutorialFsm.name + ".asset"));
-            tutorialFsm.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
+            tutorialFsm.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
 
             DataGraph tutorialDataGraph = ScriptableObject.CreateInstance<DataGraph>();
             tutorialDataGraph.name = string.Format("Level{0}TutorialsDataGraph", levelIndex);
 
             AssetDatabase.CreateAsset(tutorialDataGraph, Path.Combine(tutorialsPath, tutorialDataGraph.name + ".asset"));
-            tutorialDataGraph.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
+            tutorialDataGraph.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
 
             string prefabPath = string.Format("{0}Level{0}Tutorials.prefab", tutorialsPath, levelIndex);
             AssetDatabase.CopyAsset(AssetDatabase.GetAssetPath(levelInfo.tutorialPrefabToCopy), prefabPath);
@@ -357,7 +358,7 @@ namespace RobbiEditor.Tools
             }
             dataRuntime.graph = tutorialDataGraph;
 
-            createdPrefab.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
+            createdPrefab.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
             EditorUtility.SetDirty(createdPrefab);
         }
 
@@ -378,7 +379,7 @@ namespace RobbiEditor.Tools
             Debug.Assert(!levelInfo.hasTutorial || level.levelTutorial != null, "Level Tutorial could not be found automatically");
 
             AssetDatabase.CreateAsset(level, Path.Combine(levelFolderFullPath, string.Format("Level{0}Data", levelInfo.levelIndex) + ".asset"));
-            level.SetAddressableGroup(AddressablesConstants.LEVELS_GROUP);
+            level.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
         }
 
         #endregion

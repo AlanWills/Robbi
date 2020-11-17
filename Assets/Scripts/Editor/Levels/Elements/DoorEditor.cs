@@ -108,7 +108,7 @@ namespace RobbiEditor.Levels.Elements
             Debug.Assert(door.rightOpenTile != null, "Default right open tile could not be found for door.");
 
             AssetUtility.CreateAsset(door, path);
-            AddressablesUtility.SetAddressableGroup(door, AddressablesConstants.LEVELS_GROUP);
+            door.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
         }
 
         private static string GetSelectionObjectPath()
