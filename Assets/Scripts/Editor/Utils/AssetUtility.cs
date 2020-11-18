@@ -27,5 +27,12 @@ namespace RobbiEditor.Utils
 			EditorUtility.FocusProjectWindow();
 			Selection.activeObject = asset;
 		}
+
+		public static void CreateFolder(string parent, string folderName)
+        {
+			parent = parent.EndsWith("/") ? parent.Substring(0, parent.Length - 1) : parent;
+			folderName = folderName.EndsWith("/") ? folderName.Substring(0, folderName.Length - 1) : folderName;
+			AssetDatabase.CreateFolder(parent, folderName);
+        }
 	}
 }

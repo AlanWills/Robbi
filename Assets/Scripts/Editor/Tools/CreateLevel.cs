@@ -52,7 +52,7 @@ namespace RobbiEditor.Tools
 
         private string LevelFolderName
         {
-            get { return string.Format("Level{0}", levelInfo.levelIndex); }
+            get { return string.Format("Level{0}/", levelInfo.levelIndex); }
         }
 
         private string LevelFolderFullPath
@@ -196,23 +196,23 @@ namespace RobbiEditor.Tools
 
         private void CreateDirectories()
         {
-            AssetDatabase.CreateFolder(levelInfo.destinationFolder, LevelFolderName);
+            AssetUtility.CreateFolder(levelInfo.destinationFolder, LevelFolderName);
 
             string levelFolderPath = string.Format("{0}{1}", levelInfo.destinationFolder, LevelFolderName);
             
             if (levelInfo.horizontalDoors.Count > 0 || levelInfo.verticalDoors.Count > 0)
             {
-                AssetDatabase.CreateFolder(levelFolderPath, DOORS_NAME);
+                AssetUtility.CreateFolder(levelFolderPath, DOORS_NAME);
             }
 
             if (levelInfo.hasTutorial)
             {
-                AssetDatabase.CreateFolder(levelFolderPath, TUTORIALS_NAME);
+                AssetUtility.CreateFolder(levelFolderPath, TUTORIALS_NAME);
             }
 
             if (levelInfo.numInteractables > 0)
             {
-                AssetDatabase.CreateFolder(levelFolderPath, INTERACTABLES_NAME);
+                AssetUtility.CreateFolder(levelFolderPath, INTERACTABLES_NAME);
             }
         }
 
@@ -233,7 +233,7 @@ namespace RobbiEditor.Tools
         private void CreatePrefab()
         {
             string levelFolderFullPath = LevelFolderFullPath;
-            string prefabPath = Path.Combine(levelFolderFullPath, string.Format("Level{0}.prefab", levelInfo.levelIndex));
+            string prefabPath = string.Format("{0}Level{1}.prefab", levelFolderFullPath, levelInfo.levelIndex);
             AssetDatabase.CopyAsset(AssetDatabase.GetAssetPath(levelInfo.levelPrefabToCopy), prefabPath);
             
             GameObject createdPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
@@ -312,7 +312,7 @@ namespace RobbiEditor.Tools
             {
                 Interactable interactable = ScriptableObject.CreateInstance<Interactable>();
                 interactable.name = string.Format("Interactable{0}", i);
-                AssetDatabase.CreateAsset(interactable, string.Format("{0}{1}", interactablesPath, interactable.name));
+                AssetDatabase.CreateAsset(interactable, string.Format("{0}{1}.asset", interactablesPath, interactable.name));
                 interactable.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
             }
         }
@@ -373,13 +373,14 @@ namespace RobbiEditor.Tools
                 : null;
             level.maxWaypointsPlaceable = levelInfo.maxWaypointsPlaceable;
             
-            LevelEditor.FindInteractables(level);
-
             Debug.Assert(level.levelPrefab != null, "Level Prefab could not be found automatically");
             Debug.Assert(!levelInfo.hasTutorial || level.levelTutorial != null, "Level Tutorial could not be found automatically");
 
             AssetDatabase.CreateAsset(level, Path.Combine(levelFolderFullPath, string.Format("Level{0}Data", levelInfo.levelIndex) + ".asset"));
             level.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
+
+            // Must do this after the asset is actually created
+            LevelEditor.FindInteractables(level);
         }
 
         #endregion

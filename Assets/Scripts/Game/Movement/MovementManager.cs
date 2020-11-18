@@ -115,6 +115,13 @@ namespace Robbi.Movement
                         // This step of movement is completed
                         stepsToNextWaypoint.Pop();
 
+                        if (movedTo == waypoints[0].gridPosition)
+                        {
+                            // We have reached the next waypoint
+                            ConsumeWaypoint(0);
+                            MoveToNextWaypoint();
+                        }
+                        
                         onMovedTo.Raise(movedTo);
                     }
                     else
@@ -129,17 +136,8 @@ namespace Robbi.Movement
                 }
                 else
                 {
-                    if (movedFrom == waypoints[0].gridPosition)
-                    {
-                        // We have reached the next waypoint
-                        ConsumeWaypoint(0);
-                        MoveToNextWaypoint();
-                    }
-                    else
-                    {
-                        levelLoseWaypointUnreachable.Raise();
-                        isProgramRunning.value = false;
-                    }
+                    levelLoseWaypointUnreachable.Raise();
+                    isProgramRunning.value = false;
                 }
             }
         }
