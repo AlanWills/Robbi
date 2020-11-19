@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -36,6 +37,19 @@ namespace Robbi.Managers
         protected PersistentManager() { }
 
         #region Save/Load Methods
+
+        #region Editor Only
+
+#if UNITY_EDITOR
+
+        protected static T EditorOnly_Load(string assetDatabasePath)
+        {
+            return AssetDatabase.LoadAssetAtPath<T>(assetDatabasePath);
+        }
+
+#endif
+
+        #endregion
 
         protected static AsyncOperationHandle Load(string addressablePath, string persistentFilePath)
         {

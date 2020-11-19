@@ -28,12 +28,27 @@ namespace Robbi.Levels
         public uint CurrentLevelIndex 
         { 
             get { return currentLevelIndex.value; }
-            set { currentLevelIndex.value = value; }
+            set 
+            { 
+                currentLevelIndex.value = value;
+
+#if UNITY_EDITOR
+                UnityEditor.EditorUtility.SetDirty(currentLevelIndex);
+#endif
+            }
         }
 
         public uint LatestLevelIndex
         {
             get { return latestLevelIndex.value; }
+            set
+            { 
+                latestLevelIndex.value = value;
+
+#if UNITY_EDITOR
+                UnityEditor.EditorUtility.SetDirty(latestLevelIndex);
+#endif
+            }
         }
 
         [SerializeField]
@@ -42,11 +57,24 @@ namespace Robbi.Levels
         [SerializeField]
         private UIntValue latestLevelIndex;
 
-        #endregion
+#endregion
 
         private LevelManager() { }
 
-        #region Save/Load Methods
+#region Save/Load Methods
+
+#region Editor Only
+
+#if UNITY_EDITOR
+
+        public static LevelManager EditorOnly_Load()
+        {
+            return EditorOnly_Load(ADDRESS);
+        }
+
+#endif
+
+#endregion
 
         public static AsyncOperationHandle Load()
         {
@@ -72,7 +100,7 @@ namespace Robbi.Levels
             HudLogger.LogInfoFormat("Current Level Index: {0}", CurrentLevelIndex);
         }
 
-        #endregion
+#endregion
     }
 
     [Serializable]
