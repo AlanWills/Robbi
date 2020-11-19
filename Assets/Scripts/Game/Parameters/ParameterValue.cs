@@ -15,8 +15,7 @@ namespace Robbi.Parameters
         [NonSerialized]
         public T value;
 
-        [SerializeField]
-        private T defaultValue;
+        public T defaultValue;
 
         #endregion
 

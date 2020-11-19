@@ -28,27 +28,19 @@ namespace Robbi.Levels
         public uint CurrentLevelIndex 
         { 
             get { return currentLevelIndex.value; }
-            set 
-            { 
-                currentLevelIndex.value = value;
-
-#if UNITY_EDITOR
-                UnityEditor.EditorUtility.SetDirty(currentLevelIndex);
-#endif
-            }
+            set { currentLevelIndex.value = value; }
         }
 
         public uint LatestLevelIndex
         {
             get { return latestLevelIndex.value; }
-            set
-            { 
-                latestLevelIndex.value = value;
+            set { latestLevelIndex.value = value; }
+        }
 
-#if UNITY_EDITOR
-                UnityEditor.EditorUtility.SetDirty(latestLevelIndex);
-#endif
-            }
+        public uint LatestLevelIndex_DefaultValue
+        {
+            get { return latestLevelIndex.defaultValue; }
+            set { latestLevelIndex.defaultValue = value; }
         }
 
         [SerializeField]

@@ -94,7 +94,7 @@ namespace RobbiEditor.Tools
             LevelManager levelManager = LevelManager.EditorOnly_Load();
 
             levelInfo = ScriptableObject.CreateInstance<LevelInfo>();
-            levelInfo.levelIndex = levelManager.LatestLevelIndex + 1;
+            levelInfo.levelIndex = levelManager.LatestLevelIndex_DefaultValue + 1;
 
             levelInfoObject = new SerializedObject(levelInfo);
         }
@@ -185,7 +185,7 @@ namespace RobbiEditor.Tools
             CreateTutorial();
             CreateLevelData();
 
-            LevelManager.EditorOnly_Load().LatestLevelIndex = levelInfo.levelIndex;
+            LevelManager.EditorOnly_Load().LatestLevelIndex_DefaultValue = levelInfo.levelIndex;
 
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
