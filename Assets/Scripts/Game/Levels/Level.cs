@@ -25,6 +25,7 @@ namespace Robbi.Levels
     public struct LevelGameObjects
     {
         public GameObjectValue levelGameObject;
+        public GameObjectValue tutorialsGameObject;
         public GameObjectValue robbiGameObject;
         public GameObjectValue managersGameObject;
     }
@@ -62,22 +63,24 @@ namespace Robbi.Levels
             GameObject level = GameObject.Instantiate(levelPrefab);
             level.name = levelPrefab.name;
 
-            levelGameObjects.levelGameObject.value = level;
-            levelGameObjects.robbiGameObject.value.name = "Robbi";
-            levelGameObjects.managersGameObject.value.SetActive(true);
-            levelGameObjects.managersGameObject.value.name = "Managers";
-
             Grid grid = level.GetComponent<Grid>();
             Debug.Assert(grid != null, "No grid component on level prefab");
 
+            // Make sure this is done before manually setting any game objects to enabled
             levelData.playerLocalPosition.value = grid.GetCellCenterLocal(playerStartPosition);
             levelData.remainingWaypointsPlaceable.value = maxWaypointsPlaceable;
             
             managers.interactablesManager.Interactables = interactables;
 
+            levelGameObjects.levelGameObject.value = level;
+            levelGameObjects.robbiGameObject.value.name = "Robbi";
+            levelGameObjects.managersGameObject.value.SetActive(true);
+            levelGameObjects.managersGameObject.value.name = "Managers";
+
             if (levelTutorial != null)
             {
-                GameObject.Instantiate(levelTutorial);
+                levelGameObjects.tutorialsGameObject.value = GameObject.Instantiate(levelTutorial);
+                levelGameObjects.tutorialsGameObject.value.name = levelTutorial.name;
             }
         }
 
@@ -86,6 +89,11 @@ namespace Robbi.Levels
             GameObject.Destroy(levelGameObjects.levelGameObject.value);
             GameObject.Destroy(levelGameObjects.robbiGameObject.value);
             GameObject.Destroy(levelGameObjects.managersGameObject.value);
+
+            if (levelGameObjects.tutorialsGameObject.value != null)
+            {
+                GameObject.Destroy(levelGameObjects.tutorialsGameObject.value);
+            }
         }
 
         #endregion

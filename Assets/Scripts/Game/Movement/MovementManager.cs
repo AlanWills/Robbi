@@ -72,6 +72,7 @@ namespace Robbi.Movement
 
         private List<Waypoint> waypoints = new List<Waypoint>();
         private Stack<Vector3> stepsToNextWaypoint = new Stack<Vector3>();
+        private bool isLevelOver = false;
 
         // Temporary structs for A*
         private HashSet<Vector3Int> openSet = new HashSet<Vector3Int>();
@@ -140,6 +141,10 @@ namespace Robbi.Movement
                     isProgramRunning.value = false;
                 }
             }
+            else if (waypoints.Count == 0 && remainingWaypointsPlaceable.value == 0)
+            {
+                levelLoseOutOfWaypoints.Raise();
+            }
         }
 
         private void OnValidate()
@@ -175,10 +180,6 @@ namespace Robbi.Movement
             if (isProgramRunning.value)
             {
                 CalculateGridSteps(movementTilemap.value.LocalToCell(playerLocalPosition.value), waypoints[0].gridPosition);
-            }
-            else if (remainingWaypointsPlaceable.value == 0)
-            {
-                levelLoseOutOfWaypoints.Raise();
             }
         }
 
