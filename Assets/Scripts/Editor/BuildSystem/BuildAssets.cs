@@ -39,6 +39,18 @@ namespace RobbiEditor.BuildSystem
             Update(BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64);
         }
 
+        [MenuItem("Robbi/Assets/Build iOS Assets")]
+        public static void BuildiOSAssets()
+        {
+            Build(BuildTargetGroup.iOS, BuildTarget.iOS);
+        }
+
+        [MenuItem("Robbi/Assets/Update iOS Assets")]
+        public static void UpdateiOSAssets()
+        {
+            Update(BuildTargetGroup.iOS, BuildTarget.iOS);
+        }
+
         [MenuItem("Robbi/Assets/Clear Asset Cache")]
         public static void ClearAssetCache()
         {

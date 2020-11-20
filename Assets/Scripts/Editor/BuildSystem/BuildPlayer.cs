@@ -10,30 +10,47 @@ namespace RobbiEditor.BuildSystem
 {
     public static class BuildPlayer
     {
+        [MenuItem("Robbi/Builds/Android Debug")]
         public static void BuildAndroidDebug()
+        {
+            BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
+            buildPlayerOptions.options = BuildOptions.Development | BuildOptions.AllowDebugging | BuildOptions.StrictMode;
+            
+            Build(buildPlayerOptions, BuildTargetGroup.Android, BuildTarget.Android, "Builds/Android/Robbi.apk");
+        }
+
+        [MenuItem("Robbi/Builds/Windows Debug")]
+        public static void BuildWindowsDebug()
         {
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
             buildPlayerOptions.options = BuildOptions.Development | BuildOptions.AllowDebugging;
 
-            BuildAndroid(buildPlayerOptions);
+            Build(buildPlayerOptions, BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64, "Builds/Windows/Robbi.exe");
         }
 
-        private static void BuildAndroid(BuildPlayerOptions buildPlayerOptions)
+        [MenuItem("Robbi/Builds/iOS Debug")]
+        public static void BuildiOSDebug()
         {
-            EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
-            
-            buildPlayerOptions.locationPathName = "Builds/Robbi.apk";
+            BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
+            buildPlayerOptions.options = BuildOptions.Development | BuildOptions.AllowDebugging;
+
+            Build(buildPlayerOptions, BuildTargetGroup.iOS, BuildTarget.iOS, "Builds/iOS");
+        }
+
+        private static void Build(
+            BuildPlayerOptions buildPlayerOptions,
+            BuildTargetGroup buildTargetGroup, 
+            BuildTarget buildTarget,
+            string locationPathName)
+        {
+            EditorUserBuildSettings.SwitchActiveBuildTarget(buildTargetGroup, buildTarget);
+
+            buildPlayerOptions.locationPathName = locationPathName;
             buildPlayerOptions.scenes = EditorBuildSettings.scenes.Select(x => x.path).ToArray();
-            buildPlayerOptions.target = BuildTarget.Android;
-            buildPlayerOptions.targetGroup = BuildTargetGroup.Android;
+            buildPlayerOptions.target = buildTarget;
+            buildPlayerOptions.targetGroup = buildTargetGroup;
 
             BuildPipeline.BuildPlayer(buildPlayerOptions);
-        }
-
-        public static void Test()
-        {
-            BuildAndroidDebug();
-            BuildAssets.BuildAndroidAssets();
         }
     }
 }
