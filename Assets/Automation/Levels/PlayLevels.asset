@@ -60,6 +60,56 @@ MonoBehaviour:
       _dynamic: 1
   onExecute: {fileID: 11400000, guid: 570420804a518a94aa00561c25658d9a, type: 2}
   debugCommand: clit
+--- !u!114 &-3934334021081320590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dacecb1e910f63e419f3f2d0de6baf4c, type: 3}
+  m_Name: Wait
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 696, y: -24}
+  ports:
+    keys:
+    - ' '
+    - 
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -3934334021081320590}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: LevelLoseWaypointUnreachable
+        node: {fileID: -3233487938735943542}
+        reroutePoints: []
+      - fieldName: LevelLoseOutOfWaypoints
+        node: {fileID: -3233487938735943542}
+        reroutePoints: []
+      - fieldName: LevelWon
+        node: {fileID: -3233487938735943542}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -3934334021081320590}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 2206406312586757783}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  time: 1
 --- !u!114 &-3233487938735943542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,12 +130,23 @@ MonoBehaviour:
     - argument
     - LevelWon
     - LevelLost
+    - LevelLoseOutOfWaypoints
+    - LevelLoseWaypointUnreachable
     values:
     - _fieldName: ' '
       _node: {fileID: -3233487938735943542}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -2064756905269276820}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2064756905269276820}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2064756905269276820}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -2064756905269276820}
         reroutePoints: []
@@ -165,7 +226,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: 2206406312586757783}
+        node: {fileID: -3934334021081320590}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -180,9 +241,34 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
+    - _fieldName: LevelLoseOutOfWaypoints
+      _node: {fileID: -3233487938735943542}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -3934334021081320590}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: LevelLoseWaypointUnreachable
+      _node: {fileID: -3233487938735943542}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -3934334021081320590}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
   events:
   - {fileID: 4349308386525405610}
   - {fileID: -301995329596455536}
+  - {fileID: 6908045198714214579}
 --- !u!114 &-2064756905269276820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,6 +294,15 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 8707572695439670169}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 8707572695439670169}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 8707572695439670169}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 8707572695439670169}
         reroutePoints: []
@@ -326,9 +421,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
-  m_Name: LevelLost
+  m_Name: LevelLoseOutOfWaypoints
   m_EditorClassIdentifier: 
-  listenFor: {fileID: 11400000, guid: 061511aaa79740040855855eef179113, type: 2}
+  listenFor: {fileID: 11400000, guid: 777ae9d2c79462a43ab4df761ddcd9e6, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,8 +444,9 @@ MonoBehaviour:
   - {fileID: 528855124306936354}
   - {fileID: 2206406312586757783}
   - {fileID: 801323132179989797}
-  - {fileID: 0}
   - {fileID: 1467588638218257257}
+  - {fileID: 0}
+  - {fileID: -3934334021081320590}
   startNode: {fileID: 1467588638218257257}
   parameters:
   - {fileID: -604432041775649236}
@@ -380,6 +476,15 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 2206406312586757783}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 2206406312586757783}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 2206406312586757783}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 2206406312586757783}
         reroutePoints: []
@@ -545,8 +650,8 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 528855124306936354}
         reroutePoints: []
-      - fieldName: LevelWon
-        node: {fileID: -3233487938735943542}
+      - fieldName: 
+        node: {fileID: -3934334021081320590}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -667,6 +772,15 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 1467588638218257257}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 1467588638218257257}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 1467588638218257257}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 1467588638218257257}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -699,6 +813,19 @@ MonoBehaviour:
   isConstant: 0
   constantValue: 0
   referenceValue: {fileID: 11400000, guid: 3d90bf2b2bd8c644fa1934471b7783b6, type: 2}
+--- !u!114 &6908045198714214579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
+  m_Name: LevelLoseWaypointUnreachable
+  m_EditorClassIdentifier: 
+  listenFor: {fileID: 11400000, guid: 1b9066ca0a135694c833d6cf627c5798, type: 2}
 --- !u!114 &8707572695439670169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -836,6 +963,24 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: 
         node: {fileID: 4676569677930004383}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4676569677930004383}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 528855124306936354}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4676569677930004383}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 528855124306936354}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4676569677930004383}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 528855124306936354}
         reroutePoints: []
       - fieldName: 
         node: {fileID: 4676569677930004383}
