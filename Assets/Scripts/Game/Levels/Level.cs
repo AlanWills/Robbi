@@ -21,6 +21,14 @@ namespace Robbi.Levels
         public IntValue remainingWaypointsPlaceable;
     }
 
+    [Serializable]
+    public struct LevelGameObjects
+    {
+        public GameObjectValue levelGameObject;
+        public GameObjectValue robbiGameObject;
+        public GameObjectValue managersGameObject;
+    }
+
     public struct LevelManagers
     {
         public InteractablesManager interactablesManager;
@@ -46,12 +54,19 @@ namespace Robbi.Levels
 
         #region Initialization
 
-        public void Begin(LevelData levelData, LevelManagers managers)
+        public void Begin(LevelData levelData, LevelGameObjects levelGameObjects, LevelManagers managers)
         {
             // Set this before instantiating the level so the UI will correctly adapt
             levelData.tutorialProgression.value = 0;
 
             GameObject level = GameObject.Instantiate(levelPrefab);
+            level.name = levelPrefab.name;
+
+            levelGameObjects.levelGameObject.value = level;
+            levelGameObjects.robbiGameObject.value.name = "Robbi";
+            levelGameObjects.managersGameObject.value.SetActive(true);
+            levelGameObjects.managersGameObject.value.name = "Managers";
+
             Grid grid = level.GetComponent<Grid>();
             Debug.Assert(grid != null, "No grid component on level prefab");
 
@@ -64,6 +79,13 @@ namespace Robbi.Levels
             {
                 GameObject.Instantiate(levelTutorial);
             }
+        }
+
+        public void End(LevelGameObjects levelGameObjects)
+        {
+            GameObject.Destroy(levelGameObjects.levelGameObject.value);
+            GameObject.Destroy(levelGameObjects.robbiGameObject.value);
+            GameObject.Destroy(levelGameObjects.managersGameObject.value);
         }
 
         #endregion

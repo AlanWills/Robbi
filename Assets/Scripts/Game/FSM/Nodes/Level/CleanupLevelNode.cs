@@ -9,19 +9,16 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 namespace Robbi.FSM.Nodes
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Level/Initialize Level")]
+    [CreateNodeMenu("Robbi/Level/Cleanup Level")]
     [NodeTint(0.2f, 0.2f, 0.6f)]
-    public class InitializeLevelNode : FSMNode
+    public class CleanupLevelNode : FSMNode
     {
         #region Properties and Fields
 
         [Header("Parameters")]
-        public LevelData levelData;
         public LevelGameObjects levelGameObjects;
 
         private AsyncOperationHandle<Level> levelLoadingHandle;
-        private AsyncOperationHandle<GameObject> robbiLoadingHandle;
-        private AsyncOperationHandle<GameObject> managersLoadingHandle;
 
         #endregion
 
@@ -32,8 +29,6 @@ namespace Robbi.FSM.Nodes
             base.OnEnter();
 
             levelLoadingHandle = Addressables.LoadAssetAsync<Level>(string.Format("Level{0}Data", LevelManager.Instance.CurrentLevelIndex));
-            robbiLoadingHandle = Addressables.InstantiateAsync("Assets/Prefabs/Level/Robbi.prefab");
-            managersLoadingHandle = Addressables.InstantiateAsync("Assets/Prefabs/Level/Managers.prefab");
         }
 
         protected override FSMNode OnUpdate()
@@ -45,15 +40,9 @@ namespace Robbi.FSM.Nodes
             }
             else if (IsDone())
             {
-                if (IsBeginable())
+                if (IsCleanupable())
                 {
-                    LevelManagers managers = new LevelManagers();
-                    managers.interactablesManager = managersLoadingHandle.Result.GetComponentInChildren<InteractablesManager>();
-
-                    levelGameObjects.robbiGameObject.value = robbiLoadingHandle.Result;
-                    levelGameObjects.managersGameObject.value = managersLoadingHandle.Result;
-
-                    levelLoadingHandle.Result.Begin(levelData, levelGameObjects, managers);
+                    levelLoadingHandle.Result.End(levelGameObjects);
                 }
                 else
                 {
@@ -72,17 +61,17 @@ namespace Robbi.FSM.Nodes
 
         private bool IsInvalid()
         {
-            return !(levelLoadingHandle.IsValid() && robbiLoadingHandle.IsValid() && managersLoadingHandle.IsValid());
+            return !levelLoadingHandle.IsValid();
         }
 
         private bool IsDone()
         {
-            return levelLoadingHandle.IsDone && robbiLoadingHandle.IsDone && managersLoadingHandle.IsDone;
+            return levelLoadingHandle.IsDone;
         }
 
-        private bool IsBeginable()
+        private bool IsCleanupable()
         {
-            return levelLoadingHandle.Result != null && robbiLoadingHandle.Result != null && managersLoadingHandle.Result != null;
+            return levelLoadingHandle.Result != null;
         }
 
         #endregion
