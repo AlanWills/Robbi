@@ -13,6 +13,8 @@ namespace RobbiEditor.BuildSystem
         [MenuItem("Robbi/Builds/Android Debug")]
         public static void BuildAndroidDebug()
         {
+            EditorUserBuildSettings.development = true;
+            
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
             buildPlayerOptions.options = BuildOptions.Development | BuildOptions.AllowDebugging | BuildOptions.StrictMode;
             
@@ -22,6 +24,8 @@ namespace RobbiEditor.BuildSystem
         [MenuItem("Robbi/Builds/Windows Debug")]
         public static void BuildWindowsDebug()
         {
+            EditorUserBuildSettings.development = true;
+
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
             buildPlayerOptions.options = BuildOptions.Development | BuildOptions.AllowDebugging;
 
@@ -31,6 +35,7 @@ namespace RobbiEditor.BuildSystem
         [MenuItem("Robbi/Builds/iOS Debug")]
         public static void BuildiOSDebug()
         {
+            EditorUserBuildSettings.development = true;
             EditorUserBuildSettings.iOSBuildConfigType = iOSBuildType.Debug;
 
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
