@@ -31,6 +31,8 @@ namespace RobbiEditor.BuildSystem
         [MenuItem("Robbi/Builds/iOS Debug")]
         public static void BuildiOSDebug()
         {
+            EditorUserBuildSettings.iOSBuildConfigType = iOSBuildType.Debug;
+
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
             buildPlayerOptions.options = BuildOptions.Development | BuildOptions.AllowDebugging;
 
