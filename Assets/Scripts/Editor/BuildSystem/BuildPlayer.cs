@@ -25,6 +25,7 @@ namespace RobbiEditor.BuildSystem
         public static void BuildWindowsDebug()
         {
             EditorUserBuildSettings.development = true;
+            EditorUserBuildSettings.selectedStandaloneTarget = BuildTarget.StandaloneWindows;
 
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
             buildPlayerOptions.options = BuildOptions.Development | BuildOptions.AllowDebugging;
