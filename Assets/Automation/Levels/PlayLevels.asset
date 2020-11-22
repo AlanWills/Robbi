@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Name: Wait
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 696, y: -24}
+  position: {x: 696, y: 72}
   ports:
     keys:
     - ' '
@@ -132,12 +132,16 @@ MonoBehaviour:
     - LevelLost
     - LevelLoseOutOfWaypoints
     - LevelLoseWaypointUnreachable
+    - IntegrationTestFailed
     values:
     - _fieldName: ' '
       _node: {fileID: -3233487938735943542}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -2064756905269276820}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -2064756905269276820}
         reroutePoints: []
@@ -265,10 +269,23 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
+    - _fieldName: IntegrationTestFailed
+      _node: {fileID: -3233487938735943542}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 8334240991959649869}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
   events:
   - {fileID: 4349308386525405610}
   - {fileID: -301995329596455536}
   - {fileID: 6908045198714214579}
+  - {fileID: -1315324644753659834}
 --- !u!114 &-2064756905269276820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,6 +311,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 8707572695439670169}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 8707572695439670169}
         reroutePoints: []
@@ -396,6 +416,19 @@ MonoBehaviour:
       _dynamic: 0
   argument: clit
   toRaise: {fileID: 11400000, guid: 570420804a518a94aa00561c25658d9a, type: 2}
+--- !u!114 &-1315324644753659834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab4121048931d3046996695921603148, type: 3}
+  m_Name: IntegrationTestFailed
+  m_EditorClassIdentifier: 
+  listenFor: {fileID: 11400000, guid: 794531611d0a77c4cb8ab0c70d06546f, type: 2}
 --- !u!114 &-604432041775649236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,8 +478,10 @@ MonoBehaviour:
   - {fileID: 2206406312586757783}
   - {fileID: 801323132179989797}
   - {fileID: 1467588638218257257}
-  - {fileID: 0}
   - {fileID: -3934334021081320590}
+  - {fileID: 0}
+  - {fileID: 8334240991959649869}
+  - {fileID: 5969035635302165910}
   startNode: {fileID: 1467588638218257257}
   parameters:
   - {fileID: -604432041775649236}
@@ -465,7 +500,7 @@ MonoBehaviour:
   m_Name: Event Raiser
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 440, y: 136}
+  position: {x: 440, y: -264}
   ports:
     keys:
     - ' '
@@ -476,6 +511,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 2206406312586757783}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 2206406312586757783}
         reroutePoints: []
@@ -524,7 +562,7 @@ MonoBehaviour:
   m_Name: Event Raiser
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 440, y: 264}
+  position: {x: 1208, y: 200}
   ports:
     keys:
     - ' '
@@ -546,7 +584,10 @@ MonoBehaviour:
       _node: {fileID: 801323132179989797}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: ' '
+        node: {fileID: 5969035635302165910}
+        reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
@@ -618,7 +659,7 @@ MonoBehaviour:
   m_Name: If
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 200, y: 136}
+  position: {x: 968, y: 72}
   ports:
     keys:
     - ' '
@@ -649,6 +690,9 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: 
         node: {fileID: 528855124306936354}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -3934334021081320590}
         reroutePoints: []
       - fieldName: 
         node: {fileID: -3934334021081320590}
@@ -781,6 +825,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 1467588638218257257}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 1467588638218257257}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -798,6 +845,58 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   toRaise: {fileID: 11400000, guid: 51078feda7fbef04aa4081657f18f6d7, type: 2}
+--- !u!114 &5969035635302165910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9c7bb633d28aa145b114f818838715a, type: 3}
+  m_Name: String Event Raiser
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1448, y: 184}
+  ports:
+    keys:
+    - ' '
+    - 
+    - argument
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 5969035635302165910}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: 801323132179989797}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 5969035635302165910}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: argument
+      _node: {fileID: 5969035635302165910}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  argument: PlayLevels
+  toRaise: {fileID: 11400000, guid: d026f6890dbc6ab4c9a19df9dc4f6a8d, type: 2}
 --- !u!114 &6662647889202736222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -826,6 +925,58 @@ MonoBehaviour:
   m_Name: LevelLoseWaypointUnreachable
   m_EditorClassIdentifier: 
   listenFor: {fileID: 11400000, guid: 1b9066ca0a135694c833d6cf627c5798, type: 2}
+--- !u!114 &8334240991959649869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9c7bb633d28aa145b114f818838715a, type: 3}
+  m_Name: String Event Raiser
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 696, y: -72}
+  ports:
+    keys:
+    - ' '
+    - 
+    - argument
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 8334240991959649869}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: IntegrationTestFailed
+        node: {fileID: -3233487938735943542}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 8334240991959649869}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: argument
+      _node: {fileID: 8334240991959649869}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  argument: PlayLevels
+  toRaise: {fileID: 11400000, guid: 794531611d0a77c4cb8ab0c70d06546f, type: 2}
 --- !u!114 &8707572695439670169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -963,6 +1114,12 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: 
         node: {fileID: 4676569677930004383}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4676569677930004383}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 528855124306936354}
         reroutePoints: []
       - fieldName: 
         node: {fileID: 4676569677930004383}
