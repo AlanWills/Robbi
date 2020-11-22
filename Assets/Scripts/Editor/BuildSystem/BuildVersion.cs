@@ -15,7 +15,8 @@ namespace RobbiEditor.BuildSystem
         {
             Version version = ParseVersion(PlayerSettings.Android.bundleVersionCode);
             PlayerSettings.Android.bundleVersionCode = version.Major * 10000 + version.Minor * 100 + version.Build + 1;
-            PlayerSettings.bundleVersion = version.ToString();
+
+            SetVersionCommon(version);
         }
 
         [MenuItem("Robbi/Builds/Version/Bump Windows")]
@@ -25,7 +26,8 @@ namespace RobbiEditor.BuildSystem
             Version version = ParseVersion(PlayerSettings.macOS.buildNumber);
             version = new Version(version.Major, version.Minor, version.Build + 1);
             PlayerSettings.macOS.buildNumber = version.ToString();
-            PlayerSettings.bundleVersion = version.ToString();
+
+            SetVersionCommon(version);
         }
 
         [MenuItem("Robbi/Builds/Version/Bump iOS")]
@@ -34,7 +36,8 @@ namespace RobbiEditor.BuildSystem
             Version version = ParseVersion(PlayerSettings.iOS.buildNumber);
             version = new Version(version.Major, version.Minor, version.Build + 1);
             PlayerSettings.iOS.buildNumber = version.ToString();
-            PlayerSettings.bundleVersion = version.ToString();
+            
+            SetVersionCommon(version);
         }
 
         public static Version ParseVersion(int bundleVersionCode)
@@ -49,6 +52,12 @@ namespace RobbiEditor.BuildSystem
         public static Version ParseVersion(string bundleString)
         {
             return new Version(bundleString);
+        }
+
+        private static void SetVersionCommon(Version version)
+        {
+            PlayerSettings.bundleVersion = version.ToString();
+            AssetDatabase.SaveAssets();
         }
     }
 }
