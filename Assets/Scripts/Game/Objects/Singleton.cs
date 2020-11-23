@@ -12,7 +12,7 @@ namespace Robbi.Objects
     {
         #region Properties and Fields
 
-        protected static T Instance { get; private set; }
+        public static T Instance { get; private set; }
 
         #endregion
 

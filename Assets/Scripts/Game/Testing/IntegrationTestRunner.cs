@@ -1,4 +1,6 @@
-﻿using Robbi.Events;
+﻿using Robbi.Attributes.GUI;
+using Robbi.Events;
+using Robbi.Objects;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,57 +8,39 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UnityEditor;
 using UnityEngine;
 
 namespace Robbi.Testing
 {
     [AddComponentMenu("Robbi/Testing/Integration Test Runner")]
-    [ExecuteInEditMode]
     public class IntegrationTestRunner : MonoBehaviour
     {
         #region Properties and Fields
 
         public StringEvent executeConsoleCommand;
 
-        [SerializeField, HideInInspector]
-        private string integrationTestName;
+        [SerializeField, ReadOnlyAtRuntime]
+        private string integrationTestName = "";
         private Coroutine testCoroutine;
+
+        public static IntegrationTestRunner Instance
+        {
+            get { return GameObject.Find("IntegrationTestRunner").GetComponent<IntegrationTestRunner>(); }
+        }
 
         #endregion
 
         #region Unity Methods
 
-        private void OnEnable()
+        private void Start()
         {
-            //EditorApplication.playModeStateChanged += EditorApplication_playModeStateChanged;
-
-            //if (!string.IsNullOrEmpty(integrationTestName))
-            //{
-            //    testCoroutine = StartCoroutine(RunTestImpl());
-            //}
-            //else
-            //{
-            //    GameObject.DestroyImmediate(gameObject);
-            //    Debug.LogError("Deleting invalid IntegrationTestRunner");
-            //}
-        }
-
-        private void OnDisable()
-        {
-            EditorApplication.playModeStateChanged -= EditorApplication_playModeStateChanged;
-        }
-
-        private void EditorApplication_playModeStateChanged(PlayModeStateChange obj)
-        {
-            if (obj == PlayModeStateChange.ExitingPlayMode)
+            if (!string.IsNullOrEmpty(integrationTestName))
             {
-                integrationTestName = "";
+                testCoroutine = StartCoroutine(RunTestImpl());
             }
-
-            if (obj == PlayModeStateChange.EnteredEditMode)
+            else
             {
-                GameObject.DestroyImmediate(gameObject);
+                Debug.LogError("No integration test name specified for IntegrationTestRunner");
             }
         }
 
@@ -67,14 +51,18 @@ namespace Robbi.Testing
         public void RunTest(string integrationTestName)
         {
             this.integrationTestName = integrationTestName;
-            gameObject.SetActive(true);
+
+#if UNITY_EDITOR
+            UnityEditor.EditorUtility.SetDirty(this);
+            UnityEditor.AssetDatabase.SaveAssets();
+            UnityEditor.EditorApplication.EnterPlaymode();
+#endif
         }
 
         private IEnumerator RunTestImpl()
         {
-            EditorApplication.EnterPlaymode();
-
-            while (!EditorApplication.isPlaying) { yield return null; }
+#if UNITY_EDITOR
+            while (!UnityEditor.EditorApplication.isPlaying) { yield return null; }
 
             // Can only do this in Play Mode
             DontDestroyOnLoad(this);
@@ -82,6 +70,7 @@ namespace Robbi.Testing
             yield return new WaitForSeconds(10);
 
             executeConsoleCommand.Raise("it " + integrationTestName);
+#endif
         }
 
         public void TryPassTest(string testName)
@@ -100,18 +89,16 @@ namespace Robbi.Testing
             }
         }
 
-        #endregion
+#endregion
 
-        #region Results
+#region Results
 
         private void Exit(bool testResult)
         {
-            integrationTestName = "";
             StopCoroutine(testCoroutine);
             testCoroutine = null;
 
-            GameObject.DestroyImmediate(gameObject);
-
+#if UNITY_EDITOR
             string directoryPath = Path.Combine(Application.dataPath, "..", "TestResults");
             string testResultString = testResult ? "Passed" : "Failed";
 
@@ -122,9 +109,10 @@ namespace Robbi.Testing
                 Path.Combine(directoryPath, string.Format("{0}-{1}.txt", integrationTestName, testResultString)), 
                 testResult ? "1" : "0");
 
-            EditorApplication.ExitPlaymode();
+            UnityEditor.EditorApplication.ExitPlaymode();
+#endif
         }
 
-        #endregion
+#endregion
     }
 }
