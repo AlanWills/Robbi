@@ -37,7 +37,6 @@ namespace RobbiEditor
         {
             EditorApplication.update -= OnEditorOpened;
             OpenStartupScene();
-            ClearIntegrationTest();
             AssetDatabase.SaveAssets();
         }
 
