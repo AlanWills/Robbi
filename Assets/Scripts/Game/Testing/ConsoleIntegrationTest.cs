@@ -17,41 +17,80 @@ namespace Robbi.Testing
     {
         public bool Execute(List<string> parameters, StringBuilder output)
         {
-            if (parameters.Count < 1)
+            if (parameters.Count == 0)
             {
                 output.Append("Expected an integration test name.");
                 return false;
             }
-
-            // Wait for the integration test to load
-            AsyncOperationHandle<GameObject> integrationTest = Addressables.InstantiateAsync("Assets/Prefabs/Testing/IntegrationTest.prefab");
-            integrationTest.Completed += (AsyncOperationHandle<GameObject> obj) =>
+            else if (parameters.Count == 1)
             {
-                if (obj.Result == null)
+                // Wait for the integration test to load
+                AsyncOperationHandle<GameObject> integrationTest = Addressables.InstantiateAsync("Assets/Prefabs/Testing/IntegrationTest.prefab");
+                integrationTest.Completed += (AsyncOperationHandle<GameObject> obj) =>
                 {
-                    HudLogger.LogError("Failed to load integration test");
-                }
-                else
-                {
-                    AsyncOperationHandle<FSMGraph> integrationTestFSM = Addressables.LoadAssetAsync<FSMGraph>(parameters[0]);
-                    integrationTestFSM.Completed += (AsyncOperationHandle<FSMGraph> fsmObj) =>
+                    if (obj.Result == null)
                     {
-                        if (fsmObj.Result == null)
+                        HudLogger.LogError("Failed to load integration test");
+                    }
+                    else
+                    {
+                        AsyncOperationHandle<FSMGraph> integrationTestFSM = Addressables.LoadAssetAsync<FSMGraph>(parameters[0]);
+                        integrationTestFSM.Completed += (AsyncOperationHandle<FSMGraph> fsmObj) =>
                         {
-                            HudLogger.LogError("Failed to load integration test fsm");
+                            if (fsmObj.Result == null)
+                            {
+                                HudLogger.LogError("Failed to load integration test fsm");
+                            }
+                            else
+                            {
+                                obj.Result.name = fsmObj.Result.name;
+                                GameObject.DontDestroyOnLoad(obj.Result);
+
+                                FSMRuntime fsmRuntime = obj.Result.GetComponent<FSMRuntime>();
+                                fsmRuntime.graph = fsmObj.Result;
+                                fsmRuntime.Start();
+                            }
+                        };
+                    }
+                };
+            }
+            else if (parameters.Count == 2)
+            {
+                string operation = parameters[0];
+                
+                if (operation == "stop")
+                {
+                    string testName = parameters[1];
+                    GameObject integrationTestGameObject = GameObject.Find(testName);
+
+                    if (integrationTestGameObject != null)
+                    {
+                        IntegrationTest integrationTest = integrationTestGameObject.GetComponent<IntegrationTest>();
+                        if (integrationTest != null)
+                        {
+                            integrationTest.StopTest();
+
+                            output.AppendFormat("Stopping {0} IntegrationTest", testName);
+                            return true;
                         }
                         else
                         {
-                            obj.Result.name = fsmObj.Result.name;
-                            GameObject.DontDestroyOnLoad(obj.Result);
-
-                            FSMRuntime fsmRuntime = obj.Result.GetComponent<FSMRuntime>();
-                            fsmRuntime.graph = fsmObj.Result;
-                            fsmRuntime.Start();
+                            output.AppendFormat("{0} is not an IntegrationTest", testName);
+                            return false;
                         }
-                    };
+                    }
+                    else
+                    {
+                        output.AppendFormat("Could not find IntegrationTest GameObject {0}", testName);
+                        return false;
+                    }
                 }
-            };
+                else
+                {
+                    output.AppendFormat("Invalid parameter {0}", operation);
+                    return false;
+                }
+            }
             
             return true;
         }

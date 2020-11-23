@@ -64,6 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a985ed7e24052d45ad51b53993804f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeout: {fileID: 11400000, guid: 02cd5def06a2eb545903ac195bac47a8, type: 2}
 --- !u!114 &2777752630101461881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,7 +83,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8223073027350034267}
         m_TargetAssemblyTypeName: Robbi.Testing.IntegrationTest, Assembly-CSharp
-        m_MethodName: PassTest
+        m_MethodName: TryPassTest
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -110,7 +111,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8223073027350034267}
         m_TargetAssemblyTypeName: Robbi.Testing.IntegrationTest, Assembly-CSharp
-        m_MethodName: FailTest
+        m_MethodName: TryFailTest
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
