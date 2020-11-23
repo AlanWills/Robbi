@@ -67,6 +67,9 @@ namespace Robbi.Testing
             // Can only do this in Play Mode
             DontDestroyOnLoad(this);
 
+            // Disable audio since this will be run via CI
+            AudioListener.volume = 0;
+
             yield return new WaitForSeconds(10);
 
             executeConsoleCommand.Raise("it " + integrationTestName);
