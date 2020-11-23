@@ -133,7 +133,7 @@ namespace Robbi.Testing
             Directory.CreateDirectory(directoryPath);
             File.WriteAllText(
                 Path.Combine(directoryPath, string.Format("{0}-{1}.txt", integrationTestName, testResult ? "Passed" : "Failed")),
-                testResult ? "1\n" : "0\n" + logContents.ToString());
+                (testResult ? "1\n" : "0\n") + logContents.ToString());
 
             // 0 = everything OK
             // 1 = everything NOT OK
