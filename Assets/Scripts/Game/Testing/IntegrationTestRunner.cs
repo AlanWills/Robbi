@@ -12,27 +12,69 @@ using UnityEngine;
 namespace Robbi.Testing
 {
     [AddComponentMenu("Robbi/Testing/Integration Test Runner")]
+    [ExecuteInEditMode]
     public class IntegrationTestRunner : MonoBehaviour
     {
         #region Properties and Fields
 
-        public string integrationTestName;
         public StringEvent executeConsoleCommand;
 
+        [SerializeField, HideInInspector]
+        private string integrationTestName;
         private Coroutine testCoroutine;
+
+        #endregion
+
+        #region Unity Methods
+
+        private void OnEnable()
+        {
+            //EditorApplication.playModeStateChanged += EditorApplication_playModeStateChanged;
+
+            //if (!string.IsNullOrEmpty(integrationTestName))
+            //{
+            //    testCoroutine = StartCoroutine(RunTestImpl());
+            //}
+            //else
+            //{
+            //    GameObject.DestroyImmediate(gameObject);
+            //    Debug.LogError("Deleting invalid IntegrationTestRunner");
+            //}
+        }
+
+        private void OnDisable()
+        {
+            EditorApplication.playModeStateChanged -= EditorApplication_playModeStateChanged;
+        }
+
+        private void EditorApplication_playModeStateChanged(PlayModeStateChange obj)
+        {
+            if (obj == PlayModeStateChange.ExitingPlayMode)
+            {
+                integrationTestName = "";
+            }
+
+            if (obj == PlayModeStateChange.EnteredEditMode)
+            {
+                GameObject.DestroyImmediate(gameObject);
+            }
+        }
 
         #endregion
 
         #region Testing Methods
 
-        public void RunTest()
+        public void RunTest(string integrationTestName)
         {
-            testCoroutine = StartCoroutine(RunTestImpl());
+            this.integrationTestName = integrationTestName;
+            gameObject.SetActive(true);
         }
 
         private IEnumerator RunTestImpl()
         {
-            Debug.Assert(!string.IsNullOrEmpty(integrationTestName), "Integration Test Name is not set on runner");
+            EditorApplication.EnterPlaymode();
+
+            while (!EditorApplication.isPlaying) { yield return null; }
 
             // Can only do this in Play Mode
             DontDestroyOnLoad(this);
@@ -64,9 +106,11 @@ namespace Robbi.Testing
 
         private void Exit(bool testResult)
         {
+            integrationTestName = "";
             StopCoroutine(testCoroutine);
             testCoroutine = null;
-            gameObject.SetActive(false);
+
+            GameObject.DestroyImmediate(gameObject);
 
             string directoryPath = Path.Combine(Application.dataPath, "..", "TestResults");
             string testResultString = testResult ? "Passed" : "Failed";
