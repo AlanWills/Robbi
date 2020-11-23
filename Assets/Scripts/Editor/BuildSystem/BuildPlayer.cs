@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using static RobbiEditor.BuildSystem.BuildVersion;
 
@@ -18,8 +19,9 @@ namespace RobbiEditor.BuildSystem
 
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
             buildPlayerOptions.options = BuildOptions.Development | BuildOptions.AllowDebugging | BuildOptions.StrictMode;
-            
-            Build(buildPlayerOptions, BuildTargetGroup.Android, BuildTarget.Android, "Builds/Android/Robbi.apk", ParseVersion(PlayerSettings.Android.bundleVersionCode));
+            Version version = ParseVersion(PlayerSettings.Android.bundleVersionCode);
+
+            Build(buildPlayerOptions, BuildTargetGroup.Android, BuildTarget.Android, string.Format("Builds/Android/Robbi-{0}.apk", version), version);
             BumpAndroidVersion();
         }
 
@@ -31,8 +33,9 @@ namespace RobbiEditor.BuildSystem
 
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
             buildPlayerOptions.options = BuildOptions.Development | BuildOptions.AllowDebugging;
+            Version version = ParseVersion(PlayerSettings.macOS.buildNumber);
 
-            Build(buildPlayerOptions, BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64, "Builds/Windows/Robbi.exe", ParseVersion(PlayerSettings.macOS.buildNumber));
+            Build(buildPlayerOptions, BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64, string.Format("Builds/Windows/Robbi-{0}.exe", version), version);
             BumpWindowsVersion();
         }
 
@@ -64,6 +67,7 @@ namespace RobbiEditor.BuildSystem
             buildPlayerOptions.targetGroup = buildTargetGroup;
 
             PlayerSettings.bundleVersion = newVersion.ToString();
+            Environment.SetEnvironmentVariable("BUILD_VERSION", newVersion.ToString());
             BuildPipeline.BuildPlayer(buildPlayerOptions);
         }
     }
