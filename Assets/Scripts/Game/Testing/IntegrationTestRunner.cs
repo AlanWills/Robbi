@@ -135,9 +135,16 @@ namespace Robbi.Testing
                 Path.Combine(directoryPath, string.Format("{0}-{1}.txt", integrationTestName, testResult ? "Passed" : "Failed")),
                 (testResult ? "1\n" : "0\n") + logContents.ToString());
 
-            // 0 = everything OK
-            // 1 = everything NOT OK
-            UnityEditor.EditorApplication.Exit(testResult ? 0 : 1);
+            if (Application.isBatchMode)
+            {
+                // 0 = everything OK
+                // 1 = everything NOT OK
+                UnityEditor.EditorApplication.Exit(testResult ? 0 : 1);
+            }
+            else
+            {
+                UnityEditor.EditorApplication.ExitPlaymode();
+            }
 #endif
         }
 
