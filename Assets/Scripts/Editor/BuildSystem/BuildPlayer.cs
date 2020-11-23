@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace RobbiEditor.BuildSystem
             buildPlayerOptions.options = BuildOptions.Development | BuildOptions.AllowDebugging | BuildOptions.StrictMode;
             Version version = ParseVersion(PlayerSettings.Android.bundleVersionCode);
 
-            Build(buildPlayerOptions, BuildTargetGroup.Android, BuildTarget.Android, string.Format("Builds/Android/Robbi-{0}.apk", version), version);
+            Build(buildPlayerOptions, BuildTargetGroup.Android, BuildTarget.Android, "Builds/Android", ".apk", version);
             BumpAndroidVersion();
         }
 
@@ -35,7 +36,7 @@ namespace RobbiEditor.BuildSystem
             buildPlayerOptions.options = BuildOptions.Development | BuildOptions.AllowDebugging;
             Version version = ParseVersion(PlayerSettings.macOS.buildNumber);
 
-            Build(buildPlayerOptions, BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64, string.Format("Builds/Windows/Robbi-{0}.exe", version), version);
+            Build(buildPlayerOptions, BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64, "Builds/Windows", ".exe", version);
             BumpWindowsVersion();
         }
 
@@ -48,7 +49,7 @@ namespace RobbiEditor.BuildSystem
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
             buildPlayerOptions.options = BuildOptions.Development | BuildOptions.AllowDebugging;
 
-            Build(buildPlayerOptions, BuildTargetGroup.iOS, BuildTarget.iOS, "Builds/iOS", ParseVersion(PlayerSettings.iOS.buildNumber));
+            Build(buildPlayerOptions, BuildTargetGroup.iOS, BuildTarget.iOS, "Builds/iOS", "", ParseVersion(PlayerSettings.iOS.buildNumber));
             BumpiOSVersion();
         }
 
@@ -56,19 +57,20 @@ namespace RobbiEditor.BuildSystem
             BuildPlayerOptions buildPlayerOptions,
             BuildTargetGroup buildTargetGroup, 
             BuildTarget buildTarget,
-            string locationPathName,
+            string buildDirectory,
+            string extension,
             Version newVersion)
         {
             EditorUserBuildSettings.SwitchActiveBuildTarget(buildTargetGroup, buildTarget);
 
-            buildPlayerOptions.locationPathName = locationPathName;
+            buildPlayerOptions.locationPathName = string.Format("{0}/Robbi-{1}{2}", buildDirectory, newVersion.ToString(), extension);
             buildPlayerOptions.scenes = EditorBuildSettings.scenes.Select(x => x.path).ToArray();
             buildPlayerOptions.target = buildTarget;
             buildPlayerOptions.targetGroup = buildTargetGroup;
 
             PlayerSettings.bundleVersion = newVersion.ToString();
-            Environment.SetEnvironmentVariable("BUILD_VERSION", newVersion.ToString());
             BuildPipeline.BuildPlayer(buildPlayerOptions);
+            File.WriteAllText(Path.Combine(buildDirectory, "BUILD_LOCATION.txt"), buildPlayerOptions.locationPathName);
         }
     }
 }
