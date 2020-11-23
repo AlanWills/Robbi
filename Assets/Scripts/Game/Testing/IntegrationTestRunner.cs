@@ -109,7 +109,9 @@ namespace Robbi.Testing
                 Path.Combine(directoryPath, string.Format("{0}-{1}.txt", integrationTestName, testResultString)), 
                 testResult ? "1" : "0");
 
-            UnityEditor.EditorApplication.ExitPlaymode();
+            // 0 = everything OK
+            // 1 = everything NOT OK
+            UnityEditor.EditorApplication.Exit(testResult ? 0 : 1);
 #endif
         }
 
