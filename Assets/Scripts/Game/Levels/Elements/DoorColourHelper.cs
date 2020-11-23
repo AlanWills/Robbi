@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace RobbiEditor.Levels.Elements
+namespace Robbi.Levels.Elements
 {
     [AddComponentMenu("Robbi/Levels/Elements/Door Colour Helper")]
     public class DoorColourHelper : MonoBehaviour

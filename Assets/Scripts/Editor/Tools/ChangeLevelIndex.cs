@@ -62,7 +62,7 @@ namespace RobbiEditor.Tools
                 return;
             }
 
-            Log.Clear();
+            LogUtils.Clear();
 
             RenameDirectory();
             RenameFSM();

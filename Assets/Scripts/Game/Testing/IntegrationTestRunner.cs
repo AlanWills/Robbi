@@ -22,6 +22,7 @@ namespace Robbi.Testing
         [SerializeField, ReadOnlyAtRuntime]
         private string integrationTestName = "";
         private Coroutine testCoroutine;
+        private StringBuilder logContents = new StringBuilder(1024 * 1024);
 
         public static IntegrationTestRunner Instance
         {
@@ -32,7 +33,7 @@ namespace Robbi.Testing
 
         #region Unity Methods
 
-        private void Start()
+        private void Awake()
         {
             if (!string.IsNullOrEmpty(integrationTestName))
             {
@@ -40,7 +41,15 @@ namespace Robbi.Testing
             }
             else
             {
-                Debug.LogError("No integration test name specified for IntegrationTestRunner");
+                Debug.Log("No integration test name specified for IntegrationTestRunner");
+            }
+        }
+
+        private void Start()
+        {
+            if (testCoroutine == null)
+            {
+                gameObject.SetActive(false);
             }
         }
 
@@ -51,6 +60,7 @@ namespace Robbi.Testing
         public void RunTest(string integrationTestName)
         {
             this.integrationTestName = integrationTestName;
+            gameObject.SetActive(true);
 
 #if UNITY_EDITOR
             UnityEditor.EditorUtility.SetDirty(this);
@@ -59,10 +69,25 @@ namespace Robbi.Testing
 #endif
         }
 
+        public void ClearTest()
+        {
+            integrationTestName = "";
+
+#if UNITY_EDITOR
+            UnityEditor.EditorUtility.SetDirty(this);
+            UnityEditor.AssetDatabase.SaveAssets();
+#endif
+        }
+
         private IEnumerator RunTestImpl()
         {
 #if UNITY_EDITOR
             while (!UnityEditor.EditorApplication.isPlaying) { yield return null; }
+
+            Application.logMessageReceived += (string logString, string stackTrace, LogType type) =>
+            {
+                logContents.AppendLine(logString);
+            };
 
             // Can only do this in Play Mode
             DontDestroyOnLoad(this);
@@ -100,17 +125,15 @@ namespace Robbi.Testing
         {
             StopCoroutine(testCoroutine);
             testCoroutine = null;
+            gameObject.SetActive(false);
 
 #if UNITY_EDITOR
             string directoryPath = Path.Combine(Application.dataPath, "..", "TestResults");
-            string testResultString = testResult ? "Passed" : "Failed";
-
-            Debug.LogFormat("Integration Test {0}: {1}", integrationTestName, testResultString);
 
             Directory.CreateDirectory(directoryPath);
             File.WriteAllText(
-                Path.Combine(directoryPath, string.Format("{0}-{1}.txt", integrationTestName, testResultString)), 
-                testResult ? "1" : "0");
+                Path.Combine(directoryPath, string.Format("{0}-{1}.txt", integrationTestName, testResult ? "Passed" : "Failed")),
+                testResult ? "1\n" : "0\n" + logContents.ToString());
 
             // 0 = everything OK
             // 1 = everything NOT OK

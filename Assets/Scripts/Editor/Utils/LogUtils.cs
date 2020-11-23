@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RobbiEditor.Utils
 {
-    public static class Log
+    public static class LogUtils
     {
         public static void Clear()
         {

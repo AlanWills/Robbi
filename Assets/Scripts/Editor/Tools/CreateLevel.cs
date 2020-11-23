@@ -175,7 +175,7 @@ namespace RobbiEditor.Tools
                 return;
             }
 
-            Log.Clear();
+            LogUtils.Clear();
 
             CreateDirectories();
             CreateFSM();
