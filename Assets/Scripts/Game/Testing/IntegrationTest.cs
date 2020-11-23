@@ -1,4 +1,5 @@
-﻿using Robbi.FSM;
+﻿using Robbi.Debugging.Logging;
+using Robbi.FSM;
 using Robbi.Parameters;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,7 @@ namespace Robbi.Testing
 
             if (currentRuntime > timeout.value)
             {
+                HudLogger.LogErrorFormat("Integration Test {0} timed out after {1}s", gameObject.name, currentRuntime);
                 FailTest();
             }
         }
@@ -54,7 +56,7 @@ namespace Robbi.Testing
 
         public void TryPassTest(string testName)
         {
-            if (testName == GetComponent<FSMRuntime>().graph.name)
+            if (testName == gameObject.name)
             {
                 PassTest();
             }
@@ -67,7 +69,7 @@ namespace Robbi.Testing
 
         public void TryFailTest(string testName)
         {
-            if (testName == GetComponent<FSMRuntime>().graph.name)
+            if (testName == gameObject.name)
             {
                 FailTest();
             }
@@ -80,6 +82,8 @@ namespace Robbi.Testing
 
         private void SetTestResult(TestResult testResult)
         {
+            HudLogger.LogInfoFormat("Integration Test {0} {1}", gameObject.name, testResult);
+
             StopTest();
         }
 

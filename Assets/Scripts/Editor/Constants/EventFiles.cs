@@ -19,8 +19,13 @@ namespace RobbiEditor
         public const string LEVEL_WON_EVENT = FULL_PATH + LEVEL + "LevelWon.asset";
         public const string LEVEL_LOSE_WAYPOINT_UNREACHABLE_EVENT = FULL_PATH + LEVEL + "LevelLoseWaypointUnreachable.asset";
         public const string LEVEL_LOSE_OUT_OF_WAYPOINTS_EVENT = FULL_PATH + LEVEL + "LevelLoseOutOfWaypoints.asset";
+        public const string GAME_OBJECT_LEFT_CLICK_EVENT = FULL_PATH + INPUT + COMMON + "GameObjectLeftClick.asset";
+
+        // Debugging
+        public const string EXECUTE_CONSOLE_COMMAND_EVENT = FULL_PATH + DEBUG + "ExecuteDebugCommand.asset";
+
+        // Testing
         public const string INTEGRATION_TEST_PASSED_EVENT = FULL_PATH + TESTING + "IntegrationTestPassed.asset";
         public const string INTEGRATION_TEST_FAILED_EVENT = FULL_PATH + TESTING + "IntegrationTestFailed.asset";
-        public const string GAME_OBJECT_LEFT_CLICK_EVENT = FULL_PATH + INPUT + COMMON + "GameObjectLeftClick.asset";
     }
 }
