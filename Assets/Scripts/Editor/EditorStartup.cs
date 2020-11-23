@@ -41,7 +41,7 @@ namespace RobbiEditor
             AssetDatabase.SaveAssets();
         }
 
-        private static void OpenStartupScene()
+        public static void OpenStartupScene()
         {
             if (SceneManager.GetActiveScene().name != STARTUP_SCENE_NAME)
             {

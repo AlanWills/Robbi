@@ -18,6 +18,7 @@ namespace RobbiEditor.Testing
         [MenuItem("Robbi/Testing/Play Levels")]
         public static void MenuItem()
         {
+            EditorStartup.OpenStartupScene();
             IntegrationTestRunner.Instance.RunTest("PlayLevels");
         }
     }
