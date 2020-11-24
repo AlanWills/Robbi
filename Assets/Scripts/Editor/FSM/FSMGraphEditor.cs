@@ -53,9 +53,23 @@ namespace Robbi.FSM
         {
             base.OnInspectorGUI();
 
+            FSMGraph graph = target as FSMGraph;
+
+            if (GUILayout.Button("Apply Hide Flags"))
+            {
+                foreach (UnityEngine.Object obj in AssetDatabase.LoadAllAssetsAtPath(AssetDatabase.GetAssetPath(target)))
+                {
+                    if (obj != null && obj != graph)
+                    {
+                        obj.hideFlags = HideFlags.HideInHierarchy;
+                        EditorUtility.SetDirty(obj);
+                    }
+                }
+            }
+
             if (GUILayout.Button("Remove Null Nodes"))
             {
-                (target as FSMGraph).RemoveNullNodes_EditorOnly();
+                graph.RemoveNullNodes_EditorOnly();
                 EditorUtility.SetDirty(target);
                 AssetDatabase.SaveAssets();
             }
@@ -66,7 +80,7 @@ namespace Robbi.FSM
 
             if (GUILayout.Button("Remove Asset"))
             {
-                (target as FSMGraph).RemoveAsset(removeAsset);
+                graph.RemoveAsset(removeAsset);
                 EditorUtility.SetDirty(target);
                 
                 removeAsset = null;

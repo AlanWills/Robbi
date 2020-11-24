@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 using XNode;
 
 namespace Robbi.DataSystem.Nodes
@@ -10,6 +11,17 @@ namespace Robbi.DataSystem.Nodes
     [Serializable]
     public abstract class DataNode : Node
     {
+        #region Unity Methods
+
+        protected override void Init()
+        {
+            base.Init();
+
+            hideFlags = HideFlags.HideInHierarchy;
+        }
+
+        #endregion
+
         #region Add/Remove/Copy
 
         public void AddToGraph()
@@ -34,6 +46,5 @@ namespace Robbi.DataSystem.Nodes
         protected virtual void OnCopyInGraph(DataNode original) { }
 
         #endregion
-
     }
 }

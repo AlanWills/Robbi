@@ -27,6 +27,13 @@ namespace Robbi.FSM.Nodes
 
         #region FSM Runtime Methods
 
+        protected override void Init()
+        {
+            base.Init();
+
+            hideFlags = HideFlags.HideInHierarchy;
+        }
+
         public void Enter() 
         { 
             OnEnter(); 
