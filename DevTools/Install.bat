@@ -1,4 +1,4 @@
-if "%~1"=="" (
+if NOT "%~1"=="" (
 	set PATH="%CD%\Builds\Android\Robbi-%1%.apk"
 ) else (
     set /p PATH=<"%CD%\Builds\Android\BUILD_LOCATION.txt"
