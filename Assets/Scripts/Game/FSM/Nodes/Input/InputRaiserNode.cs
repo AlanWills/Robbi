@@ -29,8 +29,14 @@ namespace Robbi.FSM.Nodes.Input
             base.OnEnter();
 
             GameObject gameObject = GameObject.Find(gameObjectName);
-            Debug.AssertFormat(gameObject != null, "GameObject {0} could not be found in InputRaiserNode", gameObjectName);
-            inputEvent.Raise(new GameObjectClickEventArgs() { clickWorldPosition = inputPosition, gameObject = gameObject });
+            if (gameObject != null)
+            {
+                inputEvent.Raise(new GameObjectClickEventArgs() { clickWorldPosition = inputPosition, gameObject = gameObject });
+            }
+            else
+            {
+                Debug.LogAssertionFormat("GameObject {0} could not be found in InputRaiserNode", gameObjectName);
+            }
         }
 
         #endregion

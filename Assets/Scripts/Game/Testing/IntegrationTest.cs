@@ -1,4 +1,5 @@
 ﻿using Robbi.Debugging.Logging;
+using Robbi.Events;
 using Robbi.FSM;
 using Robbi.Parameters;
 using System;
@@ -13,7 +14,8 @@ namespace Robbi.Testing
     public enum TestResult
     { 
         Passed,
-        Failed
+        Failed,
+        TimedOut
     }
 
     [AddComponentMenu("Robbi/Testing/Integration Test")]
@@ -22,6 +24,7 @@ namespace Robbi.Testing
         #region Properties and Fields
 
         public FloatValue timeout;
+        public StringEvent integrationTestTimedOut;
 
         private float currentRuntime = 0;
 
@@ -40,8 +43,7 @@ namespace Robbi.Testing
 
             if (currentRuntime > timeout.value)
             {
-                HudLogger.LogErrorFormat("Integration Test {0} timed out after {1}s", gameObject.name, currentRuntime);
-                FailTest();
+                TimeoutTest();
             }
         }
 
@@ -73,6 +75,12 @@ namespace Robbi.Testing
             {
                 FailTest();
             }
+        }
+
+        public void TimeoutTest()
+        {
+            integrationTestTimedOut.Raise(gameObject.name);
+            SetTestResult(TestResult.TimedOut);
         }
 
         public void StopTest()

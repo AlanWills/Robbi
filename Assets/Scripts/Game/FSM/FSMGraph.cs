@@ -60,6 +60,7 @@ namespace Robbi.FSM
         {
             T parameter = ScriptableObject.CreateInstance<T>();
             parameter.name = name;
+            parameter.hideFlags = HideFlags.HideInHierarchy;
 
 #if UNITY_EDITOR
             parameters.Add(parameter);

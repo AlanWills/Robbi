@@ -23,7 +23,6 @@ namespace Robbi.Parameters
         
         private void OnEnable()
         {
-            hideFlags = HideFlags.HideInHierarchy;
             value = defaultValue;
         }
 

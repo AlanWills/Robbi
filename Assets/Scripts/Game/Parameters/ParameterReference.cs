@@ -56,15 +56,6 @@ namespace Robbi.Parameters
 
         #endregion
 
-        #region Unity Methods
-
-        private void OnEnable()
-        {
-            hideFlags = HideFlags.HideInHierarchy;
-        }
-
-        #endregion
-
         #region Copy Methods
 
         public void CopyFrom(TReference otherParameter)
