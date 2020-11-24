@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d1f84035a8805e4cb5960d848e5a74a, type: 3}
-  m_Name: Finish Integration Test
+  m_Name: Fail Test
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1200, y: -100}
+  position: {x: 1192, y: -88}
   ports:
     keys:
     - ' '
@@ -25,6 +25,9 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: LevelWon
+        node: {fileID: 3273725270792028085}
+        reroutePoints: []
+      - fieldName: LevelLoseOutOfWaypoints
         node: {fileID: 3273725270792028085}
         reroutePoints: []
       _direction: 0
@@ -40,7 +43,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  testResult: {fileID: 11400000, guid: d026f6890dbc6ab4c9a19df9dc4f6a8d, type: 2}
+  testResult: {fileID: 11400000, guid: 794531611d0a77c4cb8ab0c70d06546f, type: 2}
 --- !u!114 &-7247296080545704317
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -201,10 +204,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d1f84035a8805e4cb5960d848e5a74a, type: 3}
-  m_Name: Finish Integration Test
+  m_Name: Pass Test
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1200, y: 100}
+  position: {x: 1192, y: 72}
   ports:
     keys:
     - ' '
@@ -216,9 +219,6 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: LevelLoseWaypointUnreachable
-        node: {fileID: 3273725270792028085}
-        reroutePoints: []
-      - fieldName: LevelLoseOutOfWaypoints
         node: {fileID: 3273725270792028085}
         reroutePoints: []
       _direction: 0
@@ -234,7 +234,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  testResult: {fileID: 11400000, guid: 794531611d0a77c4cb8ab0c70d06546f, type: 2}
+  testResult: {fileID: 11400000, guid: d026f6890dbc6ab4c9a19df9dc4f6a8d, type: 2}
 --- !u!114 &-3635145984582864950
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -650,7 +650,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: -4164398108424220175}
+        node: {fileID: -7763568801225350052}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
