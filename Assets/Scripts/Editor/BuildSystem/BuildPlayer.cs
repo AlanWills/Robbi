@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
+using UnityEditor.Build.Reporting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static RobbiEditor.BuildSystem.BuildVersion;
@@ -22,8 +23,14 @@ namespace RobbiEditor.BuildSystem
             buildPlayerOptions.options = BuildOptions.Development | BuildOptions.AllowDebugging | BuildOptions.StrictMode;
             Version version = ParseVersion(PlayerSettings.Android.bundleVersionCode);
 
-            Build(buildPlayerOptions, BuildTargetGroup.Android, BuildTarget.Android, "Builds/Android", ".apk", version);
-            BumpAndroidVersion();
+            if (Build(buildPlayerOptions, BuildTargetGroup.Android, BuildTarget.Android, "Builds/Android", ".apk", version))
+            {
+                BumpAndroidVersion();
+            }
+            else if (Application.isBatchMode)
+            {
+                EditorApplication.Exit(1);
+            }
         }
 
         [MenuItem("Robbi/Builds/Windows Debug")]
@@ -36,8 +43,14 @@ namespace RobbiEditor.BuildSystem
             buildPlayerOptions.options = BuildOptions.Development | BuildOptions.AllowDebugging;
             Version version = ParseVersion(PlayerSettings.macOS.buildNumber);
 
-            Build(buildPlayerOptions, BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64, "Builds/Windows", ".exe", version);
-            BumpWindowsVersion();
+            if (Build(buildPlayerOptions, BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64, "Builds/Windows", ".exe", version))
+            {
+                BumpWindowsVersion();
+            }
+            else if (Application.isBatchMode)
+            {
+                EditorApplication.Exit(1);
+            }
         }
 
         [MenuItem("Robbi/Builds/iOS Debug")]
@@ -49,11 +62,17 @@ namespace RobbiEditor.BuildSystem
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
             buildPlayerOptions.options = BuildOptions.Development | BuildOptions.AllowDebugging;
 
-            Build(buildPlayerOptions, BuildTargetGroup.iOS, BuildTarget.iOS, "Builds/iOS", "", ParseVersion(PlayerSettings.iOS.buildNumber));
-            BumpiOSVersion();
+            if (Build(buildPlayerOptions, BuildTargetGroup.iOS, BuildTarget.iOS, "Builds/iOS", "", ParseVersion(PlayerSettings.iOS.buildNumber)))
+            {
+                BumpiOSVersion();
+            }
+            else if (Application.isBatchMode)
+            {
+                EditorApplication.Exit(1);
+            }
         }
 
-        private static void Build(
+        private static bool Build(
             BuildPlayerOptions buildPlayerOptions,
             BuildTargetGroup buildTargetGroup, 
             BuildTarget buildTarget,
@@ -69,8 +88,15 @@ namespace RobbiEditor.BuildSystem
             buildPlayerOptions.targetGroup = buildTargetGroup;
 
             PlayerSettings.bundleVersion = newVersion.ToString();
-            BuildPipeline.BuildPlayer(buildPlayerOptions);
-            File.WriteAllText(Path.Combine(buildDirectory, "BUILD_LOCATION.txt"), buildPlayerOptions.locationPathName);
+            BuildReport buildReport = BuildPipeline.BuildPlayer(buildPlayerOptions);
+            bool success = buildReport != null && buildReport.summary.result == BuildResult.Succeeded;
+
+            if (success)
+            {
+                File.WriteAllText(Path.Combine(buildDirectory, "BUILD_LOCATION.txt"), buildPlayerOptions.locationPathName);
+            }
+
+            return success;
         }
     }
 }

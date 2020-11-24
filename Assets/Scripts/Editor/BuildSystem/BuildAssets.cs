@@ -24,7 +24,10 @@ namespace RobbiEditor.BuildSystem
         [MenuItem("Robbi/Assets/Update Android Assets")]
         public static void UpdateAndroidAssets()
         {
-            Update(BuildTargetGroup.Android, BuildTarget.Android);
+            if (!Update(BuildTargetGroup.Android, BuildTarget.Android) && Application.isBatchMode)
+            {
+                EditorApplication.Exit(1);
+            }
         }
 
         [MenuItem("Robbi/Assets/Build Windows Assets")]
@@ -36,7 +39,10 @@ namespace RobbiEditor.BuildSystem
         [MenuItem("Robbi/Assets/Update Windows Assets")]
         public static void UpdateWindowsAssets()
         {
-            Update(BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64);
+            if (!Update(BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64) && Application.isBatchMode)
+            {
+                EditorApplication.Exit(1);
+            }
         }
 
         [MenuItem("Robbi/Assets/Build iOS Assets")]
@@ -48,7 +54,10 @@ namespace RobbiEditor.BuildSystem
         [MenuItem("Robbi/Assets/Update iOS Assets")]
         public static void UpdateiOSAssets()
         {
-            Update(BuildTargetGroup.iOS, BuildTarget.iOS);
+            if (Update(BuildTargetGroup.iOS, BuildTarget.iOS) && Application.isBatchMode)
+            {
+                EditorApplication.Exit(1);
+            }
         }
 
         [MenuItem("Robbi/Assets/Clear Asset Cache")]
@@ -76,7 +85,7 @@ namespace RobbiEditor.BuildSystem
             Debug.Log("Finished building content");
         }
 
-        private static void Update(BuildTargetGroup buildTargetGroup, BuildTarget buildTarget)
+        private static bool Update(BuildTargetGroup buildTargetGroup, BuildTarget buildTarget)
         {
             PreBuildSteps(buildTargetGroup, buildTarget);
 
@@ -94,6 +103,8 @@ namespace RobbiEditor.BuildSystem
             {
                 Debug.LogFormat("Finished updating content with no build result");
             }
+
+            return buildResult != null && string.IsNullOrEmpty(buildResult.Error);
         }
 
         private static void PreBuildSteps(BuildTargetGroup buildTargetGroup, BuildTarget buildTarget)
