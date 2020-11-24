@@ -20,6 +20,15 @@ namespace Robbi.FSM.Nodes.Events.Conditions
 
         #endregion
 
+        #region Unity Methods
+
+        private void OnEnable()
+        {
+            hideFlags = HideFlags.HideInHierarchy;
+        }
+
+        #endregion
+
         #region Listeners
 
         public void AddListener()

@@ -19,6 +19,15 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
 
         public abstract bool Check(object arg);
 
+        #region Unity Methods
+
+        private void OnEnable()
+        {
+            hideFlags = HideFlags.HideInHierarchy;
+        }
+
+        #endregion
+
         #region ICopyable
 
         public abstract void CopyFrom(ValueCondition original);
