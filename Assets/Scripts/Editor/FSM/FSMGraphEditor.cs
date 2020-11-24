@@ -55,18 +55,6 @@ namespace Robbi.FSM
 
             FSMGraph graph = target as FSMGraph;
 
-            if (GUILayout.Button("Apply Hide Flags"))
-            {
-                foreach (UnityEngine.Object obj in AssetDatabase.LoadAllAssetsAtPath(AssetDatabase.GetAssetPath(target)))
-                {
-                    if (obj != null && obj != graph)
-                    {
-                        obj.hideFlags = HideFlags.HideInHierarchy;
-                        EditorUtility.SetDirty(obj);
-                    }
-                }
-            }
-
             if (GUILayout.Button("Remove Null Nodes"))
             {
                 graph.RemoveNullNodes_EditorOnly();
