@@ -98,6 +98,8 @@ namespace Robbi.Testing
             yield return new WaitForSeconds(10);
 
             executeConsoleCommand.Raise("it " + integrationTestName);
+#else
+            return null;
 #endif
         }
 
