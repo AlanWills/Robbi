@@ -60,7 +60,6 @@ namespace RobbiEditor.Tools
                 {
                     foreach (string doorPath in levelFolder.Doors)
                     {
-                        Door door = AssetDatabase.LoadAssetAtPath<Door>(doorPath);
                         AddressablesUtility.SetAddressableInfo(doorPath, AddressablesConstants.LEVELS_GROUP);
                     }
                 }

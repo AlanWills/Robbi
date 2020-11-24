@@ -23,8 +23,6 @@ namespace RobbiEditor.Tools
                 LevelRoot levelRoot = levelPrefab.GetComponent<LevelRoot>();
                 levelRoot.EditorOnly_CompressAllTilemaps();
 
-                EditorUtility.SetDirty(levelRoot);
-
                 ++i;
                 levelFolderPath = string.Format("Assets/Levels/Level{0}/Level{0}.prefab", i);
                 levelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(levelFolderPath);

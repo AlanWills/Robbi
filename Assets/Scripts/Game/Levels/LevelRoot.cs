@@ -58,12 +58,24 @@ namespace Robbi.Levels
 #if UNITY_EDITOR
         public void EditorOnly_CompressAllTilemaps()
         {
-            corridorsTilemap.CompressBounds();
-            destructibleCorridorsTilemap.CompressBounds();
-            exitsTilemap.CompressBounds();
-            doorsTilemap.CompressBounds();
-            interactablesTilemap.CompressBounds();
-            movementTilemap.CompressBounds();
+            EditorOnly_CompressBounds(corridorsTilemap);
+            EditorOnly_CompressBounds(destructibleCorridorsTilemap);
+            EditorOnly_CompressBounds(exitsTilemap);
+            EditorOnly_CompressBounds(doorsTilemap);
+            EditorOnly_CompressBounds(interactablesTilemap);
+            EditorOnly_CompressBounds(movementTilemap);
+        }
+
+        private void EditorOnly_CompressBounds(Tilemap tilemap)
+        {
+            BoundsInt bounds = tilemap.cellBounds;
+            tilemap.CompressBounds();
+
+            if (bounds != tilemap.cellBounds)
+            {
+                UnityEditor.EditorUtility.SetDirty(tilemap);
+                UnityEditor.EditorUtility.SetDirty(tilemap.gameObject);
+            }
         }
 #endif
 

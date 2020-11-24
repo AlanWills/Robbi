@@ -57,16 +57,29 @@ namespace RobbiEditor.Levels
             serializedObject.Update();
 
             SerializedProperty interactables = serializedObject.FindProperty("interactables");
+            bool dirty = interactables.arraySize != interactableGuids.Length;
+            
             interactables.arraySize = interactableGuids.Length;
 
             for (int i = 0; i < interactableGuids.Length; ++i)
             {
                 string interactablePath = AssetDatabase.GUIDToAssetPath(interactableGuids[i]);
-                interactables.GetArrayElementAtIndex(i).objectReferenceValue = AssetDatabase.LoadAssetAtPath<Interactable>(interactablePath);
+                UnityEngine.Object interactable = AssetDatabase.LoadAssetAtPath<Interactable>(interactablePath);
+                SerializedProperty arrayElement = interactables.GetArrayElementAtIndex(i);
+
+                if (interactable != arrayElement.objectReferenceValue)
+                {
+                    arrayElement.objectReferenceValue = interactable;
+                    dirty = true;
+                }
             }
 
             serializedObject.ApplyModifiedProperties();
-            EditorUtility.SetDirty(level);
+
+            if (dirty)
+            {
+                EditorUtility.SetDirty(level);
+            }
         }
 
         #endregion
