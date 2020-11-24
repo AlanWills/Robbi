@@ -34,6 +34,7 @@ namespace RobbiEditor.Tools
     {
         public string destinationFolder = LevelDirectories.LEVELS_PATH;
         public uint levelIndex = 0;
+        public bool increaseMaxLevel = true;
         public GameObject levelPrefabToCopy;
         public bool clearLevel = true;
         public int maxWaypointsPlaceable = 3; 
@@ -108,6 +109,7 @@ namespace RobbiEditor.Tools
 
             levelInfo.destinationFolder = EditorGUILayout.TextField(levelInfo.destinationFolder);
             levelInfo.levelIndex = RobbiEditorGUILayout.UIntField("Level Index", levelInfo.levelIndex);
+            levelInfo.increaseMaxLevel = EditorGUILayout.Toggle("Increase Max Level", levelInfo.increaseMaxLevel);
             levelInfo.levelPrefabToCopy = EditorGUILayout.ObjectField("Level Prefab To Copy", levelInfo.levelPrefabToCopy, typeof(GameObject), false) as GameObject;
             levelInfo.clearLevel = EditorGUILayout.Toggle("Clear Level", levelInfo.clearLevel);
             levelInfo.maxWaypointsPlaceable = EditorGUILayout.IntField("Max Waypoints Placeable", levelInfo.maxWaypointsPlaceable);
@@ -185,7 +187,10 @@ namespace RobbiEditor.Tools
             CreateTutorial();
             CreateLevelData();
 
-            LevelManager.EditorOnly_Load().LatestLevelIndex_DefaultValue = levelInfo.levelIndex;
+            if (levelInfo.increaseMaxLevel)
+            {
+                LevelManager.EditorOnly_Load().LatestLevelIndex_DefaultValue = levelInfo.levelIndex;
+            }
 
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
