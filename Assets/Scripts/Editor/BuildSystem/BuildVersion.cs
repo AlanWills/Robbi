@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace RobbiEditor.BuildSystem
@@ -15,6 +16,7 @@ namespace RobbiEditor.BuildSystem
         {
             Version version = ParseVersion(PlayerSettings.Android.bundleVersionCode);
             PlayerSettings.Android.bundleVersionCode = version.Major * 10000 + version.Minor * 100 + version.Build + 1;
+            Debug.LogFormat("Android version is now: {0}", version.ToString());
 
             SetVersionCommon(version);
         }
@@ -26,6 +28,7 @@ namespace RobbiEditor.BuildSystem
             Version version = ParseVersion(PlayerSettings.macOS.buildNumber);
             version = new Version(version.Major, version.Minor, version.Build + 1);
             PlayerSettings.macOS.buildNumber = version.ToString();
+            Debug.LogFormat("Windows version is now: {0}", PlayerSettings.macOS.buildNumber);
 
             SetVersionCommon(version);
         }
@@ -36,7 +39,8 @@ namespace RobbiEditor.BuildSystem
             Version version = ParseVersion(PlayerSettings.iOS.buildNumber);
             version = new Version(version.Major, version.Minor, version.Build + 1);
             PlayerSettings.iOS.buildNumber = version.ToString();
-            
+            Debug.LogFormat("iOS version is now: {0}", PlayerSettings.iOS.buildNumber);
+
             SetVersionCommon(version);
         }
 
