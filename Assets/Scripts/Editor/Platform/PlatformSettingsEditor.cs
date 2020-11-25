@@ -24,6 +24,26 @@ namespace RobbiEditor.Platform
                 platformSettings.Apply();
             }
 
+            if (GUILayout.Button("Switch"))
+            {
+                platformSettings.Switch();
+            }
+
+            if (GUILayout.Button("Build Player"))
+            {
+                platformSettings.BuildPlayer();
+            }
+
+            if (GUILayout.Button("Build Assets"))
+            {
+                platformSettings.BuildAssets();
+            }
+
+            if (GUILayout.Button("Update Assets"))
+            {
+                platformSettings.UpdateAssets();
+            }
+
             if (GUILayout.Button("Bump Version"))
             {
                 platformSettings.BumpVersion();

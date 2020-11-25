@@ -20,13 +20,13 @@ namespace RobbiEditor.BuildSystem
         [MenuItem("Robbi/Assets/Build/Android Assets")]
         public static void BuildAndroidAssets()
         {
-            Build(AndroidSettings.Instance);
+            AndroidSettings.Instance.BuildAssets();
         }
 
         [MenuItem("Robbi/Assets/Update/Android Assets")]
         public static void UpdateAndroidAssets()
         {
-            if (!Update(AndroidSettings.Instance) && Application.isBatchMode)
+            if (!AndroidSettings.Instance.UpdateAssets() && Application.isBatchMode)
             {
                 EditorApplication.Exit(1);
             }
@@ -35,13 +35,13 @@ namespace RobbiEditor.BuildSystem
         [MenuItem("Robbi/Assets/Build/Windows Assets")]
         public static void BuildWindowsAssets()
         {
-            Build(WindowsSettings.Instance);
+            WindowsSettings.Instance.BuildAssets();
         }
 
         [MenuItem("Robbi/Assets/Update/Windows Assets")]
         public static void UpdateWindowsAssets()
         {
-            if (!Update(WindowsSettings.Instance) && Application.isBatchMode)
+            if (!WindowsSettings.Instance.UpdateAssets() && Application.isBatchMode)
             {
                 EditorApplication.Exit(1);
             }
@@ -50,13 +50,13 @@ namespace RobbiEditor.BuildSystem
         [MenuItem("Robbi/Assets/Build/iOS Assets")]
         public static void BuildiOSAssets()
         {
-            Build(iOSSettings.Instance);
+            iOSSettings.Instance.BuildAssets();
         }
 
         [MenuItem("Robbi/Assets/Update/iOS Assets")]
         public static void UpdateiOSAssets()
         {
-            if (Update(iOSSettings.Instance) && Application.isBatchMode)
+            if (iOSSettings.Instance.UpdateAssets() && Application.isBatchMode)
             {
                 EditorApplication.Exit(1);
             }
@@ -76,53 +76,13 @@ namespace RobbiEditor.BuildSystem
             SetAddressablePaths.MenuItem();
         }
 
-        private static void Build(PlatformSettings platformSettings)
-        {
-            PreBuildSteps(platformSettings);
-
-            Debug.Log("Beginning to build content");
-
-            AddressableAssetSettings.BuildPlayerContent();
-
-            StringBuilder locationInfo = new StringBuilder();
-            locationInfo.AppendFormat("ASSETS_SOURCE={0}/*", platformSettings.AddressablesBuildDirectory);
-            locationInfo.AppendLine();
-            locationInfo.AppendFormat("ASSETS_DESTINATION={0}", platformSettings.AddressablesS3UploadBucket);
-            File.WriteAllText(Path.Combine(new DirectoryInfo(platformSettings.AddressablesBuildDirectory).Parent.FullName, "ASSETS_ENV_VARS.txt"), locationInfo.ToString());
-
-            Debug.Log("Finished building content");
-        }
-
-        private static bool Update(PlatformSettings platformSettings)
-        {
-            PreBuildSteps(platformSettings);
-
-            Debug.Log("Beginning to update content");
-
-            string contentStatePath = ContentUpdateScript.GetContentStateDataPath(false);
-            Debug.LogFormat("Using content state path {0}", contentStatePath);
-            AddressableAssetBuildResult buildResult = ContentUpdateScript.BuildContentUpdate(AddressableAssetSettingsDefaultObject.Settings, contentStatePath);
-            
-            if (buildResult != null)
-            {
-                Debug.LogFormat("Finished updating content{0}", string.IsNullOrEmpty(buildResult.Error) ? "" : " with error: " + buildResult.Error);
-            }
-            else
-            {
-                Debug.LogFormat("Finished updating content with no build result");
-            }
-
-            return buildResult != null && string.IsNullOrEmpty(buildResult.Error);
-        }
-
-        private static void PreBuildSteps(PlatformSettings platformSettings)
+        public static void PreBuildSteps()
         {
             Debug.Log("Beginning Pre Build steps");
 
             PrepareAssets();
             SetAddressableAssetSettings();
             SetProfileId("AWS");
-            platformSettings.Switch();
 
             Debug.Log("Finished Pre Build steps");
         }

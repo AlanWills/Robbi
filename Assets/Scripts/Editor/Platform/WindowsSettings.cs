@@ -31,10 +31,15 @@ namespace RobbiEditor.Platform
             }
         }
 
+        [SerializeField]
+
+
         #endregion
 
         protected override void ApplyImpl()
         {
+            EditorUserBuildSettings.selectedStandaloneTarget = BuildTarget;
+
             // Bump windows version number - yes we're using the mac version number, but windows doesn't have a unique one apparently
             PlayerSettings.macOS.buildNumber = Version;
             Debug.LogFormat("Windows version is now: {0}", PlayerSettings.macOS.buildNumber);

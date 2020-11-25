@@ -17,67 +17,19 @@ namespace RobbiEditor.BuildSystem
         [MenuItem("Robbi/Builds/Android Debug")]
         public static void BuildAndroidDebug()
         {
-            EditorUserBuildSettings.development = true;
-
-            BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
-            buildPlayerOptions.options = BuildOptions.Development | BuildOptions.AllowDebugging | BuildOptions.StrictMode;
-
-            Build(buildPlayerOptions, AndroidSettings.Instance);
+            AndroidSettings.Instance.BuildPlayer();
         }
 
         [MenuItem("Robbi/Builds/Windows Debug")]
         public static void BuildWindowsDebug()
         {
-            EditorUserBuildSettings.development = true;
-            EditorUserBuildSettings.selectedStandaloneTarget = BuildTarget.StandaloneWindows;
-
-            BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
-            buildPlayerOptions.options = BuildOptions.Development | BuildOptions.AllowDebugging;
-
-            Build(buildPlayerOptions, WindowsSettings.Instance);
+            WindowsSettings.Instance.BuildPlayer();
         }
 
         [MenuItem("Robbi/Builds/iOS Debug")]
         public static void BuildiOSDebug()
         {
-            EditorUserBuildSettings.development = true;
-            EditorUserBuildSettings.iOSBuildConfigType = iOSBuildType.Debug;
-
-            BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
-            buildPlayerOptions.options = BuildOptions.Development | BuildOptions.AllowDebugging;
-
-            Build(buildPlayerOptions, iOSSettings.Instance);
-        }
-
-        private static void Build(
-            BuildPlayerOptions buildPlayerOptions,
-            PlatformSettings platformSettings)
-        {
-            platformSettings.Switch();
-
-            string buildDirectory = platformSettings.BuildDirectory;
-            string outputName = platformSettings.OutputName;
-
-            Debug.LogFormat("Build Directory: {0}", buildDirectory);
-            Debug.LogFormat("Output Name: {0}", outputName);
-
-            buildPlayerOptions.locationPathName = Path.Combine(buildDirectory, outputName);
-            buildPlayerOptions.scenes = EditorBuildSettings.scenes.Select(x => x.path).ToArray();
-            buildPlayerOptions.target = platformSettings.BuildTarget;
-            buildPlayerOptions.targetGroup = platformSettings.BuildTargetGroup;
-
-            BuildReport buildReport = BuildPipeline.BuildPlayer(buildPlayerOptions);
-            bool success = buildReport != null && buildReport.summary.result == BuildResult.Succeeded;
-
-            if (success)
-            {
-                File.WriteAllText(Path.Combine(buildDirectory, "BUILD_LOCATION.txt"), buildPlayerOptions.locationPathName);
-                platformSettings.BumpVersion();
-            }
-            else if (Application.isBatchMode)
-            {
-                EditorApplication.Exit(1);
-            }
+            iOSSettings.Instance.BuildPlayer();
         }
     }
 }

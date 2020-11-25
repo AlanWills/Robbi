@@ -31,10 +31,15 @@ namespace RobbiEditor.Platform
             }
         }
 
+        [SerializeField]
+        private iOSBuildType runInXCodeAs = iOSBuildType.Debug;
+
         #endregion
 
         protected override void ApplyImpl()
         {
+            EditorUserBuildSettings.iOSBuildConfigType = runInXCodeAs;
+
             PlayerSettings.iOS.buildNumber = Version;
             Debug.LogFormat("iOS version is now: {0}", PlayerSettings.iOS.buildNumber);
         }

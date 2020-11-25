@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEditor.AddressableAssets;
+using UnityEditor.AddressableAssets.Build;
 using UnityEditor.AddressableAssets.Settings;
+using UnityEditor.Build.Reporting;
 using UnityEngine;
 
 namespace RobbiEditor.Platform
@@ -75,6 +78,16 @@ namespace RobbiEditor.Platform
             get { return buildTargetGroup; }
         }
 
+        [SerializeField]
+        private bool development = true;
+
+        [SerializeField]
+        private BuildOptions buildOptions = BuildOptions.Development | BuildOptions.AllowDebugging | BuildOptions.StrictMode;
+        public BuildOptions BuildOptions
+        {
+            get { return buildOptions; }
+        }
+
         #endregion
 
         #region Platform Setup Methods
@@ -91,6 +104,8 @@ namespace RobbiEditor.Platform
         {
             ApplyImpl();
 
+            EditorUserBuildSettings.development = development;
+
             PlayerSettings.bundleVersion = version;
             AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.Settings;
             settings.OverridePlayerVersion = version.ToString();
@@ -105,6 +120,82 @@ namespace RobbiEditor.Platform
         {
             EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup, BuildTarget);
             Apply();
+        }
+
+        #endregion
+
+        #region Building
+
+        public void BuildPlayer()
+        {
+            Switch();
+
+            string buildDirectory = BuildDirectory;
+            string outputName = OutputName;
+
+            Debug.LogFormat("Build Directory: {0}", buildDirectory);
+            Debug.LogFormat("Output Name: {0}", outputName);
+
+            BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
+            buildPlayerOptions.options = BuildOptions;
+            buildPlayerOptions.locationPathName = Path.Combine(buildDirectory, outputName);
+            buildPlayerOptions.scenes = EditorBuildSettings.scenes.Select(x => x.path).ToArray();
+            buildPlayerOptions.target = BuildTarget;
+            buildPlayerOptions.targetGroup = BuildTargetGroup;
+
+            BuildReport buildReport = BuildPipeline.BuildPlayer(buildPlayerOptions);
+            bool success = buildReport != null && buildReport.summary.result == BuildResult.Succeeded;
+
+            if (success)
+            {
+                File.WriteAllText(Path.Combine(buildDirectory, "BUILD_LOCATION.txt"), buildPlayerOptions.locationPathName);
+                BumpVersion();
+            }
+            else if (Application.isBatchMode)
+            {
+                EditorApplication.Exit(1);
+            }
+        }
+
+        public void BuildAssets()
+        {
+            BuildSystem.BuildAssets.PreBuildSteps();
+            Switch();
+
+            Debug.Log("Beginning to build content");
+
+            AddressableAssetSettings.BuildPlayerContent();
+
+            StringBuilder locationInfo = new StringBuilder();
+            locationInfo.AppendFormat("ASSETS_SOURCE={0}/*", AddressablesBuildDirectory);
+            locationInfo.AppendLine();
+            locationInfo.AppendFormat("ASSETS_DESTINATION={0}", AddressablesS3UploadBucket);
+            File.WriteAllText(Path.Combine(new DirectoryInfo(AddressablesBuildDirectory).Parent.FullName, "ASSETS_ENV_VARS.txt"), locationInfo.ToString());
+
+            Debug.Log("Finished building content");
+        }
+
+        public bool UpdateAssets()
+        {
+            BuildSystem.BuildAssets.PreBuildSteps();
+            Switch();
+
+            Debug.Log("Beginning to update content");
+
+            string contentStatePath = ContentUpdateScript.GetContentStateDataPath(false);
+            Debug.LogFormat("Using content state path {0}", contentStatePath);
+            AddressableAssetBuildResult buildResult = ContentUpdateScript.BuildContentUpdate(AddressableAssetSettingsDefaultObject.Settings, contentStatePath);
+
+            if (buildResult != null)
+            {
+                Debug.LogFormat("Finished updating content{0}", string.IsNullOrEmpty(buildResult.Error) ? "" : " with error: " + buildResult.Error);
+            }
+            else
+            {
+                Debug.LogFormat("Finished updating content with no build result");
+            }
+
+            return buildResult != null && string.IsNullOrEmpty(buildResult.Error);
         }
 
         #endregion
