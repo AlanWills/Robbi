@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RobbiEditor.Platform;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,7 +9,6 @@ using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static RobbiEditor.BuildSystem.BuildVersion;
 
 namespace RobbiEditor.BuildSystem
 {
@@ -21,16 +21,8 @@ namespace RobbiEditor.BuildSystem
 
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
             buildPlayerOptions.options = BuildOptions.Development | BuildOptions.AllowDebugging | BuildOptions.StrictMode;
-            Version version = ParseVersion(PlayerSettings.Android.bundleVersionCode);
 
-            if (Build(buildPlayerOptions, BuildTargetGroup.Android, BuildTarget.Android, "Builds/Android", ".apk", version))
-            {
-                BumpAndroidVersion();
-            }
-            else if (Application.isBatchMode)
-            {
-                EditorApplication.Exit(1);
-            }
+            Build(buildPlayerOptions, AndroidSettings.Instance);
         }
 
         [MenuItem("Robbi/Builds/Windows Debug")]
@@ -41,16 +33,8 @@ namespace RobbiEditor.BuildSystem
 
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
             buildPlayerOptions.options = BuildOptions.Development | BuildOptions.AllowDebugging;
-            Version version = ParseVersion(PlayerSettings.macOS.buildNumber);
 
-            if (Build(buildPlayerOptions, BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64, "Builds/Windows", ".exe", version))
-            {
-                BumpWindowsVersion();
-            }
-            else if (Application.isBatchMode)
-            {
-                EditorApplication.Exit(1);
-            }
+            Build(buildPlayerOptions, WindowsSettings.Instance);
         }
 
         [MenuItem("Robbi/Builds/iOS Debug")]
@@ -62,41 +46,38 @@ namespace RobbiEditor.BuildSystem
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
             buildPlayerOptions.options = BuildOptions.Development | BuildOptions.AllowDebugging;
 
-            if (Build(buildPlayerOptions, BuildTargetGroup.iOS, BuildTarget.iOS, "Builds/iOS", "", ParseVersion(PlayerSettings.iOS.buildNumber)))
-            {
-                BumpiOSVersion();
-            }
-            else if (Application.isBatchMode)
-            {
-                EditorApplication.Exit(1);
-            }
+            Build(buildPlayerOptions, iOSSettings.Instance);
         }
 
-        private static bool Build(
+        private static void Build(
             BuildPlayerOptions buildPlayerOptions,
-            BuildTargetGroup buildTargetGroup, 
-            BuildTarget buildTarget,
-            string buildDirectory,
-            string extension,
-            Version newVersion)
+            PlatformSettings platformSettings)
         {
-            EditorUserBuildSettings.SwitchActiveBuildTarget(buildTargetGroup, buildTarget);
+            platformSettings.Switch();
 
-            buildPlayerOptions.locationPathName = string.Format("{0}/Robbi-{1}{2}", buildDirectory, newVersion.ToString(), extension);
+            string buildDirectory = platformSettings.BuildDirectory;
+            string outputName = platformSettings.OutputName;
+
+            Debug.LogFormat("Build Directory: {0}", buildDirectory);
+            Debug.LogFormat("Output Name: {0}", outputName);
+
+            buildPlayerOptions.locationPathName = Path.Combine(buildDirectory, outputName);
             buildPlayerOptions.scenes = EditorBuildSettings.scenes.Select(x => x.path).ToArray();
-            buildPlayerOptions.target = buildTarget;
-            buildPlayerOptions.targetGroup = buildTargetGroup;
+            buildPlayerOptions.target = platformSettings.BuildTarget;
+            buildPlayerOptions.targetGroup = platformSettings.BuildTargetGroup;
 
-            PlayerSettings.bundleVersion = newVersion.ToString();
             BuildReport buildReport = BuildPipeline.BuildPlayer(buildPlayerOptions);
             bool success = buildReport != null && buildReport.summary.result == BuildResult.Succeeded;
 
             if (success)
             {
                 File.WriteAllText(Path.Combine(buildDirectory, "BUILD_LOCATION.txt"), buildPlayerOptions.locationPathName);
+                platformSettings.BumpVersion();
             }
-
-            return success;
+            else if (Application.isBatchMode)
+            {
+                EditorApplication.Exit(1);
+            }
         }
     }
 }

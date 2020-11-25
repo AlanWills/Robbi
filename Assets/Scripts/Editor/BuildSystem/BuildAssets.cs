@@ -1,6 +1,8 @@
-﻿using RobbiEditor.Tools;
+﻿using RobbiEditor.Platform;
+using RobbiEditor.Tools;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,46 +17,46 @@ namespace RobbiEditor.BuildSystem
 {
     public static class BuildAssets
     {
-        [MenuItem("Robbi/Assets/Build Android Assets")]
+        [MenuItem("Robbi/Assets/Build/Android Assets")]
         public static void BuildAndroidAssets()
         {
-            Build(BuildTargetGroup.Android, BuildTarget.Android);
+            Build(AndroidSettings.Instance);
         }
 
-        [MenuItem("Robbi/Assets/Update Android Assets")]
+        [MenuItem("Robbi/Assets/Update/Android Assets")]
         public static void UpdateAndroidAssets()
         {
-            if (!Update(BuildTargetGroup.Android, BuildTarget.Android) && Application.isBatchMode)
+            if (!Update(AndroidSettings.Instance) && Application.isBatchMode)
             {
                 EditorApplication.Exit(1);
             }
         }
 
-        [MenuItem("Robbi/Assets/Build Windows Assets")]
+        [MenuItem("Robbi/Assets/Build/Windows Assets")]
         public static void BuildWindowsAssets()
         {
-            Build(BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64);
+            Build(WindowsSettings.Instance);
         }
 
-        [MenuItem("Robbi/Assets/Update Windows Assets")]
+        [MenuItem("Robbi/Assets/Update/Windows Assets")]
         public static void UpdateWindowsAssets()
         {
-            if (!Update(BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64) && Application.isBatchMode)
+            if (!Update(WindowsSettings.Instance) && Application.isBatchMode)
             {
                 EditorApplication.Exit(1);
             }
         }
 
-        [MenuItem("Robbi/Assets/Build iOS Assets")]
+        [MenuItem("Robbi/Assets/Build/iOS Assets")]
         public static void BuildiOSAssets()
         {
-            Build(BuildTargetGroup.iOS, BuildTarget.iOS);
+            Build(iOSSettings.Instance);
         }
 
-        [MenuItem("Robbi/Assets/Update iOS Assets")]
+        [MenuItem("Robbi/Assets/Update/iOS Assets")]
         public static void UpdateiOSAssets()
         {
-            if (Update(BuildTargetGroup.iOS, BuildTarget.iOS) && Application.isBatchMode)
+            if (Update(iOSSettings.Instance) && Application.isBatchMode)
             {
                 EditorApplication.Exit(1);
             }
@@ -74,20 +76,26 @@ namespace RobbiEditor.BuildSystem
             SetAddressablePaths.MenuItem();
         }
 
-        private static void Build(BuildTargetGroup buildTargetGroup, BuildTarget buildTarget)
+        private static void Build(PlatformSettings platformSettings)
         {
-            PreBuildSteps(buildTargetGroup, buildTarget);
+            PreBuildSteps(platformSettings);
 
             Debug.Log("Beginning to build content");
 
             AddressableAssetSettings.BuildPlayerContent();
 
+            StringBuilder locationInfo = new StringBuilder();
+            locationInfo.AppendFormat("ASSETS_SOURCE=\"{0}\"", platformSettings.AddressablesBuildDirectory);
+            locationInfo.AppendLine();
+            locationInfo.AppendFormat("ASSETS_DESTINATION=\"{0}\"", platformSettings.AddressablesLoadDirectory);
+            File.WriteAllText(Path.Combine(new DirectoryInfo(platformSettings.AddressablesBuildDirectory).Parent.FullName, "ASSETS_ENV_VARS.txt"), locationInfo.ToString());
+
             Debug.Log("Finished building content");
         }
 
-        private static bool Update(BuildTargetGroup buildTargetGroup, BuildTarget buildTarget)
+        private static bool Update(PlatformSettings platformSettings)
         {
-            PreBuildSteps(buildTargetGroup, buildTarget);
+            PreBuildSteps(platformSettings);
 
             Debug.Log("Beginning to update content");
 
@@ -107,14 +115,14 @@ namespace RobbiEditor.BuildSystem
             return buildResult != null && string.IsNullOrEmpty(buildResult.Error);
         }
 
-        private static void PreBuildSteps(BuildTargetGroup buildTargetGroup, BuildTarget buildTarget)
+        private static void PreBuildSteps(PlatformSettings platformSettings)
         {
             Debug.Log("Beginning Pre Build steps");
 
             PrepareAssets();
             SetAddressableAssetSettings();
-            SetActiveBuildTarget(buildTargetGroup, buildTarget);
             SetProfileId("AWS");
+            platformSettings.Switch();
 
             Debug.Log("Finished Pre Build steps");
         }
@@ -128,13 +136,6 @@ namespace RobbiEditor.BuildSystem
             }
 
             Debug.Assert(AddressableAssetSettingsDefaultObject.Settings != null, "AddressableAssetSettingsDefaultObject is null");
-        }
-
-        private static void SetActiveBuildTarget(BuildTargetGroup buildTargetGroup, BuildTarget buildTarget)
-        {
-            bool result = EditorUserBuildSettings.SwitchActiveBuildTarget(buildTargetGroup, buildTarget);
-            Debug.Log(result ? string.Format("Successfully switched to {0}", buildTarget) : string.Format("Failed to switch to {0}", buildTarget));
-            Debug.LogFormat("Active build target is {0}", EditorUserBuildSettings.activeBuildTarget);
         }
 
         private static void SetProfileId(string profile)
