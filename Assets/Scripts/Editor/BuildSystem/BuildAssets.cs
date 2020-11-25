@@ -85,7 +85,7 @@ namespace RobbiEditor.BuildSystem
             AddressableAssetSettings.BuildPlayerContent();
 
             StringBuilder locationInfo = new StringBuilder();
-            locationInfo.AppendFormat("ASSETS_SOURCE=\"{0}\"", platformSettings.AddressablesBuildDirectory);
+            locationInfo.AppendFormat("ASSETS_SOURCE=\"{0}/*\"", platformSettings.AddressablesBuildDirectory);
             locationInfo.AppendLine();
             locationInfo.AppendFormat("ASSETS_DESTINATION=\"{0}\"", platformSettings.AddressablesLoadDirectory);
             File.WriteAllText(Path.Combine(new DirectoryInfo(platformSettings.AddressablesBuildDirectory).Parent.FullName, "ASSETS_ENV_VARS.txt"), locationInfo.ToString());
