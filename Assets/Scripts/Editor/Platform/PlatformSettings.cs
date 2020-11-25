@@ -55,6 +55,13 @@ namespace RobbiEditor.Platform
         }
 
         [SerializeField]
+        private string addressablesS3UploadBucket;
+        public string AddressablesS3UploadBucket
+        {
+            get { return addressablesS3UploadBucket.Replace("{version}", version); }
+        }
+
+        [SerializeField]
         private BuildTarget buildTarget;
         public BuildTarget BuildTarget
         {

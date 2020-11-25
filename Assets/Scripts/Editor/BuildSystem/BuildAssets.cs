@@ -87,7 +87,7 @@ namespace RobbiEditor.BuildSystem
             StringBuilder locationInfo = new StringBuilder();
             locationInfo.AppendFormat("ASSETS_SOURCE={0}/*", platformSettings.AddressablesBuildDirectory);
             locationInfo.AppendLine();
-            locationInfo.AppendFormat("ASSETS_DESTINATION={0}", platformSettings.AddressablesLoadDirectory);
+            locationInfo.AppendFormat("ASSETS_DESTINATION={0}", platformSettings.AddressablesS3UploadBucket);
             File.WriteAllText(Path.Combine(new DirectoryInfo(platformSettings.AddressablesBuildDirectory).Parent.FullName, "ASSETS_ENV_VARS.txt"), locationInfo.ToString());
 
             Debug.Log("Finished building content");
