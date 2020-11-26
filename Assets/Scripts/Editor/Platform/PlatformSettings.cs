@@ -114,6 +114,8 @@ namespace RobbiEditor.Platform
 
         public void Apply()
         {
+            BuildSystem.BuildAssets.SetAddressableAssetSettings();
+
             ApplyImpl();
 
             EditorUserBuildSettings.development = development;

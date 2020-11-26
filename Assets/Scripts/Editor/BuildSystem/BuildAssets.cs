@@ -87,7 +87,7 @@ namespace RobbiEditor.BuildSystem
             Debug.Log("Finished Pre Build steps");
         }
 
-        private static void SetAddressableAssetSettings()
+        public static void SetAddressableAssetSettings()
         {
             if (AddressableAssetSettingsDefaultObject.Settings == null)
             {
