@@ -7,6 +7,12 @@ using UnityEngine;
 
 namespace Robbi.FSM.Nodes
 {
+    public enum WaitUnit
+    {
+        Seconds,
+        Frames
+    }
+
     [Serializable]
     [CreateNodeMenu("Robbi/Flow/Wait")]
     [NodeTint(0, 0.4f, 0)]
@@ -15,6 +21,7 @@ namespace Robbi.FSM.Nodes
         #region Properties and Fields
 
         public float time = 1;
+        public WaitUnit unit = WaitUnit.Seconds;
 
         private float currentTime = 0;
 
@@ -31,7 +38,18 @@ namespace Robbi.FSM.Nodes
 
         protected override FSMNode OnUpdate()
         {
-            currentTime += Time.deltaTime;
+            if (unit == WaitUnit.Seconds)
+            {
+                currentTime += Time.deltaTime;
+            }
+            else if (unit == WaitUnit.Frames)
+            {
+                ++currentTime;
+            }
+            else
+            {
+                Debug.LogAssertionFormat("Unhandled WaitUnit {0} in WaitNode in graph {1}", unit, graph.name);
+            }
 
             return currentTime >= time ? base.OnUpdate() : this;
         }

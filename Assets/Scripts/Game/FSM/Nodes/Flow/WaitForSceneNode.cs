@@ -9,16 +9,17 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Robbi.FSM.Nodes.Input
+namespace Robbi.FSM.Nodes.Flow
 {
-    [CreateNodeMenu("Robbi/Input/Click GameObject")]
-    public class ClickGameObjectNode : FSMNode
+    [CreateNodeMenu("Robbi/Flow/Wait For Scene")]
+    public class WaitForSceneNode : FSMNode
     {
         #region Properties and Fields
 
-        public GameObjectPath gameObjectPath = new GameObjectPath();
+        public string sceneName;
         public float attemptWindow = 1;
 
         private float currentTime = 0;
@@ -28,7 +29,7 @@ namespace Robbi.FSM.Nodes.Input
 
         #endregion
 
-        public ClickGameObjectNode()
+        public WaitForSceneNode()
         {
             RemoveDynamicPort(DEFAULT_OUTPUT_PORT_NAME);
 
@@ -51,12 +52,10 @@ namespace Robbi.FSM.Nodes.Input
             {
                 currentTime += Time.deltaTime;
 
-                GameObject gameObject = gameObjectPath.GameObject;
-                if (gameObject != null)
+                Scene scene = SceneManager.GetSceneByName(sceneName);
+                if (scene != null && scene.IsValid())
                 {
-                    gameObject.Click();
-                    Debug.LogFormat("Successfully clicked on {0}", gameObjectPath.Path);
-
+                    Debug.LogFormat("Found scene {0}", sceneName);
                     return GetConnectedNode(FOUND_OUTPUT_PORT);
                 }
                 else
@@ -66,7 +65,7 @@ namespace Robbi.FSM.Nodes.Input
                 }
             }
 
-            Debug.LogFormat("Could not find GameObject with path {0}", gameObjectPath);
+            Debug.LogFormat("Could not find Scene with name {0}", sceneName);
             return GetConnectedNode(NOT_FOUND_OUTPUT_PORT);
         }
 

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Robbi.Testing
 {
@@ -95,7 +96,17 @@ namespace Robbi.Testing
             // Disable audio since this will be run via CI
             AudioListener.volume = 0;
 
-            yield return new WaitForSeconds(10);
+            bool sceneFound = false;
+            while (!sceneFound)
+            {
+                Scene scene = SceneManager.GetSceneByName("MainMenu");
+                sceneFound = scene != null && scene.IsValid();
+
+                yield return null;
+            }
+
+            // Dunno why, but just waiting a second here seems to do the world of good
+            yield return new WaitForSeconds(1);
 
             executeConsoleCommand.Raise("it " + integrationTestName);
 #else

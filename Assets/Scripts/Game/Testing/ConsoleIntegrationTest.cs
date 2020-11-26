@@ -28,7 +28,7 @@ namespace Robbi.Testing
                 AsyncOperationHandle<GameObject> integrationTest = Addressables.InstantiateAsync("Assets/Prefabs/Testing/IntegrationTest.prefab");
                 integrationTest.Completed += (AsyncOperationHandle<GameObject> obj) =>
                 {
-                    if (obj.Result == null)
+                    if (obj.Result == null || !obj.IsValid())
                     {
                         HudLogger.LogError("Failed to load integration test");
                     }
@@ -37,7 +37,7 @@ namespace Robbi.Testing
                         AsyncOperationHandle<FSMGraph> integrationTestFSM = Addressables.LoadAssetAsync<FSMGraph>(parameters[0]);
                         integrationTestFSM.Completed += (AsyncOperationHandle<FSMGraph> fsmObj) =>
                         {
-                            if (fsmObj.Result == null)
+                            if (fsmObj.Result == null || !fsmObj.IsValid())
                             {
                                 HudLogger.LogError("Failed to load integration test fsm");
                             }

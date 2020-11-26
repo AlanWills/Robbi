@@ -42,7 +42,7 @@ namespace RobbiEditor
 
         public static void OpenStartupScene()
         {
-            if (SceneManager.GetActiveScene().name != STARTUP_SCENE_NAME)
+            if (!EditorApplication.isPlaying && SceneManager.GetActiveScene().name != STARTUP_SCENE_NAME)
             {
                 Debug.Log("Setting active scene to " + STARTUP_SCENE_NAME);
                 EditorSceneManager.OpenScene(STARTUP_SCENE_PATH, OpenSceneMode.Single);

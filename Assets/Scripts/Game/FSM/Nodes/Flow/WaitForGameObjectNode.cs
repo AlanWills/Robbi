@@ -11,7 +11,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Robbi.FSM.Nodes.Input
+namespace Robbi.FSM.Nodes.Flow
 {
     [CreateNodeMenu("Robbi/Flow/Wait For GameObject")]
     public class WaitForGameObjectNode : FSMNode
@@ -23,7 +23,18 @@ namespace Robbi.FSM.Nodes.Input
 
         private float currentTime = 0;
 
+        private const string FOUND_OUTPUT_PORT = "Found";
+        private const string NOT_FOUND_OUTPUT_PORT = "NotFound";
+
         #endregion
+
+        public WaitForGameObjectNode()
+        {
+            RemoveDynamicPort(DEFAULT_OUTPUT_PORT_NAME);
+
+            AddOutputPort(FOUND_OUTPUT_PORT);
+            AddOutputPort(NOT_FOUND_OUTPUT_PORT);
+        }
 
         #region FSM Runtime
 
@@ -43,7 +54,8 @@ namespace Robbi.FSM.Nodes.Input
                 GameObject gameObject = gameObjectPath.GameObject;
                 if (gameObject != null)
                 {
-                    return base.OnUpdate();
+                    Debug.LogFormat("Found GameObject {0}", gameObjectPath.Path);
+                    return GetConnectedNode(FOUND_OUTPUT_PORT);
                 }
                 else
                 {
@@ -53,7 +65,7 @@ namespace Robbi.FSM.Nodes.Input
             }
 
             Debug.LogFormat("Could not find GameObject with path {0}", gameObjectPath);
-            return base.OnUpdate();
+            return GetConnectedNode(NOT_FOUND_OUTPUT_PORT);
         }
 
         #endregion
