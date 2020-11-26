@@ -36,6 +36,18 @@ namespace Robbi.FSM.Nodes.Input
             AddOutputPort(NOT_FOUND_OUTPUT_PORT);
         }
 
+        #region Add/Remove/Copy
+
+        protected override void OnCopyInGraph(FSMNode original)
+        {
+            base.OnCopyInGraph(original);
+
+            gameObjectPath = new GameObjectPath();
+            gameObjectPath.Path = (original as ClickGameObjectNode).gameObjectPath.Path;
+        }
+
+        #endregion
+
         #region FSM Runtime
 
         protected override void OnEnter()

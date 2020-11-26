@@ -12,12 +12,12 @@ using RobbiEditor.Utils;
 
 namespace RobbiEditor.Testing
 {
-    public class PlayLevels
+    public class LevelLoseWaypointUnreachableMainMenuButton
     {
-        [MenuItem("Robbi/Testing/Play Levels")]
+        [MenuItem("Robbi/Testing/Level/Level Lose Waypoint Unreachable Main Menu Button")]
         public static void MenuItem()
         {
-            IntegrationTestEditorAPI.RunTest<PlayLevels>();
+            IntegrationTestEditorAPI.RunTest<LevelLoseWaypointUnreachableMainMenuButton>();
         }
     }
 }

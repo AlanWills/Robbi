@@ -12,12 +12,12 @@ using RobbiEditor.Utils;
 
 namespace RobbiEditor.Testing
 {
-    public class LevelLoseWaypointUnreachable
+    public class LevelLoseOutOfWaypoints
     {
-        [MenuItem("Robbi/Testing/Level Lose Waypoint Unreachable")]
+        [MenuItem("Robbi/Testing/Level/Level Lose Out Of Waypoints")]
         public static void MenuItem()
         {
-            IntegrationTestEditorAPI.RunTest<LevelLoseWaypointUnreachable>();
+            IntegrationTestEditorAPI.RunTest<LevelLoseOutOfWaypoints>();
         }
     }
 }

@@ -61,6 +61,7 @@ namespace Robbi.FSM.Nodes.UI
             closeDummyEventListener.eventRaised = false;
 
             dialogInstance = GameObject.Instantiate(dialog.gameObject).GetComponent<Dialog>();
+            dialogInstance.gameObject.name = dialog.gameObject.name;
             dialogInstance.ConfirmButtonClicked.AddEventListener(confirmDummyEventListener);
             dialogInstance.CloseButtonClicked.AddEventListener(closeDummyEventListener);
             dialogInstance.Show(parameters);

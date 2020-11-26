@@ -9,7 +9,7 @@ namespace RobbiEditor.Testing
 {
     public class LevelHomeButton
     {
-        [MenuItem("Robbi/Testing/Level Home Button")]
+        [MenuItem("Robbi/Testing/Level/Level Home Button")]
         public static void MenuItem()
         {
             IntegrationTestEditorAPI.RunTest<LevelHomeButton>();

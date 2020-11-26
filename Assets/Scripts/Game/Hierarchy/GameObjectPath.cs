@@ -16,6 +16,12 @@ namespace Robbi.Hierarchy
         public string Path
         {
             get { return path; }
+            set
+            {
+                path = value;
+                splitName = null;
+                gameObject = null;
+            }
         }
 
         public GameObject GameObject
@@ -45,7 +51,7 @@ namespace Robbi.Hierarchy
 
         public void Split()
         {
-            if (!string.IsNullOrEmpty(path))
+            if (!string.IsNullOrEmpty(path) && (splitName == null || splitName.Length == 0))
             {
                 splitName = path.Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
             }
