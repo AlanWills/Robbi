@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: WindowsSettings
   m_EditorClassIdentifier: 
   version: 0.1.2
+  playerOverrideVersion: '{major}.{minor}'
   buildDirectory: Builds/Windows
   outputName: Robbi-{version}.exe
-  addressablesBuildDirectory: ServerData/Windows/{version}
-  addressablesLoadDirectory: https://robbi-assets.s3-eu-west-1.amazonaws.com/Windows/{version}
-  addressablesS3UploadBucket: robbi-assets/Windows/{version}
+  addressablesBuildDirectory: ServerData/Windows/{major}.{minor}
+  addressablesLoadDirectory: https://robbi-assets.s3-eu-west-1.amazonaws.com/Windows/{major}.{minor}
+  addressablesS3UploadBucket: robbi-assets/Windows/{major}.{minor}
   buildTarget: 19
   buildTargetGroup: 1
+  development: 1
+  buildOptions: 2097665

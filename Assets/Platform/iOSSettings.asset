@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: iOSSettings
   m_EditorClassIdentifier: 
   version: 0.1.2
+  playerOverrideVersion: '{major}.{minor}'
   buildDirectory: Builds/iOS
   outputName: Robbi-{version}
-  addressablesBuildDirectory: ServerData/iOS/{version}
-  addressablesLoadDirectory: https://robbi-assets.s3-eu-west-1.amazonaws.com/iOS/{version}
-  addressablesS3UploadBucket: robbi-assets/iOS/{version}
+  addressablesBuildDirectory: ServerData/iOS/{major}.{minor}
+  addressablesLoadDirectory: https://robbi-assets.s3-eu-west-1.amazonaws.com/iOS/{major}.{minor}
+  addressablesS3UploadBucket: robbi-assets/iOS/{major}.{minor}
   buildTarget: 9
   buildTargetGroup: 4
+  development: 1
+  buildOptions: 2097665
+  runInXCodeAs: 0

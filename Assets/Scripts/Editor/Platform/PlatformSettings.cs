@@ -30,38 +30,50 @@ namespace RobbiEditor.Platform
         }
 
         [SerializeField]
+        private string playerOverrideVersion;
+        public string PlayerOverrideVersion
+        {
+            get { return Resolve(playerOverrideVersion); }
+            protected set
+            {
+                playerOverrideVersion = value;
+                EditorUtility.SetDirty(this);
+            }
+        }
+
+        [SerializeField]
         private string buildDirectory;
         public string BuildDirectory
         {
-            get { return buildDirectory.Replace("{version}", version); }
+            get { return Resolve(buildDirectory); }
         }
 
         [SerializeField]
         private string outputName;
         public string OutputName
         {
-            get { return outputName.Replace("{version}", version); }
+            get { return Resolve(outputName); }
         }
 
         [SerializeField]
         private string addressablesBuildDirectory;
         public string AddressablesBuildDirectory
         {
-            get { return addressablesBuildDirectory.Replace("{version}", version); }
+            get { return Resolve(addressablesBuildDirectory); }
         }
 
         [SerializeField]
         private string addressablesLoadDirectory;
         public string AddressablesLoadDirectory
         {
-            get { return addressablesLoadDirectory.Replace("{version}", version); }
+            get { return Resolve(addressablesLoadDirectory); }
         }
 
         [SerializeField]
         private string addressablesS3UploadBucket;
         public string AddressablesS3UploadBucket
         {
-            get { return addressablesS3UploadBucket.Replace("{version}", version); }
+            get { return Resolve(addressablesS3UploadBucket); }
         }
 
         [SerializeField]
@@ -108,7 +120,7 @@ namespace RobbiEditor.Platform
 
             PlayerSettings.bundleVersion = version;
             AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.Settings;
-            settings.OverridePlayerVersion = version.ToString();
+            settings.OverridePlayerVersion = PlayerOverrideVersion;
             settings.profileSettings.SetValue(settings.activeProfileId, "RemoteBuildPath", AddressablesBuildDirectory);
             settings.profileSettings.SetValue(settings.activeProfileId, "RemoteLoadPath", AddressablesLoadDirectory);
 
@@ -214,6 +226,16 @@ namespace RobbiEditor.Platform
         protected static Version ParseVersion(string bundleString)
         {
             return new Version(bundleString);
+        }
+
+        private string Resolve(string stringWithPossibleVersionCodes)
+        {
+            Version _version = ParseVersion(version);
+
+            return stringWithPossibleVersionCodes.
+                    Replace("{version}", version).
+                    Replace("{major}", _version.Major.ToString()).
+                    Replace("{minor}", _version.Minor.ToString());
         }
 
         #endregion

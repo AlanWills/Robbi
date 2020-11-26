@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: AndroidSettings
   m_EditorClassIdentifier: 
   version: 0.1.5
+  playerOverrideVersion: '{major}.{minor}'
   buildDirectory: Builds/Android
   outputName: Robbi-{version}.apk
-  addressablesBuildDirectory: ServerData/Android/{version}
-  addressablesLoadDirectory: https://robbi-assets.s3-eu-west-1.amazonaws.com/Android/{version}
-  addressablesS3UploadBucket: robbi-assets/Android/{version}
+  addressablesBuildDirectory: ServerData/Android/{major}.{minor}
+  addressablesLoadDirectory: https://robbi-assets.s3-eu-west-1.amazonaws.com/Android/{major}.{minor}
+  addressablesS3UploadBucket: robbi-assets/Android/{major}.{minor}
   buildTarget: 13
   buildTargetGroup: 7
+  development: 1
+  buildOptions: 2097665
