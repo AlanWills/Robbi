@@ -57,6 +57,7 @@ namespace Robbi.Movement
         public Vector3IntEvent onMovedFrom;
         public Vector3IntEvent onWaypointPlaced;
         public Vector3IntEvent onWaypointRemoved;
+        public Event onInvalidWaypointPlaced;
         public Event levelLoseWaypointUnreachable;
         public Event levelLoseOutOfWaypoints;
 
@@ -72,7 +73,6 @@ namespace Robbi.Movement
 
         private List<Waypoint> waypoints = new List<Waypoint>();
         private Stack<Vector3> stepsToNextWaypoint = new Stack<Vector3>();
-        private bool isLevelOver = false;
 
         // Temporary structs for A*
         private HashSet<Vector3Int> openSet = new HashSet<Vector3Int>();
@@ -201,6 +201,7 @@ namespace Robbi.Movement
             if (remainingWaypointsPlaceable.value <= 0)
             {
                 // Cannot add waypoints if we have run out of our allotted amount
+                onInvalidWaypointPlaced.Raise();
                 return;
             }
 
