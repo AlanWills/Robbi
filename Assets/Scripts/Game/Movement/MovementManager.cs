@@ -288,6 +288,7 @@ namespace Robbi.Movement
                 if (bestPosition == targetPosition)
                 {
                     ConstructGridSteps(targetPosition);
+                    return;
                 }
 
                 openSet.Remove(bestPosition);
