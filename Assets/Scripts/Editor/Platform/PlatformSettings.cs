@@ -108,6 +108,7 @@ namespace RobbiEditor.Platform
         {
             Version version = ParseVersion(Version);
             Version = new Version(version.Major, version.Minor, version.Build + 1).ToString();
+            Debug.LogFormat("New Version is {0} for platform {1}", Version, BuildTarget);
 
             Apply();
         }
