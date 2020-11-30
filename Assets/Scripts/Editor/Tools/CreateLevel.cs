@@ -345,7 +345,7 @@ namespace RobbiEditor.Tools
             tutorialFsm.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
 
             DataGraph tutorialDataGraph = ScriptableObject.CreateInstance<DataGraph>();
-            tutorialDataGraph.name = string.Format("Level{0}TutorialsDataGraph", levelIndex);
+            tutorialDataGraph.name = string.Format("Level{0}TutorialsDG", levelIndex);
 
             AssetDatabase.CreateAsset(tutorialDataGraph, Path.Combine(tutorialsPath, tutorialDataGraph.name + ".asset"));
             tutorialDataGraph.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
