@@ -1,4 +1,6 @@
-﻿using Robbi.Levels.Elements;
+﻿using Robbi.Events.Levels.Elements;
+using Robbi.Levels.Elements;
+using Robbi.Levels.Modifiers;
 using RobbiEditor.Constants;
 using RobbiEditor.Popups;
 using RobbiEditor.Utils;
@@ -10,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace RobbiEditor.Levels.Elements
 {
@@ -45,6 +48,25 @@ namespace RobbiEditor.Levels.Elements
             serializedObject.Update();
 
             DrawPropertiesExcluding(serializedObject, "m_Script", "states");
+
+            if (GUILayout.Button("Create Toggle Switch"))
+            {
+                InteractableStateMachine stateMachine = InteractableStateMachine;
+
+                {
+                    Interactable toggleLeft = stateMachine.AddState("Toggle Left");
+                    toggleLeft.InteractedTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.TOGGLE_LEFT_TILE);
+                    RaiseDoorEvent toggleDoorLeft = toggleLeft.AddInteractedModifier<RaiseDoorEvent>();
+                    toggleDoorLeft.doorEvent = AssetDatabase.LoadAssetAtPath<DoorEvent>(EventFiles.DOOR_TOGGLED_EVENT);
+                }
+
+                {
+                    Interactable toggleRight = stateMachine.AddState("Toggle Right");
+                    toggleRight.InteractedTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.TOGGLE_RIGHT_TILE);
+                    RaiseDoorEvent toggleDoorRight = toggleRight.AddInteractedModifier<RaiseDoorEvent>();
+                    toggleDoorRight.doorEvent = AssetDatabase.LoadAssetAtPath<DoorEvent>(EventFiles.DOOR_TOGGLED_EVENT);
+                }
+            }
 
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("States", RobbiEditorStyles.BoldLabel);

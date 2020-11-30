@@ -40,7 +40,14 @@ namespace Robbi.Levels
         public uint LatestLevelIndex_DefaultValue
         {
             get { return latestLevelIndex.defaultValue; }
-            set { latestLevelIndex.defaultValue = value; }
+            set 
+            { 
+                latestLevelIndex.defaultValue = value;
+
+#if UNITY_EDITOR
+                UnityEditor.EditorUtility.SetDirty(latestLevelIndex);
+#endif
+            }
         }
 
         [SerializeField]

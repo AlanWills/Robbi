@@ -10,5 +10,6 @@ namespace RobbiEditor.Constants
     {
         public const string TILES_FULL_PATH = "Assets/Tiles/";
         public const string DOOR_TILES_FULL_PATH = TILES_FULL_PATH + "Doors/";
+        public const string INTERACTABLES_TILES_FULL_PATH = TILES_FULL_PATH + "Interactables/";
     }
 }

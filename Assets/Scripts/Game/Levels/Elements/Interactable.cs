@@ -30,6 +30,13 @@ namespace Robbi.Levels.Elements
         public Tile InteractedTile
         {
             get { return interactedTile; }
+            set 
+            { 
+                interactedTile = value;
+#if UNITY_EDITOR
+                UnityEditor.EditorUtility.SetDirty(this);
+#endif
+            }
         }
 
         [SerializeField]

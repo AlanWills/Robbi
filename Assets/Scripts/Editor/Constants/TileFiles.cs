@@ -55,5 +55,8 @@ namespace RobbiEditor.Constants
         public const string VERTICAL_GREY_OPEN_DOOR_RIGHT_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "VerticalGreyOpenDoorRight.asset";
         public static readonly Tuple<string, string, string> VERTICAL_GREY_DOOR = new Tuple<string, string, string>(
             VERTICAL_GREY_CLOSED_DOOR_TILE, VERTICAL_GREY_OPEN_DOOR_LEFT_TILE, VERTICAL_GREY_OPEN_DOOR_RIGHT_TILE);
+
+        public const string TOGGLE_LEFT_TILE = TileDirectories.INTERACTABLES_TILES_FULL_PATH + "ToggleLeft.asset";
+        public const string TOGGLE_RIGHT_TILE = TileDirectories.INTERACTABLES_TILES_FULL_PATH + "ToggleRight.asset";
     }
 }
