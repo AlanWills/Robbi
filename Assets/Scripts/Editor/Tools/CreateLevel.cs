@@ -19,14 +19,21 @@ namespace RobbiEditor.Tools
     public enum DoorState
     {
         Open,
-        Close
+        Close,
+    }
+
+    public enum InteractableAction
+    {
+        OpenDoor,
+        CloseDoor,
+        ToggleDoor,
     }
 
     [Serializable]
-    public struct DoorMarker
+    public struct InteractableMarker
     {
         public DoorColour doorColour;
-        public DoorState doorState;
+        public InteractableAction interactableAction;
     }
 
     [Serializable]
@@ -40,7 +47,7 @@ namespace RobbiEditor.Tools
         public int maxWaypointsPlaceable = 3; 
         public List<DoorColour> horizontalDoors = new List<DoorColour>();
         public List<DoorColour> verticalDoors = new List<DoorColour>();
-        public List<DoorMarker> interactableMarkers = new List<DoorMarker>();
+        public List<InteractableMarker> interactableMarkers = new List<InteractableMarker>();
         public int numInteractables;
         public bool hasTutorial = false;
         public GameObject tutorialPrefabToCopy;
@@ -80,10 +87,11 @@ namespace RobbiEditor.Tools
             { DoorColour.Grey, TileFiles.VERTICAL_GREY_DOOR },
         };
 
-        private static Dictionary<DoorState, string> markerPrefabs = new Dictionary<DoorState, string>()
+        private static Dictionary<InteractableAction, string> markerPrefabs = new Dictionary<InteractableAction, string>()
         {
-            { DoorState.Open, PrefabFiles.DOOR_OPEN_MARKER_PREFAB },
-            { DoorState.Close, PrefabFiles.DOOR_CLOSE_MARKER_PREFAB },
+            { InteractableAction.OpenDoor, PrefabFiles.DOOR_OPEN_MARKER_PREFAB },
+            { InteractableAction.CloseDoor, PrefabFiles.DOOR_CLOSE_MARKER_PREFAB },
+            { InteractableAction.ToggleDoor, PrefabFiles.DOOR_TOGGLE_MARKER_PREFAB },
         };
 
         #endregion
@@ -268,15 +276,15 @@ namespace RobbiEditor.Tools
 
                 for (uint i = 0; i < levelInfo.interactableMarkers.Count; ++i)
                 {
-                    DoorMarker doorMarker = levelInfo.interactableMarkers[(int)i];
-                    GameObject interactableMarkerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(markerPrefabs[doorMarker.doorState]);
-                    GameObject interactableMarker = PrefabUtility.InstantiatePrefab(interactableMarkerPrefab, instantiatedLevelRoot.interactablesTilemap.transform) as GameObject;
-                    interactableMarker.name = string.Format("{0}Switch{1}", doorMarker.doorColour, doorMarker.doorState);
+                    InteractableMarker interactableMarker = levelInfo.interactableMarkers[(int)i];
+                    GameObject interactableMarkerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(markerPrefabs[interactableMarker.interactableAction]);
+                    GameObject interactableMarkerGameObject = PrefabUtility.InstantiatePrefab(interactableMarkerPrefab, instantiatedLevelRoot.interactablesTilemap.transform) as GameObject;
+                    interactableMarkerGameObject.name = string.Format("{0}Switch{1}", interactableMarker.doorColour, interactableMarker.interactableAction);
 
-                    DoorColourHelper doorColourHelper = interactableMarker.GetComponentInChildren<DoorColourHelper>();
-                    doorColourHelper.icon.color = DoorColours.COLOURS[(int)doorMarker.doorColour];
+                    DoorColourHelper doorColourHelper = interactableMarkerGameObject.GetComponentInChildren<DoorColourHelper>();
+                    doorColourHelper.icon.color = DoorColours.COLOURS[(int)interactableMarker.doorColour];
 
-                    PrefabUtility.ApplyAddedGameObject(interactableMarker, prefabPath, InteractionMode.AutomatedAction);
+                    PrefabUtility.ApplyAddedGameObject(interactableMarkerGameObject, prefabPath, InteractionMode.AutomatedAction);
                 }
 
                 if (levelInfo.hasFsm)

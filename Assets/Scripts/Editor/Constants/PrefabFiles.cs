@@ -12,5 +12,6 @@ namespace RobbiEditor
     {
         public const string DOOR_OPEN_MARKER_PREFAB = PREFABS_FULL_PATH + "/" + LEVEL_NAME + "/" + "DoorOpenMarker.prefab";
         public const string DOOR_CLOSE_MARKER_PREFAB = PREFABS_FULL_PATH + "/" + LEVEL_NAME + "/" + "DoorCloseMarker.prefab";
+        public const string DOOR_TOGGLE_MARKER_PREFAB = PREFABS_FULL_PATH + "/" + LEVEL_NAME + "/" + "DoorToggleMarker.prefab";
     }
 }

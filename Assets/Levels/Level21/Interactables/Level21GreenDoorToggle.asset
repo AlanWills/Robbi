@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7888029496530543897
+--- !u!114 &-6253125409529215287
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: RaiseDoorEvent
   m_EditorClassIdentifier: 
   doorEvent: {fileID: 11400000, guid: 1e7ee4e625f0e1945a1a914766c3fc88, type: 2}
-  door: {fileID: 11400000, guid: 45ba0f12172691047b86bf0f3c3d0dae, type: 2}
---- !u!114 &-4184426830347415258
+  door: {fileID: 11400000, guid: cc1fe9345380ddb4ab39f62002f7b615, type: 2}
+--- !u!114 &-4898735673045509181
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -27,7 +27,39 @@ MonoBehaviour:
   m_Name: RaiseDoorEvent
   m_EditorClassIdentifier: 
   doorEvent: {fileID: 11400000, guid: 1e7ee4e625f0e1945a1a914766c3fc88, type: 2}
-  door: {fileID: 11400000, guid: 45ba0f12172691047b86bf0f3c3d0dae, type: 2}
+  door: {fileID: 11400000, guid: beb3bd79e0ae64c499de21b1674c8e47, type: 2}
+--- !u!114 &-4245800896524831914
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180a43e3c2714ef48a0b19e420392339, type: 3}
+  m_Name: Toggle Right
+  m_EditorClassIdentifier: 
+  position: {x: -1, y: 0, z: 0}
+  interactedTile: {fileID: 11400000, guid: 638cfe7b479d74e4f9f4c718e976e10a, type: 2}
+  uninteractedTile: {fileID: 0}
+  interactedModifiers:
+  - {fileID: -6253125409529215287}
+  - {fileID: 2122724268834560984}
+--- !u!114 &-2197623761677495042
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d18122b71ff71904c9b5c30c5edf7eac, type: 3}
+  m_Name: RaiseDoorEvent
+  m_EditorClassIdentifier: 
+  doorEvent: {fileID: 11400000, guid: 1e7ee4e625f0e1945a1a914766c3fc88, type: 2}
+  door: {fileID: 11400000, guid: cc1fe9345380ddb4ab39f62002f7b615, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38,13 +70,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09ff5ea72bd8b494995e000d09a0eefa, type: 3}
-  m_Name: Level20GreenDoorToggle
+  m_Name: Level21GreenDoorToggle
   m_EditorClassIdentifier: 
   loop: 1
   states:
-  - {fileID: 724636606438904813}
-  - {fileID: 7178828529297593713}
---- !u!114 &724636606438904813
+  - {fileID: 3994844843188726485}
+  - {fileID: -4245800896524831914}
+--- !u!114 &2122724268834560984
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d18122b71ff71904c9b5c30c5edf7eac, type: 3}
+  m_Name: RaiseDoorEvent
+  m_EditorClassIdentifier: 
+  doorEvent: {fileID: 11400000, guid: 1e7ee4e625f0e1945a1a914766c3fc88, type: 2}
+  door: {fileID: 11400000, guid: beb3bd79e0ae64c499de21b1674c8e47, type: 2}
+--- !u!114 &3994844843188726485
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -54,27 +100,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 180a43e3c2714ef48a0b19e420392339, type: 3}
-  m_Name: Level20GreenDoorToggleLeft
+  m_Name: Toggle Left
   m_EditorClassIdentifier: 
-  position: {x: -3, y: 0, z: 0}
-  interactedTile: {fileID: 11400000, guid: 638cfe7b479d74e4f9f4c718e976e10a, type: 2}
-  uninteractedTile: {fileID: 0}
-  interactedModifiers:
-  - {fileID: -4184426830347415258}
---- !u!114 &7178828529297593713
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 180a43e3c2714ef48a0b19e420392339, type: 3}
-  m_Name: Level20GreenDoorToggleRight
-  m_EditorClassIdentifier: 
-  position: {x: -3, y: 0, z: 0}
+  position: {x: -1, y: 0, z: 0}
   interactedTile: {fileID: 11400000, guid: 4a9200fab20442c4e882e43c95ed3333, type: 2}
   uninteractedTile: {fileID: 0}
   interactedModifiers:
-  - {fileID: -7888029496530543897}
+  - {fileID: -2197623761677495042}
+  - {fileID: -4898735673045509181}
