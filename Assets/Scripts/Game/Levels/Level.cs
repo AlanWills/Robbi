@@ -49,7 +49,7 @@ namespace Robbi.Levels
 
         [Header("Level Elements")]
         [SerializeField]
-        private List<Interactable> interactables = new List<Interactable>();
+        private List<IInteractable> interactables = new List<IInteractable>();
 
         #endregion
 

@@ -63,7 +63,7 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
                 case ConditionOperator.Equals:
                     foreach (Interactable interactable in value)
                     {
-                        if (interactable.position == target.Value)
+                        if (interactable.Position == target.Value)
                         {
                             return true;
                         }
@@ -74,7 +74,7 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
                 case ConditionOperator.NotEquals:
                     foreach (Interactable interactable in value)
                     {
-                        if (interactable.position == target.Value)
+                        if (interactable.Position == target.Value)
                         {
                             return false;
                         }

@@ -15,7 +15,7 @@ namespace RobbiEditor.Levels.Elements
     {
         #region Properties and Fields
 
-        public Interactable Switch
+        private Interactable Interactable
         {
             get { return target as Interactable; }
         }
@@ -45,41 +45,59 @@ namespace RobbiEditor.Levels.Elements
 
         #endregion
 
-
         #region GUI
 
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
 
-            DrawPropertiesExcluding(serializedObject, "interactedModifiers");
+            DrawPropertiesExcluding(serializedObject, "m_Script", "interactedModifiers");
 
             EditorGUILayout.Space();
-            RobbiEditorGUILayout.HorizontalLine();
-           
-            for (int i = interactedModifiersProperty.arraySize; i > 0; --i)
+
+            EditorGUILayout.LabelField("Modifiers", RobbiEditorStyles.BoldLabel);
+            EditorGUILayout.Space();
             {
-                Editor modifierEditor = Editor.CreateEditor(interactedModifiersProperty.GetArrayElementAtIndex(i - 1).objectReferenceValue);
-                modifierEditor.OnInspectorGUI();
+                ++EditorGUI.indentLevel;
+
+                for (int i = interactedModifiersProperty.arraySize; i > 0; --i)
+                {
+                    LevelModifier levelModifier = interactedModifiersProperty.GetArrayElementAtIndex(i - 1).objectReferenceValue as LevelModifier;
+
+                    EditorGUILayout.BeginHorizontal();
+                    {
+                        EditorGUILayout.LabelField(levelModifier.name, RobbiEditorStyles.BoldLabel);
+
+                        if (GUILayout.Button("Remove", GUILayout.ExpandWidth(false)))
+                        {
+                            Interactable.RemoveInteractedModifier(i - 1);
+                        }
+                    }
+                    EditorGUILayout.EndHorizontal();
+
+                    Editor modifierEditor = Editor.CreateEditor(levelModifier);
+                    modifierEditor.OnInspectorGUI();
+
+                    EditorGUILayout.Space();
+
+                    RobbiEditorGUILayout.HorizontalLine();
+                }
+
+                --EditorGUI.indentLevel;
+            }
+
+            EditorGUILayout.BeginHorizontal();
+            {
+                selectedModifierType = EditorGUILayout.Popup(selectedModifierType, modifierDisplayNames);
 
                 EditorGUILayout.Space();
 
-                if (GUILayout.Button("Remove"))
+                if (GUILayout.Button("Add Modifier", GUILayout.ExpandWidth(false)))
                 {
-                    Switch.RemoveInteractedModifier(i - 1);
+                    Interactable.AddInteractedModifier(modifierTypes[selectedModifierType]);
                 }
-
-                RobbiEditorGUILayout.HorizontalLine();
             }
-
-            selectedModifierType = EditorGUILayout.Popup(selectedModifierType, modifierDisplayNames);
-
-            EditorGUILayout.Space();
-
-            if (GUILayout.Button("Add Modifier"))
-            {
-                Switch.AddInteractedModifier(modifierTypes[selectedModifierType]);
-            }
+            EditorGUILayout.EndHorizontal();
 
             serializedObject.ApplyModifiedProperties();
         }

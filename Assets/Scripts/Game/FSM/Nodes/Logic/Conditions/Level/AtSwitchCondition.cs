@@ -61,10 +61,10 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
             switch (condition)
             {
                 case ConditionOperator.Equals:
-                    return value.position == target.Value;
+                    return value.Position == target.Value;
 
                 case ConditionOperator.NotEquals:
-                    return value.position != target.Value;
+                    return value.Position != target.Value;
 
                 default:
                     Debug.LogAssertionFormat("Condition Operator {0} is not supported in AtSwitch Condition", condition);

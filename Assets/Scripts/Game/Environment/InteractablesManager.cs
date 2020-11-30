@@ -16,7 +16,7 @@ namespace Robbi.Environment
     {
         #region Properties and Fields
 
-        public List<Interactable> Interactables { get; set; }
+        public List<IInteractable> Interactables { get; set; }
 
         public TilemapValue doorsTilemap;
 
@@ -26,9 +26,9 @@ namespace Robbi.Environment
 
         public void OnMovedTo(Vector3Int location)
         {
-            foreach (Interactable interactable in Interactables)
+            foreach (IInteractable interactable in Interactables)
             {
-                if (interactable.position == location)
+                if (interactable.Position == location)
                 {
                     InteractArgs interact = new InteractArgs()
                     {

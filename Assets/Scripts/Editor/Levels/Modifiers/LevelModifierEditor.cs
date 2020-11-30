@@ -15,9 +15,6 @@ namespace RobbiEditor.Levels.Modifiers
 
         public override void OnInspectorGUI()
         {
-            EditorGUILayout.LabelField(target.name, RobbiEditorStyles.BoldLabel);
-            EditorGUILayout.Space();
-
             serializedObject.Update();
 
             DrawPropertiesExcluding(serializedObject, "m_Script");

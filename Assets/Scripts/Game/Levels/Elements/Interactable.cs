@@ -3,18 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace Robbi.Levels.Elements
 {
-    public struct InteractArgs
-    {
-    }
-
     [CreateAssetMenu(fileName = "Interactable", menuName = "Robbi/Interactables/Interactable")]
-    public class Interactable : ScriptableObject
+    public class Interactable : ScriptableObject, IInteractable
     {
         #region Properties and Fields
 
@@ -23,7 +18,13 @@ namespace Robbi.Levels.Elements
             get { return interactedModifiers.Count; }
         }
 
-        public Vector3Int position;
+        [SerializeField]
+        private Vector3Int position;
+        public Vector3Int Position
+        {
+            get { return position; }
+            set { position = value; }
+        }
 
         [SerializeField]
         private List<LevelModifier> interactedModifiers = new List<LevelModifier>();
@@ -49,8 +50,8 @@ namespace Robbi.Levels.Elements
             interactedModifiers.Add(modifier);
 
 #if UNITY_EDITOR
-            AssetDatabase.AddObjectToAsset(modifier, this);
-            EditorUtility.SetDirty(this);
+            UnityEditor.AssetDatabase.AddObjectToAsset(modifier, this);
+            UnityEditor.EditorUtility.SetDirty(this);
 #endif
 
             return modifier;

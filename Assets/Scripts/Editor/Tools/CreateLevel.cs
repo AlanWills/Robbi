@@ -350,7 +350,7 @@ namespace RobbiEditor.Tools
             AssetDatabase.CreateAsset(tutorialDataGraph, Path.Combine(tutorialsPath, tutorialDataGraph.name + ".asset"));
             tutorialDataGraph.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
 
-            string prefabPath = string.Format("{0}Level{0}Tutorials.prefab", tutorialsPath, levelIndex);
+            string prefabPath = string.Format("{0}Level{1}Tutorials.prefab", tutorialsPath, levelIndex);
             AssetDatabase.CopyAsset(AssetDatabase.GetAssetPath(levelInfo.tutorialPrefabToCopy), prefabPath);
 
             GameObject createdPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);

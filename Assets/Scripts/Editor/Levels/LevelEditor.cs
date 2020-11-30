@@ -27,15 +27,26 @@ namespace RobbiEditor.Levels
                 string location = AssetDatabase.GetAssetPath(target);
                 string interactablesFolder = string.Format("{0}/{1}", Path.GetDirectoryName(location).Replace('\\', '/'), LevelDirectories.INTERACTABLES_NAME);
                 interactablesFolder = interactablesFolder.EndsWith("/") ? interactablesFolder.Substring(0, interactablesFolder.Length - 1) : interactablesFolder;
-                string[] interactableGuids = AssetDatabase.FindAssets("t:Interactable", new string[] { interactablesFolder });
+                string[] scriptableObjectGuids = AssetDatabase.FindAssets("t:ScriptableObject", new string[] { interactablesFolder });
 
-                SerializedProperty interactables = serializedObject.FindProperty("interactables");
-                interactables.arraySize = interactableGuids.Length;
-
-                for (int i = 0; i < interactableGuids.Length; ++i)
+                List<ScriptableObject> interactables = new List<ScriptableObject>();
+                foreach (string scriptableObjectGuid in scriptableObjectGuids)
                 {
-                    string interactablePath = AssetDatabase.GUIDToAssetPath(interactableGuids[i]);
-                    interactables.GetArrayElementAtIndex(i).objectReferenceValue = AssetDatabase.LoadAssetAtPath<Interactable>(interactablePath);
+                    string scriptableObjectPath = AssetDatabase.GUIDToAssetPath(scriptableObjectGuid);
+                    ScriptableObject scriptableObject = AssetDatabase.LoadAssetAtPath<Interactable>(scriptableObjectPath);
+
+                    if (scriptableObject is IInteractable)
+                    {
+                        interactables.Add(scriptableObject);
+                    }
+                }
+
+                SerializedProperty interactablesProperty = serializedObject.FindProperty("interactables");
+                interactablesProperty.arraySize = interactables.Count;
+
+                for (int i = 0; i < interactables.Count; ++i)
+                {
+                    interactablesProperty.GetArrayElementAtIndex(i).objectReferenceValue = interactables[i];
                 }
             }
 
