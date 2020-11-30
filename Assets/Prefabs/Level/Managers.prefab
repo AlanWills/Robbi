@@ -46,6 +46,50 @@ MonoBehaviour:
   movementTilemap: {fileID: 11400000, guid: 383b6f4d91bf25e4a924c5ca0f937a9a, type: 2}
   remainingWaypointsPlaceable: {fileID: 11400000, guid: 5795522ed653b6947a2cfc5b86742695,
     type: 2}
+--- !u!1 &1716386751844523028
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5966350632234475573}
+  - component: {fileID: 5483510007092365298}
+  m_Layer: 0
+  m_Name: TimeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5966350632234475573
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716386751844523028}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4253851984974408785}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5483510007092365298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716386751844523028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29addec58002ece41aa1307a9ad7a7b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeTaken: {fileID: 11400000, guid: 7df151db59235f944abc323e0967a9f5, type: 2}
 --- !u!1 &2772506934692611051
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,6 +148,8 @@ MonoBehaviour:
   onMovedFrom: {fileID: 11400000, guid: 7a0e4270079ee5048b10886aff50405b, type: 2}
   onWaypointPlaced: {fileID: 11400000, guid: b29c4307e71a13a4c82941ab0f1f4f80, type: 2}
   onWaypointRemoved: {fileID: 11400000, guid: 31ff3799148e3824ba5640fe14da17fb, type: 2}
+  onInvalidWaypointPlaced: {fileID: 11400000, guid: da5dc9084d15a8343bea6f5becad19d7,
+    type: 2}
   levelLoseWaypointUnreachable: {fileID: 11400000, guid: 1b9066ca0a135694c833d6cf627c5798,
     type: 2}
   levelLoseOutOfWaypoints: {fileID: 11400000, guid: 777ae9d2c79462a43ab4df761ddcd9e6,
@@ -377,6 +423,7 @@ Transform:
   - {fileID: 3525385912014895509}
   - {fileID: 8681021859159792560}
   - {fileID: 2772506934692611050}
+  - {fileID: 5966350632234475573}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

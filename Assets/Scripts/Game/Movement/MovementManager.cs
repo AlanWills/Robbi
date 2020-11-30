@@ -57,6 +57,7 @@ namespace Robbi.Movement
         public Vector3IntEvent onMovedFrom;
         public Vector3IntEvent onWaypointPlaced;
         public Vector3IntEvent onWaypointRemoved;
+        public Event onInvalidWaypointPlaced;
         public Event levelLoseWaypointUnreachable;
         public Event levelLoseOutOfWaypoints;
 
@@ -71,15 +72,7 @@ namespace Robbi.Movement
         public BoxCollider2D boundingBox;
 
         private List<Waypoint> waypoints = new List<Waypoint>();
-        private Stack<Vector3> stepsToNextWaypoint = new Stack<Vector3>();
-        private bool isLevelOver = false;
-
-        // Temporary structs for A*
-        private HashSet<Vector3Int> openSet = new HashSet<Vector3Int>();
-        private Dictionary<Vector3Int, Vector3Int> cameFrom = new Dictionary<Vector3Int, Vector3Int>();
-        private Dictionary<Vector3Int, float> costFromStart = new Dictionary<Vector3Int, float>();
-        private Dictionary<Vector3Int, float> costOverall = new Dictionary<Vector3Int, float>();
-        private List<Vector3Int> newWaypoints = new List<Vector3Int>();
+        private AStarMovement aStarMovement = new AStarMovement();
 
         #endregion
 
@@ -90,6 +83,8 @@ namespace Robbi.Movement
             waypointsPlaced.value = 0;
             isProgramRunning.value = false;
             movementSpeed.value = OptionsManager.Instance.DefaultMovementSpeed;
+            aStarMovement.MovementTilemap = movementTilemap.value;
+            aStarMovement.DoorsTilemap = doorsTilemap.value;
 
             Vector3Int movementGridSize = movementTilemap.value.size;
             Vector3Int movementOrigin = movementTilemap.value.origin;
@@ -104,17 +99,17 @@ namespace Robbi.Movement
                 Vector3 playerLocalPos = playerLocalPosition.value;
                 Vector3Int movedFrom = new Vector3Int(Mathf.RoundToInt(playerLocalPos.x - 0.5f), Mathf.RoundToInt(playerLocalPos.y - 0.5f), Mathf.RoundToInt(playerLocalPos.z));
 
-                if (stepsToNextWaypoint.Count > 0)
+                if (aStarMovement.HasStepsToNextWaypoint)
                 {
                     // We are moving towards our next waypoint along the steps
-                    Vector3 nextStepPosition = stepsToNextWaypoint.Peek();
+                    Vector3 nextStepPosition = aStarMovement.NextStep;
                     Vector3 newPosition = Vector3.MoveTowards(playerLocalPos, nextStepPosition, movementSpeed.value * Time.deltaTime);
                     Vector3Int movedTo = new Vector3Int(Mathf.RoundToInt(newPosition.x - 0.5f), Mathf.RoundToInt(newPosition.y - 0.5f), Mathf.RoundToInt(newPosition.z));
                     
                     if (newPosition == nextStepPosition)
                     {
                         // This step of movement is completed
-                        stepsToNextWaypoint.Pop();
+                        aStarMovement.CompleteStep();
 
                         if (movedTo == waypoints[0].gridPosition)
                         {
@@ -179,7 +174,7 @@ namespace Robbi.Movement
             
             if (isProgramRunning.value)
             {
-                CalculateGridSteps(movementTilemap.value.LocalToCell(playerLocalPosition.value), waypoints[0].gridPosition);
+                aStarMovement.CalculateGridSteps(playerLocalPosition.value, waypoints[0].gridPosition);
             }
         }
 
@@ -201,6 +196,7 @@ namespace Robbi.Movement
             if (remainingWaypointsPlaceable.value <= 0)
             {
                 // Cannot add waypoints if we have run out of our allotted amount
+                onInvalidWaypointPlaced.Raise();
                 return;
             }
 
@@ -264,144 +260,6 @@ namespace Robbi.Movement
             waypoints.RemoveAt(waypointIndex);
             --waypointsPlaced.value;
             onWaypointRemoved.Raise(waypoint.gridPosition);
-        }
-
-        #endregion
-
-        #region Pathfinding
-
-        private void CalculateGridSteps(Vector3Int startingPosition, Vector3Int targetPosition)
-        {
-            openSet.Clear();
-            cameFrom.Clear();
-            costFromStart.Clear();
-            costOverall.Clear();
-
-            openSet.Add(startingPosition);
-            costFromStart.Add(startingPosition, 0);
-            costOverall.Add(startingPosition, Math.Abs(targetPosition.x - startingPosition.x) + Math.Abs(targetPosition.y - startingPosition.y));
-
-            while (openSet.Count > 0)
-            {
-                Vector3Int bestPosition = GetBestPosition(openSet, costOverall);
-                if (bestPosition == targetPosition)
-                {
-                    ConstructGridSteps(targetPosition);
-                }
-
-                openSet.Remove(bestPosition);
-
-                // Left
-                UpdateDirectional(new Vector3Int(-1, 0, 0), bestPosition, targetPosition, openSet, cameFrom, costFromStart, costOverall);
-
-                // Up
-                UpdateDirectional(new Vector3Int(0, 1, 0), bestPosition, targetPosition, openSet, cameFrom, costFromStart, costOverall);
-
-                // Right
-                UpdateDirectional(new Vector3Int(1, 0, 0), bestPosition, targetPosition, openSet, cameFrom, costFromStart, costOverall);
-
-                // Down
-                UpdateDirectional(new Vector3Int(0, -1, 0), bestPosition, targetPosition, openSet, cameFrom, costFromStart, costOverall);
-            }
-
-            ConstructGridSteps(targetPosition);
-        }
-
-        private Vector3Int GetBestPosition(HashSet<Vector3Int> openSet, Dictionary<Vector3Int, float> costOverall)
-        {
-            Vector3Int bestPosition = new Vector3Int();
-            float currentCost = float.PositiveInfinity;
-
-            foreach (var position in openSet)
-            {
-                if (costOverall.ContainsKey(position) && costOverall[position] < currentCost)
-                {
-                    bestPosition = position;
-                    currentCost = costOverall[position];
-                }
-            }
-
-            Debug.Assert(currentCost < float.PositiveInfinity, "Failed to find best cell for A*");
-            return bestPosition;
-        }
-
-        private void UpdateDirectional(
-            Vector3Int delta,
-            Vector3Int bestPosition,
-            Vector3Int targetPosition,
-            HashSet<Vector3Int> openSet,
-            Dictionary<Vector3Int, Vector3Int> cameFrom,
-            Dictionary<Vector3Int, float> costFromStart,
-            Dictionary<Vector3Int, float> costOverall)
-        {
-            Vector3Int neighbour = bestPosition + delta;
-            if (movementTilemap.value.HasTile(neighbour))
-            {
-                float distanceToNeighbour = doorsTilemap.value.HasTile(neighbour) ? 1000.0f : 1.0f;
-                float tentativeCostFromStart = costFromStart[bestPosition] + distanceToNeighbour;
-                float neighbourScore = costFromStart.ContainsKey(neighbour) ? costFromStart[neighbour] : float.MaxValue;
-
-                if (tentativeCostFromStart < neighbourScore)
-                {
-                    if (!cameFrom.ContainsKey(neighbour))
-                    {
-                        cameFrom.Add(neighbour, bestPosition);
-                    }
-                    else
-                    {
-                        cameFrom[neighbour] = bestPosition;
-                    }
-
-                    if (!costFromStart.ContainsKey(neighbour))
-                    {
-                        costFromStart.Add(neighbour, tentativeCostFromStart);
-                    }
-                    else
-                    {
-                        costFromStart[neighbour] = tentativeCostFromStart;
-                    }
-
-                    if (!costOverall.ContainsKey(neighbour))
-                    {
-                        costOverall.Add(neighbour, costFromStart[neighbour] + Math.Abs(targetPosition.x - neighbour.x) + Math.Abs(targetPosition.y - neighbour.y));
-                    }
-
-                    if (!openSet.Contains(neighbour))
-                    {
-                        openSet.Add(neighbour);
-                    }
-                }
-            }
-        }
-
-        private void ConstructGridSteps(Vector3Int targetGridPosition)
-        {
-            newWaypoints.Clear();
-            stepsToNextWaypoint.Clear();
-
-            while (cameFrom.ContainsKey(targetGridPosition))
-            {
-                newWaypoints.Add(targetGridPosition);
-                targetGridPosition = cameFrom[targetGridPosition];
-            }
-
-            for (int i = newWaypoints.Count - 1; i >= 0; --i)
-            {
-                if (doorsTilemap.value.HasTile(newWaypoints[i]))
-                {
-                    for (int j = i; j >= 0; --j)
-                    {
-                        newWaypoints.RemoveAt(j);
-                    }
-
-                    break;
-                }
-            }
-
-            foreach (Vector3Int waypoint in newWaypoints)
-            {
-                stepsToNextWaypoint.Push(movementTilemap.value.GetCellCenterWorld(waypoint));
-            }
         }
 
         #endregion
