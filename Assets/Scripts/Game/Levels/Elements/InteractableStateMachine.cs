@@ -59,7 +59,12 @@ namespace Robbi.Levels.Elements
         {
             Interactable state = ScriptableObject.CreateInstance<Interactable>();
             state.name = name;
+            state.hideFlags = HideFlags.HideInHierarchy;
             states.Add(state);
+
+#if UNITY_EDITOR
+            AssetUtils.EditorOnly.AddObjectToMainAsset(state, this);
+#endif
 
             return state;
         }
@@ -68,13 +73,16 @@ namespace Robbi.Levels.Elements
         {
             if (0 <= index && index < NumStates)
             {
+#if UNITY_EDITOR
+                Object.DestroyImmediate(states[index], true);
+#endif
                 states.RemoveAt(index);
             }
         }
 
-        #endregion
+#endregion
 
-        #region Interaction Methods
+#region Interaction Methods
 
         public void Interact(InteractArgs interactArgs)
         {
@@ -99,6 +107,6 @@ namespace Robbi.Levels.Elements
             }
         }
 
-        #endregion
+#endregion
     }
 }

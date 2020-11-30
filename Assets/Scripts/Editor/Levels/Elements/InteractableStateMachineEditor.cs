@@ -54,7 +54,7 @@ namespace RobbiEditor.Levels.Elements
                 for (int i = statesProperty.arraySize; i > 0; --i)
                 {
                     Interactable state = statesProperty.GetArrayElementAtIndex(i - 1).objectReferenceValue as Interactable;
-
+                    
                     EditorGUILayout.BeginHorizontal();
                     {
                         EditorGUILayout.LabelField(string.Format("{0} (State Index {1})", state.name, i - 1), RobbiEditorStyles.BoldLabel);
@@ -84,9 +84,7 @@ namespace RobbiEditor.Levels.Elements
                 {
                     TextInputPopup.Display("New State...", (string stateName) =>
                     {
-                        Interactable interactable = InteractableStateMachine.AddState(stateName);
-                        AssetDatabase.CreateAsset(interactable, string.Format("{0}/{1}.asset", AssetUtility.GetAssetFolderPath(target), interactable.name));
-                        AddressablesUtility.SetAddressableInfo(AssetDatabase.GetAssetPath(interactable), AddressablesConstants.LEVELS_GROUP);
+                        InteractableStateMachine.AddState(stateName);
                     });
                 }
 

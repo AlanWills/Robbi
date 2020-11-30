@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4623049381068827173
+--- !u!114 &-7888029496530543897
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13,42 +13,8 @@ MonoBehaviour:
   m_Name: RaiseDoorEvent
   m_EditorClassIdentifier: 
   doorEvent: {fileID: 11400000, guid: 40fd3c3b3eff16b4c88e90fe79d582dd, type: 2}
-  door: {fileID: 11400000, guid: 0f4ae28f44ba31e41a8faef26b6660df, type: 2}
---- !u!114 &-310695960526080513
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d18122b71ff71904c9b5c30c5edf7eac, type: 3}
-  m_Name: RaiseDoorEvent
-  m_EditorClassIdentifier: 
-  doorEvent: {fileID: 11400000, guid: 40fd3c3b3eff16b4c88e90fe79d582dd, type: 2}
-  door: {fileID: 11400000, guid: 4764a69f5b337754f99d0f592abcee58, type: 2}
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 180a43e3c2714ef48a0b19e420392339, type: 3}
-  m_Name: Level17BlueOpenGreenCloseSwitch
-  m_EditorClassIdentifier: 
-  position: {x: 6, y: 0, z: 0}
-  interactedTile: {fileID: 0}
-  uninteractedTile: {fileID: 0}
-  interactedModifiers:
-  - {fileID: 8726890400235267653}
-  - {fileID: -310695960526080513}
-  - {fileID: -4623049381068827173}
-  - {fileID: 8802181948657095058}
---- !u!114 &8726890400235267653
+  door: {fileID: 11400000, guid: 45ba0f12172691047b86bf0f3c3d0dae, type: 2}
+--- !u!114 &-4184426830347415258
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,8 +27,24 @@ MonoBehaviour:
   m_Name: RaiseDoorEvent
   m_EditorClassIdentifier: 
   doorEvent: {fileID: 11400000, guid: d3249d8ae5bd19141a7c3fe5b6b72ef5, type: 2}
-  door: {fileID: 11400000, guid: 88425c46d30f65945963ba16308488e3, type: 2}
---- !u!114 &8802181948657095058
+  door: {fileID: 11400000, guid: 45ba0f12172691047b86bf0f3c3d0dae, type: 2}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09ff5ea72bd8b494995e000d09a0eefa, type: 3}
+  m_Name: Level20GreenDoorToggle
+  m_EditorClassIdentifier: 
+  loop: 1
+  states:
+  - {fileID: 724636606438904813}
+  - {fileID: 7178828529297593713}
+--- !u!114 &724636606438904813
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -71,8 +53,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d18122b71ff71904c9b5c30c5edf7eac, type: 3}
-  m_Name: RaiseDoorEvent
+  m_Script: {fileID: 11500000, guid: 180a43e3c2714ef48a0b19e420392339, type: 3}
+  m_Name: Level20GreenDoorToggleLeft
   m_EditorClassIdentifier: 
-  doorEvent: {fileID: 11400000, guid: 40fd3c3b3eff16b4c88e90fe79d582dd, type: 2}
-  door: {fileID: 11400000, guid: 08dee1e9945e8ee47a7cac4cf5856067, type: 2}
+  position: {x: -3, y: 0, z: 0}
+  interactedTile: {fileID: 11400000, guid: 638cfe7b479d74e4f9f4c718e976e10a, type: 2}
+  uninteractedTile: {fileID: 0}
+  interactedModifiers:
+  - {fileID: -4184426830347415258}
+--- !u!114 &7178828529297593713
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180a43e3c2714ef48a0b19e420392339, type: 3}
+  m_Name: Level20GreenDoorToggleRight
+  m_EditorClassIdentifier: 
+  position: {x: -3, y: 0, z: 0}
+  interactedTile: {fileID: 11400000, guid: 4a9200fab20442c4e882e43c95ed3333, type: 2}
+  uninteractedTile: {fileID: 0}
+  interactedModifiers:
+  - {fileID: -7888029496530543897}

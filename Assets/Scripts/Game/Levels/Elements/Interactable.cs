@@ -64,7 +64,7 @@ namespace Robbi.Levels.Elements
             interactedModifiers.Add(modifier);
 
 #if UNITY_EDITOR
-            UnityEditor.AssetDatabase.AddObjectToAsset(modifier, this);
+            AssetUtils.EditorOnly.AddObjectToMainAsset(modifier, this);
             UnityEditor.EditorUtility.SetDirty(this);
 #endif
 

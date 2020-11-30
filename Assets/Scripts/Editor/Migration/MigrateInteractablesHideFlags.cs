@@ -19,6 +19,7 @@ namespace RobbiEditor.Migration
         [MenuItem("Robbi/Migration/Migrate Interactables Hide Flags")]
         public static void MenuItem()
         {
+            
             foreach (string interactableGuid in AssetDatabase.FindAssets("t:Interactable"))
             {
                 string interactablePath = AssetDatabase.GUIDToAssetPath(interactableGuid);
