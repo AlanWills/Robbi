@@ -1,7 +1,10 @@
 ﻿using Robbi.Levels.Elements;
+using RobbiEditor.Constants;
 using RobbiEditor.Popups;
+using RobbiEditor.Utils;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +24,7 @@ namespace RobbiEditor.Levels.Elements
         }
 
         private SerializedProperty statesProperty;
+        private bool isMainAsset;
 
         #endregion
 
@@ -29,6 +33,7 @@ namespace RobbiEditor.Levels.Elements
         private void OnEnable()
         {
             statesProperty = serializedObject.FindProperty("states");
+            isMainAsset = AssetDatabase.IsMainAsset(target);
         }
 
         #endregion
@@ -42,7 +47,6 @@ namespace RobbiEditor.Levels.Elements
             DrawPropertiesExcluding(serializedObject, "m_Script", "states");
 
             EditorGUILayout.Space();
-
             EditorGUILayout.LabelField("States", RobbiEditorStyles.BoldLabel);
             {
                 ++EditorGUI.indentLevel;
@@ -54,7 +58,7 @@ namespace RobbiEditor.Levels.Elements
                     EditorGUILayout.BeginHorizontal();
                     {
                         EditorGUILayout.LabelField(string.Format("{0} (State Index {1})", state.name, i - 1), RobbiEditorStyles.BoldLabel);
-                        
+
                         if (GUILayout.Button("Remove", GUILayout.ExpandWidth(false)))
                         {
                             InteractableStateMachine.RemoveState(i - 1);
@@ -80,7 +84,9 @@ namespace RobbiEditor.Levels.Elements
                 {
                     TextInputPopup.Display("New State...", (string stateName) =>
                     {
-                        InteractableStateMachine.AddState(stateName);
+                        Interactable interactable = InteractableStateMachine.AddState(stateName);
+                        AssetDatabase.CreateAsset(interactable, string.Format("{0}/{1}.asset", AssetUtility.GetAssetFolderPath(target), interactable.name));
+                        AddressablesUtility.SetAddressableInfo(AssetDatabase.GetAssetPath(interactable), AddressablesConstants.LEVELS_GROUP);
                     });
                 }
 

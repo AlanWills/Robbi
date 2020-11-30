@@ -49,7 +49,7 @@ namespace Robbi.Levels
 
         [Header("Level Elements")]
         [SerializeField]
-        private List<IInteractable> interactables = new List<IInteractable>();
+        private List<ScriptableObject> interactables = new List<ScriptableObject>();
 
         #endregion
 
@@ -70,7 +70,7 @@ namespace Robbi.Levels
             levelData.playerLocalPosition.value = grid.GetCellCenterLocal(playerStartPosition);
             levelData.remainingWaypointsPlaceable.value = maxWaypointsPlaceable;
             
-            levelManagers.interactablesManager.Interactables = interactables;
+            levelManagers.interactablesManager.SetInteractables(interactables);
 
             levelGameObjects.levelGameObject.value = level;
             levelGameObjects.robbiGameObject.value.name = "Robbi";

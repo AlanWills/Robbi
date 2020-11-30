@@ -33,7 +33,7 @@ namespace RobbiEditor.Levels
                 foreach (string scriptableObjectGuid in scriptableObjectGuids)
                 {
                     string scriptableObjectPath = AssetDatabase.GUIDToAssetPath(scriptableObjectGuid);
-                    ScriptableObject scriptableObject = AssetDatabase.LoadAssetAtPath<Interactable>(scriptableObjectPath);
+                    ScriptableObject scriptableObject = AssetDatabase.LoadAssetAtPath<ScriptableObject>(scriptableObjectPath);
 
                     if (scriptableObject is IInteractable)
                     {

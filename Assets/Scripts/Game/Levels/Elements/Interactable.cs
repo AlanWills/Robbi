@@ -23,7 +23,20 @@ namespace Robbi.Levels.Elements
         public Vector3Int Position
         {
             get { return position; }
-            set { position = value; }
+        }
+
+        [SerializeField]
+        private Tile interactedTile;
+        public Tile InteractedTile
+        {
+            get { return interactedTile; }
+        }
+
+        [SerializeField]
+        private Tile uninteractedTile;
+        public Tile UninteractedTile
+        {
+            get { return uninteractedTile; }
         }
 
         [SerializeField]
@@ -47,6 +60,7 @@ namespace Robbi.Levels.Elements
         {
             LevelModifier modifier = ScriptableObject.CreateInstance(modifierType) as LevelModifier;
             modifier.name = modifierType.Name;
+            modifier.hideFlags = HideFlags.HideInHierarchy;
             interactedModifiers.Add(modifier);
 
 #if UNITY_EDITOR
@@ -74,6 +88,8 @@ namespace Robbi.Levels.Elements
 
         public void Interact(InteractArgs interactArgs)
         {
+            interactArgs.interactablesTilemap.SetTile(position, InteractedTile);
+
             foreach (LevelModifier modifier in interactedModifiers)
             {
                 modifier.Execute(interactArgs);

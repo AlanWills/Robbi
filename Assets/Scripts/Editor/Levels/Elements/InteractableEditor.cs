@@ -1,5 +1,6 @@
 ﻿using Robbi.Levels.Elements;
 using Robbi.Levels.Modifiers;
+using RobbiEditor.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +22,8 @@ namespace RobbiEditor.Levels.Elements
         }
 
         private SerializedProperty interactedModifiersProperty;
-
         private int selectedModifierType = 0;
+        private bool isMainAsset;
 
         private static Type[] modifierTypes = new Type[]
         {
@@ -41,6 +42,7 @@ namespace RobbiEditor.Levels.Elements
         private void OnEnable()
         {
             interactedModifiersProperty = serializedObject.FindProperty("interactedModifiers");
+            isMainAsset = AssetDatabase.IsMainAsset(target);
         }
 
         #endregion
@@ -54,9 +56,18 @@ namespace RobbiEditor.Levels.Elements
             DrawPropertiesExcluding(serializedObject, "m_Script", "interactedModifiers");
 
             EditorGUILayout.Space();
+            EditorGUILayout.BeginHorizontal();
 
             EditorGUILayout.LabelField("Modifiers", RobbiEditorStyles.BoldLabel);
+
+            if (isMainAsset && GUILayout.Button("Apply Hide Flags", GUILayout.ExpandWidth(false)))
+            {
+                AssetUtility.ApplyHideFlags(Interactable, HideFlags.HideInHierarchy);
+            }
+
+            EditorGUILayout.EndHorizontal();
             EditorGUILayout.Space();
+
             {
                 ++EditorGUI.indentLevel;
 

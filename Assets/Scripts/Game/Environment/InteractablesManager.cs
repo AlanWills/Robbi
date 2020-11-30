@@ -16,9 +16,31 @@ namespace Robbi.Environment
     {
         #region Properties and Fields
 
-        public List<IInteractable> Interactables { get; set; }
-
+        public TilemapValue interactablesTilemap;
         public TilemapValue doorsTilemap;
+
+        private List<IInteractable> interactables = new List<IInteractable>();
+
+        #endregion
+
+        #region Interactable Management
+
+        public void SetInteractables(IEnumerable<ScriptableObject> _interactables)
+        {
+            interactables.Clear();
+
+            foreach (ScriptableObject scriptableObject in _interactables)
+            {
+                if (scriptableObject is IInteractable)
+                {
+                    interactables.Add(scriptableObject as IInteractable);
+                }
+                else
+                {
+                    Debug.LogAssertionFormat("SO {0} is not derived from IInteractable", scriptableObject.name);
+                }
+            }
+        }
 
         #endregion
 
@@ -26,12 +48,13 @@ namespace Robbi.Environment
 
         public void OnMovedTo(Vector3Int location)
         {
-            foreach (IInteractable interactable in Interactables)
+            foreach (IInteractable interactable in interactables)
             {
                 if (interactable.Position == location)
                 {
                     InteractArgs interact = new InteractArgs()
                     {
+                        interactablesTilemap = interactablesTilemap.value
                     };
 
                     interactable.Interact(interact);

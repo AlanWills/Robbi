@@ -34,5 +34,27 @@ namespace RobbiEditor.Utils
 			folderName = folderName.EndsWith("/") ? folderName.Substring(0, folderName.Length - 1) : folderName;
 			AssetDatabase.CreateFolder(parent, folderName);
         }
+
+		public static void ApplyHideFlags(Object obj, HideFlags hideFlags)
+        {
+            foreach (Object o in AssetDatabase.LoadAllAssetsAtPath(AssetDatabase.GetAssetPath(obj)))
+            {
+                if (o != null && !AssetDatabase.IsMainAsset(o))
+                {
+                    o.hideFlags = hideFlags;
+                    EditorUtility.SetDirty(o);
+                    EditorUtility.SetDirty(obj);
+                }
+            }
+
+            AssetDatabase.SaveAssets();
+        }
+
+        public static string GetAssetFolderPath(Object obj)
+        {
+            string assetPath = AssetDatabase.GetAssetPath(obj);
+            int indexOfSlash = assetPath.LastIndexOf('/');
+            return indexOfSlash > 0 ? assetPath.Substring(0, indexOfSlash) : assetPath;
+        }
 	}
 }

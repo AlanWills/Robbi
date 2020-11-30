@@ -1,4 +1,5 @@
 ﻿using Robbi.FSM.Nodes;
+using RobbiEditor.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,16 +58,7 @@ namespace Robbi.FSM
 
             if (GUILayout.Button("Apply Hide Flags"))
             {
-                foreach (UnityEngine.Object obj in AssetDatabase.LoadAllAssetsAtPath(AssetDatabase.GetAssetPath(graph)))
-                {
-                    if (obj != null && obj != graph)
-                    {
-                        obj.hideFlags = HideFlags.HideInHierarchy;
-                        EditorUtility.SetDirty(obj);
-                    }
-                }
-
-                AssetDatabase.SaveAssets();
+                AssetUtility.ApplyHideFlags(graph, HideFlags.HideInHierarchy);
             }
 
             if (GUILayout.Button("Remove Null Nodes"))

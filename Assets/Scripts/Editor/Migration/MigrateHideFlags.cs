@@ -16,7 +16,7 @@ namespace RobbiEditor.Migration
     public static class MigrateHideFlags
     {
         [MenuItem("Robbi/Migration/Migrate Hide Flags")]
-        public static void MigrateHorizontalDoors()
+        public static void MenuItem()
         {
             foreach (string fsmGraphGuid in AssetDatabase.FindAssets("t:FSMGraph"))
             {
