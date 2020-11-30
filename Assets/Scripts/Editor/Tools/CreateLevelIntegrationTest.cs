@@ -39,7 +39,7 @@ namespace RobbiEditor.Tools
 
             string levelsFolderPath = string.Format("{0}Level{1}", LEVELS_PATH, levelManager.CurrentLevelIndex);
             AssetDatabase.CreateFolder(levelsFolderPath, "Tests");
-            string integrationTestPath = string.Format("{0}/{1}Level{2}IntegrationTestFSM.asset", levelsFolderPath, TESTS_NAME, levelManager.CurrentLevelIndex);
+            string integrationTestPath = string.Format("{0}/{1}{2}.asset", levelsFolderPath, TESTS_NAME, integrationTest.name);
             AssetDatabase.CreateAsset(integrationTest, integrationTestPath);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
