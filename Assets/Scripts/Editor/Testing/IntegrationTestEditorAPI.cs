@@ -16,6 +16,17 @@ namespace RobbiEditor.Testing
             IntegrationTestRunner.Instance.RunTests(testNames);
         }
 
+        public static void RunTests(params Type[] testTypes)
+        {
+            List<string> testNames = new List<string>(testTypes.Length);
+            for (int i = 0; i < testTypes.Length; ++i)
+            {
+                testNames.Add(testTypes[i].Name);
+            }
+
+            RunTests(testNames);
+        }
+
         public static void RunTest(string testName)
         {
             RunTests(new List<string>() { testName });
@@ -24,12 +35,6 @@ namespace RobbiEditor.Testing
         public static void RunTest<T>()
         {
             RunTest(typeof(T).Name);
-        }
-
-        [MenuItem("Robbi/Test/Test Multiple")]
-        public static void MenuItem()
-        {
-            IntegrationTestEditorAPI.RunTests(new List<string>() { "MainMenuToLevel", "MainMenuToLockedLevel" });
         }
     }
 }

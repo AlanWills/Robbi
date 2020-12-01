@@ -76,7 +76,6 @@ namespace Robbi.Testing
             integrationTestNames.Clear();
             integrationTestNames.AddRange(testNames);
             currentTestIndex = 0;
-            gameObject.SetActive(true);
 
 #if UNITY_EDITOR
             UnityEditor.EditorUtility.SetDirty(this);
@@ -93,6 +92,7 @@ namespace Robbi.Testing
 
                 integrationTestNames.Clear();
                 currentTestIndex = 0;
+                testResult = false;
 
 #if UNITY_EDITOR
                 UnityEditor.EditorUtility.SetDirty(this);
@@ -140,8 +140,6 @@ namespace Robbi.Testing
 
             while (testInProgress) { yield return null; }
 
-            gameObject.SetActive(false);
-
             string directoryPath = Path.Combine(Application.dataPath, "..", "TestResults");
 
             Directory.CreateDirectory(directoryPath);
@@ -169,8 +167,6 @@ namespace Robbi.Testing
 
                 if (instance.currentTestIndex < instance.integrationTestNames.Count)
                 {
-                    instance.gameObject.SetActive(true);
-
                     UnityEditor.EditorUtility.SetDirty(instance);
                     UnityEditor.AssetDatabase.SaveAssets();
                     UnityEditor.EditorApplication.EnterPlaymode();
@@ -199,54 +195,22 @@ namespace Robbi.Testing
 
         public void TryPassTest(string testName)
         {
-            if (testName == integrationTestNames[currentTestIndex])
-            {
-                testInProgress = false;
-                testResult = true;
-                //Exit(true);
-            }
+            TrySetResult(testName, true);
         }
 
         public void TryFailTest(string testName)
         {
+            TrySetResult(testName, false);
+        }
+
+        private void TrySetResult(string testName, bool result)
+        {
             if (testName == integrationTestNames[currentTestIndex])
             {
                 testInProgress = false;
-                testResult = false;
-                //Exit(false);
+                testResult = result;
             }
         }
-
-#endregion
-
-#region Results
-
-//        private void Exit(bool testResult)
-//        {
-//            StopCoroutine(testCoroutine);
-//            testCoroutine = null;
-//            gameObject.SetActive(false);
-
-//#if UNITY_EDITOR
-//            string directoryPath = Path.Combine(Application.dataPath, "..", "TestResults");
-
-//            Directory.CreateDirectory(directoryPath);
-//            File.WriteAllText(
-//                Path.Combine(directoryPath, string.Format("{0}-{1}.txt", integrationTestName, testResult ? "Passed" : "Failed")),
-//                (testResult ? "1\n" : "0\n") + logContents.ToString());
-
-//            if (Application.isBatchMode)
-//            {
-//                // 0 = everything OK
-//                // 1 = everything NOT OK
-//                UnityEditor.EditorApplication.Exit(testResult ? 0 : 1);
-//            }
-//            else
-//            {
-//                UnityEditor.EditorApplication.ExitPlaymode();
-//            }
-//#endif
-//        }
 
 #endregion
     }
