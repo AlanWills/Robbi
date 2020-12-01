@@ -4,7 +4,6 @@ using Robbi.Levels.Modifiers;
 using RobbiEditor.Constants;
 using RobbiEditor.Popups;
 using RobbiEditor.Utils;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -27,7 +26,7 @@ namespace RobbiEditor.Levels.Elements
         }
 
         private SerializedProperty statesProperty;
-        private bool isMainAsset;
+        private InteractableStateMachine copyFrom;
 
         #endregion
 
@@ -36,7 +35,6 @@ namespace RobbiEditor.Levels.Elements
         private void OnEnable()
         {
             statesProperty = serializedObject.FindProperty("states");
-            isMainAsset = AssetDatabase.IsMainAsset(target);
         }
 
         #endregion
@@ -67,6 +65,16 @@ namespace RobbiEditor.Levels.Elements
                     toggleDoorRight.doorEvent = AssetDatabase.LoadAssetAtPath<DoorEvent>(EventFiles.DOOR_TOGGLED_EVENT);
                 }
             }
+
+            EditorGUILayout.BeginHorizontal();
+            copyFrom = EditorGUILayout.ObjectField(copyFrom, typeof(InteractableStateMachine), false) as InteractableStateMachine;
+
+            if (GUILayout.Button("Copy", GUILayout.ExpandWidth(false)))
+            {
+                CopyFrom();
+            }
+
+            EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("States", RobbiEditorStyles.BoldLabel);
@@ -114,6 +122,39 @@ namespace RobbiEditor.Levels.Elements
             }
 
             serializedObject.ApplyModifiedProperties();
+        }
+
+        #endregion
+
+        #region Utility
+
+        private void CopyFrom()
+        {
+            InteractableStateMachine copyTo = InteractableStateMachine;
+            for (int i = 0; i < copyFrom.NumStates; ++i)
+            {
+                Interactable originalState = copyFrom.GetState(i);
+                Interactable copyState = copyTo.AddState(originalState.name);
+                CopyState(originalState, copyState);
+            }
+
+            EditorUtility.SetDirty(copyTo);
+        }
+
+        private void CopyState(Interactable original, Interactable copyTo)
+        {
+            copyTo.InteractedTile = original.InteractedTile;
+            copyTo.UninteractedTile = original.UninteractedTile;
+
+            for (int i = 0; i < original.NumInteractedModifiers; ++i)
+            {
+                RaiseDoorEvent raiseDoorEvent = original.GetInteractedModifier(i) as RaiseDoorEvent;
+                RaiseDoorEvent copyModifier = copyTo.AddInteractedModifier(raiseDoorEvent.GetType()) as RaiseDoorEvent;
+                copyModifier.door = raiseDoorEvent.door;
+                copyModifier.doorEvent = raiseDoorEvent.doorEvent;
+
+                EditorUtility.SetDirty(copyModifier);
+            }
         }
 
         #endregion

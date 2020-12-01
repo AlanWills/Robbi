@@ -44,6 +44,13 @@ namespace Robbi.Levels.Elements
         public Tile UninteractedTile
         {
             get { return uninteractedTile; }
+            set
+            {
+                uninteractedTile = value;
+#if UNITY_EDITOR
+                UnityEditor.EditorUtility.SetDirty(this);
+#endif
+            }
         }
 
         [SerializeField]
