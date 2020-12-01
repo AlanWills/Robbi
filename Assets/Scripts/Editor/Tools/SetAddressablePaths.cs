@@ -44,7 +44,7 @@ namespace RobbiEditor.Tools
                 {
                     if (Directory.Exists(levelFolder.TestsFolderPath))
                     {
-                        AddressablesUtility.SetAddressableInfo(levelFolder.TestFSMPath, AddressablesConstants.TESTS_GROUP, string.Format("Level{0}IntegrationTest", levelFolder.Index));
+                        AddressablesUtility.SetAddressableInfo(levelFolder.TestFSMPath, AddressablesConstants.TESTS_GROUP);
                     }
                 }
                 
