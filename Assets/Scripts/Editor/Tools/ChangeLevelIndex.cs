@@ -1,5 +1,7 @@
 ﻿using Robbi.FSM;
 using Robbi.Levels;
+using Robbi.Levels.Elements;
+using RobbiEditor.Iterators;
 using RobbiEditor.Utils;
 using System;
 using System.Collections.Generic;
@@ -68,6 +70,9 @@ namespace RobbiEditor.Tools
             RenameFSM();
             RenamePrefab();
             RenameLevelData();
+            RenameTest();
+            RenameDoors();
+            RenameInteractables();
 
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
@@ -125,6 +130,48 @@ namespace RobbiEditor.Tools
             {
                 errorString = errorMessage;
                 Debug.LogError(errorString);
+            }
+        }
+
+        private void RenameTest()
+        {
+            string oldTestPath = string.Format("{0}/{1}Level{2}IntegrationTest.asset", NewLevelFolderFullPath, LevelDirectories.TESTS_NAME, oldLevelIndex);
+            string errorMessage = AssetDatabase.RenameAsset(oldTestPath, string.Format("Level{0}IntegrationTest.asset", newLevelIndex));
+
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                errorString = errorMessage;
+                Debug.LogError(errorString);
+            }
+        }
+
+        private void RenameDoors()
+        {
+            foreach (string doorPath in new FindAssets<Door>(NewLevelFolderFullPath))
+            {
+                Door door = AssetDatabase.LoadAssetAtPath<Door>(doorPath);
+                string errorMessage = AssetDatabase.RenameAsset(doorPath, string.Format("{0}.asset", door.name.Replace(oldLevelIndex.ToString(), newLevelIndex.ToString())));
+
+                if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    errorString = errorMessage;
+                    Debug.LogError(errorString);
+                }
+            }
+        }
+
+        private void RenameInteractables()
+        {
+            foreach (string interactablePath in new FindAssets<ScriptableObject>(string.Format("{0}/{1}", NewLevelFolderFullPath, LevelDirectories.INTERACTABLES_NAME)))
+            {
+                ScriptableObject interactable = AssetDatabase.LoadAssetAtPath<Door>(interactablePath);
+                string errorMessage = AssetDatabase.RenameAsset(interactablePath, string.Format("{0}.asset", interactable.name.Replace(oldLevelIndex.ToString(), newLevelIndex.ToString())));
+
+                if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    errorString = errorMessage;
+                    Debug.LogError(errorString);
+                }
             }
         }
 
