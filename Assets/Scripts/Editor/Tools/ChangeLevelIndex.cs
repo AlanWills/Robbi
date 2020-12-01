@@ -164,7 +164,7 @@ namespace RobbiEditor.Tools
         {
             foreach (string interactablePath in new FindAssets<ScriptableObject>(string.Format("{0}/{1}", NewLevelFolderFullPath, LevelDirectories.INTERACTABLES_NAME)))
             {
-                ScriptableObject interactable = AssetDatabase.LoadAssetAtPath<Door>(interactablePath);
+                ScriptableObject interactable = AssetDatabase.LoadAssetAtPath<ScriptableObject>(interactablePath);
                 string errorMessage = AssetDatabase.RenameAsset(interactablePath, string.Format("{0}.asset", interactable.name.Replace(oldLevelIndex.ToString(), newLevelIndex.ToString())));
 
                 if (!string.IsNullOrEmpty(errorMessage))
