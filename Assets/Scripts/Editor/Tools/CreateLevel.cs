@@ -49,6 +49,7 @@ namespace RobbiEditor.Tools
         public List<DoorColour> verticalDoors = new List<DoorColour>();
         public List<InteractableMarker> interactableMarkers = new List<InteractableMarker>();
         public int numInteractables;
+        public int numInteractableStateMachines;
         public bool hasTutorial = false;
         public GameObject tutorialPrefabToCopy;
         public bool hasFsm = false;
@@ -126,6 +127,7 @@ namespace RobbiEditor.Tools
             propertiesChanged |= EditorGUILayout.PropertyField(levelInfoObject.FindProperty(nameof(levelInfo.interactableMarkers)));
 
             levelInfo.numInteractables = EditorGUILayout.IntField("Num Interactables", levelInfo.numInteractables);
+            levelInfo.numInteractableStateMachines = EditorGUILayout.IntField("Num Interactable State Machines", levelInfo.numInteractableStateMachines);
 
             levelInfo.hasTutorial = EditorGUILayout.Toggle("Has Tutorial", levelInfo.hasTutorial);
             if (levelInfo.hasTutorial)
@@ -162,6 +164,11 @@ namespace RobbiEditor.Tools
                 CreateInteractables();
             }
 
+            if (GUILayout.Button("Create Interactable State Machines"))
+            {
+                CreateInteractableStateMachines();
+            }
+
             if (levelInfo.hasTutorial && GUILayout.Button("Create Tutorial"))
             {
                 CreateTutorial();
@@ -192,6 +199,7 @@ namespace RobbiEditor.Tools
             CreatePrefab();
             CreateDoors();
             CreateInteractables();
+            CreateInteractableStateMachines();
             CreateTutorial();
             CreateLevelData();
 
@@ -333,6 +341,19 @@ namespace RobbiEditor.Tools
                 interactable.name = string.Format("Interactable{0}", i);
                 AssetDatabase.CreateAsset(interactable, string.Format("{0}{1}.asset", interactablesPath, interactable.name));
                 interactable.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
+            }
+        }
+
+        private void CreateInteractableStateMachines()
+        {
+            string interactablesPath = string.Format("{0}{1}", LevelFolderFullPath, INTERACTABLES_NAME);
+
+            for (int i = 0; i < levelInfo.numInteractableStateMachines; ++i)
+            {
+                InteractableStateMachine interactableStateMachine = ScriptableObject.CreateInstance<InteractableStateMachine>();
+                interactableStateMachine.name = string.Format("InteractableStateMachine{0}", i);
+                AssetDatabase.CreateAsset(interactableStateMachine, string.Format("{0}{1}.asset", interactablesPath, interactableStateMachine.name));
+                interactableStateMachine.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
             }
         }
 

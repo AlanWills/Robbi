@@ -24,30 +24,7 @@ namespace RobbiEditor.Levels
 
             if (GUILayout.Button("Find Interactables"))
             {
-                string location = AssetDatabase.GetAssetPath(target);
-                string interactablesFolder = string.Format("{0}/{1}", Path.GetDirectoryName(location).Replace('\\', '/'), LevelDirectories.INTERACTABLES_NAME);
-                interactablesFolder = interactablesFolder.EndsWith("/") ? interactablesFolder.Substring(0, interactablesFolder.Length - 1) : interactablesFolder;
-                string[] scriptableObjectGuids = AssetDatabase.FindAssets("t:ScriptableObject", new string[] { interactablesFolder });
-
-                List<ScriptableObject> interactables = new List<ScriptableObject>();
-                foreach (string scriptableObjectGuid in scriptableObjectGuids)
-                {
-                    string scriptableObjectPath = AssetDatabase.GUIDToAssetPath(scriptableObjectGuid);
-                    ScriptableObject scriptableObject = AssetDatabase.LoadAssetAtPath<ScriptableObject>(scriptableObjectPath);
-
-                    if (scriptableObject is IInteractable)
-                    {
-                        interactables.Add(scriptableObject);
-                    }
-                }
-
-                SerializedProperty interactablesProperty = serializedObject.FindProperty("interactables");
-                interactablesProperty.arraySize = interactables.Count;
-
-                for (int i = 0; i < interactables.Count; ++i)
-                {
-                    interactablesProperty.GetArrayElementAtIndex(i).objectReferenceValue = interactables[i];
-                }
+                FindInteractables(target as Level);
             }
 
             serializedObject.ApplyModifiedProperties();
