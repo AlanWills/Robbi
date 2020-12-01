@@ -94,7 +94,6 @@ namespace Robbi.Testing
 
                 integrationTestNames.Clear();
                 currentTestIndex = 0;
-                testRunSuccessful = false;
 
 #if UNITY_EDITOR
                 UnityEditor.EditorUtility.SetDirty(this);
