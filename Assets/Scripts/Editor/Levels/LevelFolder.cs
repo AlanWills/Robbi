@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace RobbiEditor.Levels
 {
@@ -37,11 +38,11 @@ namespace RobbiEditor.Levels
         public string TutorialsDGPath { get { return string.Format("{0}{1}.asset", TutorialsFolderPath, TutorialsDGName); } }
 
         public string TestsFolderPath { get { return string.Format("{0}/{1}", Path, LevelDirectories.TESTS_NAME); } }
-        public string TestFSMName { get { return string.Format("Level{0}IntegrationTestFSM", Index); } }
+        public string TestFSMName { get { return string.Format("Level{0}IntegrationTest", Index); } }
         public string TestFSMPath { get { return string.Format("{0}{1}.asset", TestsFolderPath, TestFSMName); } }
 
         public string InteractablesFolderPath { get { return string.Format("{0}/{1}", Path, LevelDirectories.INTERACTABLES_NAME); ; } }
-        public FindAssets<Interactable> Interactables { get { return new FindAssets<Interactable>(InteractablesFolderPath); } }
+        public FindAssets<ScriptableObject> Interactables { get { return new FindAssets<ScriptableObject>(InteractablesFolderPath); } }
 
         public string DoorsFolderPath { get { return string.Format("{0}/{1}", Path, LevelDirectories.DOORS_NAME); ; } }
         public FindAssets<Door> Doors { get { return new FindAssets<Door>(DoorsFolderPath); } }
