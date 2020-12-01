@@ -25,12 +25,13 @@ namespace Robbi.Testing
 
         [SerializeField, ReadOnlyAtRuntime]
         private int currentTestIndex;
-        
+
         [SerializeField, ReadOnlyAtRuntime]
-        private bool testResult;
+        private bool testRunSuccessful;
 
         private Coroutine testCoroutine;
         private bool testInProgress;
+        private bool testResult;
         private StringBuilder logContents = new StringBuilder(1024 * 1024);
 
         public static IntegrationTestRunner Instance
@@ -76,6 +77,7 @@ namespace Robbi.Testing
             integrationTestNames.Clear();
             integrationTestNames.AddRange(testNames);
             currentTestIndex = 0;
+            testRunSuccessful = true;
 
 #if UNITY_EDITOR
             UnityEditor.EditorUtility.SetDirty(this);
@@ -92,7 +94,7 @@ namespace Robbi.Testing
 
                 integrationTestNames.Clear();
                 currentTestIndex = 0;
-                testResult = false;
+                testRunSuccessful = false;
 
 #if UNITY_EDITOR
                 UnityEditor.EditorUtility.SetDirty(this);
@@ -140,6 +142,8 @@ namespace Robbi.Testing
 
             while (testInProgress) { yield return null; }
 
+            testRunSuccessful &= testResult;
+
             string directoryPath = Path.Combine(Application.dataPath, "..", "TestResults");
 
             Directory.CreateDirectory(directoryPath);
@@ -182,7 +186,7 @@ namespace Robbi.Testing
                     {
                         // 0 = everything OK
                         // 1 = everything NOT OK
-                        UnityEditor.EditorApplication.Exit(instance.testResult ? 0 : 1);
+                        UnityEditor.EditorApplication.Exit(instance.testRunSuccessful ? 0 : 1);
                     }
                     else
                     {
