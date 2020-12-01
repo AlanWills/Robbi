@@ -62,25 +62,35 @@ namespace RobbiEditor.Levels
             string location = AssetDatabase.GetAssetPath(level);
             string interactablesFolder = string.Format("{0}/{1}", Path.GetDirectoryName(location).Replace('\\', '/'), LevelDirectories.INTERACTABLES_NAME);
             interactablesFolder = interactablesFolder.EndsWith("/") ? interactablesFolder.Substring(0, interactablesFolder.Length - 1) : interactablesFolder;
-            string[] interactableGuids = AssetDatabase.FindAssets("t:Interactable", new string[] { interactablesFolder });
+            string[] scriptableObjectGuids = AssetDatabase.FindAssets("t:ScriptableObject", new string[] { interactablesFolder });
+
+            List<ScriptableObject> interactables = new List<ScriptableObject>();
+            foreach (string scriptableObjectGuid in scriptableObjectGuids)
+            {
+                string scriptableObjectPath = AssetDatabase.GUIDToAssetPath(scriptableObjectGuid);
+                ScriptableObject scriptableObject = AssetDatabase.LoadAssetAtPath<ScriptableObject>(scriptableObjectPath);
+
+                if (scriptableObject is IInteractable)
+                {
+                    interactables.Add(scriptableObject);
+                }
+            }
 
             SerializedObject serializedObject = new SerializedObject(level);
             serializedObject.Update();
 
-            SerializedProperty interactables = serializedObject.FindProperty("interactables");
-            bool dirty = interactables.arraySize != interactableGuids.Length;
-            
-            interactables.arraySize = interactableGuids.Length;
+            SerializedProperty interactablesProperty = serializedObject.FindProperty("interactables");
+            bool dirty = interactablesProperty.arraySize != interactables.Count;
 
-            for (int i = 0; i < interactableGuids.Length; ++i)
+            interactablesProperty.arraySize = interactables.Count;
+
+            for (int i = 0; i < interactables.Count; ++i)
             {
-                string interactablePath = AssetDatabase.GUIDToAssetPath(interactableGuids[i]);
-                UnityEngine.Object interactable = AssetDatabase.LoadAssetAtPath<Interactable>(interactablePath);
-                SerializedProperty arrayElement = interactables.GetArrayElementAtIndex(i);
+                SerializedProperty arrayElement = interactablesProperty.GetArrayElementAtIndex(i);
 
-                if (interactable != arrayElement.objectReferenceValue)
+                if (interactables[i] != arrayElement.objectReferenceValue)
                 {
-                    arrayElement.objectReferenceValue = interactable;
+                    arrayElement.objectReferenceValue = interactables[i];
                     dirty = true;
                 }
             }
