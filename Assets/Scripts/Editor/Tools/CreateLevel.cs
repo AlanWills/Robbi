@@ -237,7 +237,7 @@ namespace RobbiEditor.Tools
                 AssetUtility.CreateFolder(levelFolderPath, TUTORIALS_NAME);
             }
 
-            if (levelInfo.numInteractables > 0)
+            if (levelInfo.numInteractables > 0 || levelInfo.numInteractableStateMachines > 0)
             {
                 AssetUtility.CreateFolder(levelFolderPath, INTERACTABLES_NAME);
             }
