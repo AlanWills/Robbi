@@ -51,7 +51,7 @@ namespace RobbiEditor
 
         private static void ClearIntegrationTest()
         {
-            IntegrationTestRunner.Instance.ClearTest();
+            IntegrationTestRunner.Instance.ClearTests();
         }
     }
 }
