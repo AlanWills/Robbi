@@ -97,9 +97,10 @@ namespace Robbi.Levels
             CurrentLevelIndex = levelManagerDTO.currentLevelIndex;
 
             HudLogger.LogInfoFormat("Current Level Index: {0}", CurrentLevelIndex);
+            HudLogger.LogInfoFormat("Latest Level Index: {0}", LatestLevelIndex);
         }
 
-#endregion
+        #endregion
     }
 
     [Serializable]

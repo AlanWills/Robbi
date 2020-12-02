@@ -26,9 +26,6 @@ namespace Robbi.Testing
         [SerializeField, ReadOnlyAtRuntime]
         private int currentTestIndex;
 
-        [SerializeField, ReadOnlyAtRuntime]
-        private bool testRunSuccessful;
-
         private Coroutine testCoroutine;
         private bool testInProgress;
         private bool testResult;
@@ -77,7 +74,6 @@ namespace Robbi.Testing
             integrationTestNames.Clear();
             integrationTestNames.AddRange(testNames);
             currentTestIndex = 0;
-            testRunSuccessful = true;
 
 #if UNITY_EDITOR
             UnityEditor.EditorUtility.SetDirty(this);
@@ -141,8 +137,6 @@ namespace Robbi.Testing
 
             while (testInProgress) { yield return null; }
 
-            testRunSuccessful &= testResult;
-
             string directoryPath = Path.Combine(Application.dataPath, "..", "TestResults");
 
             Directory.CreateDirectory(directoryPath);
@@ -176,6 +170,8 @@ namespace Robbi.Testing
                 }
                 else
                 {
+                    bool testRunSuccessful = WasTestRunSuccessful(instance.integrationTestNames);
+
                     instance.ClearTests();
                     
                     UnityEditor.EditorUtility.SetDirty(instance);
@@ -185,14 +181,29 @@ namespace Robbi.Testing
                     {
                         // 0 = everything OK
                         // 1 = everything NOT OK
-                        UnityEditor.EditorApplication.Exit(instance.testRunSuccessful ? 0 : 1);
+                        UnityEditor.EditorApplication.Exit(testRunSuccessful ? 0 : 1);
                     }
                     else
                     {
+                        UnityEditor.EditorUtility.DisplayDialog("Test Results", string.Format("Tests {0}", testRunSuccessful ? "Passed" : "Failed"), "OK");
                         UnityEditor.EditorApplication.ExitPlaymode();
                     }
                 }
             }
+        }
+
+        private static bool WasTestRunSuccessful(List<string> integrationTestNames)
+        {
+            string directoryPath = Path.Combine(Application.dataPath, "..", "TestResults");
+            foreach (string testName in integrationTestNames)
+            {
+                if (File.Exists(Path.Combine(directoryPath, testName + "-Failed.txt")))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 #endif
 
