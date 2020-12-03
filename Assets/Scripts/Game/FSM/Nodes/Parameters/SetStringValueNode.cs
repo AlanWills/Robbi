@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Robbi.FSM.Nodes.Parameters
 {
@@ -22,7 +23,21 @@ namespace Robbi.FSM.Nodes.Parameters
 
         protected override void SetValue(string newValue)
         {
-            value.value = setMode == SetMode.Absolute ? newValue : value.value + newValue;
+            switch (setMode)
+            {
+                case SetMode.Absolute:
+                    value.value = newValue;
+                    break;
+
+                case SetMode.Increment:
+                    value.value += newValue;
+                    break;
+
+                case SetMode.Decrement:
+                default:
+                    Debug.LogAssertionFormat("Unhandled SetMode {0}", setMode);
+                    break;
+            }
         }
 
         #endregion
