@@ -19,6 +19,8 @@ namespace Robbi.Levels
         public IntValue tutorialProgression;
         public Vector3Value playerLocalPosition;
         public IntValue remainingWaypointsPlaceable;
+        public BoolValue levelRequiresFuel;
+        public UIntValue remainingFuel;
     }
 
     [Serializable]
@@ -43,13 +45,15 @@ namespace Robbi.Levels
         public GameObject levelPrefab;
         public GameObject levelTutorial;
 
-        [Header("Level Parameters")]
-        public Vector3Int playerStartPosition;
-        public int maxWaypointsPlaceable;
-
         [Header("Level Elements")]
         [SerializeField]
         private List<ScriptableObject> interactables = new List<ScriptableObject>();
+
+        [Header("Level Parameters")]
+        public Vector3Int playerStartPosition;
+        public int maxWaypointsPlaceable;
+        public bool requiresFuel = false;
+        public uint startingFuel;
 
         #endregion
 
@@ -66,9 +70,11 @@ namespace Robbi.Levels
             Grid grid = level.GetComponent<Grid>();
             Debug.Assert(grid != null, "No grid component on level prefab");
 
-            // Make sure this is done before manually setting any game objects to enabled
+            // Make sure this is done before manually setting any game objects to active
             levelData.playerLocalPosition.value = grid.GetCellCenterLocal(playerStartPosition);
             levelData.remainingWaypointsPlaceable.value = maxWaypointsPlaceable;
+            levelData.levelRequiresFuel.value = requiresFuel;
+            levelData.remainingFuel.value = startingFuel;
             
             levelManagers.interactablesManager.SetInteractables(interactables);
 

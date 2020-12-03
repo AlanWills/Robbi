@@ -84,7 +84,7 @@ namespace Robbi.Testing
 
         public void ClearTests()
         {
-            if (currentTestIndex >= integrationTestNames.Count)
+            if (currentTestIndex >= integrationTestNames.Count && currentTestIndex > 0)
             {
                 Debug.LogWarning("Clearing integration tests");
 

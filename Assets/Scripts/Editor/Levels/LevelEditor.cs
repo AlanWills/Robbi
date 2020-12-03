@@ -14,13 +14,38 @@ namespace RobbiEditor.Levels
     [CustomEditor(typeof(Level))]
     public class LevelEditor : Editor
     {
+        #region Properties and Fields
+
+        private SerializedProperty requiresFuelProperty;
+        private SerializedProperty startingFuelProperty;
+
+        #endregion
+
+        #region Unity Methods
+
+        private void OnEnable()
+        {
+            requiresFuelProperty = serializedObject.FindProperty("requiresFuel");
+            startingFuelProperty = serializedObject.FindProperty("startingFuel");
+        }
+
+        #endregion
+
         #region GUI
 
         public override void OnInspectorGUI()
         {
-            base.OnInspectorGUI();
-
             serializedObject.Update();
+
+            DrawPropertiesExcluding(serializedObject, "m_Script", "requiresFuel", "startingFuel");
+
+            EditorGUILayout.PropertyField(requiresFuelProperty);
+            if (requiresFuelProperty.boolValue)
+            {
+                EditorGUILayout.PropertyField(startingFuelProperty);
+            }
+
+            EditorGUILayout.Space();
 
             if (GUILayout.Button("Find Interactables"))
             {
