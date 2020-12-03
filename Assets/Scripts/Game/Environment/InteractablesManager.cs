@@ -17,7 +17,6 @@ namespace Robbi.Environment
         #region Properties and Fields
 
         public TilemapValue interactablesTilemap;
-        public TilemapValue doorsTilemap;
 
         private List<IInteractable> interactables = new List<IInteractable>();
 
@@ -60,21 +59,6 @@ namespace Robbi.Environment
                     interactable.Interact(interact);
                 }
             }
-        }
-
-        public void OpenDoor(Door door)
-        {
-            door.Open(doorsTilemap.value);
-        }
-
-        public void CloseDoor(Door door)
-        {
-            door.Close(doorsTilemap.value);
-        }
-
-        public void ToggleDoor(Door door)
-        {
-            door.Toggle(doorsTilemap.value);
         }
 
         #endregion

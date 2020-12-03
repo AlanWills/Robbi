@@ -102,7 +102,7 @@ namespace Robbi.Movement
                 Vector3 playerLocalPos = playerLocalPosition.value;
                 Vector3Int movedFrom = new Vector3Int(Mathf.RoundToInt(playerLocalPos.x - 0.5f), Mathf.RoundToInt(playerLocalPos.y - 0.5f), Mathf.RoundToInt(playerLocalPos.z));
 
-                if (remainingFuel.value == 0)
+                if (levelRequiresFuel.value && remainingFuel.value == 0)
                 {
                     // Don't immediately raise this when we have bingo fuel
                     // We might have moved onto a tile with a fuel pickup on it
