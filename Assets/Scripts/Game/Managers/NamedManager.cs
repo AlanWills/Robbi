@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Robbi.Managers
 {
-    public class NamedManager : MonoBehaviour
+    public abstract class NamedManager : MonoBehaviour
     {
         #region Unity Methods
 

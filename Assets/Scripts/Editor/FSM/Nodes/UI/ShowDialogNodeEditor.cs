@@ -37,14 +37,21 @@ namespace RobbiEditor.FSM.Nodes.UI
 
                 NodeEditorGUILayout.PortField(showDialogNode.GetInputPort(ShowDialogNode.DEFAULT_INPUT_PORT_NAME));
 
-                if (showDialogNode.parameters.showConfirmButton)
+                if (GUILayout.Button("Create Ports", GUILayout.ExpandWidth(false)))
                 {
-                    NodeEditorGUILayout.PortField(showDialogNode.GetOutputPort(ShowDialogNode.CONFIRM_PRESSED_PORT_NAME));
+                    for (int i = 0; i < showDialogNode.parameters.customDialogEvents.Count; ++i)
+                    {
+                        showDialogNode.AddOutputPort(showDialogNode.parameters.customDialogEvents[i].name);
+                    }
                 }
 
-                if (showDialogNode.parameters.showCloseButton)
+                for (int i = 0; i < showDialogNode.parameters.customDialogEvents.Count; ++i)
                 {
-                    NodeEditorGUILayout.PortField(showDialogNode.GetOutputPort(ShowDialogNode.CLOSE_PRESSED_PORT_NAME));
+                    Robbi.Events.Event customDialogEvent = showDialogNode.parameters.customDialogEvents[i];
+                    if (customDialogEvent)
+                    {
+                        NodeEditorGUILayout.PortField(showDialogNode.GetOutputPort(customDialogEvent.name));
+                    }
                 }
             }
 

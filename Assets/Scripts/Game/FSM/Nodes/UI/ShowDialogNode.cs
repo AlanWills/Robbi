@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static Robbi.UI.Dialog;
+using Event = Robbi.Events.Event;
 
 namespace Robbi.FSM.Nodes.UI
 {
@@ -19,6 +20,12 @@ namespace Robbi.FSM.Nodes.UI
         private class DummyEventListener : IEventListener
         {
             public bool eventRaised;
+            public string portName;
+
+            public DummyEventListener(string portName)
+            {
+                this.portName = portName;
+            }
 
             public void OnEventRaised()
             {
@@ -28,14 +35,10 @@ namespace Robbi.FSM.Nodes.UI
 
         #region Properties and Fields
 
-        public const string CONFIRM_PRESSED_PORT_NAME = "Confirm Pressed";
-        public const string CLOSE_PRESSED_PORT_NAME = "Close Pressed";
-
         public Dialog dialog;
         public ShowDialogParams parameters = new ShowDialogParams();
 
-        private DummyEventListener confirmDummyEventListener = new DummyEventListener();
-        private DummyEventListener closeDummyEventListener = new DummyEventListener();
+        private List<DummyEventListener> dummyEventListeners = new List<DummyEventListener>();
         private Dialog dialogInstance;
 
         #endregion
@@ -43,9 +46,6 @@ namespace Robbi.FSM.Nodes.UI
         public ShowDialogNode()
         {
             RemoveDynamicPort(DEFAULT_OUTPUT_PORT_NAME);
-
-            AddOutputPort(CONFIRM_PRESSED_PORT_NAME);
-            AddOutputPort(CLOSE_PRESSED_PORT_NAME);
 
             parameters.showConfirmButton = true;
             parameters.showCloseButton = true;
@@ -57,25 +57,42 @@ namespace Robbi.FSM.Nodes.UI
         {
             base.OnEnter();
 
-            confirmDummyEventListener.eventRaised = false;
-            closeDummyEventListener.eventRaised = false;
+            if (dummyEventListeners.Count == parameters.customDialogEvents.Count)
+            {
+                // We already have created the list so reset the listeners
+                foreach (DummyEventListener listener in dummyEventListeners)
+                {
+                    listener.eventRaised = false;
+                }
+            }
+            else
+            {
+                // Make the list from scratch - this should happen only once
+                foreach (Event customEvent in parameters.customDialogEvents)
+                {
+                    dummyEventListeners.Add(new DummyEventListener(customEvent.name));
+                }
+            }
 
             dialogInstance = GameObject.Instantiate(dialog.gameObject).GetComponent<Dialog>();
             dialogInstance.gameObject.name = dialog.gameObject.name;
-            dialogInstance.ConfirmButtonClicked.AddEventListener(confirmDummyEventListener);
-            dialogInstance.CloseButtonClicked.AddEventListener(closeDummyEventListener);
+
+            for (int i = 0; i < parameters.customDialogEvents.Count; ++i)
+            {
+                parameters.customDialogEvents[i].AddEventListener(dummyEventListeners[i]);
+            }
+
             dialogInstance.Show(parameters);
         }
 
         protected override FSMNode OnUpdate()
         {
-            if (confirmDummyEventListener.eventRaised)
+            foreach (DummyEventListener dummyEventListener in dummyEventListeners)
             {
-                return GetConnectedNode(CONFIRM_PRESSED_PORT_NAME);
-            }
-            else if (closeDummyEventListener.eventRaised)
-            {
-                return GetConnectedNode(CLOSE_PRESSED_PORT_NAME);
+                if (dummyEventListener.eventRaised)
+                {
+                    return GetConnectedNode(dummyEventListener.portName);
+                }
             }
 
             return this;
@@ -85,8 +102,11 @@ namespace Robbi.FSM.Nodes.UI
         {
             base.OnExit();
 
-            dialogInstance.ConfirmButtonClicked.RemoveEventListener(confirmDummyEventListener);
-            dialogInstance.CloseButtonClicked.RemoveEventListener(closeDummyEventListener);
+            for (int i = 0; i < parameters.customDialogEvents.Count; ++i)
+            {
+                parameters.customDialogEvents[i].RemoveEventListener(dummyEventListeners[i]);
+            }
+
             dialogInstance = null;
         }
 

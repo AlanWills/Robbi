@@ -69,12 +69,12 @@ namespace Robbi.FSM.Nodes
             AddOutputPort(DEFAULT_OUTPUT_PORT_NAME, connectionType);
         }
 
-        protected void AddInputPort(string portName, ConnectionType connectionType = ConnectionType.Multiple)
+        public void AddInputPort(string portName, ConnectionType connectionType = ConnectionType.Multiple)
         {
             AddDynamicInput(typeof(void), connectionType, TypeConstraint.None, portName);
         }
 
-        protected void AddOutputPort(string portName, ConnectionType connectionType = ConnectionType.Override)
+        public void AddOutputPort(string portName, ConnectionType connectionType = ConnectionType.Override)
         {
             AddDynamicOutput(typeof(void), connectionType, TypeConstraint.None, portName);
         }
