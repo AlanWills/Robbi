@@ -44,6 +44,9 @@ namespace RobbiEditor.Levels
         public string InteractablesFolderPath { get { return string.Format("{0}/{1}", Path, LevelDirectories.INTERACTABLES_NAME); ; } }
         public FindAssets<ScriptableObject> Interactables { get { return new FindAssets<ScriptableObject>(InteractablesFolderPath); } }
 
+        public string CollectablesFolderPath { get { return string.Format("{0}/{1}", Path, LevelDirectories.COLLECTABLES_NAME); ; } }
+        public FindAssets<Collectable> Collectables { get { return new FindAssets<Collectable>(CollectablesFolderPath); } }
+
         public string DoorsFolderPath { get { return string.Format("{0}/{1}", Path, LevelDirectories.DOORS_NAME); ; } }
         public FindAssets<Door> Doors { get { return new FindAssets<Door>(DoorsFolderPath); } }
 

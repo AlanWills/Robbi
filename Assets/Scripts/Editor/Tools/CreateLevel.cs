@@ -60,6 +60,9 @@ namespace RobbiEditor.Tools
         public int numInteractables;
         public int numInteractableStateMachines;
 
+        [Header("Collectables")]
+        public int numCollectables;
+
         [Header("Tutorials")]
         public bool hasTutorial = false;
         public GameObject tutorialPrefabToCopy;
@@ -143,31 +146,6 @@ namespace RobbiEditor.Tools
                 propertiesChanged |= EditorGUILayout.PropertyField(iterator, true);
             }
 
-            //levelInfo.destinationFolder = EditorGUILayout.TextField(levelInfo.destinationFolder);
-            //levelInfo.levelIndex = RobbiEditorGUILayout.UIntField("Level Index", levelInfo.levelIndex);
-            //levelInfo.increaseMaxLevel = EditorGUILayout.Toggle("Increase Max Level", levelInfo.increaseMaxLevel);
-            //levelInfo.levelPrefabToCopy = EditorGUILayout.ObjectField("Level Prefab To Copy", levelInfo.levelPrefabToCopy, typeof(GameObject), false) as GameObject;
-            //levelInfo.clearLevel = EditorGUILayout.Toggle("Clear Level", levelInfo.clearLevel);
-
-            //levelInfo.maxWaypointsPlaceable = EditorGUILayout.IntField("Max Waypoints Placeable", levelInfo.maxWaypointsPlaceable);
-            //levelInfo.requiresFuel = EditorGUILayout.Toggle("Requires Fuel", levelInfo.requiresFuel);
-            //levelInfo.startingFuel = levelInfo.requiresFuel ? RobbiEditorGUILayout.UIntField("Starting Fuel", levelInfo.startingFuel) : 0;
-
-            //propertiesChanged |= EditorGUILayout.PropertyField(levelInfoObject.FindProperty(nameof(levelInfo.horizontalDoors)));
-            //propertiesChanged |= EditorGUILayout.PropertyField(levelInfoObject.FindProperty(nameof(levelInfo.verticalDoors)));
-            //propertiesChanged |= EditorGUILayout.PropertyField(levelInfoObject.FindProperty(nameof(levelInfo.interactableMarkers)));
-
-            //levelInfo.numInteractables = EditorGUILayout.IntField("Num Interactables", levelInfo.numInteractables);
-            //levelInfo.numInteractableStateMachines = EditorGUILayout.IntField("Num Interactable State Machines", levelInfo.numInteractableStateMachines);
-
-            //levelInfo.hasTutorial = EditorGUILayout.Toggle("Has Tutorial", levelInfo.hasTutorial);
-            //if (levelInfo.hasTutorial)
-            //{
-            //    levelInfo.tutorialPrefabToCopy = EditorGUILayout.ObjectField("Tutorial Prefab To Copy", levelInfo.tutorialPrefabToCopy, typeof(GameObject), false) as GameObject;
-            //}
-
-            //levelInfo.hasFsm = EditorGUILayout.Toggle("Has FSM", levelInfo.hasFsm);
-
             EditorGUILayout.Space();
             EditorGUILayout.BeginHorizontal();
 
@@ -199,6 +177,11 @@ namespace RobbiEditor.Tools
             if (GUILayout.Button("Create Interactable State Machines", GUILayout.ExpandWidth(false)))
             {
                 CreateInteractableStateMachines();
+            }
+
+            if (GUILayout.Button("Create Collectables", GUILayout.ExpandWidth(false)))
+            {
+                CreateCollectables();
             }
 
             if (levelInfo.hasTutorial && GUILayout.Button("Create Tutorial", GUILayout.ExpandWidth(false)))
@@ -234,6 +217,7 @@ namespace RobbiEditor.Tools
             CreateDoors();
             CreateInteractables();
             CreateInteractableStateMachines();
+            CreateCollectables();
             CreateTutorial();
             CreateLevelData();
 
@@ -274,6 +258,11 @@ namespace RobbiEditor.Tools
             if (levelInfo.numInteractables > 0 || levelInfo.numInteractableStateMachines > 0)
             {
                 AssetUtility.CreateFolder(levelFolderPath, INTERACTABLES_NAME);
+            }
+
+            if (levelInfo.numCollectables > 0)
+            {
+                AssetUtility.CreateFolder(levelFolderPath, COLLECTABLES_NAME);
             }
         }
 
@@ -372,7 +361,7 @@ namespace RobbiEditor.Tools
             for (int i = 0; i < levelInfo.numInteractables; ++i)
             {
                 Interactable interactable = ScriptableObject.CreateInstance<Interactable>();
-                interactable.name = string.Format("Interactable{0}", i);
+                interactable.name = string.Format("Level{0}Interactable{1}", levelInfo.levelIndex, i);
                 AssetDatabase.CreateAsset(interactable, string.Format("{0}{1}.asset", interactablesPath, interactable.name));
                 interactable.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
             }
@@ -385,9 +374,22 @@ namespace RobbiEditor.Tools
             for (int i = 0; i < levelInfo.numInteractableStateMachines; ++i)
             {
                 InteractableStateMachine interactableStateMachine = ScriptableObject.CreateInstance<InteractableStateMachine>();
-                interactableStateMachine.name = string.Format("InteractableStateMachine{0}", i);
+                interactableStateMachine.name = string.Format("Level{0}InteractableStateMachine{1}", levelInfo.levelIndex, i);
                 AssetDatabase.CreateAsset(interactableStateMachine, string.Format("{0}{1}.asset", interactablesPath, interactableStateMachine.name));
                 interactableStateMachine.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
+            }
+        }
+
+        private void CreateCollectables()
+        {
+            string collectablesPath = string.Format("{0}{1}", LevelFolderFullPath, COLLECTABLES_NAME);
+
+            for (int i = 0; i < levelInfo.numCollectables; ++i)
+            {
+                Collectable collectable = ScriptableObject.CreateInstance<Collectable>();
+                collectable.name = string.Format("Level{0}Interactable{1}", levelInfo.levelIndex, i);
+                AssetDatabase.CreateAsset(collectable, string.Format("{0}{1}.asset", collectablesPath, collectable.name));
+                collectable.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
             }
         }
 
@@ -457,6 +459,7 @@ namespace RobbiEditor.Tools
 
             // Must do this after the asset is actually created
             LevelEditor.FindInteractables(level);
+            LevelEditor.FindCollectables(level);
         }
 
         #endregion

@@ -35,6 +35,7 @@ namespace Robbi.Levels
     public struct LevelManagers
     {
         public InteractablesManager interactablesManager;
+        public CollectablesManager collectablesManager;
     }
 
     [CreateAssetMenu(fileName = "Level", menuName = "Robbi/Levels/Level")]
@@ -48,6 +49,8 @@ namespace Robbi.Levels
         [Header("Level Elements")]
         [SerializeField]
         private List<ScriptableObject> interactables = new List<ScriptableObject>();
+        [SerializeField]
+        private List<Collectable> collectables = new List<Collectable>();
 
         [Header("Level Parameters")]
         public Vector3Int playerStartPosition;
@@ -77,6 +80,7 @@ namespace Robbi.Levels
             levelData.remainingFuel.value = startingFuel;
             
             levelManagers.interactablesManager.SetInteractables(interactables);
+            levelManagers.collectablesManager.SetCollectables(collectables);
 
             levelGameObjects.levelGameObject.value = level;
             levelGameObjects.robbiGameObject.value.name = "Robbi";
