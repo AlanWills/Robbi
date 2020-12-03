@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 122, y: 95}
-  m_SizeDelta: {x: 310, y: 110}
+  m_SizeDelta: {x: 270, y: 110}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &6959035578803826425
 CanvasRenderer:
@@ -284,7 +284,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: If Robbi runs out of fuel, he will be unable to continue moving.
+  m_Text: Robbi can pick up fuel canisters.  This one will give him 10 more.
 --- !u!1 &1734164777281929004
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734164777281929004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -51, y: 0, z: -1}
+  m_LocalPosition: {x: -52, y: 0, z: -1}
   m_LocalScale: {x: 100, y: 100, z: 1}
   m_Children: []
   m_Father: {fileID: 4693499153002839147}
@@ -804,7 +804,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2825042067179344334}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 13, z: -1}
+  m_LocalPosition: {x: -1.5, y: 9, z: -1}
   m_LocalScale: {x: 1, y: 20, z: 1}
   m_Children: []
   m_Father: {fileID: 4693499153002839147}
@@ -1012,12 +1012,12 @@ GameObject:
   m_Component:
   - component: {fileID: 6520035979208370008}
   m_Layer: 0
-  m_Name: FuelUIInfo
+  m_Name: LowFuelInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6520035979208370008
 Transform:
   m_ObjectHideFlags: 0
@@ -1119,12 +1119,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4814568517911405348}
   m_Layer: 0
-  m_Name: PlaceWaypointAtExit
+  m_Name: FuelPickupInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4814568517911405348
 Transform:
   m_ObjectHideFlags: 0
@@ -1218,7 +1218,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: This is Robbi's fuel.  Every tile he moves will reduce this by one.
+  m_Text: Robbi doesn't have enough fuel to reach the exit!
 --- !u!1 &5297375932693115775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1284,7 +1284,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6182947309769131474}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50, y: 0, z: -1}
+  m_LocalPosition: {x: 49, y: 0, z: -1}
   m_LocalScale: {x: 100, y: 50, z: 1}
   m_Children: []
   m_Father: {fileID: 4693499153002839147}
@@ -1722,7 +1722,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9120750574945392961}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: -8, z: -1}
+  m_LocalPosition: {x: -1.5, y: -12, z: -1}
   m_LocalScale: {x: 1, y: 20, z: 1}
   m_Children: []
   m_Father: {fileID: 4693499153002839147}

@@ -25,8 +25,9 @@ namespace RobbiEditor.FSM.Nodes.Logic
             typeof(Vector3IntValueCondition),
             typeof(InVector3IntArrayCondition),
             typeof(InTilemapCondition),
-            typeof(AtSwitchCondition),
-            typeof(AtAnySwitchCondition),
+            typeof(AtInteractableCondition),
+            typeof(AtAnyInteractableCondition),
+            typeof(AtCollectableCondition),
         };
 
         private static string[] valueConditionDisplayNames = new string[]
@@ -38,8 +39,9 @@ namespace RobbiEditor.FSM.Nodes.Logic
             "Vector3Int",
             "In Vector3IntArray",
             "In Tilemap",
-            "At Switch",
-            "At Any Switch",
+            "At Interactable",
+            "At Any Interactable",
+            "At Collectable",
         };
 
         private static Dictionary<Type, ValueConditionEditor> valueConditionEditorFactory = new Dictionary<Type, ValueConditionEditor>()
@@ -51,9 +53,10 @@ namespace RobbiEditor.FSM.Nodes.Logic
             { typeof(Vector3IntValueCondition), new Vector3IntValueConditionEditor() },
             { typeof(InVector3IntArrayCondition), new InVector3IntArrayConditionEditor() },
             { typeof(InTilemapCondition), new InTilemapConditionEditor() },
-            { typeof(AtSwitchCondition), new AtSwitchConditionEditor() },
-            { typeof(AtAnySwitchCondition), new AtAnySwitchConditionEditor() },
-        };
+            { typeof(AtInteractableCondition), new AtInteractableConditionEditor() },
+            { typeof(AtAnyInteractableCondition), new AtAnyInteractableConditionEditor() },
+            { typeof(AtCollectableCondition), new AtCollectableConditionEditor() },
+            };
 
         private int selectedEventType = 0;
 

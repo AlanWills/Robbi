@@ -11,14 +11,14 @@ using UnityEditor;
 
 namespace RobbiEditor.FSM.Nodes.Logic.Conditions
 {
-    public class AtSwitchConditionEditor : ValueConditionEditor
+    public class AtCollectableConditionEditor : ValueConditionEditor
     {
         protected override void OnGUI(IfNode ifNode, SerializedObject valueCondition)
         {
             string[] operatorDisplayNames = new string[]
             {
-                "At Switch",
-                "Not At Switch"
+                "At Collectable",
+                "Not At Collectable"
             };
 
             int[] operators = new int[]
@@ -27,7 +27,7 @@ namespace RobbiEditor.FSM.Nodes.Logic.Conditions
                 (int)ConditionOperator.NotEquals
             };
 
-            Vector3IntReference reference = (valueCondition.targetObject as AtSwitchCondition).target;
+            Vector3IntReference reference = (valueCondition.targetObject as AtCollectableCondition).target;
             DrawDefaultGUI(valueCondition, operatorDisplayNames, operators, reference);
         }
     }

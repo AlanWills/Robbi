@@ -10,12 +10,12 @@ using UnityEngine;
 
 namespace Robbi.FSM.Nodes.Logic.Conditions
 {
-    public class AtAnySwitchCondition : ValueCondition
+    public class AtInteractableCondition : ValueCondition
     {
         #region Properties and Fields
 
         public bool useArgument = false;
-        public List<Interactable> value = new List<Interactable>();
+        public Interactable value;
         public ConditionOperator condition;
         public Vector3IntReference target;
 
@@ -61,29 +61,13 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
             switch (condition)
             {
                 case ConditionOperator.Equals:
-                    foreach (Interactable interactable in value)
-                    {
-                        if (interactable.Position == target.Value)
-                        {
-                            return true;
-                        }
-                    }
-                    
-                    return false;
+                    return value.Position == target.Value;
 
                 case ConditionOperator.NotEquals:
-                    foreach (Interactable interactable in value)
-                    {
-                        if (interactable.Position == target.Value)
-                        {
-                            return false;
-                        }
-                    };
-
-                    return true;
+                    return value.Position != target.Value;
 
                 default:
-                    Debug.LogAssertionFormat("Condition Operator {0} is not supported in AtAnySwitch Condition", condition);
+                    Debug.LogAssertionFormat("Condition Operator {0} is not supported in AtSwitch Condition", condition);
                     return false;
             }
         }
@@ -94,11 +78,11 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
 
         public override void CopyFrom(ValueCondition original)
         {
-            AtAnySwitchCondition atAnySwitchCondition = original as AtAnySwitchCondition;
-            useArgument = atAnySwitchCondition.useArgument;
-            value.AddRange(atAnySwitchCondition.value);
-            condition = atAnySwitchCondition.condition;
-            target.CopyFrom(atAnySwitchCondition.target);
+            AtInteractableCondition atSwitchCondition = original as AtInteractableCondition;
+            useArgument = atSwitchCondition.useArgument;
+            value = atSwitchCondition.value;
+            condition = atSwitchCondition.condition;
+            target.CopyFrom(atSwitchCondition.target);
         }
 
         #endregion

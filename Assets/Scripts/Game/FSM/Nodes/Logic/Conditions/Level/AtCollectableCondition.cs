@@ -10,12 +10,12 @@ using UnityEngine;
 
 namespace Robbi.FSM.Nodes.Logic.Conditions
 {
-    public class AtSwitchCondition : ValueCondition
+    public class AtCollectableCondition : ValueCondition
     {
         #region Properties and Fields
 
         public bool useArgument = false;
-        public Interactable value;
+        public Collectable value;
         public ConditionOperator condition;
         public Vector3IntReference target;
 
@@ -67,7 +67,7 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
                     return value.Position != target.Value;
 
                 default:
-                    Debug.LogAssertionFormat("Condition Operator {0} is not supported in AtSwitch Condition", condition);
+                    Debug.LogAssertionFormat("Condition Operator {0} is not supported in AtCollectable Condition", condition);
                     return false;
             }
         }
@@ -78,11 +78,11 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
 
         public override void CopyFrom(ValueCondition original)
         {
-            AtSwitchCondition atSwitchCondition = original as AtSwitchCondition;
-            useArgument = atSwitchCondition.useArgument;
-            value = atSwitchCondition.value;
-            condition = atSwitchCondition.condition;
-            target.CopyFrom(atSwitchCondition.target);
+            AtCollectableCondition atCollectableCondition = original as AtCollectableCondition;
+            useArgument = atCollectableCondition.useArgument;
+            value = atCollectableCondition.value;
+            condition = atCollectableCondition.condition;
+            target.CopyFrom(atCollectableCondition.target);
         }
 
         #endregion
