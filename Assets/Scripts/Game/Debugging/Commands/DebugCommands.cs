@@ -36,6 +36,7 @@ namespace Robbi.Debugging.Commands
             RegisterCommand<ConsoleApplication>("app");
             RegisterCommand<ConsoleIntegrationTest>("it");
             RegisterCommand<ConsoleCurrentLevelIntegrationTest>("clit");
+            RegisterCommand<ConsoleFuel>("fuel");
         }
 
         private void RegisterCommand<T>(string name) where T : IDebugCommand, new()

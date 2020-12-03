@@ -1,4 +1,5 @@
-﻿using Robbi.DataSystem;
+﻿using Robbi.Attributes.GUI;
+using Robbi.DataSystem;
 using Robbi.FSM;
 using Robbi.Levels;
 using Robbi.Levels.Elements;
@@ -49,6 +50,7 @@ namespace RobbiEditor.Tools
         [Header("Parameters")]
         public int maxWaypointsPlaceable = 3;
         public bool requiresFuel = false;
+        [HideIf("requiresFuel")]
         public uint startingFuel = 0;
 
         [Header("Doors")]
@@ -65,6 +67,7 @@ namespace RobbiEditor.Tools
 
         [Header("Tutorials")]
         public bool hasTutorial = false;
+        [HideIf("hasTutorial")]
         public GameObject tutorialPrefabToCopy;
 
         [Header("FSM")]
