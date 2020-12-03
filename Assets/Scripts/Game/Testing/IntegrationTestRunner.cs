@@ -98,7 +98,7 @@ namespace Robbi.Testing
             }
             else
             {
-                Debug.LogWarning("Skipped clearing integration tests due to currently running tests");
+                Debug.LogWarning("Skipped clearing integration tests");
             }
         }
 
