@@ -11,7 +11,8 @@ namespace Robbi.FSM.Nodes.Parameters
     public enum SetMode
     {
         Absolute,
-        Delta
+        Increment,
+        Decrement
     }
 
     [Serializable]

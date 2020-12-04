@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2772506934692611050}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4521093251867499218
 MonoBehaviour:
@@ -46,6 +46,7 @@ MonoBehaviour:
   movementTilemap: {fileID: 11400000, guid: 383b6f4d91bf25e4a924c5ca0f937a9a, type: 2}
   remainingWaypointsPlaceable: {fileID: 11400000, guid: 5795522ed653b6947a2cfc5b86742695,
     type: 2}
+  remainingFuel: {fileID: 11400000, guid: 665dc865d1fb88d498d7a87fba272bf5, type: 2}
 --- !u!1 &1716386751844523028
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +76,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5483510007092365298
 MonoBehaviour:
@@ -124,9 +125,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2313395599210072945}
   - {fileID: 489147806951875998}
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2772506934692611030
 MonoBehaviour:
@@ -154,10 +156,13 @@ MonoBehaviour:
     type: 2}
   levelLoseOutOfWaypoints: {fileID: 11400000, guid: 777ae9d2c79462a43ab4df761ddcd9e6,
     type: 2}
+  levelLoseOutOfFuel: {fileID: 11400000, guid: 9d46f5760050e2a49b471b00f247dd82, type: 2}
   remainingWaypointsPlaceable: {fileID: 11400000, guid: 5795522ed653b6947a2cfc5b86742695,
     type: 2}
   waypointsPlaced: {fileID: 11400000, guid: ab2db721a5c983a40963c20d01bb3cc3, type: 2}
   isProgramRunning: {fileID: 11400000, guid: 36c66e683e05d134495c04803619774f, type: 2}
+  levelRequiresFuel: {fileID: 11400000, guid: ad4d3f76ba9af9640a612ed9416e725a, type: 2}
+  remainingFuel: {fileID: 11400000, guid: 665dc865d1fb88d498d7a87fba272bf5, type: 2}
   destinationMarkerAllocator: {fileID: 2185254429373469848}
   movementSpeed: {fileID: 11400000, guid: 4129d939c3be32249934c9c778306861, type: 2}
   boundingBox: {fileID: 2507852983745413843}
@@ -313,6 +318,261 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 6031862308839941411, guid: aca8e985d226d3648b1a4c98c7c70a75, type: 3}
   chunkSize: 10
+--- !u!1 &2822181663301202911
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8622111944718057574}
+  - component: {fileID: 6331695048131155978}
+  - component: {fileID: 8882704650424921561}
+  - component: {fileID: 37133865640396196}
+  - component: {fileID: 42714503784727091}
+  - component: {fileID: 8587486669775914436}
+  m_Layer: 0
+  m_Name: DoorsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8622111944718057574
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2822181663301202911}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4253851984974408785}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6331695048131155978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2822181663301202911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d453a1686e25ea4991bd2e91e662932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorsTilemap: {fileID: 11400000, guid: 30b77989832f303478f308bf685407be, type: 2}
+--- !u!114 &8882704650424921561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2822181663301202911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06686e4df983ee744994bb69318e429e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: d3249d8ae5bd19141a7c3fe5b6b72ef5, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6331695048131155978}
+        m_TargetAssemblyTypeName: Robbi.Environment.DoorsManager, Assembly-CSharp
+        m_MethodName: OpenDoor
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8587486669775914436}
+        m_TargetAssemblyTypeName: Robbi.Events.EventRaiser, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &37133865640396196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2822181663301202911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06686e4df983ee744994bb69318e429e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 40fd3c3b3eff16b4c88e90fe79d582dd, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6331695048131155978}
+        m_TargetAssemblyTypeName: Robbi.Environment.DoorsManager, Assembly-CSharp
+        m_MethodName: CloseDoor
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8587486669775914436}
+        m_TargetAssemblyTypeName: Robbi.Events.EventRaiser, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &42714503784727091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2822181663301202911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06686e4df983ee744994bb69318e429e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 1e7ee4e625f0e1945a1a914766c3fc88, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6331695048131155978}
+        m_TargetAssemblyTypeName: Robbi.Environment.DoorsManager, Assembly-CSharp
+        m_MethodName: ToggleDoor
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8587486669775914436}
+        m_TargetAssemblyTypeName: Robbi.Events.EventRaiser, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8587486669775914436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2822181663301202911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a0d147401428146b5daed6a3cee729, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 5bb336e8d44fa7f4e9895bfdf197a063, type: 2}
+--- !u!1 &3051439433994865322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2270789002046526372}
+  - component: {fileID: 1416014576783674456}
+  - component: {fileID: 1319617111545245673}
+  m_Layer: 0
+  m_Name: CollectablesManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2270789002046526372
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3051439433994865322}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4253851984974408785}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1416014576783674456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3051439433994865322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cebcaf61f05ef647bda1a9a8471ab22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectablesTilemap: {fileID: 11400000, guid: 4f694293867c2824583d1cfb38ccf6d2,
+    type: 2}
+--- !u!114 &1319617111545245673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3051439433994865322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1416014576783674456}
+        m_TargetAssemblyTypeName: Robbi.Environment.CollectablesManager, Assembly-CSharp
+        m_MethodName: OnMovedTo
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4253851984643043837
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,8 +682,10 @@ Transform:
   - {fileID: 4253851984643043838}
   - {fileID: 3525385912014895509}
   - {fileID: 8681021859159792560}
+  - {fileID: 8622111944718057574}
   - {fileID: 2772506934692611050}
   - {fileID: 5966350632234475573}
+  - {fileID: 2270789002046526372}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -522,10 +784,6 @@ GameObject:
   - component: {fileID: 8681021859159792560}
   - component: {fileID: 2915932516500803445}
   - component: {fileID: 7415379317088757677}
-  - component: {fileID: 8521232538425507589}
-  - component: {fileID: 5306065999385928737}
-  - component: {fileID: 1891089612862773551}
-  - component: {fileID: 4273791157776747732}
   m_Layer: 0
   m_Name: InteractablesManager
   m_TagString: Untagged
@@ -561,7 +819,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactablesTilemap: {fileID: 11400000, guid: 2b55b965a641bd246a79c3158278134b,
     type: 2}
-  doorsTilemap: {fileID: 11400000, guid: 30b77989832f303478f308bf685407be, type: 2}
 --- !u!114 &7415379317088757677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -590,25 +847,57 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8521232538425507589
+--- !u!1 &6440900456115497864
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2313395599210072945}
+  - component: {fileID: 636940202103362761}
+  - component: {fileID: 2772260310311972934}
+  m_Layer: 0
+  m_Name: FuelEventListeners
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2313395599210072945
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6440900456115497864}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2772506934692611050}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &636940202103362761
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4443659954887257874}
+  m_GameObject: {fileID: 6440900456115497864}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06686e4df983ee744994bb69318e429e, type: 3}
+  m_Script: {fileID: 11500000, guid: 4eb22ffe0a10eab4c89bb06a87233613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: d3249d8ae5bd19141a7c3fe5b6b72ef5, type: 2}
+  gameEvent: {fileID: 11400000, guid: eb18738a633d2994eafcf4d5364761d9, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2915932516500803445}
-        m_TargetAssemblyTypeName: Robbi.Environment.InteractablesManager, Assembly-CSharp
-        m_MethodName: OpenDoor
+      - m_Target: {fileID: 2772506934692611030}
+        m_TargetAssemblyTypeName: Robbi.Movement.MovementManager, Assembly-CSharp
+        m_MethodName: AddFuel
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -618,37 +907,25 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4273791157776747732}
-        m_TargetAssemblyTypeName: Robbi.Events.EventRaiser, Assembly-CSharp
-        m_MethodName: Raise
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &5306065999385928737
+--- !u!114 &2772260310311972934
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4443659954887257874}
+  m_GameObject: {fileID: 6440900456115497864}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06686e4df983ee744994bb69318e429e, type: 3}
+  m_Script: {fileID: 11500000, guid: 4eb22ffe0a10eab4c89bb06a87233613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 40fd3c3b3eff16b4c88e90fe79d582dd, type: 2}
+  gameEvent: {fileID: 11400000, guid: aff32123608f17d47a58f427d5911a6a, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2915932516500803445}
-        m_TargetAssemblyTypeName: Robbi.Environment.InteractablesManager, Assembly-CSharp
-        m_MethodName: CloseDoor
+      - m_Target: {fileID: 2772506934692611030}
+        m_TargetAssemblyTypeName: Robbi.Movement.MovementManager, Assembly-CSharp
+        m_MethodName: RemoveFuel
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -658,71 +935,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4273791157776747732}
-        m_TargetAssemblyTypeName: Robbi.Events.EventRaiser, Assembly-CSharp
-        m_MethodName: Raise
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1891089612862773551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4443659954887257874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06686e4df983ee744994bb69318e429e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 1e7ee4e625f0e1945a1a914766c3fc88, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2915932516500803445}
-        m_TargetAssemblyTypeName: Robbi.Environment.InteractablesManager, Assembly-CSharp
-        m_MethodName: ToggleDoor
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4273791157776747732}
-        m_TargetAssemblyTypeName: Robbi.Events.EventRaiser, Assembly-CSharp
-        m_MethodName: Raise
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &4273791157776747732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4443659954887257874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89a0d147401428146b5daed6a3cee729, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 5bb336e8d44fa7f4e9895bfdf197a063, type: 2}
 --- !u!1 &8197887247557088431
 GameObject:
   m_ObjectHideFlags: 0

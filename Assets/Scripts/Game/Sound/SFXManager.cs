@@ -34,6 +34,15 @@ namespace Robbi.Sound
 
         public void Play(AudioClip audioClip)
         {
+            if (OptionsManager.Instance.SfxEnabled && !audioSource.isPlaying)
+            {
+                audioSource.clip = audioClip;
+                audioSource.Play();
+            }
+        }
+
+        public void PlayOneShot(AudioClip audioClip)
+        {
             if (OptionsManager.Instance.SfxEnabled)
             {
                 audioSource.PlayOneShot(audioClip);

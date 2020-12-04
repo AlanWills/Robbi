@@ -73,6 +73,7 @@ namespace RobbiEditor.BuildSystem
         {
             CompressTilemaps.MenuItem();
             FindInteractables.MenuItem();
+            FindCollectables.MenuItem();
             SetAddressablePaths.MenuItem();
         }
 

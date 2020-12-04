@@ -21,6 +21,7 @@ namespace Robbi.Levels
         public Tilemap exitsTilemap;
         public Tilemap doorsTilemap;
         public Tilemap interactablesTilemap;
+        public Tilemap collectablesTilemap;
         public Tilemap movementTilemap;
 
         [Header("Parameters")]
@@ -29,6 +30,7 @@ namespace Robbi.Levels
         public TilemapValue exitsTilemapValue;
         public TilemapValue doorsTilemapValue;
         public TilemapValue interactablesTilemapValue;
+        public TilemapValue collectablesTilemapValue;
         public TilemapValue movementTilemapValue;
 
         #endregion
@@ -42,6 +44,7 @@ namespace Robbi.Levels
             exitsTilemapValue.value = exitsTilemap;
             doorsTilemapValue.value = doorsTilemap;
             interactablesTilemapValue.value = interactablesTilemap;
+            collectablesTilemapValue.value = collectablesTilemap;
             movementTilemapValue.value = movementTilemap;
 
             // Not great, but a hacky workaround for the fact the camera can't start zoomed out and centred
@@ -63,6 +66,7 @@ namespace Robbi.Levels
             EditorOnly_CompressBounds(exitsTilemap);
             EditorOnly_CompressBounds(doorsTilemap);
             EditorOnly_CompressBounds(interactablesTilemap);
+            EditorOnly_CompressBounds(collectablesTilemap);
             EditorOnly_CompressBounds(movementTilemap);
         }
 

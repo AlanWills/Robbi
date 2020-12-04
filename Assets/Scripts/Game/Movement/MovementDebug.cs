@@ -18,6 +18,7 @@ namespace Robbi.Movement
 
         public TilemapValue movementTilemap;
         public IntValue remainingWaypointsPlaceable;
+        public UIntValue remainingFuel;
 
         #endregion
 
@@ -47,6 +48,16 @@ namespace Robbi.Movement
         private void SetPlaceableWaypointsImpl(int waypoints)
         {
             remainingWaypointsPlaceable.value = waypoints;
+        }
+
+        public static void AddFuel(int fuel)
+        {
+            instance.AddFuelImpl(fuel);
+        }
+
+        private void AddFuelImpl(int fuel)
+        {
+            remainingFuel.value = (uint)Math.Max(0, (int)remainingFuel.value + fuel);
         }
 
         public static void SetDebugMovement(bool debugMovement)

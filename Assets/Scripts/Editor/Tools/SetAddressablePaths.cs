@@ -56,6 +56,14 @@ namespace RobbiEditor.Tools
                     }
                 }
 
+                // Collectables
+                {
+                    foreach (string collectablePath in levelFolder.Collectables)
+                    {
+                        AddressablesUtility.SetAddressableInfo(collectablePath, AddressablesConstants.LEVELS_GROUP);
+                    }
+                }
+
                 // Doors
                 {
                     foreach (string doorPath in levelFolder.Doors)

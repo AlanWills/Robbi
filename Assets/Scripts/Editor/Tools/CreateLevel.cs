@@ -1,4 +1,5 @@
-﻿using Robbi.DataSystem;
+﻿using Robbi.Attributes.GUI;
+using Robbi.DataSystem;
 using Robbi.FSM;
 using Robbi.Levels;
 using Robbi.Levels.Elements;
@@ -9,6 +10,7 @@ using RobbiEditor.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -44,14 +46,31 @@ namespace RobbiEditor.Tools
         public bool increaseMaxLevel = true;
         public GameObject levelPrefabToCopy;
         public bool clearLevel = true;
-        public int maxWaypointsPlaceable = 3; 
+
+        [Header("Parameters")]
+        public int maxWaypointsPlaceable = 3;
+        public bool requiresFuel = false;
+        [HideIf("requiresFuel")]
+        public uint startingFuel = 0;
+
+        [Header("Doors")]
         public List<DoorColour> horizontalDoors = new List<DoorColour>();
         public List<DoorColour> verticalDoors = new List<DoorColour>();
+
+        [Header("Interactables")]
         public List<InteractableMarker> interactableMarkers = new List<InteractableMarker>();
         public int numInteractables;
         public int numInteractableStateMachines;
+
+        [Header("Collectables")]
+        public int numCollectables;
+
+        [Header("Tutorials")]
         public bool hasTutorial = false;
+        [HideIf("hasTutorial")]
         public GameObject tutorialPrefabToCopy;
+
+        [Header("FSM")]
         public bool hasFsm = false;
     }
 
@@ -105,79 +124,80 @@ namespace RobbiEditor.Tools
 
             levelInfo = ScriptableObject.CreateInstance<LevelInfo>();
             levelInfo.levelIndex = levelManager.LatestLevelIndex_DefaultValue + 1;
+            
+            LevelFolder previousLevelFolder = new LevelFolder(levelInfo.levelIndex - 1);
+            levelInfo.levelPrefabToCopy = AssetDatabase.LoadAssetAtPath<GameObject>(previousLevelFolder.PrefabPath);
 
             levelInfoObject = new SerializedObject(levelInfo);
         }
 
         protected override bool DrawWizardGUI()
         {
-            bool propertiesChanged = base.DrawWizardGUI();
-            EditorGUI.BeginChangeCheck();
-
             levelInfoObject.Update();
 
-            levelInfo.destinationFolder = EditorGUILayout.TextField(levelInfo.destinationFolder);
-            levelInfo.levelIndex = RobbiEditorGUILayout.UIntField("Level Index", levelInfo.levelIndex);
-            levelInfo.increaseMaxLevel = EditorGUILayout.Toggle("Increase Max Level", levelInfo.increaseMaxLevel);
-            levelInfo.levelPrefabToCopy = EditorGUILayout.ObjectField("Level Prefab To Copy", levelInfo.levelPrefabToCopy, typeof(GameObject), false) as GameObject;
-            levelInfo.clearLevel = EditorGUILayout.Toggle("Clear Level", levelInfo.clearLevel);
-            levelInfo.maxWaypointsPlaceable = EditorGUILayout.IntField("Max Waypoints Placeable", levelInfo.maxWaypointsPlaceable);
-            propertiesChanged |= EditorGUILayout.PropertyField(levelInfoObject.FindProperty(nameof(levelInfo.horizontalDoors)));
-            propertiesChanged |= EditorGUILayout.PropertyField(levelInfoObject.FindProperty(nameof(levelInfo.verticalDoors)));
-            propertiesChanged |= EditorGUILayout.PropertyField(levelInfoObject.FindProperty(nameof(levelInfo.interactableMarkers)));
+            EditorGUI.BeginChangeCheck();
+            bool propertiesChanged = false;
+            string[] excludes = { "m_Script" };
 
-            levelInfo.numInteractables = EditorGUILayout.IntField("Num Interactables", levelInfo.numInteractables);
-            levelInfo.numInteractableStateMachines = EditorGUILayout.IntField("Num Interactable State Machines", levelInfo.numInteractableStateMachines);
-
-            levelInfo.hasTutorial = EditorGUILayout.Toggle("Has Tutorial", levelInfo.hasTutorial);
-            if (levelInfo.hasTutorial)
+            // Iterate through serialized properties and draw them like the Inspector (But with ports)
+            SerializedProperty iterator = levelInfoObject.GetIterator();
+            bool enterChildren = true;
+            while (iterator.NextVisible(enterChildren))
             {
-                levelInfo.tutorialPrefabToCopy = EditorGUILayout.ObjectField("Tutorial Prefab To Copy", levelInfo.tutorialPrefabToCopy, typeof(GameObject), false) as GameObject;
+                enterChildren = false;
+                if (excludes.Contains(iterator.name)) continue;
+                propertiesChanged |= EditorGUILayout.PropertyField(iterator, true);
             }
 
-            levelInfo.hasFsm = EditorGUILayout.Toggle("Has FSM", levelInfo.hasFsm);
-
             EditorGUILayout.Space();
+            EditorGUILayout.BeginHorizontal();
 
-            if (GUILayout.Button("Create Directories"))
+            if (GUILayout.Button("Create Directories", GUILayout.ExpandWidth(false)))
             {
                 CreateDirectories();
             }
 
-            if (levelInfo.hasFsm && GUILayout.Button("Create FSM"))
+            if (levelInfo.hasFsm && GUILayout.Button("Create FSM", GUILayout.ExpandWidth(false)))
             {
                 CreateFSM();
             }
 
-            if (GUILayout.Button("Create Prefab"))
+            if (GUILayout.Button("Create Prefab", GUILayout.ExpandWidth(false)))
             {
                 CreatePrefab();
             }
 
-            if (GUILayout.Button("Create Doors"))
+            if (GUILayout.Button("Create Doors", GUILayout.ExpandWidth(false)))
             {
                 CreateDoors();
             }
 
-            if (GUILayout.Button("Create Interactables"))
+            if (GUILayout.Button("Create Interactables", GUILayout.ExpandWidth(false)))
             {
                 CreateInteractables();
             }
 
-            if (GUILayout.Button("Create Interactable State Machines"))
+            if (GUILayout.Button("Create Interactable State Machines", GUILayout.ExpandWidth(false)))
             {
                 CreateInteractableStateMachines();
             }
 
-            if (levelInfo.hasTutorial && GUILayout.Button("Create Tutorial"))
+            if (GUILayout.Button("Create Collectables", GUILayout.ExpandWidth(false)))
+            {
+                CreateCollectables();
+            }
+
+            if (levelInfo.hasTutorial && GUILayout.Button("Create Tutorial", GUILayout.ExpandWidth(false)))
             {
                 CreateTutorial();
             }
 
-            if (GUILayout.Button("Create Level Data"))
+            if (GUILayout.Button("Create Level Data", GUILayout.ExpandWidth(false)))
             {
                 CreateLevelData();
             }
+
+            EditorGUILayout.EndHorizontal();
 
             levelInfoObject.ApplyModifiedProperties();
 
@@ -200,6 +220,7 @@ namespace RobbiEditor.Tools
             CreateDoors();
             CreateInteractables();
             CreateInteractableStateMachines();
+            CreateCollectables();
             CreateTutorial();
             CreateLevelData();
 
@@ -240,6 +261,11 @@ namespace RobbiEditor.Tools
             if (levelInfo.numInteractables > 0 || levelInfo.numInteractableStateMachines > 0)
             {
                 AssetUtility.CreateFolder(levelFolderPath, INTERACTABLES_NAME);
+            }
+
+            if (levelInfo.numCollectables > 0)
+            {
+                AssetUtility.CreateFolder(levelFolderPath, COLLECTABLES_NAME);
             }
         }
 
@@ -338,7 +364,7 @@ namespace RobbiEditor.Tools
             for (int i = 0; i < levelInfo.numInteractables; ++i)
             {
                 Interactable interactable = ScriptableObject.CreateInstance<Interactable>();
-                interactable.name = string.Format("Interactable{0}", i);
+                interactable.name = string.Format("Level{0}Interactable{1}", levelInfo.levelIndex, i);
                 AssetDatabase.CreateAsset(interactable, string.Format("{0}{1}.asset", interactablesPath, interactable.name));
                 interactable.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
             }
@@ -351,9 +377,22 @@ namespace RobbiEditor.Tools
             for (int i = 0; i < levelInfo.numInteractableStateMachines; ++i)
             {
                 InteractableStateMachine interactableStateMachine = ScriptableObject.CreateInstance<InteractableStateMachine>();
-                interactableStateMachine.name = string.Format("InteractableStateMachine{0}", i);
+                interactableStateMachine.name = string.Format("Level{0}InteractableStateMachine{1}", levelInfo.levelIndex, i);
                 AssetDatabase.CreateAsset(interactableStateMachine, string.Format("{0}{1}.asset", interactablesPath, interactableStateMachine.name));
                 interactableStateMachine.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
+            }
+        }
+
+        private void CreateCollectables()
+        {
+            string collectablesPath = string.Format("{0}{1}", LevelFolderFullPath, COLLECTABLES_NAME);
+
+            for (int i = 0; i < levelInfo.numCollectables; ++i)
+            {
+                Collectable collectable = ScriptableObject.CreateInstance<Collectable>();
+                collectable.name = string.Format("Level{0}Interactable{1}", levelInfo.levelIndex, i);
+                AssetDatabase.CreateAsset(collectable, string.Format("{0}{1}.asset", collectablesPath, collectable.name));
+                collectable.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
             }
         }
 
@@ -412,6 +451,8 @@ namespace RobbiEditor.Tools
                 AssetDatabase.LoadAssetAtPath<GameObject>(string.Format("{0}{1}Level{2}Tutorials.prefab", levelFolderFullPath, TUTORIALS_NAME, levelInfo.levelIndex))
                 : null;
             level.maxWaypointsPlaceable = levelInfo.maxWaypointsPlaceable;
+            level.requiresFuel = levelInfo.requiresFuel;
+            level.startingFuel = levelInfo.startingFuel;
             
             Debug.Assert(level.levelPrefab != null, "Level Prefab could not be found automatically");
             Debug.Assert(!levelInfo.hasTutorial || level.levelTutorial != null, "Level Tutorial could not be found automatically");
@@ -421,6 +462,7 @@ namespace RobbiEditor.Tools
 
             // Must do this after the asset is actually created
             LevelEditor.FindInteractables(level);
+            LevelEditor.FindCollectables(level);
         }
 
         #endregion

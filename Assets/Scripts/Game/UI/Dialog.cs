@@ -13,10 +13,10 @@ using Event = Robbi.Events.Event;
 namespace Robbi.UI
 {
     [AddComponentMenu("Robbi/UI/Dialog")]
-    public class Dialog : MonoBehaviour
+    public class Dialog : MonoBehaviour, IEventListener
     {
         [Serializable]
-        public struct ShowDialogParams
+        public class ShowDialogParams
         {
             public string title;
             public Sprite image;
@@ -26,21 +26,12 @@ namespace Robbi.UI
             public string closeButtonText;
             public bool showConfirmButton;
             public bool showCloseButton;
+            public List<Event> customDialogEvents = new List<Event>();
         }
 
         #region Properties and Fields
 
         private static int CLOSED_ANIMATION_NAME = Animator.StringToHash("Closed");
-
-        public Event ConfirmButtonClicked
-        {
-            get { return confirmButtonClicked; }
-        }
-
-        public Event CloseButtonClicked
-        {
-            get { return closeButtonClicked; }
-        }
 
         [SerializeField]
         private Text title;
@@ -64,13 +55,9 @@ namespace Robbi.UI
         private Button closeButton;
 
         [SerializeField]
-        private Event confirmButtonClicked;
-
-        [SerializeField]
-        private Event closeButtonClicked;
-
-        [SerializeField]
         private Animator animator;
+
+        private List<Event> dialogEvents = new List<Event>();
 
         #endregion
 
@@ -119,19 +106,23 @@ namespace Robbi.UI
                     }
                 }
             }
+
+            dialogEvents.Clear();
+            dialogEvents.AddRange(showDialogParams.customDialogEvents);
+
+            foreach (Event customEvent in dialogEvents)
+            {
+                customEvent.AddEventListener(this);
+            }
         }
 
-        public void Confirm()
+        public void OnEventRaised()
         {
-            StartCoroutine(Hide(confirmButtonClicked));
+            animator.SetTrigger(CLOSED_ANIMATION_NAME);
+            StartCoroutine(HideCoroutine());
         }
 
-        public void Close()
-        {
-            StartCoroutine(Hide(closeButtonClicked));
-        }
-
-        private IEnumerator Hide(Event eventToTrigger)
+        private IEnumerator HideCoroutine()
         {
             // The checking of the animation name is just to avoid this continuing on the first frame we transition from idle to closing
             while (animator != null && (animator.GetBool(CLOSED_ANIMATION_NAME) || animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1f))
@@ -139,7 +130,13 @@ namespace Robbi.UI
                 yield return null;
             }
 
-            eventToTrigger.Raise();
+            foreach (Event customEvent in dialogEvents)
+            {
+                customEvent.RemoveEventListener(this);
+            }
+
+            dialogEvents.Clear();
+            gameObject.SetActive(false);
             GameObject.Destroy(gameObject);
         }
 

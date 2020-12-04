@@ -14,18 +14,51 @@ namespace RobbiEditor.Levels
     [CustomEditor(typeof(Level))]
     public class LevelEditor : Editor
     {
+        #region Properties and Fields
+
+        private SerializedProperty requiresFuelProperty;
+        private SerializedProperty startingFuelProperty;
+
+        #endregion
+
+        #region Unity Methods
+
+        private void OnEnable()
+        {
+            requiresFuelProperty = serializedObject.FindProperty("requiresFuel");
+            startingFuelProperty = serializedObject.FindProperty("startingFuel");
+        }
+
+        #endregion
+
         #region GUI
 
         public override void OnInspectorGUI()
         {
-            base.OnInspectorGUI();
-
             serializedObject.Update();
 
-            if (GUILayout.Button("Find Interactables"))
+            DrawPropertiesExcluding(serializedObject, "m_Script", "requiresFuel", "startingFuel");
+
+            EditorGUILayout.PropertyField(requiresFuelProperty);
+            if (requiresFuelProperty.boolValue)
+            {
+                EditorGUILayout.PropertyField(startingFuelProperty);
+            }
+
+            EditorGUILayout.Space();
+            EditorGUILayout.BeginHorizontal();
+
+            if (GUILayout.Button("Find Interactables", GUILayout.ExpandWidth(false)))
             {
                 FindInteractables(target as Level);
             }
+
+            if (GUILayout.Button("Find Collectables", GUILayout.ExpandWidth(false)))
+            {
+                FindCollectables(target as Level);
+            }
+
+            EditorGUILayout.EndHorizontal();
 
             serializedObject.ApplyModifiedProperties();
         }
@@ -57,9 +90,13 @@ namespace RobbiEditor.Levels
             serializedObject.Update();
 
             SerializedProperty interactablesProperty = serializedObject.FindProperty("interactables");
-            bool dirty = interactablesProperty.arraySize != interactables.Count;
-
-            interactablesProperty.arraySize = interactables.Count;
+            bool dirty = false;
+            
+            if (interactablesProperty.arraySize != interactables.Count)
+            {
+                interactablesProperty.arraySize = interactables.Count;
+                dirty = true;
+            }
 
             for (int i = 0; i < interactables.Count; ++i)
             {
@@ -68,6 +105,46 @@ namespace RobbiEditor.Levels
                 if (interactables[i] != arrayElement.objectReferenceValue)
                 {
                     arrayElement.objectReferenceValue = interactables[i];
+                    dirty = true;
+                }
+            }
+
+            serializedObject.ApplyModifiedProperties();
+
+            if (dirty)
+            {
+                EditorUtility.SetDirty(level);
+            }
+        }
+
+        public static void FindCollectables(Level level)
+        {
+            string location = AssetDatabase.GetAssetPath(level);
+            string collectablesFolder = string.Format("{0}/{1}", Path.GetDirectoryName(location).Replace('\\', '/'), LevelDirectories.COLLECTABLES_NAME);
+            collectablesFolder = collectablesFolder.EndsWith("/") ? collectablesFolder.Substring(0, collectablesFolder.Length - 1) : collectablesFolder;
+            string[] collectablesGuids = AssetDatabase.FindAssets("t:Collectable", new string[] { collectablesFolder });
+
+            SerializedObject serializedObject = new SerializedObject(level);
+            serializedObject.Update();
+
+            SerializedProperty collectablesProperty = serializedObject.FindProperty("collectables");
+            bool dirty = false;
+            
+            if (collectablesProperty.arraySize != collectablesGuids.Length)
+            {
+                collectablesProperty.arraySize = collectablesGuids.Length;
+            }
+
+            for (int i = 0; i < collectablesGuids.Length; ++i)
+            {
+                string collectablePath = AssetDatabase.GUIDToAssetPath(collectablesGuids[i]);
+                Collectable collectable = AssetDatabase.LoadAssetAtPath<Collectable>(collectablePath);
+
+                SerializedProperty arrayElement = collectablesProperty.GetArrayElementAtIndex(i);
+
+                if (collectable != arrayElement.objectReferenceValue)
+                {
+                    arrayElement.objectReferenceValue = collectable;
                     dirty = true;
                 }
             }

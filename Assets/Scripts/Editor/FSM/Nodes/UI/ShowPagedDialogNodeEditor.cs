@@ -35,12 +35,12 @@ namespace RobbiEditor.FSM.Nodes.UI
                     NodeEditorGUILayout.PropertyField(iterator, true);
                 }
 
-                NodeEditorGUILayout.PortField(showPagedDialogNode.GetInputPort(ShowDialogNode.DEFAULT_INPUT_PORT_NAME));
-                NodeEditorGUILayout.PortField(showPagedDialogNode.GetOutputPort(ShowDialogNode.CONFIRM_PRESSED_PORT_NAME));
+                NodeEditorGUILayout.PortField(showPagedDialogNode.GetInputPort(ShowPagedDialogNode.DEFAULT_INPUT_PORT_NAME));
+                NodeEditorGUILayout.PortField(showPagedDialogNode.GetOutputPort(ShowPagedDialogNode.CONFIRM_PRESSED_PORT_NAME));
 
                 if (showPagedDialogNode.parameters.showCloseButton)
                 {
-                    NodeEditorGUILayout.PortField(showPagedDialogNode.GetOutputPort(ShowDialogNode.CLOSE_PRESSED_PORT_NAME));
+                    NodeEditorGUILayout.PortField(showPagedDialogNode.GetOutputPort(ShowPagedDialogNode.CLOSE_PRESSED_PORT_NAME));
                 }
             }
 
