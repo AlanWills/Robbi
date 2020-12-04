@@ -17,26 +17,26 @@ namespace RobbiEditor.BuildSystem
 {
     public static class BuildAssets
     {
-        [MenuItem("Robbi/Assets/Build/Debug Android Assets")]
-        public static void BuildDebugAndroidAssets()
+        [MenuItem("Robbi/Assets/Build/Android Assets")]
+        public static void BuildAndroidAssets()
         {
             AndroidSettings.Debug.BuildAssets();
         }
 
-        [MenuItem("Robbi/Assets/Build/Debug Windows Assets")]
-        public static void BuildDebugWindowsAssets()
+        [MenuItem("Robbi/Assets/Build/Windows Assets")]
+        public static void BuildWindowsAssets()
         {
             WindowsSettings.Debug.BuildAssets();
         }
 
-        [MenuItem("Robbi/Assets/Build/Debug iOS Assets")]
-        public static void BuildDebugiOSAssets()
+        [MenuItem("Robbi/Assets/Build/iOS Assets")]
+        public static void BuildiOSAssets()
         {
             iOSSettings.Debug.BuildAssets();
         }
 
-        [MenuItem("Robbi/Assets/Build/Debug HTML5 Assets")]
-        public static void BuildDebugHTML5Assets()
+        [MenuItem("Robbi/Assets/Build/HTML5 Assets")]
+        public static void BuildHTML5Assets()
         {
             HTML5Settings.Debug.BuildAssets();
         }
