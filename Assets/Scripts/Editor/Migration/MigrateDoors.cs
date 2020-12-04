@@ -27,31 +27,39 @@ namespace RobbiEditor.Migration
 
                     if (closedTilePath == TileFiles.HORIZONTAL_GREEN_CLOSED_DOOR_TILE)
                     {
-                        door.leftOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_GREEN_OPEN_DOOR_LEFT_TILE);
-                        door.rightOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_GREEN_OPEN_DOOR_RIGHT_TILE);
+                        door.leftOpenTile = door.leftOpenTile == null ? AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_GREEN_OPEN_DOOR_LEFT_TILE) : door.leftOpenTile;
+                        door.rightOpenTile = door.rightOpenTile == null ? AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_GREEN_OPEN_DOOR_RIGHT_TILE) : door.rightOpenTile;
                         Debug.Assert(door.leftOpenTile, "Could not find green horizontal door left tile");
                         Debug.Assert(door.rightOpenTile, "Could not find green horizontal door right tile");
+                        
+                        EditorUtility.SetDirty(door);
                     }
                     else if (closedTilePath == TileFiles.HORIZONTAL_RED_CLOSED_DOOR_TILE)
                     {
-                        door.leftOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_RED_OPEN_DOOR_LEFT_TILE);
-                        door.rightOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_RED_OPEN_DOOR_RIGHT_TILE);
+                        door.leftOpenTile = door.leftOpenTile == null ? AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_RED_OPEN_DOOR_LEFT_TILE) : door.leftOpenTile;
+                        door.rightOpenTile = door.rightOpenTile == null ? AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_RED_OPEN_DOOR_RIGHT_TILE) : door.rightOpenTile;
                         Debug.Assert(door.leftOpenTile, "Could not find red horizontal door left tile");
                         Debug.Assert(door.rightOpenTile, "Could not find red horizontal door right tile");
+
+                        EditorUtility.SetDirty(door);
                     }
                     else if (closedTilePath == TileFiles.HORIZONTAL_BLUE_CLOSED_DOOR_TILE)
                     {
-                        door.leftOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_BLUE_OPEN_DOOR_LEFT_TILE);
-                        door.rightOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_BLUE_OPEN_DOOR_RIGHT_TILE);
+                        door.leftOpenTile = door.leftOpenTile == null ? AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_BLUE_OPEN_DOOR_LEFT_TILE) : door.leftOpenTile;
+                        door.rightOpenTile = door.rightOpenTile == null ? AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_BLUE_OPEN_DOOR_RIGHT_TILE) : door.rightOpenTile;
                         Debug.Assert(door.leftOpenTile, "Could not find blue horizontal door left tile");
                         Debug.Assert(door.rightOpenTile, "Could not find blue horizontal door right tile");
+
+                        EditorUtility.SetDirty(door);
                     }
                     else if (closedTilePath == TileFiles.HORIZONTAL_GREY_CLOSED_DOOR_TILE)
                     {
-                        door.leftOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_GREY_OPEN_DOOR_LEFT_TILE);
-                        door.rightOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_GREY_OPEN_DOOR_RIGHT_TILE);
+                        door.leftOpenTile = door.leftOpenTile == null ? AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_GREY_OPEN_DOOR_LEFT_TILE) : door.leftOpenTile;
+                        door.rightOpenTile = door.rightOpenTile == null ? AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.HORIZONTAL_GREY_OPEN_DOOR_RIGHT_TILE) : door.rightOpenTile;
                         Debug.Assert(door.leftOpenTile, "Could not find grey horizontal door left tile");
                         Debug.Assert(door.rightOpenTile, "Could not find grey horizontal door right tile");
+
+                        EditorUtility.SetDirty(door);
                     }
                     else
                     {
@@ -64,31 +72,39 @@ namespace RobbiEditor.Migration
 
                     if (assetPath == TileFiles.VERTICAL_GREEN_CLOSED_DOOR_TILE)
                     {
-                        door.leftOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_GREEN_OPEN_DOOR_LEFT_TILE);
-                        door.rightOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_GREEN_OPEN_DOOR_RIGHT_TILE);
+                        door.leftOpenTile = door.leftOpenTile == null ? AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_GREEN_OPEN_DOOR_LEFT_TILE) : door.leftOpenTile;
+                        door.rightOpenTile = door.rightOpenTile == null ? AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_GREEN_OPEN_DOOR_RIGHT_TILE) : door.rightOpenTile;
                         Debug.Assert(door.leftOpenTile, "Could not find green vertical door left tile");
                         Debug.Assert(door.rightOpenTile, "Could not find green vertical door right tile");
+
+                        EditorUtility.SetDirty(door);
                     }
                     else if (assetPath == TileFiles.VERTICAL_RED_CLOSED_DOOR_TILE)
                     {
-                        door.leftOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_RED_OPEN_DOOR_LEFT_TILE);
-                        door.rightOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_RED_OPEN_DOOR_RIGHT_TILE);
+                        door.leftOpenTile = door.leftOpenTile == null ? AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_RED_OPEN_DOOR_LEFT_TILE) : door.leftOpenTile;
+                        door.rightOpenTile = door.rightOpenTile == null ? AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_RED_OPEN_DOOR_RIGHT_TILE) : door.rightOpenTile;
                         Debug.Assert(door.leftOpenTile, "Could not find red vertical door left tile");
                         Debug.Assert(door.rightOpenTile, "Could not find red vertical door right tile");
+
+                        EditorUtility.SetDirty(door);
                     }
                     else if (assetPath == TileFiles.VERTICAL_BLUE_CLOSED_DOOR_TILE)
                     {
-                        door.leftOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_BLUE_OPEN_DOOR_LEFT_TILE);
-                        door.rightOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_BLUE_OPEN_DOOR_RIGHT_TILE);
+                        door.leftOpenTile = door.leftOpenTile == null ? AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_BLUE_OPEN_DOOR_LEFT_TILE) : door.leftOpenTile;
+                        door.rightOpenTile = door.rightOpenTile == null ? AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_BLUE_OPEN_DOOR_RIGHT_TILE) : door.rightOpenTile;
                         Debug.Assert(door.leftOpenTile, "Could not find blue vertical door left tile");
                         Debug.Assert(door.rightOpenTile, "Could not find blue vertical door right tile");
+                    
+                        EditorUtility.SetDirty(door);
                     }
                     else if (assetPath == TileFiles.VERTICAL_GREY_CLOSED_DOOR_TILE)
                     {
-                        door.leftOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_GREY_OPEN_DOOR_LEFT_TILE);
-                        door.rightOpenTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_GREY_OPEN_DOOR_RIGHT_TILE);
+                        door.leftOpenTile = door.leftOpenTile == null ? AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_GREY_OPEN_DOOR_LEFT_TILE) : door.leftOpenTile;
+                        door.rightOpenTile = door.rightOpenTile == null ? AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.VERTICAL_GREY_OPEN_DOOR_RIGHT_TILE) : door.rightOpenTile;
                         Debug.Assert(door.leftOpenTile, "Could not find grey vertical door left tile");
                         Debug.Assert(door.rightOpenTile, "Could not find grey vertical door right tile");
+
+                        EditorUtility.SetDirty(door);
                     }
                     else
                     {
