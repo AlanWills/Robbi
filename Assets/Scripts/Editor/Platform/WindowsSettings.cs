@@ -15,34 +15,42 @@ namespace RobbiEditor.Platform
     {
         #region Properties and Fields
 
-        private const string PATH = "Assets/Platform/WindowsSettings.asset";
+        private const string DEBUG_PATH = "Assets/Platform/Windows/Debug.asset";
+        private const string RELEASE_PATH = "Assets/Platform/Windows/Release.asset";
 
-        private static WindowsSettings instance;
-        public static WindowsSettings Instance
+        private static WindowsSettings debug;
+        public static WindowsSettings Debug
         {
             get
             {
-                if (instance == null)
+                if (debug == null)
                 {
-                    instance = AssetDatabase.LoadAssetAtPath<WindowsSettings>(PATH);
+                    debug = AssetDatabase.LoadAssetAtPath<WindowsSettings>(DEBUG_PATH);
                 }
 
-                return instance;
+                return debug;
             }
         }
 
-        [SerializeField]
+        private static WindowsSettings release;
+        public static WindowsSettings Release
+        {
+            get
+            {
+                if (release == null)
+                {
+                    release = AssetDatabase.LoadAssetAtPath<WindowsSettings>(RELEASE_PATH);
+                }
 
+                return release;
+            }
+        }
 
         #endregion
 
         protected override void ApplyImpl()
         {
             EditorUserBuildSettings.selectedStandaloneTarget = BuildTarget;
-
-            // Bump windows version number - yes we're using the mac version number, but windows doesn't have a unique one apparently
-            PlayerSettings.macOS.buildNumber = Version;
-            Debug.LogFormat("Windows version is now: {0}", PlayerSettings.macOS.buildNumber);
         }
     }
 }

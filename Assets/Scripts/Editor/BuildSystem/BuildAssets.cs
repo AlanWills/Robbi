@@ -17,49 +17,28 @@ namespace RobbiEditor.BuildSystem
 {
     public static class BuildAssets
     {
-        [MenuItem("Robbi/Assets/Build/Android Assets")]
-        public static void BuildAndroidAssets()
+        [MenuItem("Robbi/Assets/Build/Debug Android Assets")]
+        public static void BuildDebugAndroidAssets()
         {
-            AndroidSettings.Instance.BuildAssets();
+            AndroidSettings.Debug.BuildAssets();
         }
 
-        [MenuItem("Robbi/Assets/Update/Android Assets")]
-        public static void UpdateAndroidAssets()
+        [MenuItem("Robbi/Assets/Build/Debug Windows Assets")]
+        public static void BuildDebugWindowsAssets()
         {
-            if (!AndroidSettings.Instance.UpdateAssets() && Application.isBatchMode)
-            {
-                EditorApplication.Exit(1);
-            }
+            WindowsSettings.Debug.BuildAssets();
         }
 
-        [MenuItem("Robbi/Assets/Build/Windows Assets")]
-        public static void BuildWindowsAssets()
+        [MenuItem("Robbi/Assets/Build/Debug iOS Assets")]
+        public static void BuildDebugiOSAssets()
         {
-            WindowsSettings.Instance.BuildAssets();
+            iOSSettings.Debug.BuildAssets();
         }
 
-        [MenuItem("Robbi/Assets/Update/Windows Assets")]
-        public static void UpdateWindowsAssets()
+        [MenuItem("Robbi/Assets/Build/Debug HTML5 Assets")]
+        public static void BuildDebugHTML5Assets()
         {
-            if (!WindowsSettings.Instance.UpdateAssets() && Application.isBatchMode)
-            {
-                EditorApplication.Exit(1);
-            }
-        }
-
-        [MenuItem("Robbi/Assets/Build/iOS Assets")]
-        public static void BuildiOSAssets()
-        {
-            iOSSettings.Instance.BuildAssets();
-        }
-
-        [MenuItem("Robbi/Assets/Update/iOS Assets")]
-        public static void UpdateiOSAssets()
-        {
-            if (iOSSettings.Instance.UpdateAssets() && Application.isBatchMode)
-            {
-                EditorApplication.Exit(1);
-            }
+            HTML5Settings.Debug.BuildAssets();
         }
 
         [MenuItem("Robbi/Assets/Clear Asset Cache")]

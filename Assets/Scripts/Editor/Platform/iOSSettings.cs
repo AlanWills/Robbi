@@ -15,19 +15,34 @@ namespace RobbiEditor.Platform
     {
         #region Properties and Fields
 
-        private const string PATH = "Assets/Platform/iOSSettings.asset";
+        private const string DEBUG_PATH = "Assets/Platform/iOS/Debug.asset";
+        private const string RELEASE_PATH = "Assets/Platform/iOS/Release.asset";
 
-        private static iOSSettings instance;
-        public static iOSSettings Instance
+        private static iOSSettings debug;
+        public static iOSSettings Debug
         {
             get
             {
-                if (instance == null)
+                if (debug == null)
                 {
-                    instance = AssetDatabase.LoadAssetAtPath<iOSSettings>(PATH);
+                    debug = AssetDatabase.LoadAssetAtPath<iOSSettings>(DEBUG_PATH);
                 }
 
-                return instance;
+                return debug;
+            }
+        }
+
+        private static iOSSettings release;
+        public static iOSSettings Release
+        {
+            get
+            {
+                if (release == null)
+                {
+                    release = AssetDatabase.LoadAssetAtPath<iOSSettings>(RELEASE_PATH);
+                }
+
+                return release;
             }
         }
 
@@ -41,7 +56,7 @@ namespace RobbiEditor.Platform
             EditorUserBuildSettings.iOSBuildConfigType = runInXCodeAs;
 
             PlayerSettings.iOS.buildNumber = Version;
-            Debug.LogFormat("iOS version is now: {0}", PlayerSettings.iOS.buildNumber);
+            UnityEngine.Debug.LogFormat("iOS version is now: {0}", PlayerSettings.iOS.buildNumber);
         }
     }
 }

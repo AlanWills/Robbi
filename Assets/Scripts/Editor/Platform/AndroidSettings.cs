@@ -15,19 +15,34 @@ namespace RobbiEditor.Platform
     {
         #region Properties and Fields
 
-        private const string PATH = "Assets/Platform/AndroidSettings.asset";
+        private const string DEBUG_PATH = "Assets/Platform/Android/Debug.asset";
+        private const string RELEASE_PATH = "Assets/Platform/Android/Release.asset";
 
-        private static AndroidSettings instance;
-        public static AndroidSettings Instance
+        private static AndroidSettings debug;
+        public static AndroidSettings Debug
         {
             get
             {
-                if (instance == null)
+                if (debug == null)
                 {
-                    instance = AssetDatabase.LoadAssetAtPath<AndroidSettings>(PATH);
+                    debug = AssetDatabase.LoadAssetAtPath<AndroidSettings>(DEBUG_PATH);
                 }
 
-                return instance;
+                return debug;
+            }
+        }
+
+        private static AndroidSettings release;
+        public static AndroidSettings Release
+        {
+            get
+            {
+                if (release == null)
+                {
+                    release = AssetDatabase.LoadAssetAtPath<AndroidSettings>(RELEASE_PATH);
+                }
+
+                return release;
             }
         }
 
@@ -37,7 +52,7 @@ namespace RobbiEditor.Platform
         {
             Version version = ParseVersion(Version);
             PlayerSettings.Android.bundleVersionCode = version.Major * 10000 + version.Minor * 100 + version.Build;
-            Debug.LogFormat("Android version is now: {0}", version.ToString());
+            UnityEngine.Debug.LogFormat("Android version is now: {0}", version.ToString());
         }
     }
 }
