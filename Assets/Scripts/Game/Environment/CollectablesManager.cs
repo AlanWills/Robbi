@@ -38,7 +38,8 @@ namespace Robbi.Environment
         {
             foreach (Collectable collectable in collectables)
             {
-                if (collectable.Position == location)
+                // Only pickup if we have not already done so (tilemap has value)
+                if (collectable.Position == location && collectablesTilemap.value.HasTile(location))
                 {
                     PickupArgs pickupArgs = new PickupArgs();
                     collectable.Pickup(pickupArgs);
