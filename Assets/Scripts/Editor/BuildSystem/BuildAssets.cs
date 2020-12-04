@@ -1,4 +1,5 @@
-﻿using RobbiEditor.Platform;
+﻿using Robbi.Levels;
+using RobbiEditor.Platform;
 using RobbiEditor.Tools;
 using System;
 using System.Collections.Generic;
@@ -54,6 +55,7 @@ namespace RobbiEditor.BuildSystem
             FindInteractables.MenuItem();
             FindCollectables.MenuItem();
             SetAddressablePaths.MenuItem();
+            SetCurrentLevelToZero();
         }
 
         public static void PreBuildSteps()
@@ -90,6 +92,12 @@ namespace RobbiEditor.BuildSystem
             }
 
             Debug.LogFormat("Active Profile Id: {0}", settings.activeProfileId);
+        }
+
+        private static void SetCurrentLevelToZero()
+        {
+            LevelManager.EditorOnly_Load().CurrentLevelIndex_DefaultValue = 0;
+            AssetDatabase.SaveAssets();
         }
     }
 }

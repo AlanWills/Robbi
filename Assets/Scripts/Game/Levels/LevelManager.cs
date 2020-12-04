@@ -31,6 +31,19 @@ namespace Robbi.Levels
             set { currentLevelIndex.value = value; }
         }
 
+        public uint CurrentLevelIndex_DefaultValue
+        {
+            get { return currentLevelIndex.defaultValue; }
+            set 
+            { 
+                currentLevelIndex.defaultValue = value;
+
+#if UNITY_EDITOR
+                UnityEditor.EditorUtility.SetDirty(currentLevelIndex);
+#endif
+            }
+        }
+
         public uint LatestLevelIndex
         {
             get { return latestLevelIndex.value; }
