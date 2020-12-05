@@ -21,7 +21,10 @@ namespace RobbiEditor.Testing
                 typeof(LevelLoseOutOfWaypointsMainMenuButton),
                 typeof(LevelLoseWaypointUnreachable),
                 typeof(LevelLoseWaypointUnreachableMainMenuButton),
+                typeof(LevelOptionsButton),
+                typeof(LevelRestartButton),
                 typeof(LevelWinMainMenuButton),
+                typeof(LevelWinRetryButton),
                 typeof(PlayLevels));
         }
     }

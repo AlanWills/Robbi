@@ -108,6 +108,12 @@ namespace Robbi.Testing
             testInProgress = true;
             testResult = false;
 
+            string testResultsDirectory = Path.Combine(Application.dataPath, "..", "TestResults");
+            if (Directory.Exists(testResultsDirectory))
+            {
+                Directory.Delete(testResultsDirectory, true);
+            }
+
             while (!UnityEditor.EditorApplication.isPlaying) { yield return null; }
 
             Application.logMessageReceived += (string logString, string stackTrace, LogType type) =>
@@ -137,11 +143,9 @@ namespace Robbi.Testing
 
             while (testInProgress) { yield return null; }
 
-            string directoryPath = Path.Combine(Application.dataPath, "..", "TestResults");
-
-            Directory.CreateDirectory(directoryPath);
+            Directory.CreateDirectory(testResultsDirectory);
             File.WriteAllText(
-                Path.Combine(directoryPath, string.Format("{0}-{1}.txt", integrationTestNames[currentTestIndex], testResult ? "Passed" : "Failed")),
+                Path.Combine(testResultsDirectory, string.Format("{0}-{1}.txt", integrationTestNames[currentTestIndex], testResult ? "Passed" : "Failed")),
                 (testResult ? "1\n" : "0\n") + logContents.ToString());
 
             UnityEditor.EditorApplication.playModeStateChanged += EditorApplication_playModeStateChanged;
