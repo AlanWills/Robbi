@@ -75,6 +75,12 @@ namespace Robbi.Testing
             integrationTestNames.AddRange(testNames);
             currentTestIndex = 0;
 
+            string testResultsDirectory = Path.Combine(Application.dataPath, "..", "TestResults");
+            if (Directory.Exists(testResultsDirectory))
+            {
+                Directory.Delete(testResultsDirectory, true);
+            }
+
 #if UNITY_EDITOR
             UnityEditor.EditorUtility.SetDirty(this);
             UnityEditor.AssetDatabase.SaveAssets();
@@ -108,12 +114,6 @@ namespace Robbi.Testing
             testInProgress = true;
             testResult = false;
 
-            string testResultsDirectory = Path.Combine(Application.dataPath, "..", "TestResults");
-            if (Directory.Exists(testResultsDirectory))
-            {
-                Directory.Delete(testResultsDirectory, true);
-            }
-
             while (!UnityEditor.EditorApplication.isPlaying) { yield return null; }
 
             Application.logMessageReceived += (string logString, string stackTrace, LogType type) =>
@@ -143,6 +143,7 @@ namespace Robbi.Testing
 
             while (testInProgress) { yield return null; }
 
+            string testResultsDirectory = Path.Combine(Application.dataPath, "..", "TestResults");
             Directory.CreateDirectory(testResultsDirectory);
             File.WriteAllText(
                 Path.Combine(testResultsDirectory, string.Format("{0}-{1}.txt", integrationTestNames[currentTestIndex], testResult ? "Passed" : "Failed")),
