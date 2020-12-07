@@ -30,6 +30,9 @@ MonoBehaviour:
       - fieldName: LevelLoseOutOfWaypoints
         node: {fileID: 3273725270792028085}
         reroutePoints: []
+      - fieldName: LevelLoseOutOfFuel
+        node: {fileID: 3273725270792028085}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -98,6 +101,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 5330908282842287536}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5330908282842287536}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -115,6 +121,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   time: 1
+  unit: 0
 --- !u!114 &-6511585839857426616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -194,6 +201,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listenFor: {fileID: 11400000, guid: 38d024a67b433dd4fb6e873bcdc109cc, type: 2}
+--- !u!114 &-4949574380650799462
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
+  m_Name: LevelLoseOutOfFuel
+  m_EditorClassIdentifier: 
+  listenFor: {fileID: 11400000, guid: 9d46f5760050e2a49b471b00f247dd82, type: 2}
 --- !u!114 &-4164398108424220175
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -259,6 +279,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -7247296080545704317}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -7247296080545704317}
         reroutePoints: []
@@ -458,6 +481,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -3635145984582864950}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -3635145984582864950}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -535,12 +561,16 @@ MonoBehaviour:
     - LevelLoseWaypointUnreachable
     - LevelLoseOutOfWaypoints
     - LevelWon
+    - LevelLoseOutOfFuel
     values:
     - _fieldName: ' '
       _node: {fileID: 3273725270792028085}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -2239104128657299769}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -2239104128657299769}
         reroutePoints: []
@@ -668,9 +698,22 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
+    - _fieldName: LevelLoseOutOfFuel
+      _node: {fileID: 3273725270792028085}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -7763568801225350052}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
   events:
   - {fileID: -6511585839857426616}
   - {fileID: 6961170756541601695}
+  - {fileID: -4949574380650799462}
   - {fileID: -5180573132337398933}
 --- !u!114 &5330908282842287536
 MonoBehaviour:
@@ -696,6 +739,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -5614076686049829248}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -5614076686049829248}
         reroutePoints: []

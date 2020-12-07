@@ -12,12 +12,12 @@ using RobbiEditor.Utils;
 
 namespace RobbiEditor.Testing
 {
-    public class PlayLevels : IIntegrationTest
+    public class LevelLoseOutOfFuelMainMenuButton : IIntegrationTest
     {
-        [MenuItem("Robbi/Testing/Level/Play Levels")]
+        [MenuItem("Robbi/Testing/Level/Level Lose Out Of Fuel Main Menu Button")]
         public static void MenuItem()
         {
-            IntegrationTestEditorAPI.RunTest<PlayLevels>();
+            IntegrationTestEditorAPI.RunTest<LevelLoseOutOfFuelMainMenuButton>();
         }
     }
 }

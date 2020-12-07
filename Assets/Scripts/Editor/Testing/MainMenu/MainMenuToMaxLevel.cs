@@ -7,7 +7,7 @@ using UnityEditor;
 
 namespace RobbiEditor.Testing
 {
-    public class MainMenuToMaxLevel
+    public class MainMenuToMaxLevel : IIntegrationTest
     {
         [MenuItem("Robbi/Testing/Main Menu/Main Menu To Max Level")]
         public static void MenuItem()

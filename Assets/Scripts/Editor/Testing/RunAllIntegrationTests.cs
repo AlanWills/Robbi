@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
+using UnityEngine;
 
 namespace RobbiEditor.Testing
 {
@@ -12,20 +14,18 @@ namespace RobbiEditor.Testing
         [MenuItem("Robbi/Testing/Run All Integration Tests")]
         public static void MenuItem()
         {
-            IntegrationTestEditorAPI.RunTests(
-                typeof(MainMenuToLevel),
-                typeof(MainMenuToLockedLevel),
-                typeof(MainMenuToMaxLevel),
-                typeof(LevelHomeButton),
-                typeof(LevelLoseOutOfWaypoints),
-                typeof(LevelLoseOutOfWaypointsMainMenuButton),
-                typeof(LevelLoseWaypointUnreachable),
-                typeof(LevelLoseWaypointUnreachableMainMenuButton),
-                typeof(LevelOptionsButton),
-                typeof(LevelRestartButton),
-                typeof(LevelWinMainMenuButton),
-                typeof(LevelWinRetryButton),
-                typeof(PlayLevels));
+            List<Type> integrationTests = new List<Type>();
+            Type integrationTestType = typeof(IIntegrationTest);
+
+            foreach (Type t in Assembly.GetAssembly(integrationTestType).GetTypes())
+            {
+                if (integrationTestType.IsAssignableFrom(t) && !t.IsAbstract)
+                {
+                    integrationTests.Add(t);
+                }
+            }
+
+            IntegrationTestEditorAPI.RunTests(integrationTests.ToArray());
         }
     }
 }

@@ -12,7 +12,7 @@ using RobbiEditor.Utils;
 
 namespace RobbiEditor.Testing
 {
-    public class LevelLoseWaypointUnreachableMainMenuButton
+    public class LevelLoseWaypointUnreachableMainMenuButton : IIntegrationTest
     {
         [MenuItem("Robbi/Testing/Level/Level Lose Waypoint Unreachable Main Menu Button")]
         public static void MenuItem()

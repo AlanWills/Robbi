@@ -7,7 +7,7 @@ using UnityEditor;
 
 namespace RobbiEditor.Testing
 {
-    public class MainMenuToLockedLevel
+    public class MainMenuToLockedLevel : IIntegrationTest
     {
         [MenuItem("Robbi/Testing/Main Menu/Main Menu To Locked Level")]
         public static void MenuItem()

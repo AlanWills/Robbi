@@ -12,7 +12,7 @@ using RobbiEditor.Utils;
 
 namespace RobbiEditor.Testing
 {
-    public class LevelLoseOutOfWaypoints
+    public class LevelLoseOutOfWaypoints : IIntegrationTest
     {
         [MenuItem("Robbi/Testing/Level/Level Lose Out Of Waypoints")]
         public static void MenuItem()
