@@ -1,0 +1,540 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7858947254522064304
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec718764ed3a234cb86bb3efc892b05, type: 3}
+  m_Name: _newValue
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 0
+  referenceValue: {fileID: 0}
+--- !u!114 &-7242608953079250384
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d28e9edd6389634408dc93a9a1a64ecb, type: 3}
+  m_Name: Click Game Object
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1992, y: -72}
+  ports:
+    keys:
+    - ' '
+    - Found
+    - NotFound
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -7242608953079250384}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: Found
+        node: {fileID: -3443217561231219503}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Found
+      _node: {fileID: -7242608953079250384}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -125398274572605464}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: NotFound
+      _node: {fileID: -7242608953079250384}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -1791707902168781143}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  gameObjectPath:
+    path: Options.AudioSettings.MusicDisabledButton
+  attemptWindow: 2
+--- !u!114 &-3443217561231219503
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d28e9edd6389634408dc93a9a1a64ecb, type: 3}
+  m_Name: Click Game Object
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1752, y: -72}
+  ports:
+    keys:
+    - ' '
+    - Found
+    - NotFound
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -3443217561231219503}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: 6905361961377371754}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6905361961377371754}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6905361961377371754}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6905361961377371754}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6905361961377371754}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6905361961377371754}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6905361961377371754}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6905361961377371754}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6905361961377371754}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6905361961377371754}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Found
+      _node: {fileID: -3443217561231219503}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -7242608953079250384}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: NotFound
+      _node: {fileID: -3443217561231219503}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -1791707902168781143}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  gameObjectPath:
+    path: OptionsButton
+  attemptWindow: 1
+--- !u!114 &-3370088292095574852
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d1f84035a8805e4cb5960d848e5a74a, type: 3}
+  m_Name: Pass Test
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 2760, y: 8}
+  ports:
+    keys:
+    - ' '
+    - 
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -3370088292095574852}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: Removed
+        node: {fileID: -95568519281998212}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -3370088292095574852}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  testResult: {fileID: 11400000, guid: d026f6890dbc6ab4c9a19df9dc4f6a8d, type: 2}
+--- !u!114 &-2876918372678406609
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec718764ed3a234cb86bb3efc892b05, type: 3}
+  m_Name: IsMusicDisabled_target
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 0
+  referenceValue: {fileID: 0}
+--- !u!114 &-1791707902168781143
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d1f84035a8805e4cb5960d848e5a74a, type: 3}
+  m_Name: Fail Test
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 2232, y: 216}
+  ports:
+    keys:
+    - ' '
+    - 
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -1791707902168781143}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: NotFound
+        node: {fileID: -7242608953079250384}
+        reroutePoints: []
+      - fieldName: NotFound
+        node: {fileID: -3443217561231219503}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -125398274572605464}
+        reroutePoints: []
+      - fieldName: NotRemoved
+        node: {fileID: -95568519281998212}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -125398274572605464}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -125398274572605464}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -125398274572605464}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -125398274572605464}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -125398274572605464}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -125398274572605464}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -125398274572605464}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -125398274572605464}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -125398274572605464}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -1791707902168781143}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  testResult: {fileID: 11400000, guid: 794531611d0a77c4cb8ab0c70d06546f, type: 2}
+--- !u!114 &-125398274572605464
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 737d89550a2e2194db247d1e3f3c19db, type: 3}
+  m_Name: If
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 2232, y: -72}
+  ports:
+    keys:
+    - ' '
+    - 
+    - inArgument
+    - outArgument
+    - IsMusicDisabled
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -125398274572605464}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: Found
+        node: {fileID: -7242608953079250384}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -125398274572605464}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -1791707902168781143}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: inArgument
+      _node: {fileID: -125398274572605464}
+      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outArgument
+      _node: {fileID: -125398274572605464}
+      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: IsMusicDisabled
+      _node: {fileID: -125398274572605464}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -95568519281998212}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  conditions:
+  - {fileID: 4612918566794032184}
+--- !u!114 &-95568519281998212
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b91b7890458f5f84b987b9b17978e97c, type: 3}
+  m_Name: Wait For Game Object Removed
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 2488, y: -8}
+  ports:
+    keys:
+    - ' '
+    - Removed
+    - NotRemoved
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -95568519281998212}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: IsMusicDisabled
+        node: {fileID: -125398274572605464}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Removed
+      _node: {fileID: -95568519281998212}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -3370088292095574852}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: NotRemoved
+      _node: {fileID: -95568519281998212}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -1791707902168781143}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  gameObjectPath:
+    path: Options.AudioSettings.MusicEnabledButton
+  attemptWindow: 200
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae22ebe00c8798d4bb46b12fbdcffdfb, type: 3}
+  m_Name: OptionsDisableMusicButton
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -3443217561231219503}
+  - {fileID: 6905361961377371754}
+  - {fileID: -7242608953079250384}
+  - {fileID: -125398274572605464}
+  - {fileID: -95568519281998212}
+  - {fileID: -3370088292095574852}
+  - {fileID: -1791707902168781143}
+  startNode: {fileID: 6905361961377371754}
+  parameters:
+  - {fileID: -7858947254522064304}
+  - {fileID: 131275561142714993}
+  - {fileID: -2876918372678406609}
+--- !u!114 &131275561142714993
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec718764ed3a234cb86bb3efc892b05, type: 3}
+  m_Name: IsMusicDisabled_value
+  m_EditorClassIdentifier: 
+  isConstant: 0
+  constantValue: 1
+  referenceValue: {fileID: 11400000, guid: 22c508dcd0a0194409f2ccc61816d685, type: 2}
+--- !u!114 &4612918566794032184
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc36a5f6598a84646bc68016fd41856d, type: 3}
+  m_Name: IsMusicDisabled
+  m_EditorClassIdentifier: 
+  value: {fileID: 131275561142714993}
+  condition: 0
+  useArgument: 0
+  target: {fileID: -2876918372678406609}
+--- !u!114 &6905361961377371754
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91fbcb00880084198d2bdba88a374f, type: 3}
+  m_Name: Set Bool Value
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1464, y: -72}
+  ports:
+    keys:
+    - ' '
+    - 
+    - newValue
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 6905361961377371754}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 6905361961377371754}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -3443217561231219503}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: newValue
+      _node: {fileID: 6905361961377371754}
+      _typeQualifiedName: Robbi.Parameters.BoolReference, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: {fileID: 11400000, guid: 22c508dcd0a0194409f2ccc61816d685, type: 2}
+  newValue: {fileID: -7858947254522064304}

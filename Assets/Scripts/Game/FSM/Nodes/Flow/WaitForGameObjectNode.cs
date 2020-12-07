@@ -42,8 +42,11 @@ namespace Robbi.FSM.Nodes.Flow
         {
             base.OnCopyInGraph(original);
 
+            WaitForGameObjectNode waitForGameObjectNode = original as WaitForGameObjectNode;
+
+            attemptWindow = waitForGameObjectNode.attemptWindow;
             gameObjectPath = new GameObjectPath();
-            gameObjectPath.Path = (original as WaitForGameObjectNode).gameObjectPath.Path;
+            gameObjectPath.Path = waitForGameObjectNode.gameObjectPath.Path;
         }
 
         #endregion
@@ -55,6 +58,7 @@ namespace Robbi.FSM.Nodes.Flow
             base.OnEnter();
 
             currentTime = 0;
+            gameObjectPath.Reset();
         }
 
         protected override FSMNode OnUpdate()
@@ -63,8 +67,7 @@ namespace Robbi.FSM.Nodes.Flow
             {
                 currentTime += Time.deltaTime;
 
-                GameObject gameObject = gameObjectPath.GameObject;
-                if (gameObject != null)
+                if (gameObjectPath.GameObject != null)
                 {
                     Debug.LogFormat("Found GameObject {0}", gameObjectPath.Path);
                     return GetConnectedNode(FOUND_OUTPUT_PORT);

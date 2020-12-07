@@ -11,10 +11,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Robbi.FSM.Nodes.Input
+namespace Robbi.FSM.Nodes.Flow
 {
-    [CreateNodeMenu("Robbi/Input/Click GameObject")]
-    public class ClickGameObjectNode : FSMNode
+    [CreateNodeMenu("Robbi/Flow/Wait For GameObject Removed")]
+    public class WaitForGameObjectRemovedNode : FSMNode
     {
         #region Properties and Fields
 
@@ -23,17 +23,17 @@ namespace Robbi.FSM.Nodes.Input
 
         private float currentTime = 0;
 
-        private const string FOUND_OUTPUT_PORT = "Found";
-        private const string NOT_FOUND_OUTPUT_PORT = "NotFound";
+        private const string REMOVED_OUTPUT_PORT = "Removed";
+        private const string NOT_REMOVED_OUTPUT_PORT = "NotRemoved";
 
         #endregion
 
-        public ClickGameObjectNode()
+        public WaitForGameObjectRemovedNode()
         {
             RemoveDynamicPort(DEFAULT_OUTPUT_PORT_NAME);
 
-            AddOutputPort(FOUND_OUTPUT_PORT);
-            AddOutputPort(NOT_FOUND_OUTPUT_PORT);
+            AddOutputPort(REMOVED_OUTPUT_PORT);
+            AddOutputPort(NOT_REMOVED_OUTPUT_PORT);
         }
 
         #region Add/Remove/Copy
@@ -42,11 +42,11 @@ namespace Robbi.FSM.Nodes.Input
         {
             base.OnCopyInGraph(original);
 
-            ClickGameObjectNode clickGameObjectNode = original as ClickGameObjectNode;
+            WaitForGameObjectRemovedNode waitForGameObjectRemovedNode = original as WaitForGameObjectRemovedNode;
 
-            attemptWindow = clickGameObjectNode.attemptWindow;
+            attemptWindow = waitForGameObjectRemovedNode.attemptWindow;
             gameObjectPath = new GameObjectPath();
-            gameObjectPath.Path = clickGameObjectNode.gameObjectPath.Path;
+            gameObjectPath.Path = waitForGameObjectRemovedNode.gameObjectPath.Path;
         }
 
         #endregion
@@ -58,6 +58,7 @@ namespace Robbi.FSM.Nodes.Input
             base.OnEnter();
 
             currentTime = 0;
+            gameObjectPath.Reset();
         }
 
         protected override FSMNode OnUpdate()
@@ -66,23 +67,22 @@ namespace Robbi.FSM.Nodes.Input
             {
                 currentTime += Time.deltaTime;
 
-                GameObject gameObject = gameObjectPath.GameObject;
-                if (gameObject != null)
+                if (gameObjectPath.GameObject == null)
                 {
-                    gameObject.Click();
-                    Debug.LogFormat("Successfully clicked on {0}", gameObjectPath.Path);
-
-                    return GetConnectedNode(FOUND_OUTPUT_PORT);
+                    Debug.LogFormat("gameObject removed {0}", gameObjectPath.Path);
+                    return GetConnectedNode(REMOVED_OUTPUT_PORT);
                 }
                 else
                 {
                     // We are still within the attempt window so stay within this node
+                    // Reset cached variables
+                    gameObjectPath.Reset();
                     return this;
                 }
             }
 
-            Debug.LogFormat("Could not find GameObject with path {0}", gameObjectPath);
-            return GetConnectedNode(NOT_FOUND_OUTPUT_PORT);
+            Debug.LogFormat("GameObject with path {0} not removed", gameObjectPath);
+            return GetConnectedNode(NOT_REMOVED_OUTPUT_PORT);
         }
 
         #endregion

@@ -14,7 +14,7 @@ namespace Robbi.Utils
         {
             GameObject gameObject = GameObject.Find(splitName[0]);
 
-            if (gameObject != null)
+            if (gameObject != null && gameObject.activeInHierarchy)
             {
                 for (int i = 1; i < splitName.Length && gameObject != null; ++i)
                 {
@@ -30,7 +30,7 @@ namespace Robbi.Utils
             for (int i = 0; i < transform.childCount; ++i)
             {
                 Transform child = transform.GetChild(i);
-                if (child.name == childName)
+                if (child.name == childName && transform.gameObject.activeInHierarchy)
                 {
                     return child.gameObject;
                 }
@@ -39,7 +39,7 @@ namespace Robbi.Utils
             for (int i = 0; i < transform.childCount; ++i)
             {
                 GameObject child = FindGameObjectRecursive(transform.GetChild(i), childName);
-                if (child != null)
+                if (child != null && child.activeInHierarchy)
                 {
                     return child;
                 }
