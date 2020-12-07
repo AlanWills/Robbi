@@ -1,6 +1,7 @@
 ﻿using Robbi.Attributes.GUI;
 using Robbi.Events;
 using Robbi.Objects;
+using Robbi.Options;
 using System;
 using System.Collections;
 using System.Collections.Generic;

@@ -179,6 +179,14 @@ namespace Robbi.Options
             return Load(ADDRESS, DefaultSavePath);
         }
 
+        public static void Reset()
+        {
+            if (File.Exists(DefaultSavePath))
+            {
+                File.Delete(DefaultSavePath);
+            }
+        }
+
         public void Save()
         {
             Save(DefaultSavePath);
