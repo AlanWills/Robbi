@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ExitWaypointPlaced_target_sceneName
   m_EditorClassIdentifier: 
   isConstant: 1
-  constantValue: {x: 0, y: 0, z: 0}
+  constantValue: {x: 2, y: -1, z: 0}
   referenceValue: {fileID: 0}
 --- !u!114 &-7361560569597650629
 MonoBehaviour:
@@ -28,7 +28,7 @@ MonoBehaviour:
   m_Name: If
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 664, y: -184}
+  position: {x: 680, y: -328}
   ports:
     keys:
     - ' '
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: Set Int Value
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 648, y: 72}
+  position: {x: 648, y: -88}
   ports:
     keys:
     - ' '
@@ -170,21 +170,6 @@ MonoBehaviour:
   value: {fileID: 11400000, guid: d37cc83f2021bad4d9d24e7b7857ed5b, type: 2}
   newValue: {fileID: -6462339420846955578}
   setMode: 0
---- !u!114 &-5210847623219589999
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74932df3e79c946469c896e470e3a0df, type: 3}
-  m_Name: ExitWaypointRemoved_target_sceneName
-  m_EditorClassIdentifier: 
-  isConstant: 1
-  constantValue: {x: 0, y: 0, z: 0}
-  referenceValue: {fileID: 0}
 --- !u!114 &-5135805270672623905
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -229,21 +214,6 @@ MonoBehaviour:
   m_Name: RunProgram
   m_EditorClassIdentifier: 
   listenFor: {fileID: 11400000, guid: 6b4a72f1879c01b41a7a4d34b806e2ae, type: 2}
---- !u!114 &-3850852190612000800
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74932df3e79c946469c896e470e3a0df, type: 3}
-  m_Name: ExitWaypointRemoved_value_sceneName
-  m_EditorClassIdentifier: 
-  isConstant: 1
-  constantValue: {x: 2, y: -1, z: 0}
-  referenceValue: {fileID: 0}
 --- !u!114 &-1755384549430463737
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -257,103 +227,6 @@ MonoBehaviour:
   m_Name: WaypointPlaced
   m_EditorClassIdentifier: 
   listenFor: {fileID: 11400000, guid: b29c4307e71a13a4c82941ab0f1f4f80, type: 2}
---- !u!114 &-1735838428533732690
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 737d89550a2e2194db247d1e3f3c19db, type: 3}
-  m_Name: If
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 664, y: -440}
-  ports:
-    keys:
-    - ' '
-    - 
-    - inArgument
-    - outArgument
-    - ExitWaypointRemoved
-    values:
-    - _fieldName: ' '
-      _node: {fileID: -1735838428533732690}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: WaypointRemoved
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: WaypointRemoved
-        node: {fileID: 5149320971995242939}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: 
-      _node: {fileID: -1735838428533732690}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: 5149320971995242939}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: inArgument
-      _node: {fileID: -1735838428533732690}
-      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: argument
-        node: {fileID: 5149320971995242939}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: outArgument
-      _node: {fileID: -1735838428533732690}
-      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: ExitWaypointRemoved
-      _node: {fileID: -1735838428533732690}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: 5149320971995242939}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-  conditions:
-  - {fileID: 9112923189121597411}
---- !u!114 &-1339813659917577801
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb6a7a35a7901c24aac97811c2577cce, type: 3}
-  m_Name: WaypointRemoved
-  m_EditorClassIdentifier: 
-  listenFor: {fileID: 11400000, guid: 31ff3799148e3824ba5640fe14da17fb, type: 2}
 --- !u!114 &-583664090249301907
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -422,18 +295,14 @@ MonoBehaviour:
   nodes:
   - {fileID: -583664090249301907}
   - {fileID: -7361560569597650629}
-  - {fileID: -1735838428533732690}
   - {fileID: -5243229270174544542}
   - {fileID: 6971049680482236813}
   - {fileID: 5149320971995242939}
-  - {fileID: 0}
   startNode: {fileID: -583664090249301907}
   parameters:
   - {fileID: -5135805270672623905}
   - {fileID: 7487029368195046784}
   - {fileID: -8499139681128011409}
-  - {fileID: -3850852190612000800}
-  - {fileID: -5210847623219589999}
   - {fileID: -6462339420846955578}
   - {fileID: 3333460166109002369}
 --- !u!114 &3333460166109002369
@@ -470,7 +339,6 @@ MonoBehaviour:
     - ' '
     - argument
     - RunProgram
-    - WaypointRemoved
     - WaypointPlaced
     values:
     - _fieldName: ' '
@@ -482,7 +350,7 @@ MonoBehaviour:
         node: {fileID: -583664090249301907}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -1735838428533732690}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
         node: {fileID: -7361560569597650629}
@@ -497,7 +365,7 @@ MonoBehaviour:
         node: {fileID: -7361560569597650629}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -1735838428533732690}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
         node: {fileID: 6971049680482236813}
@@ -506,7 +374,7 @@ MonoBehaviour:
         node: {fileID: -583664090249301907}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -1735838428533732690}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
         node: {fileID: -7361560569597650629}
@@ -518,7 +386,7 @@ MonoBehaviour:
         node: {fileID: -7361560569597650629}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -1735838428533732690}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
         node: {fileID: 6971049680482236813}
@@ -530,13 +398,10 @@ MonoBehaviour:
         node: {fileID: -7361560569597650629}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -1735838428533732690}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
         node: {fileID: 6971049680482236813}
-        reroutePoints: []
-      - fieldName: ExitWaypointRemoved
-        node: {fileID: -1735838428533732690}
         reroutePoints: []
       - fieldName: 
         node: {fileID: -583664090249301907}
@@ -545,7 +410,25 @@ MonoBehaviour:
         node: {fileID: -7361560569597650629}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -1735838428533732690}
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6971049680482236813}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -583664090249301907}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7361560569597650629}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6971049680482236813}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -583664090249301907}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7361560569597650629}
         reroutePoints: []
       - fieldName: 
         node: {fileID: 6971049680482236813}
@@ -562,9 +445,6 @@ MonoBehaviour:
       - fieldName: inArgument
         node: {fileID: -7361560569597650629}
         reroutePoints: []
-      - fieldName: inArgument
-        node: {fileID: -1735838428533732690}
-        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -576,18 +456,6 @@ MonoBehaviour:
       connections:
       - fieldName: ' '
         node: {fileID: -5243229270174544542}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: WaypointRemoved
-      _node: {fileID: 5149320971995242939}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: -1735838428533732690}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -608,7 +476,6 @@ MonoBehaviour:
   events:
   - {fileID: -4217922100318297268}
   - {fileID: -1755384549430463737}
-  - {fileID: -1339813659917577801}
 --- !u!114 &6971049680482236813
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -622,7 +489,7 @@ MonoBehaviour:
   m_Name: Set Int Value
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 920, y: -136}
+  position: {x: 920, y: -264}
   ports:
     keys:
     - ' '
@@ -680,19 +547,3 @@ MonoBehaviour:
   isConstant: 1
   constantValue: {x: 2, y: -1, z: 0}
   referenceValue: {fileID: 0}
---- !u!114 &9112923189121597411
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f73e5c005b2c6ee4a929080332770ff6, type: 3}
-  m_Name: ExitWaypointRemoved
-  m_EditorClassIdentifier: 
-  value: {fileID: -3850852190612000800}
-  condition: 0
-  useArgument: 1
-  target: {fileID: -5210847623219589999}
