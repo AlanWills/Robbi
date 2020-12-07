@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: _newValue
   m_EditorClassIdentifier: 
   isConstant: 1
-  constantValue: 1
+  constantValue: 0
   referenceValue: {fileID: 0}
 --- !u!114 &-7242608953079250384
 MonoBehaviour:
@@ -40,6 +40,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -178245354278973814}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -178245354278973814}
         reroutePoints: []
@@ -99,7 +102,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   gameObjectPath:
-    path: Options.AudioSettings.MusicEnabledButton
+    path: Options.AudioSettings.SFXDisabledButton
   attemptWindow: 2
 --- !u!114 &-3443217561231219503
 MonoBehaviour:
@@ -126,6 +129,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 6905361961377371754}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 6905361961377371754}
         reroutePoints: []
@@ -270,7 +276,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   testResult: {fileID: 11400000, guid: d026f6890dbc6ab4c9a19df9dc4f6a8d, type: 2}
---- !u!114 &-2876918372678406609
+--- !u!114 &-2727071419338629108
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -280,10 +286,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ec718764ed3a234cb86bb3efc892b05, type: 3}
-  m_Name: IsMusicDisabled_target
+  m_Name: IsSFXEnabled_target
   m_EditorClassIdentifier: 
   isConstant: 1
-  constantValue: 0
+  constantValue: 1
   referenceValue: {fileID: 0}
 --- !u!114 &-1791707902168781143
 MonoBehaviour:
@@ -320,6 +326,9 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: NotRemoved
         node: {fileID: -95568519281998212}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -125398274572605464}
         reroutePoints: []
       - fieldName: 
         node: {fileID: -125398274572605464}
@@ -469,13 +478,16 @@ MonoBehaviour:
     - 
     - inArgument
     - outArgument
-    - IsMusicDisabled
+    - IsSFXEnabled
     values:
     - _fieldName: ' '
       _node: {fileID: -125398274572605464}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 275166075558113127}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 275166075558113127}
         reroutePoints: []
@@ -543,7 +555,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: IsMusicDisabled
+    - _fieldName: IsSFXEnabled
       _node: {fileID: -125398274572605464}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
@@ -556,7 +568,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   conditions:
-  - {fileID: 4612918566794032184}
+  - {fileID: 1306275009795807241}
 --- !u!114 &-95568519281998212
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -582,7 +594,7 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: IsMusicDisabled
+      - fieldName: IsSFXEnabled
         node: {fileID: -125398274572605464}
         reroutePoints: []
       _direction: 0
@@ -614,7 +626,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   gameObjectPath:
-    path: Options.AudioSettings.MusicEnabledButton
+    path: Options.AudioSettings.SFXDisabledButton
   attemptWindow: 2
 --- !u!114 &11400000
 MonoBehaviour:
@@ -626,7 +638,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae22ebe00c8798d4bb46b12fbdcffdfb, type: 3}
-  m_Name: OptionsDisableMusicButton
+  m_Name: OptionsEnableSFXButton
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: -3443217561231219503}
@@ -641,23 +653,8 @@ MonoBehaviour:
   startNode: {fileID: 6905361961377371754}
   parameters:
   - {fileID: -7858947254522064304}
-  - {fileID: 131275561142714993}
-  - {fileID: -2876918372678406609}
---- !u!114 &131275561142714993
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ec718764ed3a234cb86bb3efc892b05, type: 3}
-  m_Name: IsMusicDisabled_value
-  m_EditorClassIdentifier: 
-  isConstant: 0
-  constantValue: 1
-  referenceValue: {fileID: 11400000, guid: 22c508dcd0a0194409f2ccc61816d685, type: 2}
+  - {fileID: 5467605699974560437}
+  - {fileID: -2727071419338629108}
 --- !u!114 &275166075558113127
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -703,7 +700,7 @@ MonoBehaviour:
       _dynamic: 1
   time: 0.1
   unit: 0
---- !u!114 &4612918566794032184
+--- !u!114 &1306275009795807241
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -713,12 +710,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc36a5f6598a84646bc68016fd41856d, type: 3}
-  m_Name: IsMusicDisabled
+  m_Name: IsSFXEnabled
   m_EditorClassIdentifier: 
-  value: {fileID: 131275561142714993}
+  value: {fileID: 5467605699974560437}
   condition: 0
   useArgument: 0
-  target: {fileID: -2876918372678406609}
+  target: {fileID: -2727071419338629108}
+--- !u!114 &5467605699974560437
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec718764ed3a234cb86bb3efc892b05, type: 3}
+  m_Name: IsSFXEnabled_value
+  m_EditorClassIdentifier: 
+  isConstant: 0
+  constantValue: 0
+  referenceValue: {fileID: 11400000, guid: 6a71f921388147946967d8ee5ba6e612, type: 2}
 --- !u!114 &6905361961377371754
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -769,5 +781,5 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  value: {fileID: 11400000, guid: 22c508dcd0a0194409f2ccc61816d685, type: 2}
+  value: {fileID: 11400000, guid: 6a71f921388147946967d8ee5ba6e612, type: 2}
   newValue: {fileID: -7858947254522064304}

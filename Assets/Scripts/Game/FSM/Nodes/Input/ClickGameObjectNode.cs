@@ -58,6 +58,7 @@ namespace Robbi.FSM.Nodes.Input
             base.OnEnter();
 
             currentTime = 0;
+            gameObjectPath.Reset();
         }
 
         protected override FSMNode OnUpdate()
