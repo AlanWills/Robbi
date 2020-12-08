@@ -2,6 +2,7 @@
 using Robbi.Parameters;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,6 +38,16 @@ namespace Robbi.Utils
                 isDebugBuild.Value = textAsset != null && textAsset.text == "1";
                 Debug.LogFormat("IS_DEBUG_BUILD_FILE file {0} ", textAsset != null ? "found with contents " + textAsset.text : "not found");
                 Debug.LogFormat("isDebugBuild set to {0}", isDebugBuild.Value);
+
+                string settingsOverrideFile = Path.Combine(Application.persistentDataPath, DebugConstants.IS_DEBUG_BUILD_FILE + ".txt");
+                if (File.Exists(settingsOverrideFile))
+                {
+                    // The override file is present in persistent data - we want to change this build to debug after all
+                    string fileContents = File.ReadAllText(settingsOverrideFile);
+                    isDebugBuild.Value = fileContents == "1" ? true : isDebugBuild.Value;
+                    Debug.LogFormat("IS_DEBUG_BUILD_FILE in pdp found with contents {0}", fileContents);
+                    Debug.LogFormat("isDebugBuild set to {0}", isDebugBuild.Value);
+                }
             }
         }
     }
