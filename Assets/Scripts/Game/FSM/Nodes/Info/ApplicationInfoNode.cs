@@ -1,4 +1,5 @@
-﻿using Robbi.Parameters;
+﻿using Robbi.Constants;
+using Robbi.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace Robbi.FSM.Nodes.Info
 
         public BoolValue isEditor;
         public BoolValue isMobile;
+        public BoolValue isDebugBuild;
 
         #endregion
 
@@ -35,6 +37,15 @@ namespace Robbi.FSM.Nodes.Info
             {
                 isMobile.Value = Application.isMobilePlatform;
                 Debug.LogFormat("isMobile set to {0}", isMobile.Value);
+            }
+
+            if (isDebugBuild != null)
+            {
+                TextAsset textAsset = Resources.Load<TextAsset>(DebugConstants.IS_DEBUG_BUILD_FILE);
+                if (textAsset != null)
+                {
+                    isDebugBuild.Value = textAsset.text == "1";
+                }
             }
         }
 
