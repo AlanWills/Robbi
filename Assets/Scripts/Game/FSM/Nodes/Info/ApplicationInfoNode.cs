@@ -42,10 +42,9 @@ namespace Robbi.FSM.Nodes.Info
             if (isDebugBuild != null)
             {
                 TextAsset textAsset = Resources.Load<TextAsset>(DebugConstants.IS_DEBUG_BUILD_FILE);
-                if (textAsset != null)
-                {
-                    isDebugBuild.Value = textAsset.text == "1";
-                }
+                isDebugBuild.Value = textAsset != null && textAsset.text == "1";
+                Debug.LogFormat("IS_DEBUG_BUILD_FILE file {0} ", textAsset != null ? "found with contents " + textAsset.text : "not found");
+                Debug.LogFormat("isDebugBuild set to {0}", isDebugBuild.Value);
             }
         }
 
