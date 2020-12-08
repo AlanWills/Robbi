@@ -175,8 +175,6 @@ namespace RobbiEditor.Platform
                 buildInfo.AppendFormat("BUILD_LOCATION={0}", buildPlayerOptions.locationPathName);
                 buildInfo.AppendLine();
                 buildInfo.AppendFormat("BUILD_VERSION={0}", version);
-                buildInfo.AppendLine();
-                buildInfo.AppendFormat("BUILD_SETTINGS={0}", name);
                 File.WriteAllText(Path.Combine(buildDirectory, "BUILD_ENV_VARS.txt"), buildInfo.ToString());
 
                 BumpVersion();
