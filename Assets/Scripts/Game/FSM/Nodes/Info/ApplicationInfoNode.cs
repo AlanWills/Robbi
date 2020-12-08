@@ -16,7 +16,6 @@ namespace Robbi.FSM.Nodes.Info
 
         public BoolValue isEditor;
         public BoolValue isMobile;
-        public BoolValue isDebugBuild;
 
         #endregion
 
@@ -36,12 +35,6 @@ namespace Robbi.FSM.Nodes.Info
             {
                 isMobile.Value = Application.isMobilePlatform;
                 Debug.LogFormat("isMobile set to {0}", isMobile.Value);
-            }
-
-            if (isDebugBuild != null)
-            {
-                isDebugBuild.Value = Debug.isDebugBuild;
-                Debug.LogFormat("isDebugBuild set to {0}", isDebugBuild.Value);
             }
         }
 

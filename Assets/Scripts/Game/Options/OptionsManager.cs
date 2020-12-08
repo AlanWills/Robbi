@@ -43,17 +43,6 @@ namespace Robbi.Options
             set { defaultMovementSpeed.Value = value; }
         }
 
-        public bool IsDebugBuild
-        {
-            get { return isDebugBuild.Value; }
-            set { isDebugBuild.Value = value; }
-        }
-
-        public bool IsDebugBuild_DefaultValue
-        {
-            set { isDebugBuild.DefaultValue = value; }
-        }
-
         [SerializeField]
         private BoolValue musicEnabled;
 
@@ -62,9 +51,6 @@ namespace Robbi.Options
 
         [SerializeField]
         private FloatValue defaultMovementSpeed;
-
-        [SerializeField]
-        private BoolValue isDebugBuild;
 
         [NonSerialized]
         public float MinZoom = 1;
@@ -83,13 +69,6 @@ namespace Robbi.Options
         private OptionsManager() { }
 
         #region Save/Load Methods
-
-#if UNITY_EDITOR
-        public static OptionsManager EditorOnly_Load()
-        {
-            return UnityEditor.AssetDatabase.LoadAssetAtPath<OptionsManager>(ADDRESS);
-        }
-#endif
 
         public static AsyncOperationHandle Load()
         {
@@ -121,7 +100,6 @@ namespace Robbi.Options
             MusicEnabled = optionsManagerDTO.musicEnabled;
             SfxEnabled = optionsManagerDTO.sfxEnabled;
             DefaultMovementSpeed = optionsManagerDTO.defaultMovementSpeed;
-            IsDebugBuild = optionsManagerDTO.isDebugBuild;
             MinZoom = optionsManagerDTO.minZoom;
             MaxZoom = optionsManagerDTO.maxZoom;
             ZoomSpeed = optionsManagerDTO.zoomSpeed;
@@ -145,7 +123,6 @@ namespace Robbi.Options
         public bool musicEnabled = true;
         public bool sfxEnabled = true;
         public float defaultMovementSpeed = 4;
-        public bool isDebugBuild = true;
 
 #if UNITY_ANDROID || UNITY_IOS
         public float minZoom = 0.75f;
@@ -170,7 +147,6 @@ namespace Robbi.Options
             musicEnabled = optionsManager.MusicEnabled;
             sfxEnabled = optionsManager.SfxEnabled;
             defaultMovementSpeed = optionsManager.DefaultMovementSpeed;
-            isDebugBuild = optionsManager.IsDebugBuild;
             minZoom = optionsManager.MinZoom;
             maxZoom = optionsManager.MaxZoom;
             zoomSpeed = optionsManager.ZoomSpeed;

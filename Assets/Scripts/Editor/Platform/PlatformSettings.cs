@@ -1,4 +1,5 @@
 ﻿using Robbi.Options;
+using Robbi.Parameters;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -120,7 +121,7 @@ namespace RobbiEditor.Platform
         public void Apply()
         {
             BuildSystem.BuildAssets.SetAddressableAssetSettings();
-            OptionsManager.EditorOnly_Load().IsDebugBuild_DefaultValue = isDebugBuild;
+            AssetDatabase.LoadAssetAtPath<BoolValue>(ParameterFiles.IS_DEBUG_BUILD).DefaultValue = isDebugBuild;
 
             ApplyImpl();
 

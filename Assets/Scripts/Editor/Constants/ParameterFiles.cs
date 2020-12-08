@@ -18,5 +18,8 @@ namespace RobbiEditor
         public const string EXIT_TILEMAP = PARAMETERS_FULL_PATH + LEVEL_NAME + TILEMAPS_NAME + "Exit.asset";
         public const string INTERACTABLES_TILEMAP = PARAMETERS_FULL_PATH + LEVEL_NAME + TILEMAPS_NAME + "Interactables.asset";
         public const string MOVEMENT_TILEMAP = PARAMETERS_FULL_PATH + LEVEL_NAME + TILEMAPS_NAME + "Movement.asset";
+
+        // Debug
+        public const string IS_DEBUG_BUILD = PARAMETERS_FULL_PATH + APPLICATION_NAME + "IsDebugBuild.asset";
     }
 }
