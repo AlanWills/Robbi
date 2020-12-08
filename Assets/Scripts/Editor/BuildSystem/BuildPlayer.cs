@@ -51,7 +51,7 @@ namespace RobbiEditor.BuildSystem
         }
 
         [MenuItem("Robbi/Builds/HTML5 Debug")]
-        public static void BuildHTMLDebug()
+        public static void BuildHTML5Debug()
         {
             HTML5Settings.Debug.BuildPlayer();
         }
