@@ -8,6 +8,6 @@ namespace Robbi.Constants
 {
     public static class DebugConstants
     {
-        public const string IS_DEBUG_BUILD_FILE = "IsDebugBuild.txt";
+        public const string IS_DEBUG_BUILD_FILE = "IsDebugBuild";
     }
 }

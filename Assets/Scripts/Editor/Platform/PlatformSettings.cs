@@ -122,7 +122,7 @@ namespace RobbiEditor.Platform
         public void Apply()
         {
             BuildSystem.BuildAssets.SetAddressableAssetSettings();
-            File.WriteAllText("Assets/Resources/" + DebugConstants.IS_DEBUG_BUILD_FILE, isDebugBuild ? "1" : "0");
+            File.WriteAllText(string.Format("Assets/Resources/{0}.txt", DebugConstants.IS_DEBUG_BUILD_FILE), isDebugBuild ? "1" : "0");
 
             ApplyImpl();
 
