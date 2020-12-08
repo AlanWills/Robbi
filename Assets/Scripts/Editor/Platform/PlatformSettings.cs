@@ -135,6 +135,7 @@ namespace RobbiEditor.Platform
             settings.profileSettings.SetValue(settings.activeProfileId, "RemoteLoadPath", AddressablesLoadDirectory);
 
             AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
         }
         protected abstract void ApplyImpl();
 
