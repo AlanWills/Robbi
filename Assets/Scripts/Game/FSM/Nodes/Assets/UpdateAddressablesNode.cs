@@ -39,7 +39,7 @@ namespace Robbi.FSM.Nodes.Assets
 
             if (progress != null)
             {
-                progress.value = 0;
+                progress.Value = 0;
             }
         }
 
@@ -49,11 +49,11 @@ namespace Robbi.FSM.Nodes.Assets
             {
                 if (checkForCatalogueUpdatesOperation.IsValid() && !checkForCatalogueUpdatesOperation.IsDone)
                 {
-                    progress.value = checkForCatalogueUpdatesOperation.PercentComplete;
+                    progress.Value = checkForCatalogueUpdatesOperation.PercentComplete;
                 }
                 else if (updateCataloguesOperation.IsValid() && !updateCataloguesOperation.IsDone)
                 {
-                    progress.value = updateCataloguesOperation.PercentComplete;
+                    progress.Value = updateCataloguesOperation.PercentComplete;
                 }
             }
 
@@ -75,7 +75,7 @@ namespace Robbi.FSM.Nodes.Assets
 
             if (progress != null)
             {
-                progress.value = complete ? 100 : 0;
+                progress.Value = complete ? 100 : 0;
             }
 
             if (!complete)
@@ -93,7 +93,7 @@ namespace Robbi.FSM.Nodes.Assets
 
             if (progress != null)
             {
-                progress.value = 100;
+                progress.Value = 100;
             }
         }
 

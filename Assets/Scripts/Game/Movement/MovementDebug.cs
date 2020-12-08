@@ -47,7 +47,7 @@ namespace Robbi.Movement
 
         private void SetPlaceableWaypointsImpl(int waypoints)
         {
-            remainingWaypointsPlaceable.value = waypoints;
+            remainingWaypointsPlaceable.Value = waypoints;
         }
 
         public static void AddFuel(int fuel)
@@ -57,7 +57,7 @@ namespace Robbi.Movement
 
         private void AddFuelImpl(int fuel)
         {
-            remainingFuel.value = (uint)Math.Max(0, (int)remainingFuel.value + fuel);
+            remainingFuel.Value = (uint)Math.Max(0, (int)remainingFuel.Value + fuel);
         }
 
         public static void SetDebugMovement(bool debugMovement)
@@ -67,7 +67,7 @@ namespace Robbi.Movement
 
         private void SetDebugMovementImpl(bool debugMovement)
         {
-            movementTilemap.value.GetComponent<TilemapRenderer>().enabled = debugMovement;
+            movementTilemap.Value.GetComponent<TilemapRenderer>().enabled = debugMovement;
         }
 
         #endregion

@@ -94,7 +94,7 @@ namespace Robbi.Viewport
 
         private void ClampCamera()
         {
-            Bounds bounds = tilemap.value.localBounds;
+            Bounds bounds = tilemap.Value.localBounds;
             Vector3 currentPosition = transform.position;
             currentPosition.x = Mathf.Clamp(currentPosition.x, bounds.min.x, bounds.max.x);
             currentPosition.y = Mathf.Clamp(currentPosition.y, bounds.min.y, bounds.max.y);

@@ -40,15 +40,15 @@ namespace Robbi.FSM.Nodes
             
             if (operation == DoorOperation.Open)
             {
-                _door.Open(doorsTilemap.value);
+                _door.Open(doorsTilemap.Value);
             }
             else if (operation == DoorOperation.Close)
             {
-                _door.Close(doorsTilemap.value);
+                _door.Close(doorsTilemap.Value);
             }
             else if (operation == DoorOperation.Toggle)
             {
-                _door.Toggle(doorsTilemap.value);
+                _door.Toggle(doorsTilemap.Value);
             }
             else
             {

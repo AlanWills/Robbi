@@ -24,7 +24,7 @@ namespace Robbi.Environment
 
         public void CheckForExitReached(Vector3Int position)
         {
-            if (exitsTilemap.value.HasTile(position))
+            if (exitsTilemap.Value.HasTile(position))
             {
                 exitReachedEvent.Raise();
             }

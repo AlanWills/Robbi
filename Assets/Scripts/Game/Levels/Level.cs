@@ -65,7 +65,7 @@ namespace Robbi.Levels
         public void Begin(LevelData levelData, LevelGameObjects levelGameObjects, LevelManagers levelManagers)
         {
             // Set this before instantiating the level so the UI will correctly adapt
-            levelData.tutorialProgression.value = 0;
+            levelData.tutorialProgression.Value = 0;
 
             GameObject level = GameObject.Instantiate(levelPrefab);
             level.name = levelPrefab.name;
@@ -74,35 +74,35 @@ namespace Robbi.Levels
             Debug.Assert(grid != null, "No grid component on level prefab");
 
             // Make sure this is done before manually setting any game objects to active
-            levelData.playerLocalPosition.value = grid.GetCellCenterLocal(playerStartPosition);
-            levelData.remainingWaypointsPlaceable.value = maxWaypointsPlaceable;
-            levelData.levelRequiresFuel.value = requiresFuel;
-            levelData.remainingFuel.value = startingFuel;
+            levelData.playerLocalPosition.Value = grid.GetCellCenterLocal(playerStartPosition);
+            levelData.remainingWaypointsPlaceable.Value = maxWaypointsPlaceable;
+            levelData.levelRequiresFuel.Value = requiresFuel;
+            levelData.remainingFuel.Value = startingFuel;
             
             levelManagers.interactablesManager.SetInteractables(interactables);
             levelManagers.collectablesManager.SetCollectables(collectables);
 
-            levelGameObjects.levelGameObject.value = level;
-            levelGameObjects.robbiGameObject.value.name = "Robbi";
-            levelGameObjects.managersGameObject.value.SetActive(true);
-            levelGameObjects.managersGameObject.value.name = "Managers";
+            levelGameObjects.levelGameObject.Value = level;
+            levelGameObjects.robbiGameObject.Value.name = "Robbi";
+            levelGameObjects.managersGameObject.Value.SetActive(true);
+            levelGameObjects.managersGameObject.Value.name = "Managers";
 
             if (levelTutorial != null)
             {
-                levelGameObjects.tutorialsGameObject.value = GameObject.Instantiate(levelTutorial);
-                levelGameObjects.tutorialsGameObject.value.name = levelTutorial.name;
+                levelGameObjects.tutorialsGameObject.Value = GameObject.Instantiate(levelTutorial);
+                levelGameObjects.tutorialsGameObject.Value.name = levelTutorial.name;
             }
         }
 
         public void End(LevelGameObjects levelGameObjects)
         {
-            GameObject.Destroy(levelGameObjects.levelGameObject.value);
-            GameObject.Destroy(levelGameObjects.robbiGameObject.value);
-            GameObject.Destroy(levelGameObjects.managersGameObject.value);
+            GameObject.Destroy(levelGameObjects.levelGameObject.Value);
+            GameObject.Destroy(levelGameObjects.robbiGameObject.Value);
+            GameObject.Destroy(levelGameObjects.managersGameObject.Value);
 
-            if (levelGameObjects.tutorialsGameObject.value != null)
+            if (levelGameObjects.tutorialsGameObject.Value != null)
             {
-                GameObject.Destroy(levelGameObjects.tutorialsGameObject.value);
+                GameObject.Destroy(levelGameObjects.tutorialsGameObject.Value);
             }
         }
 

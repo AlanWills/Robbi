@@ -83,26 +83,26 @@ namespace Robbi.Movement
 
         private void Start()
         {
-            waypointsPlaced.value = 0;
-            isProgramRunning.value = false;
-            movementSpeed.value = OptionsManager.Instance.DefaultMovementSpeed;
-            aStarMovement.MovementTilemap = movementTilemap.value;
-            aStarMovement.DoorsTilemap = doorsTilemap.value;
+            waypointsPlaced.Value = 0;
+            isProgramRunning.Value = false;
+            movementSpeed.Value = OptionsManager.Instance.DefaultMovementSpeed;
+            aStarMovement.MovementTilemap = movementTilemap.Value;
+            aStarMovement.DoorsTilemap = doorsTilemap.Value;
 
-            Vector3Int movementGridSize = movementTilemap.value.size;
-            Vector3Int movementOrigin = movementTilemap.value.origin;
+            Vector3Int movementGridSize = movementTilemap.Value.size;
+            Vector3Int movementOrigin = movementTilemap.Value.origin;
             boundingBox.size = new Vector2(movementGridSize.x, movementGridSize.y);
             boundingBox.offset = new Vector2(movementOrigin.x + movementGridSize.x * 0.5f, movementOrigin.y + movementGridSize.y * 0.5f);
         }
 
         private void Update()
         {
-            if (isProgramRunning.value)
+            if (isProgramRunning.Value)
             {
-                Vector3 playerLocalPos = playerLocalPosition.value;
+                Vector3 playerLocalPos = playerLocalPosition.Value;
                 Vector3Int movedFrom = new Vector3Int(Mathf.RoundToInt(playerLocalPos.x - 0.5f), Mathf.RoundToInt(playerLocalPos.y - 0.5f), Mathf.RoundToInt(playerLocalPos.z));
 
-                if (levelRequiresFuel.value && remainingFuel.value == 0)
+                if (levelRequiresFuel.Value && remainingFuel.Value == 0)
                 {
                     // Don't immediately raise this when we have bingo fuel
                     // We might have moved onto a tile with a fuel pickup on it
@@ -113,7 +113,7 @@ namespace Robbi.Movement
                 {
                     // We are moving towards our next waypoint along the steps
                     Vector3 nextStepPosition = aStarMovement.NextStep;
-                    Vector3 newPosition = Vector3.MoveTowards(playerLocalPos, nextStepPosition, movementSpeed.value * Time.deltaTime);
+                    Vector3 newPosition = Vector3.MoveTowards(playerLocalPos, nextStepPosition, movementSpeed.Value * Time.deltaTime);
                     Vector3Int movedTo = new Vector3Int(Mathf.RoundToInt(newPosition.x - 0.5f), Mathf.RoundToInt(newPosition.y - 0.5f), Mathf.RoundToInt(newPosition.z));
                     
                     if (newPosition == nextStepPosition)
@@ -135,7 +135,7 @@ namespace Robbi.Movement
                     }
                     else
                     {
-                        playerLocalPosition.value = newPosition;
+                        playerLocalPosition.Value = newPosition;
 
                         if (movedFrom != movedTo)
                         {
@@ -146,10 +146,10 @@ namespace Robbi.Movement
                 else
                 {
                     levelLoseWaypointUnreachable.Raise();
-                    isProgramRunning.value = false;
+                    isProgramRunning.Value = false;
                 }
             }
-            else if (waypoints.Count == 0 && remainingWaypointsPlaceable.value == 0)
+            else if (waypoints.Count == 0 && remainingWaypointsPlaceable.Value == 0)
             {
                 levelLoseOutOfWaypoints.Raise();
             }
@@ -183,18 +183,18 @@ namespace Robbi.Movement
 
         public void AddFuel(uint amount)
         {
-            if (levelRequiresFuel.value)
+            if (levelRequiresFuel.Value)
             {
-                remainingFuel.value += amount;
+                remainingFuel.Value += amount;
             }
         }
 
         public void RemoveFuel(uint amount)
         {
-            if (levelRequiresFuel.value)
+            if (levelRequiresFuel.Value)
             {
                 // Make sure we don't go below 0 fuel otherwise we'll wrap around
-                remainingFuel.value -= Math.Min(amount, remainingFuel.value);
+                remainingFuel.Value -= Math.Min(amount, remainingFuel.Value);
             }
         }
 
@@ -204,39 +204,39 @@ namespace Robbi.Movement
 
         public void MoveToNextWaypoint()
         {
-            isProgramRunning.value = waypoints.Count > 0;
+            isProgramRunning.Value = waypoints.Count > 0;
             
-            if (isProgramRunning.value)
+            if (isProgramRunning.Value)
             {
-                aStarMovement.CalculateGridSteps(playerLocalPosition.value, waypoints[0].gridPosition);
+                aStarMovement.CalculateGridSteps(playerLocalPosition.Value, waypoints[0].gridPosition);
             }
         }
 
         public void AddWaypoint(Vector3 waypointWorldPosition)
         {
-            if (isProgramRunning.value)
+            if (isProgramRunning.Value)
             {
                 // Cannot add waypoints whilst movement program is running
                 return;
             }
 
-            Vector3Int waypointGridPosition = movementTilemap.value.WorldToCell(waypointWorldPosition);
+            Vector3Int waypointGridPosition = movementTilemap.Value.WorldToCell(waypointWorldPosition);
             if (WaypointExists(waypointGridPosition))
             {
                 // Cannot add waypoints to a position that already has one
                 return;
             }
 
-            if (remainingWaypointsPlaceable.value <= 0)
+            if (remainingWaypointsPlaceable.Value <= 0)
             {
                 // Cannot add waypoints if we have run out of our allotted amount
                 onInvalidWaypointPlaced.Raise();
                 return;
             }
 
-            Vector3Int lastWaypointGridPosition = waypoints.Count != 0 ? waypoints[waypoints.Count - 1].gridPosition : movementTilemap.value.WorldToCell(playerLocalPosition.value); ;
+            Vector3Int lastWaypointGridPosition = waypoints.Count != 0 ? waypoints[waypoints.Count - 1].gridPosition : movementTilemap.Value.WorldToCell(playerLocalPosition.Value); ;
 
-            if (waypointGridPosition != lastWaypointGridPosition && movementTilemap.value.HasTile(waypointGridPosition))
+            if (waypointGridPosition != lastWaypointGridPosition && movementTilemap.Value.HasTile(waypointGridPosition))
             {
                 if (!destinationMarkerAllocator.CanAllocate(1))
                 {
@@ -244,11 +244,11 @@ namespace Robbi.Movement
                 }
 
                 GameObject destinationMarkerInstance = destinationMarkerAllocator.Allocate();
-                destinationMarkerInstance.transform.position = movementTilemap.value.GetCellCenterLocal(waypointGridPosition);
+                destinationMarkerInstance.transform.position = movementTilemap.Value.GetCellCenterLocal(waypointGridPosition);
 
                 waypoints.Add(new Waypoint(waypointGridPosition, destinationMarkerInstance));
-                --remainingWaypointsPlaceable.value;
-                ++waypointsPlaced.value;
+                --remainingWaypointsPlaceable.Value;
+                ++waypointsPlaced.Value;
                 onWaypointPlaced.Raise(waypointGridPosition);
 
                 HudLogger.LogInfoFormat("Waypoint added at {0}", waypointGridPosition);
@@ -278,7 +278,7 @@ namespace Robbi.Movement
         public void RemoveWaypoint(int waypointIndex)
         {
             ConsumeWaypoint(waypointIndex);
-            ++remainingWaypointsPlaceable.value;
+            ++remainingWaypointsPlaceable.Value;
         }
 
         public void RemoveLastWaypoint()
@@ -292,7 +292,7 @@ namespace Robbi.Movement
             waypoint.OnRemoved();
 
             waypoints.RemoveAt(waypointIndex);
-            --waypointsPlaced.value;
+            --waypointsPlaced.Value;
             onWaypointRemoved.Raise(waypoint.gridPosition);
         }
 

@@ -1,4 +1,5 @@
 ﻿using Robbi.Debugging.Logging;
+using Robbi.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -87,6 +88,13 @@ namespace Robbi.Managers
         {
             string serializedData = Instance.Serialize();
             File.WriteAllText(filePath, serializedData);
+            
+            if (Application.platform == RuntimePlatform.WebGLPlayer)
+            {
+                // Needed to deal with browser async saving
+                IOUtils.SyncFiles();
+            }
+
             HudLogger.LogInfoFormat("{0} saved", Instance.name);
         }
 

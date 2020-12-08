@@ -38,7 +38,7 @@ namespace Robbi.FSM.Nodes.Assets
 
             if (progress != null)
             {
-                progress.value = 0;
+                progress.Value = 0;
             }
         }
 
@@ -46,7 +46,7 @@ namespace Robbi.FSM.Nodes.Assets
         {
             if (progress != null && downloadOperation.IsValid() && !downloadOperation.IsDone)
             {
-                progress.value = downloadOperation.PercentComplete;
+                progress.Value = downloadOperation.PercentComplete;
             }
 
             if (complete)
@@ -88,7 +88,7 @@ namespace Robbi.FSM.Nodes.Assets
 
             if (progress != null)
             {
-                progress.value = 100;
+                progress.Value = 100;
             }
         }
 

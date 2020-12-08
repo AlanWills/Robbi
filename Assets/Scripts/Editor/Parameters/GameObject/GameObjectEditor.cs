@@ -18,7 +18,7 @@ namespace RobbiEditor.Parameters
         {
             base.OnInspectorGUI();
 
-            Parameter.value = EditorGUILayout.ObjectField("Value", Parameter.value, typeof(GameObject), false) as GameObject;
+            Parameter.Value = EditorGUILayout.ObjectField("Value", Parameter.Value, typeof(GameObject), false) as GameObject;
             EditorUtility.SetDirty(Parameter);
         }
 

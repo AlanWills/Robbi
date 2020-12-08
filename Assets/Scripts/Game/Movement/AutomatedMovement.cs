@@ -42,16 +42,16 @@ namespace Robbi.Movement
 
         private void Start()
         {
-            robbiPosition.value = movementTilemap.layoutGrid.GetCellCenterLocal(startingPosition);
+            robbiPosition.Value = movementTilemap.layoutGrid.GetCellCenterLocal(startingPosition);
 
             aStarMovement.DoorsTilemap = doorsTilemap;
             aStarMovement.MovementTilemap = movementTilemap;
-            aStarMovement.CalculateGridSteps(robbiPosition.value, waypoints[0]);
+            aStarMovement.CalculateGridSteps(robbiPosition.Value, waypoints[0]);
         }
 
         private void Update()
         {
-            Vector3 playerLocalPos = robbiPosition.value;
+            Vector3 playerLocalPos = robbiPosition.Value;
 
             if (aStarMovement.HasStepsToNextWaypoint)
             {
@@ -72,12 +72,12 @@ namespace Robbi.Movement
                 }
                 else
                 {
-                    robbiPosition.value = newPosition;
+                    robbiPosition.Value = newPosition;
                 }
             }
             else if (waypoints.Count > 0)
             {
-                aStarMovement.CalculateGridSteps(robbiPosition.value, waypoints[0]);
+                aStarMovement.CalculateGridSteps(robbiPosition.Value, waypoints[0]);
             }
         }
 

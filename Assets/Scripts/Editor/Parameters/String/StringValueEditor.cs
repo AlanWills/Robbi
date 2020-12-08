@@ -17,7 +17,7 @@ namespace RobbiEditor.Parameters.String
         {
             base.OnInspectorGUI();
 
-            Parameter.value = EditorGUILayout.TextField("Value", Parameter.value);
+            Parameter.Value = EditorGUILayout.TextField("Value", Parameter.Value);
             EditorUtility.SetDirty(Parameter);
         }
 

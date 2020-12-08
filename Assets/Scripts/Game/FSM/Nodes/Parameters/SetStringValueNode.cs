@@ -26,11 +26,11 @@ namespace Robbi.FSM.Nodes.Parameters
             switch (setMode)
             {
                 case SetMode.Absolute:
-                    value.value = newValue;
+                    value.Value = newValue;
                     break;
 
                 case SetMode.Increment:
-                    value.value += newValue;
+                    value.Value += newValue;
                     break;
 
                 case SetMode.Decrement:

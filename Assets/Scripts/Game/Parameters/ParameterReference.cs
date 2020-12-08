@@ -39,7 +39,7 @@ namespace Robbi.Parameters
 
         public T Value
         {
-            get { return isConstant ? constantValue : referenceValue.value; }
+            get { return isConstant ? constantValue : referenceValue.Value; }
             set
             {
                 if (isConstant)
@@ -49,7 +49,7 @@ namespace Robbi.Parameters
                 }
                 else
                 {
-                    referenceValue.value = value;
+                    referenceValue.Value = value;
                 }
             }
         }

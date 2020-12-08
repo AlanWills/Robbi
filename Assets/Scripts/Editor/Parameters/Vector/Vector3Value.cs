@@ -18,7 +18,7 @@ namespace RobbiEditor.Parameters.Vector
         {
             base.OnInspectorGUI();
 
-            Parameter.value = EditorGUILayout.Vector3Field("Value", Parameter.value);
+            Parameter.Value = EditorGUILayout.Vector3Field("Value", Parameter.Value);
             EditorUtility.SetDirty(Parameter);
         }
 

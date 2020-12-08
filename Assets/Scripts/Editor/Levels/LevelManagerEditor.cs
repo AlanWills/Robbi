@@ -42,14 +42,8 @@ namespace RobbiEditor.Levels
 
             if (latestLevelIndexProperty.objectReferenceValue != null)
             {
-                EditorGUI.BeginChangeCheck();
                 UIntValue latestLevelValue = latestLevelIndexProperty.objectReferenceValue as UIntValue;
-                latestLevelValue.defaultValue = RobbiEditorGUILayout.UIntField(GUIContent.none, latestLevelValue.defaultValue);
-
-                if (EditorGUI.EndChangeCheck())
-                {
-                    EditorUtility.SetDirty(latestLevelValue);
-                }
+                latestLevelValue.DefaultValue = RobbiEditorGUILayout.UIntField(GUIContent.none, latestLevelValue.DefaultValue);
             }
 
             EditorGUILayout.EndHorizontal();

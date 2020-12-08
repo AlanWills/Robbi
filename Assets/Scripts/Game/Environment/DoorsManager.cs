@@ -23,17 +23,17 @@ namespace Robbi.Environment
 
         public void OpenDoor(Door door)
         {
-            door.Open(doorsTilemap.value);
+            door.Open(doorsTilemap.Value);
         }
 
         public void CloseDoor(Door door)
         {
-            door.Close(doorsTilemap.value);
+            door.Close(doorsTilemap.Value);
         }
 
         public void ToggleDoor(Door door)
         {
-            door.Toggle(doorsTilemap.value);
+            door.Toggle(doorsTilemap.Value);
         }
 
         #endregion

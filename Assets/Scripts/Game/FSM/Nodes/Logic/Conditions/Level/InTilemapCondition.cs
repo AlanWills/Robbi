@@ -60,10 +60,10 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
             switch (condition)
             {
                 case ConditionOperator.Equals:
-                    return value.value.HasTile(target.Value);
+                    return value.Value.HasTile(target.Value);
 
                 case ConditionOperator.NotEquals:
-                    return !value.value.HasTile(target.Value);
+                    return !value.Value.HasTile(target.Value);
 
                 default:
                     Debug.LogAssertionFormat("Condition Operator {0} is not supported in InTilemap Condition", condition);

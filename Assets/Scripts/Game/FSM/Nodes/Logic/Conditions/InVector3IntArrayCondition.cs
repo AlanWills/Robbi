@@ -60,10 +60,10 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
             switch (condition)
             {
                 case ConditionOperator.Equals:
-                    return value.value.Contains(target.Value);
+                    return value.Value.Contains(target.Value);
 
                 case ConditionOperator.NotEquals:
-                    return !value.value.Contains(target.Value);
+                    return !value.Value.Contains(target.Value);
 
                 default:
                     Debug.LogAssertionFormat("Condition Operator {0} is not supported in InVector3IntArray Condition", condition);

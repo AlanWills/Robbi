@@ -12,20 +12,38 @@ namespace Robbi.Parameters
     {
         #region Properties and Fields
 
-        [NonSerialized]
-        public T value;
+        public T Value { get; set; }
 
-        public T defaultValue;
+        [SerializeField]
+        private T defaultValue;
+        public T DefaultValue
+        {
+            get { return defaultValue; }
+            set
+            {
+#if UNITY_EDITOR
+                T oldValue = defaultValue;
+#endif
+                defaultValue = value;
 
-        #endregion
+#if UNITY_EDITOR
+                if (!oldValue.Equals(value))
+                {
+                    UnityEditor.EditorUtility.SetDirty(this);
+                }
+#endif
+            }
+        }
 
-        #region Unity Methods
+#endregion
+
+#region Unity Methods
         
         private void OnEnable()
         {
-            value = defaultValue;
+            Value = defaultValue;
         }
 
-        #endregion
+#endregion
     }
 }

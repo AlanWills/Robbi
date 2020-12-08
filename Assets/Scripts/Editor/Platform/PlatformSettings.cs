@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Robbi.Options;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -94,6 +95,9 @@ namespace RobbiEditor.Platform
         private bool development = true;
 
         [SerializeField]
+        private bool isDebugBuild = false;
+
+        [SerializeField]
         private BuildOptions buildOptions = BuildOptions.Development | BuildOptions.AllowDebugging | BuildOptions.StrictMode;
         public BuildOptions BuildOptions
         {
@@ -116,6 +120,7 @@ namespace RobbiEditor.Platform
         public void Apply()
         {
             BuildSystem.BuildAssets.SetAddressableAssetSettings();
+            OptionsManager.EditorOnly_Load().IsDebugBuild_DefaultValue = isDebugBuild;
 
             ApplyImpl();
 

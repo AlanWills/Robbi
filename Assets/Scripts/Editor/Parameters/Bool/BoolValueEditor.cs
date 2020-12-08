@@ -17,7 +17,7 @@ namespace RobbiEditor.Parameters.Bool
         {
             base.OnInspectorGUI();
 
-            Parameter.value = EditorGUILayout.Toggle("Value", Parameter.value);
+            Parameter.Value = EditorGUILayout.Toggle("Value", Parameter.Value);
             EditorUtility.SetDirty(Parameter);
         }
 

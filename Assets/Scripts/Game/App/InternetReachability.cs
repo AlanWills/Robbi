@@ -21,7 +21,7 @@ namespace Robbi.App
 
         private void Update()
         {
-            hasInternetConnection.value = Application.internetReachability != NetworkReachability.NotReachable;
+            hasInternetConnection.Value = Application.internetReachability != NetworkReachability.NotReachable;
         }
 
         #endregion

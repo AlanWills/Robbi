@@ -16,7 +16,7 @@ namespace Robbi.FSM.Nodes.Parameters
 
         protected override void SetValue(bool newValue)
         {
-            value.value = newValue;
+            value.Value = newValue;
         }
 
         #endregion

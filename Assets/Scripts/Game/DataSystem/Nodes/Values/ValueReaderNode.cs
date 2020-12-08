@@ -25,7 +25,7 @@ namespace Robbi.DataSystem.Nodes.Values
 
         public override object GetValue(NodePort port)
         {
-            return GetInputValue(nameof(value), value).value;
+            return GetInputValue(nameof(value), value).Value;
         }
 
         #endregion

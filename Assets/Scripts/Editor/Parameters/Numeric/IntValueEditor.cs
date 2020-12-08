@@ -17,7 +17,7 @@ namespace RobbiEditor.Parameters.Numeric
         {
             base.OnInspectorGUI();
 
-            Parameter.value = EditorGUILayout.IntField("Value", Parameter.value);
+            Parameter.Value = EditorGUILayout.IntField("Value", Parameter.Value);
             EditorUtility.SetDirty(Parameter);
         }
 

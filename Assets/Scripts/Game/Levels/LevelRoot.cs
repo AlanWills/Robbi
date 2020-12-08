@@ -39,13 +39,13 @@ namespace Robbi.Levels
 
         private void Awake()
         {
-            corridorsTilemapValue.value = corridorsTilemap;
-            destructibleCorridorsTilemapValue.value = destructibleCorridorsTilemap;
-            exitsTilemapValue.value = exitsTilemap;
-            doorsTilemapValue.value = doorsTilemap;
-            interactablesTilemapValue.value = interactablesTilemap;
-            collectablesTilemapValue.value = collectablesTilemap;
-            movementTilemapValue.value = movementTilemap;
+            corridorsTilemapValue.Value = corridorsTilemap;
+            destructibleCorridorsTilemapValue.Value = destructibleCorridorsTilemap;
+            exitsTilemapValue.Value = exitsTilemap;
+            doorsTilemapValue.Value = doorsTilemap;
+            interactablesTilemapValue.Value = interactablesTilemap;
+            collectablesTilemapValue.Value = collectablesTilemap;
+            movementTilemapValue.Value = movementTilemap;
 
             // Not great, but a hacky workaround for the fact the camera can't start zoomed out and centred
             // Maybe in the future this is resolved by a level started event or something

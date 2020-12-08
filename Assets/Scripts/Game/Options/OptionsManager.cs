@@ -27,26 +27,31 @@ namespace Robbi.Options
 
         public bool MusicEnabled
         {
-            get { return musicEnabled.value; }
-            set { musicEnabled.value = value; }
+            get { return musicEnabled.Value; }
+            set { musicEnabled.Value = value; }
         }
 
         public bool SfxEnabled
         {
-            get { return sfxEnabled.value; }
-            set { sfxEnabled.value = value; }
+            get { return sfxEnabled.Value; }
+            set { sfxEnabled.Value = value; }
         }
 
         public float DefaultMovementSpeed
         {
-            get { return defaultMovementSpeed.value; }
-            set { defaultMovementSpeed.value = value; }
+            get { return defaultMovementSpeed.Value; }
+            set { defaultMovementSpeed.Value = value; }
         }
 
         public bool IsDebugBuild
         {
-            get { return isDebugBuild.value; }
-            set { isDebugBuild.value = value; }
+            get { return isDebugBuild.Value; }
+            set { isDebugBuild.Value = value; }
+        }
+
+        public bool IsDebugBuild_DefaultValue
+        {
+            set { isDebugBuild.DefaultValue = value; }
         }
 
         [SerializeField]
@@ -78,6 +83,13 @@ namespace Robbi.Options
         private OptionsManager() { }
 
         #region Save/Load Methods
+
+#if UNITY_EDITOR
+        public static OptionsManager EditorOnly_Load()
+        {
+            return UnityEditor.AssetDatabase.LoadAssetAtPath<OptionsManager>(ADDRESS);
+        }
+#endif
 
         public static AsyncOperationHandle Load()
         {

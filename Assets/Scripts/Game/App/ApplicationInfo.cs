@@ -18,21 +18,21 @@ namespace Robbi.App
         private BoolValue isEditor;
         public static bool IsEditor
         {
-            get { return Instance.isEditor.value; }
+            get { return Instance.isEditor.Value; }
         }
 
         [SerializeField]
         private BoolValue isMobile;
         public static bool IsMobile
         {
-            get { return Instance.isMobile.value; }
+            get { return Instance.isMobile.Value; }
         }
 
         [SerializeField]
         private BoolValue isDebugBuild;
         public static bool IsDebugBuild
         {
-            get { return Instance.isDebugBuild.value; }
+            get { return Instance.isDebugBuild.Value; }
         }
 
         #endregion
@@ -47,20 +47,20 @@ namespace Robbi.App
 
             if (isEditor != null)
             {
-                isEditor.value = Application.isEditor;
-                Debug.LogFormat("isEditor set to {0}", isEditor.value);
+                isEditor.Value = Application.isEditor;
+                Debug.LogFormat("isEditor set to {0}", isEditor.Value);
             }
 
             if (isMobile != null)
             {
-                isMobile.value = Application.isMobilePlatform;
-                Debug.LogFormat("isMobile set to {0}", isMobile.value);
+                isMobile.Value = Application.isMobilePlatform;
+                Debug.LogFormat("isMobile set to {0}", isMobile.Value);
             }
 
             if (isDebugBuild != null)
             {
-                isDebugBuild.value = Debug.isDebugBuild;
-                Debug.LogFormat("isDebugBuild set to {0}", isDebugBuild.value);
+                isDebugBuild.Value = Debug.isDebugBuild;
+                Debug.LogFormat("isDebugBuild set to {0}", isDebugBuild.Value);
             }
         }
 

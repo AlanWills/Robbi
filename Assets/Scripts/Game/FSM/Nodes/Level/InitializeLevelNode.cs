@@ -52,8 +52,8 @@ namespace Robbi.FSM.Nodes
                     managers.interactablesManager = managersLoadingHandle.Result.GetComponentInChildren<InteractablesManager>();
                     managers.collectablesManager = managersLoadingHandle.Result.GetComponentInChildren<CollectablesManager>();
 
-                    levelGameObjects.robbiGameObject.value = robbiLoadingHandle.Result;
-                    levelGameObjects.managersGameObject.value = managersLoadingHandle.Result;
+                    levelGameObjects.robbiGameObject.Value = robbiLoadingHandle.Result;
+                    levelGameObjects.managersGameObject.Value = managersLoadingHandle.Result;
 
                     levelLoadingHandle.Result.Begin(levelData, levelGameObjects, managers);
                 }

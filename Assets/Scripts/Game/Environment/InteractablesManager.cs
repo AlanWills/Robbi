@@ -53,7 +53,7 @@ namespace Robbi.Environment
                 {
                     InteractArgs interact = new InteractArgs()
                     {
-                        interactablesTilemap = interactablesTilemap.value
+                        interactablesTilemap = interactablesTilemap.Value
                     };
 
                     interactable.Interact(interact);

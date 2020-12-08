@@ -21,7 +21,7 @@ namespace Robbi.Player
 
         private void Update()
         {
-            transform.localPosition = localPosition.value;
+            transform.localPosition = localPosition.Value;
         }
 
         #endregion

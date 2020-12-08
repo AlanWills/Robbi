@@ -41,7 +41,7 @@ namespace Robbi.Testing
         {
             currentRuntime += Time.deltaTime;
 
-            if (currentRuntime > timeout.value)
+            if (currentRuntime > timeout.Value)
             {
                 TimeoutTest();
             }

@@ -22,12 +22,12 @@ namespace Robbi.Timing
 
         private void Start()
         {
-            timeTaken.value = 0;
+            timeTaken.Value = 0;
         }
 
         private void Update()
         {
-            timeTaken.value += Time.deltaTime;
+            timeTaken.Value += Time.deltaTime;
         }
 
         #endregion

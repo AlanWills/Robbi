@@ -24,11 +24,11 @@ namespace Robbi.Environment
 
         public void DestroyTile(Vector3Int tileCoords)
         {
-            if (destructibleCorridorsTilemap.value.HasTile(tileCoords))
+            if (destructibleCorridorsTilemap.Value.HasTile(tileCoords))
             {
-                var tile = destructibleCorridorsTilemap.value.GetTile(tileCoords);
-                destructibleCorridorsTilemap.value.SetTile(tileCoords, null);
-                movementTilemap.value.SetTile(tileCoords, null);
+                var tile = destructibleCorridorsTilemap.Value.GetTile(tileCoords);
+                destructibleCorridorsTilemap.Value.SetTile(tileCoords, null);
+                movementTilemap.Value.SetTile(tileCoords, null);
             }
         }
 
