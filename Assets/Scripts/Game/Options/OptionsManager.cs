@@ -43,87 +43,11 @@ namespace Robbi.Options
             set { defaultMovementSpeed.value = value; }
         }
 
-        public float MinZoom
+        public bool IsDebugBuild
         {
-            get
-            {
-#if UNITY_ANDROID || UNITY_IOS
-                return mobileMinZoom;
-#else
-                return desktopMinZoom;
-#endif
-            }
-            set
-            {
-#if UNITY_ANDROID || UNITY_IOS
-                mobileMinZoom = value;
-#else
-                desktopMinZoom = value;
-#endif
-            }
+            get { return isDebugBuild.value; }
+            set { isDebugBuild.value = value; }
         }
-
-        public float MaxZoom
-        {
-            get
-            {
-#if UNITY_ANDROID || UNITY_IOS
-                return mobileMaxZoom;
-#else
-                return desktopMaxZoom;
-#endif
-            }
-            set
-            {
-#if UNITY_ANDROID || UNITY_IOS
-                mobileMaxZoom = value;
-#else
-                desktopMaxZoom = value;
-#endif
-            }
-        }
-
-        public float ZoomSpeed
-        {
-            get
-            {
-#if UNITY_ANDROID || UNITY_IOS
-                return mobileZoomSpeed;
-#else
-                return desktopZoomSpeed;
-#endif
-            }
-            set
-            {
-#if UNITY_ANDROID || UNITY_IOS
-                mobileZoomSpeed = value;
-#else
-                desktopZoomSpeed = value;
-#endif
-            }
-        }
-
-        public float DragSpeed
-        {
-            get
-            {
-#if UNITY_ANDROID || UNITY_IOS
-                return mobileDragSpeed;
-#else
-                return desktopDragSpeed;
-#endif
-            }
-            set
-            {
-#if UNITY_ANDROID || UNITY_IOS
-                mobileDragSpeed = value;
-#else
-                desktopDragSpeed = value;
-#endif
-            }
-        }
-
-        #region Common Settings
 
         [SerializeField]
         private BoolValue musicEnabled;
@@ -134,39 +58,20 @@ namespace Robbi.Options
         [SerializeField]
         private FloatValue defaultMovementSpeed;
 
-        #endregion
-
-        #region Mobile Specific Settings
-
         [SerializeField]
-        private float mobileMinZoom = 0.75f;
+        private BoolValue isDebugBuild;
 
-        [SerializeField]
-        private float mobileMaxZoom = 8;
+        [NonSerialized]
+        public float MinZoom = 1;
 
-        [SerializeField]
-        private float mobileZoomSpeed = 0.02f;
+        [NonSerialized]
+        public float MaxZoom = 1;
 
-        [SerializeField]
-        private float mobileDragSpeed = 0.05f;
+        [NonSerialized]
+        public float ZoomSpeed = 0;
 
-        #endregion
-
-        #region Desktop Specific Settings
-
-        [SerializeField]
-        private float desktopMinZoom = 0.75f;
-
-        [SerializeField]
-        private float desktopMaxZoom = 2;
-
-        [SerializeField]
-        private float desktopZoomSpeed = 1;
-
-        [SerializeField]
-        private float desktopDragSpeed = 1;
-
-        #endregion
+        [NonSerialized]
+        public float DragSpeed = 0;
 
         #endregion
 
@@ -204,10 +109,19 @@ namespace Robbi.Options
             MusicEnabled = optionsManagerDTO.musicEnabled;
             SfxEnabled = optionsManagerDTO.sfxEnabled;
             DefaultMovementSpeed = optionsManagerDTO.defaultMovementSpeed;
+            IsDebugBuild = optionsManagerDTO.isDebugBuild;
+            MinZoom = optionsManagerDTO.minZoom;
+            MaxZoom = optionsManagerDTO.maxZoom;
+            ZoomSpeed = optionsManagerDTO.zoomSpeed;
+            DragSpeed = optionsManagerDTO.dragSpeed;
 
             HudLogger.LogInfoFormat("Music Enabled: {0}", MusicEnabled);
             HudLogger.LogInfoFormat("Sfx Enabled: {0}", SfxEnabled);
             HudLogger.LogInfoFormat("Default Movement Speed: {0}", DefaultMovementSpeed);
+            HudLogger.LogInfoFormat("Min Speed: {0}", MinZoom);
+            HudLogger.LogInfoFormat("Max Speed: {0}", MaxZoom);
+            HudLogger.LogInfoFormat("Zoom Speed: {0}", ZoomSpeed);
+            HudLogger.LogInfoFormat("Drag Speed: {0}", DragSpeed);
         }
 
         #endregion
@@ -219,7 +133,24 @@ namespace Robbi.Options
         public bool musicEnabled = true;
         public bool sfxEnabled = true;
         public float defaultMovementSpeed = 4;
+        public bool isDebugBuild = true;
 
+#if UNITY_ANDROID || UNITY_IOS
+        public float minZoom = 0.75f;
+        public float maxZoom = 8;
+        public float zoomSpeed = 0.02f;
+        public float dragSpeed = 0.05f;
+#elif UNITY_STANDALONE
+        public float minZoom = 0.75f;
+        public float maxZoom = 2;
+        public float zoomSpeed = 1f;
+        public float dragSpeed = 0.5f;
+#elif UNITY_WEBGL
+        public float minZoom = 0.75f;
+        public float maxZoom = 2;
+        public float zoomSpeed = 1f;
+        public float dragSpeed = 0.5f;
+#endif
         public OptionsManagerDTO() { }
 
         public OptionsManagerDTO(OptionsManager optionsManager)
@@ -227,6 +158,11 @@ namespace Robbi.Options
             musicEnabled = optionsManager.MusicEnabled;
             sfxEnabled = optionsManager.SfxEnabled;
             defaultMovementSpeed = optionsManager.DefaultMovementSpeed;
+            isDebugBuild = optionsManager.IsDebugBuild;
+            minZoom = optionsManager.MinZoom;
+            maxZoom = optionsManager.MaxZoom;
+            zoomSpeed = optionsManager.ZoomSpeed;
+            dragSpeed = optionsManager.DragSpeed;
         }
     }
 }
