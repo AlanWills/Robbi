@@ -3,6 +3,7 @@ using Robbi.Debugging.Logging;
 using Robbi.Events;
 using Robbi.Levels;
 using Robbi.Movement;
+using Robbi.Parameters;
 using Robbi.Testing;
 using System;
 using System.Collections.Generic;
@@ -46,7 +47,6 @@ namespace Robbi.Debugging.Commands
 
         public void ExecuteCommand(string commandText)
         {
-#if DEVELOPMENT_BUILD || UNITY_EDITOR
             string[] parameters = commandText.Split(' ');
             if (parameters.Length > 0)
             {
@@ -69,7 +69,6 @@ namespace Robbi.Debugging.Commands
 
                 outputText.text = output.ToString();
             }
-#endif
         }
 
         #endregion
@@ -79,10 +78,7 @@ namespace Robbi.Debugging.Commands
         private void Start()
         {
             debugUI.SetActive(false);
-
-#if DEVELOPMENT_BUILD || UNITY_EDITOR
             RegisterCommands();
-#endif
         }
 
         #endregion
@@ -91,8 +87,7 @@ namespace Robbi.Debugging.Commands
 
         public void TryToggle(MultiTouchEventArgs multiTouchEventArgs)
         {
-#if DEVELOPMENT_BUILD || UNITY_EDITOR
-#if UNITY_ANDROID || UNITY_IOS || true
+#if UNITY_ANDROID || UNITY_IOS
             for (int i = 0; i < multiTouchEventArgs.touchCount; ++i)
             {
                 if (multiTouchEventArgs.touches[i].phase == TouchPhase.Ended)
@@ -102,14 +97,11 @@ namespace Robbi.Debugging.Commands
                 }
             }
 #endif
-#endif
         }
 
         public void Toggle()
         {
-#if DEVELOPMENT_BUILD || UNITY_EDITOR
             debugUI.SetActive(!debugUI.activeSelf);
-#endif
         }
 
         #endregion

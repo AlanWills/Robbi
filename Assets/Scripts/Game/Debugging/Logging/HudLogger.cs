@@ -1,4 +1,5 @@
 ﻿using Robbi.Objects;
+using Robbi.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,7 +82,6 @@ namespace Robbi.Debugging.Logging
 
         private void Log(string message, Color colour)
         {
-#if DEVELOPMENT_BUILD || UNITY_EDITOR
             if (cachedMessageInstances.Count > 0)
             {
                 Text messageText = cachedMessageInstances.Pop();
@@ -95,7 +95,6 @@ namespace Robbi.Debugging.Logging
             {
                 Debug.LogWarningFormat("Hud Message limit reached.  Message: {0}", message);
             }
-#endif
         }
 
         #endregion
@@ -106,16 +105,14 @@ namespace Robbi.Debugging.Logging
         {
             base.Awake();
 
-#if DEVELOPMENT_BUILD || UNITY_EDITOR
             for (int i = 0; i < maxMessages; ++i)
             {
                 GameObject gameObject = GameObject.Instantiate(hudMessagePrefab, textParent);
                 Text messageText = gameObject.GetComponent<Text>();
                 gameObject.SetActive(false);
-                
+
                 cachedMessageInstances.Push(messageText);
             }
-#endif
         }
 
         private void Update()
