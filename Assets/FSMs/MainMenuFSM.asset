@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Name: _sceneName
   m_EditorClassIdentifier: 
   isConstant: 1
-  constantValue: Assets/Scenes/Loading.unity
+  constantValue: LoadingScene
   referenceValue: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -249,7 +249,6 @@ MonoBehaviour:
   - {fileID: 8949057610592942275}
   - {fileID: 7959536147944065347}
   - {fileID: -8622286229570145891}
-  - {fileID: 0}
   - {fileID: -4619721813534337251}
   startNode: {fileID: 8949057610592942275}
   parameters:
@@ -294,7 +293,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 997cd2260e5f7104cb591676fd0fcf10, type: 3}
-  m_Name: Set String Value
+  m_Name: Load Level
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
   position: {x: 104, y: 104}
@@ -385,6 +384,7 @@ MonoBehaviour:
     keys:
     - ' '
     - 
+    - sceneName
     values:
     - _fieldName: ' '
       _node: {fileID: 5096352346431975312}
@@ -502,6 +502,24 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -4619721813534337251}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 1196634488205166037}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -4619721813534337251}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 1196634488205166037}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -4619721813534337251}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 1196634488205166037}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -4619721813534337251}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -515,6 +533,15 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
+    - _fieldName: sceneName
+      _node: {fileID: 5096352346431975312}
+      _typeQualifiedName: Robbi.Parameters.StringReference, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   sceneName: {fileID: -792216349778433509}
   loadMode: 0
   isAddressable: 1
@@ -531,7 +558,7 @@ MonoBehaviour:
   m_Name: _sceneName_sceneName
   m_EditorClassIdentifier: 
   isConstant: 1
-  constantValue: Assets/Scenes/Level.unity
+  constantValue: LevelScene
   referenceValue: {fileID: 0}
 --- !u!114 &7959536147944065347
 MonoBehaviour:
@@ -607,6 +634,15 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: 
         node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -8622286229570145891}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -8622286229570145891}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -8622286229570145891}
         reroutePoints: []
       - fieldName: 
         node: {fileID: -8622286229570145891}
