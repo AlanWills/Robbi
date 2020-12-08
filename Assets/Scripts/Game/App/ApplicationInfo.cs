@@ -1,5 +1,6 @@
 ﻿using Robbi.Objects;
 using Robbi.Parameters;
+using Robbi.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,23 +46,9 @@ namespace Robbi.App
 
             DontDestroyOnLoad(gameObject);
 
-            if (isEditor != null)
-            {
-                isEditor.Value = Application.isEditor;
-                Debug.LogFormat("isEditor set to {0}", isEditor.Value);
-            }
-
-            if (isMobile != null)
-            {
-                isMobile.Value = Application.isMobilePlatform;
-                Debug.LogFormat("isMobile set to {0}", isMobile.Value);
-            }
-
-            if (isDebugBuild != null)
-            {
-                isDebugBuild.Value = Debug.isDebugBuild;
-                Debug.LogFormat("isDebugBuild set to {0}", isDebugBuild.Value);
-            }
+            isEditor.GetIsEditor();
+            isMobile.GetIsMobile();
+            isDebugBuild.GetIsDebugBuild();
         }
 
         #endregion

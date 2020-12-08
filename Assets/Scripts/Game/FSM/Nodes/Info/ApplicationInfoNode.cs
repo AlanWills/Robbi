@@ -1,5 +1,6 @@
 ﻿using Robbi.Constants;
 using Robbi.Parameters;
+using Robbi.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,27 +28,11 @@ namespace Robbi.FSM.Nodes.Info
         {
             base.OnEnter();
 
-            if (isEditor != null)
-            {
-                isEditor.Value = Application.isEditor;
-                Debug.LogFormat("isEditor set to {0}", isEditor.Value);
-            }
-
-            if (isMobile != null)
-            {
-                isMobile.Value = Application.isMobilePlatform;
-                Debug.LogFormat("isMobile set to {0}", isMobile.Value);
-            }
-
-            if (isDebugBuild != null)
-            {
-                TextAsset textAsset = Resources.Load<TextAsset>(DebugConstants.IS_DEBUG_BUILD_FILE);
-                isDebugBuild.Value = textAsset != null && textAsset.text == "1";
-                Debug.LogFormat("IS_DEBUG_BUILD_FILE file {0} ", textAsset != null ? "found with contents " + textAsset.text : "not found");
-                Debug.LogFormat("isDebugBuild set to {0}", isDebugBuild.Value);
-            }
+            isEditor.GetIsEditor();
+            isMobile.GetIsMobile();
+            isDebugBuild.GetIsDebugBuild();
         }
 
-#endregion
+        #endregion
     }
 }
