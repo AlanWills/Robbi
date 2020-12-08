@@ -16,7 +16,7 @@ namespace Robbi.Levels
 
             if (parameters.Count == 0)
             {
-                output.Append(string.Format("Current Level Index is {0}", levelManager.CurrentLevelIndex));
+                output.AppendLine(string.Format("Current Level Index is {0}", levelManager.CurrentLevelIndex));
                 output.Append(string.Format("Latest Level Index is {0}", levelManager.LatestLevelIndex));
 
                 return true;
