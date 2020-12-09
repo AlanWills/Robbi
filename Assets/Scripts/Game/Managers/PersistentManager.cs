@@ -91,7 +91,7 @@ namespace Robbi.Managers
 
 #if UNITY_WEBGL
             // Needed to deal with browser async saving
-            IOUtils.SyncFiles();
+            IOUtils.WebGLOnly_SyncFiles();
 #endif
 
             HudLogger.LogInfoFormat("{0} saved", Instance.name);
