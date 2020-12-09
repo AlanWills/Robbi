@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,6 +52,14 @@ namespace RobbiEditor.Platform
         protected override void ApplyImpl()
         {
             EditorUserBuildSettings.selectedStandaloneTarget = BuildTarget;
+        }
+
+        protected override void InjectBuildEnvVars(StringBuilder stringBuilder)
+        {
+            base.InjectBuildEnvVars(stringBuilder);
+
+            stringBuilder.AppendLine();
+            stringBuilder.AppendFormat("BUILD_DIRECTORY={0}", new DirectoryInfo(Path.Combine(BuildDirectory, OutputName)).Parent.FullName);
         }
     }
 }

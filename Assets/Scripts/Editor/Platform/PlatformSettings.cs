@@ -52,6 +52,9 @@ namespace RobbiEditor.Platform
         }
 
         [SerializeField]
+        private string gDriveBuildUploadDirectory;
+
+        [SerializeField]
         private string outputName;
         public string OutputName
         {
@@ -174,7 +177,10 @@ namespace RobbiEditor.Platform
                 StringBuilder buildInfo = new StringBuilder();
                 buildInfo.AppendFormat("BUILD_LOCATION={0}", buildPlayerOptions.locationPathName);
                 buildInfo.AppendLine();
-                buildInfo.AppendFormat("BUILD_VERSION={0}", version);
+                buildInfo.AppendFormat("BUILD_VERSION={0}", version); 
+                buildInfo.AppendLine();
+                buildInfo.AppendFormat("BUILD_GDRIVE_UPLOAD_DIRECTORY={0}", gDriveBuildUploadDirectory);
+                InjectBuildEnvVars(buildInfo);
                 File.WriteAllText(Path.Combine(buildDirectory, "BUILD_ENV_VARS.txt"), buildInfo.ToString());
 
                 BumpVersion();
@@ -184,6 +190,8 @@ namespace RobbiEditor.Platform
                 EditorApplication.Exit(1);
             }
         }
+
+        protected virtual void InjectBuildEnvVars(StringBuilder stringBuilder) { }
 
         public void BuildAssets()
         {
