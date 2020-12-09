@@ -88,12 +88,11 @@ namespace Robbi.Managers
         {
             string serializedData = Instance.Serialize();
             File.WriteAllText(filePath, serializedData);
-            
-            if (Application.platform == RuntimePlatform.WebGLPlayer)
-            {
-                // Needed to deal with browser async saving
-                IOUtils.SyncFiles();
-            }
+
+#if UNITY_WEBGL
+            // Needed to deal with browser async saving
+            IOUtils.SyncFiles();
+#endif
 
             HudLogger.LogInfoFormat("{0} saved", Instance.name);
         }
@@ -101,6 +100,6 @@ namespace Robbi.Managers
         protected abstract string Serialize();
         protected abstract void Deserialize(string fileText);
 
-        #endregion
+#endregion
     }
 }

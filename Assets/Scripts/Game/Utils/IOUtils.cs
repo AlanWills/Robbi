@@ -9,7 +9,9 @@ namespace Robbi.Utils
 {
     public static class IOUtils
     {
+#if UNITY_WEBGL
         [DllImport("__Internal")]
-        public static extern void SyncFiles();
+        public static extern void WebGLOnly_SyncFiles();
+#endif
     }
 }
