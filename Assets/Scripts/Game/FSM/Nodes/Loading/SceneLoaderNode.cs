@@ -22,6 +22,7 @@ namespace Robbi.FSM.Nodes
     {
         #region Properties and Fields
 
+        [Input]
         public StringReference sceneName;
         public LoadSceneMode loadMode = LoadSceneMode.Single;
         public bool isAddressable = false;
@@ -66,13 +67,15 @@ namespace Robbi.FSM.Nodes
         {
             base.OnEnter();
 
+            string _sceneName = GetInputValue<string>(nameof(sceneName), sceneName.Value);
+
             if (isAddressable)
             {
-                addressablesOperation = Addressables.LoadSceneAsync(sceneName.Value, loadMode);
+                addressablesOperation = Addressables.LoadSceneAsync(_sceneName, loadMode);
             }
             else
             {
-                loadOperation = SceneManager.LoadSceneAsync(sceneName.Value, loadMode);
+                loadOperation = SceneManager.LoadSceneAsync(_sceneName, loadMode);
             }
         }
 
