@@ -19,7 +19,7 @@ namespace Robbi.DataSystem.Nodes.UI
         public string value;
 
         [Input]
-        public string format = "{0}";
+        public string format;
 
         [Input]
         public Text text;
@@ -36,7 +36,7 @@ namespace Robbi.DataSystem.Nodes.UI
             if (currentValue != oldValue)
             {
                 string _format = GetInputValue("format", format);
-                GetText().text = string.Format(_format, currentValue);
+                GetText().text = string.IsNullOrEmpty(_format) ? currentValue : string.Format(_format, currentValue);
                 oldValue = currentValue;
             }
         }

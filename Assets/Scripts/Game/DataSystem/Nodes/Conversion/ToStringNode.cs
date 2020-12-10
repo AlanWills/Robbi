@@ -16,7 +16,7 @@ namespace Robbi.DataSystem.Nodes.Conversion
         public T input;
 
         [Input]
-        public string format = "{0}";
+        public string format;
 
         [Output]
         public string output;
@@ -29,7 +29,7 @@ namespace Robbi.DataSystem.Nodes.Conversion
         {
             T _input = GetInputValue("input", input);
             string _format = GetInputValue("format", format);
-            return string.Format(_format, _input);
+            return string.IsNullOrEmpty(_format) ? _input.ToString() : string.Format(_format, _input);
         }
 
         #endregion
