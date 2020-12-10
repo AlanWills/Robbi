@@ -28,7 +28,10 @@ namespace Robbi.DataSystem.Nodes.UI
         public void Update()
         {
             Toggle _toggle = GetToggle();
-            _toggle.isOn = GetInputValue(nameof(isChecked), isChecked);
+            if (_toggle != null)
+            {
+                _toggle.isOn = GetInputValue(nameof(isChecked), isChecked);
+            }
         }
 
         #endregion
