@@ -73,6 +73,15 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -178245354278973814}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -178245354278973814}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -178245354278973814}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -178245354278973814}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -102,7 +111,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   gameObjectPath:
-    path: Options.AudioSettings.MusicEnabledButton
+    path: Options.GraphicsSettings.BatterySaver
   attemptWindow: 2
 --- !u!114 &-3443217561231219503
 MonoBehaviour:
@@ -129,6 +138,15 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 6905361961377371754}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6905361961377371754}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6905361961377371754}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 6905361961377371754}
         reroutePoints: []
@@ -248,7 +266,7 @@ MonoBehaviour:
   m_Name: Pass Test
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2488, y: 8}
+  position: {x: 2504, y: 8}
   ports:
     keys:
     - ' '
@@ -259,7 +277,7 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: IsMusicDisabled
+      - fieldName: IsBatterySaverDisabled
         node: {fileID: -125398274572605464}
         reroutePoints: []
       _direction: 0
@@ -276,21 +294,6 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   testResult: {fileID: 11400000, guid: d026f6890dbc6ab4c9a19df9dc4f6a8d, type: 2}
---- !u!114 &-2876918372678406609
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ec718764ed3a234cb86bb3efc892b05, type: 3}
-  m_Name: IsMusicDisabled_target
-  m_EditorClassIdentifier: 
-  isConstant: 1
-  constantValue: 0
-  referenceValue: {fileID: 0}
 --- !u!114 &-1791707902168781143
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -320,6 +323,15 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: NotFound
         node: {fileID: -3443217561231219503}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -125398274572605464}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -125398274572605464}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -125398274572605464}
         reroutePoints: []
       - fieldName: 
         node: {fileID: -125398274572605464}
@@ -475,13 +487,22 @@ MonoBehaviour:
     - 
     - inArgument
     - outArgument
-    - IsMusicDisabled
+    - IsBatterySaverDisabled
     values:
     - _fieldName: ' '
       _node: {fileID: -125398274572605464}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 275166075558113127}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 275166075558113127}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 275166075558113127}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 275166075558113127}
         reroutePoints: []
@@ -552,7 +573,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: IsMusicDisabled
+    - _fieldName: IsBatterySaverDisabled
       _node: {fileID: -125398274572605464}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
@@ -565,7 +586,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   conditions:
-  - {fileID: 4612918566794032184}
+  - {fileID: 4795946110675807568}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,7 +597,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae22ebe00c8798d4bb46b12fbdcffdfb, type: 3}
-  m_Name: OptionsDisableMusicButton
+  m_Name: OptionsDisableBatterySaverToggle
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: -3443217561231219503}
@@ -590,23 +611,8 @@ MonoBehaviour:
   startNode: {fileID: 6905361961377371754}
   parameters:
   - {fileID: -7858947254522064304}
-  - {fileID: 131275561142714993}
-  - {fileID: -2876918372678406609}
---- !u!114 &131275561142714993
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ec718764ed3a234cb86bb3efc892b05, type: 3}
-  m_Name: IsMusicDisabled_value
-  m_EditorClassIdentifier: 
-  isConstant: 0
-  constantValue: 1
-  referenceValue: {fileID: 11400000, guid: 22c508dcd0a0194409f2ccc61816d685, type: 2}
+  - {fileID: 8193137033812799260}
+  - {fileID: 3462174763799789957}
 --- !u!114 &275166075558113127
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -652,7 +658,22 @@ MonoBehaviour:
       _dynamic: 1
   time: 0.1
   unit: 0
---- !u!114 &4612918566794032184
+--- !u!114 &3462174763799789957
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec718764ed3a234cb86bb3efc892b05, type: 3}
+  m_Name: IsBatterySaverDisabled_target
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 0
+  referenceValue: {fileID: 0}
+--- !u!114 &4795946110675807568
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -662,12 +683,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc36a5f6598a84646bc68016fd41856d, type: 3}
-  m_Name: IsMusicDisabled
+  m_Name: IsBatterySaverDisabled
   m_EditorClassIdentifier: 
-  value: {fileID: 131275561142714993}
+  value: {fileID: 8193137033812799260}
   condition: 0
   useArgument: 0
-  target: {fileID: -2876918372678406609}
+  target: {fileID: 3462174763799789957}
 --- !u!114 &6905361961377371754
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -718,5 +739,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  value: {fileID: 11400000, guid: 22c508dcd0a0194409f2ccc61816d685, type: 2}
+  value: {fileID: 11400000, guid: e7ec242c314794443b36b46ba8769ec1, type: 2}
   newValue: {fileID: -7858947254522064304}
+--- !u!114 &8193137033812799260
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec718764ed3a234cb86bb3efc892b05, type: 3}
+  m_Name: IsBatterySaverDisabled_value
+  m_EditorClassIdentifier: 
+  isConstant: 0
+  constantValue: 0
+  referenceValue: {fileID: 11400000, guid: e7ec242c314794443b36b46ba8769ec1, type: 2}

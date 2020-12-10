@@ -54,11 +54,17 @@ namespace Robbi.Utils
             if (button != null)
             {
                 button.onClick.Invoke();
+                return;
             }
-            else
+
+            Toggle toggle = gameObject.GetComponent<Toggle>();
+            if (toggle != null)
             {
-                Debug.LogFormat("No Button component found on GameObject {0}", gameObject.name);
+                toggle.onValueChanged.Invoke(!toggle.isOn);
+                return;
             }
+            
+            Debug.LogFormat("No clickable component found on GameObject {0}", gameObject.name);
         }
     }
 }
