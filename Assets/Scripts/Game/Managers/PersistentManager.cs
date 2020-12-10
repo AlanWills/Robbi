@@ -76,6 +76,7 @@ namespace Robbi.Managers
                 else
                 {
                     Debug.LogFormat("{0} not found for manager {1}", persistentFilePath, Instance.name);
+                    Instance.Deserialize("");
                 }
             }
             else

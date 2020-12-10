@@ -19,10 +19,16 @@ namespace Robbi.Viewport
         [SerializeField]
         private TilemapValue tilemap;
 
+        [SerializeField]
+        private FloatValue minZoom;
+
+        [SerializeField]
+        private FloatValue maxZoom;
+
+        [SerializeField]
+        private FloatValue zoomSpeed;
+        
         private Camera cameraToZoom;
-        private float minZoom = 0.75f;
-        private float maxZoom = 2;
-        private float zoomSpeed = 1;
 
         #endregion
 
@@ -31,11 +37,6 @@ namespace Robbi.Viewport
         private void Start()
         {
             cameraToZoom = GetComponent<Camera>();
-
-            OptionsManager settingsManager = OptionsManager.Instance;
-            minZoom = settingsManager.MinZoom;
-            maxZoom = settingsManager.MaxZoom;
-            zoomSpeed = settingsManager.ZoomSpeed;
         }
 
         #endregion
@@ -77,22 +78,22 @@ namespace Robbi.Viewport
         private void FitCamera(float unscaledDeltaZoomAmount)
         {
             // Zoom out
-            cameraToZoom.orthographicSize -= unscaledDeltaZoomAmount * zoomSpeed;
+            cameraToZoom.orthographicSize -= unscaledDeltaZoomAmount * zoomSpeed.Value;
 
             Bounds bounds = tilemap.Value.localBounds;
             Vector3 bottomLeft = cameraToZoom.WorldToViewportPoint(bounds.min);
             Vector3 topRight = cameraToZoom.WorldToViewportPoint(bounds.max);
             float difference = Math.Max(topRight.x - bottomLeft.x, topRight.y - bottomLeft.y);
 
-            if (difference < minZoom)
+            if (difference < minZoom.Value)
             {
                 // Reached zoom out limit
-                cameraToZoom.orthographicSize *= difference / minZoom;
+                cameraToZoom.orthographicSize *= difference / minZoom.Value;
             }
-            else if (difference > maxZoom)
+            else if (difference > maxZoom.Value)
             {
                 // Reached zoom in limit
-                cameraToZoom.orthographicSize *= difference / maxZoom;
+                cameraToZoom.orthographicSize *= difference / maxZoom.Value;
             }
         }
 
@@ -103,7 +104,7 @@ namespace Robbi.Viewport
             Vector3 topRight = cameraToZoom.WorldToViewportPoint(bounds.max);
             float difference = Math.Max(topRight.x - bottomLeft.x, topRight.y - bottomLeft.y);
 
-            cameraToZoom.orthographicSize *= difference / minZoom;
+            cameraToZoom.orthographicSize *= difference / minZoom.Value;
         }
 
         #endregion

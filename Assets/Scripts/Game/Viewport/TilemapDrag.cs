@@ -17,9 +17,11 @@ namespace Robbi.Viewport
 
         [SerializeField]
         private TilemapValue tilemap;
+        
+        [SerializeField]
+        private FloatValue dragSpeed;
 
         private Camera cameraToDrag;
-        private float dragSpeed = 1f;
 
         private float timeSinceFingerDown = 0;
         private const float DRAG_THRESHOLD = 0.1f;
@@ -33,8 +35,6 @@ namespace Robbi.Viewport
         private void Start()
         {
             cameraToDrag = GetComponent<Camera>();
-
-            dragSpeed = OptionsManager.Instance.DragSpeed;
         }
 
         #endregion
@@ -46,7 +46,7 @@ namespace Robbi.Viewport
             if (mouseDownLastFrame)
             {
                 Vector3 mouseDelta = previousMouseDownPosition - mousePosition;
-                float scrollModifier = dragSpeed * Time.deltaTime * cameraToDrag.orthographicSize;
+                float scrollModifier = dragSpeed.Value * Time.deltaTime * cameraToDrag.orthographicSize;
 
                 transform.Translate(mouseDelta.x * scrollModifier, mouseDelta.y * scrollModifier, 0);
                 ClampCamera();
@@ -79,7 +79,7 @@ namespace Robbi.Viewport
                     if (timeSinceFingerDown >= DRAG_THRESHOLD)
                     {
                         Vector2 dragAmount = -touch.deltaPosition;
-                        float scrollModifier = dragSpeed * Time.deltaTime * cameraToDrag.orthographicSize;
+                        float scrollModifier = dragSpeed.Value * Time.deltaTime * cameraToDrag.orthographicSize;
 
                         transform.Translate(dragAmount.x * scrollModifier, dragAmount.y * scrollModifier, 0);
                         ClampCamera();

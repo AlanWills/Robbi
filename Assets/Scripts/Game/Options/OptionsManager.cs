@@ -42,11 +42,8 @@ namespace Robbi.Options
             get { return batterySaver.Value; }
             set 
             {
-                if (value != batterySaver.Value)
-                {
-                    batterySaver.Value = value;
-                    SyncFrameRate();
-                }
+                batterySaver.Value = value;
+                SyncFrameRate();
             }
         }
 
@@ -54,6 +51,30 @@ namespace Robbi.Options
         {
             get { return defaultMovementSpeed.Value; }
             set { defaultMovementSpeed.Value = value; }
+        }
+
+        public float MinZoom
+        {
+            get { return minZoom.Value; }
+            set { minZoom.Value = value; }
+        }
+
+        public float MaxZoom
+        {
+            get { return maxZoom.Value; }
+            set { maxZoom.Value = value; }
+        }
+
+        public float ZoomSpeed
+        {
+            get { return zoomSpeed.Value; }
+            set { zoomSpeed.Value = value; }
+        }
+
+        public float DragSpeed
+        {
+            get { return dragSpeed.Value; }
+            set { dragSpeed.Value = value; }
         }
 
         [SerializeField]
@@ -68,17 +89,17 @@ namespace Robbi.Options
         [SerializeField]
         private FloatValue defaultMovementSpeed;
 
-        [NonSerialized]
-        public float MinZoom = 1;
+        [SerializeField]
+        private FloatValue minZoom;
 
-        [NonSerialized]
-        public float MaxZoom = 1;
+        [SerializeField]
+        private FloatValue maxZoom;
 
-        [NonSerialized]
-        public float ZoomSpeed = 0;
+        [SerializeField]
+        private FloatValue zoomSpeed;
 
-        [NonSerialized]
-        public float DragSpeed = 0;
+        [SerializeField]
+        private FloatValue dragSpeed;
 
         #endregion
 

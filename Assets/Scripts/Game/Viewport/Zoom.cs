@@ -1,5 +1,6 @@
 ﻿using Robbi.Events;
 using Robbi.Options;
+using Robbi.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,9 @@ namespace Robbi.Viewport
         #region Properties and Fields
 
         private Camera cameraToZoom;
-        private float minZoom = 20;
-        private float maxZoom = 2;
-        private float zoomSpeed = 1;
+        private FloatValue minZoom;
+        private FloatValue maxZoom;
+        private FloatValue zoomSpeed;
 
         #endregion
 
@@ -27,11 +28,6 @@ namespace Robbi.Viewport
         private void Start()
         {
             cameraToZoom = GetComponent<Camera>();
-
-            OptionsManager settingsManager = OptionsManager.Instance;
-            minZoom = settingsManager.MinZoom;
-            maxZoom = settingsManager.MaxZoom;
-            zoomSpeed = settingsManager.ZoomSpeed;
         }
 
         #endregion
@@ -42,7 +38,7 @@ namespace Robbi.Viewport
         {
             if (scrollAmount != 0)
             {
-                cameraToZoom.orthographicSize = Mathf.Clamp(cameraToZoom.orthographicSize - scrollAmount, minZoom, maxZoom);
+                cameraToZoom.orthographicSize = Mathf.Clamp(cameraToZoom.orthographicSize - scrollAmount, minZoom.Value, maxZoom.Value);
             }
         }
 
@@ -66,7 +62,7 @@ namespace Robbi.Viewport
                 // Find the difference in the distances between each frame.
                 float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
 
-                cameraToZoom.orthographicSize = Mathf.Clamp(cameraToZoom.orthographicSize + deltaMagnitudeDiff * zoomSpeed, minZoom, maxZoom);
+                cameraToZoom.orthographicSize = Mathf.Clamp(cameraToZoom.orthographicSize + deltaMagnitudeDiff * zoomSpeed.Value, minZoom.Value, maxZoom.Value);
             }
         }
 

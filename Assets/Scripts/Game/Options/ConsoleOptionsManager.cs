@@ -19,6 +19,7 @@ namespace Robbi.Options
                     if (float.TryParse(parameters[1], out float speed))
                     {
                         OptionsManager.Instance.DragSpeed = speed;
+                        OptionsManager.Instance.Save();
                         output.AppendLine(string.Format("Drag Speed set to {0}", speed));
                         return true;
                     }
@@ -33,6 +34,7 @@ namespace Robbi.Options
                     if (float.TryParse(parameters[1], out float speed))
                     {
                         OptionsManager.Instance.ZoomSpeed = speed;
+                        OptionsManager.Instance.Save();
                         output.AppendLine(string.Format("Zoom Speed set to {0}", speed));
                         return true;
                     }
@@ -47,6 +49,7 @@ namespace Robbi.Options
                     if (float.TryParse(parameters[1], out float minZoom))
                     {
                         OptionsManager.Instance.MinZoom = minZoom;
+                        OptionsManager.Instance.Save();
                         output.AppendLine(string.Format("Min Zoom set to {0}", minZoom));
                         return true;
                     }
@@ -61,6 +64,7 @@ namespace Robbi.Options
                     if (float.TryParse(parameters[1], out float maxZoom))
                     {
                         OptionsManager.Instance.MaxZoom = maxZoom;
+                        OptionsManager.Instance.Save();
                         output.AppendLine(string.Format("Max Zoom set to {0}", maxZoom));
                         return true;
                     }
