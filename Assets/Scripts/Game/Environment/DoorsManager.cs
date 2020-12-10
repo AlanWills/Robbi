@@ -17,6 +17,23 @@ namespace Robbi.Environment
 
         public TilemapValue doorsTilemap;
 
+        private List<Door> doors = new List<Door>();
+
+        #endregion
+
+        #region Doors Management
+
+        public void SetDoors(IEnumerable<Door> _doors)
+        {
+            doors.Clear();
+            doors.AddRange(_doors);
+
+            foreach (Door door in doors)
+            {
+                door.Initialize(doorsTilemap.Value);
+            }
+        }
+
         #endregion
 
         #region Doors Methods

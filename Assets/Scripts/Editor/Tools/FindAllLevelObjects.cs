@@ -12,15 +12,15 @@ using UnityEngine;
 
 namespace RobbiEditor.Tools
 {
-    public static class FindInteractables
+    public static class FindAllLevelObjects
     {
-        [MenuItem("Robbi/Tools/Find Interactables")]
+        [MenuItem("Robbi/Tools/Find All Level Objects")]
         public static void MenuItem()
         {
             foreach (LevelFolder levelFolder in new LevelFolders())
             {
                 Level level = AssetDatabase.LoadAssetAtPath<Level>(levelFolder.LevelDataPath);
-                LevelEditor.FindInteractables(level);
+                LevelEditor.FindAllLevelObjects(level);
             }
 
             AssetDatabase.SaveAssets();

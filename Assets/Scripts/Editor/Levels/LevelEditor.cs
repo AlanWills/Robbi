@@ -37,6 +37,8 @@ namespace RobbiEditor.Levels
         {
             serializedObject.Update();
 
+            Level level = target as Level;
+
             DrawPropertiesExcluding(serializedObject, "m_Script", "requiresFuel", "startingFuel");
 
             EditorGUILayout.PropertyField(requiresFuelProperty);
@@ -48,14 +50,19 @@ namespace RobbiEditor.Levels
             EditorGUILayout.Space();
             EditorGUILayout.BeginHorizontal();
 
+            if (GUILayout.Button("Find Doors", GUILayout.ExpandWidth(false)))
+            {
+                FindInteractables(level);
+            }
+
             if (GUILayout.Button("Find Interactables", GUILayout.ExpandWidth(false)))
             {
-                FindInteractables(target as Level);
+                FindInteractables(level);
             }
 
             if (GUILayout.Button("Find Collectables", GUILayout.ExpandWidth(false)))
             {
-                FindCollectables(target as Level);
+                FindCollectables(level);
             }
 
             EditorGUILayout.EndHorizontal();
@@ -67,7 +74,19 @@ namespace RobbiEditor.Levels
 
         #region Utility Methods
 
-        public static void FindInteractables(Level level)
+        public static void FindAllLevelObjects(Level level)
+        {
+            FindDoors(level);
+            FindInteractables(level);
+            FindCollectables(level);
+        }
+
+        private static void FindDoors(Level level)
+        {
+            Find<Door>(level, LevelDirectories.DOORS_NAME, "doors");
+        }
+
+        private static void FindInteractables(Level level)
         {
             string location = AssetDatabase.GetAssetPath(level);
             string interactablesFolder = string.Format("{0}/{1}", Path.GetDirectoryName(location).Replace('\\', '/'), LevelDirectories.INTERACTABLES_NAME);
@@ -117,34 +136,39 @@ namespace RobbiEditor.Levels
             }
         }
 
-        public static void FindCollectables(Level level)
+        private static void FindCollectables(Level level)
+        {
+            Find<Collectable>(level, LevelDirectories.COLLECTABLES_NAME, "collectables");
+        }
+
+        private static void Find<T>(Level level, string directoryName, string propertyName) where T : ScriptableObject
         {
             string location = AssetDatabase.GetAssetPath(level);
-            string collectablesFolder = string.Format("{0}/{1}", Path.GetDirectoryName(location).Replace('\\', '/'), LevelDirectories.COLLECTABLES_NAME);
-            collectablesFolder = collectablesFolder.EndsWith("/") ? collectablesFolder.Substring(0, collectablesFolder.Length - 1) : collectablesFolder;
-            string[] collectablesGuids = AssetDatabase.FindAssets("t:Collectable", new string[] { collectablesFolder });
+            string objectFolder = string.Format("{0}/{1}", Path.GetDirectoryName(location).Replace('\\', '/'), directoryName);
+            objectFolder = objectFolder.EndsWith("/") ? objectFolder.Substring(0, objectFolder.Length - 1) : objectFolder;
+            string[] doorGuids = AssetDatabase.FindAssets("t:" + typeof(T).Name, new string[] { objectFolder });
 
             SerializedObject serializedObject = new SerializedObject(level);
             serializedObject.Update();
 
-            SerializedProperty collectablesProperty = serializedObject.FindProperty("collectables");
+            SerializedProperty objectsProperty = serializedObject.FindProperty(propertyName);
             bool dirty = false;
-            
-            if (collectablesProperty.arraySize != collectablesGuids.Length)
+
+            if (objectsProperty.arraySize != doorGuids.Length)
             {
-                collectablesProperty.arraySize = collectablesGuids.Length;
+                objectsProperty.arraySize = doorGuids.Length;
             }
 
-            for (int i = 0; i < collectablesGuids.Length; ++i)
+            for (int i = 0; i < doorGuids.Length; ++i)
             {
-                string collectablePath = AssetDatabase.GUIDToAssetPath(collectablesGuids[i]);
-                Collectable collectable = AssetDatabase.LoadAssetAtPath<Collectable>(collectablePath);
+                string objectPath = AssetDatabase.GUIDToAssetPath(doorGuids[i]);
+                T obj = AssetDatabase.LoadAssetAtPath<T>(objectPath);
 
-                SerializedProperty arrayElement = collectablesProperty.GetArrayElementAtIndex(i);
+                SerializedProperty arrayElement = objectsProperty.GetArrayElementAtIndex(i);
 
-                if (collectable != arrayElement.objectReferenceValue)
+                if (obj != arrayElement.objectReferenceValue)
                 {
-                    arrayElement.objectReferenceValue = collectable;
+                    arrayElement.objectReferenceValue = obj;
                     dirty = true;
                 }
             }

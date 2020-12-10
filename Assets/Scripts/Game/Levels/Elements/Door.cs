@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Robbi.Parameters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,9 +15,17 @@ namespace Robbi.Levels.Elements
         Vertical
     }
 
+    public enum DoorState
+    { 
+        Opened,
+        Closed
+    }
+
     public class Door : ScriptableObject
     {
         #region Properties and Fields
+
+        public DoorState DoorState { get; private set; }
 
         public Vector3Int position;
         public Direction direction;
@@ -26,10 +35,20 @@ namespace Robbi.Levels.Elements
 
         #endregion
 
+        #region Initialization
+
+        public void Initialize(Tilemap tilemap)
+        {
+            DoorState = tilemap.HasTile(position) ? DoorState.Closed : DoorState.Opened;
+        }
+
+        #endregion
+
         #region Open/Close Methods
 
         public void Open(Tilemap tilemap)
         {
+            DoorState = DoorState.Opened;
             tilemap.SetTile(position, null);
 
             if (direction == Direction.Horizontal)
@@ -50,6 +69,7 @@ namespace Robbi.Levels.Elements
 
         public void Close(Tilemap tilemap)
         {
+            DoorState = DoorState.Closed;
             tilemap.SetTile(position, closedTile);
 
             if (direction == Direction.Horizontal)

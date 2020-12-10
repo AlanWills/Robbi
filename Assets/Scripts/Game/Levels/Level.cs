@@ -34,6 +34,7 @@ namespace Robbi.Levels
 
     public struct LevelManagers
     {
+        public DoorsManager doorsManager;
         public InteractablesManager interactablesManager;
         public CollectablesManager collectablesManager;
     }
@@ -47,6 +48,8 @@ namespace Robbi.Levels
         public GameObject levelTutorial;
 
         [Header("Level Elements")]
+        [SerializeField]
+        private List<Door> doors = new List<Door>();
         [SerializeField]
         private List<ScriptableObject> interactables = new List<ScriptableObject>();
         [SerializeField]
@@ -78,7 +81,8 @@ namespace Robbi.Levels
             levelData.remainingWaypointsPlaceable.Value = maxWaypointsPlaceable;
             levelData.levelRequiresFuel.Value = requiresFuel;
             levelData.remainingFuel.Value = startingFuel;
-            
+
+            levelManagers.doorsManager.SetDoors(doors);
             levelManagers.interactablesManager.SetInteractables(interactables);
             levelManagers.collectablesManager.SetCollectables(collectables);
 

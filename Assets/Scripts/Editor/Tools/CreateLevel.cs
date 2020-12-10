@@ -461,8 +461,7 @@ namespace RobbiEditor.Tools
             level.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
 
             // Must do this after the asset is actually created
-            LevelEditor.FindInteractables(level);
-            LevelEditor.FindCollectables(level);
+            LevelEditor.FindAllLevelObjects(level);
         }
 
         #endregion

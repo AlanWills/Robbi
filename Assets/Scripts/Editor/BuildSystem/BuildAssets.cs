@@ -76,8 +76,7 @@ namespace RobbiEditor.BuildSystem
         public static void PrepareAssets()
         {
             CompressTilemaps.MenuItem();
-            FindInteractables.MenuItem();
-            FindCollectables.MenuItem();
+            FindAllLevelObjects.MenuItem();
             SetAddressablePaths.MenuItem();
             SetCurrentLevelToZero();
         }
