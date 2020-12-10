@@ -16,8 +16,8 @@ namespace Robbi.Levels
 
             if (parameters.Count == 0)
             {
-                output.AppendLine(string.Format("Current Level Index is {0}", levelManager.CurrentLevelIndex));
-                output.Append(string.Format("Latest Level Index is {0}", levelManager.LatestLevelIndex));
+                output.AppendLine(string.Format("Latest Unlocked Level is {0}", levelManager.LatestUnlockedLevel));
+                output.Append(string.Format("Latest Available Level is {0}", levelManager.LatestAvailableLevel));
 
                 return true;
             }
@@ -25,28 +25,28 @@ namespace Robbi.Levels
             {
                 if (uint.TryParse(parameters[0], out uint result))
                 {
-                    levelManager.CurrentLevelIndex = result;
+                    levelManager.LatestUnlockedLevel = result;
                     levelManager.Save();
 
-                    output.Append(string.Format("Current Level Index successfully set to {0}", levelManager.CurrentLevelIndex));
+                    output.Append(string.Format("Latest Unlocked Level successfully set to {0}", levelManager.LatestUnlockedLevel));
                     return true;
                 }
                 else
                 {
-                    output.Append(string.Format("Invalid parameter {0} to set current level.", parameters[0]));
+                    output.Append(string.Format("Invalid parameter {0} to set latest unlocked level.", parameters[0]));
                     return false;
                 }
             }
             else if (parameters.Count == 2)
             {
-                if (parameters[0] == "latest")
+                if (parameters[0] == "av")
                 {
                     if (uint.TryParse(parameters[1], out uint result))
                     {
-                        levelManager.LatestLevelIndex = result;
+                        levelManager.LatestAvailableLevel = result;
                         levelManager.Save();
 
-                        output.Append(string.Format("Latest Level Index successfully set to {0}", levelManager.LatestLevelIndex));
+                        output.Append(string.Format("Latest Available Level successfully set to {0}", levelManager.LatestAvailableLevel));
                         return true;
                     }
                     else

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Robbi.PickLevel
 {
@@ -19,10 +20,10 @@ namespace Robbi.PickLevel
 
         [Header("Parameters")]
         [SerializeField]
-        private UIntValue currentLevel;
+        private UIntValue latestUnlockedLevel;
 
         [SerializeField]
-        private UIntValue latestLevel;
+        private UIntValue latestAvailableLevel;
 
         #endregion
 
@@ -30,9 +31,30 @@ namespace Robbi.PickLevel
 
         private void Awake()
         {
-            for (int i = 0; i < latestLevel.Value * 3; ++i)
+            Instantiate(Math.Min(latestUnlockedLevel.Value, latestAvailableLevel.Value) + 1);
+        }
+            
+        #endregion
+
+        #region Level Station Methods
+
+        public void Instantiate(uint count)
+        {
+            // Do this in reverse order so the latest level always appear in the lower right
+            for (uint i = count; i > 0; --i)
             {
-                GameObject.Instantiate(levelStationPrefab, transform);
+                GameObject levelStationGameObject = GameObject.Instantiate(levelStationPrefab, transform);
+                LevelStation levelStation = levelStationGameObject.GetComponent<LevelStation>();
+                levelStation.Index = (uint)transform.childCount - 1;
+                levelStation.Complete = levelStation.Index < latestUnlockedLevel.Value;
+            }
+        }
+
+        public void Clear()
+        {
+            for (int i = transform.childCount; i > 0; --i)
+            {
+                GameObject.DestroyImmediate(transform.GetChild(i - 1).gameObject);
             }
         }
 

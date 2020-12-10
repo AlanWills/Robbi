@@ -123,7 +123,7 @@ namespace RobbiEditor.Tools
             LevelManager levelManager = LevelManager.EditorOnly_Load();
 
             levelInfo = ScriptableObject.CreateInstance<LevelInfo>();
-            levelInfo.levelIndex = levelManager.LatestLevelIndex_DefaultValue + 1;
+            levelInfo.levelIndex = levelManager.LatestAvailableLevel_DefaultValue + 1;
             
             LevelFolder previousLevelFolder = new LevelFolder(levelInfo.levelIndex - 1);
             levelInfo.levelPrefabToCopy = AssetDatabase.LoadAssetAtPath<GameObject>(previousLevelFolder.PrefabPath);
@@ -226,7 +226,7 @@ namespace RobbiEditor.Tools
 
             if (levelInfo.increaseMaxLevel)
             {
-                LevelManager.EditorOnly_Load().LatestLevelIndex_DefaultValue = levelInfo.levelIndex;
+                LevelManager.EditorOnly_Load().LatestAvailableLevel_DefaultValue = levelInfo.levelIndex;
             }
 
             AssetDatabase.SaveAssets();

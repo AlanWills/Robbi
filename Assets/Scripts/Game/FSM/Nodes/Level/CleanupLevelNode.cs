@@ -28,7 +28,7 @@ namespace Robbi.FSM.Nodes
         {
             base.OnEnter();
 
-            levelLoadingHandle = Addressables.LoadAssetAsync<Level>(string.Format("Level{0}Data", LevelManager.Instance.CurrentLevelIndex));
+            levelLoadingHandle = Addressables.LoadAssetAsync<Level>(string.Format("Level{0}Data", LevelManager.Instance.CurrentLevel));
         }
 
         protected override FSMNode OnUpdate()

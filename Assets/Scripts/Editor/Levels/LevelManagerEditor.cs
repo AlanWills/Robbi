@@ -15,7 +15,7 @@ namespace RobbiEditor.Levels
     {
         #region Properties and Fields
 
-        private SerializedProperty latestLevelIndexProperty;
+        private SerializedProperty latestAvailableLevelProperty;
 
         #endregion
 
@@ -23,7 +23,7 @@ namespace RobbiEditor.Levels
 
         private void OnEnable()
         {
-            latestLevelIndexProperty = serializedObject.FindProperty("latestLevelIndex");
+            latestAvailableLevelProperty = serializedObject.FindProperty("latestAvailableLevel");
         }
 
         #endregion
@@ -34,15 +34,15 @@ namespace RobbiEditor.Levels
         {
             serializedObject.Update();
 
-            DrawPropertiesExcluding(serializedObject, "m_Script", "latestLevelIndex");
+            DrawPropertiesExcluding(serializedObject, "m_Script", "latestAvailableLevel");
 
             EditorGUILayout.BeginHorizontal();
 
-            EditorGUILayout.PropertyField(latestLevelIndexProperty);
+            EditorGUILayout.PropertyField(latestAvailableLevelProperty);
 
-            if (latestLevelIndexProperty.objectReferenceValue != null)
+            if (latestAvailableLevelProperty.objectReferenceValue != null)
             {
-                UIntValue latestLevelValue = latestLevelIndexProperty.objectReferenceValue as UIntValue;
+                UIntValue latestLevelValue = latestAvailableLevelProperty.objectReferenceValue as UIntValue;
                 latestLevelValue.DefaultValue = RobbiEditorGUILayout.UIntField(GUIContent.none, latestLevelValue.DefaultValue);
             }
 

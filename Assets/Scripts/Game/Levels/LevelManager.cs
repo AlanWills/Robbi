@@ -25,35 +25,44 @@ namespace Robbi.Levels
             get { return Path.Combine(Application.persistentDataPath, "LevelManager.json"); }
         }
 
-        public uint CurrentLevelIndex 
+        public uint CurrentLevel
         { 
-            get { return currentLevelIndex.Value; }
-            set { currentLevelIndex.Value = value; }
+            get { return currentLevel.Value; }
+            set { currentLevel.Value = value; }
         }
 
-        public uint CurrentLevelIndex_DefaultValue
+        public uint CurrentLevel_DefaultValue
         {
-            get { return currentLevelIndex.DefaultValue; }
-            set { currentLevelIndex.DefaultValue = value; }
+            get { return currentLevel.DefaultValue; }
+            set { currentLevel.DefaultValue = value; }
         }
 
-        public uint LatestLevelIndex
+        public uint LatestUnlockedLevel
         {
-            get { return latestLevelIndex.Value; }
-            set { latestLevelIndex.Value = value; }
+            get { return latestUnlockedLevel.Value; }
+            set { latestUnlockedLevel.Value = value; }
         }
 
-        public uint LatestLevelIndex_DefaultValue
+        public uint LatestAvailableLevel
         {
-            get { return latestLevelIndex.DefaultValue; }
-            set { latestLevelIndex.DefaultValue = value; }
+            get { return latestAvailableLevel.Value; }
+            set { latestAvailableLevel.Value = value; }
+        }
+
+        public uint LatestAvailableLevel_DefaultValue
+        {
+            get { return latestAvailableLevel.DefaultValue; }
+            set { latestAvailableLevel.DefaultValue = value; }
         }
 
         [SerializeField]
-        private UIntValue currentLevelIndex;
+        private UIntValue currentLevel;
 
         [SerializeField]
-        private UIntValue latestLevelIndex;
+        private UIntValue latestUnlockedLevel;
+
+        [SerializeField]
+        private UIntValue latestAvailableLevel;
 
 #endregion
 
@@ -91,10 +100,10 @@ namespace Robbi.Levels
 
         protected override void Deserialize(LevelManagerDTO levelManagerDTO)
         {
-            CurrentLevelIndex = levelManagerDTO.currentLevelIndex;
+            LatestUnlockedLevel = levelManagerDTO.latestUnlockedLevelIndex;
 
-            HudLogger.LogInfoFormat("Current Level Index: {0}", CurrentLevelIndex);
-            HudLogger.LogInfoFormat("Latest Level Index: {0}", LatestLevelIndex);
+            HudLogger.LogInfoFormat("Latest Unlocked Level Index: {0}", LatestUnlockedLevel);
+            HudLogger.LogInfoFormat("Latest Available Level Index: {0}", LatestAvailableLevel);
         }
 
         #endregion
@@ -103,13 +112,13 @@ namespace Robbi.Levels
     [Serializable]
     public class LevelManagerDTO
     {
-        public uint currentLevelIndex = 0;
+        public uint latestUnlockedLevelIndex = 0;
 
         public LevelManagerDTO() { }
 
         public LevelManagerDTO(LevelManager levelManager)
         {
-            currentLevelIndex = levelManager.CurrentLevelIndex;
+            latestUnlockedLevelIndex = levelManager.LatestUnlockedLevel;
         }
     }
 }

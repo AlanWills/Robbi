@@ -20,7 +20,7 @@ namespace RobbiEditor.Debugging
             EditorGUILayout.LabelField("Level", boldText);
 
             LevelManager levelManager = LevelManager.Instance;
-            levelManager.CurrentLevelIndex = RobbiEditorGUILayout.UIntField(new GUIContent("Current Level Index", "The 0-based index for the current level we are on"), levelManager.CurrentLevelIndex);
+            levelManager.CurrentLevel = RobbiEditorGUILayout.UIntField(new GUIContent("Current Level Index", "The 0-based index for the current level we are on"), levelManager.CurrentLevel);
         }
 
         #endregion

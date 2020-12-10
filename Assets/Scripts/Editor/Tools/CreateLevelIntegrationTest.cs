@@ -35,9 +35,9 @@ namespace RobbiEditor.Tools
             LevelManager levelManager = LevelManager.Instance;
 
             FSMGraph integrationTest = ScriptableObject.CreateInstance<FSMGraph>();
-            integrationTest.name = string.Format("Level{0}IntegrationTest", levelManager.CurrentLevelIndex);
+            integrationTest.name = string.Format("Level{0}IntegrationTest", levelManager.CurrentLevel);
 
-            string levelsFolderPath = string.Format("{0}Level{1}", LEVELS_PATH, levelManager.CurrentLevelIndex);
+            string levelsFolderPath = string.Format("{0}Level{1}", LEVELS_PATH, levelManager.CurrentLevel);
             AssetDatabase.CreateFolder(levelsFolderPath, "Tests");
             string integrationTestPath = string.Format("{0}/{1}{2}.asset", levelsFolderPath, TESTS_NAME, integrationTest.name);
             AssetDatabase.CreateAsset(integrationTest, integrationTestPath);

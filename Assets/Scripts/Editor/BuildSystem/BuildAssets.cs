@@ -119,7 +119,7 @@ namespace RobbiEditor.BuildSystem
 
         private static void SetCurrentLevelToZero()
         {
-            LevelManager.EditorOnly_Load().CurrentLevelIndex_DefaultValue = 0;
+            LevelManager.EditorOnly_Load().CurrentLevel_DefaultValue = 0;
             AssetDatabase.SaveAssets();
         }
     }
