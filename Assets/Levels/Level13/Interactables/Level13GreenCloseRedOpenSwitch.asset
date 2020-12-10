@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7684019412492547925
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97a8bfd26f5b5248a23fbd846c538dc, type: 3}
+  m_Name: OpenDoor
+  m_EditorClassIdentifier: 
+  doorEvent: {fileID: 11400000, guid: d3249d8ae5bd19141a7c3fe5b6b72ef5, type: 2}
+  door: {fileID: 11400000, guid: f43623102dbf27446a49c30d78a0375c, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16,9 +30,9 @@ MonoBehaviour:
   interactedTile: {fileID: 0}
   uninteractedTile: {fileID: 0}
   interactedModifiers:
-  - {fileID: 7654082205110453243}
-  - {fileID: 4601193151973427933}
---- !u!114 &4601193151973427933
+  - {fileID: -7684019412492547925}
+  - {fileID: 4647293482720124312}
+--- !u!114 &4647293482720124312
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -27,22 +41,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d18122b71ff71904c9b5c30c5edf7eac, type: 3}
-  m_Name: RaiseDoorEvent
+  m_Script: {fileID: 11500000, guid: ef8acd9803bb318449261925302ad0d0, type: 3}
+  m_Name: CloseDoor
   m_EditorClassIdentifier: 
   doorEvent: {fileID: 11400000, guid: 40fd3c3b3eff16b4c88e90fe79d582dd, type: 2}
   door: {fileID: 11400000, guid: 1ed6bcf81dac11d4090f257708ade193, type: 2}
---- !u!114 &7654082205110453243
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d18122b71ff71904c9b5c30c5edf7eac, type: 3}
-  m_Name: RaiseDoorEvent
-  m_EditorClassIdentifier: 
-  doorEvent: {fileID: 11400000, guid: d3249d8ae5bd19141a7c3fe5b6b72ef5, type: 2}
-  door: {fileID: 11400000, guid: f43623102dbf27446a49c30d78a0375c, type: 2}

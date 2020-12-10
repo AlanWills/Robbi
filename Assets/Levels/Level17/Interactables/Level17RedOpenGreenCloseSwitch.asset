@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3005534263938457033
+--- !u!114 &-8951822392116975077
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d18122b71ff71904c9b5c30c5edf7eac, type: 3}
-  m_Name: RaiseDoorEvent
+  m_Script: {fileID: 11500000, guid: ef8acd9803bb318449261925302ad0d0, type: 3}
+  m_Name: CloseDoor
   m_EditorClassIdentifier: 
   doorEvent: {fileID: 11400000, guid: 40fd3c3b3eff16b4c88e90fe79d582dd, type: 2}
   door: {fileID: 11400000, guid: 4764a69f5b337754f99d0f592abcee58, type: 2}
---- !u!114 &-1906380183441830472
+--- !u!114 &-5297137445948569719
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -23,36 +23,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d18122b71ff71904c9b5c30c5edf7eac, type: 3}
-  m_Name: RaiseDoorEvent
-  m_EditorClassIdentifier: 
-  doorEvent: {fileID: 11400000, guid: 40fd3c3b3eff16b4c88e90fe79d582dd, type: 2}
-  door: {fileID: 11400000, guid: 08dee1e9945e8ee47a7cac4cf5856067, type: 2}
---- !u!114 &-1635250137395471003
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d18122b71ff71904c9b5c30c5edf7eac, type: 3}
-  m_Name: RaiseDoorEvent
-  m_EditorClassIdentifier: 
-  doorEvent: {fileID: 11400000, guid: 40fd3c3b3eff16b4c88e90fe79d582dd, type: 2}
-  door: {fileID: 11400000, guid: 0f4ae28f44ba31e41a8faef26b6660df, type: 2}
---- !u!114 &-884743701830773856
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d18122b71ff71904c9b5c30c5edf7eac, type: 3}
-  m_Name: RaiseDoorEvent
+  m_Script: {fileID: 11500000, guid: c97a8bfd26f5b5248a23fbd846c538dc, type: 3}
+  m_Name: OpenDoor
   m_EditorClassIdentifier: 
   doorEvent: {fileID: 11400000, guid: d3249d8ae5bd19141a7c3fe5b6b72ef5, type: 2}
   door: {fileID: 11400000, guid: 5e1c50916a58ba546be5dd1951448add, type: 2}
@@ -72,7 +44,35 @@ MonoBehaviour:
   interactedTile: {fileID: 0}
   uninteractedTile: {fileID: 0}
   interactedModifiers:
-  - {fileID: -884743701830773856}
-  - {fileID: -3005534263938457033}
-  - {fileID: -1635250137395471003}
-  - {fileID: -1906380183441830472}
+  - {fileID: -5297137445948569719}
+  - {fileID: -8951822392116975077}
+  - {fileID: 7393425400131253207}
+  - {fileID: 3208860347716220221}
+--- !u!114 &3208860347716220221
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8acd9803bb318449261925302ad0d0, type: 3}
+  m_Name: CloseDoor
+  m_EditorClassIdentifier: 
+  doorEvent: {fileID: 11400000, guid: 40fd3c3b3eff16b4c88e90fe79d582dd, type: 2}
+  door: {fileID: 11400000, guid: 08dee1e9945e8ee47a7cac4cf5856067, type: 2}
+--- !u!114 &7393425400131253207
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8acd9803bb318449261925302ad0d0, type: 3}
+  m_Name: CloseDoor
+  m_EditorClassIdentifier: 
+  doorEvent: {fileID: 11400000, guid: 40fd3c3b3eff16b4c88e90fe79d582dd, type: 2}
+  door: {fileID: 11400000, guid: 0f4ae28f44ba31e41a8faef26b6660df, type: 2}

@@ -16,7 +16,7 @@ MonoBehaviour:
   interactedTile: {fileID: 11400000, guid: 638cfe7b479d74e4f9f4c718e976e10a, type: 2}
   uninteractedTile: {fileID: 0}
   interactedModifiers:
-  - {fileID: -285260405645224824}
+  - {fileID: 7942510464187404865}
 --- !u!114 &-7470622231832268118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -33,21 +33,7 @@ MonoBehaviour:
   interactedTile: {fileID: 11400000, guid: 4a9200fab20442c4e882e43c95ed3333, type: 2}
   uninteractedTile: {fileID: 0}
   interactedModifiers:
-  - {fileID: 6625876590336585498}
---- !u!114 &-285260405645224824
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d18122b71ff71904c9b5c30c5edf7eac, type: 3}
-  m_Name: RaiseDoorEvent
-  m_EditorClassIdentifier: 
-  doorEvent: {fileID: 11400000, guid: 1e7ee4e625f0e1945a1a914766c3fc88, type: 2}
-  door: {fileID: 11400000, guid: 6077422d6056602468907a186ada44f2, type: 2}
+  - {fileID: 7276407749315767788}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,7 +50,7 @@ MonoBehaviour:
   states:
   - {fileID: -8900516800257386296}
   - {fileID: -7470622231832268118}
---- !u!114 &6625876590336585498
+--- !u!114 &7276407749315767788
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,8 +59,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d18122b71ff71904c9b5c30c5edf7eac, type: 3}
-  m_Name: RaiseDoorEvent
+  m_Script: {fileID: 11500000, guid: c0827b0783e85c340a6ad1d543215b5d, type: 3}
+  m_Name: ToggleDoor
+  m_EditorClassIdentifier: 
+  doorEvent: {fileID: 11400000, guid: 1e7ee4e625f0e1945a1a914766c3fc88, type: 2}
+  door: {fileID: 11400000, guid: 6077422d6056602468907a186ada44f2, type: 2}
+--- !u!114 &7942510464187404865
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0827b0783e85c340a6ad1d543215b5d, type: 3}
+  m_Name: ToggleDoor
   m_EditorClassIdentifier: 
   doorEvent: {fileID: 11400000, guid: 1e7ee4e625f0e1945a1a914766c3fc88, type: 2}
   door: {fileID: 11400000, guid: 6077422d6056602468907a186ada44f2, type: 2}
