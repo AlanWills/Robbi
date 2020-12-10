@@ -1,5 +1,64 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7877725910717288866
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b91b7890458f5f84b987b9b17978e97c, type: 3}
+  m_Name: Wait For Game Object Removed
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 2488, y: -24}
+  ports:
+    keys:
+    - ' '
+    - Removed
+    - NotRemoved
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -7877725910717288866}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: IsMusicDisabled
+        node: {fileID: -125398274572605464}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Removed
+      _node: {fileID: -7877725910717288866}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -3370088292095574852}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: NotRemoved
+      _node: {fileID: -7877725910717288866}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -1791707902168781143}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  gameObjectPath:
+    path: Options.AudioSettings.MusicEnabledButton
+  attemptWindow: 2
 --- !u!114 &-7858947254522064304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -40,6 +99,18 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -178245354278973814}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -178245354278973814}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -178245354278973814}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -178245354278973814}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -178245354278973814}
         reroutePoints: []
@@ -204,6 +275,18 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 6905361961377371754}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6905361961377371754}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6905361961377371754}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6905361961377371754}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6905361961377371754}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -248,7 +331,7 @@ MonoBehaviour:
   m_Name: Pass Test
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2488, y: 8}
+  position: {x: 2760, y: 8}
   ports:
     keys:
     - ' '
@@ -259,8 +342,8 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: IsMusicDisabled
-        node: {fileID: -125398274572605464}
+      - fieldName: Removed
+        node: {fileID: -7877725910717288866}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -396,6 +479,21 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -125398274572605464}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -125398274572605464}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -125398274572605464}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -125398274572605464}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -125398274572605464}
+        reroutePoints: []
+      - fieldName: NotRemoved
+        node: {fileID: -7877725910717288866}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -518,6 +616,18 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 275166075558113127}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 275166075558113127}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 275166075558113127}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 275166075558113127}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 275166075558113127}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -558,7 +668,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: -3370088292095574852}
+        node: {fileID: -7877725910717288866}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -587,6 +697,7 @@ MonoBehaviour:
   - {fileID: -1791707902168781143}
   - {fileID: 275166075558113127}
   - {fileID: -178245354278973814}
+  - {fileID: -7877725910717288866}
   startNode: {fileID: 6905361961377371754}
   parameters:
   - {fileID: -7858947254522064304}
