@@ -13,7 +13,9 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Robbi.Managers
 {
-    public abstract class PersistentManager<T> : ScriptableObject where T : PersistentManager<T>
+    public abstract class PersistentManager<T, TDTO> : ScriptableObject 
+        where T : PersistentManager<T, TDTO>
+        where TDTO : new()
     {
         #region Properties and Fields
         
@@ -71,12 +73,21 @@ namespace Robbi.Managers
 
                 if (File.Exists(persistentFilePath))
                 {
-                    Instance.Deserialize(File.ReadAllText(persistentFilePath));
+                    TDTO tDTO = JsonUtility.FromJson<TDTO>(File.ReadAllText(persistentFilePath));
+                    if (tDTO != null)
+                    {
+                        Instance.Deserialize(tDTO);
+                    }
+                    else
+                    {
+                        Debug.LogFormat("Error deserialization data in {0}.  Using default DTO.", persistentFilePath);
+                        Instance.Deserialize(new TDTO());
+                    }
                 }
                 else
                 {
                     Debug.LogFormat("{0} not found for manager {1}", persistentFilePath, Instance.name);
-                    Instance.Deserialize("");
+                    Instance.Deserialize(new TDTO());
                 }
             }
             else
@@ -97,7 +108,7 @@ namespace Robbi.Managers
         }
 
         protected abstract string Serialize();
-        protected abstract void Deserialize(string fileText);
+        protected abstract void Deserialize(TDTO dto);
 
 #endregion
     }

@@ -14,7 +14,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 namespace Robbi.Levels
 {
     [CreateAssetMenu(menuName = "Robbi/Levels/Level Manager")]
-    public class LevelManager : PersistentManager<LevelManager>
+    public class LevelManager : PersistentManager<LevelManager, LevelManagerDTO>
     {
         #region Properties and Fields
 
@@ -89,10 +89,8 @@ namespace Robbi.Levels
             return JsonUtility.ToJson(new LevelManagerDTO(this));
         }
 
-        protected override void Deserialize(string fileContents)
+        protected override void Deserialize(LevelManagerDTO levelManagerDTO)
         {
-            LevelManagerDTO levelManagerDTO = JsonUtility.FromJson<LevelManagerDTO>(fileContents);
-
             CurrentLevelIndex = levelManagerDTO.currentLevelIndex;
 
             HudLogger.LogInfoFormat("Current Level Index: {0}", CurrentLevelIndex);

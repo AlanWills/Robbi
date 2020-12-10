@@ -14,7 +14,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 namespace Robbi.Options
 {
     [CreateAssetMenu(menuName = "Robbi/Options/Options Manager")]
-    public class OptionsManager : PersistentManager<OptionsManager>
+    public class OptionsManager : PersistentManager<OptionsManager, OptionsManagerDTO>
     {
         #region Properties and Fields
 
@@ -130,10 +130,8 @@ namespace Robbi.Options
             return JsonUtility.ToJson(new OptionsManagerDTO(this));
         }
 
-        protected override void Deserialize(string fileContents)
+        protected override void Deserialize(OptionsManagerDTO optionsManagerDTO)
         {
-            OptionsManagerDTO optionsManagerDTO = JsonUtility.FromJson<OptionsManagerDTO>(fileContents);
-
             MusicEnabled = optionsManagerDTO.musicEnabled;
             SfxEnabled = optionsManagerDTO.sfxEnabled;
             BatterySaver = optionsManagerDTO.batterySaver;
