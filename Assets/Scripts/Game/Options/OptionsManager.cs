@@ -43,7 +43,7 @@ namespace Robbi.Options
             set 
             {
                 batterySaver.Value = value;
-                SyncFrameRate();
+                SyncBatterySaverOptions();
             }
         }
 
@@ -156,8 +156,9 @@ namespace Robbi.Options
         #region Utility Methods
 
         // Need this separate to be able to call this from node graph
-        public void SyncFrameRate()
+        public void SyncBatterySaverOptions()
         {
+            QualitySettings.vSyncCount = BatterySaver ? 0 : 1;
             Application.targetFrameRate = BatterySaver ? 30 : 60;
         }
 
