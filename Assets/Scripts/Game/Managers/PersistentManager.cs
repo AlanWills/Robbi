@@ -88,11 +88,9 @@ namespace Robbi.Managers
         {
             string serializedData = Instance.Serialize();
             File.WriteAllText(filePath, serializedData);
-
-#if UNITY_WEBGL
+            
             // Needed to deal with browser async saving
-            IOUtils.WebGLOnly_SyncFiles();
-#endif
+            WebGLUtils.SyncFiles();
 
             HudLogger.LogInfoFormat("{0} saved", Instance.name);
         }

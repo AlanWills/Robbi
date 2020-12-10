@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace Robbi.Utils
 {
-    public static class IOUtils
+    public static class WebGLUtils
     {
 #if UNITY_WEBGL
         [DllImport("__Internal")]
-        public static extern void WebGLOnly_SyncFiles();
+        public static extern void SyncFiles();
+#else
+        public static void SyncFiles(){}
 #endif
     }
 }

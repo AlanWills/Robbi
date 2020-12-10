@@ -3,6 +3,7 @@ using Robbi.Debugging.Logging;
 using Robbi.Events;
 using Robbi.Levels;
 using Robbi.Movement;
+using Robbi.Options;
 using Robbi.Parameters;
 using Robbi.Testing;
 using System;
@@ -38,6 +39,7 @@ namespace Robbi.Debugging.Commands
             RegisterCommand<ConsoleIntegrationTest>("it");
             RegisterCommand<ConsoleCurrentLevelIntegrationTest>("clit");
             RegisterCommand<ConsoleFuel>("fuel");
+            RegisterCommand<ConsoleOptionsManager>("opt");
         }
 
         private void RegisterCommand<T>(string name) where T : IDebugCommand, new()
