@@ -48,7 +48,7 @@ namespace Robbi.DataSystem.Nodes.UI
         private Image GetImage()
         {
             Image _image = GetInputValue(nameof(image), image);
-            if (image == null)
+            if (_image == null)
             {
                 GameObject gameObject = GetInputValue<GameObject>(nameof(image));
                 if (gameObject != null)

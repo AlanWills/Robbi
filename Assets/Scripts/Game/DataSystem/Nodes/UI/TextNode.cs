@@ -48,7 +48,7 @@ namespace Robbi.DataSystem.Nodes.UI
         private Text GetText()
         {
             Text _text = GetInputValue(nameof(text), text);
-            if (text == null)
+            if (_text == null)
             {
                 GameObject gameObject = GetInputValue<GameObject>(nameof(text));
                 if (gameObject != null)

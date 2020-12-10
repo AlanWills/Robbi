@@ -15,7 +15,7 @@ MonoBehaviour:
   isConstant: 1
   constantValue: 0
   referenceValue: {fileID: 0}
---- !u!114 &-8032588367465828281
+--- !u!114 &-7747806825114165996
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -24,10 +24,55 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f81e17802fc9b0445af5c9cb189a0d3b, type: 3}
-  m_Name: MusicEnabledChanged
+  m_Script: {fileID: 11500000, guid: 9b91fbcb00880084198d2bdba88a374f, type: 3}
+  m_Name: Set Bool Value
   m_EditorClassIdentifier: 
-  listenFor: {fileID: 11400000, guid: b32c8afbb63fa9a4b94966ff9d2660de, type: 2}
+  graph: {fileID: 11400000}
+  position: {x: 200, y: -104}
+  ports:
+    keys:
+    - ' '
+    - 
+    - newValue
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -7747806825114165996}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: BatterySaverChanged
+        node: {fileID: 5844881187645299117}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -7747806825114165996}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -4802566181618655954}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: newValue
+      _node: {fileID: -7747806825114165996}
+      _typeQualifiedName: Robbi.Parameters.BoolReference, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: argument
+        node: {fileID: 5844881187645299117}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: {fileID: 11400000, guid: e7ec242c314794443b36b46ba8769ec1, type: 2}
+  newValue: {fileID: 8827547908248556457}
 --- !u!114 &-6842801601965173594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -164,6 +209,77 @@ MonoBehaviour:
   m_Name: DefaultMovementSpeedChanged
   m_EditorClassIdentifier: 
   listenFor: {fileID: 11400000, guid: 098d6b85bb438334ab0ad740abae5708, type: 2}
+--- !u!114 &-4802566181618655954
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c8e8793e4e9cb346b510a034d8cb2de, type: 3}
+  m_Name: Execute Function
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 520, y: -152}
+  ports:
+    keys:
+    - ' '
+    - 
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -4802566181618655954}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: -7747806825114165996}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -4802566181618655954}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 5844881187645299117}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  function:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 146944de429c8e64889b9047e5b3a07e, type: 2}
+        m_TargetAssemblyTypeName: Robbi.Options.OptionsManager, Assembly-CSharp
+        m_MethodName: SyncFrameRate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-2527459945317723635
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f81e17802fc9b0445af5c9cb189a0d3b, type: 3}
+  m_Name: MusicEnabledChanged
+  m_EditorClassIdentifier: 
+  listenFor: {fileID: 11400000, guid: b32c8afbb63fa9a4b94966ff9d2660de, type: 2}
 --- !u!114 &-2110812225121485104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -189,6 +305,21 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -5090176750562965793}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -5090176750562965793}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -5090176750562965793}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -5090176750562965793}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -5090176750562965793}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -5090176750562965793}
         reroutePoints: []
@@ -238,12 +369,28 @@ MonoBehaviour:
   - {fileID: 6584139042545311320}
   - {fileID: -5090176750562965793}
   - {fileID: -2110812225121485104}
+  - {fileID: -7747806825114165996}
+  - {fileID: -4802566181618655954}
   startNode: {fileID: 5844881187645299117}
   parameters:
   - {fileID: 7454294442555186267}
   - {fileID: -6842801601965173594}
   - {fileID: -9116119016839835695}
   - {fileID: 3793211434063602631}
+  - {fileID: 8827547908248556457}
+--- !u!114 &2684914038226503453
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f81e17802fc9b0445af5c9cb189a0d3b, type: 3}
+  m_Name: BatterySaverChanged
+  m_EditorClassIdentifier: 
+  listenFor: {fileID: 11400000, guid: b20dcb56814f0594683a95ead9c95d93, type: 2}
 --- !u!114 &3793211434063602631
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -335,9 +482,10 @@ MonoBehaviour:
     keys:
     - ' '
     - argument
-    - MusicEnabledChanged
+    - BatterySaverChanged
     - SFXEnabledChanged
     - DefaultMovementSpeedChanged
+    - MusicEnabledChanged
     values:
     - _fieldName: ' '
       _node: {fileID: 5844881187645299117}
@@ -707,6 +855,66 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -2110812225121485104}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5539026279439216970}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6584139042545311320}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2110812225121485104}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7747806825114165996}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5539026279439216970}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6584139042545311320}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2110812225121485104}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7747806825114165996}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5539026279439216970}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6584139042545311320}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2110812225121485104}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7747806825114165996}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5539026279439216970}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6584139042545311320}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2110812225121485104}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7747806825114165996}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5539026279439216970}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6584139042545311320}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2110812225121485104}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -4802566181618655954}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -728,17 +936,20 @@ MonoBehaviour:
       - fieldName: ' '
         node: {fileID: 6584139042545311320}
         reroutePoints: []
+      - fieldName: newValue
+        node: {fileID: -7747806825114165996}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: MusicEnabledChanged
+    - _fieldName: BatterySaverChanged
       _node: {fileID: 5844881187645299117}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: 5539026279439216970}
+        node: {fileID: -7747806825114165996}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -768,10 +979,23 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
+    - _fieldName: MusicEnabledChanged
+      _node: {fileID: 5844881187645299117}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 5539026279439216970}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
   events:
   - {fileID: 7885992062826014922}
-  - {fileID: -8032588367465828281}
+  - {fileID: -2527459945317723635}
   - {fileID: -4908873596685037346}
+  - {fileID: 2684914038226503453}
 --- !u!114 &6584139042545311320
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -861,3 +1085,18 @@ MonoBehaviour:
   m_Name: SFXEnabledChanged
   m_EditorClassIdentifier: 
   listenFor: {fileID: 11400000, guid: 257f2ff4a01cec34ca12dd5c3a315dd6, type: 2}
+--- !u!114 &8827547908248556457
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec718764ed3a234cb86bb3efc892b05, type: 3}
+  m_Name: _newValue
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 0
+  referenceValue: {fileID: 0}
