@@ -14,6 +14,8 @@ namespace Robbi.Timing
     {
         #region Properties and Fields
 
+        public float speedNormalizer = 4;
+        public FloatValue movementSpeed;
         public FloatValue timeTaken;
 
         #endregion
@@ -27,7 +29,7 @@ namespace Robbi.Timing
 
         private void Update()
         {
-            timeTaken.Value += Time.deltaTime;
+            timeTaken.Value += (Time.deltaTime * movementSpeed.Value / speedNormalizer);
         }
 
         #endregion

@@ -55,6 +55,7 @@ namespace RobbiEditor.Platform
         {
             EditorUserBuildSettings.iOSBuildConfigType = runInXCodeAs;
 
+            PlayerSettings.stripEngineCode = false;
             PlayerSettings.iOS.buildNumber = Version;
             UnityEngine.Debug.LogFormat("iOS version is now: {0}", PlayerSettings.iOS.buildNumber);
         }
