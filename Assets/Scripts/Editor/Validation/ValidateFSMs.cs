@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace RobbiEditor.Tools
+namespace RobbiEditor.Validation
 {
     public static class ValidateFSMs
     {
-        [MenuItem("Robbi/Tools/Validate FSMs")]
+        [MenuItem("Robbi/Validation/Validate FSMs")]
         public static void MenuItem()
         {
             bool result = true;
