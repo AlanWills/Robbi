@@ -58,8 +58,19 @@ namespace RobbiEditor.Platform
         {
             base.InjectBuildEnvVars(stringBuilder);
 
+            DirectoryInfo rootFolder = new DirectoryInfo(Application.dataPath).Parent;
+            DirectoryInfo buildFolder = new DirectoryInfo(Path.Combine(BuildDirectory, OutputName)).Parent;
+
             stringBuilder.AppendLine();
-            stringBuilder.AppendFormat("BUILD_DIRECTORY={0}", new DirectoryInfo(Path.Combine(BuildDirectory, OutputName)).Parent.FullName);
+
+            if (buildFolder.FullName.StartsWith(rootFolder.FullName))
+            {
+                stringBuilder.AppendFormat("BUILD_DIRECTORY={0}", buildFolder.FullName.Substring(rootFolder.FullName.Length));
+            }
+            else
+            {
+                stringBuilder.AppendFormat("BUILD_DIRECTORY={0}", buildFolder.FullName);
+            }
         }
     }
 }
