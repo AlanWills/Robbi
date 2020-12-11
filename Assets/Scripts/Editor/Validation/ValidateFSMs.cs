@@ -17,7 +17,8 @@ namespace RobbiEditor.Validation
         public static void MenuItem()
         {
             bool result = true;
-            List<string> failedFsms = new List<string>();
+            HashSet<string> failedFsms = new HashSet<string>();
+            List<string> allFsms = new List<string>();
 
             foreach (string fsmGuid in AssetDatabase.FindAssets("t:FSMGraph"))
             {
@@ -30,6 +31,8 @@ namespace RobbiEditor.Validation
                     Debug.LogAssertionFormat("Could not find FSM with path {0}", fsmPath);
                 }
 
+                allFsms.Add(fsmGraph.name);
+
                 if (!FSMValidator.Validate(fsmGraph))
                 {
                     failedFsms.Add(fsmGraph.name);
@@ -39,18 +42,18 @@ namespace RobbiEditor.Validation
 
             if (Application.isBatchMode)
             {
-                if (failedFsms.Count == 0)
+                foreach (string fsmName in allFsms)
                 {
-                    Debug.Log("All FSMs passed validation");
-                }
-                else
-                {
-                    foreach (string str in failedFsms)
+                    if (failedFsms.Contains(fsmName))
                     {
-                        Debug.LogAssertionFormat("{0} failed validation", str);
+                        Debug.LogAssertionFormat("{0} failed validation", fsmName);
+                    }
+                    else
+                    {
+                        Debug.LogFormat("{0} passed validation, fsmName");
                     }
                 }
-                
+
                 // 0 for success
                 // 1 for fail
                 EditorApplication.Exit(result ? 0 : 1);
@@ -58,19 +61,13 @@ namespace RobbiEditor.Validation
             else
             {
                 StringBuilder message = new StringBuilder(512);
-                if (failedFsms.Count == 0)
+                foreach (string fsmName in allFsms)
                 {
-                    message.Append("All FSMs passed validation");
-                }
-                else
-                {
-                    foreach (string str in failedFsms)
-                    {
-                        message.AppendLineFormat("{0} failed validation", str);
-                    }
+                    message.AppendLineFormat("{0} {1} validation", fsmName, failedFsms.Contains(fsmName) ? "failed" : "passed");
                 }
 
-                EditorUtility.DisplayDialog("FSM Validation Result", message.ToString(), "OK");
+                Debug.Log(message.ToString());
+                EditorUtility.DisplayDialog("FSM Validation Result", failedFsms.Count == 0 ? "All FSMs passed validation" : "Some FSMs failed validation", "OK");
             }
         }
     }
