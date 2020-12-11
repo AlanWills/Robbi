@@ -41,6 +41,36 @@ namespace RobbiEditor
             }
         }
 
+        private static GUIStyle successLabel;
+        public static GUIStyle SuccessLabel
+        {
+            get
+            {
+                if (successLabel == null)
+                {
+                    successLabel = new GUIStyle(GUI.skin.label);
+                    successLabel.normal.textColor = new Color(0, 0.4f, 0);
+                }
+
+                return successLabel;
+            }
+        }
+
+        private static GUIStyle errorLabel;
+        public static GUIStyle ErrorLabel
+        {
+            get
+            {
+                if (errorLabel == null)
+                {
+                    errorLabel = new GUIStyle(GUI.skin.label);
+                    errorLabel.normal.textColor = Color.red;
+                }
+
+                return errorLabel;
+            }
+        }
+
         #endregion
     }
 }

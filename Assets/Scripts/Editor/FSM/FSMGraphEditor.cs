@@ -1,5 +1,6 @@
 ﻿using Robbi.FSM.Nodes;
 using RobbiEditor.Utils;
+using RobbiEditor.Validation.FSM.GUIs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,7 @@ namespace Robbi.FSM
         #region Properties and Fields
 
         private ScriptableObject removeAsset;
+        private FSMValidatorGUI fsmValidatorGUI = new FSMValidatorGUI();
 
         #endregion
 
@@ -52,9 +54,11 @@ namespace Robbi.FSM
 
         public override void OnInspectorGUI()
         {
-            base.OnInspectorGUI();
-
             FSMGraph graph = target as FSMGraph;
+
+            fsmValidatorGUI.GUI(graph);
+
+            base.OnInspectorGUI();
 
             if (GUILayout.Button("Apply Hide Flags"))
             {

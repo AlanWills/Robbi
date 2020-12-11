@@ -6,6 +6,8 @@ using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.ResourceLocations;
 
 namespace RobbiEditor.Utils
 {
@@ -40,6 +42,22 @@ namespace RobbiEditor.Utils
             {
                 o.SetAddressableInfo(group, address);
             }
+        }
+
+        public static bool AddressableResourceExists<T>(string key)
+        {
+            foreach (AddressableAssetGroup group in AddressableAssetSettingsDefaultObject.Settings.groups)
+            {
+                foreach (var entry in group.entries)
+                {
+                    if (entry.address == key)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }
