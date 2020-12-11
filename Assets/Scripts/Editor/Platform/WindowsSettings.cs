@@ -65,7 +65,8 @@ namespace RobbiEditor.Platform
 
             if (buildFolder.FullName.StartsWith(rootFolder.FullName))
             {
-                stringBuilder.AppendFormat("BUILD_DIRECTORY={0}", buildFolder.FullName.Substring(rootFolder.FullName.Length));
+                // +1 for getting rid of \\ too
+                stringBuilder.AppendFormat("BUILD_DIRECTORY={0}", buildFolder.FullName.Substring(rootFolder.FullName.Length + 1));
             }
             else
             {
