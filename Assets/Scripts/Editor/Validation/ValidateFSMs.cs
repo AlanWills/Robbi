@@ -42,14 +42,16 @@ namespace RobbiEditor.Validation
 
             foreach (string fsmName in allFsms)
             {
-                if (failedFsms.Contains(fsmName))
-                {
-                    Debug.LogAssertionFormat("{0} failed validation", fsmName);
-                }
-                else
+                if (!failedFsms.Contains(fsmName))
                 {
                     Debug.LogFormat("{0} passed validation", fsmName);
+                    
                 }
+            }
+
+            foreach (string failedFsmName in failedFsms)
+            {
+                Debug.LogAssertionFormat("{0} failed validation", fsmName);
             }
 
             if (Application.isBatchMode)
