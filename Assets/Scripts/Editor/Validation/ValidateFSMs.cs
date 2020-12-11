@@ -39,11 +39,18 @@ namespace RobbiEditor.Validation
 
             if (Application.isBatchMode)
             {
-                foreach (string str in failedFsms)
+                if (failedFsms.Count == 0)
                 {
-                    Debug.LogAssertionFormat("{0} failed validation", str);
+                    Debug.Log("All FSMs passed validation");
                 }
-
+                else
+                {
+                    foreach (string str in failedFsms)
+                    {
+                        Debug.LogAssertionFormat("{0} failed validation", str);
+                    }
+                }
+                
                 // 0 for success
                 // 1 for fail
                 EditorApplication.Exit(result ? 0 : 1);
