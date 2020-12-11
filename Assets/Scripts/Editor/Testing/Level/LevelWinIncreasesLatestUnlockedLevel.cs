@@ -7,12 +7,12 @@ using UnityEditor;
 
 namespace RobbiEditor.Testing
 {
-    public class MainMenuToLevel : IIntegrationTest
+    public class LevelWinIncreasesLatestUnlockedLevel : IIntegrationTest
     {
-        [MenuItem("Robbi/Testing/Main Menu/Main Menu To Level")]
+        [MenuItem("Robbi/Testing/Level/Level Win Increases Latest Unlocked Level")]
         public static void MenuItem()
         {
-            IntegrationTestEditorAPI.RunTest<MainMenuToLevel>();
+            IntegrationTestEditorAPI.RunTest<LevelWinIncreasesLatestUnlockedLevel>();
         }
     }
 }

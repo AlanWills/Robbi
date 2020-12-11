@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wait For Scene
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 680, y: 88}
+  position: {x: 232, y: -40}
   ports:
     keys:
     - ' '
@@ -26,7 +26,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: Found
-        node: {fileID: -1397255597377847396}
+        node: {fileID: 7083411145667090356}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Name: Wait For Scene
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1640, y: 72}
+  position: {x: 1192, y: -56}
   ports:
     keys:
     - ' '
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: Click Game Object
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1400, y: 72}
+  position: {x: 952, y: -56}
   ports:
     keys:
     - ' '
@@ -141,6 +141,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -1642853342073980072}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -1642853342073980072}
         reroutePoints: []
@@ -209,7 +212,7 @@ MonoBehaviour:
   m_Name: Pass Test
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1928, y: 88}
+  position: {x: 1480, y: -40}
   ports:
     keys:
     - ' '
@@ -250,7 +253,7 @@ MonoBehaviour:
   m_Name: Event Raiser
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1160, y: 88}
+  position: {x: 712, y: -40}
   ports:
     keys:
     - ' '
@@ -261,6 +264,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 2507960037145537738}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 2507960037145537738}
         reroutePoints: []
@@ -300,7 +306,7 @@ MonoBehaviour:
   m_Name: Click Game Object
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 440, y: 88}
+  position: {x: -8, y: -40}
   ports:
     keys:
     - ' '
@@ -321,6 +327,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -225278583758432711}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -225278583758432711}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -331,7 +340,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: -8099921692616140401}
+        node: {fileID: 7083411145667090356}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -365,7 +374,7 @@ MonoBehaviour:
   m_Name: Set U Int Value
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 136, y: 88}
+  position: {x: -312, y: -40}
   ports:
     keys:
     - ' '
@@ -427,6 +436,7 @@ MonoBehaviour:
   - {fileID: -7919620928194655181}
   - {fileID: -4702641199082214807}
   - {fileID: 728236480208746146}
+  - {fileID: 7083411145667090356}
   startNode: {fileID: -225278583758432711}
   parameters:
   - {fileID: -5889910933117398895}
@@ -443,7 +453,7 @@ MonoBehaviour:
   m_Name: Fail Test
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1160, y: 312}
+  position: {x: 712, y: 184}
   ports:
     keys:
     - ' '
@@ -465,6 +475,9 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: NotFound
         node: {fileID: -1397255597377847396}
+        reroutePoints: []
+      - fieldName: NotFound
+        node: {fileID: 7083411145667090356}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -493,7 +506,7 @@ MonoBehaviour:
   m_Name: Wait
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 920, y: 88}
+  position: {x: 472, y: -40}
   ports:
     keys:
     - ' '
@@ -525,3 +538,62 @@ MonoBehaviour:
       _dynamic: 1
   time: 1
   unit: 0
+--- !u!114 &7083411145667090356
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d28e9edd6389634408dc93a9a1a64ecb, type: 3}
+  m_Name: Click Game Object
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -8, y: 136}
+  ports:
+    keys:
+    - ' '
+    - Found
+    - NotFound
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 7083411145667090356}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: Found
+        node: {fileID: -1397255597377847396}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Found
+      _node: {fileID: 7083411145667090356}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -8099921692616140401}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: NotFound
+      _node: {fileID: 7083411145667090356}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 728236480208746146}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  gameObjectPath:
+    path: LevelStations.LevelStation0.PlayLevelButton
+  attemptWindow: 1

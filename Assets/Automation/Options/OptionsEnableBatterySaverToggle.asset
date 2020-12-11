@@ -1,5 +1,60 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8654348921351812523
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91fbcb00880084198d2bdba88a374f, type: 3}
+  m_Name: Set Bool Value
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1464, y: 88}
+  ports:
+    keys:
+    - ' '
+    - 
+    - newValue
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -8654348921351812523}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: 6905361961377371754}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -8654348921351812523}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -3443217561231219503}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: newValue
+      _node: {fileID: -8654348921351812523}
+      _typeQualifiedName: Robbi.Parameters.BoolReference, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: {fileID: 11400000, guid: e2eb51b1797e92649b8f6af6bd28c6c7, type: 2}
+  newValue: {fileID: 2314193467652674645}
 --- !u!114 &-7858947254522064304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -40,6 +95,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -178245354278973814}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -178245354278973814}
         reroutePoints: []
@@ -252,6 +310,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 6905361961377371754}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -8654348921351812523}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -353,6 +414,9 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: NotFound
         node: {fileID: -3443217561231219503}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -125398274572605464}
         reroutePoints: []
       - fieldName: 
         node: {fileID: -125398274572605464}
@@ -630,6 +694,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 275166075558113127}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 275166075558113127}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -699,11 +766,13 @@ MonoBehaviour:
   - {fileID: -1791707902168781143}
   - {fileID: 275166075558113127}
   - {fileID: -178245354278973814}
+  - {fileID: -8654348921351812523}
   startNode: {fileID: 6905361961377371754}
   parameters:
   - {fileID: -7858947254522064304}
   - {fileID: 7672352699124977512}
   - {fileID: -1255715948253691928}
+  - {fileID: 2314193467652674645}
 --- !u!114 &275166075558113127
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -749,6 +818,21 @@ MonoBehaviour:
       _dynamic: 1
   time: 0.1
   unit: 0
+--- !u!114 &2314193467652674645
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec718764ed3a234cb86bb3efc892b05, type: 3}
+  m_Name: _newValue
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 1
+  referenceValue: {fileID: 0}
 --- !u!114 &6905361961377371754
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -784,7 +868,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: -3443217561231219503}
+        node: {fileID: -8654348921351812523}
         reroutePoints: []
       _direction: 1
       _connectionType: 1

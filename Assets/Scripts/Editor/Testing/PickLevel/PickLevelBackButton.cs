@@ -7,12 +7,12 @@ using UnityEditor;
 
 namespace RobbiEditor.Testing
 {
-    public class MainMenuToLockedLevel : IIntegrationTest
+    public class PickLevelBackButton : IIntegrationTest
     {
-        [MenuItem("Robbi/Testing/Main Menu/Main Menu To Locked Level")]
+        [MenuItem("Robbi/Testing/Pick Level/Pick Level Back Button")]
         public static void MenuItem()
         {
-            IntegrationTestEditorAPI.RunTest<MainMenuToLockedLevel>();
+            IntegrationTestEditorAPI.RunTest<PickLevelBackButton>();
         }
     }
 }

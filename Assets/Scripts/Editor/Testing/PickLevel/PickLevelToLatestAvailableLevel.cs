@@ -7,12 +7,12 @@ using UnityEditor;
 
 namespace RobbiEditor.Testing
 {
-    public class MainMenuToMaxLevel : IIntegrationTest
+    public class PickLevelToLatestAvailableLevel : IIntegrationTest
     {
-        [MenuItem("Robbi/Testing/Main Menu/Main Menu To Max Level")]
+        [MenuItem("Robbi/Testing/Pick Level/Pick Level To Latest Available Level")]
         public static void MenuItem()
         {
-            IntegrationTestEditorAPI.RunTest<MainMenuToMaxLevel>();
+            IntegrationTestEditorAPI.RunTest<PickLevelToLatestAvailableLevel>();
         }
     }
 }

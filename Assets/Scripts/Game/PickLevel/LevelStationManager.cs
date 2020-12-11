@@ -44,8 +44,11 @@ namespace Robbi.PickLevel
             for (uint i = count; i > 0; --i)
             {
                 GameObject levelStationGameObject = GameObject.Instantiate(levelStationPrefab, transform);
+                uint levelIndex = (uint)transform.childCount - 1;
+                levelStationGameObject.name = string.Format("LevelStation{0}", levelIndex);
+
                 LevelStation levelStation = levelStationGameObject.GetComponent<LevelStation>();
-                levelStation.Index = (uint)transform.childCount - 1;
+                levelStation.Index = levelIndex;
                 levelStation.Complete = levelStation.Index < latestUnlockedLevel.Value;
             }
         }
