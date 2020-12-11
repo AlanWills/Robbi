@@ -40,33 +40,26 @@ namespace RobbiEditor.Validation
                 }
             }
 
+            foreach (string fsmName in allFsms)
+            {
+                if (failedFsms.Contains(fsmName))
+                {
+                    Debug.LogAssertionFormat("{0} failed validation", fsmName);
+                }
+                else
+                {
+                    Debug.LogFormat("{0} passed validation", fsmName);
+                }
+            }
+
             if (Application.isBatchMode)
             {
-                foreach (string fsmName in allFsms)
-                {
-                    if (failedFsms.Contains(fsmName))
-                    {
-                        Debug.LogAssertionFormat("{0} failed validation", fsmName);
-                    }
-                    else
-                    {
-                        Debug.LogFormat("{0} passed validation, fsmName");
-                    }
-                }
-
                 // 0 for success
                 // 1 for fail
                 EditorApplication.Exit(result ? 0 : 1);
             }
             else
             {
-                StringBuilder message = new StringBuilder(512);
-                foreach (string fsmName in allFsms)
-                {
-                    message.AppendLineFormat("{0} {1} validation", fsmName, failedFsms.Contains(fsmName) ? "failed" : "passed");
-                }
-
-                Debug.Log(message.ToString());
                 EditorUtility.DisplayDialog("FSM Validation Result", failedFsms.Count == 0 ? "All FSMs passed validation" : "Some FSMs failed validation", "OK");
             }
         }
