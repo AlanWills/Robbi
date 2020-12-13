@@ -1,4 +1,5 @@
-﻿using Robbi.Parameters;
+﻿using dynamicscroll;
+using Robbi.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,9 @@ namespace Robbi.PickLevel
 
         [Header("UI")]
         [SerializeField]
+        private DynamicScrollRect dynamicScrollRect;
+
+        [SerializeField]
         private GameObject levelStationPrefab;
 
         [Header("Parameters")]
@@ -25,42 +29,25 @@ namespace Robbi.PickLevel
         [SerializeField]
         private UIntValue latestAvailableLevel;
 
+        private DynamicScroll<LevelStationData, LevelStation> levelStationScroll = new DynamicScroll<LevelStationData, LevelStation>();
+        private List<LevelStationData> levelStationData = new List<LevelStationData>();
+
         #endregion
 
         #region Unity Methods
 
         private void Awake()
         {
-            Instantiate(Math.Min(latestUnlockedLevel.Value, latestAvailableLevel.Value) + 1);
+            uint instantiationCount = Math.Min(latestUnlockedLevel.Value, latestAvailableLevel.Value) + 1;
+
+            for (uint i = 0; i < instantiationCount; ++i)
+            {
+                levelStationData.Add(new LevelStationData(i, i < latestUnlockedLevel.Value));
+            }
+
+            levelStationScroll.Initiate(dynamicScrollRect, levelStationData, 0, levelStationPrefab);
         }
             
-        #endregion
-
-        #region Level Station Methods
-
-        public void Instantiate(uint count)
-        {
-            // Do this in reverse order so the latest level always appear in the lower right
-            for (uint i = count; i > 0; --i)
-            {
-                GameObject levelStationGameObject = GameObject.Instantiate(levelStationPrefab, transform);
-                uint levelIndex = (uint)transform.childCount - 1;
-                levelStationGameObject.name = string.Format("LevelStation{0}", levelIndex);
-
-                LevelStation levelStation = levelStationGameObject.GetComponent<LevelStation>();
-                levelStation.Index = levelIndex;
-                levelStation.Complete = levelStation.Index < latestUnlockedLevel.Value;
-            }
-        }
-
-        public void Clear()
-        {
-            for (int i = transform.childCount; i > 0; --i)
-            {
-                GameObject.DestroyImmediate(transform.GetChild(i - 1).gameObject);
-            }
-        }
-
         #endregion
     }
 }

@@ -15,6 +15,7 @@ namespace Robbi.DataSystem
 
         private void Start()
         {
+            Debug.AssertFormat(graph != null, "{0} has a DataRuntime with no graph set", gameObject.name);
             graph.Initialize(gameObject);
         }
 

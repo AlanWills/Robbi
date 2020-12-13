@@ -57,7 +57,12 @@ namespace RobbiEditor.Validation.Interfaces
             }
             else
             {
-                EditorUtility.DisplayDialog("Validation Result", failedAssets.Count == 0 ? "All assets passed validation" : "Some assets failed validation", "OK");
+                EditorUtility.DisplayDialog(
+                    "Validation Result", 
+                    failedAssets.Count == 0 ? 
+                        string.Format("All {0} assets passed validation", typeof(T).Name) : 
+                        string.Format("Some {0} assets failed validation", typeof(T).Name), 
+                    "OK");
             }
         }
     }

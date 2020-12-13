@@ -1,4 +1,5 @@
-﻿using Robbi.Events;
+﻿using dynamicscroll;
+using Robbi.Events;
 using Robbi.Parameters;
 using System;
 using System.Collections.Generic;
@@ -12,25 +13,9 @@ using UnityEngine.UIElements;
 namespace Robbi.PickLevel
 {
     [AddComponentMenu("Robbi/Pick Level/Level Station")]
-    public class LevelStation : MonoBehaviour
+    public class LevelStation : DynamicScrollObject<LevelStationData>
     {
         #region Properties and Fields
-
-        private uint index;
-        public uint Index
-        {
-            get { return index; }
-            set
-            {
-                index = value;
-                levelIndexText.text = index.ToString();
-            }
-        }
-
-        public bool Complete
-        {
-            set { levelCompleteIcon.SetActive(value); }
-        }
 
         [Header("UI")]
         [SerializeField]
@@ -45,11 +30,20 @@ namespace Robbi.PickLevel
 
         #endregion
 
-        #region Play Level
+        #region Level Station Utility Methods
+
+        public override void UpdateScrollObject(LevelStationData item, int index)
+        {
+            base.UpdateScrollObject(item, index);
+
+            name = string.Format("LevelStation{0}", item.levelIndex);
+            levelIndexText.text = item.levelIndex.ToString();
+            levelCompleteIcon.SetActive(item.isComplete);
+        }
 
         public void SetCurrentLevel()
         {
-            currentLevel.Value = Index;
+            //this.
         }
 
         #endregion
