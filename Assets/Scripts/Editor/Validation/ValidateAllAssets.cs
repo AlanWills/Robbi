@@ -18,10 +18,26 @@ namespace RobbiEditor.Validation
         [MenuItem("Robbi/Validation/Validate All Assets")]
         public static void MenuItem()
         {
-            ValidateDoors.MenuItem();
-            ValidateFSMs.MenuItem();
-            ValidateInteractables.MenuItem();
-            ValidateInteractableStateMachines.MenuItem();
+            bool result = Validate.NoExit<Door>();
+            result &= Validate.NoExit<FSMGraph>();
+            result &= Validate.NoExit<Interactable>();
+            result &= Validate.NoExit<InteractableStateMachine>();
+
+            if (Application.isBatchMode)
+            {
+                // 0 for success
+                // 1 for fail
+                EditorApplication.Exit(result ? 0 : 1);
+            }
+            else
+            {
+                EditorUtility.DisplayDialog(
+                    "Validation Result",
+                    result ?
+                        "All assets passed validation" :
+                        "Some assets failed validation",
+                    "OK");
+            }
         }
     }
 }

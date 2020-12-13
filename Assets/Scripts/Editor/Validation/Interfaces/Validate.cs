@@ -11,6 +11,27 @@ namespace RobbiEditor.Validation.Interfaces
     {
         public static void MenuItem<T>() where T : Object
         {
+            bool result = NoExit<T>();
+            
+            if (Application.isBatchMode)
+            {
+                // 0 for success
+                // 1 for fail
+                EditorApplication.Exit(result ? 0 : 1);
+            }
+            else
+            {
+                EditorUtility.DisplayDialog(
+                    "Validation Result",
+                    result ?
+                        string.Format("All {0} assets passed validation", typeof(T).Name) :
+                        string.Format("Some {0} assets failed validation", typeof(T).Name),
+                    "OK");
+            }
+        }
+
+        public static bool NoExit<T>() where T : Object
+        {
             bool result = true;
             HashSet<string> failedAssets = new HashSet<string>();
             List<string> allAssets = new List<string>();
@@ -49,21 +70,7 @@ namespace RobbiEditor.Validation.Interfaces
                 Debug.LogAssertionFormat("{0} failed validation", failedAssetName);
             }
 
-            if (Application.isBatchMode)
-            {
-                // 0 for success
-                // 1 for fail
-                EditorApplication.Exit(result ? 0 : 1);
-            }
-            else
-            {
-                EditorUtility.DisplayDialog(
-                    "Validation Result", 
-                    failedAssets.Count == 0 ? 
-                        string.Format("All {0} assets passed validation", typeof(T).Name) : 
-                        string.Format("Some {0} assets failed validation", typeof(T).Name), 
-                    "OK");
-            }
+            return result;
         }
     }
 }
