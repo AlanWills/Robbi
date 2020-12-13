@@ -421,8 +421,8 @@ namespace dynamicscroll
             {
 				if (highestObj.CurrentIndex == 0)
 				{
-					//Going Down
-					var limit = ScrollRect.viewport.rect.height;
+                    //Going Down
+                    var limit = ScrollRect.viewport.rect.height;
 					var objPosY = contentPos.y + highestPos.y + spacing + limit;
                     
 					if (objPosY < limit)
@@ -439,7 +439,7 @@ namespace dynamicscroll
 				if (lowestObj.CurrentIndex == infoList.Count - 1)
                 {
                     //Going Up
-					var objPosY = contentPos.y + lowestPos.y + ScrollRect.viewport.rect.height - spacing;
+					var objPosY = contentPos.y + lowestPos.y + ScrollRect.viewport.rect.height * 0.5f - spacing;
 					var limit = lowestObj.CurrentHeight;
                     
                     if (objPosY > limit)

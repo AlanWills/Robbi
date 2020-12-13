@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 7519048678624908137}
   - component: {fileID: 7519048678624908139}
   - component: {fileID: 7519048678624908136}
-  - component: {fileID: 7160763979053831241}
+  - component: {fileID: 4279101585667663846}
   m_Layer: 5
   m_Name: LevelStation
   m_TagString: Untagged
@@ -109,8 +109,8 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 77, y: 77}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &7160763979053831241
+--- !u!114 &4279101585667663846
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,8 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a234f9e87bd5e0449bd1e224ee42633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelIndexText: {fileID: 7519048680040131599}
-  levelCompleteIcon: {fileID: 1965465278074845260}
   currentLevel: {fileID: 11400000, guid: e444c97c99c04b04ebc3344590658ee9, type: 2}
 --- !u!1 &7519048680040131597
 GameObject:
@@ -429,7 +427,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7160763979053831241}
+      - m_Target: {fileID: 4279101585667663846}
         m_TargetAssemblyTypeName: Robbi.PickLevel.LevelStation, Assembly-CSharp
         m_MethodName: SetCurrentLevel
         m_Mode: 1

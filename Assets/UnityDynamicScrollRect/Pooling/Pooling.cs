@@ -79,7 +79,8 @@ namespace pooling
 
         private T CreateObject(Transform parent = null, Vector3? position = null)
         {
-            var obj = GameObject.Instantiate(referenceObject, position ?? mStartPos, Quaternion.identity, parent ?? mParent).AddComponent<T>();
+            GameObject gameObject = GameObject.Instantiate(referenceObject, position ?? mStartPos, Quaternion.identity, parent ?? mParent);
+            T obj = gameObject.GetComponent<T>() ?? gameObject.AddComponent<T>();
             obj.transform.localPosition = position ?? mStartPos;
             obj.name = obj.objectName + Count;
 

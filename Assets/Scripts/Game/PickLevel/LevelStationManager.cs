@@ -45,7 +45,11 @@ namespace Robbi.PickLevel
                 levelStationData.Add(new LevelStationData(i, i < latestUnlockedLevel.Value));
             }
 
+            levelStationScroll.spacing = 15f;
             levelStationScroll.Initiate(dynamicScrollRect, levelStationData, 0, levelStationPrefab);
+
+            // We need to set a tween time value for this otherwise it doesn't work (for some reason, yay)
+            levelStationScroll.MoveToIndex((int)instantiationCount - 1, 1);
         }
             
         #endregion
