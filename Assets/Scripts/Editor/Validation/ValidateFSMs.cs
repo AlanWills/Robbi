@@ -51,7 +51,7 @@ namespace RobbiEditor.Validation
 
             foreach (string failedFsmName in failedFsms)
             {
-                Debug.LogAssertionFormat("{0} failed validation", fsmName);
+                Debug.LogAssertionFormat("{0} failed validation", failedFsmName);
             }
 
             if (Application.isBatchMode)
