@@ -1,6 +1,6 @@
 ﻿using Robbi.FSM.Nodes;
 using RobbiEditor.Utils;
-using RobbiEditor.Validation.FSM.GUIs;
+using RobbiEditor.Validation.GUIs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +46,7 @@ namespace Robbi.FSM
         #region Properties and Fields
 
         private ScriptableObject removeAsset;
-        private FSMValidatorGUI fsmValidatorGUI = new FSMValidatorGUI();
+        private ValidatorGUI<FSMGraph> fsmValidatorGUI = new ValidatorGUI<FSMGraph>();
 
         #endregion
 

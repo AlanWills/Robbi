@@ -1,4 +1,5 @@
 ﻿using Robbi.FSM;
+using Robbi.Levels.Elements;
 using Robbi.Utils;
 using RobbiEditor.Validation.FSM;
 using RobbiEditor.Validation.Interfaces;
@@ -12,12 +13,12 @@ using UnityEngine;
 
 namespace RobbiEditor.Validation
 {
-    public static class ValidateFSMs
+    public static class ValidateDoors
     {
-        [MenuItem("Robbi/Validation/Validate FSMs")]
+        [MenuItem("Robbi/Validation/Validate Doors")]
         public static void MenuItem()
         {
-            Validate.MenuItem<FSMGraph>();
+            Validate.MenuItem<Door>();
         }
     }
 }
