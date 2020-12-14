@@ -38,7 +38,8 @@ namespace Robbi.PickLevel
 
         private void Awake()
         {
-            uint instantiationCount = Math.Min(latestUnlockedLevel.Value, latestAvailableLevel.Value) + 1;
+            uint latestLevel = Math.Min(latestUnlockedLevel.Value, latestAvailableLevel.Value);
+            uint instantiationCount = latestLevel + 1;
 
             for (uint i = 0; i < instantiationCount; ++i)
             {
@@ -49,7 +50,7 @@ namespace Robbi.PickLevel
             levelStationScroll.Initiate(dynamicScrollRect, levelStationData, 0, levelStationPrefab);
 
             // We need to set a tween time value for this otherwise it doesn't work (for some reason, yay)
-            levelStationScroll.MoveToIndex((int)instantiationCount - 1, 1);
+            levelStationScroll.MoveToIndex((int)latestLevel, 1);
         }
             
         #endregion
