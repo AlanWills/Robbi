@@ -25,7 +25,7 @@ namespace RobbiEditor.Levels.Elements
 
                 EditorGUI.BeginChangeCheck();
                 index = EditorGUILayout.Popup(index, DoorColours.COLOUR_NAMES);
-                if (EditorGUI.EndChangeCheck() && index > 0)
+                if (EditorGUI.EndChangeCheck() && index >= 0)
                 {
                     doorColourHelper.icon.color = DoorColours.COLOURS[index];
                     EditorUtility.SetDirty(doorColourHelper.icon);

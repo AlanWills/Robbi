@@ -49,9 +49,9 @@ namespace Robbi.Levels
 
             // Not great, but a hacky workaround for the fact the camera can't start zoomed out and centred
             // Maybe in the future this is resolved by a level started event or something
-            Camera.main.GetComponent<TilemapZoom>().FullZoomOut();
             Bounds bounds = corridorsTilemap.localBounds;
             Camera.main.transform.position = new Vector3(bounds.center.x, bounds.center.y, Camera.main.transform.position.z);
+            Camera.main.GetComponent<TilemapZoom>().FullZoomOut();
         }
 
         #endregion
