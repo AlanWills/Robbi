@@ -1,4 +1,4 @@
-﻿using dynamicscroll;
+﻿using PolyAndCode.UI;
 using Robbi.Parameters;
 using System;
 using System.Collections.Generic;
@@ -11,13 +11,13 @@ using UnityEngine.UI;
 namespace Robbi.PickLevel
 {
     [AddComponentMenu("Robbi/Pick Level/Level Station Manager")]
-    public class LevelStationManager : MonoBehaviour
+    public class LevelStationManager : MonoBehaviour, IRecyclableScrollRectDataSource
     {
         #region Properties and Fields
 
         [Header("UI")]
         [SerializeField]
-        private DynamicScrollRect dynamicScrollRect;
+        private RecyclableScrollRect scrollRect;
 
         [SerializeField]
         private GameObject levelStationPrefab;
@@ -29,7 +29,6 @@ namespace Robbi.PickLevel
         [SerializeField]
         private UIntValue latestAvailableLevel;
 
-        private DynamicScroll<LevelStationData, LevelStation> levelStationScroll = new DynamicScroll<LevelStationData, LevelStation>();
         private List<LevelStationData> levelStationData = new List<LevelStationData>();
 
         #endregion
@@ -41,18 +40,30 @@ namespace Robbi.PickLevel
             uint latestLevel = Math.Min(latestUnlockedLevel.Value, latestAvailableLevel.Value);
             uint instantiationCount = latestLevel + 1;
 
-            for (uint i = 0; i < instantiationCount; ++i)
+            // Add elements in reverse order so that the latest levels will appear at the top
+            for (uint i = instantiationCount; i > 0; --i)
             {
-                levelStationData.Add(new LevelStationData(i, i < latestUnlockedLevel.Value));
+                levelStationData.Add(new LevelStationData(i - 1, i <= latestUnlockedLevel.Value));
             }
 
-            levelStationScroll.spacing = 15f;
-            levelStationScroll.Initiate(dynamicScrollRect, levelStationData, 0, levelStationPrefab);
-
-            // We need to set a tween time value for this otherwise it doesn't work (for some reason, yay)
-            levelStationScroll.MoveToIndex((int)latestLevel, 1);
+            scrollRect.DataSource = this;
         }
-            
+
+        #endregion
+
+        #region Data Source Methods
+
+        public int GetItemCount()
+        {
+            return levelStationData.Count;
+        }
+
+        public void SetCell(ICell cell, int index)
+        {
+            LevelStation levelStation = cell as LevelStation;
+            levelStation.ConfigureCell(levelStationData[index], index);
+        }
+
         #endregion
     }
 }

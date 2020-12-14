@@ -1,4 +1,4 @@
-﻿using dynamicscroll;
+﻿using PolyAndCode.UI;
 using Robbi.Events;
 using Robbi.Parameters;
 using System;
@@ -14,52 +14,39 @@ namespace Robbi.PickLevel
 {
     [AddComponentMenu("Robbi/Pick Level/Level Station")]
     [RequireComponent(typeof(RectTransform))]
-    public class LevelStation : DynamicScrollObject<LevelStationData>
+    public class LevelStation : MonoBehaviour, ICell
     {
         #region Properties and Fields
 
-        public override float CurrentHeight { get; set; }
-        public override float CurrentWidth { get; set; }
-
         [Header("UI")]
+        [SerializeField]
         private TextMeshProUGUI levelIndexText;
+        
+        [SerializeField]
         private GameObject levelCompleteIcon;
 
         [Header("Parameters")]
         [SerializeField]
         private UIntValue currentLevel;
 
-        #endregion
-
-        #region Unity Methods
-
-        private void Awake()
-        {
-            Rect rect = GetComponent<RectTransform>().rect;
-            CurrentHeight = rect.height;
-            CurrentWidth = rect.width;
-
-            Transform levelStationButton = transform.Find("PlayLevelButton");
-            levelIndexText = levelStationButton.Find("LevelIndexText").GetComponent<TextMeshProUGUI>();
-            levelCompleteIcon = levelStationButton.Find("LevelCompleteIcon").gameObject;
-        }
+        private uint currentIndex;
 
         #endregion
 
         #region Level Station Utility Methods
 
-        public override void UpdateScrollObject(LevelStationData item, int index)
+        public void ConfigureCell(LevelStationData levelStationData, int cellIndex)
         {
-            base.UpdateScrollObject(item, index);
+            currentIndex = (uint)cellIndex;
 
-            name = string.Format("LevelStation{0}", item.levelIndex);
-            levelIndexText.text = item.levelIndex.ToString();
-            levelCompleteIcon.SetActive(item.isComplete);
+            name = string.Format("LevelStation{0}", levelStationData.levelIndex);
+            levelIndexText.text = levelStationData.levelIndex.ToString();
+            levelCompleteIcon.SetActive(levelStationData.isComplete);
         }
 
         public void SetCurrentLevel()
         {
-            currentLevel.Value = (uint)CurrentIndex;
+            currentLevel.Value = currentIndex;
         }
 
         #endregion
