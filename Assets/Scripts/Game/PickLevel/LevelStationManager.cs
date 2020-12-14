@@ -40,10 +40,9 @@ namespace Robbi.PickLevel
             uint latestLevel = Math.Min(latestUnlockedLevel.Value, latestAvailableLevel.Value);
             uint instantiationCount = latestLevel + 1;
 
-            // Add elements in reverse order so that the latest levels will appear at the top
-            for (uint i = instantiationCount; i > 0; --i)
+            for (uint i = 0; i < instantiationCount; ++i)
             {
-                levelStationData.Add(new LevelStationData(i - 1, i <= latestUnlockedLevel.Value));
+                levelStationData.Add(new LevelStationData(i, i < latestUnlockedLevel.Value));
             }
 
             scrollRect.DataSource = this;
@@ -60,8 +59,12 @@ namespace Robbi.PickLevel
 
         public void SetCell(ICell cell, int index)
         {
+            // Show elements in reverse order so that the latest levels will appear at the top
+            uint latestLevel = Math.Min(latestUnlockedLevel.Value, latestAvailableLevel.Value);
+            int reverseIndex = (int)latestLevel - index;
+
             LevelStation levelStation = cell as LevelStation;
-            levelStation.ConfigureCell(levelStationData[index], index);
+            levelStation.ConfigureCell(levelStationData[reverseIndex], reverseIndex);
         }
 
         #endregion
