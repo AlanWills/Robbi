@@ -13,7 +13,7 @@ namespace Robbi.Levels.Modifiers
     public class ModifyFuel : PickupEffect
     {
         public UIntEvent modifyFuelEvent;
-        public uint amount;
+        public uint amount = 10;
 
         public override void Execute(PickupArgs pickupArgs)
         {
