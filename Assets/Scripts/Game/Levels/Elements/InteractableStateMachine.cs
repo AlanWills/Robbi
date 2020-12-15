@@ -86,6 +86,13 @@ namespace Robbi.Levels.Elements
 
         public void Interact(InteractArgs interactArgs)
         {
+            if (0 <= currentState && currentState < NumStates)
+            {
+                Interactable state = states[currentState];
+                state.Interact(interactArgs);
+                currentState = loop ? ((currentState + 1) % NumStates) : currentState + 1;
+            }
+
             Vector3Int[] vector3Ints = new Vector3Int[NumStates];
             TileBase[] tileBases = new TileBase[NumStates];
 
@@ -98,13 +105,6 @@ namespace Robbi.Levels.Elements
             // Set the tiles for all the states, to make sure we don't have any artifacts from previous states
             // This allows the state machine to have interactables on different tiles
             interactArgs.interactablesTilemap.SetTiles(vector3Ints, tileBases);
-
-            if (0 <= currentState && currentState < NumStates)
-            {
-                Interactable state = states[currentState];
-                state.Interact(interactArgs);
-                currentState = loop ? ((currentState + 1) % NumStates) : currentState + 1;
-            }
         }
 
 #endregion
