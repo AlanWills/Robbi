@@ -23,6 +23,7 @@ namespace Robbi.Levels.Elements
 
         #endregion
 
+        void Initialize();
         void Interact(InteractArgs interactArgs);
     }
 }

@@ -32,7 +32,9 @@ namespace Robbi.Environment
             {
                 if (scriptableObject is IInteractable)
                 {
-                    interactables.Add(scriptableObject as IInteractable);
+                    IInteractable interactable = scriptableObject as IInteractable;
+                    interactable.Initialize();
+                    interactables.Add(interactable);
                 }
                 else
                 {

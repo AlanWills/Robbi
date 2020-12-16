@@ -58,6 +58,10 @@ namespace Robbi.Levels.Elements
 
         #endregion
 
+        public void Initialize()
+        {
+        }
+
         #region Interacted Modifier Methods
 
         public LevelModifier GetInteractedModifier(int index)
