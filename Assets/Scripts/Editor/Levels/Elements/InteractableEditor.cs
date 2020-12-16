@@ -86,15 +86,14 @@ namespace RobbiEditor.Levels.Elements
                         if (GUILayout.Button("Remove", GUILayout.ExpandWidth(false)))
                         {
                             Interactable.RemoveInteractedModifier(i - 1);
+                            continue;
                         }
                     }
                     EditorGUILayout.EndHorizontal();
 
-                    Editor modifierEditor = Editor.CreateEditor(levelModifier);
-                    modifierEditor.OnInspectorGUI();
+                    Editor.CreateEditor(levelModifier).OnInspectorGUI();
 
                     EditorGUILayout.Space();
-
                     RobbiEditorGUILayout.HorizontalLine();
                 }
 
@@ -104,7 +103,7 @@ namespace RobbiEditor.Levels.Elements
             EditorGUILayout.BeginHorizontal();
             {
                 selectedModifierType = EditorGUILayout.Popup(selectedModifierType, modifierDisplayNames);
-
+                
                 EditorGUILayout.Space();
 
                 if (GUILayout.Button("Add Modifier", GUILayout.ExpandWidth(false)))

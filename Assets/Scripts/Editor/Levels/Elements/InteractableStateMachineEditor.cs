@@ -27,6 +27,7 @@ namespace RobbiEditor.Levels.Elements
 
         private SerializedProperty statesProperty;
         private InteractableStateMachine copyFrom;
+        private List<Editor> interactableEditors = new List<Editor>();
 
         #endregion
 
@@ -35,6 +36,12 @@ namespace RobbiEditor.Levels.Elements
         private void OnEnable()
         {
             statesProperty = serializedObject.FindProperty("states");
+            
+            interactableEditors.Clear();
+            for (int i = 0; i < InteractableStateMachine.NumStates; ++i)
+            {
+                interactableEditors.Add(Editor.CreateEditor(InteractableStateMachine.GetState(i)));
+            }
         }
 
         #endregion
@@ -92,6 +99,7 @@ namespace RobbiEditor.Levels.Elements
                         if (GUILayout.Button("Remove", GUILayout.ExpandWidth(false)))
                         {
                             InteractableStateMachine.RemoveState(i - 1);
+                            interactableEditors.RemoveAt(i - 1);
                         }
                     }
                     EditorGUILayout.EndHorizontal();
@@ -100,8 +108,7 @@ namespace RobbiEditor.Levels.Elements
                     {
                         ++EditorGUI.indentLevel;
 
-                        Editor interactableEditor = Editor.CreateEditor(state);
-                        interactableEditor.OnInspectorGUI();
+                        interactableEditors[i - 1].OnInspectorGUI();
 
                         --EditorGUI.indentLevel;
                     }
@@ -114,7 +121,7 @@ namespace RobbiEditor.Levels.Elements
                 {
                     TextInputPopup.Display("New State...", (string stateName) =>
                     {
-                        InteractableStateMachine.AddState(stateName);
+                        interactableEditors.Add(Editor.CreateEditor(InteractableStateMachine.AddState(stateName)));
                     });
                 }
 
