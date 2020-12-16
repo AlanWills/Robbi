@@ -22,25 +22,33 @@ namespace RobbiEditor.Levels.Modifiers
 
         private void OnEnable()
         {
-            CloseDoor closeDoor = target as CloseDoor;
-            if (closeDoor.doorEvent == null)
-            {
-                closeDoor.doorEvent = AssetDatabase.LoadAssetAtPath<DoorEvent>(EventFiles.DOOR_CLOSED_EVENT);
-                EditorUtility.SetDirty(closeDoor);
-            }
+            serializedObject.Update();
 
             doorEventProperty = serializedObject.FindProperty("doorEvent");
+            if (doorEventProperty != null && doorEventProperty.objectReferenceValue == null)
+            {
+                doorEventProperty.objectReferenceValue = AssetDatabase.LoadAssetAtPath<DoorEvent>(EventFiles.DOOR_TOGGLED_EVENT);
+            }
+
+            serializedObject.ApplyModifiedProperties();
         }
 
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
 
-            DrawPropertiesExcluding(serializedObject, "doorEvent", "m_Script");
-
-            if (doorEventProperty.objectReferenceValue == null)
+            if (doorEventProperty == null)
             {
-                EditorGUILayout.PropertyField(doorEventProperty);
+                DrawPropertiesExcluding(serializedObject, "doorEvent", "m_Script", "doorEvent");
+            }
+            else
+            {
+                DrawPropertiesExcluding(serializedObject, "doorEvent", "m_Script");
+
+                if (doorEventProperty.objectReferenceValue == null)
+                {
+                    EditorGUILayout.PropertyField(doorEventProperty);
+                }
             }
 
             serializedObject.ApplyModifiedProperties();

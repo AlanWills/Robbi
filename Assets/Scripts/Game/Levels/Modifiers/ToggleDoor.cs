@@ -13,6 +13,13 @@ namespace Robbi.Levels.Modifiers
         public DoorEvent doorEvent;
         public Door door;
 
+        public override void CopyFrom(LevelModifier original)
+        {
+            ToggleDoor toggleDoor = original as ToggleDoor;
+            door = toggleDoor.door;
+            doorEvent = toggleDoor.doorEvent;
+        }
+
         public override void Execute(InteractArgs interactArgs)
         {
             doorEvent.Raise(door);

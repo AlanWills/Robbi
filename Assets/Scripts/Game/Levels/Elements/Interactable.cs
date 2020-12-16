@@ -85,6 +85,22 @@ namespace Robbi.Levels.Elements
             return modifier;
         }
 
+        public T ReplaceInteractedModifier<T>(int index) where T : LevelModifier
+        {
+            T modifier = ScriptableObject.CreateInstance<T>();
+            modifier.name = typeof(T).Name;
+            modifier.hideFlags = HideFlags.HideInHierarchy;
+            interactedModifiers.Insert(index, modifier);
+            RemoveInteractedModifier(index + 1);
+
+#if UNITY_EDITOR
+            AssetUtils.EditorOnly.AddObjectToMainAsset(modifier, this);
+            UnityEditor.EditorUtility.SetDirty(this);
+#endif
+
+            return modifier;
+        }
+
         public void RemoveInteractedModifier(int index)
         {
             if (0 <= index && index < NumInteractedModifiers)

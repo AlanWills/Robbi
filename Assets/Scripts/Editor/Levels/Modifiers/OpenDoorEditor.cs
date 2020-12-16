@@ -37,11 +37,18 @@ namespace RobbiEditor.Levels.Modifiers
         {
             serializedObject.Update();
 
-            DrawPropertiesExcluding(serializedObject, "doorEvent", "m_Script");
-
-            if (doorEventProperty != null && doorEventProperty.objectReferenceValue == null)
+            if (doorEventProperty == null)
             {
-                EditorGUILayout.PropertyField(doorEventProperty);
+                DrawPropertiesExcluding(serializedObject, "doorEvent", "m_Script", "doorEvent");
+            }
+            else
+            {
+                DrawPropertiesExcluding(serializedObject, "doorEvent", "m_Script");
+
+                if (doorEventProperty.objectReferenceValue == null)
+                {
+                    EditorGUILayout.PropertyField(doorEventProperty);
+                }
             }
 
             serializedObject.ApplyModifiedProperties();

@@ -61,14 +61,14 @@ namespace RobbiEditor.Levels.Elements
                 {
                     Interactable toggleLeft = stateMachine.AddState("Toggle Left");
                     toggleLeft.InteractedTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.TOGGLE_LEFT_TILE);
-                    RaiseDoorEvent toggleDoorLeft = toggleLeft.AddInteractedModifier<RaiseDoorEvent>();
+                    ToggleDoor toggleDoorLeft = toggleLeft.AddInteractedModifier<ToggleDoor>();
                     toggleDoorLeft.doorEvent = AssetDatabase.LoadAssetAtPath<DoorEvent>(EventFiles.DOOR_TOGGLED_EVENT);
                 }
 
                 {
                     Interactable toggleRight = stateMachine.AddState("Toggle Right");
                     toggleRight.InteractedTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.TOGGLE_RIGHT_TILE);
-                    RaiseDoorEvent toggleDoorRight = toggleRight.AddInteractedModifier<RaiseDoorEvent>();
+                    ToggleDoor toggleDoorRight = toggleRight.AddInteractedModifier<ToggleDoor>();
                     toggleDoorRight.doorEvent = AssetDatabase.LoadAssetAtPath<DoorEvent>(EventFiles.DOOR_TOGGLED_EVENT);
                 }
             }
@@ -155,10 +155,9 @@ namespace RobbiEditor.Levels.Elements
 
             for (int i = 0; i < original.NumInteractedModifiers; ++i)
             {
-                RaiseDoorEvent raiseDoorEvent = original.GetInteractedModifier(i) as RaiseDoorEvent;
-                RaiseDoorEvent copyModifier = copyTo.AddInteractedModifier(raiseDoorEvent.GetType()) as RaiseDoorEvent;
-                copyModifier.door = raiseDoorEvent.door;
-                copyModifier.doorEvent = raiseDoorEvent.doorEvent;
+                LevelModifier levelModifier = original.GetInteractedModifier(i);
+                LevelModifier copyModifier = copyTo.AddInteractedModifier(levelModifier.GetType());
+                copyModifier.CopyFrom(levelModifier);
 
                 EditorUtility.SetDirty(copyModifier);
             }

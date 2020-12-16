@@ -13,6 +13,13 @@ namespace Robbi.Levels.Modifiers
         public DoorEvent doorEvent;
         public Door door;
 
+        public override void CopyFrom(LevelModifier original)
+        {
+            OpenDoor openDoor = original as OpenDoor;
+            door = openDoor.door;
+            doorEvent = openDoor.doorEvent;
+        }
+
         public override void Execute(InteractArgs interactArgs)
         {
             if (door.DoorState == DoorState.Closed)
