@@ -14,10 +14,22 @@ namespace RobbiEditor.Validation
 {
     public static class ValidateFSMs
     {
-        [MenuItem("Robbi/Validation/Validate FSMs")]
-        public static void MenuItem()
+        [MenuItem("Robbi/Validation/FSMs/Find")]
+        public static void FindMenuItem()
         {
-            Validate.MenuItem<FSMGraph>();
+            Validate.Find<FSMGraph>();
+        }
+
+        [MenuItem("Robbi/Validation/FSMs/Show")]
+        public static void ShowMenuItem()
+        {
+            Validate.Show<FSMGraph>();
+        }
+
+        [MenuItem("Robbi/Validation/FSMs/Run")]
+        public static void RunMenuItem()
+        {
+            Validate.RunExit<FSMGraph>();
         }
     }
 }

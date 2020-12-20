@@ -11,21 +11,44 @@ namespace RobbiEditor.Testing
 {
     public static class RunAllIntegrationTests
     {
-        [MenuItem("Robbi/Testing/Run All Integration Tests")]
-        public static void MenuItem()
+        [MenuItem("Robbi/Testing/Find All Integration Tests")]
+        public static void FindMenuItem()
         {
-            List<Type> integrationTests = new List<Type>();
-            Type integrationTestType = typeof(IIntegrationTest);
+            System.Diagnostics.Stopwatch stopWatch = System.Diagnostics.Stopwatch.StartNew();
+            List<Type> integrationTests = FindIntegrationTests();
 
-            foreach (Type t in Assembly.GetAssembly(integrationTestType).GetTypes())
+            stopWatch.Stop();
+            Debug.LogFormat("Found {0} Integration Tests in {1} seconds", integrationTests.Count, stopWatch.ElapsedMilliseconds / 1000.0f);
+
+            foreach (Type iTest in integrationTests)
             {
-                if (integrationTestType.IsAssignableFrom(t) && !t.IsAbstract)
+                Debug.LogFormat("Found Integration Test: {0}", iTest.Name);
+            }
+        }
+
+        [MenuItem("Robbi/Testing/Run All Integration Tests")]
+        public static void RunMenuItem()
+        {
+            IntegrationTestEditorAPI.RunTests(FindIntegrationTests().ToArray());
+        }
+
+        private static List<Type> FindIntegrationTests()
+        {
+            Type integrationTestType = typeof(IIntegrationTest);
+            List<Type> integrationTests = new List<Type>();
+
+            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                foreach (Type t in assembly.GetTypes())
                 {
-                    integrationTests.Add(t);
+                    if (integrationTestType.IsAssignableFrom(t) && !t.IsAbstract)
+                    {
+                        integrationTests.Add(t);
+                    }
                 }
             }
 
-            IntegrationTestEditorAPI.RunTests(integrationTests.ToArray());
+            return integrationTests;
         }
     }
 }

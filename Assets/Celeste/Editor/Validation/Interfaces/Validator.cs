@@ -23,20 +23,33 @@ namespace RobbiEditor.Validation
 
         static Validator()
         {
-            Debug.LogFormat("Loading {0} validation conditions", typeof(T).Name);
-            validationConditions.Clear();
-
-            Type validationCondition = typeof(IValidationCondition<T>);
-            foreach (Type t in Assembly.GetAssembly(validationCondition).GetTypes())
-            {
-                if (validationCondition.IsAssignableFrom(t) && !t.IsAbstract)
-                {
-                    validationConditions.Add(Activator.CreateInstance(t) as IValidationCondition<T>);
-                }
-            }
+            FindValidationConditions();
         }
 
         #region Validation Methods
+
+        public static void FindValidationConditions()
+        {
+            System.Diagnostics.Stopwatch stopWatch = System.Diagnostics.Stopwatch.StartNew();
+
+            validationConditions.Clear();
+            Type validationCondition = typeof(IValidationCondition<T>);
+
+            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                foreach (Type t in assembly.GetTypes())
+                {
+                    if (validationCondition.IsAssignableFrom(t) && !t.IsAbstract)
+                    {
+                        Debug.LogFormat("Found validation condition type: {0}", t.Name);
+                        validationConditions.Add(Activator.CreateInstance(t) as IValidationCondition<T>);
+                    }
+                }
+            }
+
+            stopWatch.Stop();
+            Debug.LogFormat("Loaded {0} Validation Conditions in {1} seconds", validationConditions.Count, stopWatch.ElapsedMilliseconds / 1000.0f);
+        }
 
         public static IValidationCondition<T> GetValidationCondition(int validationCondition)
         {

@@ -9,9 +9,22 @@ namespace RobbiEditor.Validation.Interfaces
 {
     public static class Validate
     {
-        public static void MenuItem<T>() where T : Object
+        public static void Show<T>() where T : Object
         {
-            bool result = NoExit<T>();
+            for (int i = 0; i < Validator<T>.NumValidationConditions; ++i)
+            {
+                Debug.LogFormat("Validation Condition: {0} loaded", Validator<T>.GetValidationCondition(i).DisplayName);
+            }
+        }
+
+        public static void Find<T>() where T : Object
+        {
+            Validator<T>.FindValidationConditions();
+        }
+
+        public static void RunExit<T>() where T : Object
+        {
+            bool result = RunNoExit<T>();
             
             if (Application.isBatchMode)
             {
@@ -30,7 +43,7 @@ namespace RobbiEditor.Validation.Interfaces
             }
         }
 
-        public static bool NoExit<T>() where T : Object
+        public static bool RunNoExit<T>() where T : Object
         {
             bool result = true;
             HashSet<string> failedAssets = new HashSet<string>();
