@@ -1,4 +1,4 @@
-﻿using Robbi.Debugging.Logging;
+﻿using Robbi.Log;
 using Robbi.Objects;
 using Robbi.Parameters;
 using System;
@@ -97,7 +97,7 @@ namespace Robbi.FSM.Nodes
 
             if (isAddressable && addressablesOperation.Status == AsyncOperationStatus.Failed)
             {
-                HudLogger.LogError(addressablesOperation.OperationException.Message);
+                HudLog.LogError(addressablesOperation.OperationException.Message);
             }
         }
 

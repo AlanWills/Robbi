@@ -1,4 +1,4 @@
-﻿using Robbi.Debugging.Logging;
+﻿using Robbi.Log;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,16 +52,16 @@ namespace Robbi.FSM.Nodes.Assets
             {
                 if (downloadOperation.Status == AsyncOperationStatus.Failed)
                 {
-                    HudLogger.LogError(downloadOperation.OperationException.Message);
+                    HudLog.LogError(downloadOperation.OperationException.Message);
                 }
                 else if (downloadOperation.Status == AsyncOperationStatus.Succeeded)
                 {
-                    HudLogger.LogInfoFormat("{0} download size is {1}", label, size);
+                    HudLog.LogInfoFormat("{0} download size is {1}", label, size);
                 }
             }
             else
             {
-                HudLogger.LogErrorFormat("Failed to check download size for {0}", label);
+                HudLog.LogErrorFormat("Failed to check download size for {0}", label);
             }
         }
 

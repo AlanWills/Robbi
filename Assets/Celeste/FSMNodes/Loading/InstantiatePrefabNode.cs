@@ -1,4 +1,4 @@
-﻿using Robbi.Debugging.Logging;
+﻿using Robbi.Log;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,7 +57,7 @@ namespace Robbi.FSM.Nodes.Loading
 
             if (isAddressable && instantiateHandle.Status == AsyncOperationStatus.Failed)
             {
-                HudLogger.LogError(instantiateHandle.OperationException.Message);
+                HudLog.LogError(instantiateHandle.OperationException.Message);
             }
         }
 
