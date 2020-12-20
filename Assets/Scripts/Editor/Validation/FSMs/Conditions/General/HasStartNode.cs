@@ -1,11 +1,7 @@
-﻿using Robbi.FSM;
-using Robbi.FSM.Nodes;
-using Robbi.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Celeste.Tools;
 using System.Text;
-using System.Threading.Tasks;
+using Celeste.FSM;
+using CelesteEditor.Validation;
 
 namespace RobbiEditor.Validation.FSM.Conditions.General
 {

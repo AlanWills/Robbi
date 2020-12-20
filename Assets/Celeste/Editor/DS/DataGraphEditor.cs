@@ -1,5 +1,4 @@
-﻿using Robbi.DataSystem;
-using Robbi.DataSystem.Nodes;
+﻿using Celeste.DS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using XNodeEditor;
 
-namespace RobbiEditor.DataSystem
+namespace CelesteEditor.DS
 {
     [CustomNodeGraphEditor(typeof(DataGraph))]
     public class DataGraphEditor : NodeGraphEditor

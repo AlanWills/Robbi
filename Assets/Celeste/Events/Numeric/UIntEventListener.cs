@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.Events
+namespace Celeste.Events
 {
-    [AddComponentMenu("Robbi/Events/UInt Event Listener")]
+    [AddComponentMenu("Celeste/Events/UInt Event Listener")]
     public class UIntEventListener : ParameterisedEventListener<uint, UIntEvent, UIntUnityEvent>
     {
     }

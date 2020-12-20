@@ -1,5 +1,5 @@
-﻿using Robbi.FSM.Nodes.Logic.Conditions;
-using Robbi.Parameters;
+﻿using Celeste.FSM.Nodes.Logic.Conditions;
+using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using UnityEngine;
 using XNode;
 
-namespace Robbi.FSM.Nodes.Logic
+namespace Celeste.FSM.Nodes.Logic
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Logic/And")]
+    [CreateNodeMenu("Celeste/Logic/And")]
     [NodeTint(0.0f, 1, 1)]
     public class AndNode : FSMNode
     {

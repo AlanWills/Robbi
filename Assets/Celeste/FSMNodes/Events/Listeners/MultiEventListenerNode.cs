@@ -1,5 +1,5 @@
-﻿using Robbi.Events;
-using Robbi.FSM.Nodes.Events.Conditions;
+﻿using Celeste.Events;
+using Celeste.FSM.Nodes.Events.Conditions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +9,12 @@ using UnityEngine;
 using XNode;
 using static XNode.Node;
 
-using Event = Robbi.Events.Event;
+using Event = Celeste.Events.Event;
 
-namespace Robbi.FSM.Nodes.Events
+namespace Celeste.FSM.Nodes.Events
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Events/Listeners/Multi Event Listener")]
+    [CreateNodeMenu("Celeste/Events/Listeners/Multi Event Listener")]
     [NodeTint(0.8f, 0.9f, 0)]
     public class MultiEventListenerNode : MultiEventNode
     {

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Robbi.Events
+namespace Celeste.Events
 {
-    [AddComponentMenu("Robbi/Events/Vector3Int Event Listener")]
+    [AddComponentMenu("Celeste/Events/Vector3Int Event Listener")]
     public class Vector3IntEventListener : ParameterisedEventListener<Vector3Int, Vector3IntEvent, Vector3IntUnityEvent>
     {
     }

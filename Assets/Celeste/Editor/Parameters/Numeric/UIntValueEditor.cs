@@ -1,4 +1,4 @@
-﻿using Robbi.Parameters;
+﻿using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
 
-namespace RobbiEditor.Parameters.Numeric
+namespace CelesteEditor.Parameters.Numeric
 {
     [CustomEditor(typeof(UIntValue))]
     public class UIntValueEditor : ParameterValueEditor<uint>
@@ -17,7 +17,7 @@ namespace RobbiEditor.Parameters.Numeric
         {
             base.OnInspectorGUI();
 
-            Parameter.Value = RobbiEditorGUILayout.UIntField("Value", Parameter.Value);
+            Parameter.Value = CelesteEditorGUILayout.UIntField("Value", Parameter.Value);
             EditorUtility.SetDirty(Parameter);
         }
 

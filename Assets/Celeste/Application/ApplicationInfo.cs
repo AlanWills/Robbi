@@ -1,6 +1,5 @@
-﻿using Robbi.Objects;
-using Robbi.Parameters;
-using Robbi.Utils;
+﻿using Celeste.Objects;
+using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.App
+namespace Celeste.Application
 {
-    [AddComponentMenu("Robbi/App/Application Info")]
+    [AddComponentMenu("Celeste/Application/Info")]
     public class ApplicationInfo : Singleton<ApplicationInfo>
     {
         #region Properties and Fields

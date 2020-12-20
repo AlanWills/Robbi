@@ -1,13 +1,13 @@
-﻿using Robbi.Parameters;
+﻿using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Robbi.DataSystem.Nodes.Values
+namespace Celeste.DS.Nodes.Values
 {
-    [CreateNodeMenu("Robbi/Values/String Reader")]
+    [CreateNodeMenu("Celeste/Values/String Reader")]
     public class StringReaderNode : ValueReaderNode<string, StringValue>
     {
     }

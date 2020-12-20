@@ -1,10 +1,10 @@
-﻿using Robbi.Hierarchy;
-using Robbi.Utils;
+﻿using Celeste.Hierarchy;
+using Celeste.Utils;
 using UnityEngine;
 
-namespace Robbi.FSM.Nodes.Input
+namespace Celeste.FSM.Nodes.Input
 {
-    [CreateNodeMenu("Robbi/Input/Click GameObject")]
+    [CreateNodeMenu("Celeste/Input/Click GameObject")]
     public class ClickGameObjectNode : FSMNode
     {
         #region Properties and Fields

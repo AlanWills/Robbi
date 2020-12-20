@@ -1,4 +1,4 @@
-﻿using Robbi.Attributes.GUI;
+﻿using Celeste.Attributes.GUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.Memory
+namespace Celeste.Memory
 {
-    [AddComponentMenu("Robbi/Memory/Game Object Allocator")]
+    [AddComponentMenu("Celeste/Memory/Game Object Allocator")]
     public class GameObjectAllocator : MonoBehaviour
     {
         #region Properties and Fields

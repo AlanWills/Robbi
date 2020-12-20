@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace RobbiEditor
+namespace CelesteEditor
 {
-    public static class RobbiEditorStyles
+    public static class CelesteEditorStyles
     {
         #region Properties and Fields
 

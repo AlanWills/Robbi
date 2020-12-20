@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Robbi.Events
+namespace Celeste.Events
 {
     [Serializable]
     public struct MultiTouchEventArgs
@@ -19,7 +19,7 @@ namespace Robbi.Events
     public class MultiTouchUnityEvent : UnityEvent<MultiTouchEventArgs> { }
 
     [Serializable]
-    [CreateAssetMenu(fileName = "MultiTouchEvent", menuName = "Robbi/Events/Multi Touch Event")]
+    [CreateAssetMenu(fileName = "MultiTouchEvent", menuName = "Celeste/Events/Multi Touch Event")]
     public class MultiTouchEvent : ParameterisedEvent<MultiTouchEventArgs>
     {
     }

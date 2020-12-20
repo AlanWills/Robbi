@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Robbi.Events
+namespace Celeste.Events
 {
-    [AddComponentMenu("Robbi/Events/Event Listener")]
+    [AddComponentMenu("Celeste/Events/Event Listener")]
     public class EventListener : MonoBehaviour, IEventListener
     {
         #region Properties and Fields

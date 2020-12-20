@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.AssetUtils
+namespace Celeste.AssetUtils
 {
 #if UNITY_EDITOR
     public partial class EditorOnly

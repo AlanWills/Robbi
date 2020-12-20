@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace RobbiEditor.Validation.Interfaces
+namespace CelesteEditor.Validation.Interfaces
 {
     public static class Validate
     {

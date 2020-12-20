@@ -1,14 +1,10 @@
-﻿using Robbi.Events.Levels.Elements;
+﻿using CelesteEditor;
+using CelesteEditor.Popups;
+using Robbi.Events.Levels.Elements;
 using Robbi.Levels.Elements;
 using Robbi.Levels.Modifiers;
 using RobbiEditor.Constants;
-using RobbiEditor.Popups;
-using RobbiEditor.Utils;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -84,7 +80,7 @@ namespace RobbiEditor.Levels.Elements
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.Space();
-            EditorGUILayout.LabelField("States", RobbiEditorStyles.BoldLabel);
+            EditorGUILayout.LabelField("States", CelesteEditorStyles.BoldLabel);
             {
                 ++EditorGUI.indentLevel;
 
@@ -94,7 +90,7 @@ namespace RobbiEditor.Levels.Elements
                     
                     EditorGUILayout.BeginHorizontal();
                     {
-                        EditorGUILayout.LabelField(string.Format("{0} (State Index {1})", state.name, i - 1), RobbiEditorStyles.BoldLabel);
+                        EditorGUILayout.LabelField(string.Format("{0} (State Index {1})", state.name, i - 1), CelesteEditorStyles.BoldLabel);
 
                         if (GUILayout.Button("Remove", GUILayout.ExpandWidth(false)))
                         {
@@ -114,7 +110,7 @@ namespace RobbiEditor.Levels.Elements
                     }
                     EditorGUILayout.Space();
 
-                    RobbiEditorGUILayout.HorizontalLine();
+                    CelesteEditorGUILayout.HorizontalLine();
                 }
 
                 if (GUILayout.Button("Add State", GUILayout.ExpandWidth(false)))

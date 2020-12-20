@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace RobbiEditor.PropertyDrawers.Parameters
+namespace CelesteEditor.PropertyDrawers.Parameters
 {
     public abstract class ParameterReferencePropertyDrawer : PropertyDrawer
     {

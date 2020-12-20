@@ -1,13 +1,9 @@
-﻿using Robbi.Log;
-using Robbi.Levels;
+﻿using Robbi.Levels;
 using Robbi.Options;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using Celeste.Log;
+using Celeste.FSM;
 
 namespace Robbi.FSM.Nodes.Game
 {

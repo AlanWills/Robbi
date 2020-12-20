@@ -1,4 +1,4 @@
-﻿using Robbi.Parameters;
+﻿using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.Viewport
+namespace Celeste.Viewport
 {
-    [AddComponentMenu("Robbi/Viewport/Tilemap Drag")]
+    [AddComponentMenu("Celeste/Viewport/Tilemap Drag")]
     [RequireComponent(typeof(Camera))]
     public class TilemapDrag : MonoBehaviour
     {

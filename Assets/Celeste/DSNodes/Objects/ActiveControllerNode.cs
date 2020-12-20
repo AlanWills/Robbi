@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using UnityEngine;
 using XNode;
 
-namespace Robbi.DataSystem.Nodes.Objects
+namespace Celeste.DS.Nodes.Objects
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Objects/Active Controller")]
+    [CreateNodeMenu("Celeste/Objects/Active Controller")]
     public class ActiveControllerNode : DataNode, IUpdateable
     {
         #region Properties and Fields

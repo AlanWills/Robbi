@@ -1,4 +1,4 @@
-﻿using Robbi.Hierarchy;
+﻿using Celeste.Hierarchy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace RobbiEditor.PropertyDrawers.Hierarchy
+namespace CelesteEditor.PropertyDrawers.Hierarchy
 {
     [CustomPropertyDrawer(typeof(GameObjectPath))]
     public class GameObjectPathPropertyDrawer : PropertyDrawer

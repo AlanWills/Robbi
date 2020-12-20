@@ -1,9 +1,9 @@
-﻿using Robbi.Parameters;
+﻿using Celeste.Parameters;
 using UnityEngine;
 
-namespace Robbi.Viewport
+namespace Celeste.Viewport
 {
-    [AddComponentMenu("Robbi/Viewport/Drag")]
+    [AddComponentMenu("Celeste/Viewport/Drag")]
     [RequireComponent(typeof(Camera))]
     public class Drag : MonoBehaviour
     {

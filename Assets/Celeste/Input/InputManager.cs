@@ -1,4 +1,4 @@
-﻿using Robbi.Events;
+﻿using Celeste.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,11 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-using Event = Robbi.Events.Event;
+using Event = Celeste.Events.Event;
 
-namespace Robbi.Game.Inputs
+namespace Celeste.Input
 {
-    [AddComponentMenu("Robbi/Input/Input Manager")]
+    [AddComponentMenu("Celeste/Input/Input Manager")]
     public class InputManager : MonoBehaviour
     {
         #region Properties and Fields
@@ -117,14 +117,14 @@ namespace Robbi.Game.Inputs
             CheckMouseButton(1, rightMouseButtonFirstDown, rightMouseButtonDown, rightMouseButtonFirstUp);
             CheckMouseButton(2, middleMouseButtonFirstDown, middleMouseButtonDown, middleMouseButtonFirstUp);
 
-            if (Input.GetMouseButtonDown(0))
+            if (UnityEngine.Input.GetMouseButtonDown(0))
             {
-                firstHitGameObjectPosition = raycastCamera.ScreenToWorldPoint(Input.mousePosition);
+                firstHitGameObjectPosition = raycastCamera.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
                 firstHitGameObject = Raycast(new Vector2(firstHitGameObjectPosition.x, firstHitGameObjectPosition.y));
             }
-            else if (Input.GetMouseButtonUp(0))
+            else if (UnityEngine.Input.GetMouseButtonUp(0))
             {
-                Vector3 clickWorldPosition = raycastCamera.ScreenToWorldPoint(Input.mousePosition);
+                Vector3 clickWorldPosition = raycastCamera.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
                 GameObject hitGameObject = Raycast(new Vector2(clickWorldPosition.x, clickWorldPosition.y));
 
                 if (firstHitGameObject != null && 
@@ -141,7 +141,7 @@ namespace Robbi.Game.Inputs
                 }
             }
 
-            float mouseScrollDelta = Input.mouseScrollDelta.y;
+            float mouseScrollDelta = UnityEngine.Input.mouseScrollDelta.y;
             if (mouseScrollDelta != 0)
             {
                 mouseScrolled.RaiseSilently(mouseScrollDelta);
@@ -159,19 +159,19 @@ namespace Robbi.Game.Inputs
             Vector3Event mouseButtonDown,
             Vector3Event mouseButtonFirstUpEvent)
         {
-            if (Input.GetMouseButtonDown(mouseButton))
+            if (UnityEngine.Input.GetMouseButtonDown(mouseButton))
             {
-                mouseButtonFirstDown.RaiseSilently(Input.mousePosition);
+                mouseButtonFirstDown.RaiseSilently(UnityEngine.Input.mousePosition);
             }
 
-            if (Input.GetMouseButton(mouseButton))
+            if (UnityEngine.Input.GetMouseButton(mouseButton))
             {
-                mouseButtonDown.RaiseSilently(Input.mousePosition);
+                mouseButtonDown.RaiseSilently(UnityEngine.Input.mousePosition);
             }
 
-            if (Input.GetMouseButtonUp(mouseButton))
+            if (UnityEngine.Input.GetMouseButtonUp(mouseButton))
             {
-                mouseButtonFirstUpEvent.RaiseSilently(Input.mousePosition);
+                mouseButtonFirstUpEvent.RaiseSilently(UnityEngine.Input.mousePosition);
             }
         }
 

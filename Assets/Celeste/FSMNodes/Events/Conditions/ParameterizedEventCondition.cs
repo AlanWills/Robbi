@@ -1,4 +1,4 @@
-﻿using Robbi.Events;
+﻿using Celeste.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Robbi.FSM.Nodes.Events.Conditions
+namespace Celeste.FSM.Nodes.Events.Conditions
 {
     [Serializable]
     public class ParameterizedEventCondition<T, TEvent> : EventCondition, IEventListener<T>

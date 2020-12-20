@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace RobbiEditor.Validation
+namespace CelesteEditor.Validation
 {
     public interface IFixableCondition<T> where T : Object
     {

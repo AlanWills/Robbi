@@ -1,5 +1,5 @@
-﻿using Robbi.Log;
-using Robbi.Parameters;
+﻿using Celeste.Log;
+using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +9,10 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-namespace Robbi.FSM.Nodes.Assets
+namespace Celeste.FSM.Nodes.Assets
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Assets/Download Addressables")]
+    [CreateNodeMenu("Celeste/Assets/Download Addressables")]
     public class DownloadAddressablesNode : FSMNode
     {
         #region Properties and Fields

@@ -1,4 +1,5 @@
-﻿using Robbi.FSM.Nodes.UI;
+﻿using Celeste.FSM.Nodes.UI;
+using CelesteEditor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +48,7 @@ namespace RobbiEditor.FSM.Nodes.UI
 
                 for (int i = 0; i < showDialogNode.parameters.customDialogEvents.Count; ++i)
                 {
-                    Robbi.Events.Event customDialogEvent = showDialogNode.parameters.customDialogEvents[i];
+                    Celeste.Events.Event customDialogEvent = showDialogNode.parameters.customDialogEvents[i];
                     if (customDialogEvent)
                     {
                         NodeEditorGUILayout.PortField(showDialogNode.GetOutputPort(customDialogEvent.name));

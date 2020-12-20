@@ -1,5 +1,4 @@
-﻿using Robbi.FSM.Nodes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,9 +6,9 @@ using System.Threading.Tasks;
 using UnityEngine;
 using XNode;
 
-namespace Robbi.FSM
+namespace Celeste.FSM
 {
-    [AddComponentMenu("Robbi/FSM/FSM Runtime")]
+    [AddComponentMenu("Celeste/FSM/FSM Runtime")]
     public class FSMRuntime : SceneGraph<FSMGraph>
     {
         #region Properties and Fields

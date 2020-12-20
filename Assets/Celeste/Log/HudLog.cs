@@ -1,4 +1,4 @@
-﻿using Robbi.Objects;
+﻿using Celeste.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Robbi.Log
+namespace Celeste.Log
 {
-    [AddComponentMenu("Robbi/Debugging/Hud Log")]
+    [AddComponentMenu("Celeste/Log/Hud Log")]
     public class HudLog : Singleton<HudLog>
     {
         private class HudMessage

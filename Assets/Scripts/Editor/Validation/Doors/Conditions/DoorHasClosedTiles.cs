@@ -1,10 +1,7 @@
-﻿using Robbi.Levels.Elements;
-using Robbi.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using CelesteEditor.Validation;
+using Celeste.Tools;
+using Robbi.Levels.Elements;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace RobbiEditor.Validation.Doors.Conditions
 {

@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Robbi.Utils
+namespace Celeste.Tools
 {
     public static class WebGLUtils
     {

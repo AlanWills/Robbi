@@ -1,13 +1,8 @@
 ﻿using Robbi.Levels.Elements;
-using Robbi.Managers;
-using Robbi.Parameters;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using Event = Robbi.Events.Event;
+using Celeste.Managers;
+using Celeste.Viewport;
 
 namespace Robbi.Environment
 {

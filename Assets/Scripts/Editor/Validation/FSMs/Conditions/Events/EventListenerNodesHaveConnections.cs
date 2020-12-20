@@ -1,15 +1,8 @@
-﻿using Robbi.FSM;
-using Robbi.FSM.Nodes;
-using Robbi.FSM.Nodes.Events;
-using Robbi.FSM.Nodes.Logic;
-using Robbi.Utils;
-using RobbiEditor.Validation.FSM.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using RobbiEditor.Validation.FSM.Utils;
 using System.Text;
-using System.Threading.Tasks;
-using XNode;
+using Celeste.FSM;
+using CelesteEditor.Validation;
+using Celeste.FSM.Nodes.Events;
 
 namespace RobbiEditor.Validation.FSM.Conditions.Events
 {

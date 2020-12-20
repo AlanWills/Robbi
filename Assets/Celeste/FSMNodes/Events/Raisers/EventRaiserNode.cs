@@ -1,14 +1,14 @@
-﻿using Robbi.Events;
+﻿using Celeste.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Robbi.FSM.Nodes.Events
+namespace Celeste.FSM.Nodes.Events
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Events/Raisers/Event Raiser")]
+    [CreateNodeMenu("Celeste/Events/Raisers/Event Raiser")]
     public class EventRaiserNode : FSMNode
     {
         #region Properties and Fields

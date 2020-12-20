@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace RobbiEditor.Validation.GUIs
+namespace CelesteEditor.Validation.GUIs
 {
     public class ValidationConditionGUI<T> where T : UnityEngine.Object
     {
@@ -88,11 +88,11 @@ namespace RobbiEditor.Validation.GUIs
             GUIStyle guiStyle = UnityEngine.GUI.skin.label;
             if (conditionStatus == ConditionStatus.Passed)
             {
-                guiStyle = RobbiEditorStyles.SuccessLabel;
+                guiStyle = CelesteEditorStyles.SuccessLabel;
             }
             else if (conditionStatus == ConditionStatus.Failed)
             {
-                guiStyle = RobbiEditorStyles.ErrorLabel;
+                guiStyle = CelesteEditorStyles.ErrorLabel;
             }
 
             EditorGUILayout.LabelField(validationCondition.DisplayName, guiStyle);

@@ -1,10 +1,10 @@
-﻿using Robbi.Events;
-using Robbi.Parameters;
+﻿using Celeste.Events;
+using Celeste.Parameters;
 using UnityEngine;
 
-namespace Robbi.Viewport
+namespace Celeste.Viewport
 {
-    [AddComponentMenu("Robbi/Viewport/Zoom")]
+    [AddComponentMenu("Celeste/Viewport/Zoom")]
     [RequireComponent(typeof(Camera))]
     public class Zoom : MonoBehaviour
     {

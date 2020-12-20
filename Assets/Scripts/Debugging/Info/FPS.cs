@@ -38,7 +38,7 @@ namespace Robbi.Debugging.Info
 
         private void OnEnable()
         {
-            if (Application.isPlaying)
+            if (UnityEngine.Application.isPlaying)
             {
                 measurementCoroutine = StartCoroutine(MeasureFPS());
             }
@@ -46,7 +46,7 @@ namespace Robbi.Debugging.Info
 
         private void OnDisable()
         {
-            if (Application.isPlaying && measurementCoroutine != null)
+            if (UnityEngine.Application.isPlaying && measurementCoroutine != null)
             {
                 StopCoroutine(measurementCoroutine);
             }

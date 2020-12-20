@@ -1,8 +1,10 @@
-﻿using Robbi.FSM.Nodes;
-using Robbi.FSM.Nodes.Logic;
-using Robbi.FSM.Nodes.Logic.Conditions;
+﻿using Celeste.FSM;
+using Celeste.FSM.Nodes;
+using Celeste.FSM.Nodes.Logic;
+using Celeste.FSM.Nodes.Logic.Conditions;
+using CelesteEditor;
+using CelesteEditor.Popups;
 using RobbiEditor.FSM.Nodes.Logic.Conditions;
-using RobbiEditor.Popups;
 using System;
 using System.Collections.Generic;
 using UnityEditor;

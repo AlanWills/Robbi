@@ -1,11 +1,8 @@
-﻿using Robbi.Logic;
-using Robbi.Parameters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Celeste.Parameters;
 using UnityEngine;
+using Celeste.FSM.Nodes.Logic.Conditions;
+using Celeste.Logic;
+using Celeste.Viewport;
 
 namespace Robbi.FSM.Nodes.Logic.Conditions
 {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.DataSystem.Nodes
+namespace Celeste.DS
 {
     public interface IRequiresGameObject
     {

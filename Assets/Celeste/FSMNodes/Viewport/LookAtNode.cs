@@ -1,4 +1,4 @@
-﻿using Robbi.Parameters;
+﻿using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.FSM.Nodes.Viewport
+namespace Celeste.FSM.Nodes.Viewport
 {
     public enum LookAxis
     {
@@ -16,7 +16,7 @@ namespace Robbi.FSM.Nodes.Viewport
     }
 
     [Serializable]
-    [CreateNodeMenu("Robbi/Viewport/Look At")]
+    [CreateNodeMenu("Celeste/Viewport/Look At")]
     [NodeWidth(250)]
     public class LookAtNode : FSMNode
     {

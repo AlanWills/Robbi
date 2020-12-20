@@ -1,4 +1,4 @@
-﻿using Robbi.Events;
+﻿using Celeste.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,10 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using XNode;
 
-namespace Robbi.FSM.Nodes.Events
+namespace Celeste.FSM.Nodes.Events
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Events/Listeners/Event Listener")]
+    [CreateNodeMenu("Celeste/Events/Listeners/Event Listener")]
     [NodeTint(0.8f, 0.9f, 0)]
     public class EventListenerNode : FSMNode, IEventListener
     {

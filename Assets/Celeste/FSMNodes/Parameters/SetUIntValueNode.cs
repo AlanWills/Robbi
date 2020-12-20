@@ -1,4 +1,4 @@
-﻿using Robbi.Parameters;
+﻿using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,10 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.FSM.Nodes.Parameters
+namespace Celeste.FSM.Nodes.Parameters
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Parameters/Set UInt Value")]
+    [CreateNodeMenu("Celeste/Parameters/Set UInt Value")]
     [NodeWidth(250)]
     public class SetUIntValueNode : SetValueNode<uint, UIntValue, UIntReference>
     {

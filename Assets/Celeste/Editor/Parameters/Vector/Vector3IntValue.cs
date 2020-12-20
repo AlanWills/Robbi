@@ -1,4 +1,4 @@
-﻿using Robbi.Parameters;
+﻿using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace RobbiEditor.Parameters.Vector
+namespace CelesteEditor.Parameters.Vector
 {
     [CustomEditor(typeof(Vector3IntValue))]
     public class Vector3IntEditor : ParameterValueEditor<Vector3Int>

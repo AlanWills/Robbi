@@ -1,9 +1,9 @@
-﻿using Robbi.Hierarchy;
+﻿using Celeste.Hierarchy;
 using UnityEngine;
 
-namespace Robbi.FSM.Nodes.Flow
+namespace Celeste.FSM.Nodes.Flow
 {
-    [CreateNodeMenu("Robbi/Flow/Wait For GameObject Removed")]
+    [CreateNodeMenu("Celeste/Flow/Wait For GameObject Removed")]
     public class WaitForGameObjectRemovedNode : FSMNode
     {
         #region Properties and Fields

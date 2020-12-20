@@ -1,4 +1,4 @@
-﻿using Robbi.FSM.Nodes.Logic.Conditions;
+﻿using Celeste.FSM.Nodes.Logic.Conditions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using UnityEngine;
 using XNode;
 
-namespace Robbi.FSM.Nodes.Logic
+namespace Celeste.FSM.Nodes.Logic
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Logic/If")]
+    [CreateNodeMenu("Celeste/Logic/If")]
     [NodeTint(0.0f, 1, 1)]
     public class IfNode : FSMNode
     {

@@ -1,17 +1,15 @@
-﻿using Robbi.Log;
-using Robbi.Events;
-using Robbi.Memory;
-using Robbi.Parameters;
+﻿using Celeste.Events;
+using Celeste.Parameters;
 using Robbi.Options;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
-using Event = Robbi.Events.Event;
-using Robbi.Managers;
+using Event = Celeste.Events.Event;
+using Celeste.Log;
+using Celeste.Managers;
+using Celeste.Viewport;
+using Celeste.Memory;
 
 namespace Robbi.Movement
 {

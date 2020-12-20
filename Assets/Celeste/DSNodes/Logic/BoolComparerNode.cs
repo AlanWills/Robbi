@@ -1,17 +1,12 @@
-﻿using Robbi.Logic;
+﻿using Celeste.Logic;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using XNode;
-using static XNode.Node;
 
-namespace Robbi.DataSystem.Nodes.Logic
+namespace Celeste.DS.Nodes.Logic
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Logic/Bool Comparer")]
+    [CreateNodeMenu("Celeste/Logic/Bool Comparer")]
     [NodeTint(0.0f, 0.75f, 0.75f)]
     public class BoolComparerNode : DataNode
     {

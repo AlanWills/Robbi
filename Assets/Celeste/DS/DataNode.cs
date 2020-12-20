@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using XNode;
 
-namespace Robbi.DataSystem.Nodes
+namespace Celeste.DS
 {
     [Serializable]
     public abstract class DataNode : Node

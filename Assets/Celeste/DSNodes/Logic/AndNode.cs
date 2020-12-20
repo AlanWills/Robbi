@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using XNode;
 
-namespace Robbi.DataSystem.Nodes.Logic
+namespace Celeste.DS.Nodes.Logic
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Logic/And")]
+    [CreateNodeMenu("Celeste/Logic/And")]
     public class AndNode : DataNode
     {
         #region Properties and Fields

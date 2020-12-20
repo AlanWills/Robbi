@@ -1,4 +1,4 @@
-﻿using Robbi.Events;
+﻿using Celeste.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Robbi.Game.Inputs
+namespace Celeste.Input
 {
-    [AddComponentMenu("Robbi/Input/Input Listener")]
+    [AddComponentMenu("Celeste/Input/Input Listener")]
     [RequireComponent(typeof(Collider2D))]
     public class InputListener : MonoBehaviour, IEventListener<GameObjectClickEventArgs>
     {

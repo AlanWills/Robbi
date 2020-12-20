@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.Events
+namespace Celeste.Events
 {
-    [AddComponentMenu("Robbi/Events/Bool Event Raiser")]
+    [AddComponentMenu("Celeste/Events/Bool Event Raiser")]
     public class BoolEventRaiser : ParameterisedEventRaiser<bool, BoolEvent, BoolUnityEvent>
     {
     }

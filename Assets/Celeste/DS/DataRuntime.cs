@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using UnityEngine;
 using XNode;
 
-namespace Robbi.DataSystem
+namespace Celeste.DS
 {
-    [AddComponentMenu("Robbi/Data/Data Runtime")]
+    [AddComponentMenu("Celeste/DS/Data Runtime")]
     public class DataRuntime : SceneGraph<DataGraph>
     {
         #region Unity Methods

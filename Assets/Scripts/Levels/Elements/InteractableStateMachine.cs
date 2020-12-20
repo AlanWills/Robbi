@@ -68,7 +68,7 @@ namespace Robbi.Levels.Elements
             states.Add(state);
 
 #if UNITY_EDITOR
-            AssetUtils.EditorOnly.AddObjectToMainAsset(state, this);
+            Celeste.AssetUtils.EditorOnly.AddObjectToMainAsset(state, this);
 #endif
 
             return state;

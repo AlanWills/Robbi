@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Robbi.Events
+namespace Celeste.Events
 {
     [Serializable]
     public class FloatUnityEvent : UnityEvent<float> { }
 
     [Serializable]
-    [CreateAssetMenu(fileName = "FloatEvent", menuName = "Robbi/Events/Float Event")]
+    [CreateAssetMenu(fileName = "FloatEvent", menuName = "Celeste/Events/Float Event")]
     public class FloatEvent : ParameterisedEvent<float>
     {
     }

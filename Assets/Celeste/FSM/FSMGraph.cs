@@ -1,6 +1,5 @@
-﻿using Robbi.FSM.Nodes;
-using Robbi.Objects;
-using Robbi.Parameters;
+﻿using Celeste.Objects;
+using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +8,9 @@ using System.Threading.Tasks;
 using UnityEngine;
 using XNode;
 
-namespace Robbi.FSM
+namespace Celeste.FSM
 {
-    [CreateAssetMenu(fileName = "FSMGraph", menuName = "Robbi/FSM/FSM Graph")]
+    [CreateAssetMenu(fileName = "FSMGraph", menuName = "Celeste/FSM/FSM Graph")]
     public class FSMGraph : NodeGraph, IParameterContainer
     {
         #region Properties and Fields

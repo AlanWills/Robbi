@@ -1,4 +1,4 @@
-﻿using Robbi.Parameters;
+﻿using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace RobbiEditor.PropertyDrawers.Parameters
+namespace CelesteEditor.PropertyDrawers.Parameters
 {
     [CustomPropertyDrawer(typeof(Vector3IntReference))]
     public class Vector3IntReferencePropertyDrawer : ParameterReferencePropertyDrawer

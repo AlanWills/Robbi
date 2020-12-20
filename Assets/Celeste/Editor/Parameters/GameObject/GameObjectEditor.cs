@@ -1,4 +1,4 @@
-﻿using Robbi.Parameters;
+﻿using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace RobbiEditor.Parameters
+namespace CelesteEditor.Parameters
 {
     [CustomEditor(typeof(GameObjectValue))]
     public class GameObjectValueEditor : ParameterValueEditor<GameObject>

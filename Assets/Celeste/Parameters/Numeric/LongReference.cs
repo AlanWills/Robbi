@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.Parameters
+namespace Celeste.Parameters
 {
-    [CreateAssetMenu(fileName = "LongReference", menuName = "Robbi/Parameters/Numeric/Long Reference")]
+    [CreateAssetMenu(fileName = "LongReference", menuName = "Celeste/Parameters/Numeric/Long Reference")]
     public class LongReference : ParameterReference<long, LongValue, LongReference>
     {
     }

@@ -7,10 +7,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using XNode;
 
-namespace Robbi.DataSystem.Nodes.UI
+namespace Celeste.DS.Nodes.UI
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/UI/Text")]
+    [CreateNodeMenu("Celeste/UI/Text")]
     public class TextNode : DataNode, IUpdateable
     {
         #region Properties and Fields

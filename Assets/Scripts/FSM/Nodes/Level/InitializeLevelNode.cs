@@ -1,11 +1,12 @@
-﻿using Robbi.Log;
+﻿using Celeste.FSM;
+using Celeste.Log;
 using Robbi.Environment;
 using Robbi.Levels;
-using Robbi.Movement;
 using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using static XNode.Node;
 
 namespace Robbi.FSM.Nodes
 {

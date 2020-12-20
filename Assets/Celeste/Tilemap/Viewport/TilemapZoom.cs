@@ -1,11 +1,11 @@
-﻿using Robbi.Events;
-using Robbi.Parameters;
+﻿using Celeste.Events;
+using Celeste.Parameters;
 using System;
 using UnityEngine;
 
-namespace Robbi.Viewport
+namespace Celeste.Viewport
 {
-    [AddComponentMenu("Robbi/Viewport/Tilemap Zoom")]
+    [AddComponentMenu("Celeste/Viewport/Tilemap Zoom")]
     [RequireComponent(typeof(Camera))]
     public class TilemapZoom : MonoBehaviour
     {

@@ -1,15 +1,7 @@
-﻿using Robbi.DataSystem;
-using Robbi.FSM;
-using Robbi.Levels.Elements;
-using RobbiEditor.Constants;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Celeste.DS;
+using Celeste.FSM;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 namespace RobbiEditor.Migration
 {
@@ -23,7 +15,7 @@ namespace RobbiEditor.Migration
                 string fsmGraphPath = AssetDatabase.GUIDToAssetPath(fsmGraphGuid);
                 FSMGraph fsmGraph = AssetDatabase.LoadAssetAtPath<FSMGraph>(fsmGraphPath);
 
-                foreach (UnityEngine.Object obj in AssetDatabase.LoadAllAssetsAtPath(fsmGraphPath))
+                foreach (Object obj in AssetDatabase.LoadAllAssetsAtPath(fsmGraphPath))
                 {
                     if (obj != null && obj != fsmGraph)
                     {

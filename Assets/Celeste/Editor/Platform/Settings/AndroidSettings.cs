@@ -8,9 +8,9 @@ using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
 using UnityEngine;
 
-namespace RobbiEditor.Platform
+namespace CelesteEditor.Platform
 {
-    [CreateAssetMenu(fileName = "AndroidSettings", menuName = "Robbi/Platform/Android Settings")]
+    [CreateAssetMenu(fileName = "AndroidSettings", menuName = "Celeste/Platform/Android Settings")]
     public class AndroidSettings : PlatformSettings
     {
         #region Properties and Fields

@@ -1,4 +1,4 @@
-﻿using Robbi.Objects;
+﻿using Celeste.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using XNode;
 
-namespace Robbi.FSM.Nodes
+namespace Celeste.FSM
 {
     [Serializable]
     public abstract class FSMNode : Node

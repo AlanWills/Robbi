@@ -1,15 +1,9 @@
 ﻿using Robbi.Environment;
 using Robbi.Levels.Elements;
-using Robbi.Movement;
-using Robbi.Parameters;
-using Robbi.Viewport;
+using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 namespace Robbi.Levels
 {

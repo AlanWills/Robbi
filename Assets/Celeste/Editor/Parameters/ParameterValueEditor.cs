@@ -1,4 +1,4 @@
-﻿using Robbi.Parameters;
+﻿using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
 
-namespace RobbiEditor.Parameters
+namespace CelesteEditor.Parameters
 {
     public class ParameterValueEditor<T> : Editor
     {

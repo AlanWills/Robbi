@@ -1,6 +1,5 @@
-﻿using Robbi.FSM.Nodes;
-using RobbiEditor.Utils;
-using RobbiEditor.Validation.GUIs;
+﻿using CelesteEditor.Tools;
+using CelesteEditor.Validation.GUIs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +10,7 @@ using UnityEngine;
 using XNode;
 using XNodeEditor;
 
-namespace Robbi.FSM
+namespace Celeste.FSM
 {
     [CustomNodeGraphEditor(typeof(FSMGraph))]
     public class FSMGraphEditor : NodeGraphEditor

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace RobbiEditor.Utils
+namespace CelesteEditor.Tools
 {
     public static class AssetUtility
     {

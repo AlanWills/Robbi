@@ -1,4 +1,4 @@
-﻿using Robbi.Utils;
+﻿using Celeste.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.Hierarchy
+namespace Celeste.Hierarchy
 {
     [Serializable]
     public class GameObjectPath

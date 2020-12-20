@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Robbi.Log
+namespace Celeste.Log
 {
     public enum LogSeverity
     {

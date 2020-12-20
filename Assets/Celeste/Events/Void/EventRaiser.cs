@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.Events
+namespace Celeste.Events
 {
-    [AddComponentMenu("Robbi/Events/Raisers/Event Raiser")]
+    [AddComponentMenu("Celeste/Events/Raisers/Event Raiser")]
     public class EventRaiser : MonoBehaviour, IEventRaiser
     {
         #region Properties and Fields

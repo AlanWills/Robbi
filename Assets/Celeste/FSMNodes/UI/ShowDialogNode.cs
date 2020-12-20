@@ -1,5 +1,5 @@
-﻿using Robbi.Events;
-using Robbi.UI;
+﻿using Celeste.Events;
+using Celeste.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static Robbi.UI.Dialog;
-using Event = Robbi.Events.Event;
+using static Celeste.UI.Dialog;
+using Event = Celeste.Events.Event;
 
-namespace Robbi.FSM.Nodes.UI
+namespace Celeste.FSM.Nodes.UI
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/UI/Show Dialog")]
+    [CreateNodeMenu("Celeste/UI/Show Dialog")]
     [NodeWidth(250), NodeTint(0.8f, 0.9f, 0)]
     public class ShowDialogNode : FSMNode
     {

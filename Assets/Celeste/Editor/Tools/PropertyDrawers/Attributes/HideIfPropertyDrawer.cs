@@ -1,10 +1,10 @@
-﻿using Robbi.Attributes.GUI;
+﻿using Celeste.Attributes.GUI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace RobbiEditor.PropertyDrawers
+namespace CelesteEditor.PropertyDrawers
 {
     [CustomPropertyDrawer(typeof(HideIfAttribute))]
     public class HideIfPropertyDrawer : PropertyDrawer

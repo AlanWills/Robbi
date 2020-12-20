@@ -1,4 +1,4 @@
-﻿using Robbi.Events;
+﻿using Celeste.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace RobbiEditor.Events
+namespace CelesteEditor.Events
 {
     public abstract class ParameterisedEventEditor<T, TEvent> : Editor where TEvent : ParameterisedEvent<T>
     {

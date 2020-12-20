@@ -1,14 +1,9 @@
-﻿using Robbi.Attributes.GUI;
-using Robbi.Events;
-using Robbi.Objects;
-using Robbi.Options;
-using System;
+﻿using Celeste.Attributes.GUI;
+using Celeste.Events;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -76,7 +71,7 @@ namespace Robbi.Testing
             integrationTestNames.AddRange(testNames);
             currentTestIndex = 0;
 
-            string testResultsDirectory = Path.Combine(Application.dataPath, "..", "TestResults");
+            string testResultsDirectory = Path.Combine(UnityEngine.Application.dataPath, "..", "TestResults");
             if (Directory.Exists(testResultsDirectory))
             {
                 Directory.Delete(testResultsDirectory, true);
@@ -117,7 +112,7 @@ namespace Robbi.Testing
 
             while (!UnityEditor.EditorApplication.isPlaying) { yield return null; }
 
-            Application.logMessageReceived += (string logString, string stackTrace, LogType type) =>
+            UnityEngine.Application.logMessageReceived += (string logString, string stackTrace, LogType type) =>
             {
                 logContents.AppendLine(logString);
             };
@@ -144,7 +139,7 @@ namespace Robbi.Testing
 
             while (testInProgress) { yield return null; }
 
-            string testResultsDirectory = Path.Combine(Application.dataPath, "..", "TestResults");
+            string testResultsDirectory = Path.Combine(UnityEngine.Application.dataPath, "..", "TestResults");
             Directory.CreateDirectory(testResultsDirectory);
             File.WriteAllText(
                 Path.Combine(testResultsDirectory, string.Format("{0}-{1}.txt", integrationTestNames[currentTestIndex], testResult ? "Passed" : "Failed")),
@@ -183,7 +178,7 @@ namespace Robbi.Testing
                     UnityEditor.EditorUtility.SetDirty(instance);
                     UnityEditor.AssetDatabase.SaveAssets();
 
-                    if (Application.isBatchMode)
+                    if (UnityEngine.Application.isBatchMode)
                     {
                         // 0 = everything OK
                         // 1 = everything NOT OK
@@ -200,7 +195,7 @@ namespace Robbi.Testing
 
         private static bool WasTestRunSuccessful(List<string> integrationTestNames)
         {
-            string directoryPath = Path.Combine(Application.dataPath, "..", "TestResults");
+            string directoryPath = Path.Combine(UnityEngine.Application.dataPath, "..", "TestResults");
             foreach (string testName in integrationTestNames)
             {
                 if (File.Exists(Path.Combine(directoryPath, testName + "-Failed.txt")))

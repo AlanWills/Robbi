@@ -1,4 +1,4 @@
-﻿using Robbi.Log;
+﻿using Celeste.Log;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +9,10 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using XNode;
 
-namespace Robbi.FSM.Nodes.Assets
+namespace Celeste.FSM.Nodes.Assets
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Assets/Get Addressables Download Size")]
+    [CreateNodeMenu("Celeste/Assets/Get Addressables Download Size")]
     public class GetAddressablesDownloadSizeNode : FSMNode
     {
         #region Properties and Fields

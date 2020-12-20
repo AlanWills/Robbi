@@ -4,9 +4,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.FX
+namespace Celeste.FX
 {
-    [AddComponentMenu("Robbi/FX/Fade To Die")]
+    [AddComponentMenu("Celeste/FX/Fade To Die")]
     public class FadeToDie : MonoBehaviour
     {
         #region Properties and Fields

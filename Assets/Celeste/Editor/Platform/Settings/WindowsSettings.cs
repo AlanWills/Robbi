@@ -9,9 +9,9 @@ using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
 using UnityEngine;
 
-namespace RobbiEditor.Platform
+namespace CelesteEditor.Platform
 {
-    [CreateAssetMenu(fileName = "WindowsSettings", menuName = "Robbi/Platform/Windows Settings")]
+    [CreateAssetMenu(fileName = "WindowsSettings", menuName = "Celeste/Platform/Windows Settings")]
     public class WindowsSettings : PlatformSettings
     {
         #region Properties and Fields

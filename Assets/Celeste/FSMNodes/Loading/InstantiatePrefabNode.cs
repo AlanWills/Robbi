@@ -1,4 +1,4 @@
-﻿using Robbi.Log;
+﻿using Celeste.Log;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +8,9 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-namespace Robbi.FSM.Nodes.Loading
+namespace Celeste.FSM.Nodes.Loading
 {
-    [CreateNodeMenu("Robbi/Loading/Instantiate Prefab")]
+    [CreateNodeMenu("Celeste/Loading/Instantiate Prefab")]
     [NodeTint(0.2f, 0.2f, 0.6f)]
     public class InstantiatePrefabNode : FSMNode
     {

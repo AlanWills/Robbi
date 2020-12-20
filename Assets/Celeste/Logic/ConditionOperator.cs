@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Robbi.Logic
+namespace Celeste.Logic
 {
     public enum ConditionOperator
     {

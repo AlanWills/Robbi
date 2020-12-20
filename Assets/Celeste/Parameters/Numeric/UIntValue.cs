@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.Parameters
+namespace Celeste.Parameters
 {
-    [CreateAssetMenu(fileName = "UIntValue", menuName = "Robbi/Parameters/Numeric/UInt Value")]
+    [CreateAssetMenu(fileName = "UIntValue", menuName = "Celeste/Parameters/Numeric/UInt Value")]
     public class UIntValue : ParameterValue<uint>
     {
     }

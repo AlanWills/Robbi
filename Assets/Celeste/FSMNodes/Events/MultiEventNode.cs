@@ -1,4 +1,4 @@
-﻿using Robbi.FSM.Nodes.Events.Conditions;
+﻿using Celeste.FSM.Nodes.Events.Conditions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using XNode;
 
-namespace Robbi.FSM.Nodes.Events
+namespace Celeste.FSM.Nodes.Events
 {
     public abstract class MultiEventNode : FSMNode, IEnumerable<EventCondition>
     {

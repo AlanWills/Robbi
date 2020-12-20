@@ -15,7 +15,7 @@ namespace Robbi.Debugging.Info
 
         private void Start()
         {
-            text.text = string.Format("Build: {0}", Application.version);
+            text.text = string.Format("Build: {0}", UnityEngine.Application.version);
         }
 
         private void OnValidate()

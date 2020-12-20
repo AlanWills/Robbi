@@ -1,5 +1,6 @@
-﻿using Robbi.Levels.Elements;
-using Robbi.Utils;
+﻿using CelesteEditor.Validation;
+using Celeste.Tools;
+using Robbi.Levels.Elements;
 using System;
 using System.Collections.Generic;
 using System.Linq;

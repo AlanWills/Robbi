@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using XNode;
 
-namespace Robbi.DataSystem.Nodes.Logic
+namespace Celeste.DS.Nodes.Logic
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Logic/Not")]
+    [CreateNodeMenu("Celeste/Logic/Not")]
     public class NotNode : DataNode
     {
         #region Properties and Fields

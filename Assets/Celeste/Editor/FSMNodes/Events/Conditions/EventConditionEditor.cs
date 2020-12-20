@@ -1,5 +1,5 @@
-﻿using Robbi.FSM.Nodes.Events;
-using Robbi.FSM.Nodes.Events.Conditions;
+﻿using Celeste.FSM.Nodes.Events;
+using Celeste.FSM.Nodes.Events.Conditions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

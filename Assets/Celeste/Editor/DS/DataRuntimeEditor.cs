@@ -1,9 +1,9 @@
-﻿using Robbi.DataSystem;
+﻿using Celeste.DS;
 using UnityEditor;
 using UnityEngine;
 using XNodeEditor;
 
-namespace RobbiEditor.FSM
+namespace CelesteEditor.DS
 {
     [CustomEditor(typeof(DataRuntime))]
     public class DataRuntimeEditor : SceneGraphEditor

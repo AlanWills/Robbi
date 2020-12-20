@@ -1,5 +1,5 @@
 ﻿using CelesteEditor.Platform.Steps;
-using Robbi.Constants;
+using Celeste.Constants;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,7 +13,7 @@ using UnityEditor.AddressableAssets.Settings;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 
-namespace RobbiEditor.Platform
+namespace CelesteEditor.Platform
 {
     public abstract class PlatformSettings : ScriptableObject
     {

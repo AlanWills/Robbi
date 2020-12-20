@@ -7,9 +7,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Robbi.FX
+namespace Celeste.FX
 {
-    [AddComponentMenu("Robbi/FX/Graphic Colour Lerper")]
+    [AddComponentMenu("Celeste/FX/Graphic Colour Lerper")]
     public class GraphicColourLerper : MonoBehaviour
     {
         #region Properties and Fields

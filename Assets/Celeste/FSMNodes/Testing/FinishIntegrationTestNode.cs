@@ -1,14 +1,14 @@
-﻿using Robbi.Events;
+﻿using Celeste.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Robbi.FSM.Nodes.Testing
+namespace Celeste.FSM.Nodes.Testing
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Testing/Finish Integration Test")]
+    [CreateNodeMenu("Celeste/Testing/Finish Integration Test")]
     public class FinishIntegrationTestNode : FSMNode
     {
         #region Properties and Fields

@@ -1,5 +1,5 @@
-﻿using Robbi.Parameters;
-using Robbi.Utils;
+﻿using Celeste.Parameters;
+using Celeste.Application;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.FSM.Nodes.Info
+namespace Celeste.FSM.Nodes.Application
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Info/Application Info")]
+    [CreateNodeMenu("Celeste/Application/Info")]
     public class ApplicationInfoNode : FSMNode
     {
         #region Properties and Fields

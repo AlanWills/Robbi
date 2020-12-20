@@ -1,4 +1,4 @@
-﻿using Robbi.FSM.Nodes.Events.Conditions;
+﻿using Celeste.FSM.Nodes.Events.Conditions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using UnityEngine;
 using XNode;
 
-namespace Robbi.FSM.Nodes.Events
+namespace Celeste.FSM.Nodes.Events
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Events/Queues/Multi Event Queue")]
+    [CreateNodeMenu("Celeste/Events/Queues/Multi Event Queue")]
     [NodeTint(0.8f, 0.9f, 0)]
     public class MultiEventQueueNode : MultiEventNode
     {

@@ -8,9 +8,9 @@ using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
 using UnityEngine;
 
-namespace RobbiEditor.Platform
+namespace CelesteEditor.Platform
 {
-    [CreateAssetMenu(fileName = "iOSSettings", menuName = "Robbi/Platform/iOS Settings")]
+    [CreateAssetMenu(fileName = "iOSSettings", menuName = "Celeste/Platform/iOS Settings")]
     public class iOSSettings : PlatformSettings
     {
         #region Properties and Fields

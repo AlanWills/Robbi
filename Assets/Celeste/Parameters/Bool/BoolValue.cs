@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.Parameters
+namespace Celeste.Parameters
 {
-    [CreateAssetMenu(fileName = "BoolValue", menuName = "Robbi/Parameters/Bool/Bool Value")]
+    [CreateAssetMenu(fileName = "BoolValue", menuName = "Celeste/Parameters/Bool/Bool Value")]
     public class BoolValue : ParameterValue<bool>
     {
     }

@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine.Events;
 
-namespace Robbi.FSM.Nodes.Objects
+namespace Celeste.FSM.Nodes.Objects
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Objects/Execute Function")]
+    [CreateNodeMenu("Celeste/Objects/Execute Function")]
     public class ExecuteFunctionNode : FSMNode
     {
         #region Properties and Fields

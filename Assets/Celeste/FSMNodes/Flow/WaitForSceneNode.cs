@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Robbi.FSM.Nodes.Flow
+namespace Celeste.FSM.Nodes.Flow
 {
-    [CreateNodeMenu("Robbi/Flow/Wait For Scene")]
+    [CreateNodeMenu("Celeste/Flow/Wait For Scene")]
     public class WaitForSceneNode : FSMNode
     {
         #region Properties and Fields

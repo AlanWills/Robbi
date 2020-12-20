@@ -1,4 +1,4 @@
-﻿using Robbi.Parameters;
+﻿using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +6,10 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.AddressableAssets.ResourceLocators;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-namespace Robbi.FSM.Nodes.Assets
+namespace Celeste.FSM.Nodes.Assets
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Assets/Update Addressables")]
+    [CreateNodeMenu("Celeste/Assets/Update Addressables")]
     public class UpdateAddressablesNode : FSMNode
     {
         #region Properties and Fields

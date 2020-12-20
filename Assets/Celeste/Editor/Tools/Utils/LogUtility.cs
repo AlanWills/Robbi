@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RobbiEditor.Utils
+namespace CelesteEditor.Tools
 {
     public static class LogUtility
     {

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace RobbiEditor
+namespace CelesteEditor
 {
-    public partial class RobbiEditorGUILayout
+    public partial class CelesteEditorGUILayout
     {
         public static uint UIntField(string label, uint value)
         {

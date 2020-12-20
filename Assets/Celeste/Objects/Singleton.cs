@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.Objects
+namespace Celeste.Objects
 {
     [Serializable]
     public class Singleton<T> : MonoBehaviour where T : Singleton<T>

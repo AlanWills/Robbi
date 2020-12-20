@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.Managers
+namespace Celeste.Managers
 {
     public abstract class NamedManager : MonoBehaviour
     {

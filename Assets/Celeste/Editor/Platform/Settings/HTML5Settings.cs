@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace RobbiEditor.Platform
+namespace CelesteEditor.Platform
 {
-    [CreateAssetMenu(fileName = "HTML5Settings", menuName = "Robbi/Platform/HTML5 Settings")]
+    [CreateAssetMenu(fileName = "HTML5Settings", menuName = "Celeste/Platform/HTML5 Settings")]
     public class HTML5Settings : PlatformSettings
     {
         #region Properties and Fields

@@ -1,4 +1,4 @@
-﻿using Robbi.Parameters;
+﻿using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Robbi.FSM.Nodes
+namespace Celeste.FSM.Nodes
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Loading/Scene Unloader")]
+    [CreateNodeMenu("Celeste/Loading/Scene Unloader")]
     [NodeWidth(250), NodeTint(0.2f, 0.2f, 0.6f)]
     public class SceneUnloaderNode : FSMNode
     {

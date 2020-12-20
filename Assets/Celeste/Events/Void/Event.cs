@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.Events
+namespace Celeste.Events
 {
     [Serializable]
-    [CreateAssetMenu(fileName = "Event", menuName = "Robbi/Events/Event")]
+    [CreateAssetMenu(fileName = "Event", menuName = "Celeste/Events/Event")]
     public class Event : ScriptableObject, IEvent
     {
         #region Properties and Fields

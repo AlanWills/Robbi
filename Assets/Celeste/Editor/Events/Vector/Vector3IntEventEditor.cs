@@ -1,4 +1,4 @@
-﻿using Robbi.Events;
+﻿using Celeste.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace RobbiEditor.Events
+namespace CelesteEditor.Events
 {
     [CustomEditor(typeof(Vector3IntEvent))]
     public class Vector3IntEventEditor : ParameterisedEventEditor<Vector3Int, Vector3IntEvent>

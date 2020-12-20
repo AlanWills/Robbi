@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.Events
+namespace Celeste.Events
 {
-    [AddComponentMenu("Robbi/Events/Touch Event Listener")]
+    [AddComponentMenu("Celeste/Events/Touch Event Listener")]
     public class TouchEventListener : ParameterisedEventListener<Touch, TouchEvent, TouchUnityEvent>
     {
     }

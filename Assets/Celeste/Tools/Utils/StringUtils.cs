@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Robbi.Utils
+namespace Celeste.Tools
 {
     public static class StringUtils
     {

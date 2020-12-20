@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using UnityEngine;
 using XNode;
 
-namespace Robbi.DataSystem.Nodes.Objects
+namespace Celeste.DS.Nodes.Objects
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Objects/Get Child")]
+    [CreateNodeMenu("Celeste/Objects/Get Child")]
     public class GetChildNode : DataNode
     {
         #region Properties and Fields

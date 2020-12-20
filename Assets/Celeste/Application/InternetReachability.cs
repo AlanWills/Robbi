@@ -1,4 +1,4 @@
-﻿using Robbi.Parameters;
+﻿using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.App
+namespace Celeste.Application
 {
-    [AddComponentMenu("Robbi/App/InternetReachability")]
+    [AddComponentMenu("Celeste/Application/Internet Reachability")]
     public class InternetReachability : MonoBehaviour
     {
         #region Properties and Fields
@@ -21,7 +21,7 @@ namespace Robbi.App
 
         private void Update()
         {
-            hasInternetConnection.Value = Application.internetReachability != NetworkReachability.NotReachable;
+            hasInternetConnection.Value = UnityEngine.Application.internetReachability != NetworkReachability.NotReachable;
         }
 
         #endregion

@@ -1,14 +1,9 @@
-﻿using Robbi.Log;
-using Robbi.Managers;
-using Robbi.Parameters;
+﻿using Celeste.Log;
+using Celeste.Managers;
+using Celeste.Parameters;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Robbi.Options
@@ -159,7 +154,7 @@ namespace Robbi.Options
         public void SyncBatterySaverOptions()
         {
             QualitySettings.vSyncCount = BatterySaver ? 0 : 1;
-            Application.targetFrameRate = BatterySaver ? 30 : 60;
+            UnityEngine.Application.targetFrameRate = BatterySaver ? 30 : 60;
         }
 
         #endregion

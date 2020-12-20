@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.Parameters
+namespace Celeste.Parameters
 {
     [Serializable]
-    [CreateAssetMenu(fileName = "StringReference", menuName = "Robbi/Parameters/String/String Reference")]
+    [CreateAssetMenu(fileName = "StringReference", menuName = "Celeste/Parameters/String/String Reference")]
     public class StringReference : ParameterReference<string, StringValue, StringReference>
     {
     }

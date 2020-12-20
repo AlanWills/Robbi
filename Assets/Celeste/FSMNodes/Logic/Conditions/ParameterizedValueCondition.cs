@@ -1,6 +1,6 @@
-﻿using Robbi.Logic;
-using Robbi.Objects;
-using Robbi.Parameters;
+﻿using Celeste.Logic;
+using Celeste.Objects;
+using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.FSM.Nodes.Logic.Conditions
+namespace Celeste.FSM.Nodes.Logic.Conditions
 {
     [Serializable]
     public abstract class ParameterizedValueCondition<T, TValue, TReference> : ValueCondition

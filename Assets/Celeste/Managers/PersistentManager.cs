@@ -1,17 +1,12 @@
-﻿using Robbi.Log;
-using Robbi.Utils;
-using System;
-using System.Collections.Generic;
+﻿using Celeste.Log;
+using Celeste.Tools;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-namespace Robbi.Managers
+namespace Celeste.Managers
 {
     public abstract class PersistentManager<T, TDTO> : ScriptableObject 
         where T : PersistentManager<T, TDTO>

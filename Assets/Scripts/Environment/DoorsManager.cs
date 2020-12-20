@@ -1,11 +1,7 @@
-﻿using Robbi.Levels.Elements;
-using Robbi.Managers;
-using Robbi.Parameters;
-using System;
+﻿using Celeste.Managers;
+using Celeste.Viewport;
+using Robbi.Levels.Elements;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Robbi.Environment

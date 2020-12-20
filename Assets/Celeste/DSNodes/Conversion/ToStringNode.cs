@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using XNode;
 
-namespace Robbi.DataSystem.Nodes.Conversion
+namespace Celeste.DS.Nodes.Conversion
 {
     [Serializable]
     public abstract class ToStringNode<T> : DataNode

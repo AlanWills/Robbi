@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.Events
+namespace Celeste.Events
 {
     public class ParameterisedEvent<T> : ScriptableObject, IEvent<T>
     {

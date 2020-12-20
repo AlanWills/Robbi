@@ -1,18 +1,10 @@
-﻿using Robbi.FSM;
-using Robbi.FSM.Nodes;
-using Robbi.FSM.Nodes.Loading;
-using Robbi.Utils;
-using RobbiEditor.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Celeste.FSM;
+using Celeste.FSM.Nodes.Loading;
+using Celeste.Tools;
+using CelesteEditor.Tools;
+using CelesteEditor.Validation;
 using System.Text;
-using System.Threading.Tasks;
-using UnityEditor;
-using UnityEditor.AddressableAssets;
-using UnityEditor.AddressableAssets.Settings;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using XNode;
 
 namespace RobbiEditor.Validation.FSM.Conditions.Loading

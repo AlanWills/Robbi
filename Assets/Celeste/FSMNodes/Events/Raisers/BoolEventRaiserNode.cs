@@ -1,4 +1,4 @@
-﻿using Robbi.Events;
+﻿using Celeste.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,10 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.FSM.Nodes.Events
+namespace Celeste.FSM.Nodes.Events
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Events/Raisers/BoolEvent Raiser")]
+    [CreateNodeMenu("Celeste/Events/Raisers/BoolEvent Raiser")]
     public class BoolEventRaiserNode : FSMNode
     {
         #region Properties and Fields

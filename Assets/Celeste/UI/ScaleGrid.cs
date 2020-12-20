@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Robbi.UI
+namespace Celeste.UI
 {
 	[ExecuteInEditMode]
-	[AddComponentMenu("Robbi/UI/Scale Grid")]
+	[AddComponentMenu("Celeste/UI/Scale Grid")]
 	[RequireComponent(typeof(GridLayoutGroup))]
 	public class ScaleGrid : MonoBehaviour
 	{

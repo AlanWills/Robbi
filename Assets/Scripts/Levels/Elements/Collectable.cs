@@ -49,7 +49,7 @@ namespace Robbi.Levels.Elements
             pickupEffects.Add(modifier);
 
 #if UNITY_EDITOR
-            AssetUtils.EditorOnly.AddObjectToMainAsset(modifier, this);
+            Celeste.AssetUtils.EditorOnly.AddObjectToMainAsset(modifier, this);
             UnityEditor.EditorUtility.SetDirty(this);
 #endif
 

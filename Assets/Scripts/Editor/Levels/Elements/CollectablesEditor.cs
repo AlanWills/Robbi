@@ -1,7 +1,7 @@
 ﻿using Robbi.Levels.Effects;
 using Robbi.Levels.Elements;
 using Robbi.Levels.Modifiers;
-using RobbiEditor.Utils;
+using CelesteEditor.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
+using CelesteEditor;
 
 namespace RobbiEditor.Levels.Elements
 {
@@ -59,7 +60,7 @@ namespace RobbiEditor.Levels.Elements
             EditorGUILayout.Space();
             EditorGUILayout.BeginHorizontal();
 
-            EditorGUILayout.LabelField("Effects", RobbiEditorStyles.BoldLabel);
+            EditorGUILayout.LabelField("Effects", CelesteEditorStyles.BoldLabel);
 
             if (isMainAsset && GUILayout.Button("Apply Hide Flags", GUILayout.ExpandWidth(false)))
             {
@@ -78,7 +79,7 @@ namespace RobbiEditor.Levels.Elements
 
                     EditorGUILayout.BeginHorizontal();
                     {
-                        EditorGUILayout.LabelField(pickupEffect.name, RobbiEditorStyles.BoldLabel);
+                        EditorGUILayout.LabelField(pickupEffect.name, CelesteEditorStyles.BoldLabel);
 
                         if (GUILayout.Button("Remove", GUILayout.ExpandWidth(false)))
                         {
@@ -92,7 +93,7 @@ namespace RobbiEditor.Levels.Elements
 
                     EditorGUILayout.Space();
 
-                    RobbiEditorGUILayout.HorizontalLine();
+                    CelesteEditorGUILayout.HorizontalLine();
                 }
 
                 --EditorGUI.indentLevel;

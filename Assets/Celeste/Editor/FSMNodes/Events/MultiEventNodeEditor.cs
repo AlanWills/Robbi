@@ -1,6 +1,7 @@
-﻿using Robbi.FSM.Nodes;
-using Robbi.FSM.Nodes.Events;
-using Robbi.FSM.Nodes.Events.Conditions;
+﻿using Celeste.FSM;
+using Celeste.FSM.Nodes;
+using Celeste.FSM.Nodes.Events;
+using Celeste.FSM.Nodes.Events.Conditions;
 using RobbiEditor.FSM.Nodes.Events.Conditions;
 using System;
 using System.Collections.Generic;

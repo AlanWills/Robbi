@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.Events
+namespace Celeste.Events
 {
-    [AddComponentMenu("Robbi/Events/String Event Raiser")]
+    [AddComponentMenu("Celeste/Events/String Event Raiser")]
     public class StringEventRaiser : ParameterisedEventRaiser<string, StringEvent, StringUnityEvent>
     {
     }

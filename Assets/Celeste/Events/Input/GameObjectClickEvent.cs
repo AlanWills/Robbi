@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Robbi.Events
+namespace Celeste.Events
 {
     public struct GameObjectClickEventArgs
     {
@@ -23,7 +23,7 @@ namespace Robbi.Events
     public class GameObjectClickUnityEvent : UnityEvent<GameObjectClickEventArgs> { }
 
     [Serializable]
-    [CreateAssetMenu(fileName = "GameObjectClickEvent", menuName = "Robbi/Events/GameObject Click Event")]
+    [CreateAssetMenu(fileName = "GameObjectClickEvent", menuName = "Celeste/Events/GameObject Click Event")]
     public class GameObjectClickEvent : ParameterisedEvent<GameObjectClickEventArgs>
     {
     }

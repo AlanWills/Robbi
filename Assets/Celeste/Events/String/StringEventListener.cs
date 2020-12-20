@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.Events
+namespace Celeste.Events
 {
-    [AddComponentMenu("Robbi/Events/String Event Listener")]
+    [AddComponentMenu("Celeste/Events/String Event Listener")]
     public class StringEventListener : ParameterisedEventListener<string, StringEvent, StringUnityEvent>
     {
     }

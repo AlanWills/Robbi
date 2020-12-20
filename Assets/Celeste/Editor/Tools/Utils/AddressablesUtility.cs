@@ -3,7 +3,7 @@ using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
 using UnityEngine;
 
-namespace RobbiEditor.Utils
+namespace CelesteEditor.Tools
 {
     public static class AddressablesUtility
     {

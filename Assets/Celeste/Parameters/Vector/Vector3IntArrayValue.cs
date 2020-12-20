@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.Parameters
+namespace Celeste.Parameters
 {
-    [CreateAssetMenu(fileName = "Vector3IntArrayValue", menuName = "Robbi/Parameters/Vector/Vector3Int Array Value")]
+    [CreateAssetMenu(fileName = "Vector3IntArrayValue", menuName = "Celeste/Parameters/Vector/Vector3Int Array Value")]
     public class Vector3IntArrayValue : ParameterValue<List<Vector3Int>>
     {
     }

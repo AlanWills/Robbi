@@ -1,14 +1,9 @@
-﻿using Robbi.Log;
-using Robbi.Managers;
-using Robbi.Parameters;
+﻿using Celeste.Log;
+using Celeste.Managers;
+using Celeste.Parameters;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Robbi.Levels
@@ -22,7 +17,7 @@ namespace Robbi.Levels
 
         public static string DefaultSavePath
         {
-            get { return Path.Combine(Application.persistentDataPath, "LevelManager.json"); }
+            get { return Path.Combine(UnityEngine.Application.persistentDataPath, "LevelManager.json"); }
         }
 
         public uint CurrentLevel

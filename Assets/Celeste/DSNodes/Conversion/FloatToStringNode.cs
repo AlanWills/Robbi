@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using XNode;
 
-namespace Robbi.DataSystem.Nodes.Conversion
+namespace Celeste.DS.Nodes.Conversion
 {
-    [CreateNodeMenu("Robbi/Conversion/Float To String")]
+    [CreateNodeMenu("Celeste/Conversion/Float To String")]
     public class FloatToStringNode : ToStringNode<float>
     {
     }

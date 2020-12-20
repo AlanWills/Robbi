@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Robbi.Constants
+namespace Celeste.Constants
 {
     public static class DebugConstants
     {

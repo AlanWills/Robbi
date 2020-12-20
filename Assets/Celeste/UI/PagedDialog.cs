@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-using Event = Robbi.Events.Event;
+using Event = Celeste.Events.Event;
 
-namespace Robbi.UI
+namespace Celeste.UI
 {
-    [AddComponentMenu("Robbi/UI/Paged Dialog")]
+    [AddComponentMenu("Celeste/UI/Paged Dialog")]
     public class PagedDialog : MonoBehaviour
     {
         [Serializable]

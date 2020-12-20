@@ -1,18 +1,15 @@
-﻿using Robbi.App;
-using Robbi.Log;
-using Robbi.Events;
+﻿using Celeste.Application;
+using Celeste.Events;
 using Robbi.Levels;
 using Robbi.Movement;
 using Robbi.Options;
-using Robbi.Parameters;
 using Robbi.Testing;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using Celeste.Debugging.Commands;
+using Celeste.Log;
 
 namespace Robbi.Debugging.Commands
 {

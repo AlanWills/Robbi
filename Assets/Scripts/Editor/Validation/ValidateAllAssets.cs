@@ -1,15 +1,8 @@
-﻿using Robbi.FSM;
-using Robbi.Levels.Elements;
-using Robbi.Utils;
-using RobbiEditor.Validation.FSM;
-using RobbiEditor.Validation.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Robbi.Levels.Elements;
 using UnityEditor;
 using UnityEngine;
+using CelesteEditor.Validation.Interfaces;
+using Celeste.FSM;
 
 namespace RobbiEditor.Validation
 {

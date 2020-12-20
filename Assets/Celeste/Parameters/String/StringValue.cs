@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.Parameters
+namespace Celeste.Parameters
 {
     [Serializable]
-    [CreateAssetMenu(fileName = "StringValue", menuName = "Robbi/Parameters/String/String Value")]
+    [CreateAssetMenu(fileName = "StringValue", menuName = "Celeste/Parameters/String/String Value")]
     public class StringValue : ParameterValue<string>
     {
     }

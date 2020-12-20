@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.Parameters
+namespace Celeste.Parameters
 {
-    [CreateAssetMenu(fileName = "IntReference", menuName = "Robbi/Parameters/Numeric/Int Reference")]
+    [CreateAssetMenu(fileName = "IntReference", menuName = "Celeste/Parameters/Numeric/Int Reference")]
     public class IntReference : ParameterReference<int, IntValue, IntReference>
     {
     }

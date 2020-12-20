@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Robbi.Utils
+namespace Celeste.Utils
 {
     public static class GameObjectUtils
     {

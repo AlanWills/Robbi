@@ -1,4 +1,4 @@
-﻿using RobbiEditor.Utils;
+﻿using CelesteEditor.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace RobbiEditor.Validation.GUIs
+namespace CelesteEditor.Validation.GUIs
 {
     public class ValidatorGUI<T> where T : UnityEngine.Object
     {
@@ -31,7 +31,7 @@ namespace RobbiEditor.Validation.GUIs
         {
             EditorGUILayout.BeginHorizontal();
 
-            EditorGUILayout.LabelField("Validation", RobbiEditorStyles.BoldLabel);
+            EditorGUILayout.LabelField("Validation", CelesteEditorStyles.BoldLabel);
 
             if (GUILayout.Button("Check All", GUILayout.ExpandWidth(false)))
             {
@@ -74,7 +74,7 @@ namespace RobbiEditor.Validation.GUIs
                 gui.GUI(asset);
             }
 
-            RobbiEditorGUILayout.HorizontalLine();
+            CelesteEditorGUILayout.HorizontalLine();
         }
 
         #endregion

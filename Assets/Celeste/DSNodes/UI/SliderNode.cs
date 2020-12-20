@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine.UI;
 
-namespace Robbi.DataSystem.Nodes.UI
+namespace Celeste.DS.Nodes.UI
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/UI/Slider")]
+    [CreateNodeMenu("Celeste/UI/Slider")]
     public class SliderNode : DataNode, IUpdateable
     {
         #region Properties and Fields

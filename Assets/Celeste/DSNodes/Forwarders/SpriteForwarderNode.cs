@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.DataSystem.Nodes.Forwarders
+namespace Celeste.DS.Nodes.Forwarders
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Forwarders/Sprite Forwarder")]
+    [CreateNodeMenu("Celeste/Forwarders/Sprite Forwarder")]
     public class SpriteForwarderNode : ValueForwarderNode<Sprite>
     {
     }

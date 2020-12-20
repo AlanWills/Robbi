@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using XNode;
 
-namespace Robbi.DataSystem.Nodes.Forwarders
+namespace Celeste.DS.Nodes.Forwarders
 {
     [Serializable]
     public abstract class ValueForwarderNode<T> : DataNode

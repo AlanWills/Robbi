@@ -1,12 +1,6 @@
-﻿using Robbi.Levels.Elements;
-using Robbi.Objects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Celeste.Objects;
+using Robbi.Levels.Elements;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 namespace Robbi.Levels.Modifiers
 {

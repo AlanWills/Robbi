@@ -1,6 +1,6 @@
-﻿using Robbi.FSM.Nodes.Logic;
-using Robbi.FSM.Nodes.Logic.Conditions;
-using RobbiEditor.PropertyDrawers.Parameters;
+﻿using Celeste.FSM.Nodes.Logic;
+using Celeste.FSM.Nodes.Logic.Conditions;
+using CelesteEditor.PropertyDrawers.Parameters;
 using UnityEditor;
 using UnityEngine;
 

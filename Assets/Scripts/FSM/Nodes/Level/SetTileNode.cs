@@ -1,4 +1,6 @@
-﻿using Robbi.Parameters;
+﻿using Celeste.FSM;
+using Celeste.Parameters;
+using Celeste.Viewport;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static XNode.Node;
 
 namespace Robbi.FSM.Nodes
 {

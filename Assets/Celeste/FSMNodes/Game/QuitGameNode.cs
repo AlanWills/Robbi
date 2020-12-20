@@ -1,4 +1,4 @@
-﻿using Robbi.Parameters;
+﻿using Celeste.Parameters;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace Robbi.FSM.Nodes.Game
+namespace Celeste.FSM.Nodes.Game
 {
-    [CreateNodeMenu("Robbi/Game/Quit Game")]
+    [CreateNodeMenu("Celeste/Game/Quit Game")]
     [NodeTint(0.2f, 0.2f, 0.6f)]
     public class QuitGameNode : FSMNode
     {

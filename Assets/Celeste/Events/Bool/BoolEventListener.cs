@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.Events
+namespace Celeste.Events
 {
-    [AddComponentMenu("Robbi/Events/Bool Event Listener")]
+    [AddComponentMenu("Celeste/Events/Bool Event Listener")]
     public class BoolEventListener : ParameterisedEventListener<bool, BoolEvent, BoolUnityEvent>
     {
     }

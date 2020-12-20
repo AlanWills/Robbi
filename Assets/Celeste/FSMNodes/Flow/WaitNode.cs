@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.FSM.Nodes
+namespace Celeste.FSM.Nodes
 {
     public enum WaitUnit
     {
@@ -14,7 +14,7 @@ namespace Robbi.FSM.Nodes
     }
 
     [Serializable]
-    [CreateNodeMenu("Robbi/Flow/Wait")]
+    [CreateNodeMenu("Celeste/Flow/Wait")]
     [NodeTint(0, 0.4f, 0)]
     public class WaitNode : FSMNode
     {

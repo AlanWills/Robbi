@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Robbi.Objects
+namespace Celeste.Objects
 {
     public interface ICopyable<T>
     {

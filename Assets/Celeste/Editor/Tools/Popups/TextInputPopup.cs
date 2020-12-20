@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace RobbiEditor.Popups
+namespace CelesteEditor.Popups
 {
     public class TextInputPopup : EditorWindow
     {

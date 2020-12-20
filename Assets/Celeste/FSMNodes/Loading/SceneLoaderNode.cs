@@ -1,6 +1,6 @@
-﻿using Robbi.Log;
-using Robbi.Objects;
-using Robbi.Parameters;
+﻿using Celeste.Log;
+using Celeste.Objects;
+using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +13,10 @@ using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 using XNode;
 
-namespace Robbi.FSM.Nodes
+namespace Celeste.FSM.Nodes
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Loading/Scene Loader")]
+    [CreateNodeMenu("Celeste/Loading/Scene Loader")]
     [NodeWidth(250), NodeTint(0.2f, 0.2f, 0.6f)]
     public class SceneLoaderNode : FSMNode
     {

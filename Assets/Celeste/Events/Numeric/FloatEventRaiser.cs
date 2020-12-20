@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.Events
+namespace Celeste.Events
 {
-    [AddComponentMenu("Robbi/Events/Float Event Raiser")]
+    [AddComponentMenu("Celeste/Events/Float Event Raiser")]
     public class FloatEventRaiser : ParameterisedEventRaiser<float, FloatEvent, FloatUnityEvent>
     {
     }

@@ -1,9 +1,9 @@
-﻿using Robbi.Events;
+﻿using Celeste.Events;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 
-namespace RobbiEditor.Events
+namespace CelesteEditor.Events
 {
     [CustomEditor(typeof(Event))]
     public class EventEditor : Editor

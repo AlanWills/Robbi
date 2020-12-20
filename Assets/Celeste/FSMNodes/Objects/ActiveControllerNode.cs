@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.FSM.Nodes.Objects
+namespace Celeste.FSM.Nodes.Objects
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Objects/Active Controller")]
+    [CreateNodeMenu("Celeste/Objects/Active Controller")]
     public class ActiveControllerNode : FSMNode
     {
         #region Properties and Fields

@@ -1,4 +1,4 @@
-﻿using Robbi.Logic;
+﻿using Celeste.Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +8,10 @@ using UnityEngine;
 using XNode;
 using static XNode.Node;
 
-namespace Robbi.DataSystem.Nodes.Logic
+namespace Celeste.DS.Nodes.Logic
 {
     [Serializable]
-    [CreateNodeMenu("Robbi/Logic/UInt Comparer")]
+    [CreateNodeMenu("Celeste/Logic/UInt Comparer")]
     [NodeTint(0.0f, 0.75f, 0.75f)]
     public class UIntComparerNode : DataNode
     {

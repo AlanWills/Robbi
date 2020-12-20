@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.Attributes.GUI
+namespace Celeste.Attributes.GUI
 {
     public class HideIfAttribute : PropertyAttribute
     {

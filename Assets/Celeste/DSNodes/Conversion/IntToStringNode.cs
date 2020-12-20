@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using XNode;
 
-namespace Robbi.DataSystem.Nodes.Conversion
+namespace Celeste.DS.Nodes.Conversion
 {
-    [CreateNodeMenu("Robbi/Conversion/Int To String")]
+    [CreateNodeMenu("Celeste/Conversion/Int To String")]
     public class IntToStringNode : ToStringNode<int>
     {
     }

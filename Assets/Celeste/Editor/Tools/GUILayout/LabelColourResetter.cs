@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace RobbiEditor
+namespace CelesteEditor
 {
     public class LabelColourResetter : IDisposable
     {

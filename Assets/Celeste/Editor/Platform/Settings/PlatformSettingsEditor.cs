@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace RobbiEditor.Platform
+namespace CelesteEditor.Platform
 {
     [CustomEditor(typeof(PlatformSettings), true)]
     public class PlatformSettingsEditor : Editor

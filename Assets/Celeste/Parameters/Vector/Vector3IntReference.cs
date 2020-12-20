@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Robbi.Parameters
+namespace Celeste.Parameters
 {
-    [CreateAssetMenu(fileName = "Vector3IntReference", menuName = "Robbi/Parameters/Vector/Vector3Int Reference")]
+    [CreateAssetMenu(fileName = "Vector3IntReference", menuName = "Celeste/Parameters/Vector/Vector3Int Reference")]
     public class Vector3IntReference : ParameterReference<Vector3Int, Vector3IntValue, Vector3IntReference>
     {
     }

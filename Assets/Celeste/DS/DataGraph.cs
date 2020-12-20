@@ -1,5 +1,4 @@
-﻿using Robbi.DataSystem.Nodes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,9 +6,9 @@ using System.Threading.Tasks;
 using UnityEngine;
 using XNode;
 
-namespace Robbi.DataSystem
+namespace Celeste.DS
 {
-    [CreateAssetMenu(fileName = "DataGraph", menuName = "Robbi/Data/Data Graph")]
+    [CreateAssetMenu(fileName = "DataGraph", menuName = "Celeste/DS/Data Graph")]
     public class DataGraph : NodeGraph
     {
         #region Data Updating

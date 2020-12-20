@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Robbi.Events
+namespace Celeste.Events
 {
     public class ParameterisedEventRaiser<T, TEvent, TUnityEvent> : MonoBehaviour, IEventRaiser<T>
                                                                                        where TEvent : ParameterisedEvent<T>
