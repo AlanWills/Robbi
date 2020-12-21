@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Robbi.Tilemaps;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -114,7 +115,7 @@ namespace Robbi.Movement
             Vector3Int neighbour = bestPosition + delta;
             if (MovementTilemap.HasTile(neighbour))
             {
-                float distanceToNeighbour = DoorsTilemap.HasTile(neighbour) ? 1000.0f : 1.0f;
+                float distanceToNeighbour = DoorsTilemap.HasClosedDoor(neighbour) ? 1000.0f : 1.0f;
                 float tentativeCostFromStart = costFromStart[bestPosition] + distanceToNeighbour;
                 float neighbourScore = costFromStart.ContainsKey(neighbour) ? costFromStart[neighbour] : float.MaxValue;
 
@@ -164,7 +165,7 @@ namespace Robbi.Movement
 
             for (int i = newWaypoints.Count - 1; i >= 0; --i)
             {
-                if (DoorsTilemap.HasTile(newWaypoints[i]))
+                if (DoorsTilemap.HasClosedDoor(newWaypoints[i]))
                 {
                     for (int j = i; j >= 0; --j)
                     {

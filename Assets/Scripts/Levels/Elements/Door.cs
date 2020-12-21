@@ -1,4 +1,5 @@
 ﻿using Celeste.Parameters;
+using Robbi.Tilemaps.Tiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,9 +30,7 @@ namespace Robbi.Levels.Elements
 
         public Vector3Int position;
         public Direction direction;
-        public TileBase closedTile;
-        public TileBase leftOpenTile;
-        public TileBase rightOpenTile;
+        public DoorState startingState = DoorState.Closed;
 
         #endregion
 
@@ -39,7 +38,18 @@ namespace Robbi.Levels.Elements
 
         public void Initialize(Tilemap tilemap)
         {
-            DoorState = tilemap.HasTile(position) && tilemap.GetTile(position) == closedTile ? DoorState.Closed : DoorState.Opened;
+            if (startingState == DoorState.Opened)
+            {
+                Open(tilemap);
+            }
+            else if (startingState == DoorState.Closed)
+            {
+                Close(tilemap);
+            }
+            else
+            {
+                Debug.LogAssertionFormat("Unhandled DoorState {0} in Door.Initialize", startingState);
+            }
         }
 
         #endregion
@@ -49,54 +59,48 @@ namespace Robbi.Levels.Elements
         public void Open(Tilemap tilemap)
         {
             DoorState = DoorState.Opened;
-            tilemap.SetTile(position, null);
 
-            if (direction == Direction.Horizontal)
+            DoorTile doorTile = tilemap.GetTile<DoorTile>(position);
+            if (doorTile != null)
             {
-                tilemap.SetTile(position + new Vector3Int(-1, 0, 0), leftOpenTile);
-                tilemap.SetTile(position + new Vector3Int(1, 0, 0), rightOpenTile);
-            }
-            else if (direction == Direction.Vertical)
-            {
-                tilemap.SetTile(position + new Vector3Int(0, 1, 0), leftOpenTile);
-                tilemap.SetTile(position + new Vector3Int(0, -1, 0), rightOpenTile);
+                doorTile.Open();
+                tilemap.RefreshTile(position);
             }
             else
             {
-                Debug.LogAssertion("Unhandled door direction");
+                Debug.LogAssertionFormat("No DoorTile found at {0}", position);
             }
         }
 
         public void Close(Tilemap tilemap)
         {
             DoorState = DoorState.Closed;
-            tilemap.SetTile(position, closedTile);
 
-            if (direction == Direction.Horizontal)
+            DoorTile doorTile = tilemap.GetTile<DoorTile>(position);
+            if (doorTile != null)
             {
-                tilemap.SetTile(position + new Vector3Int(-1, 0, 0), null);
-                tilemap.SetTile(position + new Vector3Int(1, 0, 0), null);
-            }
-            else if (direction == Direction.Vertical)
-            {
-                tilemap.SetTile(position + new Vector3Int(0, 1, 0), null);
-                tilemap.SetTile(position + new Vector3Int(0, -1, 0), null);
+                doorTile.Close();
+                tilemap.RefreshTile(position);
             }
             else
             {
-                Debug.LogAssertion("Unhandled door direction");
+                Debug.LogAssertionFormat("No DoorTile found at {0}", position);
             }
         }
 
         public void Toggle(Tilemap tilemap)
         {
-            if (tilemap.HasTile(position))
+            if (DoorState == DoorState.Closed)
             {
                 Open(tilemap);
             }
-            else
+            else if (DoorState == DoorState.Opened)
             {
                 Close(tilemap);
+            }
+            else
+            {
+                Debug.LogAssertionFormat("Unhandled DoorState {0} in Door.Initialize", startingState);
             }
         }
 

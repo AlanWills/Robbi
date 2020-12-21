@@ -18,12 +18,6 @@ using static RobbiEditor.LevelDirectories;
 
 namespace RobbiEditor.Tools
 {
-    public enum DoorState
-    {
-        Open,
-        Close,
-    }
-
     public enum InteractableAction
     {
         OpenDoor,
@@ -54,8 +48,8 @@ namespace RobbiEditor.Tools
         public uint startingFuel = 0;
 
         [Header("Doors")]
-        public List<DoorColour> horizontalDoors = new List<DoorColour>();
-        public List<DoorColour> verticalDoors = new List<DoorColour>();
+        public List<Tuple<DoorColour, DoorState>> horizontalDoors = new List<Tuple<DoorColour, DoorState>>();
+        public List<Tuple<DoorColour, DoorState>> verticalDoors = new List<Tuple<DoorColour, DoorState>>();
 
         [Header("Interactables")]
         public List<InteractableMarker> interactableMarkers = new List<InteractableMarker>();
@@ -90,22 +84,6 @@ namespace RobbiEditor.Tools
 
         private LevelInfo levelInfo;
         private SerializedObject levelInfoObject;
-
-        private static Dictionary<DoorColour, Tuple<string, string, string>> horizontalTiles = new Dictionary<DoorColour, Tuple<string, string, string>>()
-        {
-            { DoorColour.Green, TileFiles.HORIZONTAL_GREEN_DOOR },
-            { DoorColour.Red, TileFiles.HORIZONTAL_RED_DOOR },
-            { DoorColour.Blue, TileFiles.HORIZONTAL_BLUE_DOOR },
-            { DoorColour.Grey, TileFiles.HORIZONTAL_GREY_DOOR },
-        };
-
-        private static Dictionary<DoorColour, Tuple<string, string, string>> verticalTiles = new Dictionary<DoorColour, Tuple<string, string, string>>()
-        {
-            { DoorColour.Green, TileFiles.VERTICAL_GREEN_DOOR },
-            { DoorColour.Red, TileFiles.VERTICAL_RED_DOOR },
-            { DoorColour.Blue, TileFiles.VERTICAL_BLUE_DOOR },
-            { DoorColour.Grey, TileFiles.VERTICAL_GREY_DOOR },
-        };
 
         private static Dictionary<InteractableAction, string> markerPrefabs = new Dictionary<InteractableAction, string>()
         {
@@ -344,16 +322,14 @@ namespace RobbiEditor.Tools
         {
             string doorsPath = string.Format("{0}{1}", LevelFolderFullPath, DOORS_NAME);
 
-            foreach (DoorColour doorColour in levelInfo.horizontalDoors)
+            foreach (Tuple<DoorColour, DoorState> doorInfo in levelInfo.horizontalDoors)
             {
-                Tuple<string, string, string> tiles = horizontalTiles[doorColour];
-                DoorEditor.CreateDoor(string.Format("Level{0}Horizontal{1}Door", levelInfo.levelIndex, doorColour), doorsPath, Direction.Horizontal, tiles.Item1, tiles.Item2, tiles.Item3);
+                DoorEditor.CreateDoor(string.Format("Level{0}Horizontal{1}Door", levelInfo.levelIndex, doorInfo.Item1), doorsPath, Direction.Horizontal, doorInfo.Item2);
             }
 
-            foreach (DoorColour doorColour in levelInfo.verticalDoors)
+            foreach (Tuple<DoorColour, DoorState> doorInfo in levelInfo.verticalDoors)
             {
-                Tuple<string, string, string> tiles = verticalTiles[doorColour];
-                DoorEditor.CreateDoor(string.Format("Level{0}Vertical{1}Door", levelInfo.levelIndex, doorColour), doorsPath, Direction.Vertical, tiles.Item1, tiles.Item2, tiles.Item3);
+                DoorEditor.CreateDoor(string.Format("Level{0}Vertical{1}Door", levelInfo.levelIndex, doorInfo.Item1), doorsPath, Direction.Vertical, doorInfo.Item2);
             }
         }
 
