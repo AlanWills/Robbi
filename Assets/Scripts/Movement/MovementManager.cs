@@ -8,7 +8,7 @@ using UnityEngine;
 using Event = Celeste.Events.Event;
 using Celeste.Log;
 using Celeste.Managers;
-using Celeste.Viewport;
+using Celeste.Tilemaps;
 using Celeste.Memory;
 
 namespace Robbi.Movement

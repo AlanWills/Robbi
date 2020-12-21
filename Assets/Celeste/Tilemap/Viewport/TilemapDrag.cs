@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Celeste.Viewport
+namespace Celeste.Tilemaps
 {
-    [AddComponentMenu("Celeste/Viewport/Tilemap Drag")]
+    [AddComponentMenu("Celeste/Tilemaps/Tilemap Drag")]
     [RequireComponent(typeof(Camera))]
     public class TilemapDrag : MonoBehaviour
     {

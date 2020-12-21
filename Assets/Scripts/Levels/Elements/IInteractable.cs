@@ -18,8 +18,8 @@ namespace Robbi.Levels.Elements
         #region Properties and Fields
 
         Vector3Int Position { get; }
-        Tile InteractedTile { get; }
-        Tile UninteractedTile { get; }
+        TileBase InteractedTile { get; }
+        TileBase UninteractedTile { get; }
 
         #endregion
 

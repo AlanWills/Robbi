@@ -3,9 +3,9 @@ using Celeste.Parameters;
 using System;
 using UnityEngine;
 
-namespace Celeste.Viewport
+namespace Celeste.Tilemaps
 {
-    [AddComponentMenu("Celeste/Viewport/Tilemap Zoom")]
+    [AddComponentMenu("Celeste/Tilemaps/Tilemap Zoom")]
     [RequireComponent(typeof(Camera))]
     public class TilemapZoom : MonoBehaviour
     {

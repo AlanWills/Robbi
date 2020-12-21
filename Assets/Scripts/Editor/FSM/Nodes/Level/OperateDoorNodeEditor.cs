@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
-using Celeste.Viewport;
+using Celeste.Tilemaps;
 
 namespace RobbiEditor.FSM.Nodes.Level
 {

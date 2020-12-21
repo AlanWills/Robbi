@@ -1,4 +1,4 @@
-﻿using Celeste.Viewport;
+﻿using Celeste.Tilemaps;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 

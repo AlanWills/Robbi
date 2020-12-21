@@ -1,5 +1,5 @@
 ﻿using Celeste.Managers;
-using Celeste.Viewport;
+using Celeste.Tilemaps;
 using UnityEngine;
 using Event = Celeste.Events.Event;
 

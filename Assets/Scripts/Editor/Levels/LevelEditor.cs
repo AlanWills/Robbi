@@ -52,7 +52,7 @@ namespace RobbiEditor.Levels
 
             if (GUILayout.Button("Find Doors", GUILayout.ExpandWidth(false)))
             {
-                FindInteractables(level);
+                FindDoors(level);
             }
 
             if (GUILayout.Button("Find Interactables", GUILayout.ExpandWidth(false)))
@@ -146,7 +146,7 @@ namespace RobbiEditor.Levels
             string location = AssetDatabase.GetAssetPath(level);
             string objectFolder = string.Format("{0}/{1}", Path.GetDirectoryName(location).Replace('\\', '/'), directoryName);
             objectFolder = objectFolder.EndsWith("/") ? objectFolder.Substring(0, objectFolder.Length - 1) : objectFolder;
-            string[] doorGuids = AssetDatabase.FindAssets("t:" + typeof(T).Name, new string[] { objectFolder });
+            string[] objectGuids = AssetDatabase.FindAssets("t:" + typeof(T).Name, new string[] { objectFolder });
 
             SerializedObject serializedObject = new SerializedObject(level);
             serializedObject.Update();
@@ -154,14 +154,14 @@ namespace RobbiEditor.Levels
             SerializedProperty objectsProperty = serializedObject.FindProperty(propertyName);
             bool dirty = false;
 
-            if (objectsProperty.arraySize != doorGuids.Length)
+            if (objectsProperty.arraySize != objectGuids.Length)
             {
-                objectsProperty.arraySize = doorGuids.Length;
+                objectsProperty.arraySize = objectGuids.Length;
             }
 
-            for (int i = 0; i < doorGuids.Length; ++i)
+            for (int i = 0; i < objectGuids.Length; ++i)
             {
-                string objectPath = AssetDatabase.GUIDToAssetPath(doorGuids[i]);
+                string objectPath = AssetDatabase.GUIDToAssetPath(objectGuids[i]);
                 T obj = AssetDatabase.LoadAssetAtPath<T>(objectPath);
 
                 SerializedProperty arrayElement = objectsProperty.GetArrayElementAtIndex(i);

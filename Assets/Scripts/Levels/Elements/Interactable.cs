@@ -26,8 +26,8 @@ namespace Robbi.Levels.Elements
         }
 
         [SerializeField]
-        private Tile interactedTile;
-        public Tile InteractedTile
+        private TileBase interactedTile;
+        public TileBase InteractedTile
         {
             get { return interactedTile; }
             set 
@@ -40,8 +40,8 @@ namespace Robbi.Levels.Elements
         }
 
         [SerializeField]
-        private Tile uninteractedTile;
-        public Tile UninteractedTile
+        private TileBase uninteractedTile;
+        public TileBase UninteractedTile
         {
             get { return uninteractedTile; }
             set

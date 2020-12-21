@@ -2,7 +2,7 @@
 using UnityEngine;
 using Celeste.FSM.Nodes.Logic.Conditions;
 using Celeste.Logic;
-using Celeste.Viewport;
+using Celeste.Tilemaps;
 
 namespace Robbi.FSM.Nodes.Logic.Conditions
 {

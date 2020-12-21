@@ -29,9 +29,9 @@ namespace Robbi.Levels.Elements
 
         public Vector3Int position;
         public Direction direction;
-        public Tile closedTile;
-        public Tile leftOpenTile;
-        public Tile rightOpenTile;
+        public TileBase closedTile;
+        public TileBase leftOpenTile;
+        public TileBase rightOpenTile;
 
         #endregion
 
@@ -39,7 +39,7 @@ namespace Robbi.Levels.Elements
 
         public void Initialize(Tilemap tilemap)
         {
-            DoorState = tilemap.HasTile(position) ? DoorState.Closed : DoorState.Opened;
+            DoorState = tilemap.HasTile(position) && tilemap.GetTile(position) == closedTile ? DoorState.Closed : DoorState.Opened;
         }
 
         #endregion

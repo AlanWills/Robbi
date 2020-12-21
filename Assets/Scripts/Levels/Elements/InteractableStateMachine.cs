@@ -28,12 +28,12 @@ namespace Robbi.Levels.Elements
             get { return CurrentStateValid ? states[currentState].Position : new Vector3Int(); }
         }
 
-        public Tile InteractedTile
+        public TileBase InteractedTile
         {
             get { return CurrentStateValid ? states[currentState].InteractedTile : null; }
         }
 
-        public Tile UninteractedTile
+        public TileBase UninteractedTile
         {
             get { return CurrentStateValid ? states[currentState].UninteractedTile : null; }
         }

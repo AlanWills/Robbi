@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Celeste.Managers;
-using Celeste.Viewport;
+using Celeste.Tilemaps;
 
 namespace Robbi.Environment
 {
