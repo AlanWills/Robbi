@@ -61,7 +61,18 @@ namespace Celeste.Tilemaps
         public void PlayFromStart()
         {
             isPlaying = true;
+            SetAtStart();
+        }
+
+        public void SetAtStart()
+        {
             currentFrame = 0;
+        }
+
+        public void SetAtEnd()
+        {
+            currentFrame = m_AnimatedSprites.Length - 1;
+            isPlaying = false;
         }
     }
 }
