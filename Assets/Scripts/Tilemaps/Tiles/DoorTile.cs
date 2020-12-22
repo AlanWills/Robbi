@@ -9,14 +9,11 @@ namespace Robbi.Tilemaps.Tiles
 {
     [Serializable]
     [CreateAssetMenu(fileName = "New Door Tile", menuName = "Robbi/Tiles/Door Tile")]
-    public class DoorTile : TileBase
+    public class DoorTile : ComplexAnimatedTile
     {
         #region Properties and Fields
         
         public DoorState DoorState { get; private set; } = DoorState.Closed;
-
-        public AnimatedTile openToCloseTile;
-        public AnimatedTile closeToOpenTile;
 
         #endregion
 
@@ -27,11 +24,11 @@ namespace Robbi.Tilemaps.Tiles
             switch (DoorState)
             {
                 case DoorState.Opened:
-                    closeToOpenTile.SetAtEnd();
+                    SetAtEnd();
                     return;
 
                 case DoorState.Closed:
-                    openToCloseTile.SetAtEnd();
+                    SetAtStart();
                     return;
 
                 default:
@@ -39,41 +36,23 @@ namespace Robbi.Tilemaps.Tiles
                     return;
             }
         }
-
-        #region Tile Methods
-
-        public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
-        {
-            switch (DoorState)
-            {
-                case DoorState.Opened:
-                    closeToOpenTile.GetTileData(position, tilemap, ref tileData);
-                    return;
-
-                case DoorState.Closed:
-                    openToCloseTile.GetTileData(position, tilemap, ref tileData);
-                    return;
-
-                default:
-                    Debug.LogAssertionFormat("Unhandled DoorState {0} in DoorTile {1}", DoorState, name);
-                    return;
-            }
-        }
-
-        #endregion
 
         #region Open/Close Methods
 
         public void Open()
         {
             DoorState = DoorState.Opened;
-            closeToOpenTile.PlayFromStart();
+            reverse = false;
+            SetAtStart();
+            Play();
         }
 
         public void Close()
         {
             DoorState = DoorState.Closed;
-            openToCloseTile.PlayFromStart();
+            reverse = true;
+            SetAtEnd();
+            Play();
         }
 
         #endregion

@@ -4,9 +4,9 @@ using UnityEngine.Tilemaps;
 
 namespace Celeste.Tilemaps
 {
-    [System.Serializable]
-    [CreateAssetMenu(fileName = "New Animated Tile", menuName = "Celeste/Tiles/Animated Tile")]
-    public class AnimatedTile : TileBase
+    [Serializable]
+    [CreateAssetMenu(fileName = "New Complex Animated Tile", menuName = "Celeste/Tiles/Complex Animated Tile")]
+    public class ComplexAnimatedTile : TileBase
     {
         /// <summary>
         /// The List of Sprites set for the Animated Tile.
@@ -23,10 +23,22 @@ namespace Celeste.Tilemaps
         /// </summary>
         public Tile.ColliderType m_TileColliderType;
 
+        public int previewIndex = 0;
+
+        public bool loop = true;
+        public bool playImmediately = true;
+
+        protected bool reverse = false;
+
         private int currentFrame = 0;
         private float currentFrameTime = 0;
-        private bool isPlaying = false;
+        private bool isPlaying = true;
 
+        private void Awake()
+        {
+            isPlaying = playImmediately;
+        }
+        
         /// <summary>
         /// Retrieves any tile rendering data from the scripted tile.
         /// </summary>
@@ -51,17 +63,37 @@ namespace Celeste.Tilemaps
                     while (currentFrameTime > timePerFrame && isPlaying)
                     {
                         currentFrameTime -= timePerFrame;
-                        currentFrame = Math.Min(currentFrame + 1, m_AnimatedSprites.Length - 1);
-                        isPlaying = currentFrame < m_AnimatedSprites.Length - 1;
+
+                        if (reverse)
+                        {
+                            --currentFrame;
+                            currentFrame = loop ? (int)Mathf.Repeat(currentFrame, m_AnimatedSprites.Length) : Math.Max(currentFrame, 0);
+                            isPlaying = loop || currentFrame > 0;
+                        }
+                        else
+                        {
+                            ++currentFrame;
+                            currentFrame = loop ? currentFrame % m_AnimatedSprites.Length : Math.Min(currentFrame, m_AnimatedSprites.Length - 1);
+                            isPlaying = loop || currentFrame < m_AnimatedSprites.Length - 1;
+                        }
                     }
+                }
+                else if (Application.isEditor && !Application.isPlaying)
+                {
+                    currentFrame = previewIndex;
+                    tileData.sprite = m_AnimatedSprites[previewIndex];
                 }
             }
         }
 
-        public void PlayFromStart()
+        public void Play()
         {
             isPlaying = true;
-            SetAtStart();
+        }
+
+        public void Stop()
+        {
+            isPlaying = false;
         }
 
         public void SetAtStart()
@@ -72,7 +104,6 @@ namespace Celeste.Tilemaps
         public void SetAtEnd()
         {
             currentFrame = m_AnimatedSprites.Length - 1;
-            isPlaying = false;
         }
     }
 }
