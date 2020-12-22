@@ -20,8 +20,8 @@ namespace CelesteEditor.Tilemaps
                 EditorGUIUtility.TrTextContent(
                     "Drag Sprite or Sprite Texture assets \n" +
                     " to start creating an Animated Tile.");
-            public static readonly GUIContent minimumSpeedLabel = EditorGUIUtility.TrTextContent("Minimum Speed",
-                "The minimum possible speed at which the Animation of the Tile will be played. A speed value will be randomly chosen between the minimum and maximum speed.");
+            public static readonly GUIContent speedLabel = EditorGUIUtility.TrTextContent("Speed",
+                "The speed at which the Animation of the Tile will be played.");
             public static readonly GUIContent maximumSpeedLabel = EditorGUIUtility.TrTextContent("Maximum Speed",
                 "The maximum possible speed at which the Animation of the Tile will be played. A speed value will be randomly chosen between the minimum and maximum speed.");
             public static readonly GUIContent startTimeLabel = EditorGUIUtility.TrTextContent("Start Time", "The starting time of this Animated Tile. This allows you to start the Animation from a particular time.");
@@ -249,27 +249,7 @@ namespace CelesteEditor.Tilemaps
 
             using (new EditorGUI.DisabledScope(tile.m_AnimatedSprites == null || tile.m_AnimatedSprites.Length == 0))
             {
-                float minSpeed = EditorGUILayout.FloatField(Styles.minimumSpeedLabel, tile.m_MinSpeed);
-                float maxSpeed = EditorGUILayout.FloatField(Styles.maximumSpeedLabel, tile.m_MaxSpeed);
-                if (minSpeed < 0.0f)
-                    minSpeed = 0.0f;
-
-                if (maxSpeed < 0.0f)
-                    maxSpeed = 0.0f;
-
-                if (maxSpeed < minSpeed)
-                    maxSpeed = minSpeed;
-
-                tile.m_MinSpeed = minSpeed;
-                tile.m_MaxSpeed = maxSpeed;
-
-                using (new EditorGUI.DisabledScope(tile.m_AnimatedSprites == null
-                                                   || (0 < tile.m_AnimationStartFrame
-                                                    && tile.m_AnimationStartFrame <= tile.m_AnimatedSprites.Length)))
-                {
-                    tile.m_AnimationStartTime = EditorGUILayout.FloatField(Styles.startTimeLabel, tile.m_AnimationStartTime);
-                }
-                tile.m_AnimationStartFrame = EditorGUILayout.IntField(Styles.startFrameLabel, tile.m_AnimationStartFrame);
+                tile.m_Speed = Mathf.Max(EditorGUILayout.FloatField(Styles.speedLabel, tile.m_Speed), 0);
                 tile.m_TileColliderType = (Tile.ColliderType)EditorGUILayout.EnumPopup(Styles.colliderTypeLabel, tile.m_TileColliderType);
             }
 

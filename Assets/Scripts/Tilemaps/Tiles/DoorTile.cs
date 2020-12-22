@@ -1,4 +1,5 @@
-﻿using Robbi.Levels.Elements;
+﻿using Celeste.Tilemaps;
+using Robbi.Levels.Elements;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -11,35 +12,54 @@ namespace Robbi.Tilemaps.Tiles
     public class DoorTile : TileBase
     {
         #region Properties and Fields
-
+        
         public DoorState DoorState { get; private set; } = DoorState.Closed;
 
-        public Sprite openSprite;
-        public Sprite closedSprite;
+        public TileBase openTile;
+        public TileBase closeTile;
 
         #endregion
+
+        public void Initialize(DoorState doorState)
+        {
+            this.DoorState = doorState;
+        }
 
         #region Tile Methods
 
         public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
         {
-            tileData.transform = Matrix4x4.identity;
-            tileData.color = Color.white;
-            tileData.colliderType = Tile.ColliderType.None;
-            
             switch (DoorState)
             {
                 case DoorState.Opened:
-                    tileData.sprite = openSprite;
+                    openTile.GetTileData(position, tilemap, ref tileData);
                     return;
 
                 case DoorState.Closed:
-                    tileData.sprite = closedSprite;
+                    closeTile.GetTileData(position, tilemap, ref tileData);
                     return;
 
                 default:
                     Debug.LogAssertionFormat("Unhandled DoorState {0} in DoorTile {1}", DoorState, name);
                     return;
+            }
+        }
+
+        public override bool GetTileAnimationData(Vector3Int position, ITilemap tilemap, ref TileAnimationData tileAnimationData)
+        {
+            switch (DoorState)
+            {
+                case DoorState.Opened:
+                    openTile.GetTileAnimationData(position, tilemap, ref tileAnimationData);
+                    return true;
+
+                case DoorState.Closed:
+                    closeTile.GetTileAnimationData(position, tilemap, ref tileAnimationData);
+                    return true;
+
+                default:
+                    Debug.LogAssertionFormat("Unhandled DoorState {0} in DoorTile {1}", DoorState, name);
+                    return false;
             }
         }
 
@@ -50,11 +70,21 @@ namespace Robbi.Tilemaps.Tiles
         public void Open()
         {
             DoorState = DoorState.Opened;
+
+            if (openTile is AnimatedTile)
+            {
+                (openTile as AnimatedTile).PlayFromStart();
+            }
         }
 
         public void Close()
         {
             DoorState = DoorState.Closed;
+
+            if (closeTile is AnimatedTile)
+            {
+                (closeTile as AnimatedTile).PlayFromStart();
+            }
         }
 
         #endregion

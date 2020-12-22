@@ -38,17 +38,17 @@ namespace Robbi.Levels.Elements
 
         public void Initialize(Tilemap tilemap)
         {
-            if (startingState == DoorState.Opened)
+            DoorState = startingState;
+
+            DoorTile doorTile = tilemap.GetTile<DoorTile>(position);
+            if (doorTile != null)
             {
-                Open(tilemap);
-            }
-            else if (startingState == DoorState.Closed)
-            {
-                Close(tilemap);
+                doorTile.Initialize(DoorState);
+                tilemap.RefreshTile(position);
             }
             else
             {
-                Debug.LogAssertionFormat("Unhandled DoorState {0} in Door.Initialize", startingState);
+                Debug.LogAssertionFormat("No DoorTile found at {0}", position);
             }
         }
 
