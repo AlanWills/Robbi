@@ -17,9 +17,16 @@ namespace Robbi.Tilemaps.Tiles
 
         #endregion
 
+        public DoorTile()
+        {
+            loop = false;
+            playImmediately = false;
+        }
+
         public void Initialize(DoorState doorState)
         {
             DoorState = doorState;
+            reverse = DoorState == DoorState.Closed;
 
             switch (DoorState)
             {

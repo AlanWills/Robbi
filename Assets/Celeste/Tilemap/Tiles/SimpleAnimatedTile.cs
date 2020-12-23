@@ -10,6 +10,7 @@ namespace Celeste.Tilemaps
         public Sprite[] animatedSprites;
         public float speed = 1f;
         public Tile.ColliderType m_TileColliderType;
+        public bool randomizeStartTime = false;
 
         /// <summary>
         /// Retrieves any tile rendering data from the scripted tile.
@@ -21,6 +22,7 @@ namespace Celeste.Tilemaps
         {
             tileData.transform = Matrix4x4.identity;
             tileData.color = Color.white;
+            
             if (animatedSprites != null && animatedSprites.Length > 0)
             {
                 tileData.sprite = animatedSprites[0];
@@ -41,7 +43,7 @@ namespace Celeste.Tilemaps
             {
                 tileAnimationData.animatedSprites = animatedSprites;
                 tileAnimationData.animationSpeed = speed;
-                tileAnimationData.animationStartTime = 0;
+                tileAnimationData.animationStartTime = randomizeStartTime ? Random.Range(0, animatedSprites.Length / speed) : 0;
                 
                 return true;
             }
