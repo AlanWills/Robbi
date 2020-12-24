@@ -12,24 +12,22 @@ namespace RobbiEditor.Constants
         Green,
         Red,
         Blue,
-        Grey
+        Brown
     }
 
     public static class DoorColours
     {
-        public static readonly Color GREEN = new Color(41.0f / 255, 1.0f, 0);
-        public static readonly Color RED = new Color(1, 0, 41.0f / 255);
-        public static readonly Color BLUE = new Color(0, 140.0f / 255, 1);
-        public static readonly Color GREY = new Color(160.0f / 255, 160.0f / 255, 160.0f / 255);
-        //public static readonly Color BROWN = new Color(200.0f, 120.0f, 0.0f);
+        public static readonly Color GREEN = new Color(0, 210.0f / 255.0f, 0.0f);
+        public static readonly Color RED = new Color(214.0f / 255.0f, 40.0f / 255.0f, 0.0f);
+        public static readonly Color BLUE = new Color(0, 128.0f / 255.0f, 176.0f / 255.0f);
+        public static readonly Color BROWN = new Color(200.0f, 120.0f, 0.0f);
 
         public static readonly Color[] COLOURS = new Color[]
         {
             GREEN,
             RED,
             BLUE,
-            GREY,
-            //BROWN
+            BROWN
         };
 
         public static readonly string[] COLOUR_NAMES = new string[]
@@ -37,8 +35,7 @@ namespace RobbiEditor.Constants
             "Green",
             "Red",
             "Blue",
-            "Grey",
-            //"Brown"
+            "Brown"
         };
     }
 }
