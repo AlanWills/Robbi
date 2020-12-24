@@ -16,10 +16,10 @@ namespace RobbiEditor.Migration
         {
             Color[] newColours = new Color[4]
             {
-                new Color(0, 210.0f, 0.0f),
-                new Color(214.0f, 40.0f, 0.0f),
-                new Color(0, 128.0f, 176.0f),
-                new Color(200.0f, 120.0f, 0.0f)
+                new Color(0, 210.0f / 255.0f, 0.0f),
+                new Color(214.0f / 255.0f, 40.0f / 255.0f, 0.0f),
+                new Color(0, 128.0f / 255.0f, 176.0f / 255.0f),
+                new Color(200.0f / 255.0f, 120.0f / 255.0f, 0.0f)
             };
 
             foreach (LevelFolder levelFolder in new LevelFolders())
@@ -37,6 +37,10 @@ namespace RobbiEditor.Migration
                     {
                         doorColourHelper.Colour = newColours[index];
                         EditorUtility.SetDirty(gameObject);
+                    }
+                    else
+                    {
+                        Debug.LogAssertionFormat("Could not find colour {0} in level index {1}", doorColourHelper.Colour, levelFolder.Index);
                     }
                 }
             }
