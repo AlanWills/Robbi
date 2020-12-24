@@ -170,17 +170,17 @@ namespace Robbi.Options
 
 #if UNITY_ANDROID || UNITY_IOS
         public float minZoom = 0.75f;
-        public float maxZoom = 8;
+        public float maxZoom = 1.5f;
         public float zoomSpeed = 0.02f;
         public float dragSpeed = 0.05f;
 #elif UNITY_STANDALONE
         public float minZoom = 0.5f;
-        public float maxZoom = 1.75f;
+        public float maxZoom = 1.5f;
         public float zoomSpeed = 0.85f;
         public float dragSpeed = 0.1f;
 #elif UNITY_WEBGL
         public float minZoom = 0.5f;
-        public float maxZoom = 1.75f;
+        public float maxZoom = 1.5f;
         public float zoomSpeed = 0.85f;
         public float dragSpeed = 0.1f;
 #endif

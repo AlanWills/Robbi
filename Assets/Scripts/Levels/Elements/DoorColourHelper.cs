@@ -13,6 +13,19 @@ namespace Robbi.Levels.Elements
     {
         #region Properties and Fields
 
+        public Color Colour 
+        { 
+            get { return icon.color; }
+            set 
+            { 
+                icon.color = value;
+
+#if UNITY_EDITOR
+                UnityEditor.EditorUtility.SetDirty(icon);
+#endif
+            }
+        }
+
         public SpriteRenderer icon;
 
         #endregion

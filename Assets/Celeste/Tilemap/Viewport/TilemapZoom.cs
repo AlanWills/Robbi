@@ -11,8 +11,29 @@ namespace Celeste.Tilemaps
     {
         #region Properties and Fields
 
+        public float FitSize
+        {
+            get
+            {
+                Bounds bounds = tilemap.Value.localBounds;
+                float xSize = (bounds.size.x + xPadding / ppu) * Screen.height / (Screen.width * 2.0f);
+                float ySize = (bounds.size.y + yPadding / ppu) * 0.5f;
+
+                return Math.Max(xSize, ySize);
+            }
+        }
+
         [SerializeField]
         private TilemapValue tilemap;
+
+        [SerializeField]
+        private float ppu;
+
+        [SerializeField]
+        private float xPadding;
+
+        [SerializeField]
+        private float yPadding;
 
         [SerializeField]
         private FloatValue minZoom;
@@ -75,31 +96,13 @@ namespace Celeste.Tilemaps
             // Zoom out
             cameraToZoom.orthographicSize -= unscaledDeltaZoomAmount * zoomSpeed.Value;
 
-            Bounds bounds = tilemap.Value.localBounds;
-            Vector3 bottomLeft = cameraToZoom.WorldToViewportPoint(bounds.min);
-            Vector3 topRight = cameraToZoom.WorldToViewportPoint(bounds.max);
-            float difference = Math.Max(topRight.x - bottomLeft.x, topRight.y - bottomLeft.y);
-
-            if (difference < minZoom.Value)
-            {
-                // Reached zoom out limit
-                cameraToZoom.orthographicSize *= difference / minZoom.Value;
-            }
-            else if (difference > maxZoom.Value)
-            {
-                // Reached zoom in limit
-                cameraToZoom.orthographicSize *= difference / maxZoom.Value;
-            }
+            float fitSize = FitSize;
+            cameraToZoom.orthographicSize = Mathf.Clamp(cameraToZoom.orthographicSize, fitSize / maxZoom.Value, fitSize / minZoom.Value);
         }
 
         public void FullZoomOut()
         {
-            Bounds bounds = tilemap.Value.localBounds;
-            Vector3 bottomLeft = cameraToZoom.WorldToViewportPoint(bounds.min);
-            Vector3 topRight = cameraToZoom.WorldToViewportPoint(bounds.max);
-            float difference = Math.Max(topRight.x - bottomLeft.x, topRight.y - bottomLeft.y);
-
-            cameraToZoom.orthographicSize *= difference / minZoom.Value;
+            cameraToZoom.orthographicSize = FitSize;
         }
 
         #endregion
