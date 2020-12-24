@@ -33,7 +33,7 @@ namespace RobbiEditor.Migration
                     DoorColourHelper doorColourHelper = interactablesTx.GetChild(i).GetComponentInChildren<DoorColourHelper>();
                     int index = Array.FindIndex(DoorColours.COLOURS, x => x == doorColourHelper.Colour);
 
-                    if (index > 0 && index < newColours.Length)
+                    if (index >= 0 && index < newColours.Length)
                     {
                         doorColourHelper.Colour = newColours[index];
                         EditorUtility.SetDirty(gameObject);
