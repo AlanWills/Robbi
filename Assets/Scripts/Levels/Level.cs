@@ -43,7 +43,7 @@ namespace Robbi.Levels
 
         [Header("Level Elements")]
         [SerializeField]
-        public List<Door> doors = new List<Door>();
+        private List<Door> doors = new List<Door>();
         [SerializeField]
         private List<ScriptableObject> interactables = new List<ScriptableObject>();
         [SerializeField]
