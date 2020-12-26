@@ -3,6 +3,7 @@ using CelesteEditor.Tools;
 using Robbi.Levels;
 using RobbiEditor.Iterators;
 using RobbiEditor.Levels;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -15,8 +16,8 @@ namespace RobbiEditor.Tools
 
         public uint startLevelIndex = 0;
         public uint endLevelIndex = 0;
-        public TileBase originalTile;
-        public TileBase replacementTile;
+        public List<TileBase> originalTiles;
+        public List<TileBase> replacementTiles;
 
         #endregion
 
@@ -29,6 +30,12 @@ namespace RobbiEditor.Tools
 
         private void OnWizardCreate()
         {
+            Close();
+        }
+
+        // Use other button so we can keep the wizard open after doing something
+        private void OnWizardOtherButton()
+        {
             LogUtility.Clear();
 
             foreach (LevelFolder levelFolder in new LevelFolders())
@@ -38,13 +45,13 @@ namespace RobbiEditor.Tools
                     GameObject level = AssetDatabase.LoadAssetAtPath<GameObject>(levelFolder.PrefabPath);
                     LevelRoot levelRoot = level.GetComponent<LevelRoot>();
 
-                    ReplaceTileIn(levelRoot.collectablesTilemap);
-                    ReplaceTileIn(levelRoot.corridorsTilemap);
-                    ReplaceTileIn(levelRoot.destructibleCorridorsTilemap);
-                    ReplaceTileIn(levelRoot.doorsTilemap);
-                    ReplaceTileIn(levelRoot.exitsTilemap);
-                    ReplaceTileIn(levelRoot.interactablesTilemap);
-                    ReplaceTileIn(levelRoot.movementTilemap);
+                    ReplaceTilesIn(levelRoot.collectablesTilemap);
+                    ReplaceTilesIn(levelRoot.corridorsTilemap);
+                    ReplaceTilesIn(levelRoot.destructibleCorridorsTilemap);
+                    ReplaceTilesIn(levelRoot.doorsTilemap);
+                    ReplaceTilesIn(levelRoot.exitsTilemap);
+                    ReplaceTilesIn(levelRoot.interactablesTilemap);
+                    ReplaceTilesIn(levelRoot.movementTilemap);
                 }
                 else
                 {
@@ -56,40 +63,46 @@ namespace RobbiEditor.Tools
             AssetDatabase.Refresh();
         }
 
-        private void OnWizardOtherButton()
-        {
-            Close();
-        }
-
         #endregion
 
         #region Tile Replacement
 
-        private void ReplaceTileIn(Tilemap tilemap)
+        private void ReplaceTilesIn(Tilemap tilemap)
         {
-            if (!tilemap.ContainsTile(originalTile))
+            for (int i = 0; i < originalTiles.Count; ++i)
             {
-                Debug.LogFormat("Tile {0} not found in tilemap {1}.  Skipping...", originalTile.name, tilemap.name);
-                return;
-            }
-
-            BoundsInt tilemapBounds = tilemap.cellBounds;
-
-            for (int y = 0; y < tilemapBounds.size.y; ++y)
-            {
-                for (int x = 0; x < tilemapBounds.size.x; ++x)
+                TileBase originalTile = originalTiles[i];
+                if (originalTile == null)
                 {
-                    Vector3Int position = tilemapBounds.min;
-                    position.x += x;
-                    position.y += tilemapBounds.size.x * y;
+                    continue;
+                }
 
-                    if (tilemap.HasTile(position) && tilemap.GetTile(position) == originalTile)
+                if (!tilemap.ContainsTile(originalTile))
+                {
+                    Debug.LogFormat("Tile {0} not found in tilemap {1}.  Skipping...", originalTile.name, tilemap.name);
+                    continue;
+                }
+
+                BoundsInt tilemapBounds = tilemap.cellBounds;
+
+                for (int y = 0; y < tilemapBounds.size.y; ++y)
+                {
+                    for (int x = 0; x < tilemapBounds.size.x; ++x)
                     {
-                        tilemap.SetTile(position, replacementTile);
-                        EditorUtility.SetDirty(tilemap);
+                        Vector3Int position = tilemapBounds.min;
+                        position.x += x;
+                        position.y += y;
+
+                        if (tilemap.HasTile(position) && tilemap.GetTile(position) == originalTile)
+                        {
+                            tilemap.SetTile(position, replacementTiles[i]);
+                            EditorUtility.SetDirty(tilemap);
+                        }
                     }
                 }
             }
+
+            tilemap.RefreshAllTiles();
         }
 
         #endregion
@@ -99,7 +112,7 @@ namespace RobbiEditor.Tools
         [MenuItem("Robbi/Tools/Replace Tile")]
         public static void ShowReplaceTileWizard()
         {
-            ScriptableWizard.DisplayWizard<ReplaceTile>("Replace Tile", "Replace", "Close");
+            ScriptableWizard.DisplayWizard<ReplaceTile>("Replace Tile", "Close", "Replace");
         }
 
         #endregion
