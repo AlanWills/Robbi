@@ -19,13 +19,13 @@ namespace Robbi.Levels
         public Tilemap movementTilemap;
 
         [Header("Parameters")]
-        public TilemapValue corridorsTilemapValue;
-        public TilemapValue destructibleCorridorsTilemapValue;
-        public TilemapValue exitsTilemapValue;
-        public TilemapValue doorsTilemapValue;
-        public TilemapValue interactablesTilemapValue;
-        public TilemapValue collectablesTilemapValue;
-        public TilemapValue movementTilemapValue;
+        [SerializeField] public TilemapValue corridorsTilemapValue;
+        [SerializeField] public TilemapValue destructibleCorridorsTilemapValue;
+        [SerializeField] public TilemapValue exitsTilemapValue;
+        [SerializeField] public TilemapValue doorsTilemapValue;
+        [SerializeField] public TilemapValue interactablesTilemapValue;
+        [SerializeField] public TilemapValue collectablesTilemapValue;
+        [SerializeField] public TilemapValue movementTilemapValue;
 
         #endregion
 
