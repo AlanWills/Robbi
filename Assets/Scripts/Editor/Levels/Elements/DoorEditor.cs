@@ -13,63 +13,20 @@ namespace RobbiEditor.Levels.Elements
     {
         #region Menu Items
 
-        [MenuItem("Assets/Create/Robbi/Horizontal Doors/Green")]
-        public static void CreateHorizontalGreenDoor()
+        [MenuItem("Assets/Create/Robbi/Level/Door")]
+        public static void CreateDoor()
         {
-            CreateDoor("Door", GetSelectionObjectPath(), Direction.Horizontal, DoorState.Closed);
-        }
-
-        [MenuItem("Assets/Create/Robbi/Horizontal Doors/Red")]
-        public static void CreateHorizontalRedDoor()
-        {
-            CreateDoor("Door", GetSelectionObjectPath(), Direction.Horizontal, DoorState.Closed);
-        }
-
-        [MenuItem("Assets/Create/Robbi/Horizontal Doors/Blue")]
-        public static void CreateHorizontalBlueDoor()
-        {
-            CreateDoor("Door", GetSelectionObjectPath(), Direction.Horizontal, DoorState.Closed);
-        }
-
-        [MenuItem("Assets/Create/Robbi/Horizontal Doors/Grey")]
-        public static void CreateHorizontalGreyDoor()
-        {
-            CreateDoor("Door", GetSelectionObjectPath(), Direction.Horizontal, DoorState.Closed);
-        }
-
-        [MenuItem("Assets/Create/Robbi/Vertical Doors/Green")]
-        public static void CreateVerticalGreenDoor()
-        {
-            CreateDoor("Door", GetSelectionObjectPath(), Direction.Vertical, DoorState.Closed);
-        }
-
-        [MenuItem("Assets/Create/Robbi/Vertical Doors/Red")]
-        public static void CreateVerticalRedDoor()
-        {
-            CreateDoor("Door", GetSelectionObjectPath(), Direction.Vertical, DoorState.Closed);
-        }
-
-        [MenuItem("Assets/Create/Robbi/Vertical Doors/Blue")]
-        public static void CreateVerticalBlueDoor()
-        {
-            CreateDoor("Door", GetSelectionObjectPath(), Direction.Vertical, DoorState.Closed);
-        }
-
-        [MenuItem("Assets/Create/Robbi/Vertical Doors/Grey")]
-        public static void CreateVerticalGreyDoor()
-        {
-            CreateDoor("Door", GetSelectionObjectPath(), Direction.Vertical, DoorState.Closed);
+            CreateDoor("Door", GetSelectionObjectPath(), DoorState.Closed);
         }
 
         #endregion
 
         #region Utility
 
-        public static void CreateDoor(string name, string path, Direction direction, DoorState startingState)
+        public static void CreateDoor(string name, string path, DoorState startingState)
         {
             Door door = ScriptableObject.CreateInstance<Door>();
             door.name = name;
-            door.direction = direction;
             door.startingState = startingState;
 
             AssetUtility.CreateAsset(door, path);

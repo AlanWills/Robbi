@@ -12,7 +12,7 @@ namespace Robbi.Tilemaps
             if (tilemap.HasTile(position))
             {
                 DoorTile doorTile = tilemap.GetTile<DoorTile>(position);
-                return doorTile != null && doorTile.DoorState == Levels.Elements.DoorState.Closed;
+                return doorTile != null && doorTile.GetDoorState(position) == Levels.Elements.DoorState.Closed;
             }
 
             return false;

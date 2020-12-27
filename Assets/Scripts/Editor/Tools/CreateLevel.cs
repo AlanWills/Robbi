@@ -48,8 +48,7 @@ namespace RobbiEditor.Tools
         public uint startingFuel = 0;
 
         [Header("Doors")]
-        public List<Tuple<DoorColour, DoorState>> horizontalDoors = new List<Tuple<DoorColour, DoorState>>();
-        public List<Tuple<DoorColour, DoorState>> verticalDoors = new List<Tuple<DoorColour, DoorState>>();
+        public List<Tuple<DoorColour, DoorState>> doors = new List<Tuple<DoorColour, DoorState>>();
 
         [Header("Interactables")]
         public List<InteractableMarker> interactableMarkers = new List<InteractableMarker>();
@@ -226,7 +225,7 @@ namespace RobbiEditor.Tools
 
             string levelFolderPath = string.Format("{0}{1}", levelInfo.destinationFolder, LevelFolderName);
             
-            if (levelInfo.horizontalDoors.Count > 0 || levelInfo.verticalDoors.Count > 0)
+            if (levelInfo.doors.Count > 0)
             {
                 AssetUtility.CreateFolder(levelFolderPath, DOORS_NAME);
             }
@@ -322,14 +321,9 @@ namespace RobbiEditor.Tools
         {
             string doorsPath = string.Format("{0}{1}", LevelFolderFullPath, DOORS_NAME);
 
-            foreach (Tuple<DoorColour, DoorState> doorInfo in levelInfo.horizontalDoors)
+            foreach (Tuple<DoorColour, DoorState> doorInfo in levelInfo.doors)
             {
-                DoorEditor.CreateDoor(string.Format("Level{0}Horizontal{1}Door", levelInfo.levelIndex, doorInfo.Item1), doorsPath, Direction.Horizontal, doorInfo.Item2);
-            }
-
-            foreach (Tuple<DoorColour, DoorState> doorInfo in levelInfo.verticalDoors)
-            {
-                DoorEditor.CreateDoor(string.Format("Level{0}Vertical{1}Door", levelInfo.levelIndex, doorInfo.Item1), doorsPath, Direction.Vertical, doorInfo.Item2);
+                DoorEditor.CreateDoor(string.Format("Level{0}{1}Door", levelInfo.levelIndex, doorInfo.Item1), doorsPath, doorInfo.Item2);
             }
         }
 

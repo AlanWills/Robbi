@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -8,6 +9,14 @@ namespace Celeste.Tilemaps
     [CreateAssetMenu(fileName = "New Complex Animated Tile", menuName = "Celeste/Tiles/Complex Animated Tile")]
     public class ComplexAnimatedTile : TileBase
     {
+        protected class ComplexAnimatedTileInstance
+        {
+            public bool reverse = false;
+            public int currentFrame = 0;
+            public float currentFrameTime = 0;
+            public bool isPlaying = false;
+        }
+
         /// <summary>
         /// The List of Sprites set for the Animated Tile.
         /// This will be played in sequence.
@@ -24,21 +33,47 @@ namespace Celeste.Tilemaps
         public Tile.ColliderType m_TileColliderType;
 
         public int previewIndex = 0;
-
         public bool loop = true;
         public bool playImmediately = true;
 
-        protected bool reverse = false;
+        private Dictionary<Vector3Int, ComplexAnimatedTileInstance> instances = new Dictionary<Vector3Int, ComplexAnimatedTileInstance>();
 
-        private int currentFrame = 0;
-        private float currentFrameTime = 0;
-        private bool isPlaying = true;
-
-        private void Awake()
+        protected ComplexAnimatedTileInstance AddInstance(Vector3Int position)
         {
-            isPlaying = playImmediately;
+            if (instances.TryGetValue(position, out ComplexAnimatedTileInstance instance))
+            {
+                instance.currentFrame = 0;
+                instance.currentFrameTime = 0;
+                instance.isPlaying = playImmediately;
+                instance.reverse = false;
+            }
+            else
+            {
+                instance = CreateInstance();
+                instances.Add(position, instance);
+            }
+            
+            return instance;
         }
-        
+
+        protected ComplexAnimatedTileInstance GetInstance(Vector3Int position)
+        {
+            if (instances.TryGetValue(position, out ComplexAnimatedTileInstance instance))
+            {
+                return instance;
+            }
+
+            return null;
+        }
+
+        protected virtual ComplexAnimatedTileInstance CreateInstance()
+        {
+            ComplexAnimatedTileInstance instance = new ComplexAnimatedTileInstance();
+            instance.isPlaying = playImmediately;
+
+            return instance;
+        }
+
         /// <summary>
         /// Retrieves any tile rendering data from the scripted tile.
         /// </summary>
@@ -50,60 +85,112 @@ namespace Celeste.Tilemaps
             tileData.transform = Matrix4x4.identity;
             tileData.color = Color.white;
 
+            ComplexAnimatedTileInstance instance;
+            if (!instances.TryGetValue(position, out instance))
+            {
+                Debug.LogAssertionFormat("No instance found for position {0} and animated tile {1}", position, name);
+                return;
+            }
+
             if (m_AnimatedSprites != null && m_AnimatedSprites.Length > 0)
             {
-                tileData.sprite = m_AnimatedSprites[currentFrame];
+                tileData.sprite = m_AnimatedSprites[instance.currentFrame];
                 tileData.colliderType = m_TileColliderType;
 
-                if (isPlaying)
+                if (instance.isPlaying)
                 {
                     float timePerFrame = 1 / m_Speed;
-                    currentFrameTime += Time.deltaTime;
+                    instance.currentFrameTime += Time.deltaTime;
 
-                    while (currentFrameTime > timePerFrame && isPlaying)
+                    while (instance.currentFrameTime > timePerFrame && instance.isPlaying)
                     {
-                        currentFrameTime -= timePerFrame;
+                        instance.currentFrameTime -= timePerFrame;
 
-                        if (reverse)
+                        if (instance.reverse)
                         {
-                            --currentFrame;
-                            currentFrame = loop ? (int)Mathf.Repeat(currentFrame, m_AnimatedSprites.Length) : Math.Max(currentFrame, 0);
-                            isPlaying = loop || currentFrame > 0;
+                            --instance.currentFrame;
+                            instance.currentFrame = loop ? (int)Mathf.Repeat(instance.currentFrame, m_AnimatedSprites.Length) : Math.Max(instance.currentFrame, 0);
+                            instance.isPlaying = loop || instance.currentFrame > 0;
                         }
                         else
                         {
-                            ++currentFrame;
-                            currentFrame = loop ? currentFrame % m_AnimatedSprites.Length : Math.Min(currentFrame, m_AnimatedSprites.Length - 1);
-                            isPlaying = loop || currentFrame < m_AnimatedSprites.Length - 1;
+                            ++instance.currentFrame;
+                            instance.currentFrame = loop ? instance.currentFrame % m_AnimatedSprites.Length : Math.Min(instance.currentFrame, m_AnimatedSprites.Length - 1);
+                            instance.isPlaying = loop || instance.currentFrame < m_AnimatedSprites.Length - 1;
                         }
                     }
                 }
                 else if (Application.isEditor && !Application.isPlaying)
                 {
-                    currentFrame = previewIndex;
+                    instance.currentFrame = previewIndex;
                     tileData.sprite = m_AnimatedSprites[previewIndex];
                 }
             }
         }
 
-        public void Play()
+        public void Play(Vector3Int position)
         {
-            isPlaying = true;
+            if (instances.TryGetValue(position, out ComplexAnimatedTileInstance instance))
+            {
+                instance.isPlaying = true;
+            }
+            else
+            {
+                Debug.LogAssertionFormat("No instance found for position {0} and animated tile {1}", position, name);
+                return;
+            }
         }
 
-        public void Stop()
+        public void Stop(Vector3Int position)
         {
-            isPlaying = false;
+            if (instances.TryGetValue(position, out ComplexAnimatedTileInstance instance))
+            {
+                instance.isPlaying = false;
+            }
+            else
+            {
+                Debug.LogAssertionFormat("No instance found for position {0} and animated tile {1}", position, name);
+                return;
+            }
         }
 
-        public void SetAtStart()
+        public void SetAtStart(Vector3Int position)
         {
-            currentFrame = 0;
+            if (instances.TryGetValue(position, out ComplexAnimatedTileInstance instance))
+            {
+                instance.currentFrame = 0;
+            }
+            else
+            {
+                Debug.LogAssertionFormat("No instance found for position {0} and animated tile {1}", position, name);
+                return;
+            }
         }
 
-        public void SetAtEnd()
+        public void SetAtEnd(Vector3Int position)
         {
-            currentFrame = m_AnimatedSprites.Length - 1;
+            if (instances.TryGetValue(position, out ComplexAnimatedTileInstance instance))
+            {
+                instance.currentFrame = m_AnimatedSprites.Length - 1;
+            }
+            else
+            {
+                Debug.LogAssertionFormat("No instance found for position {0} and animated tile {1}", position, name);
+                return;
+            }
+        }
+
+        public void SetReversed(Vector3Int position, bool reversed)
+        {
+            if (instances.TryGetValue(position, out ComplexAnimatedTileInstance instance))
+            {
+                instance.reverse = reversed;
+            }
+            else
+            {
+                Debug.LogAssertionFormat("No instance found for position {0} and animated tile {1}", position, name);
+                return;
+            }
         }
     }
 }

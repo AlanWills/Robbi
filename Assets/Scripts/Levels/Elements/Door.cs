@@ -10,12 +10,6 @@ using UnityEngine.Tilemaps;
 
 namespace Robbi.Levels.Elements
 {
-    public enum Direction
-    {
-        Horizontal,
-        Vertical
-    }
-
     public enum DoorState
     { 
         Opened,
@@ -29,7 +23,6 @@ namespace Robbi.Levels.Elements
         public DoorState DoorState { get; private set; }
 
         public Vector3Int position;
-        public Direction direction;
         public DoorState startingState = DoorState.Closed;
 
         #endregion
@@ -43,7 +36,7 @@ namespace Robbi.Levels.Elements
             DoorTile doorTile = tilemap.GetTile<DoorTile>(position);
             if (doorTile != null)
             {
-                doorTile.Initialize(DoorState);
+                doorTile.Initialize(position, DoorState);
                 tilemap.RefreshTile(position);
             }
             else
@@ -63,7 +56,7 @@ namespace Robbi.Levels.Elements
             DoorTile doorTile = tilemap.GetTile<DoorTile>(position);
             if (doorTile != null)
             {
-                doorTile.Open();
+                doorTile.Open(position);
                 tilemap.RefreshTile(position);
             }
             else
@@ -79,7 +72,7 @@ namespace Robbi.Levels.Elements
             DoorTile doorTile = tilemap.GetTile<DoorTile>(position);
             if (doorTile != null)
             {
-                doorTile.Close();
+                doorTile.Close(position);
                 tilemap.RefreshTile(position);
             }
             else

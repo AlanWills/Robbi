@@ -11,11 +11,10 @@ namespace Robbi.Tilemaps.Tiles
     [CreateAssetMenu(fileName = "New Door Tile", menuName = "Robbi/Tiles/Door Tile")]
     public class DoorTile : ComplexAnimatedTile
     {
-        #region Properties and Fields
-        
-        public DoorState DoorState { get; private set; } = DoorState.Closed;
-
-        #endregion
+        protected class DoorTileInstance : ComplexAnimatedTileInstance
+        {
+            public DoorState doorState = DoorState.Closed;
+        }
 
         public DoorTile()
         {
@@ -23,43 +22,74 @@ namespace Robbi.Tilemaps.Tiles
             playImmediately = false;
         }
 
-        public void Initialize(DoorState doorState)
+        public void Initialize(Vector3Int position, DoorState doorState)
         {
-            DoorState = doorState;
-            reverse = DoorState == DoorState.Closed;
+            DoorTileInstance instance = AddInstance(position) as DoorTileInstance;
+            instance.doorState = doorState;
+            
+            SetReversed(position, doorState == DoorState.Closed);
 
-            switch (DoorState)
+            switch (doorState)
             {
                 case DoorState.Opened:
-                    SetAtEnd();
+                    SetAtEnd(position);
                     return;
 
                 case DoorState.Closed:
-                    SetAtStart();
+                    SetAtStart(position);
                     return;
 
                 default:
-                    Debug.LogAssertionFormat("Unhandled DoorState {0} in DoorTile {1}", DoorState, name);
+                    Debug.LogAssertionFormat("Unhandled DoorState {0} in DoorTile {1}", doorState, name);
                     return;
             }
         }
 
-        #region Open/Close Methods
-
-        public void Open()
+        protected override ComplexAnimatedTileInstance CreateInstance()
         {
-            DoorState = DoorState.Opened;
-            reverse = false;
-            SetAtStart();
-            Play();
+            DoorTileInstance instance = new DoorTileInstance();
+            instance.isPlaying = playImmediately;
+
+            return instance;
         }
 
-        public void Close()
+        #region Open/Close Methods
+
+        public void Open(Vector3Int position)
         {
-            DoorState = DoorState.Closed;
-            reverse = true;
-            SetAtEnd();
-            Play();
+            DoorTileInstance instance = GetInstance(position) as DoorTileInstance;
+            if (instance != null)
+            {
+                instance.doorState = DoorState.Opened;
+            }
+            
+            SetReversed(position, false);
+            SetAtStart(position);
+            Play(position);
+        }
+
+        public void Close(Vector3Int position)
+        {
+            DoorTileInstance instance = GetInstance(position) as DoorTileInstance;
+            if (instance != null)
+            {
+                instance.doorState = DoorState.Closed;
+            }
+            
+            SetReversed(position, true);
+            SetAtEnd(position);
+            Play(position);
+        }
+
+        public DoorState GetDoorState(Vector3Int position)
+        {
+            DoorTileInstance instance = GetInstance(position) as DoorTileInstance;
+            if (instance != null)
+            {
+                return instance.doorState;
+            }
+
+            return DoorState.Opened;
         }
 
         #endregion
