@@ -85,6 +85,17 @@ namespace Celeste.Tilemaps
             tileData.transform = Matrix4x4.identity;
             tileData.color = Color.white;
 
+            if (m_AnimatedSprites == null || m_AnimatedSprites.Length == 0)
+            {
+                return;
+            }
+
+            if (Application.isEditor && !Application.isPlaying)
+            {
+                tileData.sprite = m_AnimatedSprites[previewIndex];
+                return;
+            }
+
             ComplexAnimatedTileInstance instance;
             if (!instances.TryGetValue(position, out instance))
             {
@@ -92,38 +103,30 @@ namespace Celeste.Tilemaps
                 return;
             }
 
-            if (m_AnimatedSprites != null && m_AnimatedSprites.Length > 0)
+            tileData.sprite = m_AnimatedSprites[instance.currentFrame];
+            tileData.colliderType = m_TileColliderType;
+
+            if (instance.isPlaying)
             {
-                tileData.sprite = m_AnimatedSprites[instance.currentFrame];
-                tileData.colliderType = m_TileColliderType;
+                float timePerFrame = 1 / m_Speed;
+                instance.currentFrameTime += Time.deltaTime;
 
-                if (instance.isPlaying)
+                while (instance.currentFrameTime > timePerFrame && instance.isPlaying)
                 {
-                    float timePerFrame = 1 / m_Speed;
-                    instance.currentFrameTime += Time.deltaTime;
+                    instance.currentFrameTime -= timePerFrame;
 
-                    while (instance.currentFrameTime > timePerFrame && instance.isPlaying)
+                    if (instance.reverse)
                     {
-                        instance.currentFrameTime -= timePerFrame;
-
-                        if (instance.reverse)
-                        {
-                            --instance.currentFrame;
-                            instance.currentFrame = loop ? (int)Mathf.Repeat(instance.currentFrame, m_AnimatedSprites.Length) : Math.Max(instance.currentFrame, 0);
-                            instance.isPlaying = loop || instance.currentFrame > 0;
-                        }
-                        else
-                        {
-                            ++instance.currentFrame;
-                            instance.currentFrame = loop ? instance.currentFrame % m_AnimatedSprites.Length : Math.Min(instance.currentFrame, m_AnimatedSprites.Length - 1);
-                            instance.isPlaying = loop || instance.currentFrame < m_AnimatedSprites.Length - 1;
-                        }
+                        --instance.currentFrame;
+                        instance.currentFrame = loop ? (int)Mathf.Repeat(instance.currentFrame, m_AnimatedSprites.Length) : Math.Max(instance.currentFrame, 0);
+                        instance.isPlaying = loop || instance.currentFrame > 0;
                     }
-                }
-                else if (Application.isEditor && !Application.isPlaying)
-                {
-                    instance.currentFrame = previewIndex;
-                    tileData.sprite = m_AnimatedSprites[previewIndex];
+                    else
+                    {
+                        ++instance.currentFrame;
+                        instance.currentFrame = loop ? instance.currentFrame % m_AnimatedSprites.Length : Math.Min(instance.currentFrame, m_AnimatedSprites.Length - 1);
+                        instance.isPlaying = loop || instance.currentFrame < m_AnimatedSprites.Length - 1;
+                    }
                 }
             }
         }

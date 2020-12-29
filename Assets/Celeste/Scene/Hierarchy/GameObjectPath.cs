@@ -31,7 +31,7 @@ namespace Celeste.Hierarchy
 
                 if (gameObject == null)
                 {
-                    gameObject = GameObjectUtils.FindGameObject(splitName);
+                    gameObject = GameObjectUtils.FindGameObject(splitName, FindConstraint.ActiveInHierarchy);
                 }
 
                 return gameObject;

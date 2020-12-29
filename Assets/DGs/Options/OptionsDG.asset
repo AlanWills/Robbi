@@ -21,7 +21,7 @@ MonoBehaviour:
     values:
     - _fieldName: value
       _node: {fileID: -9015667971797496688}
-      _typeQualifiedName: Robbi.Parameters.BoolValue, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: Celeste.Parameters.BoolValue, Celeste.Parameters, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
     values:
     - _fieldName: value
       _node: {fileID: -8635409425661878237}
-      _typeQualifiedName: Robbi.Parameters.BoolValue, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: Celeste.Parameters.BoolValue, Celeste.Parameters, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 0
@@ -172,7 +172,8 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: MusicEnabledButton
+  childName: Options.MusicEnabledButton
+  findConstraint: 2
   cache: 1
   child: {fileID: 0}
 --- !u!114 &-6482623537121346719
@@ -188,7 +189,7 @@ MonoBehaviour:
   m_Name: Active Controller
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 464.03555, y: -194.75836}
+  position: {x: 472, y: -200}
   ports:
     keys:
     - isActive
@@ -241,7 +242,7 @@ MonoBehaviour:
     values:
     - _fieldName: value
       _node: {fileID: -6051556970229525375}
-      _typeQualifiedName: Robbi.Parameters.BoolValue, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: Celeste.Parameters.BoolValue, Celeste.Parameters, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 0
@@ -305,7 +306,8 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: FastMovementSpeed
+  childName: Options.FastMovementSpeed
+  findConstraint: 2
   cache: 1
   child: {fileID: 0}
 --- !u!114 &-5439309702140673368
@@ -348,7 +350,8 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: BatterySaver
+  childName: Options.BatterySaver
+  findConstraint: 2
   cache: 1
   child: {fileID: 0}
 --- !u!114 &-5021095748517815449
@@ -372,7 +375,7 @@ MonoBehaviour:
     values:
     - _fieldName: value
       _node: {fileID: -5021095748517815449}
-      _typeQualifiedName: Robbi.Parameters.FloatValue, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: Celeste.Parameters.FloatValue, Celeste.Parameters, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 0
@@ -496,7 +499,8 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: FastestMovementSpeed
+  childName: Options.FastestMovementSpeed
+  findConstraint: 2
   cache: 1
   child: {fileID: 0}
 --- !u!114 &-3452680554159591902
@@ -568,6 +572,48 @@ MonoBehaviour:
     type: 3}
   condition: 0
   value: {fileID: -754178057488868364, guid: f0b2a23a6696cbe4ca81e5866b3dc1e5, type: 3}
+--- !u!114 &-3431835863340395544
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 952fb20862a894d41a25bf411258858a, type: 3}
+  m_Name: Bool Reader
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -56, y: -456}
+  ports:
+    keys:
+    - value
+    - output
+    values:
+    - _fieldName: value
+      _node: {fileID: -3431835863340395544}
+      _typeQualifiedName: Celeste.Parameters.BoolValue, Celeste.Parameters, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: -3431835863340395544}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: isActive
+        node: {fileID: -2042379528015431152}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: {fileID: 11400000, guid: f3b96f94fb812b047872d41c4544c7a7, type: 2}
+  output: 0
 --- !u!114 &-2878600090681680075
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -637,6 +683,95 @@ MonoBehaviour:
     type: 3}
   condition: 0
   value: {fileID: -935057871882052030, guid: f0b2a23a6696cbe4ca81e5866b3dc1e5, type: 3}
+--- !u!114 &-2407939895763305487
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dcd5c5d1aae7744e8a0935fdfdfdabc, type: 3}
+  m_Name: Find Child
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 200, y: -344}
+  ports:
+    keys:
+    - childName
+    - child
+    values:
+    - _fieldName: childName
+      _node: {fileID: -2407939895763305487}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: child
+      _node: {fileID: -2407939895763305487}
+      _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: gameObject
+        node: {fileID: -2042379528015431152}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  childName: Options.OptionsUI
+  findConstraint: 2
+  cache: 1
+  child: {fileID: 0}
+--- !u!114 &-2042379528015431152
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95601629c5903884e9b742623c69003f, type: 3}
+  m_Name: Active Controller
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 200, y: -456}
+  ports:
+    keys:
+    - isActive
+    - gameObject
+    values:
+    - _fieldName: isActive
+      _node: {fileID: -2042379528015431152}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: output
+        node: {fileID: -3431835863340395544}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: gameObject
+      _node: {fileID: -2042379528015431152}
+      _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: child
+        node: {fileID: -2407939895763305487}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isActive: 0
+  gameObject: {fileID: 0}
 --- !u!114 &-1024152484244112439
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -722,7 +857,8 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: MusicDisabledButton
+  childName: Options.MusicDisabledButton
+  findConstraint: 2
   cache: 1
   child: {fileID: 0}
 --- !u!114 &11400000
@@ -769,6 +905,9 @@ MonoBehaviour:
   - {fileID: 6095596557558535645}
   - {fileID: -1024152484244112439}
   - {fileID: 2352840973251434034}
+  - {fileID: -3431835863340395544}
+  - {fileID: -2407939895763305487}
+  - {fileID: -2042379528015431152}
 --- !u!114 &209580283763259965
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -809,7 +948,8 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: NormalMovementSpeed
+  childName: Options.NormalMovementSpeed
+  findConstraint: 2
   cache: 1
   child: {fileID: 0}
 --- !u!114 &841072417534210791
@@ -870,7 +1010,7 @@ MonoBehaviour:
   m_Name: Not
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 216, y: -72}
+  position: {x: 200, y: -72}
   ports:
     keys:
     - input
@@ -942,7 +1082,8 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: GraphicsSettings
+  childName: Options.GraphicsSettings
+  findConstraint: 2
   cache: 1
   child: {fileID: 0}
 --- !u!114 &2739218000631943940
@@ -1086,7 +1227,8 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: SFXDisabledButton
+  childName: Options.SFXDisabledButton
+  findConstraint: 2
   cache: 1
   child: {fileID: 0}
 --- !u!114 &6095596557558535645
@@ -1110,7 +1252,7 @@ MonoBehaviour:
     values:
     - _fieldName: value
       _node: {fileID: 6095596557558535645}
-      _typeQualifiedName: Robbi.Parameters.BoolValue, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: Celeste.Parameters.BoolValue, Celeste.Parameters, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 0
@@ -1354,7 +1496,8 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: SFXEnabledButton
+  childName: Options.SFXEnabledButton
+  findConstraint: 2
   cache: 1
   child: {fileID: 0}
 --- !u!114 &8038487218338003320

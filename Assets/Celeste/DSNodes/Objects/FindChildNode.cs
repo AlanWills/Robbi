@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Celeste.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,7 @@ namespace Celeste.DS.Nodes.Objects
         [Input]
         public string childName;
 
+        public FindConstraint findConstraint = FindConstraint.ActiveInHierarchy;
         public bool cache = true;
 
         [Output]
@@ -35,8 +37,8 @@ namespace Celeste.DS.Nodes.Objects
             if (!cache || foundChild == null)
             {
                 string _childName = GetInputValue(nameof(childName), childName);
-                Transform childTransform = GameObject.transform.Find(_childName);
-                foundChild = childTransform == null ? GameObject.Find(_childName) : childTransform.gameObject;
+                string[] splitChildName = _childName.Split('.');
+                foundChild = GameObjectUtils.FindGameObject(splitChildName, findConstraint);
             }
 
             Debug.AssertFormat(foundChild != null, "Could not find child {0}", childName);

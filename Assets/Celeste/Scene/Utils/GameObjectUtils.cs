@@ -8,29 +8,36 @@ using UnityEngine.UI;
 
 namespace Celeste.Utils
 {
+    public enum FindConstraint
+    {
+        ActiveInHierarchy,
+        ActiveSelf,
+        NoConstraint
+    }
+
     public static class GameObjectUtils
     {
-        public static GameObject FindGameObject(string[] splitName)
+        public static GameObject FindGameObject(string[] splitName, FindConstraint findConstraint)
         {
             GameObject gameObject = GameObject.Find(splitName[0]);
 
-            if (gameObject != null && gameObject.activeInHierarchy)
+            if (gameObject != null && FindConstraintMet(gameObject, findConstraint))
             {
                 for (int i = 1; i < splitName.Length && gameObject != null; ++i)
                 {
-                    gameObject = FindGameObjectRecursive(gameObject.transform, splitName[i]);
+                    gameObject = FindGameObjectRecursive(gameObject.transform, splitName[i], findConstraint);
                 }
             }
 
             return gameObject;
         }
 
-        public static GameObject FindGameObjectRecursive(Transform transform, string childName)
+        public static GameObject FindGameObjectRecursive(Transform transform, string childName, FindConstraint findConstraint)
         {
             for (int i = 0; i < transform.childCount; ++i)
             {
                 Transform child = transform.GetChild(i);
-                if (child.name == childName && transform.gameObject.activeInHierarchy)
+                if (child.name == childName && FindConstraintMet(child.gameObject, findConstraint))
                 {
                     return child.gameObject;
                 }
@@ -38,8 +45,8 @@ namespace Celeste.Utils
 
             for (int i = 0; i < transform.childCount; ++i)
             {
-                GameObject child = FindGameObjectRecursive(transform.GetChild(i), childName);
-                if (child != null && child.activeInHierarchy)
+                GameObject child = FindGameObjectRecursive(transform.GetChild(i), childName, findConstraint);
+                if (child != null)
                 {
                     return child;
                 }
@@ -65,6 +72,25 @@ namespace Celeste.Utils
             }
             
             Debug.LogFormat("No clickable component found on GameObject {0}", gameObject.name);
+        }
+
+        private static bool FindConstraintMet(GameObject gameObject, FindConstraint findConstraint)
+        {
+            switch (findConstraint)
+            {
+                case FindConstraint.ActiveInHierarchy:
+                    return gameObject.activeInHierarchy;
+
+                case FindConstraint.ActiveSelf:
+                    return gameObject.activeSelf;
+
+                case FindConstraint.NoConstraint:
+                    return true;
+
+                default:
+                    Debug.LogErrorFormat("Unhandled FindConstraint: {0}", findConstraint);
+                    return false;
+            }
         }
     }
 }
