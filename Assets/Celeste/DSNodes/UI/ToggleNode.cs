@@ -28,7 +28,7 @@ namespace Celeste.DS.Nodes.UI
         public void Update()
         {
             Toggle _toggle = GetToggle();
-            if (_toggle != null)
+            if (_toggle != null && _toggle.isActiveAndEnabled)
             {
                 _toggle.isOn = GetInputValue(nameof(isChecked), isChecked);
             }
