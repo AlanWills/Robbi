@@ -1,24 +1,28 @@
-﻿using Robbi.FSM;
+﻿using Celeste.FSM;
+using CelesteEditor.Validation.Interfaces;
 using Robbi.Levels.Elements;
-using Robbi.Utils;
-using RobbiEditor.Validation.FSM;
-using RobbiEditor.Validation.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEditor;
-using UnityEngine;
 
 namespace RobbiEditor.Validation
 {
     public static class ValidateInteractables
     {
-        [MenuItem("Robbi/Validation/Validate Interactables")]
-        public static void MenuItem()
+        [MenuItem("Robbi/Validation/Interactables/Find")]
+        public static void FindMenuItem()
         {
-            Validate.MenuItem<Interactable>();
+            Validate.Find<FSMGraph>();
+        }
+
+        [MenuItem("Robbi/Validation/Interactables/Show")]
+        public static void ShowMenuItem()
+        {
+            Validate.Show<FSMGraph>();
+        }
+
+        [MenuItem("Robbi/Validation/Interactables/Run")]
+        public static void RunMenuItem()
+        {
+            Validate.RunExit<Interactable>();
         }
     }
 }

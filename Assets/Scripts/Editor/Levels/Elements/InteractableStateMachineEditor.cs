@@ -1,14 +1,11 @@
-﻿using Robbi.Events.Levels.Elements;
+﻿using CelesteEditor;
+using CelesteEditor.Popups;
+using Robbi.Events.Levels.Elements;
 using Robbi.Levels.Elements;
 using Robbi.Levels.Modifiers;
 using RobbiEditor.Constants;
-using RobbiEditor.Popups;
-using RobbiEditor.Utils;
+using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -27,6 +24,7 @@ namespace RobbiEditor.Levels.Elements
 
         private SerializedProperty statesProperty;
         private InteractableStateMachine copyFrom;
+        private List<Editor> interactableEditors = new List<Editor>();
 
         #endregion
 
@@ -35,6 +33,12 @@ namespace RobbiEditor.Levels.Elements
         private void OnEnable()
         {
             statesProperty = serializedObject.FindProperty("states");
+            
+            interactableEditors.Clear();
+            for (int i = 0; i < InteractableStateMachine.NumStates; ++i)
+            {
+                AddStateEditor(InteractableStateMachine.GetState(i));
+            }
         }
 
         #endregion
@@ -47,22 +51,28 @@ namespace RobbiEditor.Levels.Elements
 
             DrawPropertiesExcluding(serializedObject, "m_Script", "states");
 
-            if (GUILayout.Button("Create Toggle Switch"))
+            EditorGUI.BeginChangeCheck();
+            int selectedColour = EditorGUILayout.Popup("Create Toggle", 0, DoorColours.COLOUR_NAMES);
+            if (EditorGUI.EndChangeCheck())
             {
-                InteractableStateMachine stateMachine = InteractableStateMachine;
+                Tuple<string, string> tileFiles = TileFiles.TOGGLE_TILES[selectedColour];
 
                 {
-                    Interactable toggleLeft = stateMachine.AddState("Toggle Left");
-                    toggleLeft.InteractedTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.TOGGLE_LEFT_TILE);
-                    RaiseDoorEvent toggleDoorLeft = toggleLeft.AddInteractedModifier<RaiseDoorEvent>();
+                    Interactable toggleUp = InteractableStateMachine.AddState("Toggle Up");
+                    toggleUp.InteractedTile = AssetDatabase.LoadAssetAtPath<Tile>(tileFiles.Item1);
+                    ToggleDoor toggleDoorLeft = toggleUp.AddInteractedModifier<ToggleDoor>();
                     toggleDoorLeft.doorEvent = AssetDatabase.LoadAssetAtPath<DoorEvent>(EventFiles.DOOR_TOGGLED_EVENT);
+                    
+                    AddStateEditor(toggleUp);
                 }
 
                 {
-                    Interactable toggleRight = stateMachine.AddState("Toggle Right");
-                    toggleRight.InteractedTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.TOGGLE_RIGHT_TILE);
-                    RaiseDoorEvent toggleDoorRight = toggleRight.AddInteractedModifier<RaiseDoorEvent>();
+                    Interactable toggleDown = InteractableStateMachine.AddState("Toggle Down");
+                    toggleDown.InteractedTile = AssetDatabase.LoadAssetAtPath<Tile>(tileFiles.Item2);
+                    ToggleDoor toggleDoorRight = toggleDown.AddInteractedModifier<ToggleDoor>();
                     toggleDoorRight.doorEvent = AssetDatabase.LoadAssetAtPath<DoorEvent>(EventFiles.DOOR_TOGGLED_EVENT);
+
+                    AddStateEditor(toggleDown);
                 }
             }
 
@@ -77,7 +87,7 @@ namespace RobbiEditor.Levels.Elements
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.Space();
-            EditorGUILayout.LabelField("States", RobbiEditorStyles.BoldLabel);
+            EditorGUILayout.LabelField("States", CelesteEditorStyles.BoldLabel);
             {
                 ++EditorGUI.indentLevel;
 
@@ -87,11 +97,12 @@ namespace RobbiEditor.Levels.Elements
                     
                     EditorGUILayout.BeginHorizontal();
                     {
-                        EditorGUILayout.LabelField(string.Format("{0} (State Index {1})", state.name, i - 1), RobbiEditorStyles.BoldLabel);
+                        EditorGUILayout.LabelField(string.Format("{0} (State Index {1})", state.name, i - 1), CelesteEditorStyles.BoldLabel);
 
                         if (GUILayout.Button("Remove", GUILayout.ExpandWidth(false)))
                         {
                             InteractableStateMachine.RemoveState(i - 1);
+                            interactableEditors.RemoveAt(i - 1);
                         }
                     }
                     EditorGUILayout.EndHorizontal();
@@ -100,21 +111,20 @@ namespace RobbiEditor.Levels.Elements
                     {
                         ++EditorGUI.indentLevel;
 
-                        Editor interactableEditor = Editor.CreateEditor(state);
-                        interactableEditor.OnInspectorGUI();
+                        interactableEditors[i - 1].OnInspectorGUI();
 
                         --EditorGUI.indentLevel;
                     }
                     EditorGUILayout.Space();
 
-                    RobbiEditorGUILayout.HorizontalLine();
+                    CelesteEditorGUILayout.HorizontalLine();
                 }
 
                 if (GUILayout.Button("Add State", GUILayout.ExpandWidth(false)))
                 {
                     TextInputPopup.Display("New State...", (string stateName) =>
                     {
-                        InteractableStateMachine.AddState(stateName);
+                        AddStateEditor(InteractableStateMachine.AddState(stateName));
                     });
                 }
 
@@ -148,13 +158,17 @@ namespace RobbiEditor.Levels.Elements
 
             for (int i = 0; i < original.NumInteractedModifiers; ++i)
             {
-                RaiseDoorEvent raiseDoorEvent = original.GetInteractedModifier(i) as RaiseDoorEvent;
-                RaiseDoorEvent copyModifier = copyTo.AddInteractedModifier(raiseDoorEvent.GetType()) as RaiseDoorEvent;
-                copyModifier.door = raiseDoorEvent.door;
-                copyModifier.doorEvent = raiseDoorEvent.doorEvent;
+                LevelModifier levelModifier = original.GetInteractedModifier(i);
+                LevelModifier copyModifier = copyTo.AddInteractedModifier(levelModifier.GetType());
+                copyModifier.CopyFrom(levelModifier);
 
                 EditorUtility.SetDirty(copyModifier);
             }
+        }
+
+        private void AddStateEditor(Interactable state)
+        {
+            interactableEditors.Add(Editor.CreateEditor(state));
         }
 
         #endregion

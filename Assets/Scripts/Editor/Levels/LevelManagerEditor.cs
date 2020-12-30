@@ -1,5 +1,5 @@
 ﻿using Robbi.Levels;
-using Robbi.Parameters;
+using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
+using CelesteEditor;
 
 namespace RobbiEditor.Levels
 {
@@ -43,7 +44,7 @@ namespace RobbiEditor.Levels
             if (latestAvailableLevelProperty.objectReferenceValue != null)
             {
                 UIntValue latestLevelValue = latestAvailableLevelProperty.objectReferenceValue as UIntValue;
-                latestLevelValue.DefaultValue = RobbiEditorGUILayout.UIntField(GUIContent.none, latestLevelValue.DefaultValue);
+                latestLevelValue.DefaultValue = CelesteEditorGUILayout.UIntField(GUIContent.none, latestLevelValue.DefaultValue);
             }
 
             EditorGUILayout.EndHorizontal();

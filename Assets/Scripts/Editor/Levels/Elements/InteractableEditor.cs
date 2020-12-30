@@ -1,6 +1,6 @@
 ﻿using Robbi.Levels.Elements;
 using Robbi.Levels.Modifiers;
-using RobbiEditor.Utils;
+using CelesteEditor.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
+using CelesteEditor;
 
 namespace RobbiEditor.Levels.Elements
 {
@@ -62,7 +63,7 @@ namespace RobbiEditor.Levels.Elements
             EditorGUILayout.Space();
             EditorGUILayout.BeginHorizontal();
 
-            EditorGUILayout.LabelField("Modifiers", RobbiEditorStyles.BoldLabel);
+            EditorGUILayout.LabelField("Modifiers", CelesteEditorStyles.BoldLabel);
 
             if (isMainAsset && GUILayout.Button("Apply Hide Flags", GUILayout.ExpandWidth(false)))
             {
@@ -81,21 +82,20 @@ namespace RobbiEditor.Levels.Elements
 
                     EditorGUILayout.BeginHorizontal();
                     {
-                        EditorGUILayout.LabelField(levelModifier.name, RobbiEditorStyles.BoldLabel);
+                        EditorGUILayout.LabelField(levelModifier.name, CelesteEditorStyles.BoldLabel);
 
                         if (GUILayout.Button("Remove", GUILayout.ExpandWidth(false)))
                         {
                             Interactable.RemoveInteractedModifier(i - 1);
+                            continue;
                         }
                     }
                     EditorGUILayout.EndHorizontal();
 
-                    Editor modifierEditor = Editor.CreateEditor(levelModifier);
-                    modifierEditor.OnInspectorGUI();
+                    Editor.CreateEditor(levelModifier).OnInspectorGUI();
 
                     EditorGUILayout.Space();
-
-                    RobbiEditorGUILayout.HorizontalLine();
+                    CelesteEditorGUILayout.HorizontalLine();
                 }
 
                 --EditorGUI.indentLevel;
@@ -104,7 +104,7 @@ namespace RobbiEditor.Levels.Elements
             EditorGUILayout.BeginHorizontal();
             {
                 selectedModifierType = EditorGUILayout.Popup(selectedModifierType, modifierDisplayNames);
-
+                
                 EditorGUILayout.Space();
 
                 if (GUILayout.Button("Add Modifier", GUILayout.ExpandWidth(false)))

@@ -1,14 +1,5 @@
-﻿using RobbiEditor.Platform;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CelesteEditor.Platform;
 using UnityEditor;
-using UnityEditor.Build.Reporting;
-using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace RobbiEditor.BuildSystem
 {

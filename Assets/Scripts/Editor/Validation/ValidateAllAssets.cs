@@ -1,15 +1,8 @@
-﻿using Robbi.FSM;
-using Robbi.Levels.Elements;
-using Robbi.Utils;
-using RobbiEditor.Validation.FSM;
-using RobbiEditor.Validation.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Robbi.Levels.Elements;
 using UnityEditor;
 using UnityEngine;
+using CelesteEditor.Validation.Interfaces;
+using Celeste.FSM;
 
 namespace RobbiEditor.Validation
 {
@@ -18,10 +11,10 @@ namespace RobbiEditor.Validation
         [MenuItem("Robbi/Validation/Validate All Assets")]
         public static void MenuItem()
         {
-            bool result = Validate.NoExit<Door>();
-            result &= Validate.NoExit<FSMGraph>();
-            result &= Validate.NoExit<Interactable>();
-            result &= Validate.NoExit<InteractableStateMachine>();
+            bool result = Validate.RunNoExit<Door>();
+            result &= Validate.RunNoExit<FSMGraph>();
+            result &= Validate.RunNoExit<Interactable>();
+            result &= Validate.RunNoExit<InteractableStateMachine>();
 
             if (Application.isBatchMode)
             {

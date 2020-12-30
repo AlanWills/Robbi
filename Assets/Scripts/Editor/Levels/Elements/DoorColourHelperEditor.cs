@@ -21,14 +21,13 @@ namespace RobbiEditor.Levels.Elements
 
             if (doorColourHelper.icon != null)
             {
-                int index = Array.FindIndex(DoorColours.COLOURS, x => x == doorColourHelper.icon.color);
+                int index = Array.FindIndex(DoorColours.COLOURS, x => x == doorColourHelper.Colour);
 
                 EditorGUI.BeginChangeCheck();
                 index = EditorGUILayout.Popup(index, DoorColours.COLOUR_NAMES);
                 if (EditorGUI.EndChangeCheck() && index >= 0)
                 {
-                    doorColourHelper.icon.color = DoorColours.COLOURS[index];
-                    EditorUtility.SetDirty(doorColourHelper.icon);
+                    doorColourHelper.Colour = DoorColours.COLOURS[index];
                 }
             }
         }

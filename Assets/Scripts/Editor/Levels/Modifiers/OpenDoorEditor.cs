@@ -12,16 +12,46 @@ namespace RobbiEditor.Levels.Modifiers
     [CustomEditor(typeof(OpenDoor))]
     public class OpenDoorEditor : LevelModifierEditor
     {
+        #region Properties and Fields
+
+        private SerializedProperty doorEventProperty;
+
+        #endregion
+
         #region Unity Methods
 
         private void OnEnable()
         {
-            OpenDoor openDoor = target as OpenDoor;
-            if (openDoor.doorEvent == null)
+            serializedObject.Update();
+            
+            doorEventProperty = serializedObject.FindProperty("doorEvent");
+            if (doorEventProperty != null && doorEventProperty.objectReferenceValue == null)
             {
-                openDoor.doorEvent = AssetDatabase.LoadAssetAtPath<DoorEvent>(EventFiles.DOOR_OPENED_EVENT);
-                EditorUtility.SetDirty(openDoor);
+                doorEventProperty.objectReferenceValue = AssetDatabase.LoadAssetAtPath<DoorEvent>(EventFiles.DOOR_OPENED_EVENT);
             }
+
+            serializedObject.ApplyModifiedProperties();
+        }
+
+        public override void OnInspectorGUI()
+        {
+            serializedObject.Update();
+
+            if (doorEventProperty == null)
+            {
+                DrawPropertiesExcluding(serializedObject, "doorEvent", "m_Script", "doorEvent");
+            }
+            else
+            {
+                DrawPropertiesExcluding(serializedObject, "doorEvent", "m_Script");
+
+                if (doorEventProperty.objectReferenceValue == null)
+                {
+                    EditorGUILayout.PropertyField(doorEventProperty);
+                }
+            }
+
+            serializedObject.ApplyModifiedProperties();
         }
 
         #endregion

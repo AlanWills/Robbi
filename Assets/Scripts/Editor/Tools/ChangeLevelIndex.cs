@@ -2,7 +2,7 @@
 using Robbi.Levels;
 using Robbi.Levels.Elements;
 using RobbiEditor.Iterators;
-using RobbiEditor.Utils;
+using CelesteEditor.Tools;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
+using CelesteEditor;
 
 namespace RobbiEditor.Tools
 {
@@ -50,8 +51,8 @@ namespace RobbiEditor.Tools
             bool propertiesChanged = base.DrawWizardGUI();
             EditorGUI.BeginChangeCheck();
 
-            oldLevelIndex = RobbiEditorGUILayout.UIntField("Old Level Index", oldLevelIndex);
-            newLevelIndex = RobbiEditorGUILayout.UIntField("New Level Index", newLevelIndex);
+            oldLevelIndex = CelesteEditorGUILayout.UIntField("Old Level Index", oldLevelIndex);
+            newLevelIndex = CelesteEditorGUILayout.UIntField("New Level Index", newLevelIndex);
 
             return propertiesChanged || EditorGUI.EndChangeCheck();
         }
@@ -64,7 +65,7 @@ namespace RobbiEditor.Tools
                 return;
             }
 
-            LogUtils.Clear();
+            LogUtility.Clear();
 
             RenameDirectory();
             RenameFSM();

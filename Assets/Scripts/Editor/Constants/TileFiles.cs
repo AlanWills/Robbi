@@ -8,55 +8,24 @@ namespace RobbiEditor.Constants
 {
     public static class TileFiles
     {
-        public const string HORIZONTAL_GREEN_CLOSED_DOOR_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "HorizontalGreenClosedDoor.asset";
-        public const string HORIZONTAL_GREEN_OPEN_DOOR_LEFT_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "HorizontalGreenOpenDoorLeft.asset";
-        public const string HORIZONTAL_GREEN_OPEN_DOOR_RIGHT_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "HorizontalGreenOpenDoorRight.asset";
-        public static readonly Tuple<string, string, string> HORIZONTAL_GREEN_DOOR = new Tuple<string, string, string>(
-            HORIZONTAL_GREEN_CLOSED_DOOR_TILE, HORIZONTAL_GREEN_OPEN_DOOR_LEFT_TILE, HORIZONTAL_GREEN_OPEN_DOOR_RIGHT_TILE);
+        public const string GREEN_TOGGLE_UP_TILE = TileDirectories.INTERACTABLES_TILES_FULL_PATH + "Green/GreenToggleUp.asset";
+        public const string GREEN_TOGGLE_DOWN_TILE = TileDirectories.INTERACTABLES_TILES_FULL_PATH + "Green/GreenToggleDown.asset";
 
-        public const string HORIZONTAL_RED_CLOSED_DOOR_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "HorizontalRedClosedDoor.asset";
-        public const string HORIZONTAL_RED_OPEN_DOOR_LEFT_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "HorizontalRedOpenDoorLeft.asset";
-        public const string HORIZONTAL_RED_OPEN_DOOR_RIGHT_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "HorizontalRedOpenDoorRight.asset";
-        public static readonly Tuple<string, string, string> HORIZONTAL_RED_DOOR = new Tuple<string, string, string>(
-            HORIZONTAL_RED_CLOSED_DOOR_TILE, HORIZONTAL_RED_OPEN_DOOR_LEFT_TILE, HORIZONTAL_RED_OPEN_DOOR_RIGHT_TILE);
+        public const string RED_TOGGLE_UP_TILE = TileDirectories.INTERACTABLES_TILES_FULL_PATH + "Red/RedToggleUp.asset";
+        public const string RED_TOGGLE_DOWN_TILE = TileDirectories.INTERACTABLES_TILES_FULL_PATH + "Red/RedToggleDown.asset";
 
-        public const string HORIZONTAL_BLUE_CLOSED_DOOR_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "HorizontalBlueClosedDoor.asset";
-        public const string HORIZONTAL_BLUE_OPEN_DOOR_LEFT_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "HorizontalBlueOpenDoorLeft.asset";
-        public const string HORIZONTAL_BLUE_OPEN_DOOR_RIGHT_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "HorizontalBlueOpenDoorRight.asset";
-        public static readonly Tuple<string, string, string> HORIZONTAL_BLUE_DOOR = new Tuple<string, string, string>(
-            HORIZONTAL_BLUE_CLOSED_DOOR_TILE, HORIZONTAL_BLUE_OPEN_DOOR_LEFT_TILE, HORIZONTAL_BLUE_OPEN_DOOR_RIGHT_TILE);
+        public const string BLUE_TOGGLE_UP_TILE = TileDirectories.INTERACTABLES_TILES_FULL_PATH + "Blue/BlueToggleUp.asset";
+        public const string BLUE_TOGGLE_DOWN_TILE = TileDirectories.INTERACTABLES_TILES_FULL_PATH + "Blue/BlueToggleDown.asset";
 
-        public const string HORIZONTAL_GREY_CLOSED_DOOR_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "HorizontalGreyClosedDoor.asset";
-        public const string HORIZONTAL_GREY_OPEN_DOOR_LEFT_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "HorizontalGreyOpenDoorLeft.asset";
-        public const string HORIZONTAL_GREY_OPEN_DOOR_RIGHT_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "HorizontalGreyOpenDoorRight.asset";
-        public static readonly Tuple<string, string, string> HORIZONTAL_GREY_DOOR = new Tuple<string, string, string>(
-           HORIZONTAL_GREY_CLOSED_DOOR_TILE, HORIZONTAL_GREY_OPEN_DOOR_LEFT_TILE, HORIZONTAL_GREY_OPEN_DOOR_RIGHT_TILE);
+        public const string BROWN_TOGGLE_UP_TILE = TileDirectories.INTERACTABLES_TILES_FULL_PATH + "Brown/BrownToggleUp.asset";
+        public const string BROWN_TOGGLE_DOWN_TILE = TileDirectories.INTERACTABLES_TILES_FULL_PATH + "Brown/BrownToggleDown.asset";
 
-        public const string VERTICAL_GREEN_CLOSED_DOOR_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "VerticalGreenClosedDoor.asset";
-        public const string VERTICAL_GREEN_OPEN_DOOR_LEFT_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "VerticalGreenOpenDoorLeft.asset";
-        public const string VERTICAL_GREEN_OPEN_DOOR_RIGHT_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "VerticalGreenOpenDoorRight.asset";
-        public static readonly Tuple<string, string, string> VERTICAL_GREEN_DOOR = new Tuple<string, string, string>(
-            VERTICAL_GREEN_CLOSED_DOOR_TILE, VERTICAL_GREEN_OPEN_DOOR_LEFT_TILE, VERTICAL_GREEN_OPEN_DOOR_RIGHT_TILE);
-
-        public const string VERTICAL_RED_CLOSED_DOOR_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "VerticalRedClosedDoor.asset";
-        public const string VERTICAL_RED_OPEN_DOOR_LEFT_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "VerticalRedOpenDoorLeft.asset";
-        public const string VERTICAL_RED_OPEN_DOOR_RIGHT_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "VerticalRedOpenDoorRight.asset";
-        public static readonly Tuple<string, string, string> VERTICAL_RED_DOOR = new Tuple<string, string, string>(
-            VERTICAL_RED_CLOSED_DOOR_TILE, VERTICAL_RED_OPEN_DOOR_LEFT_TILE, VERTICAL_RED_OPEN_DOOR_RIGHT_TILE);
-
-        public const string VERTICAL_BLUE_CLOSED_DOOR_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "VerticalBlueClosedDoor.asset";
-        public const string VERTICAL_BLUE_OPEN_DOOR_LEFT_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "VerticalBlueOpenDoorLeft.asset";
-        public const string VERTICAL_BLUE_OPEN_DOOR_RIGHT_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "VerticalBlueOpenDoorRight.asset";
-        public static readonly Tuple<string, string, string> VERTICAL_BLUE_DOOR = new Tuple<string, string, string>(
-            VERTICAL_BLUE_CLOSED_DOOR_TILE, VERTICAL_BLUE_OPEN_DOOR_LEFT_TILE, VERTICAL_BLUE_OPEN_DOOR_RIGHT_TILE);
-
-        public const string VERTICAL_GREY_CLOSED_DOOR_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "VerticalGreyClosedDoor.asset";
-        public const string VERTICAL_GREY_OPEN_DOOR_LEFT_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "VerticalGreyOpenDoorLeft.asset";
-        public const string VERTICAL_GREY_OPEN_DOOR_RIGHT_TILE = TileDirectories.DOOR_TILES_FULL_PATH + "VerticalGreyOpenDoorRight.asset";
-        public static readonly Tuple<string, string, string> VERTICAL_GREY_DOOR = new Tuple<string, string, string>(
-            VERTICAL_GREY_CLOSED_DOOR_TILE, VERTICAL_GREY_OPEN_DOOR_LEFT_TILE, VERTICAL_GREY_OPEN_DOOR_RIGHT_TILE);
-
-        public const string TOGGLE_LEFT_TILE = TileDirectories.INTERACTABLES_TILES_FULL_PATH + "ToggleLeft.asset";
-        public const string TOGGLE_RIGHT_TILE = TileDirectories.INTERACTABLES_TILES_FULL_PATH + "ToggleRight.asset";
+        public static readonly Tuple<string, string>[] TOGGLE_TILES = new Tuple<string, string>[4]
+        {
+            new Tuple<string, string>(GREEN_TOGGLE_UP_TILE, GREEN_TOGGLE_DOWN_TILE),
+            new Tuple<string, string>(RED_TOGGLE_UP_TILE, RED_TOGGLE_DOWN_TILE),
+            new Tuple<string, string>(BLUE_TOGGLE_UP_TILE, BLUE_TOGGLE_DOWN_TILE),
+            new Tuple<string, string>(BROWN_TOGGLE_UP_TILE, BROWN_TOGGLE_DOWN_TILE)
+        };
     }
 }

@@ -1,27 +1,20 @@
-﻿using Robbi.Events;
-using Robbi.FSM;
-using Robbi.FSM.Nodes;
-using Robbi.FSM.Nodes.Events;
-using Robbi.FSM.Nodes.Events.Conditions;
-using Robbi.FSM.Nodes.Input;
-using Robbi.FSM.Nodes.Testing;
+﻿using Celeste.Events;
 using Robbi.Levels;
 using Robbi.Movement;
 using RobbiEditor.Constants;
-using RobbiEditor.Utils;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CelesteEditor.Tools;
 using UnityEditor;
-using UnityEditor.Experimental.SceneManagement;
 using UnityEngine;
 using XNode;
 using static Robbi.Movement.MovementManager;
 using static RobbiEditor.LevelDirectories;
-using Event = Robbi.Events.Event;
+using Event = Celeste.Events.Event;
+using Celeste.FSM;
+using Celeste.FSM.Nodes;
+using Celeste.FSM.Nodes.Input;
+using Celeste.FSM.Nodes.Events;
+using Celeste.FSM.Nodes.Events.Conditions;
+using Celeste.FSM.Nodes.Testing;
 
 namespace RobbiEditor.Tools
 {
