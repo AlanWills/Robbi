@@ -10,8 +10,8 @@ using XNode;
 namespace Celeste.DS.Nodes.Objects
 {
     [Serializable]
-    [CreateNodeMenu("Celeste/Objects/Find Child")]
-    public class FindChildNode : DataNode, IRequiresGameObject
+    [CreateNodeMenu("Celeste/Objects/Find Game Object")]
+    public class FindGameObjectNode : DataNode, IRequiresGameObject
     {
         #region Properties and Fields
 

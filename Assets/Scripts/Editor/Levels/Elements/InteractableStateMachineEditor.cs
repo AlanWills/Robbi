@@ -4,6 +4,7 @@ using Robbi.Events.Levels.Elements;
 using Robbi.Levels.Elements;
 using Robbi.Levels.Modifiers;
 using RobbiEditor.Constants;
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -36,7 +37,7 @@ namespace RobbiEditor.Levels.Elements
             interactableEditors.Clear();
             for (int i = 0; i < InteractableStateMachine.NumStates; ++i)
             {
-                interactableEditors.Add(Editor.CreateEditor(InteractableStateMachine.GetState(i)));
+                AddStateEditor(InteractableStateMachine.GetState(i));
             }
         }
 
@@ -50,22 +51,28 @@ namespace RobbiEditor.Levels.Elements
 
             DrawPropertiesExcluding(serializedObject, "m_Script", "states");
 
-            if (GUILayout.Button("Create Toggle Switch"))
+            EditorGUI.BeginChangeCheck();
+            int selectedColour = EditorGUILayout.Popup("Create Toggle", 0, DoorColours.COLOUR_NAMES);
+            if (EditorGUI.EndChangeCheck())
             {
-                InteractableStateMachine stateMachine = InteractableStateMachine;
+                Tuple<string, string> tileFiles = TileFiles.TOGGLE_TILES[selectedColour];
 
                 {
-                    Interactable toggleLeft = stateMachine.AddState("Toggle Left");
-                    toggleLeft.InteractedTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.TOGGLE_LEFT_TILE);
-                    ToggleDoor toggleDoorLeft = toggleLeft.AddInteractedModifier<ToggleDoor>();
+                    Interactable toggleUp = InteractableStateMachine.AddState("Toggle Up");
+                    toggleUp.InteractedTile = AssetDatabase.LoadAssetAtPath<Tile>(tileFiles.Item1);
+                    ToggleDoor toggleDoorLeft = toggleUp.AddInteractedModifier<ToggleDoor>();
                     toggleDoorLeft.doorEvent = AssetDatabase.LoadAssetAtPath<DoorEvent>(EventFiles.DOOR_TOGGLED_EVENT);
+                    
+                    AddStateEditor(toggleUp);
                 }
 
                 {
-                    Interactable toggleRight = stateMachine.AddState("Toggle Right");
-                    toggleRight.InteractedTile = AssetDatabase.LoadAssetAtPath<Tile>(TileFiles.TOGGLE_RIGHT_TILE);
-                    ToggleDoor toggleDoorRight = toggleRight.AddInteractedModifier<ToggleDoor>();
+                    Interactable toggleDown = InteractableStateMachine.AddState("Toggle Down");
+                    toggleDown.InteractedTile = AssetDatabase.LoadAssetAtPath<Tile>(tileFiles.Item2);
+                    ToggleDoor toggleDoorRight = toggleDown.AddInteractedModifier<ToggleDoor>();
                     toggleDoorRight.doorEvent = AssetDatabase.LoadAssetAtPath<DoorEvent>(EventFiles.DOOR_TOGGLED_EVENT);
+
+                    AddStateEditor(toggleDown);
                 }
             }
 
@@ -117,7 +124,7 @@ namespace RobbiEditor.Levels.Elements
                 {
                     TextInputPopup.Display("New State...", (string stateName) =>
                     {
-                        interactableEditors.Add(Editor.CreateEditor(InteractableStateMachine.AddState(stateName)));
+                        AddStateEditor(InteractableStateMachine.AddState(stateName));
                     });
                 }
 
@@ -157,6 +164,11 @@ namespace RobbiEditor.Levels.Elements
 
                 EditorUtility.SetDirty(copyModifier);
             }
+        }
+
+        private void AddStateEditor(Interactable state)
+        {
+            interactableEditors.Add(Editor.CreateEditor(state));
         }
 
         #endregion
