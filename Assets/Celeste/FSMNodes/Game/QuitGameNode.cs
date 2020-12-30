@@ -21,7 +21,7 @@ namespace Celeste.FSM.Nodes.Game
 #if UNITY_EDITOR
             EditorApplication.isPlaying = false;
 #else
-            Application.Quit();
+            UnityEngine.Application.Quit();
 #endif
         }
 
