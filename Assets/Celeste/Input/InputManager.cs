@@ -62,14 +62,14 @@ namespace Celeste.Input
         public void Update()
         {
 #if UNITY_ANDROID || UNITY_IOS
-            if (Input.touchCount != 1)
+            if (UnityEngine.Input.touchCount != 1)
             {
                 firstHitGameObject = null;
             }
 
-            if (Input.touchCount == 1)
+            if (UnityEngine.Input.touchCount == 1)
             {
-                Touch touch = Input.GetTouch(0);
+                Touch touch = UnityEngine.Input.GetTouch(0);
                 singleTouchEvent.RaiseSilently(touch);
 
                 Vector3 touchWorldPosition = raycastCamera.ScreenToWorldPoint(touch.position);
@@ -96,20 +96,20 @@ namespace Celeste.Input
                     firstHitGameObject = null;
                 }
             }
-            else if (Input.touchCount == 2)
+            else if (UnityEngine.Input.touchCount == 2)
             {
                 doubleTouchEvent.RaiseSilently(new MultiTouchEventArgs()
                 {
                     touchCount = 2,
-                    touches = Input.touches,
+                    touches = UnityEngine.Input.touches,
                 });
             }
-            else if (Input.touchCount == 3)
+            else if (UnityEngine.Input.touchCount == 3)
             {
                 tripleTouchEvent.RaiseSilently(new MultiTouchEventArgs()
                 {
                     touchCount = 3,
-                    touches = Input.touches,
+                    touches = UnityEngine.Input.touches,
                 });
             }
 #else
