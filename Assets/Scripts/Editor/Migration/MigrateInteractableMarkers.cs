@@ -23,7 +23,7 @@ namespace RobbiEditor.Migration
                 GameObject levelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(levelFolder.PrefabPath);
                 Transform interactables = levelPrefab.transform.Find("Interactables");
 
-                for (int i = interactables.childCount - 1; i >= 0; i -= 2)
+                for (int i = interactables.childCount - 1; i > 0; i -= 2)
                 {
                     Transform newMarker = interactables.GetChild(i);
                     Transform oldMarker = interactables.GetChild(i - 1);
