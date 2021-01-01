@@ -15,7 +15,7 @@ namespace RobbiEditor.Migration
         {
             foreach (LevelFolder levelFolder in new LevelFolders())
             {
-                if (levelFolder.Index != 9)
+                if (levelFolder.Index < 10)
                 {
                     continue;
                 }
