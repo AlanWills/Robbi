@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Robbi.Debugging.Info
+namespace Celeste.Debugging.Info
 {
     [AddComponentMenu("Robbi/Debugging/FPS")]
     public class FPS : MonoBehaviour

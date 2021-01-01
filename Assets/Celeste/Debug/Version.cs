@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
-namespace Robbi.Debugging.Info
+namespace Celeste.Debugging.Info
 {
     [AddComponentMenu("Robbi/Debugging/Version")]
     public class Version : MonoBehaviour
@@ -15,7 +15,7 @@ namespace Robbi.Debugging.Info
 
         private void Start()
         {
-            text.text = string.Format("Build: {0}", UnityEngine.Application.version);
+            text.text = string.Format("v{0}", UnityEngine.Application.version);
         }
 
         private void OnValidate()
