@@ -59,11 +59,16 @@ namespace Celeste.Tilemaps
 
         #region Zoom Utility Methods
 
+        public void ZoomPercentage(float percentage)
+        {
+            ApplyZoom(FitSize * (percentage / 100.0f));
+        }
+
         public void ZoomUsingScroll(float scrollAmount)
         {
             if (scrollAmount != 0)
             {
-                FitCamera(scrollAmount);
+                ApplyZoom(-scrollAmount * zoomSpeed.Value);
             }
         }
 
@@ -85,17 +90,22 @@ namespace Celeste.Tilemaps
                 float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
 
                 // Find the difference in the distances between each frame.
-                float deltaMagnitudeDiff = touchDeltaMag - prevTouchDeltaMag;
-                
-                FitCamera(deltaMagnitudeDiff);
+                float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
+
+                ApplyZoom(deltaMagnitudeDiff * zoomSpeed.Value);
             }
         }
-        
-        private void FitCamera(float unscaledDeltaZoomAmount)
+
+        private void ApplyZoom(float zoomAmount)
         {
             // Zoom out
-            cameraToZoom.orthographicSize -= unscaledDeltaZoomAmount * zoomSpeed.Value;
+            cameraToZoom.orthographicSize += zoomAmount;
+            
+            FitCamera();
+        }
 
+        private void FitCamera()
+        {
             float fitSize = FitSize;
             cameraToZoom.orthographicSize = Mathf.Clamp(cameraToZoom.orthographicSize, fitSize / maxZoom.Value, fitSize / minZoom.Value);
         }

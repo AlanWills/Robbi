@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Set Int Value
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -456, y: 312}
+  position: {x: -760, y: 312}
   ports:
     keys:
     - ' '
@@ -28,12 +28,77 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 5436389057110012696}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5436389057110012696}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5436389057110012696}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
     - _fieldName: 
       _node: {fileID: -7056337213137562297}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -1653345470308550693}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: newValue
+      _node: {fileID: -7056337213137562297}
+      _typeQualifiedName: Celeste.Parameters.IntReference, Celeste.Parameters, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: {fileID: 11400000, guid: d37cc83f2021bad4d9d24e7b7857ed5b, type: 2}
+  newValue: {fileID: 4667826275793110305}
+  setMode: 1
+--- !u!114 &-6071133806778190501
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06e317c46dcf91148b66e32179d2a8ff, type: 3}
+  m_Name: Set Int Value
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -168, y: 408}
+  ports:
+    keys:
+    - ' '
+    - 
+    - newValue
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -6071133806778190501}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: 3178587104254347755}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3178587104254347755}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -6071133806778190501}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
@@ -45,8 +110,8 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
     - _fieldName: newValue
-      _node: {fileID: -7056337213137562297}
-      _typeQualifiedName: Robbi.Parameters.IntReference, Assembly-CSharp, Version=0.0.0.0,
+      _node: {fileID: -6071133806778190501}
+      _typeQualifiedName: Celeste.Parameters.IntReference, Celeste.Parameters, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 0
@@ -54,8 +119,8 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   value: {fileID: 11400000, guid: d37cc83f2021bad4d9d24e7b7857ed5b, type: 2}
-  newValue: {fileID: 4667826275793110305}
-  setMode: 0
+  newValue: {fileID: 7729723864544486123}
+  setMode: 1
 --- !u!114 &-5308253885854209722
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -69,8 +134,81 @@ MonoBehaviour:
   m_Name: _sceneName_sceneName
   m_EditorClassIdentifier: 
   isConstant: 1
-  constantValue: 2
+  constantValue: 1
   referenceValue: {fileID: 0}
+--- !u!114 &-4565231850287863102
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3c9a38be80386d4ea8852ca12654382, type: 3}
+  m_Name: _newValue
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 1
+  referenceValue: {fileID: 0}
+--- !u!114 &-1653345470308550693
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 847dc9d147d9cbc4aaab509cc7e13e5e, type: 3}
+  m_Name: Float Event Listener
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -440, y: 248}
+  ports:
+    keys:
+    - ' '
+    - 
+    - argument
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -1653345470308550693}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: 2136914687059093307}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7056337213137562297}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -1653345470308550693}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 2483420678563974176}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: argument
+      _node: {fileID: -1653345470308550693}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  argument: 0
+  listenFor: {fileID: 11400000, guid: 53aadcd28629d204292639ee2129ec2f, type: 2}
 --- !u!114 &-245143738290452434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -84,7 +222,7 @@ MonoBehaviour:
   m_Name: Set Float Value
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 392, y: 296}
+  position: {x: 680, y: 328}
   ports:
     keys:
     - ' '
@@ -99,24 +237,6 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 2136914687059093307}
         reroutePoints: []
-      - fieldName: 
-        node: {fileID: 2136914687059093307}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 2136914687059093307}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 2136914687059093307}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 2136914687059093307}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 2136914687059093307}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 2136914687059093307}
-        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -132,8 +252,8 @@ MonoBehaviour:
       _dynamic: 1
     - _fieldName: newValue
       _node: {fileID: -245143738290452434}
-      _typeQualifiedName: Robbi.Parameters.FloatReference, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
+      _typeQualifiedName: Celeste.Parameters.FloatReference, Celeste.Parameters,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 0
       _connectionType: 0
@@ -160,11 +280,17 @@ MonoBehaviour:
   - {fileID: 616632675011158753}
   - {fileID: 5436389057110012696}
   - {fileID: -7056337213137562297}
+  - {fileID: -1653345470308550693}
+  - {fileID: 2483420678563974176}
+  - {fileID: 3178587104254347755}
+  - {fileID: -6071133806778190501}
   startNode: {fileID: 5436389057110012696}
   parameters:
   - {fileID: -5308253885854209722}
   - {fileID: 1438277441972117944}
   - {fileID: 4667826275793110305}
+  - {fileID: -4565231850287863102}
+  - {fileID: 7729723864544486123}
 --- !u!114 &616632675011158753
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -178,7 +304,7 @@ MonoBehaviour:
   m_Name: Vector 3 Int Event Listener
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -168, y: 312}
+  position: {x: 136, y: 328}
   ports:
     keys:
     - ' '
@@ -192,6 +318,12 @@ MonoBehaviour:
       connections:
       - fieldName: 
         node: {fileID: -7056337213137562297}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7056337213137562297}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6071133806778190501}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -248,7 +380,7 @@ MonoBehaviour:
   m_Name: Set Int Value
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 104, y: 296}
+  position: {x: 408, y: 328}
   ports:
     keys:
     - ' '
@@ -287,6 +419,12 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 616632675011158753}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 616632675011158753}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 616632675011158753}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -305,7 +443,7 @@ MonoBehaviour:
       _dynamic: 1
     - _fieldName: newValue
       _node: {fileID: 2136914687059093307}
-      _typeQualifiedName: Robbi.Parameters.IntReference, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: Celeste.Parameters.IntReference, Celeste.Parameters, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 0
@@ -314,7 +452,124 @@ MonoBehaviour:
       _dynamic: 0
   value: {fileID: 11400000, guid: d37cc83f2021bad4d9d24e7b7857ed5b, type: 2}
   newValue: {fileID: -5308253885854209722}
-  setMode: 0
+  setMode: 1
+--- !u!114 &2483420678563974176
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06e317c46dcf91148b66e32179d2a8ff, type: 3}
+  m_Name: Set Int Value
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -168, y: 232}
+  ports:
+    keys:
+    - ' '
+    - 
+    - newValue
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 2483420678563974176}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: -1653345470308550693}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -1653345470308550693}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 2483420678563974176}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 3178587104254347755}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: newValue
+      _node: {fileID: 2483420678563974176}
+      _typeQualifiedName: Celeste.Parameters.IntReference, Celeste.Parameters, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: {fileID: 11400000, guid: d37cc83f2021bad4d9d24e7b7857ed5b, type: 2}
+  newValue: {fileID: -4565231850287863102}
+  setMode: 1
+--- !u!114 &3178587104254347755
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 847dc9d147d9cbc4aaab509cc7e13e5e, type: 3}
+  m_Name: Float Event Listener
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -440, y: 424}
+  ports:
+    keys:
+    - ' '
+    - 
+    - argument
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 3178587104254347755}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: 2483420678563974176}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 2483420678563974176}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 3178587104254347755}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -6071133806778190501}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: argument
+      _node: {fileID: 3178587104254347755}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  argument: 0
+  listenFor: {fileID: 11400000, guid: 53aadcd28629d204292639ee2129ec2f, type: 2}
 --- !u!114 &4667826275793110305
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -343,7 +598,7 @@ MonoBehaviour:
   m_Name: Event Listener
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -696, y: 344}
+  position: {x: -1000, y: 344}
   ports:
     keys:
     - ' '
@@ -371,3 +626,18 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   listenFor: {fileID: 11400000, guid: 421463337f1ed284a83b6ad48c142b25, type: 2}
+--- !u!114 &7729723864544486123
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3c9a38be80386d4ea8852ca12654382, type: 3}
+  m_Name: _newValue
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 1
+  referenceValue: {fileID: 0}

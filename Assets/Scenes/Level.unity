@@ -1887,6 +1887,7 @@ GameObject:
   - component: {fileID: 1536764610}
   - component: {fileID: 1536764613}
   - component: {fileID: 1536764614}
+  - component: {fileID: 1536764615}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2093,8 +2094,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1536764609}
-        m_TargetAssemblyTypeName: Robbi.Viewport.TilemapZoom, Assembly-CSharp
-        m_MethodName: ZoomUsingScroll
+        m_TargetAssemblyTypeName: Celeste.Tilemaps.TilemapZoom, Celeste.Tilemaps
+        m_MethodName: ZoomPercentage
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2123,6 +2124,34 @@ MonoBehaviour:
       - m_Target: {fileID: 1536764609}
         m_TargetAssemblyTypeName: Robbi.Viewport.TilemapZoom, Assembly-CSharp
         m_MethodName: ZoomUsingPinch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1536764615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536764604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbba3fe6533080d45b74c03931ba399d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 53aadcd28629d204292639ee2129ec2f, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1536764609}
+        m_TargetAssemblyTypeName: Celeste.Tilemaps.TilemapZoom, Celeste.Tilemaps
+        m_MethodName: ZoomPercentage
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
