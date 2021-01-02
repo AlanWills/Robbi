@@ -15,6 +15,21 @@ MonoBehaviour:
   isConstant: 1
   constantValue: 1
   referenceValue: {fileID: 0}
+--- !u!114 &-8897196788013612467
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0008096ec181f524fb8ed2dac702c007, type: 3}
+  m_Name: _targetPosition
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: {x: -3, y: 0, z: 0}
+  referenceValue: {fileID: 0}
 --- !u!114 &-4441776100129700030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -43,6 +58,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 2142971830273653631}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 2142971830273653631}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -58,7 +76,7 @@ MonoBehaviour:
       _dynamic: 1
     - _fieldName: newValue
       _node: {fileID: -4441776100129700030}
-      _typeQualifiedName: Robbi.Parameters.IntReference, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: Celeste.Parameters.IntReference, Celeste.Parameters, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 0
@@ -95,6 +113,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 2124457192511508135}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 2124457192511508135}
         reroutePoints: []
@@ -182,12 +203,57 @@ MonoBehaviour:
   - {fileID: 4110095994591005888}
   - {fileID: 2142971830273653631}
   - {fileID: -4441776100129700030}
-  startNode: {fileID: 2124457192511508135}
+  - {fileID: 2009965379666263315}
+  startNode: {fileID: 2009965379666263315}
   parameters:
   - {fileID: -9155102405131551919}
   - {fileID: 5276373443629415236}
   - {fileID: 4585377272661441881}
   - {fileID: 6336113398210314457}
+  - {fileID: -8897196788013612467}
+--- !u!114 &2009965379666263315
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4383947189a02a04ca511db26eaf214c, type: 3}
+  m_Name: Look At
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -488, y: -24}
+  ports:
+    keys:
+    - ' '
+    - 
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 2009965379666263315}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 2009965379666263315}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 2124457192511508135}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  targetPosition: {fileID: -8897196788013612467}
+  lookAxis: 2
+  time: 0.5
 --- !u!114 &2124457192511508135
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -233,6 +299,12 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: 
         node: {fileID: -2729850298739085160}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2729850298739085160}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 2009965379666263315}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -288,6 +360,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 4110095994591005888}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 4110095994591005888}
         reroutePoints: []
@@ -354,7 +429,7 @@ MonoBehaviour:
       _dynamic: 1
     - _fieldName: newValue
       _node: {fileID: 4110095994591005888}
-      _typeQualifiedName: Robbi.Parameters.IntReference, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: Celeste.Parameters.IntReference, Celeste.Parameters, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 0
