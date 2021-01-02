@@ -12,6 +12,7 @@ namespace Robbi.Levels
         [Header("Tilemaps")]
         public Tilemap corridorsTilemap;
         public Tilemap destructibleCorridorsTilemap;
+        public Tilemap portalsTilemap;
         public Tilemap exitsTilemap;
         public Tilemap doorsTilemap;
         public Tilemap interactablesTilemap;
@@ -19,13 +20,14 @@ namespace Robbi.Levels
         public Tilemap movementTilemap;
 
         [Header("Parameters")]
-        [SerializeField] public TilemapValue corridorsTilemapValue;
-        [SerializeField] public TilemapValue destructibleCorridorsTilemapValue;
-        [SerializeField] public TilemapValue exitsTilemapValue;
-        [SerializeField] public TilemapValue doorsTilemapValue;
-        [SerializeField] public TilemapValue interactablesTilemapValue;
-        [SerializeField] public TilemapValue collectablesTilemapValue;
-        [SerializeField] public TilemapValue movementTilemapValue;
+        [SerializeField] private TilemapValue corridorsTilemapValue;
+        [SerializeField] private TilemapValue destructibleCorridorsTilemapValue;
+        [SerializeField] private TilemapValue portalsTilemapValue;
+        [SerializeField] private TilemapValue exitsTilemapValue;
+        [SerializeField] private TilemapValue doorsTilemapValue;
+        [SerializeField] private TilemapValue interactablesTilemapValue;
+        [SerializeField] private TilemapValue collectablesTilemapValue;
+        [SerializeField] private TilemapValue movementTilemapValue;
 
         #endregion
 
@@ -35,6 +37,7 @@ namespace Robbi.Levels
         {
             corridorsTilemapValue.Value = corridorsTilemap;
             destructibleCorridorsTilemapValue.Value = destructibleCorridorsTilemap;
+            portalsTilemapValue.Value = portalsTilemap;
             exitsTilemapValue.Value = exitsTilemap;
             doorsTilemapValue.Value = doorsTilemap;
             interactablesTilemapValue.Value = interactablesTilemap;
@@ -57,6 +60,7 @@ namespace Robbi.Levels
         {
             EditorOnly_CompressBounds(corridorsTilemap);
             EditorOnly_CompressBounds(destructibleCorridorsTilemap);
+            EditorOnly_CompressBounds(portalsTilemap);
             EditorOnly_CompressBounds(exitsTilemap);
             EditorOnly_CompressBounds(doorsTilemap);
             EditorOnly_CompressBounds(interactablesTilemap);

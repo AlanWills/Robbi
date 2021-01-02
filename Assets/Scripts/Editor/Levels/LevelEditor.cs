@@ -50,6 +50,11 @@ namespace RobbiEditor.Levels
             EditorGUILayout.Space();
             EditorGUILayout.BeginHorizontal();
 
+            if (GUILayout.Button("Find Portals", GUILayout.ExpandWidth(false)))
+            {
+                FindPortals(level);
+            }
+
             if (GUILayout.Button("Find Doors", GUILayout.ExpandWidth(false)))
             {
                 FindDoors(level);
@@ -76,9 +81,15 @@ namespace RobbiEditor.Levels
 
         public static void FindAllLevelObjects(Level level)
         {
+            FindPortals(level);
             FindDoors(level);
             FindInteractables(level);
             FindCollectables(level);
+        }
+
+        private static void FindPortals(Level level)
+        {
+            Find<Portal>(level, LevelDirectories.PORTALS_NAME, "portals");
         }
 
         private static void FindDoors(Level level)

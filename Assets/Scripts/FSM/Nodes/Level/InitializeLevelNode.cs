@@ -50,6 +50,7 @@ namespace Robbi.FSM.Nodes
                 if (IsBeginable())
                 {
                     LevelManagers managers = new LevelManagers();
+                    managers.portalsManager = managersLoadingHandle.Result.GetComponentInChildren<PortalsManager>();
                     managers.doorsManager = managersLoadingHandle.Result.GetComponentInChildren<DoorsManager>();
                     managers.interactablesManager = managersLoadingHandle.Result.GetComponentInChildren<InteractablesManager>();
                     managers.collectablesManager = managersLoadingHandle.Result.GetComponentInChildren<CollectablesManager>();

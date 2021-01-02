@@ -10,6 +10,7 @@ namespace RobbiEditor
     public static class LevelDirectories
     {
         public static readonly string LEVELS_PATH = "Assets/Levels/";
+        public static readonly string PORTALS_NAME = "Portals/";
         public static readonly string DOORS_NAME = "Doors/";
         public static readonly string INTERACTABLES_NAME = "Interactables/";
         public static readonly string COLLECTABLES_NAME = "Collectables/";

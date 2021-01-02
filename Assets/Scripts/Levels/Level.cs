@@ -28,6 +28,7 @@ namespace Robbi.Levels
 
     public struct LevelManagers
     {
+        public PortalsManager portalsManager;
         public DoorsManager doorsManager;
         public InteractablesManager interactablesManager;
         public CollectablesManager collectablesManager;
@@ -42,6 +43,8 @@ namespace Robbi.Levels
         public GameObject levelTutorial;
 
         [Header("Level Elements")]
+        [SerializeField]
+        private List<Portal> portals = new List<Portal>();
         [SerializeField]
         private List<Door> doors = new List<Door>();
         [SerializeField]
@@ -76,6 +79,7 @@ namespace Robbi.Levels
             levelData.levelRequiresFuel.Value = requiresFuel;
             levelData.remainingFuel.Value = startingFuel;
 
+            levelManagers.portalsManager.SetPortals(portals);
             levelManagers.doorsManager.SetDoors(doors);
             levelManagers.interactablesManager.SetInteractables(interactables);
             levelManagers.collectablesManager.SetCollectables(collectables);
