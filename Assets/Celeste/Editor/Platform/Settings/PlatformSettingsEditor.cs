@@ -9,6 +9,7 @@ using UnityEngine;
 namespace CelesteEditor.Platform
 {
     [CustomEditor(typeof(PlatformSettings), true)]
+    [CanEditMultipleObjects]
     public class PlatformSettingsEditor : Editor
     {
         #region GUI
