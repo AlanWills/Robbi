@@ -44,7 +44,7 @@ namespace RobbiEditor.Tools
         [Header("Parameters")]
         public int maxWaypointsPlaceable = 3;
         public bool requiresFuel = false;
-        [HideIf("requiresFuel")]
+        [ShowIf("requiresFuel")]
         public uint startingFuel = 0;
 
         [Header("Doors")]
@@ -63,7 +63,7 @@ namespace RobbiEditor.Tools
 
         [Header("Tutorials")]
         public bool hasTutorial = false;
-        [HideIf("hasTutorial")]
+        [ShowIf("hasTutorial")]
         public GameObject tutorialPrefabToCopy;
 
         [Header("FSM")]

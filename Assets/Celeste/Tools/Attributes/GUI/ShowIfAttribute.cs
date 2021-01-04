@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Celeste.Attributes.GUI
 {
-    public class HideIfAttribute : PropertyAttribute
+    public class ShowIfAttribute : PropertyAttribute
     {
         #region Properties and Fields
 
@@ -15,7 +15,7 @@ namespace Celeste.Attributes.GUI
 
         #endregion
 
-        public HideIfAttribute(string dependentName)
+        public ShowIfAttribute(string dependentName)
         {
             DependentName = dependentName;
         }
