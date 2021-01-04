@@ -1,5 +1,6 @@
 ﻿using Robbi.Tilemaps;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,6 +38,34 @@ namespace Robbi.Movement
 
         public void CalculateGridSteps(Vector3Int startingPosition, Vector3Int targetPosition)
         {
+            CalculateCosts(startingPosition, targetPosition);
+            ConstructGridSteps(targetPosition, stepsToNextWaypoint);
+        }
+
+        public Stack<Vector3> CalculateGridStepsWithoutCaching(Vector3 startingPosition, Vector3Int targetPosition)
+        {
+            Stack<Vector3> stepsToNextWaypoint = new Stack<Vector3>();
+            
+            CalculateCosts(MovementTilemap.LocalToCell(startingPosition), targetPosition);
+            ConstructGridSteps(targetPosition, stepsToNextWaypoint);
+
+            return stepsToNextWaypoint;
+        }
+
+        public void CompleteStep()
+        {
+            if (HasStepsToNextWaypoint)
+            {
+                stepsToNextWaypoint.Pop();
+            }
+            else
+            {
+                Debug.LogAssertion("Trying to complete a step with no steps remaining");
+            }
+        }
+
+        private void CalculateCosts(Vector3Int startingPosition, Vector3Int targetPosition)
+        {
             openSet.Clear();
             cameFrom.Clear();
             costFromStart.Clear();
@@ -51,7 +80,6 @@ namespace Robbi.Movement
                 Vector3Int bestPosition = GetBestPosition(openSet, costOverall);
                 if (bestPosition == targetPosition)
                 {
-                    ConstructGridSteps(targetPosition);
                     return;
                 }
 
@@ -68,20 +96,6 @@ namespace Robbi.Movement
 
                 // Down
                 UpdateDirectional(new Vector3Int(0, -1, 0), bestPosition, targetPosition, openSet, cameFrom, costFromStart, costOverall);
-            }
-
-            ConstructGridSteps(targetPosition);
-        }
-
-        public void CompleteStep()
-        {
-            if (HasStepsToNextWaypoint)
-            {
-                stepsToNextWaypoint.Pop();
-            }
-            else
-            {
-                Debug.LogAssertion("Trying to complete a step with no steps remaining");
             }
         }
 
@@ -152,7 +166,7 @@ namespace Robbi.Movement
             }
         }
 
-        private void ConstructGridSteps(Vector3Int targetGridPosition)
+        private void ConstructGridSteps(Vector3Int targetGridPosition, Stack<Vector3> stepsToNextWaypoint)
         {
             newWaypoints.Clear();
             stepsToNextWaypoint.Clear();

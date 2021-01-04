@@ -166,6 +166,21 @@ namespace Robbi.Movement
             }
         }
 
+        private void OnDrawGizmos()
+        {
+            if (waypoints.Count == 0)
+            {
+                return;
+            }
+
+            Vector3 currentPosition = playerLocalPosition.Value;
+            foreach (Vector3 position in aStarMovement.CalculateGridStepsWithoutCaching(currentPosition, waypoints[0].gridPosition))
+            {
+                Gizmos.DrawLine(currentPosition, position);
+                currentPosition = position;
+            }
+        }
+
         #endregion
 
         #region Callbacks
