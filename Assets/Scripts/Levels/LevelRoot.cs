@@ -22,7 +22,7 @@ namespace Robbi.Levels
         [Header("Parameters")]
         [SerializeField] private TilemapValue corridorsTilemapValue;
         [SerializeField] private TilemapValue destructibleCorridorsTilemapValue;
-        [SerializeField] public TilemapValue portalsTilemapValue;
+        [SerializeField] private TilemapValue portalsTilemapValue;
         [SerializeField] private TilemapValue exitsTilemapValue;
         [SerializeField] private TilemapValue doorsTilemapValue;
         [SerializeField] private TilemapValue interactablesTilemapValue;
