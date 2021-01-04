@@ -33,6 +33,13 @@ namespace RobbiEditor.Tools
     }
 
     [Serializable]
+    public struct DoorInfo
+    {
+        public DoorColour doorColour;
+        public DoorState doorState;
+    }
+
+    [Serializable]
     public class LevelInfo : ScriptableObject
     {
         public string destinationFolder = LevelDirectories.LEVELS_PATH;
@@ -48,7 +55,7 @@ namespace RobbiEditor.Tools
         public uint startingFuel = 0;
 
         [Header("Doors")]
-        public List<Tuple<DoorColour, DoorState>> doors = new List<Tuple<DoorColour, DoorState>>();
+        public List<DoorInfo> doors = new List<DoorInfo>();
 
         [Header("Interactables")]
         public List<InteractableMarker> interactableMarkers = new List<InteractableMarker>();
@@ -87,11 +94,32 @@ namespace RobbiEditor.Tools
         private LevelInfo levelInfo;
         private SerializedObject levelInfoObject;
 
-        private static Dictionary<InteractableAction, string> markerPrefabs = new Dictionary<InteractableAction, string>()
+        private static Dictionary<InteractableAction, string> greenDoorMarkerPrefabs = new Dictionary<InteractableAction, string>()
         {
-            { InteractableAction.OpenDoor, PrefabFiles.DOOR_OPEN_MARKER_PREFAB },
-            { InteractableAction.CloseDoor, PrefabFiles.DOOR_CLOSE_MARKER_PREFAB },
-            { InteractableAction.ToggleDoor, PrefabFiles.DOOR_TOGGLE_MARKER_PREFAB },
+            { InteractableAction.OpenDoor, PrefabFiles.GREEN_DOOR_OPEN_MARKER_PREFAB },
+            { InteractableAction.CloseDoor, PrefabFiles.GREEN_DOOR_CLOSE_MARKER_PREFAB },
+            { InteractableAction.ToggleDoor, PrefabFiles.GREEN_DOOR_TOGGLE_MARKER_PREFAB },
+        };
+
+        private static Dictionary<InteractableAction, string> redDoorMarkerPrefabs = new Dictionary<InteractableAction, string>()
+        {
+            { InteractableAction.OpenDoor, PrefabFiles.RED_DOOR_OPEN_MARKER_PREFAB },
+            { InteractableAction.CloseDoor, PrefabFiles.RED_DOOR_CLOSE_MARKER_PREFAB },
+            { InteractableAction.ToggleDoor, PrefabFiles.RED_DOOR_TOGGLE_MARKER_PREFAB },
+        };
+
+        private static Dictionary<InteractableAction, string> blueDoorMarkerPrefabs = new Dictionary<InteractableAction, string>()
+        {
+            { InteractableAction.OpenDoor, PrefabFiles.BLUE_DOOR_OPEN_MARKER_PREFAB },
+            { InteractableAction.CloseDoor, PrefabFiles.BLUE_DOOR_CLOSE_MARKER_PREFAB },
+            { InteractableAction.ToggleDoor, PrefabFiles.BLUE_DOOR_TOGGLE_MARKER_PREFAB },
+        };
+
+        private static Dictionary<InteractableAction, string> brownDoorMarkerPrefabs = new Dictionary<InteractableAction, string>()
+        {
+            { InteractableAction.OpenDoor, PrefabFiles.BROWN_DOOR_OPEN_MARKER_PREFAB },
+            { InteractableAction.CloseDoor, PrefabFiles.BROWN_DOOR_CLOSE_MARKER_PREFAB },
+            { InteractableAction.ToggleDoor, PrefabFiles.BROWN_DOOR_TOGGLE_MARKER_PREFAB },
         };
 
         #endregion
@@ -302,12 +330,10 @@ namespace RobbiEditor.Tools
                 for (uint i = 0; i < levelInfo.interactableMarkers.Count; ++i)
                 {
                     InteractableMarker interactableMarker = levelInfo.interactableMarkers[(int)i];
-                    GameObject interactableMarkerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(markerPrefabs[interactableMarker.interactableAction]);
+                    Dictionary<InteractableAction, string> interactableMarkerPrefabs = GetInteractableMarkerPrefabs(interactableMarker.doorColour);
+                    GameObject interactableMarkerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(interactableMarkerPrefabs[interactableMarker.interactableAction]);
                     GameObject interactableMarkerGameObject = PrefabUtility.InstantiatePrefab(interactableMarkerPrefab, instantiatedLevelRoot.interactablesTilemap.transform) as GameObject;
-                    interactableMarkerGameObject.name = string.Format("{0}Switch{1}", interactableMarker.doorColour, interactableMarker.interactableAction);
-
-                    DoorColourHelper doorColourHelper = interactableMarkerGameObject.GetComponentInChildren<DoorColourHelper>();
-                    doorColourHelper.icon.color = DoorColours.COLOURS[(int)interactableMarker.doorColour];
+                    interactableMarkerGameObject.name = string.Format("{0}Door{1}Marker", interactableMarker.doorColour, interactableMarker.interactableAction);
 
                     PrefabUtility.ApplyAddedGameObject(interactableMarkerGameObject, prefabPath, InteractionMode.AutomatedAction);
                 }
@@ -335,9 +361,9 @@ namespace RobbiEditor.Tools
         {
             string doorsPath = string.Format("{0}{1}", LevelFolderFullPath, DOORS_NAME);
 
-            foreach (Tuple<DoorColour, DoorState> doorInfo in levelInfo.doors)
+            foreach (DoorInfo doorInfo in levelInfo.doors)
             {
-                DoorEditor.CreateDoor(string.Format("Level{0}{1}Door", levelInfo.levelIndex, doorInfo.Item1), doorsPath, doorInfo.Item2);
+                DoorEditor.CreateDoor(string.Format("Level{0}{1}Door", levelInfo.levelIndex, doorInfo.doorColour), doorsPath, doorInfo.doorState);
             }
         }
 
@@ -486,6 +512,28 @@ namespace RobbiEditor.Tools
             for (int i = transform.childCount - 1; i >= 0; --i)
             {
                 GameObject.DestroyImmediate(transform.GetChild(i).gameObject, true);
+            }
+        }
+
+        private Dictionary<InteractableAction, string> GetInteractableMarkerPrefabs(DoorColour doorColour)
+        {
+            switch (doorColour)
+            {
+                case DoorColour.Green:
+                    return greenDoorMarkerPrefabs;
+
+                case DoorColour.Red:
+                    return redDoorMarkerPrefabs;
+
+                case DoorColour.Blue:
+                    return blueDoorMarkerPrefabs;
+
+                case DoorColour.Brown:
+                    return brownDoorMarkerPrefabs;
+
+                default:
+                    Debug.LogAssertionFormat("Unhandled DoorColour {0} into GetInteractableMarkerPrefabs", doorColour);
+                    return new Dictionary<InteractableAction, string>();
             }
         }
 
