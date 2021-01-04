@@ -58,6 +58,9 @@ namespace RobbiEditor.Tools
         [Header("Collectables")]
         public int numCollectables;
 
+        [Header("Portals")]
+        public int numPortals;
+
         [Header("Tutorials")]
         public bool hasTutorial = false;
         [HideIf("hasTutorial")]
@@ -164,6 +167,11 @@ namespace RobbiEditor.Tools
                 CreateCollectables();
             }
 
+            if (GUILayout.Button("Create Portals", GUILayout.ExpandWidth(false)))
+            {
+                CreatePortals();
+            }
+
             if (levelInfo.hasTutorial && GUILayout.Button("Create Tutorial", GUILayout.ExpandWidth(false)))
             {
                 CreateTutorial();
@@ -198,6 +206,7 @@ namespace RobbiEditor.Tools
             CreateInteractables();
             CreateInteractableStateMachines();
             CreateCollectables();
+            CreatePortals();
             CreateTutorial();
             CreateLevelData();
 
@@ -243,6 +252,11 @@ namespace RobbiEditor.Tools
             if (levelInfo.numCollectables > 0)
             {
                 AssetUtility.CreateFolder(levelFolderPath, COLLECTABLES_NAME);
+            }
+
+            if (levelInfo.numPortals > 0)
+            {
+                AssetUtility.CreateFolder(levelFolderPath, PORTALS_NAME);
             }
         }
 
@@ -360,9 +374,26 @@ namespace RobbiEditor.Tools
             for (int i = 0; i < levelInfo.numCollectables; ++i)
             {
                 Collectable collectable = ScriptableObject.CreateInstance<Collectable>();
-                collectable.name = string.Format("Level{0}Interactable{1}", levelInfo.levelIndex, i);
+                collectable.name = string.Format("Level{0}Collectable{1}", levelInfo.levelIndex, i);
                 AssetDatabase.CreateAsset(collectable, string.Format("{0}{1}.asset", collectablesPath, collectable.name));
                 collectable.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
+            }
+        }
+
+        private void CreatePortals()
+        {
+            string portalsPath = string.Format("{0}{1}", LevelFolderFullPath, PORTALS_NAME);
+            if (!Directory.Exists(portalsPath))
+            {
+                AssetDatabase.CreateFolder(LevelFolderFullPath, PORTALS_NAME);
+            }
+
+            for (int i = 0; i < levelInfo.numPortals; ++i)
+            {
+                Portal portal = ScriptableObject.CreateInstance<Portal>();
+                portal.name = string.Format("Level{0}Portal{1}", levelInfo.levelIndex, i);
+                AssetDatabase.CreateAsset(portal, string.Format("{0}{1}.asset", portalsPath, portal.name));
+                portal.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
             }
         }
 

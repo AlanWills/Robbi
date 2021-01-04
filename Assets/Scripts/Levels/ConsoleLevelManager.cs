@@ -55,10 +55,6 @@ namespace Robbi.Levels
                         return false;
                     }
                 }
-                else
-                {
-
-                }
             }
 
             output.AppendFormat("Invalid parameters inputted into command");

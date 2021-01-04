@@ -37,7 +37,9 @@ namespace Celeste.Events
 
         public void RaiseSilently()
         {
-            for (int i = gameEventListeners.Count - 1; i >= 0; --i)
+            // Do the check for gameEventListeners to ensure that if events are unsubscribed from a callback
+            // we can handle that and don't fall over
+            for (int i = gameEventListeners.Count - 1; i >= 0 && gameEventListeners.Count > 0; --i)
             {
                 gameEventListeners[i].OnEventRaised();
             }

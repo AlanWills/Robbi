@@ -13,34 +13,44 @@ namespace RobbiEditor.Migration
         [MenuItem("Robbi/Migration/Migrate Level Roots")]
         public static void MenuItem()
         {
-            //foreach (LevelFolder levelFolder in new LevelFolders())
-            //{
-            //    GameObject collectablesGameObject = new GameObject("Collectables", typeof(Tilemap), typeof(TilemapRenderer));
-            //    collectablesGameObject.GetComponent<TilemapRenderer>().sortingLayerName = "Collectables";
-            //    GameObject levelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(levelFolder.PrefabPath);
-            //    GameObject levelPrefabInstance = PrefabUtility.InstantiatePrefab(levelPrefab) as GameObject;
-            //    collectablesGameObject.transform.parent = levelPrefabInstance.transform;
+            foreach (LevelFolder levelFolder in new LevelFolders())
+            {
+                if (levelFolder.Index > 40)
+                {
+                    continue;
+                }
 
-            //    PrefabUtility.ApplyAddedGameObject(collectablesGameObject, levelFolder.PrefabPath, InteractionMode.AutomatedAction);
-            //    UnityEngine.Object.DestroyImmediate(levelPrefabInstance);
-            //}
+                GameObject portalsGameObject = new GameObject("Portals", typeof(Tilemap), typeof(TilemapRenderer));
+                portalsGameObject.GetComponent<TilemapRenderer>().sortingLayerName = "Portals";
+                GameObject levelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(levelFolder.PrefabPath);
+                GameObject levelPrefabInstance = PrefabUtility.InstantiatePrefab(levelPrefab) as GameObject;
+                portalsGameObject.transform.parent = levelPrefabInstance.transform;
 
-            //AssetDatabase.SaveAssets();
-            //AssetDatabase.Refresh();
+                PrefabUtility.ApplyAddedGameObject(portalsGameObject, levelFolder.PrefabPath, InteractionMode.AutomatedAction);
+                UnityEngine.Object.DestroyImmediate(levelPrefabInstance);
+            }
 
-            //foreach (LevelFolder levelFolder in new LevelFolders())
-            //{
-            //    GameObject levelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(levelFolder.PrefabPath);
-            //    LevelRoot levelRoot = levelPrefab.GetComponent<LevelRoot>();
-            //    levelRoot.collectablesTilemap = levelPrefab.transform.Find("Collectables").GetComponent<Tilemap>();
-            //    levelPrefab.transform.Find("Collectables").SetSiblingIndex(5);
-            //    levelRoot.collectablesTilemapValue = AssetDatabase.LoadAssetAtPath<TilemapValue>("Assets/Parameters/Level/Tilemaps/Collectables.asset");
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
 
-            //    EditorUtility.SetDirty(levelPrefab);
-            //}
+            foreach (LevelFolder levelFolder in new LevelFolders())
+            {
+                if (levelFolder.Index > 40)
+                {
+                    continue;
+                }
 
-            //AssetDatabase.SaveAssets();
-            //AssetDatabase.Refresh();
+                GameObject levelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(levelFolder.PrefabPath);
+                LevelRoot levelRoot = levelPrefab.GetComponent<LevelRoot>();
+                levelRoot.portalsTilemap = levelPrefab.transform.Find("Portals").GetComponent<Tilemap>();
+                levelPrefab.transform.Find("Portals").SetSiblingIndex(2);
+                levelRoot.portalsTilemapValue = AssetDatabase.LoadAssetAtPath<TilemapValue>("Assets/Parameters/Level/Tilemaps/Portals.asset");
+
+                EditorUtility.SetDirty(levelPrefab);
+            }
+
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
         }
     }
 }
