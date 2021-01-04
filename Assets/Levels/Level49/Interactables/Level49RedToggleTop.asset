@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3871360378715958220
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0827b0783e85c340a6ad1d543215b5d, type: 3}
+  m_Name: ToggleDoor
+  m_EditorClassIdentifier: 
+  doorEvent: {fileID: 11400000, guid: 1e7ee4e625f0e1945a1a914766c3fc88, type: 2}
+  door: {fileID: 11400000, guid: cb26a747f95767547b5aea6ae6d47e7f, type: 2}
+--- !u!114 &-1356488138425668950
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180a43e3c2714ef48a0b19e420392339, type: 3}
+  m_Name: Toggle Up
+  m_EditorClassIdentifier: 
+  position: {x: 2, y: 5, z: 0}
+  interactedTile: {fileID: 11400000, guid: 29eeaf5c0620c8740a1d3a41f67ba432, type: 2}
+  uninteractedTile: {fileID: 0}
+  interactedModifiers:
+  - {fileID: 6018164955716412945}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09ff5ea72bd8b494995e000d09a0eefa, type: 3}
+  m_Name: Level49RedToggleTop
+  m_EditorClassIdentifier: 
+  loop: 1
+  states:
+  - {fileID: -1356488138425668950}
+  - {fileID: 2679465931519457549}
+--- !u!114 &2679465931519457549
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180a43e3c2714ef48a0b19e420392339, type: 3}
+  m_Name: Toggle Down
+  m_EditorClassIdentifier: 
+  position: {x: 2, y: 5, z: 0}
+  interactedTile: {fileID: 11400000, guid: b68c4f273db194f4c9f968bc9b43123a, type: 2}
+  uninteractedTile: {fileID: 0}
+  interactedModifiers:
+  - {fileID: -3871360378715958220}
+--- !u!114 &6018164955716412945
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0827b0783e85c340a6ad1d543215b5d, type: 3}
+  m_Name: ToggleDoor
+  m_EditorClassIdentifier: 
+  doorEvent: {fileID: 11400000, guid: 1e7ee4e625f0e1945a1a914766c3fc88, type: 2}
+  door: {fileID: 11400000, guid: cb26a747f95767547b5aea6ae6d47e7f, type: 2}

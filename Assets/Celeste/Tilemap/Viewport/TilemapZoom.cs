@@ -61,7 +61,7 @@ namespace Celeste.Tilemaps
 
         public void ZoomPercentage(float percentage)
         {
-            ApplyZoom(FitSize * (percentage / 100.0f));
+            ApplyZoom(FitSize * (-percentage / 100.0f));
         }
 
         public void ZoomUsingScroll(float scrollAmount)
