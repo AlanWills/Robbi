@@ -22,7 +22,6 @@ namespace Robbi.Levels
     {
         public GameObjectValue levelGameObject;
         public GameObjectValue tutorialsGameObject;
-        public GameObjectValue robbiGameObject;
         public GameObjectValue managersGameObject;
     }
 
@@ -74,7 +73,6 @@ namespace Robbi.Levels
             managers.Initialize(collectables, doors, interactables, portals);
 
             levelGameObjects.levelGameObject.Value = level;
-            levelGameObjects.robbiGameObject.Value.name = "Robbi";
 
             if (levelTutorial != null)
             {
@@ -86,7 +84,6 @@ namespace Robbi.Levels
         public void End(LevelGameObjects levelGameObjects)
         {
             GameObject.Destroy(levelGameObjects.levelGameObject.Value);
-            GameObject.Destroy(levelGameObjects.robbiGameObject.Value);
             GameObject.Destroy(levelGameObjects.managersGameObject.Value);
 
             if (levelGameObjects.tutorialsGameObject.Value != null)
