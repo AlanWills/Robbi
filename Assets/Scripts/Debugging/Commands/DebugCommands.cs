@@ -10,6 +10,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Celeste.Debugging.Commands;
 using Celeste.Log;
+using Robbi.Boosters;
 
 namespace Robbi.Debugging.Commands
 {
@@ -31,6 +32,7 @@ namespace Robbi.Debugging.Commands
         {
             RegisterCommand<ConsoleLevelManager>("lm");
             RegisterCommand<ConsoleMovementManager>("mm");
+            RegisterCommand<ConsoleBoostersManager>("bm");
             RegisterCommand<ConsoleHudLog>("hlog");
             RegisterCommand<ConsoleApplication>("app");
             RegisterCommand<ConsoleIntegrationTest>("it");

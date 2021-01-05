@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using Celeste.Log;
 using Celeste.FSM;
+using Robbi.Boosters;
 
 namespace Robbi.FSM.Nodes.Game
 {
@@ -44,6 +45,7 @@ namespace Robbi.FSM.Nodes.Game
             loadManagers.Clear();
             loadManagers.Add(LevelManager.Load());
             loadManagers.Add(OptionsManager.Load());
+            loadManagers.Add(BoostersManager.Load());
         }
 
         protected override FSMNode OnUpdate()

@@ -8,7 +8,7 @@ namespace Celeste.Tools
 {
     public static class StringUtils
     {
-        public static void AppendLineFormat(this StringBuilder stringBuilder, string format, params string[] args)
+        public static void AppendLineFormat(this StringBuilder stringBuilder, string format, params object[] args)
         {
             stringBuilder.AppendFormat(format, args);
             stringBuilder.AppendLine();

@@ -29,6 +29,17 @@ namespace Celeste.DS.Nodes.UI
 
         #endregion
 
+        #region Node Runtime
+
+        protected override void Init()
+        {
+            base.Init();
+
+            oldValue = "";
+        }
+
+        #endregion
+
         #region IUpdateable
 
         public void Update()
