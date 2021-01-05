@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,7 +35,7 @@ namespace Celeste.UI
         private static int CLOSED_ANIMATION_NAME = Animator.StringToHash("Closed");
 
         [SerializeField]
-        private Text title;
+        private TextMeshProUGUI title;
 
         [SerializeField]
         private Image image;
@@ -56,7 +57,7 @@ namespace Celeste.UI
 
         [SerializeField]
         private Animator animator;
-
+        
         private List<Event> dialogEvents = new List<Event>();
 
         #endregion

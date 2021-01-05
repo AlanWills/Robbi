@@ -843,59 +843,6 @@ MonoBehaviour:
   condition: 5
   rhs: 5
   result: 0
---- !u!114 &764002322
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b261b4e8d9d92e4c9d97feadfa1eb18, type: 3}
-  m_Name: Text
-  m_EditorClassIdentifier: 
-  graph: {fileID: 1089180059}
-  position: {x: 376, y: -1016}
-  ports:
-    keys:
-    - value
-    - format
-    - text
-    values:
-    - _fieldName: value
-      _node: {fileID: 764002322}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: output
-        node: {fileID: 1727150606}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: format
-      _node: {fileID: 764002322}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: text
-      _node: {fileID: 764002322}
-      _typeQualifiedName: UnityEngine.UI.Text, UnityEngine.UI, Version=1.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  value: 
-  format: Level {0}
-  text: {fileID: 1987689945}
 --- !u!1001 &770193749
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1724,7 +1671,6 @@ MonoBehaviour:
   - {fileID: 497653173}
   - {fileID: 1175996921}
   - {fileID: 1727150606}
-  - {fileID: 764002322}
   - {fileID: 1526098376}
   - {fileID: 1963548076}
   - {fileID: 1699049728}
@@ -1734,6 +1680,7 @@ MonoBehaviour:
   - {fileID: 1773702403}
   - {fileID: 1992645290}
   - {fileID: 538895431}
+  - {fileID: 1889037065}
 --- !u!114 &1175996921
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2425,7 +2372,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: value
-        node: {fileID: 764002322}
+        node: {fileID: 1889037065}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -2733,6 +2680,59 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1889037065
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07e7581688620d44298ab28a617a8531, type: 3}
+  m_Name: TMP Text
+  m_EditorClassIdentifier: 
+  graph: {fileID: 1089180059}
+  position: {x: 376, y: -1016}
+  ports:
+    keys:
+    - value
+    - format
+    - text
+    values:
+    - _fieldName: value
+      _node: {fileID: 1889037065}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: output
+        node: {fileID: 1727150606}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: format
+      _node: {fileID: 1889037065}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: text
+      _node: {fileID: 1889037065}
+      _typeQualifiedName: TMPro.TMP_Text, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: 
+  format: Level {0}
+  text: {fileID: 1846318695626051530}
 --- !u!114 &1889070187
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2834,18 +2834,6 @@ MonoBehaviour:
       _dynamic: 0
   isActive: 0
   gameObject: {fileID: 70176477}
---- !u!114 &1987689945 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1846318695384461855, guid: 8e717b3de403cc5499fa0f157d534088,
-    type: 3}
-  m_PrefabInstance: {fileID: 1846318695626051526}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1992645290
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3040,18 +3028,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1846318694469776974, guid: 8e717b3de403cc5499fa0f157d534088,
         type: 3}
-      propertyPath: m_AnchoredPosition.y
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1846318694469776974, guid: 8e717b3de403cc5499fa0f157d534088,
         type: 3}
-      propertyPath: m_AnchoredPosition.x
+      propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1846318695498244498, guid: 8e717b3de403cc5499fa0f157d534088,
-        type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1846318695498244499, guid: 8e717b3de403cc5499fa0f157d534088,
         type: 3}
@@ -3195,12 +3178,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7080615938123861769, guid: 8e717b3de403cc5499fa0f157d534088,
         type: 3}
-      propertyPath: m_AnchoredPosition.y
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7080615938123861769, guid: 8e717b3de403cc5499fa0f157d534088,
         type: 3}
-      propertyPath: m_AnchoredPosition.x
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8303552425604054401, guid: 8e717b3de403cc5499fa0f157d534088,
@@ -3249,6 +3232,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1846318695626051526}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1846318695626051530 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5442479185951362995, guid: 8e717b3de403cc5499fa0f157d534088,
+    type: 3}
+  m_PrefabInstance: {fileID: 1846318695626051526}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3213921231750397056 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3820553623405163334, guid: 8e717b3de403cc5499fa0f157d534088,

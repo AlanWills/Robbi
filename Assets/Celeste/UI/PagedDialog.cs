@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -46,7 +47,7 @@ namespace Celeste.UI
         }
 
         [SerializeField]
-        private Text title;
+        private TextMeshProUGUI title;
 
         [SerializeField]
         private Image image;

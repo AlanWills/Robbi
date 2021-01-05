@@ -11,8 +11,8 @@ using XNode;
 namespace Celeste.DS.Nodes.UI
 {
     [Serializable]
-    [CreateNodeMenu("Celeste/UI/Text")]
-    public class TextNode : DataNode, IUpdateable
+    [CreateNodeMenu("Celeste/UI/TMP Text")]
+    public class TMPTextNode : DataNode, IUpdateable
     {
         #region Properties and Fields
 
@@ -23,7 +23,7 @@ namespace Celeste.DS.Nodes.UI
         public string format;
 
         [Input]
-        public Text text;
+        public TMP_Text text;
 
         private string oldValue;
 
@@ -46,19 +46,19 @@ namespace Celeste.DS.Nodes.UI
 
         #region Utility Methods
 
-        private Text GetText()
+        private TMP_Text GetText()
         {
-            Text _text = GetInputValue(nameof(text), text);
+            TMP_Text _text = GetInputValue(nameof(text), text);
             if (_text == null)
             {
                 GameObject gameObject = GetInputValue<GameObject>(nameof(text));
                 if (gameObject != null)
                 {
-                    _text = gameObject.GetComponent<Text>();
+                    _text = gameObject.GetComponent<TMP_Text>();
                 }
             }
 
-            Debug.AssertFormat(_text != null, "Could not find Text component in {0} in {1}", name, graph.name);
+            Debug.AssertFormat(_text != null, "Could not find TMP_Text component in {0} in {1}", name, graph.name);
             return _text;
         }
 

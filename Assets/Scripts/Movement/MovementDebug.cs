@@ -25,7 +25,7 @@ namespace Robbi.Movement
 
         #region Unity Methods
 
-        private void Start()
+        private void Awake()
         {
             SetDebugMovementImpl(false);
 
@@ -35,6 +35,11 @@ namespace Robbi.Movement
 #else
             GameObject.Destroy(gameObject);
 #endif
+        }
+
+        private void OnEnable()
+        {
+            SetDebugMovementImpl(false);
         }
 
         #endregion

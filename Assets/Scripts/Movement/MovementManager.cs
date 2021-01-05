@@ -82,7 +82,6 @@ namespace Robbi.Movement
 
         public void Initialize()
         {
-            waypoints.Clear();
             waypointsPlaced.Value = 0;
             isProgramRunning.Value = false;
             movementSpeed.Value = OptionsManager.Instance.DefaultMovementSpeed;
@@ -98,6 +97,8 @@ namespace Robbi.Movement
         public void Cleanup()
         {
             waypoints.Clear();
+            destinationMarkerAllocator.DeallocateAll();
+
             aStarMovement.MovementTilemap = null;
             aStarMovement.DoorsTilemap = null;
         }
