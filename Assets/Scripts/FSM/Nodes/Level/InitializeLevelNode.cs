@@ -35,7 +35,7 @@ namespace Robbi.FSM.Nodes
 
             levelLoadingHandle = Addressables.LoadAssetAsync<Level>(string.Format("Level{0}Data", LevelManager.Instance.CurrentLevel));
             robbiLoadingHandle = Addressables.InstantiateAsync("Assets/Prefabs/Level/Robbi.prefab");
-            managersLoadingHandle = Addressables.InstantiateAsync("Assets/Prefabs/Level/Managers.prefab");
+            managersLoadingHandle = Addressables.InstantiateAsync(EnvironmentManagers.ADDRESSABLE_KEY);
         }
 
         protected override FSMNode OnUpdate()
@@ -49,15 +49,10 @@ namespace Robbi.FSM.Nodes
             {
                 if (IsBeginable())
                 {
-                    LevelManagers managers = new LevelManagers();
-                    managers.portalsManager = managersLoadingHandle.Result.GetComponentInChildren<PortalsManager>();
-                    managers.doorsManager = managersLoadingHandle.Result.GetComponentInChildren<DoorsManager>();
-                    managers.interactablesManager = managersLoadingHandle.Result.GetComponentInChildren<InteractablesManager>();
-                    managers.collectablesManager = managersLoadingHandle.Result.GetComponentInChildren<CollectablesManager>();
-
                     levelGameObjects.robbiGameObject.Value = robbiLoadingHandle.Result;
                     levelGameObjects.managersGameObject.Value = managersLoadingHandle.Result;
 
+                    EnvironmentManagers managers = managersLoadingHandle.Result.GetComponent<EnvironmentManagers>();
                     levelLoadingHandle.Result.Begin(levelData, levelGameObjects, managers);
                 }
                 else

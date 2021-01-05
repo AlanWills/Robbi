@@ -26,14 +26,6 @@ namespace Robbi.Levels
         public GameObjectValue managersGameObject;
     }
 
-    public struct LevelManagers
-    {
-        public PortalsManager portalsManager;
-        public DoorsManager doorsManager;
-        public InteractablesManager interactablesManager;
-        public CollectablesManager collectablesManager;
-    }
-
     [CreateAssetMenu(fileName = "Level", menuName = "Robbi/Levels/Level")]
     public class Level : ScriptableObject
     {
@@ -62,7 +54,7 @@ namespace Robbi.Levels
 
         #region Initialization
 
-        public void Begin(LevelData levelData, LevelGameObjects levelGameObjects, LevelManagers levelManagers)
+        public void Begin(LevelData levelData, LevelGameObjects levelGameObjects, EnvironmentManagers managers)
         {
             // Set this before instantiating the level so the UI will correctly adapt
             levelData.tutorialProgression.Value = 0;
@@ -79,15 +71,10 @@ namespace Robbi.Levels
             levelData.levelRequiresFuel.Value = requiresFuel;
             levelData.remainingFuel.Value = startingFuel;
 
-            levelManagers.portalsManager.SetPortals(portals);
-            levelManagers.doorsManager.SetDoors(doors);
-            levelManagers.interactablesManager.SetInteractables(interactables);
-            levelManagers.collectablesManager.SetCollectables(collectables);
+            managers.Initialize(collectables, doors, interactables, portals);
 
             levelGameObjects.levelGameObject.Value = level;
             levelGameObjects.robbiGameObject.Value.name = "Robbi";
-            levelGameObjects.managersGameObject.Value.SetActive(true);
-            levelGameObjects.managersGameObject.Value.name = "Managers";
 
             if (levelTutorial != null)
             {
