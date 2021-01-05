@@ -124,18 +124,19 @@ namespace Celeste.UI
 
         private IEnumerator HideCoroutine()
         {
-            // The checking of the animation name is just to avoid this continuing on the first frame we transition from idle to closing
-            while (animator != null && (animator.GetBool(CLOSED_ANIMATION_NAME) || animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1f))
-            {
-                yield return null;
-            }
-
             foreach (Event customEvent in dialogEvents)
             {
                 customEvent.RemoveEventListener(this);
             }
 
             dialogEvents.Clear();
+
+            // The checking of the animation name is just to avoid this continuing on the first frame we transition from idle to closing
+            while (animator != null && (animator.GetBool(CLOSED_ANIMATION_NAME) || animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1f))
+            {
+                yield return null;
+            }
+
             gameObject.SetActive(false);
             GameObject.Destroy(gameObject);
         }
