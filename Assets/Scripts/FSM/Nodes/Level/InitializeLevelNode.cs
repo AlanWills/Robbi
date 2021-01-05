@@ -1,5 +1,6 @@
 ﻿using Celeste.FSM;
 using Celeste.Log;
+using Celeste.Parameters;
 using Robbi.Environment;
 using Robbi.Levels;
 using System;
@@ -19,10 +20,9 @@ namespace Robbi.FSM.Nodes
 
         [Header("Parameters")]
         public LevelData levelData;
-        public LevelGameObjects levelGameObjects;
+        public GameObjectValue levelGameObject;
 
         private AsyncOperationHandle<Level> levelLoadingHandle;
-        private AsyncOperationHandle<GameObject> managersLoadingHandle;
 
         #endregion
 
@@ -33,7 +33,6 @@ namespace Robbi.FSM.Nodes
             base.OnEnter();
 
             levelLoadingHandle = Addressables.LoadAssetAsync<Level>(string.Format("Level{0}Data", LevelManager.Instance.CurrentLevel));
-            managersLoadingHandle = Addressables.InstantiateAsync(EnvironmentManagers.ADDRESSABLE_KEY);
         }
 
         protected override FSMNode OnUpdate()
@@ -47,10 +46,9 @@ namespace Robbi.FSM.Nodes
             {
                 if (IsBeginable())
                 {
-                    levelGameObjects.managersGameObject.Value = managersLoadingHandle.Result;
-
-                    EnvironmentManagers managers = managersLoadingHandle.Result.GetComponent<EnvironmentManagers>();
-                    levelLoadingHandle.Result.Begin(levelData, levelGameObjects, managers);
+                    // Don't love it, but sometimes you have to do a little evil to do a greater good
+                    EnvironmentManagers managers = GameObject.Find(EnvironmentManagers.NAME).GetComponent<EnvironmentManagers>();
+                    levelLoadingHandle.Result.Begin(levelData, levelGameObject, managers);
                 }
                 else
                 {
@@ -69,17 +67,17 @@ namespace Robbi.FSM.Nodes
 
         private bool IsInvalid()
         {
-            return !(levelLoadingHandle.IsValid() && managersLoadingHandle.IsValid());
+            return !levelLoadingHandle.IsValid();
         }
 
         private bool IsDone()
         {
-            return levelLoadingHandle.IsDone && managersLoadingHandle.IsDone;
+            return levelLoadingHandle.IsDone;
         }
 
         private bool IsBeginable()
         {
-            return levelLoadingHandle.Result != null && managersLoadingHandle.Result != null;
+            return levelLoadingHandle.Result != null;
         }
 
         #endregion

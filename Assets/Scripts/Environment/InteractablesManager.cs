@@ -17,9 +17,9 @@ namespace Robbi.Environment
 
         #endregion
 
-        #region Interactable Management
+        #region IEnvironmentManager
 
-        public void SetInteractables(IEnumerable<ScriptableObject> _interactables)
+        public void Initialize(IEnumerable<ScriptableObject> _interactables)
         {
             interactables.Clear();
 
@@ -36,6 +36,11 @@ namespace Robbi.Environment
                     Debug.LogAssertionFormat("SO {0} is not derived from IInteractable", scriptableObject.name);
                 }
             }
+        }
+
+        public void Cleanup()
+        {
+            interactables.Clear();
         }
 
         #endregion

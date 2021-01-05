@@ -14,6 +14,14 @@ namespace Robbi.Environment
 
         #endregion
 
+        #region IEnvironmentManager
+
+        public void Initialize() { }
+
+        public void Cleanup() { }
+
+        #endregion
+
         #region Destruction Methods
 
         public void DestroyTile(Vector3Int tileCoords)

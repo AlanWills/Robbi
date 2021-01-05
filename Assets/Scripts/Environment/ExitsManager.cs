@@ -15,6 +15,14 @@ namespace Robbi.Environment
 
         #endregion
 
+        #region IEnvironmentManager
+
+        public void Initialize() { }
+
+        public void Cleanup() { }
+
+        #endregion
+
         #region Exit Methods
 
         public void CheckForExitReached(Vector3Int position)

@@ -17,18 +17,9 @@ namespace Robbi.Environment
 
         #endregion
 
-        #region Unity Methods
+        #region IEnvironmentManager
 
-        private void Update()
-        {
-            doorsTilemap.Value.RefreshAllTiles();
-        }
-
-        #endregion
-
-        #region Doors Management
-
-        public void SetDoors(IEnumerable<Door> _doors)
+        public void Initialize(IEnumerable<Door> _doors)
         {
             doors.Clear();
             doors.AddRange(_doors);
@@ -37,6 +28,20 @@ namespace Robbi.Environment
             {
                 door.Initialize(doorsTilemap.Value);
             }
+        }
+
+        public void Cleanup()
+        {
+            doors.Clear();
+        }
+
+        #endregion
+
+        #region Unity Methods
+
+        private void Update()
+        {
+            doorsTilemap.Value.RefreshAllTiles();
         }
 
         #endregion

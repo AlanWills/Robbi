@@ -17,21 +17,12 @@ namespace Robbi.Levels
         public UIntValue remainingFuel;
     }
 
-    [Serializable]
-    public struct LevelGameObjects
-    {
-        public GameObjectValue levelGameObject;
-        public GameObjectValue tutorialsGameObject;
-        public GameObjectValue managersGameObject;
-    }
-
     [CreateAssetMenu(fileName = "Level", menuName = "Robbi/Levels/Level")]
     public class Level : ScriptableObject
     {
         #region Properties and Fields
 
         public GameObject levelPrefab;
-        public GameObject levelTutorial;
 
         [Header("Level Elements")]
         [SerializeField]
@@ -53,13 +44,14 @@ namespace Robbi.Levels
 
         #region Initialization
 
-        public void Begin(LevelData levelData, LevelGameObjects levelGameObjects, EnvironmentManagers managers)
+        public void Begin(LevelData levelData, GameObjectValue levelGameObject, EnvironmentManagers managers)
         {
             // Set this before instantiating the level so the UI will correctly adapt
             levelData.tutorialProgression.Value = 0;
 
             GameObject level = GameObject.Instantiate(levelPrefab);
             level.name = levelPrefab.name;
+            levelGameObject.Value = level;
 
             Grid grid = level.GetComponent<Grid>();
             Debug.Assert(grid != null, "No grid component on level prefab");
@@ -71,25 +63,6 @@ namespace Robbi.Levels
             levelData.remainingFuel.Value = startingFuel;
 
             managers.Initialize(collectables, doors, interactables, portals);
-
-            levelGameObjects.levelGameObject.Value = level;
-
-            if (levelTutorial != null)
-            {
-                levelGameObjects.tutorialsGameObject.Value = GameObject.Instantiate(levelTutorial);
-                levelGameObjects.tutorialsGameObject.Value.name = levelTutorial.name;
-            }
-        }
-
-        public void End(LevelGameObjects levelGameObjects)
-        {
-            GameObject.Destroy(levelGameObjects.levelGameObject.Value);
-            GameObject.Destroy(levelGameObjects.managersGameObject.Value);
-
-            if (levelGameObjects.tutorialsGameObject.Value != null)
-            {
-                GameObject.Destroy(levelGameObjects.tutorialsGameObject.Value);
-            }
         }
 
         #endregion

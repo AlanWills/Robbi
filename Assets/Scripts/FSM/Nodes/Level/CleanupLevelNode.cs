@@ -5,6 +5,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using Celeste.FSM;
 using Celeste.Log;
+using Celeste.Parameters;
 
 namespace Robbi.FSM.Nodes
 {
@@ -16,9 +17,7 @@ namespace Robbi.FSM.Nodes
         #region Properties and Fields
 
         [Header("Parameters")]
-        public LevelGameObjects levelGameObjects;
-
-        private AsyncOperationHandle<Level> levelLoadingHandle;
+        public GameObjectValue levelGameObject;
 
         #endregion
 
@@ -28,50 +27,7 @@ namespace Robbi.FSM.Nodes
         {
             base.OnEnter();
 
-            levelLoadingHandle = Addressables.LoadAssetAsync<Level>(string.Format("Level{0}Data", LevelManager.Instance.CurrentLevel));
-        }
-
-        protected override FSMNode OnUpdate()
-        {
-            if (IsInvalid())
-            {
-                HudLog.LogError("Error loading Level - Invalid Handle");
-                return base.OnUpdate();
-            }
-            else if (IsDone())
-            {
-                if (IsCleanupable())
-                {
-                    levelLoadingHandle.Result.End(levelGameObjects);
-                }
-                else
-                {
-                    HudLog.LogError("Error loading Level - Result Null");
-                }
-
-                return base.OnUpdate();
-            }
-
-            return this;
-        }
-
-        #endregion
-
-        #region Utility Methods
-
-        private bool IsInvalid()
-        {
-            return !levelLoadingHandle.IsValid();
-        }
-
-        private bool IsDone()
-        {
-            return levelLoadingHandle.IsDone;
-        }
-
-        private bool IsCleanupable()
-        {
-            return levelLoadingHandle.Result != null;
+            GameObject.Destroy(levelGameObject.Value);
         }
 
         #endregion

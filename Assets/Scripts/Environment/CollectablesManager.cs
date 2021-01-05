@@ -18,12 +18,17 @@ namespace Robbi.Environment
 
         #endregion
 
-        #region Collectables Management
+        #region IEnvironmentManager
 
-        public void SetCollectables(IEnumerable<Collectable> _collectables)
+        public void Initialize(IEnumerable<Collectable> _collectables) 
         {
             collectables.Clear();
             collectables.AddRange(_collectables);
+        }
+
+        public void Cleanup() 
+        {
+            collectables.Clear();
         }
 
         #endregion

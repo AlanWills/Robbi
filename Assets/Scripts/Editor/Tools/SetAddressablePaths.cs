@@ -34,7 +34,7 @@ namespace RobbiEditor.Tools
                 {
                     if (Directory.Exists(levelFolder.TutorialsFolderPath))
                     {
-                        AddressablesUtility.SetAddressableInfo(levelFolder.TutorialsPath, AddressablesConstants.LEVELS_GROUP);
+                        AddressablesUtility.SetAddressableInfo(levelFolder.TutorialsPrefabPath, AddressablesConstants.LEVELS_GROUP);
                         AddressablesUtility.SetAddressableInfo(levelFolder.TutorialsFSMPath, AddressablesConstants.LEVELS_GROUP);
                         AddressablesUtility.SetAddressableInfo(levelFolder.TutorialsDGPath, AddressablesConstants.LEVELS_GROUP);
                     }

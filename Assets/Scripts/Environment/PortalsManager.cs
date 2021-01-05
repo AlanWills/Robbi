@@ -23,18 +23,9 @@ namespace Robbi.Environment
 
         #endregion
 
-        #region Unity Methods
+        #region IEnvironmentManager
 
-        private void Update()
-        {
-            portalsTilemap.Value.RefreshAllTiles();
-        }
-
-        #endregion
-
-        #region Interactable Management
-
-        public void SetPortals(IEnumerable<Portal> _portals)
+        public void Initialize(IEnumerable<Portal> _portals)
         {
             portals.Clear();
 
@@ -42,6 +33,20 @@ namespace Robbi.Environment
             {
                 portals.Add(portal);
             }
+        }
+
+        public void Cleanup()
+        {
+            portals.Clear();
+        }
+
+        #endregion
+
+        #region Unity Methods
+
+        private void Update()
+        {
+            portalsTilemap.Value.RefreshAllTiles();
         }
 
         #endregion

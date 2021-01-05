@@ -1,6 +1,7 @@
 ﻿using Celeste.Managers;
 using Robbi.Levels.Elements;
 using Robbi.Movement;
+using Robbi.Timing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace Robbi.Environment
     {
         #region Properties and Fields
 
-        public const string ADDRESSABLE_KEY = "EnvironmentManagers";
+        public const string NAME = "EnvironmentManagers";
 
         public CollectablesManager collectablesManager;
         public DestructibleCorridorsManager destructibleCorridorsManager;
@@ -24,6 +25,7 @@ namespace Robbi.Environment
         public InteractablesManager interactablesManager;
         public MovementManager movementManager;
         public PortalsManager portalsManager;
+        public TimeManager timeManager;
 
         #endregion
 
@@ -33,12 +35,36 @@ namespace Robbi.Environment
             IEnumerable<ScriptableObject> interactables,
             IEnumerable<Portal> portals)
         {
-            collectablesManager.SetCollectables(collectables);
-            doorsManager.SetDoors(doors);
-            interactablesManager.SetInteractables(interactables);
-            portalsManager.SetPortals(portals);
+            for (int i = 0; i < transform.childCount; ++i)
+            {
+                transform.GetChild(i).gameObject.SetActive(true);
+            }
 
-            gameObject.SetActive(true);
+            collectablesManager.Initialize(collectables);
+            destructibleCorridorsManager.Initialize();
+            doorsManager.Initialize(doors);
+            exitsManager.Initialize();
+            interactablesManager.Initialize(interactables);
+            movementManager.Initialize();
+            portalsManager.Initialize(portals);
+            timeManager.Initialize();
+        }
+
+        public void Cleanup()
+        {
+            collectablesManager.Cleanup();
+            destructibleCorridorsManager.Cleanup();
+            doorsManager.Cleanup();
+            exitsManager.Cleanup();
+            interactablesManager.Cleanup();
+            movementManager.Cleanup();
+            portalsManager.Cleanup();
+            timeManager.Cleanup();
+
+            for (int i = 0; i < transform.childCount; ++i)
+            {
+                transform.GetChild(i).gameObject.SetActive(false);
+            }
         }
     }
 }

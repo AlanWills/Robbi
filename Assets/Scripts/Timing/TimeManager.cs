@@ -1,5 +1,6 @@
 ﻿using Celeste.Managers;
 using Celeste.Parameters;
+using Robbi.Environment;
 using UnityEngine;
 
 namespace Robbi.Timing
@@ -15,12 +16,18 @@ namespace Robbi.Timing
 
         #endregion
 
-        #region Unity Methods
+        #region IEnvironmentManager
 
-        private void Start()
-        {
-            timeTaken.Value = 0;
+        public void Initialize() 
+        { 
+            timeTaken.Value = 0; 
         }
+
+        public void Cleanup() { }
+
+        #endregion
+
+        #region Unity Methods
 
         private void Update()
         {

@@ -229,13 +229,13 @@ namespace RobbiEditor.Tools
 
             CreateDirectories();
             CreateFSM();
+            CreateTutorial();
             CreatePrefab();
             CreateDoors();
             CreateInteractables();
             CreateInteractableStateMachines();
             CreateCollectables();
             CreatePortals();
-            CreateTutorial();
             CreateLevelData();
 
             if (levelInfo.increaseMaxLevel)
@@ -338,6 +338,8 @@ namespace RobbiEditor.Tools
                     PrefabUtility.ApplyAddedGameObject(interactableMarkerGameObject, prefabPath, InteractionMode.AutomatedAction);
                 }
 
+                GameObject.DestroyImmediate(instantiatedPrefab);
+
                 if (levelInfo.hasFsm)
                 {
                     FSMRuntime runtime = createdPrefab.GetComponent<FSMRuntime>();
@@ -349,8 +351,19 @@ namespace RobbiEditor.Tools
                     string fsmPath = string.Format("{0}Level{0}FSM.asset", levelFolderFullPath, levelInfo.levelIndex);
                     runtime.graph = AssetDatabase.LoadAssetAtPath<FSMGraph>(fsmPath);
                 }
+            }
 
-                GameObject.DestroyImmediate(instantiatedPrefab);
+            // Finally, add the tutorial prefab
+            if (levelInfo.hasTutorial)
+            {
+                LevelFolder levelFolder = new LevelFolder(levelInfo.levelIndex);
+                GameObject instantiatedLevelPrefab = PrefabUtility.InstantiatePrefab(createdPrefab) as GameObject;
+                GameObject tutorialPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(levelFolder.TutorialsPrefabPath);
+                GameObject tutorialInstance = PrefabUtility.InstantiatePrefab(tutorialPrefab, instantiatedLevelPrefab.transform) as GameObject;
+                tutorialInstance.name = tutorialPrefab.name;
+
+                PrefabUtility.ApplyAddedGameObject(tutorialInstance, prefabPath, InteractionMode.AutomatedAction);
+                GameObject.DestroyImmediate(instantiatedLevelPrefab);
             }
 
             createdPrefab.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
@@ -474,15 +487,11 @@ namespace RobbiEditor.Tools
 
             Level level = ScriptableObject.CreateInstance<Level>();
             level.levelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(Path.Combine(levelFolderFullPath, string.Format("Level{0}.prefab", levelInfo.levelIndex)));
-            level.levelTutorial = levelInfo.hasTutorial ? 
-                AssetDatabase.LoadAssetAtPath<GameObject>(string.Format("{0}{1}Level{2}Tutorials.prefab", levelFolderFullPath, TUTORIALS_NAME, levelInfo.levelIndex))
-                : null;
             level.maxWaypointsPlaceable = levelInfo.maxWaypointsPlaceable;
             level.requiresFuel = levelInfo.requiresFuel;
             level.startingFuel = levelInfo.startingFuel;
             
             Debug.Assert(level.levelPrefab != null, "Level Prefab could not be found automatically");
-            Debug.Assert(!levelInfo.hasTutorial || level.levelTutorial != null, "Level Tutorial could not be found automatically");
 
             AssetDatabase.CreateAsset(level, Path.Combine(levelFolderFullPath, string.Format("Level{0}Data", levelInfo.levelIndex) + ".asset"));
             level.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);

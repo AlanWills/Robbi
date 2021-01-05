@@ -10,6 +10,7 @@ using Celeste.Log;
 using Celeste.Managers;
 using Celeste.Tilemaps;
 using Celeste.Memory;
+using Robbi.Environment;
 
 namespace Robbi.Movement
 {
@@ -77,10 +78,11 @@ namespace Robbi.Movement
 
         #endregion
 
-        #region Unity Methods
+        #region IEnvironmentManager
 
-        private void Start()
+        public void Initialize()
         {
+            waypoints.Clear();
             waypointsPlaced.Value = 0;
             isProgramRunning.Value = false;
             movementSpeed.Value = OptionsManager.Instance.DefaultMovementSpeed;
@@ -92,6 +94,17 @@ namespace Robbi.Movement
             boundingBox.size = new Vector2(movementGridSize.x, movementGridSize.y);
             boundingBox.offset = new Vector2(movementOrigin.x + movementGridSize.x * 0.5f, movementOrigin.y + movementGridSize.y * 0.5f);
         }
+
+        public void Cleanup()
+        {
+            waypoints.Clear();
+            aStarMovement.MovementTilemap = null;
+            aStarMovement.DoorsTilemap = null;
+        }
+
+        #endregion
+
+        #region Unity Methods
 
         private void Update()
         {

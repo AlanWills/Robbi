@@ -30,8 +30,8 @@ namespace RobbiEditor.Levels
         public string PrefabPath { get { return string.Format("{0}/{1}.prefab", Path, PrefabName); } }
 
         public string TutorialsFolderPath { get { return string.Format("{0}/{1}", Path, LevelDirectories.TUTORIALS_NAME); } }
-        public string TutorialsName { get { return string.Format("Level{0}Tutorials", Index); } }
-        public string TutorialsPath { get { return string.Format("{0}{1}.prefab", TutorialsFolderPath, TutorialsName); } }
+        public string TutorialsPrefabName { get { return string.Format("Level{0}Tutorials", Index); } }
+        public string TutorialsPrefabPath { get { return string.Format("{0}{1}.prefab", TutorialsFolderPath, TutorialsPrefabName); } }
         public string TutorialsFSMName { get { return string.Format("Level{0}TutorialsFSM", Index); } }
         public string TutorialsFSMPath { get { return string.Format("{0}{1}.asset", TutorialsFolderPath, TutorialsFSMName); } }
         public string TutorialsDGName { get { return string.Format("Level{0}TutorialsDG", Index); } }
