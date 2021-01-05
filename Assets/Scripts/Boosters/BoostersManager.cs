@@ -20,7 +20,7 @@ namespace Robbi.Boosters
 
         public static string DefaultSavePath
         {
-            get { return Path.Combine(UnityEngine.Application.persistentDataPath, "BoostersManager.json"); }
+            get { return Path.Combine(Application.persistentDataPath, "BoostersManager.json"); }
         }
 
         public uint NumWaypointBoosters
@@ -29,11 +29,35 @@ namespace Robbi.Boosters
             set { numWaypointBoosters.Value = value; }
         }
 
+        public uint NumDoorToggleBoosters
+        {
+            get { return numDoorToggleBoosters.Value; }
+            set { numDoorToggleBoosters.Value = value; }
+        }
+
+        public uint NumInteractBoosters
+        {
+            get { return numInteractBoosters.Value; }
+            set { numInteractBoosters.Value = value; }
+        }
+
         [SerializeField]
         private UIntValue numWaypointBoosters;
 
         [SerializeField]
         private UIntValue waypointBoosterUnlockLevel;
+
+        [SerializeField]
+        private UIntValue numDoorToggleBoosters;
+
+        [SerializeField]
+        private UIntValue doorToggleBoosterUnlockLevel;
+
+        [SerializeField]
+        private UIntValue numInteractBoosters;
+
+        [SerializeField]
+        private UIntValue interactBoosterUnlockLevel;
 
         #endregion
 
@@ -76,12 +100,16 @@ namespace Robbi.Boosters
     public class BoostersManagerDTO
     {
         public uint numWaypointBoosters;
+        public uint numDoorToggleBoosters;
+        public uint numInteractBoosters;
 
         public BoostersManagerDTO() { }
 
         public BoostersManagerDTO(BoostersManager boostersManager)
         {
             numWaypointBoosters = boostersManager.NumWaypointBoosters;
+            numDoorToggleBoosters = boostersManager.NumDoorToggleBoosters;
+            numInteractBoosters = boostersManager.NumInteractBoosters;
         }
     }
 }

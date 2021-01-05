@@ -25,31 +25,22 @@ namespace Celeste.DS.Nodes.UI
         [Input]
         public TMP_Text text;
 
-        private string oldValue;
-
-        #endregion
-
-        #region Node Runtime
-
-        protected override void Init()
-        {
-            base.Init();
-
-            oldValue = "";
-        }
-
         #endregion
 
         #region IUpdateable
 
         public void Update()
         {
+            if (text == null)
+            {
+                GetText();
+            }
+
             string currentValue = GetInputValue("value", value);
-            if (currentValue != oldValue)
+            if (currentValue != text.text)
             {
                 string _format = GetInputValue("format", format);
-                GetText().text = string.IsNullOrEmpty(_format) ? currentValue : string.Format(_format, currentValue);
-                oldValue = currentValue;
+                text.text = string.IsNullOrEmpty(_format) ? currentValue : string.Format(_format, currentValue);
             }
         }
 
@@ -59,18 +50,18 @@ namespace Celeste.DS.Nodes.UI
 
         private TMP_Text GetText()
         {
-            TMP_Text _text = GetInputValue(nameof(text), text);
-            if (_text == null)
+            text = GetInputValue(nameof(text), text);
+            if (text == null)
             {
                 GameObject gameObject = GetInputValue<GameObject>(nameof(text));
                 if (gameObject != null)
                 {
-                    _text = gameObject.GetComponent<TMP_Text>();
+                    text = gameObject.GetComponent<TMP_Text>();
                 }
             }
 
-            Debug.AssertFormat(_text != null, "Could not find TMP_Text component in {0} in {1}", name, graph.name);
-            return _text;
+            Debug.AssertFormat(text != null, "Could not find TMP_Text component in {0} in {1}", name, graph.name);
+            return text;
         }
 
         #endregion

@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5514686693821276789
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
-  m_Name: WaypointBoosterActivated
-  m_EditorClassIdentifier: 
-  listenFor: {fileID: 11400000, guid: 83852dc8347d8d242951efc9bfa774ef, type: 2}
 --- !u!114 &-5092551486547916141
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26,7 +13,7 @@ MonoBehaviour:
   m_Name: Set U Int Value
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 440, y: -56}
+  position: {x: 440, y: 216}
   ports:
     keys:
     - ' '
@@ -41,6 +28,15 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 1093130073886181546}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 1093130073886181546}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 1093130073886181546}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 1093130073886181546}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -49,10 +45,7 @@ MonoBehaviour:
       _node: {fileID: -5092551486547916141}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: 449195187674561321}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
@@ -69,6 +62,99 @@ MonoBehaviour:
   value: {fileID: 11400000, guid: e5a9d69ba7358f64bb309adb980c3acd, type: 2}
   newValue: {fileID: 1514914753919432085}
   setMode: 2
+--- !u!114 &-3968900789166094422
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
+  m_Name: DoorToggleBoosterActivated
+  m_EditorClassIdentifier: 
+  listenFor: {fileID: 11400000, guid: 37afef787bc4a1c449d4fe44c33866eb, type: 2}
+--- !u!114 &-3151095223934611321
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a06506a65d8e7649914ff48108329a4, type: 3}
+  m_Name: Multi Event Queue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -72, y: -56}
+  ports:
+    keys:
+    - ' '
+    - argument
+    - WaypointBoosterActivated
+    - DoorToggleBoosterActivated
+    - InteractBoosterActivated
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -3151095223934611321}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: argument
+      _node: {fileID: -3151095223934611321}
+      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: WaypointBoosterActivated
+      _node: {fileID: -3151095223934611321}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 1093130073886181546}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: DoorToggleBoosterActivated
+      _node: {fileID: -3151095223934611321}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 8955211669524220465}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: InteractBoosterActivated
+      _node: {fileID: -3151095223934611321}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 9007251962513728966}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  events:
+  - {fileID: 382175239955609704}
+  - {fileID: -3968900789166094422}
+  - {fileID: 3112881764102659728}
 --- !u!114 &-244955444598945041
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -97,14 +183,18 @@ MonoBehaviour:
   m_Name: BoostersBarFSM
   m_EditorClassIdentifier: 
   nodes:
-  - {fileID: 449195187674561321}
   - {fileID: 1093130073886181546}
   - {fileID: -5092551486547916141}
-  startNode: {fileID: 449195187674561321}
+  - {fileID: 8955211669524220465}
+  - {fileID: 9007251962513728966}
+  - {fileID: -3151095223934611321}
+  startNode: {fileID: -3151095223934611321}
   parameters:
   - {fileID: -244955444598945041}
   - {fileID: 1514914753919432085}
---- !u!114 &449195187674561321
+  - {fileID: 1338516204890356566}
+  - {fileID: 5880405617691294628}
+--- !u!114 &382175239955609704
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,70 +203,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d3d684a2fdcd6e4e8336fa62bb135eb, type: 3}
-  m_Name: Multi Event Listener
+  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
+  m_Name: WaypointBoosterActivated
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: -104, y: -56}
-  ports:
-    keys:
-    - ' '
-    - argument
-    - WaypointBoosterActivated
-    values:
-    - _fieldName: ' '
-      _node: {fileID: 449195187674561321}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: 
-        node: {fileID: 1093130073886181546}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 1093130073886181546}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 1093130073886181546}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 1093130073886181546}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 1093130073886181546}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 1093130073886181546}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -5092551486547916141}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: argument
-      _node: {fileID: 449195187674561321}
-      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: WaypointBoosterActivated
-      _node: {fileID: 449195187674561321}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: 1093130073886181546}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-  events:
-  - {fileID: -5514686693821276789}
+  listenFor: {fileID: 11400000, guid: 83852dc8347d8d242951efc9bfa774ef, type: 2}
 --- !u!114 &1093130073886181546
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -190,7 +220,7 @@ MonoBehaviour:
   m_Name: Set Int Value
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 168, y: -56}
+  position: {x: 168, y: 216}
   ports:
     keys:
     - ' '
@@ -203,7 +233,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: WaypointBoosterActivated
-        node: {fileID: 449195187674561321}
+        node: {fileID: -3151095223934611321}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -233,6 +263,21 @@ MonoBehaviour:
   value: {fileID: 11400000, guid: 5795522ed653b6947a2cfc5b86742695, type: 2}
   newValue: {fileID: -244955444598945041}
   setMode: 1
+--- !u!114 &1338516204890356566
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d362fd1cf62c548b9a5ed76f41bf89, type: 3}
+  m_Name: _newValue
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 1
+  referenceValue: {fileID: 0}
 --- !u!114 &1514914753919432085
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -248,3 +293,137 @@ MonoBehaviour:
   isConstant: 1
   constantValue: 1
   referenceValue: {fileID: 0}
+--- !u!114 &3112881764102659728
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
+  m_Name: InteractBoosterActivated
+  m_EditorClassIdentifier: 
+  listenFor: {fileID: 11400000, guid: 6b0809783d163ff4892d5e04d6f5848a, type: 2}
+--- !u!114 &5880405617691294628
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d362fd1cf62c548b9a5ed76f41bf89, type: 3}
+  m_Name: _newValue
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 1
+  referenceValue: {fileID: 0}
+--- !u!114 &8955211669524220465
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5505a48d2a25be48afe37a7e89f9e33, type: 3}
+  m_Name: Set U Int Value
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 440, y: 8}
+  ports:
+    keys:
+    - ' '
+    - 
+    - newValue
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 8955211669524220465}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: DoorToggleBoosterActivated
+        node: {fileID: -3151095223934611321}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 8955211669524220465}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: newValue
+      _node: {fileID: 8955211669524220465}
+      _typeQualifiedName: Celeste.Parameters.UIntReference, Celeste.Parameters, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: {fileID: 11400000, guid: 28cdcca9bda9453418a635199b19b694, type: 2}
+  newValue: {fileID: 1338516204890356566}
+  setMode: 2
+--- !u!114 &9007251962513728966
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5505a48d2a25be48afe37a7e89f9e33, type: 3}
+  m_Name: Set U Int Value
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 440, y: -200}
+  ports:
+    keys:
+    - ' '
+    - 
+    - newValue
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 9007251962513728966}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: InteractBoosterActivated
+        node: {fileID: -3151095223934611321}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 9007251962513728966}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: newValue
+      _node: {fileID: 9007251962513728966}
+      _typeQualifiedName: Celeste.Parameters.UIntReference, Celeste.Parameters, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: {fileID: 11400000, guid: 13769d90d377c5840b52f4c0c13a2fc3, type: 2}
+  newValue: {fileID: 5880405617691294628}
+  setMode: 2

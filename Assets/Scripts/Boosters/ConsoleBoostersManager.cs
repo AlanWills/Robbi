@@ -16,6 +16,8 @@ namespace Robbi.Boosters
             if (parameters.Count == 0)
             {
                 output.AppendLineFormat("Num Waypoint Boosters: {0}", BoostersManager.Instance.NumWaypointBoosters);
+                output.AppendLineFormat("Num Door Toggle Boosters: {0}", BoostersManager.Instance.NumDoorToggleBoosters);
+                output.AppendLineFormat("Num Interact Boosters: {0}", BoostersManager.Instance.NumInteractBoosters);
                 return true;
             }
             else if (parameters.Count == 2)
@@ -32,7 +34,39 @@ namespace Robbi.Boosters
                     }
                     else
                     {
-                        output.AppendLineFormat("Invalid number {0} entered when trying to modify waypoint boosters", parameters[1]);
+                        output.AppendLineFormat("Invalid number {0} entered when trying to modify Waypoint Boosters", parameters[1]);
+                        return false;
+                    }
+                }
+                else if (parameters[0] == "d")
+                {
+                    if (uint.TryParse(parameters[1], out uint result))
+                    {
+                        BoostersManager.Instance.NumDoorToggleBoosters = result;
+                        BoostersManager.Instance.Save();
+
+                        output.AppendLineFormat("Num Door Toggle Boosters now {0}", BoostersManager.Instance.NumDoorToggleBoosters);
+                        return true;
+                    }
+                    else
+                    {
+                        output.AppendLineFormat("Invalid number {0} entered when trying to modify Door Toggle Boosters", parameters[1]);
+                        return false;
+                    }
+                }
+                else if (parameters[0] == "i")
+                {
+                    if (uint.TryParse(parameters[1], out uint result))
+                    {
+                        BoostersManager.Instance.NumInteractBoosters = result;
+                        BoostersManager.Instance.Save();
+
+                        output.AppendLineFormat("Num Interact Boosters now {0}", BoostersManager.Instance.NumInteractBoosters);
+                        return true;
+                    }
+                    else
+                    {
+                        output.AppendLineFormat("Invalid number {0} entered when trying to modify Interact Boosters", parameters[1]);
                         return false;
                     }
                 }

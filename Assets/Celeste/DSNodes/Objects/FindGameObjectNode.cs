@@ -41,7 +41,7 @@ namespace Celeste.DS.Nodes.Objects
                 foundChild = GameObjectUtils.FindGameObject(splitChildName, findConstraint);
             }
 
-            Debug.AssertFormat(foundChild != null, "Could not find child {0}", childName);
+            Debug.AssertFormat(foundChild != null, "Could not find child '{0}'", childName);
             return foundChild;
         }
 

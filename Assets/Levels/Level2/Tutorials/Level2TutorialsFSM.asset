@@ -25,7 +25,10 @@ MonoBehaviour:
       _node: {fileID: -7853225958067184021}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: 
+        node: {fileID: -2672772582113131072}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -79,6 +82,49 @@ MonoBehaviour:
   m_Name: DialogClosePressed
   m_EditorClassIdentifier: 
   listenFor: {fileID: 11400000, guid: 421463337f1ed284a83b6ad48c142b25, type: 2}
+--- !u!114 &-2672772582113131072
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4383947189a02a04ca511db26eaf214c, type: 3}
+  m_Name: Look At
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 56, y: -248}
+  ports:
+    keys:
+    - ' '
+    - 
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -2672772582113131072}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -2672772582113131072}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -7853225958067184021}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  targetPosition: {fileID: 8368685277978445438}
+  lookAxis: 2
+  time: 0.5
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,9 +140,11 @@ MonoBehaviour:
   nodes:
   - {fileID: 3985318986533664381}
   - {fileID: -7853225958067184021}
-  startNode: {fileID: -7853225958067184021}
+  - {fileID: -2672772582113131072}
+  startNode: {fileID: -2672772582113131072}
   parameters:
   - {fileID: 7312098269050933809}
+  - {fileID: 8368685277978445438}
 --- !u!114 &3985318986533664381
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -158,7 +206,7 @@ MonoBehaviour:
       _dynamic: 1
     - _fieldName: newValue
       _node: {fileID: 3985318986533664381}
-      _typeQualifiedName: Robbi.Parameters.IntReference, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: Celeste.Parameters.IntReference, Celeste.Parameters, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 0
@@ -182,6 +230,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isConstant: 1
   constantValue: 1
+  referenceValue: {fileID: 0}
+--- !u!114 &8368685277978445438
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0008096ec181f524fb8ed2dac702c007, type: 3}
+  m_Name: _targetPosition
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: {x: -1, y: -2, z: 0}
   referenceValue: {fileID: 0}
 --- !u!114 &8474340084681750634
 MonoBehaviour:
