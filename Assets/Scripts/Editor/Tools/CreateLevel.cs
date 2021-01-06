@@ -444,6 +444,11 @@ namespace RobbiEditor.Tools
             }
 
             string tutorialsPath = string.Format("{0}{1}", LevelFolderFullPath, TUTORIALS_NAME);
+            if (!Directory.Exists(tutorialsPath))
+            {
+                AssetUtility.CreateFolder(LevelFolderFullPath, TUTORIALS_NAME);
+            }
+
             uint levelIndex = levelInfo.levelIndex;
 
             FSMGraph tutorialFsm = ScriptableObject.CreateInstance<FSMGraph>();
