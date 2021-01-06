@@ -15,6 +15,9 @@ GameObject:
   - component: {fileID: 6283385586230346007}
   - component: {fileID: 682721636072899130}
   - component: {fileID: 8563470611388582692}
+  - component: {fileID: 359011580054548223}
+  - component: {fileID: 6772134346067290495}
+  - component: {fileID: 550976554599489267}
   m_Layer: 5
   m_Name: BoostersBar
   m_TagString: Untagged
@@ -153,6 +156,79 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000, guid: fce5005f319032b4ab266033abf5e229, type: 2}
+--- !u!114 &359011580054548223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3474139818034112271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828e410ed957c2f4baf737dcaa6773c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1679853498220267500}
+  doorToggleUseButton: {fileID: 5055876254556416620}
+  interactUseButton: {fileID: 756084520927632000}
+  animateInName: AnimateIn
+  animateOutName: AnimateOut
+--- !u!114 &6772134346067290495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3474139818034112271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c2c167d8138f94b8f96ff1b82578d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 9a70be20821fdba44afa34e1174e072d, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 359011580054548223}
+        m_TargetAssemblyTypeName: Robbi.Boosters.BoostersBarController, Robbi
+        m_MethodName: AnimateIn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &550976554599489267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3474139818034112271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c2c167d8138f94b8f96ff1b82578d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: b84df41eaf923864ea8e03f45197889e, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 359011580054548223}
+        m_TargetAssemblyTypeName: Robbi.Boosters.BoostersBarController, Robbi
+        m_MethodName: AnimateOut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &3639671320918055622
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -218,12 +294,12 @@ PrefabInstance:
     - target: {fileID: 1783134596272450145, guid: 7af8f8e247980de41bd288bb66109448,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 269.5
       objectReference: {fileID: 0}
     - target: {fileID: 1783134596272450145, guid: 7af8f8e247980de41bd288bb66109448,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 1783134596272450145, guid: 7af8f8e247980de41bd288bb66109448,
         type: 3}
@@ -233,7 +309,7 @@ PrefabInstance:
     - target: {fileID: 1783134596272450145, guid: 7af8f8e247980de41bd288bb66109448,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1783134596272450145, guid: 7af8f8e247980de41bd288bb66109448,
         type: 3}
@@ -243,7 +319,7 @@ PrefabInstance:
     - target: {fileID: 1783134596272450145, guid: 7af8f8e247980de41bd288bb66109448,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1783134596272450145, guid: 7af8f8e247980de41bd288bb66109448,
         type: 3}
@@ -253,7 +329,7 @@ PrefabInstance:
     - target: {fileID: 1783134596272450145, guid: 7af8f8e247980de41bd288bb66109448,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1783134596272450145, guid: 7af8f8e247980de41bd288bb66109448,
         type: 3}
@@ -403,6 +479,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4413571683300642307}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5055876254556416620 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8892987094653297775, guid: fdd3d6788c7ccf64abe51b923827e675,
+    type: 3}
+  m_PrefabInstance: {fileID: 4413571683300642307}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5394287642564694383
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -468,12 +556,12 @@ PrefabInstance:
     - target: {fileID: 1783134596272450145, guid: a5dd262db85413843bbbd0f47b5181ac,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 389.5
       objectReference: {fileID: 0}
     - target: {fileID: 1783134596272450145, guid: a5dd262db85413843bbbd0f47b5181ac,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 1783134596272450145, guid: a5dd262db85413843bbbd0f47b5181ac,
         type: 3}
@@ -483,7 +571,7 @@ PrefabInstance:
     - target: {fileID: 1783134596272450145, guid: a5dd262db85413843bbbd0f47b5181ac,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1783134596272450145, guid: a5dd262db85413843bbbd0f47b5181ac,
         type: 3}
@@ -493,7 +581,7 @@ PrefabInstance:
     - target: {fileID: 1783134596272450145, guid: a5dd262db85413843bbbd0f47b5181ac,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1783134596272450145, guid: a5dd262db85413843bbbd0f47b5181ac,
         type: 3}
@@ -503,7 +591,7 @@ PrefabInstance:
     - target: {fileID: 1783134596272450145, guid: a5dd262db85413843bbbd0f47b5181ac,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1783134596272450145, guid: a5dd262db85413843bbbd0f47b5181ac,
         type: 3}
@@ -528,3 +616,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 5394287642564694383}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &756084520927632000 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4657420043343694831, guid: a5dd262db85413843bbbd0f47b5181ac,
+    type: 3}
+  m_PrefabInstance: {fileID: 5394287642564694383}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1,4 +1,5 @@
 ﻿using Celeste.FSM;
+using CelesteEditor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,10 @@ namespace RobbiEditor.FSM
             {
                 NodeEditorWindow.Open(fsmRuntime.graph);
             }
+
+            CelesteEditorGUILayout.HorizontalLine();
+
+            EditorGUILayout.LabelField(string.Format("Current Node: {0}", fsmRuntime.CurrentNode != null ? fsmRuntime.CurrentNode.name : "null"));
         }
 
         #endregion

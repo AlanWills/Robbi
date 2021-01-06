@@ -91,6 +91,8 @@ namespace Robbi.Boosters
         protected override void Deserialize(BoostersManagerDTO optionsManagerDTO)
         {
             NumWaypointBoosters = optionsManagerDTO.numWaypointBoosters;
+            NumDoorToggleBoosters = optionsManagerDTO.numDoorToggleBoosters;
+            NumInteractBoosters = optionsManagerDTO.numInteractBoosters;
         }
 
         #endregion
