@@ -101,9 +101,9 @@ namespace Robbi.Boosters
     [Serializable]
     public class BoostersManagerDTO
     {
-        public uint numWaypointBoosters;
-        public uint numDoorToggleBoosters;
-        public uint numInteractBoosters;
+        public uint numWaypointBoosters = 3;
+        public uint numDoorToggleBoosters = 3;
+        public uint numInteractBoosters = 3;
 
         public BoostersManagerDTO() { }
 
