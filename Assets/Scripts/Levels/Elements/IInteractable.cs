@@ -19,7 +19,6 @@ namespace Robbi.Levels.Elements
 
         Vector3Int Position { get; }
         TileBase InteractedTile { get; }
-        TileBase UninteractedTile { get; }
 
         #endregion
 

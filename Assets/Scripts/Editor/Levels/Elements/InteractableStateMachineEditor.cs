@@ -154,7 +154,6 @@ namespace RobbiEditor.Levels.Elements
         private void CopyState(Interactable original, Interactable copyTo)
         {
             copyTo.InteractedTile = original.InteractedTile;
-            copyTo.UninteractedTile = original.UninteractedTile;
 
             for (int i = 0; i < original.NumInteractedModifiers; ++i)
             {

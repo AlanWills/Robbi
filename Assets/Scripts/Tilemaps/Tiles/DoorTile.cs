@@ -81,6 +81,29 @@ namespace Robbi.Tilemaps.Tiles
             Play(position);
         }
 
+        public void Toggle(Vector3Int position)
+        {
+            DoorTileInstance instance = GetInstance(position) as DoorTileInstance;
+            if (instance == null)
+            {
+                Debug.LogAssertionFormat("No instance found at position {0}", position);
+                return;
+            }
+
+            if (instance.doorState == DoorState.Opened)
+            {
+                Close(position);
+            }
+            else if (instance.doorState == DoorState.Closed)
+            {
+                Open(position);
+            }
+            else
+            {
+                Debug.LogAssertionFormat("Unhandled DoorState {0} at position {1}", instance.doorState, position);
+            }
+        }
+
         public DoorState GetDoorState(Vector3Int position)
         {
             DoorTileInstance instance = GetInstance(position) as DoorTileInstance;

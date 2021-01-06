@@ -40,20 +40,6 @@ namespace Robbi.Levels.Elements
         }
 
         [SerializeField]
-        private TileBase uninteractedTile;
-        public TileBase UninteractedTile
-        {
-            get { return uninteractedTile; }
-            set
-            {
-                uninteractedTile = value;
-#if UNITY_EDITOR
-                UnityEditor.EditorUtility.SetDirty(this);
-#endif
-            }
-        }
-
-        [SerializeField]
         private List<LevelModifier> interactedModifiers = new List<LevelModifier>();
 
         #endregion
@@ -122,7 +108,10 @@ namespace Robbi.Levels.Elements
 
         public void Interact(InteractArgs interactArgs)
         {
-            interactArgs.interactablesTilemap.SetTile(position, InteractedTile);
+            if (InteractedTile != null)
+            {
+                interactArgs.interactablesTilemap.SetTile(position, InteractedTile);
+            }
 
             foreach (LevelModifier modifier in interactedModifiers)
             {

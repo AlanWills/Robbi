@@ -20,8 +20,6 @@ namespace Robbi.Levels.Elements
     {
         #region Properties and Fields
 
-        public DoorState DoorState { get; private set; }
-
         public Vector3Int position;
         public DoorState startingState = DoorState.Closed;
 
@@ -31,12 +29,10 @@ namespace Robbi.Levels.Elements
 
         public void Initialize(Tilemap tilemap)
         {
-            DoorState = startingState;
-
             DoorTile doorTile = tilemap.GetTile<DoorTile>(position);
             if (doorTile != null)
             {
-                doorTile.Initialize(position, DoorState);
+                doorTile.Initialize(position, startingState);
                 tilemap.RefreshTile(position);
             }
             else
@@ -51,13 +47,14 @@ namespace Robbi.Levels.Elements
 
         public void Open(Tilemap tilemap)
         {
-            DoorState = DoorState.Opened;
-
             DoorTile doorTile = tilemap.GetTile<DoorTile>(position);
             if (doorTile != null)
             {
-                doorTile.Open(position);
-                tilemap.RefreshTile(position);
+                if (doorTile.GetDoorState(position) == DoorState.Closed)
+                {
+                    doorTile.Open(position);
+                    tilemap.RefreshTile(position);
+                }
             }
             else
             {
@@ -67,13 +64,14 @@ namespace Robbi.Levels.Elements
 
         public void Close(Tilemap tilemap)
         {
-            DoorState = DoorState.Closed;
-
             DoorTile doorTile = tilemap.GetTile<DoorTile>(position);
             if (doorTile != null)
             {
-                doorTile.Close(position);
-                tilemap.RefreshTile(position);
+                if (doorTile.GetDoorState(position) == DoorState.Opened)
+                {
+                    doorTile.Close(position);
+                    tilemap.RefreshTile(position);
+                }
             }
             else
             {
@@ -83,17 +81,15 @@ namespace Robbi.Levels.Elements
 
         public void Toggle(Tilemap tilemap)
         {
-            if (DoorState == DoorState.Closed)
+            DoorTile doorTile = tilemap.GetTile<DoorTile>(position);
+            if (doorTile != null)
             {
-                Open(tilemap);
-            }
-            else if (DoorState == DoorState.Opened)
-            {
-                Close(tilemap);
+                doorTile.Toggle(position);
+                tilemap.RefreshTile(position);
             }
             else
             {
-                Debug.LogAssertionFormat("Unhandled DoorState {0} in Door.Initialize", startingState);
+                Debug.LogAssertionFormat("No DoorTile found at {0}", position);
             }
         }
 

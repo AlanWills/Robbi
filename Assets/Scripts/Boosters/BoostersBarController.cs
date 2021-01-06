@@ -13,7 +13,8 @@ namespace Robbi.Boosters
     {
         #region Properties and Fields
 
-        public Animator animator;
+        public Animator boosterButtonsAnimator;
+        public Animator cancelButtonAnimator;
         public Button doorToggleUseButton;
         public Button interactUseButton;
 
@@ -33,12 +34,23 @@ namespace Robbi.Boosters
             animateOutHash = Animator.StringToHash(animateOutName);
         }
 
-        private void OnValidate()
+        private void Start()
         {
-            if (animator == null)
-            {
-                animator = GetComponent<Animator>();
-            }
+            boosterButtonsAnimator.SetTrigger(animateInHash);
+        }
+
+        #endregion
+
+        #region Callbacks
+
+        public void OnShowBoostersBar()
+        {
+            AnimateIn();
+        }
+
+        public void OnHideBoostersBar()
+        {
+            AnimateOut();
         }
 
         #endregion
@@ -49,14 +61,16 @@ namespace Robbi.Boosters
         {
             doorToggleUseButton.interactable = true;
             interactUseButton.interactable = true;
-            animator.SetTrigger(animateInHash);
+            boosterButtonsAnimator.SetTrigger(animateInHash);
+            cancelButtonAnimator.SetTrigger(animateOutHash);
         }
 
         public void AnimateOut()
         {
-            doorToggleUseButton.interactable = true;
-            interactUseButton.interactable = true;
-            animator.SetTrigger(animateOutHash);
+            doorToggleUseButton.interactable = false;
+            interactUseButton.interactable = false;
+            boosterButtonsAnimator.SetTrigger(animateOutHash);
+            cancelButtonAnimator.SetTrigger(animateInHash);
         }
 
         #endregion

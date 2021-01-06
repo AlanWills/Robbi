@@ -51,6 +51,24 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -909845015447165509}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -5092551486547916141}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 14674154852650319}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -909845015447165509}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -5092551486547916141}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 14674154852650319}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -909845015447165509}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -82,6 +100,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &-7699081990532999487
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
+  m_Name: BoosterUsed
+  m_EditorClassIdentifier: 
+  listenFor: {fileID: 11400000, guid: 5d377483043d5504781abada5b1f865a, type: 2}
+--- !u!114 &-5701683329646039372
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
+  m_Name: BoosterCancelled
+  m_EditorClassIdentifier: 
+  listenFor: {fileID: 11400000, guid: 093849f859ca2654b8f4b007c2b23782, type: 2}
 --- !u!114 &-5092551486547916141
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -95,7 +139,7 @@ MonoBehaviour:
   m_Name: Set U Int Value
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 440, y: 216}
+  position: {x: 440, y: 392}
   ports:
     keys:
     - ' '
@@ -107,6 +151,12 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 1093130073886181546}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 1093130073886181546}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 1093130073886181546}
         reroutePoints: []
@@ -171,6 +221,75 @@ MonoBehaviour:
   value: {fileID: 11400000, guid: e5a9d69ba7358f64bb309adb980c3acd, type: 2}
   newValue: {fileID: 1514914753919432085}
   setMode: 2
+--- !u!114 &-4669268255919265949
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d3d684a2fdcd6e4e8336fa62bb135eb, type: 3}
+  m_Name: Multi Event Listener
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 456, y: -24}
+  ports:
+    keys:
+    - ' '
+    - argument
+    - BoosterUsed
+    - BoosterCancelled
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -4669268255919265949}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: 2478503282335584404}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: argument
+      _node: {fileID: -4669268255919265949}
+      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: BoosterUsed
+      _node: {fileID: -4669268255919265949}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 8955211669524220465}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: BoosterCancelled
+      _node: {fileID: -4669268255919265949}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 14674154852650319}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  events:
+  - {fileID: 6677595202994482236}
+  - {fileID: -7699081990532999487}
 --- !u!114 &-3968900789166094422
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -197,7 +316,7 @@ MonoBehaviour:
   m_Name: Event Raiser
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 136, y: -168}
+  position: {x: 136, y: -312}
   ports:
     keys:
     - ' '
@@ -221,7 +340,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: 9007251962513728966}
+        node: {fileID: 1683293261206029446}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -278,6 +397,12 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: 
         node: {fileID: -909845015447165509}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7883804094619388980}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7883804094619388980}
         reroutePoints: []
       - fieldName: 
         node: {fileID: -7883804094619388980}
@@ -354,7 +479,7 @@ MonoBehaviour:
   m_Name: Event Raiser
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1064, y: -184}
+  position: {x: 776, y: -232}
   ports:
     keys:
     - ' '
@@ -382,6 +507,15 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: 
         node: {fileID: 9007251962513728966}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 9007251962513728966}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 9007251962513728966}
+        reroutePoints: []
+      - fieldName: BoosterCancelled
+        node: {fileID: 1683293261206029446}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -438,6 +572,8 @@ MonoBehaviour:
   - {fileID: -3323545322322604601}
   - {fileID: -909845015447165509}
   - {fileID: -7883804094619388980}
+  - {fileID: -4669268255919265949}
+  - {fileID: 1683293261206029446}
   startNode: {fileID: -3151095223934611321}
   parameters:
   - {fileID: -244955444598945041}
@@ -457,7 +593,7 @@ MonoBehaviour:
   m_Name: Event Raiser
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1064, y: 24}
+  position: {x: 776, y: 104}
   ports:
     keys:
     - ' '
@@ -485,6 +621,15 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: 
         node: {fileID: 8955211669524220465}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 8955211669524220465}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 8955211669524220465}
+        reroutePoints: []
+      - fieldName: BoosterCancelled
+        node: {fileID: -4669268255919265949}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -516,6 +661,19 @@ MonoBehaviour:
   m_Name: WaypointBoosterActivated
   m_EditorClassIdentifier: 
   listenFor: {fileID: 11400000, guid: 83852dc8347d8d242951efc9bfa774ef, type: 2}
+--- !u!114 &754502882123389333
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
+  m_Name: BoosterUsed
+  m_EditorClassIdentifier: 
+  listenFor: {fileID: 11400000, guid: 5d377483043d5504781abada5b1f865a, type: 2}
 --- !u!114 &1093130073886181546
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -529,7 +687,7 @@ MonoBehaviour:
   m_Name: Set Int Value
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 136, y: 216}
+  position: {x: 136, y: 392}
   ports:
     keys:
     - ' '
@@ -602,6 +760,75 @@ MonoBehaviour:
   isConstant: 1
   constantValue: 1
   referenceValue: {fileID: 0}
+--- !u!114 &1683293261206029446
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d3d684a2fdcd6e4e8336fa62bb135eb, type: 3}
+  m_Name: Multi Event Listener
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 416.71838, y: -335.9237}
+  ports:
+    keys:
+    - ' '
+    - argument
+    - BoosterUsed
+    - BoosterCancelled
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 1683293261206029446}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: -3323545322322604601}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: argument
+      _node: {fileID: 1683293261206029446}
+      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: BoosterUsed
+      _node: {fileID: 1683293261206029446}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 9007251962513728966}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: BoosterCancelled
+      _node: {fileID: 1683293261206029446}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -909845015447165509}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  events:
+  - {fileID: -5701683329646039372}
+  - {fileID: 754502882123389333}
 --- !u!114 &2478503282335584404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -615,7 +842,7 @@ MonoBehaviour:
   m_Name: Event Raiser
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 136, y: 24}
+  position: {x: 136, y: 8}
   ports:
     keys:
     - ' '
@@ -639,7 +866,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: 8955211669524220465}
+        node: {fileID: -4669268255919265949}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -674,6 +901,19 @@ MonoBehaviour:
   isConstant: 1
   constantValue: 1
   referenceValue: {fileID: 0}
+--- !u!114 &6677595202994482236
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
+  m_Name: BoosterCancelled
+  m_EditorClassIdentifier: 
+  listenFor: {fileID: 11400000, guid: 093849f859ca2654b8f4b007c2b23782, type: 2}
 --- !u!114 &8955211669524220465
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -687,7 +927,7 @@ MonoBehaviour:
   m_Name: Set U Int Value
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 728, y: 8}
+  position: {x: 760, y: -72}
   ports:
     keys:
     - ' '
@@ -716,6 +956,12 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: 
         node: {fileID: 2478503282335584404}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 2478503282335584404}
+        reroutePoints: []
+      - fieldName: BoosterUsed
+        node: {fileID: -4669268255919265949}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -758,7 +1004,7 @@ MonoBehaviour:
   m_Name: Set U Int Value
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 728, y: -200}
+  position: {x: 760, y: -408}
   ports:
     keys:
     - ' '
@@ -787,6 +1033,12 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: 
         node: {fileID: -3323545322322604601}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -3323545322322604601}
+        reroutePoints: []
+      - fieldName: BoosterUsed
+        node: {fileID: 1683293261206029446}
         reroutePoints: []
       _direction: 0
       _connectionType: 0

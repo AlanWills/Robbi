@@ -7,11 +7,14 @@ using Celeste.Tilemaps;
 namespace Robbi.Environment
 {
     [AddComponentMenu("Robbi/Environment/Interactables Manager")]
+    [RequireComponent(typeof(BoxCollider2D))]
     public class InteractablesManager : NamedManager
     {
         #region Properties and Fields
 
         public TilemapValue interactablesTilemap;
+        public BoxCollider2D boundingBox;
+        public Celeste.Events.Event boosterUsedEvent;
 
         private List<IInteractable> interactables = new List<IInteractable>();
 
@@ -36,6 +39,11 @@ namespace Robbi.Environment
                     Debug.LogAssertionFormat("SO {0} is not derived from IInteractable", scriptableObject.name);
                 }
             }
+
+            Vector3Int interactablesGridSize = interactablesTilemap.Value.size;
+            Vector3Int interactablesOrigin = interactablesTilemap.Value.origin;
+            boundingBox.size = new Vector2(interactablesGridSize.x, interactablesGridSize.y);
+            boundingBox.offset = new Vector2(interactablesOrigin.x + interactablesGridSize.x * 0.5f, interactablesOrigin.y + interactablesGridSize.y * 0.5f);
         }
 
         public void Cleanup()
@@ -45,9 +53,33 @@ namespace Robbi.Environment
 
         #endregion
 
-        #region Interaction Methods
+        #region Callbacks
 
         public void OnMovedTo(Vector3Int location)
+        {
+            TryInteract(location);
+        }
+        
+        public void OnGameObjectInput(Vector3 inputLocation)
+        {
+            Vector3Int interactableGridPosition = interactablesTilemap.Value.WorldToCell(inputLocation);
+            if (!interactablesTilemap.Value.HasTile(interactableGridPosition))
+            {
+                // Not a valid location in the tilemap
+                return;
+            }
+
+            if (TryInteract(interactableGridPosition))
+            {
+                boosterUsedEvent.Raise();
+            }
+        }
+
+        #endregion
+
+        #region Interaction Methods
+
+        private bool TryInteract(Vector3Int location)
         {
             foreach (IInteractable interactable in interactables)
             {
@@ -59,7 +91,22 @@ namespace Robbi.Environment
                     };
 
                     interactable.Interact(interact);
+                    return true;
                 }
+            }
+
+            return false;
+        }
+
+        #endregion
+
+        #region Unity Methods
+
+        private void OnValidate()
+        {
+            if (boundingBox == null)
+            {
+                boundingBox = GetComponent<BoxCollider2D>();
             }
         }
 

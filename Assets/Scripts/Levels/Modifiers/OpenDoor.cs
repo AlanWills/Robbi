@@ -22,10 +22,7 @@ namespace Robbi.Levels.Modifiers
 
         public override void Execute(InteractArgs interactArgs)
         {
-            if (door.DoorState == DoorState.Closed)
-            {
-                doorEvent.Raise(door);
-            }
+            doorEvent.Raise(door);
         }
     }
 }

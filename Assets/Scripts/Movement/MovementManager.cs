@@ -204,6 +204,16 @@ namespace Robbi.Movement
             MoveToNextWaypoint();
         }
 
+        public void OnBoosterStart()
+        {
+            boundingBox.enabled = false;
+        }
+
+        public void OnBoosterFinish()
+        {
+            boundingBox.enabled = true;
+        }
+
         #endregion
 
         #region Fuel Methods
@@ -330,15 +340,6 @@ namespace Robbi.Movement
         public Waypoint GetWaypoint(int waypointIndex)
         {
             return 0 <= waypointIndex && waypointIndex < NumWaypoints ? waypoints[waypointIndex] : null;
-        }
-
-        #endregion
-
-        #region Speed
-
-        public void DoubleSpeed()
-        {
-
         }
 
         #endregion

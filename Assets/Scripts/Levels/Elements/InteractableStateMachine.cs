@@ -33,11 +33,6 @@ namespace Robbi.Levels.Elements
             get { return CurrentStateValid ? states[currentState].InteractedTile : null; }
         }
 
-        public TileBase UninteractedTile
-        {
-            get { return CurrentStateValid ? states[currentState].UninteractedTile : null; }
-        }
-
         [Tooltip("Should the state continuously loop, so that when it reaches the final state it will go back to the first state again.")]
         public bool loop = true;
 
@@ -99,20 +94,6 @@ namespace Robbi.Levels.Elements
 
             // Update current state index first
             currentState = loop ? ((currentState + 1) % NumStates) : currentState + 1;
-
-            // Then apply tilemap changes
-            Vector3Int[] vector3Ints = new Vector3Int[NumStates];
-            TileBase[] tileBases = new TileBase[NumStates];
-
-            for (int i = 0; i < NumStates; ++i)
-            {
-                vector3Ints[i] = states[i].Position;
-                tileBases[i] = i == currentState ? states[i].InteractedTile : states[i].UninteractedTile;
-            }
-
-            // Set the tiles for all the states, to make sure we don't have any artifacts from previous states
-            // This allows the state machine to have interactables on different tiles
-            interactArgs.interactablesTilemap.SetTiles(vector3Ints, tileBases);
 
             // Finally do the interaction - this will override any previous tile changes to ensure the interacted tile is ALWAYS applied
             states[currentState].Interact(interactArgs);
