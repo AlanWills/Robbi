@@ -34,7 +34,7 @@ namespace Celeste.FSM.Nodes.Parameters
                     break;
 
                 case SetMode.Decrement:
-                    value.Value -= newValue;
+                    value.Value = value.Value < newValue ? 0 : value.Value - newValue;
                     break;
 
                 default:
