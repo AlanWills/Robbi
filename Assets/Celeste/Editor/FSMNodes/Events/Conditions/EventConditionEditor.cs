@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace RobbiEditor.FSM.Nodes.Events.Conditions
+namespace CelesteEditor.FSM.Nodes.Events.Conditions
 {
     public class EventConditionEditor
     {

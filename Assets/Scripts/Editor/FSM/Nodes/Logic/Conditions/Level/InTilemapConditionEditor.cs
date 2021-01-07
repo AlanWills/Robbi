@@ -3,12 +3,14 @@ using Celeste.Parameters;
 using UnityEditor;
 using Celeste.FSM.Nodes.Logic;
 using Celeste.Logic;
+using CelesteEditor.FSM.Nodes.Logic.Conditions;
 
 namespace RobbiEditor.FSM.Nodes.Logic.Conditions
 {
-    public class InTilemapConditionEditor : ValueConditionEditor
+    [CustomEditor(typeof(InTilemapCondition))]
+    public class InTilemapConditionEditor : ConditionEditor
     {
-        protected override void OnGUI(IfNode ifNode, SerializedObject valueCondition)
+        protected override void OnInspectorGUIImpl(SerializedObject valueCondition)
         {
             string[] operatorDisplayNames = new string[]
             {
@@ -23,7 +25,7 @@ namespace RobbiEditor.FSM.Nodes.Logic.Conditions
             };
 
             Vector3IntReference reference = (valueCondition.targetObject as InTilemapCondition).target;
-            DrawDefaultGUI(valueCondition, operatorDisplayNames, operators, reference);
+            DrawDefaultInspectorGUI(valueCondition, operatorDisplayNames, operators, reference);
         }
     }
 }

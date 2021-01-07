@@ -4,11 +4,12 @@ using Celeste.Logic;
 using Celeste.Parameters;
 using UnityEditor;
 
-namespace RobbiEditor.FSM.Nodes.Logic.Conditions
+namespace CelesteEditor.FSM.Nodes.Logic.Conditions
 {
-    public class UIntValueConditionEditor : ValueConditionEditor
+    [CustomEditor(typeof(UIntValueCondition))]
+    public class UIntValueConditionEditor : ConditionEditor
     {
-        protected override void OnGUI(IfNode ifNode, SerializedObject valueCondition)
+        protected override void OnInspectorGUIImpl(SerializedObject valueCondition)
         {
             string[] operatorDisplayNames = new string[]
             {
@@ -31,7 +32,7 @@ namespace RobbiEditor.FSM.Nodes.Logic.Conditions
             };
 
             UIntReference reference = (valueCondition.targetObject as UIntValueCondition).target;
-            DrawDefaultGUI(valueCondition, operatorDisplayNames, operators, reference);
+            DrawDefaultInspectorGUI(valueCondition, operatorDisplayNames, operators, reference);
         }
     }
 }

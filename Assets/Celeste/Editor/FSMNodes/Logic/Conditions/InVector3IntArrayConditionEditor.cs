@@ -4,11 +4,11 @@ using Celeste.Logic;
 using Celeste.Parameters;
 using UnityEditor;
 
-namespace RobbiEditor.FSM.Nodes.Logic.Conditions
+namespace CelesteEditor.FSM.Nodes.Logic.Conditions
 {
-    public class InVector3IntArrayConditionEditor : ValueConditionEditor
+    public class InVector3IntArrayConditionEditor : ConditionEditor
     {
-        protected override void OnGUI(IfNode ifNode, SerializedObject valueCondition)
+        protected override void OnInspectorGUIImpl(SerializedObject valueCondition)
         {
             string[] operatorDisplayNames = new string[]
             {
@@ -23,7 +23,7 @@ namespace RobbiEditor.FSM.Nodes.Logic.Conditions
             };
 
             Vector3IntReference reference = (valueCondition.targetObject as InVector3IntArrayCondition).target;
-            DrawDefaultGUI(valueCondition, operatorDisplayNames, operators, reference);
+            DrawDefaultInspectorGUI(valueCondition, operatorDisplayNames, operators, reference);
         }
     }
 }

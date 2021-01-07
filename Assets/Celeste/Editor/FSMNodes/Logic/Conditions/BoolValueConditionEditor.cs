@@ -4,11 +4,12 @@ using Celeste.Logic;
 using Celeste.Parameters;
 using UnityEditor;
 
-namespace RobbiEditor.FSM.Nodes.Logic.Conditions
+namespace CelesteEditor.FSM.Nodes.Logic.Conditions
 {
-    public class BoolValueConditionEditor : ValueConditionEditor
+    [CustomEditor(typeof(BoolValueCondition))]
+    public class BoolValueConditionEditor : ConditionEditor
     {
-        protected override void OnGUI(IfNode ifNode, SerializedObject valueCondition)
+        protected override void OnInspectorGUIImpl(SerializedObject valueCondition)
         {
             string[] operatorDisplayNames = new string[]
             {
@@ -23,7 +24,7 @@ namespace RobbiEditor.FSM.Nodes.Logic.Conditions
             };
 
             BoolReference reference = (valueCondition.targetObject as BoolValueCondition).target;
-            DrawDefaultGUI(valueCondition, operatorDisplayNames, operators, reference);
+            DrawDefaultInspectorGUI(valueCondition, operatorDisplayNames, operators, reference);
         }
     }
 }

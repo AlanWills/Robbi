@@ -12,7 +12,7 @@ using UnityEngine.UI;
 namespace Celeste.FSMNodes.Input
 {
     [CreateNodeMenu("Celeste/Input/Will Be Clicked")]
-    public class WillBeClicked : FSMNode
+    public class WillBeClickedNode : FSMNode
     {
         #region Properties and Fields
         
@@ -26,7 +26,7 @@ namespace Celeste.FSMNodes.Input
 
         #endregion
 
-        public WillBeClicked()
+        public WillBeClickedNode()
         {
             RemoveDynamicPort(DEFAULT_OUTPUT_PORT_NAME);
 
@@ -40,7 +40,7 @@ namespace Celeste.FSMNodes.Input
         {
             base.OnCopyInGraph(original);
 
-            WillBeClicked willBeClicked = original as WillBeClicked;
+            WillBeClickedNode willBeClicked = original as WillBeClickedNode;
 
             attemptWindow = willBeClicked.attemptWindow;
             gameObjectPath = new GameObjectPath();
@@ -68,13 +68,8 @@ namespace Celeste.FSMNodes.Input
                 GameObject gameObject = gameObjectPath.GameObject;
                 if (gameObject != null)
                 {
-                    PointerEventData eventData = new PointerEventData(EventSystem.current);
-                    eventData.position = gameObject.transform.position;
-
-                    List<RaycastResult> results = new List<RaycastResult>();
-                    EventSystem.current.RaycastAll(eventData, results);
-
-                    if (results.Count > 0 && results[0].gameObject == ExecuteEvents.GetEventHandler<IPointerClickHandler>(gameObject))
+                    GameObject closestGameObject = GetClosestGameObject(gameObject.transform.position);
+                    if (closestGameObject != null && closestGameObject == ExecuteEvents.GetEventHandler<IPointerClickHandler>(gameObject))
                     {
                         Debug.LogFormat("GameObject {0} will be clicked", gameObjectPath.Path);
                         return GetConnectedNode(WILL_BE_CLICKED_OUTPUT_PORT);
@@ -87,6 +82,36 @@ namespace Celeste.FSMNodes.Input
 
             Debug.LogFormat("GameObject {0} will not be clicked", gameObjectPath);
             return GetConnectedNode(WONT_BE_CLICKED_OUTPUT_PORT);
+        }
+
+        #endregion
+
+        #region Utility Functions
+
+        private GameObject GetClosestGameObject(Vector3 position)
+        {
+            PointerEventData eventData = new PointerEventData(EventSystem.current);
+            eventData.position = position;
+
+            List<RaycastResult> results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(eventData, results);
+
+            GameObject closestGameObject = null;
+            float closestDistance = float.MaxValue;
+            int closestDepth = int.MaxValue;
+
+            foreach (RaycastResult result in results)
+            {
+                if (result.distance < closestDistance ||
+                    (result.distance == closestDistance && result.depth > closestDepth))
+                {
+                    closestGameObject = result.gameObject;
+                    closestDistance = result.distance;
+                    closestDepth = result.depth;
+                }
+            }
+
+            return closestGameObject;
         }
 
         #endregion

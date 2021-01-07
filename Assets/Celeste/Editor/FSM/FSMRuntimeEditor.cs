@@ -10,7 +10,7 @@ using UnityEditor;
 using UnityEngine;
 using XNodeEditor;
 
-namespace RobbiEditor.FSM
+namespace CelesteEditor.FSM
 {
     [CustomEditor(typeof(FSMRuntime))]
     public class FSMRuntimeEditor : SceneGraphEditor

@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Celeste.FSM.Nodes.Logic.Conditions
 {
-    public class InVector3IntArrayCondition : ValueCondition
+    public class InVector3IntArrayCondition : Condition
     {
         #region Properties and Fields
 
@@ -75,7 +75,7 @@ namespace Celeste.FSM.Nodes.Logic.Conditions
 
         #region ICopyable
 
-        public override void CopyFrom(ValueCondition original)
+        public override void CopyFrom(Condition original)
         {
             InVector3IntArrayCondition valueCondition = original as InVector3IntArrayCondition;
             useArgument = valueCondition.useArgument;

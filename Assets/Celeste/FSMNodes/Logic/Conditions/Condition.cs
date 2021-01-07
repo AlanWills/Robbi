@@ -10,7 +10,7 @@ using UnityEngine;
 namespace Celeste.FSM.Nodes.Logic.Conditions
 {
     [Serializable]
-    public abstract class ValueCondition : ScriptableObject, ICopyable<ValueCondition>
+    public abstract class Condition : ScriptableObject, ICopyable<Condition>
     {
 #if UNITY_EDITOR
         public abstract void Init_EditorOnly(IParameterContainer parameterContainer);
@@ -30,7 +30,7 @@ namespace Celeste.FSM.Nodes.Logic.Conditions
 
         #region ICopyable
 
-        public abstract void CopyFrom(ValueCondition original);
+        public abstract void CopyFrom(Condition original);
 
         #endregion
     }

@@ -2,7 +2,7 @@
 using Celeste.FSM.Nodes;
 using Celeste.FSM.Nodes.Events;
 using Celeste.FSM.Nodes.Events.Conditions;
-using RobbiEditor.FSM.Nodes.Events.Conditions;
+using CelesteEditor.FSM.Nodes.Events.Conditions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ using UnityEditor;
 using UnityEngine;
 using XNodeEditor;
 
-namespace RobbiEditor.FSM.Nodes.Events
+namespace CelesteEditor.FSM.Nodes.Events
 {
     [CustomNodeEditor(typeof(MultiEventNode))]
     public class MultiEventNodeEditor : FSMNodeEditor

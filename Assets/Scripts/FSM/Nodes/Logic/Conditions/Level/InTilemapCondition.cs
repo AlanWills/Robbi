@@ -6,7 +6,7 @@ using Celeste.Tilemaps;
 
 namespace Robbi.FSM.Nodes.Logic.Conditions
 {
-    public class InTilemapCondition : ValueCondition
+    public class InTilemapCondition : Condition
     {
         #region Properties and Fields
 
@@ -72,7 +72,7 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
 
         #region ICopyable
 
-        public override void CopyFrom(ValueCondition original)
+        public override void CopyFrom(Condition original)
         {
             InTilemapCondition valueCondition = original as InTilemapCondition;
             useArgument = valueCondition.useArgument;

@@ -7,7 +7,7 @@ using Celeste.Logic;
 
 namespace Robbi.FSM.Nodes.Logic.Conditions
 {
-    public class AtAnyInteractableCondition : ValueCondition
+    public class AtAnyInteractableCondition : Condition
     {
         #region Properties and Fields
 
@@ -89,7 +89,7 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
 
         #region ICopyable
 
-        public override void CopyFrom(ValueCondition original)
+        public override void CopyFrom(Condition original)
         {
             AtAnyInteractableCondition atAnySwitchCondition = original as AtAnyInteractableCondition;
             useArgument = atAnySwitchCondition.useArgument;

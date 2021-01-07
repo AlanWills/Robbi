@@ -28,7 +28,7 @@ namespace Celeste.FSM.Nodes.Logic
         }
 
         [SerializeField]
-        private List<ValueCondition> conditions = new List<ValueCondition>();
+        private List<Condition> conditions = new List<Condition>();
 
         #endregion
 
@@ -42,8 +42,8 @@ namespace Celeste.FSM.Nodes.Logic
 
             for (uint i = 0; i < originalIfNode.NumConditions; ++i)
             {
-                ValueCondition originalCondition = originalIfNode.GetCondition(i);
-                ValueCondition newCondition = AddCondition(originalCondition.name, originalCondition.GetType());
+                Condition originalCondition = originalIfNode.GetCondition(i);
+                Condition newCondition = AddCondition(originalCondition.name, originalCondition.GetType());
                 newCondition.CopyFrom(originalCondition);
             }
         }
@@ -62,9 +62,9 @@ namespace Celeste.FSM.Nodes.Logic
 
         #region Condition Methods
 
-        public ValueCondition AddCondition(string conditionName, Type conditionType)
+        public Condition AddCondition(string conditionName, Type conditionType)
         {
-            ValueCondition valueCondition = ScriptableObject.CreateInstance(conditionType) as ValueCondition;
+            Condition valueCondition = ScriptableObject.CreateInstance(conditionType) as Condition;
             valueCondition.name = conditionName;
             conditions.Add(valueCondition);
 
@@ -81,12 +81,12 @@ namespace Celeste.FSM.Nodes.Logic
             return valueCondition;
         }
 
-        public T AddCondition<T>(string conditionName) where T : ValueCondition
+        public T AddCondition<T>(string conditionName) where T : Condition
         {
             return AddCondition(conditionName, typeof(T)) as T;
         }
 
-        public void RemoveCondition(ValueCondition condition)
+        public void RemoveCondition(Condition condition)
         {
             if (HasPort(condition.name))
             {
@@ -103,7 +103,7 @@ namespace Celeste.FSM.Nodes.Logic
 #endif
         }
 
-        public ValueCondition GetCondition(uint conditionIndex)
+        public Condition GetCondition(uint conditionIndex)
         {
             return conditionIndex < NumConditions ? conditions[(int)conditionIndex] : null;
         }
@@ -126,7 +126,7 @@ namespace Celeste.FSM.Nodes.Logic
             object _argument = GetInputValue(nameof(inArgument), inArgument);
             outArgument = _argument;
 
-            foreach (ValueCondition condition in conditions)
+            foreach (Condition condition in conditions)
             {
                 if (condition.Check(_argument))
                 {

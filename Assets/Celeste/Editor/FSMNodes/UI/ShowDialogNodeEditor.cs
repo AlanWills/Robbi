@@ -9,7 +9,7 @@ using UnityEditor;
 using UnityEngine;
 using XNodeEditor;
 
-namespace RobbiEditor.FSM.Nodes.UI
+namespace CelesteEditor.FSM.Nodes.UI
 {
     [CustomNodeEditor(typeof(ShowDialogNode))]
     public class ShowDialogNodeEditor : FSMNodeEditor

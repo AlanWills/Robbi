@@ -9,7 +9,7 @@ using UnityEditor;
 using UnityEngine;
 using XNodeEditor;
 
-namespace RobbiEditor.FSM.Nodes
+namespace CelesteEditor.FSM.Nodes
 {
     [CustomNodeEditor(typeof(FSMNode))]
     public class FSMNodeEditor : NodeEditor

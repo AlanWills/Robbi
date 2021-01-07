@@ -1,4 +1,5 @@
-﻿using CelesteEditor.Tools;
+﻿using Celeste.FSM;
+using CelesteEditor.Tools;
 using CelesteEditor.Validation.GUIs;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using UnityEngine;
 using XNode;
 using XNodeEditor;
 
-namespace Celeste.FSM
+namespace CelesteEditor.FSM
 {
     [CustomNodeGraphEditor(typeof(FSMGraph))]
     public class FSMGraphEditor : NodeGraphEditor

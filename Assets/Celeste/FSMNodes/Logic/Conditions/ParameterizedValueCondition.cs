@@ -11,7 +11,7 @@ using UnityEngine;
 namespace Celeste.FSM.Nodes.Logic.Conditions
 {
     [Serializable]
-    public abstract class ParameterizedValueCondition<T, TValue, TReference> : ValueCondition
+    public abstract class ParameterizedValueCondition<T, TValue, TReference> : Condition
         where TValue : ParameterValue<T>
         where TReference : ParameterReference<T, TValue, TReference>
     {
@@ -75,7 +75,7 @@ namespace Celeste.FSM.Nodes.Logic.Conditions
 
         #region ICopyable
 
-        public override void CopyFrom(ValueCondition original)
+        public override void CopyFrom(Condition original)
         {
             ParameterizedValueCondition<T, TValue, TReference> valueCondition = original as ParameterizedValueCondition<T, TValue, TReference>;
             useArgument = valueCondition.useArgument;

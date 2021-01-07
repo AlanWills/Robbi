@@ -4,55 +4,19 @@ using Celeste.FSM.Nodes.Logic;
 using Celeste.FSM.Nodes.Logic.Conditions;
 using CelesteEditor;
 using CelesteEditor.Popups;
-using RobbiEditor.FSM.Nodes.Logic.Conditions;
+using CelesteEditor.FSM.Nodes.Logic.Conditions;
 using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using XNodeEditor;
 
-namespace RobbiEditor.FSM.Nodes.Logic
+namespace CelesteEditor.FSM.Nodes.Logic
 {
     [CustomNodeEditor(typeof(IfNode))]
     public class IfNodeEditor : FSMNodeEditor
     {
         #region Properties and Fields
-
-        private static Type[] valueConditionOptions = new Type[]
-        {
-            typeof(BoolValueCondition),
-            typeof(IntValueCondition),
-            typeof(UIntValueCondition),
-            typeof(FloatValueCondition),
-            typeof(LongValueCondition),
-            typeof(StringValueCondition),
-            typeof(Vector3IntValueCondition),
-            typeof(InVector3IntArrayCondition)
-        };
-
-        private static string[] valueConditionDisplayNames = new string[]
-        {
-            "Bool",
-            "Int",
-            "UInt",
-            "Float",
-            "Long",
-            "String",
-            "Vector3Int",
-            "In Vector3IntArray"
-        };
-
-        private static Dictionary<Type, ValueConditionEditor> valueConditionEditorFactory = new Dictionary<Type, ValueConditionEditor>()
-        {
-            { typeof(BoolValueCondition), new BoolValueConditionEditor() },
-            { typeof(IntValueCondition), new IntValueConditionEditor() },
-            { typeof(UIntValueCondition), new UIntValueConditionEditor() },
-            { typeof(FloatValueCondition), new FloatValueConditionEditor() },
-            { typeof(LongValueCondition), new LongValueConditionEditor() },
-            { typeof(StringValueCondition), new StringValueConditionEditor() },
-            { typeof(Vector3IntValueCondition), new Vector3IntValueConditionEditor() },
-            { typeof(InVector3IntArrayCondition), new InVector3IntArrayConditionEditor() }
-        };
 
         private int selectedEventType = 0;
 
@@ -74,19 +38,19 @@ namespace RobbiEditor.FSM.Nodes.Logic
                     ifNode.GetInputPort(nameof(ifNode.inArgument)),
                     ifNode.GetOutputPort(nameof(ifNode.outArgument)));
 
-                selectedEventType = EditorGUILayout.Popup(selectedEventType, valueConditionDisplayNames);
+                selectedEventType = EditorGUILayout.Popup(selectedEventType, ConditionsConstants.ConditionDisplayNames.ToArray());
 
                 if (GUILayout.Button("Add Condition"))
                 {
                     TextInputPopup.Display("New Condition...", (string conditionName) =>
                     {
-                        ifNode.AddCondition(conditionName, valueConditionOptions[selectedEventType]);
+                        ifNode.AddCondition(conditionName, ConditionsConstants.ConditionOptions[selectedEventType]);
                     });
                 }
 
                 for (uint i = ifNode.NumConditions; i > 0; --i)
                 {
-                    ValueCondition valueCondition = ifNode.GetCondition(i - 1);
+                    Condition valueCondition = ifNode.GetCondition(i - 1);
 
                     EditorGUILayout.Separator();
                     EditorGUILayout.BeginHorizontal();
@@ -102,9 +66,17 @@ namespace RobbiEditor.FSM.Nodes.Logic
                     {
                         ifNode.RemoveCondition(valueCondition);
                     }
-                    else if (valueConditionEditorFactory.TryGetValue(valueCondition.GetType(), out ValueConditionEditor editor))
+                    else
                     {
-                        editor.GUI(ifNode, valueCondition);
+                        Editor conditionEditor = Editor.CreateEditor(valueCondition);
+                        if (conditionEditor != null)
+                        {
+                            conditionEditor.OnInspectorGUI();
+                        }
+                        else
+                        {
+                            Debug.LogAssertionFormat("No editor found for ValueCondition Type: {0}", valueCondition.GetType().Name);
+                        }
                     }
                 }
             }

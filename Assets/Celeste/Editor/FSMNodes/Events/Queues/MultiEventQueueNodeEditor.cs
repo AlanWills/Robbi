@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using XNodeEditor;
 
-namespace RobbiEditor.FSM.Nodes.Events
+namespace CelesteEditor.FSM.Nodes.Events
 {
     [CustomNodeEditor(typeof(MultiEventQueueNode))]
     public class MultiEventQueueNodeEditor : MultiEventNodeEditor

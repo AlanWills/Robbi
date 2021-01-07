@@ -15,6 +15,7 @@ using Celeste.FSM.Nodes.Input;
 using Celeste.FSM.Nodes.Events;
 using Celeste.FSM.Nodes.Events.Conditions;
 using Celeste.FSM.Nodes.Testing;
+using CelesteEditor.FSM;
 
 namespace RobbiEditor.Tools
 {

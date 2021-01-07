@@ -4,23 +4,23 @@ using CelesteEditor.PropertyDrawers.Parameters;
 using UnityEditor;
 using UnityEngine;
 
-namespace RobbiEditor.FSM.Nodes.Logic.Conditions
+namespace CelesteEditor.FSM.Nodes.Logic.Conditions
 {
-    public abstract class ValueConditionEditor
+    public abstract class ConditionEditor : Editor
     {
-        public void GUI(IfNode ifNode, ValueCondition valueCondition)
+        public override void OnInspectorGUI()
         {
-            SerializedObject serializedObject = new SerializedObject(valueCondition);
+            SerializedObject serializedObject = new SerializedObject(target);
             serializedObject.Update();
 
-            OnGUI(ifNode, serializedObject);
+            OnInspectorGUIImpl(serializedObject);
 
             serializedObject.ApplyModifiedProperties();
         }
 
-        protected abstract void OnGUI(IfNode ifNode, SerializedObject eventConditionObject);
+        protected abstract void OnInspectorGUIImpl(SerializedObject eventConditionObject);
 
-        protected void DrawDefaultGUI(SerializedObject valueCondition, string[] operatorDisplayNames, int[] operators, Object conditionTarget)
+        protected void DrawDefaultInspectorGUI(SerializedObject valueCondition, string[] operatorDisplayNames, int[] operators, Object conditionTarget)
         {
             EditorGUILayout.BeginVertical();
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using XNodeEditor;
 
-namespace RobbiEditor.FSM.Nodes.Loading
+namespace CelesteEditor.FSM.Nodes.Loading
 {
     [CustomNodeEditor(typeof(InstantiatePrefabNode))]
     public class InstantiatePrefabNodeEditor : FSMNodeEditor
