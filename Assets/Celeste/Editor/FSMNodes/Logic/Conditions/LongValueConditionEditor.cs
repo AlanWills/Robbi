@@ -6,6 +6,7 @@ using UnityEditor;
 
 namespace CelesteEditor.FSM.Nodes.Logic.Conditions
 {
+    [CustomEditor(typeof(LongValueCondition))]
     public class LongValueConditionEditor : ConditionEditor
     {
         protected override void OnInspectorGUIImpl(SerializedObject valueCondition)

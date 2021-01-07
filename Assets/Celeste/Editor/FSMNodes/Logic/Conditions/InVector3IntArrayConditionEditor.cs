@@ -6,6 +6,7 @@ using UnityEditor;
 
 namespace CelesteEditor.FSM.Nodes.Logic.Conditions
 {
+    [CustomEditor(typeof(InVector3IntArrayCondition))]
     public class InVector3IntArrayConditionEditor : ConditionEditor
     {
         protected override void OnInspectorGUIImpl(SerializedObject valueCondition)

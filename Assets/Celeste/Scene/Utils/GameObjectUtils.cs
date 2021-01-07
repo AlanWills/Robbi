@@ -55,23 +55,24 @@ namespace Celeste.Utils
             return null;
         }
 
-        public static void Click(this GameObject gameObject)
+        public static bool Click(this GameObject gameObject)
         {
             Button button = gameObject.GetComponent<Button>();
             if (button != null)
             {
                 button.onClick.Invoke();
-                return;
+                return true;
             }
 
             Toggle toggle = gameObject.GetComponent<Toggle>();
             if (toggle != null)
             {
                 toggle.onValueChanged.Invoke(!toggle.isOn);
-                return;
+                return true;
             }
             
             Debug.LogFormat("No clickable component found on GameObject {0}", gameObject.name);
+            return false;
         }
 
         private static bool FindConstraintMet(GameObject gameObject, FindConstraint findConstraint)

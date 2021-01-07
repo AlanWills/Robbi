@@ -61,19 +61,18 @@ namespace Celeste.FSM.Nodes.Input
                 GameObject gameObject = gameObjectPath.GameObject;
                 if (gameObject != null)
                 {
-                    gameObject.Click();
-                    Debug.LogFormat("Successfully clicked on {0}", gameObjectPath.Path);
+                    if (gameObject.Click())
+                    {
+                        Debug.LogFormat("Successfully clicked on {0}", gameObjectPath.Path);
+                        return GetConnectedNode(FOUND_OUTPUT_PORT);
+                    }
+                }
 
-                    return GetConnectedNode(FOUND_OUTPUT_PORT);
-                }
-                else
-                {
-                    // We are still within the attempt window so stay within this node
-                    return this;
-                }
+                // We are still within the attempt window so stay within this node
+                return this;
             }
 
-            Debug.LogFormat("Could not find GameObject with path {0}", gameObjectPath);
+            Debug.LogFormat("Failed to click on GameObject with path {0}", gameObjectPath);
             return GetConnectedNode(NOT_FOUND_OUTPUT_PORT);
         }
 
