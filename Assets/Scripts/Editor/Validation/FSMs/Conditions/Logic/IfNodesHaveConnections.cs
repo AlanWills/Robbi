@@ -24,6 +24,8 @@ namespace RobbiEditor.Validation.FSM.Conditions.Logic
                     {
                         valid &= ifNode.CheckPortConnected(ifNode.GetCondition(i).name, output);
                     }
+
+                    valid &= ifNode.CheckPortConnected(IfNode.DEFAULT_OUTPUT_PORT_NAME, output);
                 }
             }
 
