@@ -18,8 +18,6 @@ namespace RobbiEditor
         public const string RUN_PROGRAM_EVENT = FULL_PATH + LEVEL + "RunProgram.asset";
         public const string LEVEL_WON_EVENT = FULL_PATH + LEVEL + "LevelWon.asset";
         public const string LEVEL_LOST_EVENT = FULL_PATH + LEVEL + "LevelLost.asset";
-        public const string LEVEL_LOSE_WAYPOINT_UNREACHABLE_EVENT = FULL_PATH + LEVEL + "LevelLoseWaypointUnreachable.asset";
-        public const string LEVEL_LOSE_OUT_OF_WAYPOINTS_EVENT = FULL_PATH + LEVEL + "LevelLoseOutOfWaypoints.asset";
         public const string GAME_OBJECT_LEFT_CLICK_EVENT = FULL_PATH + INPUT + COMMON + "GameObjectLeftClick.asset";
 
         // Debugging

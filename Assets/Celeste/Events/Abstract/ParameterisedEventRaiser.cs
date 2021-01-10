@@ -9,6 +9,7 @@ using UnityEngine.Events;
 
 namespace Celeste.Events
 {
+    [Serializable]
     public class ParameterisedEventRaiser<T, TEvent> : MonoBehaviour, IEventRaiser<T>
         where TEvent : ParameterisedEvent<T>
     {

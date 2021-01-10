@@ -43,7 +43,7 @@ namespace Robbi.Boosters
             boosterButtonsAnimator.SetTrigger(animateInHash);
         }
 
-        public void OnLevelLose()
+        public void OnLevelLost()
         {
             boosterButtonsAnimator.SetTrigger(animateOutHash);
             cancelButtonAnimator.SetTrigger(animateOutHash);

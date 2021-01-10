@@ -187,6 +187,8 @@ GameObject:
   - component: {fileID: 5727017107758890609}
   - component: {fileID: 4119704797708216694}
   - component: {fileID: 3458020385244659024}
+  - component: {fileID: 3398818866761533935}
+  - component: {fileID: 5273468936645031076}
   - component: {fileID: 2185254429373469848}
   m_Layer: 0
   m_Name: MovementManager
@@ -234,17 +236,17 @@ MonoBehaviour:
   onInvalidWaypointPlaced: {fileID: 11400000, guid: da5dc9084d15a8343bea6f5becad19d7,
     type: 2}
   levelLose: {fileID: 11400000, guid: f1011e957c917144caeaffc2270ffebe, type: 2}
-  waypointUnreachableReason: {fileID: 11400000, guid: ee0f6020e53f5824280470771cdc9880,
-    type: 2}
-  outOfWaypointsReason: {fileID: 11400000, guid: 9a485ede45730c94d89e94f413fa72e4,
-    type: 2}
-  outOfFuelReason: {fileID: 11400000, guid: 9842410d9af3d844ebf15325b9de70c5, type: 2}
   remainingWaypointsPlaceable: {fileID: 11400000, guid: 5795522ed653b6947a2cfc5b86742695,
     type: 2}
   waypointsPlaced: {fileID: 11400000, guid: ab2db721a5c983a40963c20d01bb3cc3, type: 2}
   isProgramRunning: {fileID: 11400000, guid: 36c66e683e05d134495c04803619774f, type: 2}
   levelRequiresFuel: {fileID: 11400000, guid: ad4d3f76ba9af9640a612ed9416e725a, type: 2}
   remainingFuel: {fileID: 11400000, guid: 665dc865d1fb88d498d7a87fba272bf5, type: 2}
+  waypointUnreachableReason: {fileID: 11400000, guid: ee0f6020e53f5824280470771cdc9880,
+    type: 2}
+  outOfWaypointsReason: {fileID: 11400000, guid: 9a485ede45730c94d89e94f413fa72e4,
+    type: 2}
+  outOfFuelReason: {fileID: 11400000, guid: 9842410d9af3d844ebf15325b9de70c5, type: 2}
   destinationMarkerAllocator: {fileID: 2185254429373469848}
   movementSpeed: {fileID: 11400000, guid: 4129d939c3be32249934c9c778306861, type: 2}
   boundingBox: {fileID: 2507852983745413843}
@@ -497,6 +499,62 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &3398818866761533935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2772506934692611051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb22ffe0a10eab4c89bb06a87233613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 45b0b65d2752d3843afe3667d4aaba1c, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2772506934692611030}
+        m_TargetAssemblyTypeName: Robbi.Movement.MovementManager, Robbi
+        m_MethodName: OnAddWaypoints
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5273468936645031076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2772506934692611051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb22ffe0a10eab4c89bb06a87233613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 0b39fe8ba63f84b47a8e8c5d50f2a29e, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2772506934692611030}
+        m_TargetAssemblyTypeName: Robbi.Movement.MovementManager, Robbi
+        m_MethodName: OnRemoveWaypoints
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2185254429373469848
 MonoBehaviour:

@@ -78,17 +78,12 @@ namespace RobbiEditor.Tools
             // Add Multi Event Listener to check for level won/lost
             MultiEventListenerNode multiEventListenerNode = CreateNode<MultiEventListenerNode>(fsmGraphEditor, previousNode);
 
-            // Level Lose Waypoint Unreachable
-            VoidEventCondition levelLoseWaypointUnreachableEvent = multiEventListenerNode.AddEvent<VoidEventCondition>();
-            levelLoseWaypointUnreachableEvent.listenFor = AssetDatabase.LoadAssetAtPath<Event>(EventFiles.LEVEL_LOSE_WAYPOINT_UNREACHABLE_EVENT);
-            Debug.Assert(levelLoseWaypointUnreachableEvent.listenFor != null, "Default LevelLoseWaypointUnreachable event could not be found for MultiEventListenerNode");
-            NodePort levelLoseWaypointUnreachableOutputPort = multiEventListenerNode.AddEventConditionPort(levelLoseWaypointUnreachableEvent.listenFor.name);
+            // Level Lose
+            VoidEventCondition levelLostEvent = multiEventListenerNode.AddEvent<VoidEventCondition>();
+            levelLostEvent.listenFor = AssetDatabase.LoadAssetAtPath<Event>(EventFiles.LEVEL_LOST_EVENT);
+            Debug.Assert(levelLostEvent.listenFor != null, "Default LevelLost event could not be found for MultiEventListenerNode");
+            NodePort levelLostOutputPort = multiEventListenerNode.AddEventConditionPort(levelLostEvent.listenFor.name);
             
-            VoidEventCondition levelLoseOutOfWaypointsEvent = multiEventListenerNode.AddEvent<VoidEventCondition>();
-            levelLoseOutOfWaypointsEvent.listenFor = AssetDatabase.LoadAssetAtPath<Event>(EventFiles.LEVEL_LOSE_OUT_OF_WAYPOINTS_EVENT);
-            Debug.Assert(levelLoseOutOfWaypointsEvent.listenFor != null, "Default LevelLoseOutOfWaypoints event could not be found for MultiEventListenerNode");
-            NodePort levelLoseOutOfWaypointsOutputPort = multiEventListenerNode.AddEventConditionPort(levelLoseOutOfWaypointsEvent.listenFor.name);
-
             VoidEventCondition levelWonEvent = multiEventListenerNode.AddEvent<VoidEventCondition>();
             levelWonEvent.listenFor = AssetDatabase.LoadAssetAtPath<Event>(EventFiles.LEVEL_WON_EVENT);
             Debug.Assert(levelWonEvent.listenFor != null, "Default LevelWon event could not be found for MultiEventListenerNode");
@@ -100,14 +95,15 @@ namespace RobbiEditor.Tools
             // Add Integration Test Fail node
             FinishIntegrationTestNode failTestNode = CreateNode<FinishIntegrationTestNode>(fsmGraphEditor, previousNode.position + new Vector2(300, 100));
             failTestNode.testResult = AssetDatabase.LoadAssetAtPath<StringEvent>(EventFiles.INTEGRATION_TEST_FAILED_EVENT);
+            failTestNode.name = "Fail Test";
             Debug.Assert(failTestNode.testResult != null, "Default TestFailed event could not be found for FinishIntegrationTestNode");
 
-            levelLoseWaypointUnreachableOutputPort.Connect(failTestNode.GetInputPort(FSMNode.DEFAULT_INPUT_PORT_NAME));
-            levelLoseOutOfWaypointsOutputPort.Connect(failTestNode.GetInputPort(FSMNode.DEFAULT_INPUT_PORT_NAME));
+            levelLostOutputPort.Connect(failTestNode.GetInputPort(FSMNode.DEFAULT_INPUT_PORT_NAME));
 
             // Add Integration Test Passed node
             FinishIntegrationTestNode passTestNode = CreateNode<FinishIntegrationTestNode>(fsmGraphEditor, previousNode.position + new Vector2(300, -100));
             passTestNode.testResult = AssetDatabase.LoadAssetAtPath<StringEvent>(EventFiles.INTEGRATION_TEST_PASSED_EVENT);
+            passTestNode.name = "Pass Test";
             Debug.Assert(passTestNode.testResult != null, "Default TestPassed event could not be found for FinishIntegrationTestNode");
 
             levelWonOutputPort.Connect(passTestNode.GetInputPort(FSMNode.DEFAULT_INPUT_PORT_NAME));

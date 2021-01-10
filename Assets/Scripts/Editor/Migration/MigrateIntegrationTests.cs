@@ -39,11 +39,13 @@ namespace RobbiEditor.Migration
                             if (eventCondition is VoidEventCondition)
                             {
                                 VoidEventCondition voidEventCondition = eventCondition as VoidEventCondition;
-                                voidEventCondition.listenFor.name.StartsWith("LevelLose");
-                                inputPort = eventListenerNode.GetOutputPort(voidEventCondition.name).GetConnection(0);
-                                eventListenerNode.RemoveEvent(voidEventCondition);
+                                if (voidEventCondition.listenFor.name.StartsWith("LevelLose"))
+                                {
+                                    inputPort = eventListenerNode.GetOutputPort(voidEventCondition.name).GetConnection(0);
+                                    eventListenerNode.RemoveEvent(voidEventCondition);
 
-                                needReplacement = true;
+                                    needReplacement = true;
+                                }
                             }
                         }
 

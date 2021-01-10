@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9056153405717911891
+--- !u!114 &-6772795134870827485
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
+  m_Script: {fileID: 11500000, guid: ab4121048931d3046996695921603148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listenFor: {fileID: 11400000, guid: 777ae9d2c79462a43ab4df761ddcd9e6, type: 2}
+  listenFor: {fileID: 11400000, guid: f1011e957c917144caeaffc2270ffebe, type: 2}
 --- !u!114 &-5038965361241128385
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -77,8 +77,7 @@ MonoBehaviour:
     keys:
     - ' '
     - argument
-    - LevelLoseWaypointUnreachable
-    - LevelLoseOutOfWaypoints
+    - LevelLost
     - LevelWon
     values:
     - _fieldName: ' '
@@ -102,19 +101,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: LevelLoseWaypointUnreachable
-      _node: {fileID: -4608063329444087348}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: 6877631179012488188}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: LevelLoseOutOfWaypoints
+    - _fieldName: LevelLost
       _node: {fileID: -4608063329444087348}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
@@ -139,9 +126,8 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   events:
-  - {fileID: -1210294674029630704}
-  - {fileID: -9056153405717911891}
   - {fileID: -2839083795381115875}
+  - {fileID: -6772795134870827485}
 --- !u!114 &-4486913939148938395
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -282,19 +268,6 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   testResult: {fileID: 11400000, guid: d026f6890dbc6ab4c9a19df9dc4f6a8d, type: 2}
---- !u!114 &-1210294674029630704
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  listenFor: {fileID: 11400000, guid: 1b9066ca0a135694c833d6cf627c5798, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,10 +360,7 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: LevelLoseWaypointUnreachable
-        node: {fileID: -4608063329444087348}
-        reroutePoints: []
-      - fieldName: LevelLoseOutOfWaypoints
+      - fieldName: LevelLost
         node: {fileID: -4608063329444087348}
         reroutePoints: []
       _direction: 0

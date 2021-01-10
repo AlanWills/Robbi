@@ -215,6 +215,16 @@ namespace Robbi.Movement
             boundingBox.enabled = true;
         }
 
+        public void OnAddWaypoints(uint amount)
+        {
+            remainingWaypointsPlaceable.Value += (int)amount;
+        }
+
+        public void OnRemoveWaypoints(uint amount)
+        {
+            remainingWaypointsPlaceable.Value = remainingWaypointsPlaceable.Value >= (int)amount ? remainingWaypointsPlaceable.Value - (int)amount : 0;
+        }
+
         #endregion
 
         #region Fuel Methods
