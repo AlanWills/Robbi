@@ -18,16 +18,53 @@ MonoBehaviour:
     keys:
     - ' '
     - argument
-    - LevelLoseOutOfFuel
-    - LevelLoseOutOfWaypoints
-    - LevelLoseWaypointUnreachable
     - LevelWon
+    - LevelLose
     values:
     - _fieldName: ' '
       _node: {fileID: -9220274758154983598}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -8148949378756486403}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -8148949378756486403}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -8148949378756486403}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -8148949378756486403}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -8148949378756486403}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -8148949378756486403}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -8148949378756486403}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -8148949378756486403}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -8148949378756486403}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -8148949378756486403}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -8148949378756486403}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -8148949378756486403}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -8148949378756486403}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -8148949378756486403}
         reroutePoints: []
@@ -108,47 +145,14 @@ MonoBehaviour:
       _node: {fileID: -9220274758154983598}
       _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: inArgument
+        node: {fileID: -9174473316200595022}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: LevelLoseOutOfFuel
-      _node: {fileID: -9220274758154983598}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: -1710008199515271198}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: LevelLoseOutOfWaypoints
-      _node: {fileID: -9220274758154983598}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: 4060217983973840658}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: LevelLoseWaypointUnreachable
-      _node: {fileID: -9220274758154983598}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: 4060217983973840658}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
     - _fieldName: LevelWon
       _node: {fileID: -9220274758154983598}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
@@ -161,11 +165,102 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
+    - _fieldName: LevelLose
+      _node: {fileID: -9220274758154983598}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -9174473316200595022}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
   events:
-  - {fileID: 7057177490103695468}
-  - {fileID: 5984322424371749372}
-  - {fileID: -3766383150784784831}
+  - {fileID: -2817787058271120970}
   - {fileID: -6174098135687104917}
+--- !u!114 &-9174473316200595022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 737d89550a2e2194db247d1e3f3c19db, type: 3}
+  m_Name: If
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1464, y: -72}
+  ports:
+    keys:
+    - ' '
+    - 
+    - inArgument
+    - outArgument
+    - OutOfFuel
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -9174473316200595022}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: LevelLose
+        node: {fileID: -9220274758154983598}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -9174473316200595022}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 4060217983973840658}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: inArgument
+      _node: {fileID: -9174473316200595022}
+      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: argument
+        node: {fileID: -9220274758154983598}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outArgument
+      _node: {fileID: -9174473316200595022}
+      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: OutOfFuel
+      _node: {fileID: -9174473316200595022}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -1710008199515271198}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  conditions:
+  - {fileID: 8174301025510073597}
 --- !u!114 &-8148949378756486403
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -190,6 +285,45 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 8406567149005098958}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 8406567149005098958}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 8406567149005098958}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 8406567149005098958}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 8406567149005098958}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 8406567149005098958}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 8406567149005098958}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 8406567149005098958}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 8406567149005098958}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 8406567149005098958}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 8406567149005098958}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 8406567149005098958}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 8406567149005098958}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 8406567149005098958}
         reroutePoints: []
@@ -316,6 +450,18 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 483517012869195790}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 483517012869195790}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 483517012869195790}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 483517012869195790}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 483517012869195790}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -359,7 +505,7 @@ MonoBehaviour:
   m_Name: LevelWon
   m_EditorClassIdentifier: 
   listenFor: {fileID: 11400000, guid: 38d024a67b433dd4fb6e873bcdc109cc, type: 2}
---- !u!114 &-3766383150784784831
+--- !u!114 &-4395761086248278943
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -368,10 +514,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
-  m_Name: LevelLoseWaypointUnreachable
+  m_Script: {fileID: 11500000, guid: f51fb886b9ab4e346897a43d978de61a, type: 3}
+  m_Name: OutOfFuel_target
   m_EditorClassIdentifier: 
-  listenFor: {fileID: 11400000, guid: 1b9066ca0a135694c833d6cf627c5798, type: 2}
+  isConstant: 1
+  constantValue: 
+  referenceValue: {fileID: 0}
+--- !u!114 &-2817787058271120970
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab4121048931d3046996695921603148, type: 3}
+  m_Name: LevelLose
+  m_EditorClassIdentifier: 
+  listenFor: {fileID: 11400000, guid: f1011e957c917144caeaffc2270ffebe, type: 2}
 --- !u!114 &-2568896551880541607
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -430,7 +591,7 @@ MonoBehaviour:
   m_Name: PassTest
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1464, y: -72}
+  position: {x: 1736, y: -8}
   ports:
     keys:
     - ' '
@@ -441,8 +602,8 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: LevelLoseOutOfFuel
-        node: {fileID: -9220274758154983598}
+      - fieldName: OutOfFuel
+        node: {fileID: -9174473316200595022}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -480,9 +641,13 @@ MonoBehaviour:
   - {fileID: -1710008199515271198}
   - {fileID: 4060217983973840658}
   - {fileID: 483517012869195790}
+  - {fileID: -9174473316200595022}
   startNode: {fileID: 3804662875410685289}
   parameters:
   - {fileID: 7213837310079247412}
+  - {fileID: 2584205477717285606}
+  - {fileID: -4395761086248278943}
+  - {fileID: 7819162835461432688}
 --- !u!114 &483517012869195790
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -496,7 +661,7 @@ MonoBehaviour:
   m_Name: String Event Raiser
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -120, y: -72}
+  position: {x: -136, y: -72}
   ports:
     keys:
     - ' '
@@ -508,6 +673,45 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 3804662875410685289}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3804662875410685289}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3804662875410685289}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3804662875410685289}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3804662875410685289}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3804662875410685289}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3804662875410685289}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3804662875410685289}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3804662875410685289}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3804662875410685289}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3804662875410685289}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3804662875410685289}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3804662875410685289}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 3804662875410685289}
         reroutePoints: []
@@ -532,15 +736,30 @@ MonoBehaviour:
       _dynamic: 1
     - _fieldName: argument
       _node: {fileID: 483517012869195790}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
+      _typeQualifiedName: Celeste.Parameters.StringReference, Celeste.Parameters,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  argument: LevelScene
+  argument: {fileID: 7819162835461432688}
   toRaise: {fileID: 11400000, guid: 2ec219bc2c7b8ba4e882f960650ccc43, type: 2}
+--- !u!114 &2584205477717285606
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51fb886b9ab4e346897a43d978de61a, type: 3}
+  m_Name: OutOfFuel_value
+  m_EditorClassIdentifier: 
+  isConstant: 0
+  constantValue: 
+  referenceValue: {fileID: 11400000, guid: 9842410d9af3d844ebf15325b9de70c5, type: 2}
 --- !u!114 &3804662875410685289
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -584,7 +803,7 @@ MonoBehaviour:
       _dynamic: 1
     - _fieldName: newValue
       _node: {fileID: 3804662875410685289}
-      _typeQualifiedName: Robbi.Parameters.UIntReference, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: Celeste.Parameters.UIntReference, Celeste.Parameters, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 0
@@ -607,7 +826,7 @@ MonoBehaviour:
   m_Name: Fail Test
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 680, y: 216}
+  position: {x: 1192, y: 216}
   ports:
     keys:
     - ' '
@@ -618,17 +837,50 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: LevelLoseOutOfWaypoints
-        node: {fileID: -9220274758154983598}
-        reroutePoints: []
-      - fieldName: LevelLoseWaypointUnreachable
-        node: {fileID: -9220274758154983598}
-        reroutePoints: []
       - fieldName: LevelWon
         node: {fileID: -9220274758154983598}
         reroutePoints: []
       - fieldName: NotFound
         node: {fileID: -6341149316929208966}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -9174473316200595022}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -9174473316200595022}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -9174473316200595022}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -9174473316200595022}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -9174473316200595022}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -9174473316200595022}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -9174473316200595022}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -9174473316200595022}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -9174473316200595022}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -9174473316200595022}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -9174473316200595022}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -9174473316200595022}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -9174473316200595022}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -644,32 +896,6 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   testResult: {fileID: 11400000, guid: 794531611d0a77c4cb8ab0c70d06546f, type: 2}
---- !u!114 &5984322424371749372
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
-  m_Name: LevelLoseOutOfWaypoints
-  m_EditorClassIdentifier: 
-  listenFor: {fileID: 11400000, guid: 777ae9d2c79462a43ab4df761ddcd9e6, type: 2}
---- !u!114 &7057177490103695468
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
-  m_Name: LevelLoseOutOfFuel
-  m_EditorClassIdentifier: 
-  listenFor: {fileID: 11400000, guid: 9d46f5760050e2a49b471b00f247dd82, type: 2}
 --- !u!114 &7213837310079247412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -685,6 +911,37 @@ MonoBehaviour:
   isConstant: 0
   constantValue: 10002
   referenceValue: {fileID: 11400000, guid: 2dfaf77d8e71e4048a83598d9f028c00, type: 2}
+--- !u!114 &7819162835461432688
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51fb886b9ab4e346897a43d978de61a, type: 3}
+  m_Name: String Event Raiser_argument
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: LevelScene
+  referenceValue: {fileID: 0}
+--- !u!114 &8174301025510073597
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 540d499c9d649a2469332062a9135260, type: 3}
+  m_Name: OutOfFuel
+  m_EditorClassIdentifier: 
+  value: {fileID: 2584205477717285606}
+  condition: 0
+  useArgument: 1
+  target: {fileID: -4395761086248278943}
 --- !u!114 &8406567149005098958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -709,6 +966,45 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -2568896551880541607}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2568896551880541607}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2568896551880541607}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2568896551880541607}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2568896551880541607}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2568896551880541607}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2568896551880541607}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2568896551880541607}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2568896551880541607}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2568896551880541607}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2568896551880541607}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2568896551880541607}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2568896551880541607}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -2568896551880541607}
         reroutePoints: []

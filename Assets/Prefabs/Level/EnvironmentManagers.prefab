@@ -233,11 +233,6 @@ MonoBehaviour:
   onWaypointRemoved: {fileID: 11400000, guid: 31ff3799148e3824ba5640fe14da17fb, type: 2}
   onInvalidWaypointPlaced: {fileID: 11400000, guid: da5dc9084d15a8343bea6f5becad19d7,
     type: 2}
-  levelLoseWaypointUnreachable: {fileID: 11400000, guid: 1b9066ca0a135694c833d6cf627c5798,
-    type: 2}
-  levelLoseOutOfWaypoints: {fileID: 11400000, guid: 777ae9d2c79462a43ab4df761ddcd9e6,
-    type: 2}
-  levelLoseOutOfFuel: {fileID: 11400000, guid: 9d46f5760050e2a49b471b00f247dd82, type: 2}
   levelLose: {fileID: 11400000, guid: f1011e957c917144caeaffc2270ffebe, type: 2}
   waypointUnreachableReason: {fileID: 11400000, guid: ee0f6020e53f5824280470771cdc9880,
     type: 2}
@@ -975,9 +970,7 @@ GameObject:
   - component: {fileID: 4253851984974408785}
   - component: {fileID: 6666778758544089982}
   - component: {fileID: 9202785352855056089}
-  - component: {fileID: 1091132516388570945}
-  - component: {fileID: 4297555958681295732}
-  - component: {fileID: 7776654992304458832}
+  - component: {fileID: 717484959241821295}
   - component: {fileID: 182490841964133147}
   m_Layer: 0
   m_Name: EnvironmentManagers
@@ -1056,7 +1049,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1091132516388570945
+--- !u!114 &717484959241821295
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1065,66 +1058,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4253851984974408784}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3c2c167d8138f94b8f96ff1b82578d5, type: 3}
+  m_Script: {fileID: 11500000, guid: e5a8cf69e94e52445b9d032104a01ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 777ae9d2c79462a43ab4df761ddcd9e6, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6666778758544089982}
-        m_TargetAssemblyTypeName: Robbi.Environment.EnvironmentManagers, Robbi
-        m_MethodName: Cleanup
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &4297555958681295732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4253851984974408784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3c2c167d8138f94b8f96ff1b82578d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 1b9066ca0a135694c833d6cf627c5798, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6666778758544089982}
-        m_TargetAssemblyTypeName: Robbi.Environment.EnvironmentManagers, Robbi
-        m_MethodName: Cleanup
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &7776654992304458832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4253851984974408784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3c2c167d8138f94b8f96ff1b82578d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 9d46f5760050e2a49b471b00f247dd82, type: 2}
+  gameEvent: {fileID: 11400000, guid: f1011e957c917144caeaffc2270ffebe, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:

@@ -1,4 +1,5 @@
 ﻿using Celeste.Events;
+using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,27 +11,7 @@ namespace Celeste.FSM.Nodes.Events
 {
     [Serializable]
     [CreateNodeMenu("Celeste/Events/Raisers/FloatEvent Raiser")]
-    public class FloatEventRaiserNode : FSMNode
+    public class FloatEventRaiserNode : ParameterisedEventRaiserNode<float, FloatValue, FloatReference, FloatEvent>
     {
-        #region Properties and Fields
-
-        [Input]
-        public float argument;
-
-        public FloatEvent toRaise;
-
-        #endregion
-
-        #region FSM Runtime
-
-        protected override void OnEnter()
-        {
-            base.OnEnter();
-
-            float _argument = GetInputValue(nameof(argument), argument);
-            toRaise.Raise(_argument);
-        }
-
-        #endregion
     }
 }

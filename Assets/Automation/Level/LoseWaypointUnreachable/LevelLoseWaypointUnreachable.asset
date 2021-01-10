@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fail Test
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1192, y: -88}
+  position: {x: 1416, y: -24}
   ports:
     keys:
     - ' '
@@ -27,11 +27,8 @@ MonoBehaviour:
       - fieldName: LevelWon
         node: {fileID: 3273725270792028085}
         reroutePoints: []
-      - fieldName: LevelLoseOutOfWaypoints
-        node: {fileID: 3273725270792028085}
-        reroutePoints: []
-      - fieldName: LevelLoseOutOfFuel
-        node: {fileID: 3273725270792028085}
+      - fieldName: 
+        node: {fileID: -4993044433166663254}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -107,6 +104,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 3981951171450594463}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3981951171450594463}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
       _dynamic: 1
   time: 1
   unit: 0
---- !u!114 &-6511585839857426616
+--- !u!114 &-6358140817214243712
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,10 +134,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
-  m_Name: 
+  m_Script: {fileID: 11500000, guid: 540d499c9d649a2469332062a9135260, type: 3}
+  m_Name: WaypointUnreachable
   m_EditorClassIdentifier: 
-  listenFor: {fileID: 11400000, guid: 1b9066ca0a135694c833d6cf627c5798, type: 2}
+  value: {fileID: 7503922827938778309}
+  condition: 0
+  useArgument: 1
+  target: {fileID: -1616923400555070259}
 --- !u!114 &-5614076686049829248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -181,7 +184,7 @@ MonoBehaviour:
       _dynamic: 1
     - _fieldName: newValue
       _node: {fileID: -5614076686049829248}
-      _typeQualifiedName: Robbi.Parameters.UIntReference, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: Celeste.Parameters.UIntReference, Celeste.Parameters, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 0
@@ -204,7 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listenFor: {fileID: 11400000, guid: 38d024a67b433dd4fb6e873bcdc109cc, type: 2}
---- !u!114 &-4949574380650799462
+--- !u!114 &-4993044433166663254
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,10 +216,78 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
-  m_Name: LevelLoseOutOfFuel
+  m_Script: {fileID: 11500000, guid: 737d89550a2e2194db247d1e3f3c19db, type: 3}
+  m_Name: If
   m_EditorClassIdentifier: 
-  listenFor: {fileID: 11400000, guid: 9d46f5760050e2a49b471b00f247dd82, type: 2}
+  graph: {fileID: 11400000}
+  position: {x: 1160, y: 56}
+  ports:
+    keys:
+    - ' '
+    - 
+    - inArgument
+    - outArgument
+    - WaypointUnreachable
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -4993044433166663254}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: LevelLose
+        node: {fileID: 3273725270792028085}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -4993044433166663254}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -7763568801225350052}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: inArgument
+      _node: {fileID: -4993044433166663254}
+      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: argument
+        node: {fileID: 3273725270792028085}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outArgument
+      _node: {fileID: -4993044433166663254}
+      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: WaypointUnreachable
+      _node: {fileID: -4993044433166663254}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -4164398108424220175}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  conditions:
+  - {fileID: -6358140817214243712}
 --- !u!114 &-4164398108424220175
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -230,7 +301,7 @@ MonoBehaviour:
   m_Name: Pass Test
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1192, y: 72}
+  position: {x: 1416, y: 136}
   ports:
     keys:
     - ' '
@@ -241,8 +312,8 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: LevelLoseWaypointUnreachable
-        node: {fileID: 3273725270792028085}
+      - fieldName: WaypointUnreachable
+        node: {fileID: -4993044433166663254}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -282,6 +353,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -7247296080545704317}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -7247296080545704317}
         reroutePoints: []
@@ -493,6 +567,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -3635145984582864950}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -3635145984582864950}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -510,6 +587,21 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   toRaise: {fileID: 11400000, guid: 6b4a72f1879c01b41a7a4d34b806e2ae, type: 2}
+--- !u!114 &-1616923400555070259
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51fb886b9ab4e346897a43d978de61a, type: 3}
+  m_Name: WaypointUnreachable_target
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 
+  referenceValue: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,9 +623,13 @@ MonoBehaviour:
   - {fileID: -7763568801225350052}
   - {fileID: -5614076686049829248}
   - {fileID: 3981951171450594463}
+  - {fileID: -4993044433166663254}
   startNode: {fileID: -5614076686049829248}
   parameters:
   - {fileID: 1190638742563621421}
+  - {fileID: 5696123740932978012}
+  - {fileID: 7503922827938778309}
+  - {fileID: -1616923400555070259}
 --- !u!114 &1190638742563621421
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -549,6 +645,19 @@ MonoBehaviour:
   isConstant: 0
   constantValue: 0
   referenceValue: {fileID: 11400000, guid: ef0c52299a8c6324fabb55ddbca28172, type: 2}
+--- !u!114 &1687243105007369502
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab4121048931d3046996695921603148, type: 3}
+  m_Name: LevelLose
+  m_EditorClassIdentifier: 
+  listenFor: {fileID: 11400000, guid: f1011e957c917144caeaffc2270ffebe, type: 2}
 --- !u!114 &3273725270792028085
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -567,16 +676,17 @@ MonoBehaviour:
     keys:
     - ' '
     - argument
-    - LevelLoseWaypointUnreachable
-    - LevelLoseOutOfWaypoints
     - LevelWon
-    - LevelLoseOutOfFuel
+    - LevelLose
     values:
     - _fieldName: ' '
       _node: {fileID: 3273725270792028085}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -2239104128657299769}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -2239104128657299769}
         reroutePoints: []
@@ -669,35 +779,14 @@ MonoBehaviour:
       _node: {fileID: 3273725270792028085}
       _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: inArgument
+        node: {fileID: -4993044433166663254}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: LevelLoseWaypointUnreachable
-      _node: {fileID: 3273725270792028085}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: -4164398108424220175}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: LevelLoseOutOfWaypoints
-      _node: {fileID: 3273725270792028085}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: -7763568801225350052}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
     - _fieldName: LevelWon
       _node: {fileID: 3273725270792028085}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
@@ -710,22 +799,20 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-    - _fieldName: LevelLoseOutOfFuel
+    - _fieldName: LevelLose
       _node: {fileID: 3273725270792028085}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: -7763568801225350052}
+        node: {fileID: -4993044433166663254}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
   events:
-  - {fileID: -6511585839857426616}
-  - {fileID: 6961170756541601695}
-  - {fileID: -4949574380650799462}
+  - {fileID: 1687243105007369502}
   - {fileID: -5180573132337398933}
 --- !u!114 &3981951171450594463
 MonoBehaviour:
@@ -755,6 +842,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -5614076686049829248}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -5614076686049829248}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -773,16 +863,16 @@ MonoBehaviour:
       _dynamic: 1
     - _fieldName: argument
       _node: {fileID: 3981951171450594463}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
+      _typeQualifiedName: Celeste.Parameters.StringReference, Celeste.Parameters,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  argument: LevelScene
+  argument: {fileID: 5696123740932978012}
   toRaise: {fileID: 11400000, guid: 2ec219bc2c7b8ba4e882f960650ccc43, type: 2}
---- !u!114 &6961170756541601695
+--- !u!114 &5696123740932978012
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -791,7 +881,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
-  m_Name: 
+  m_Script: {fileID: 11500000, guid: f51fb886b9ab4e346897a43d978de61a, type: 3}
+  m_Name: String Event Raiser_argument
   m_EditorClassIdentifier: 
-  listenFor: {fileID: 11400000, guid: 777ae9d2c79462a43ab4df761ddcd9e6, type: 2}
+  isConstant: 1
+  constantValue: 
+  referenceValue: {fileID: 0}
+--- !u!114 &7503922827938778309
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51fb886b9ab4e346897a43d978de61a, type: 3}
+  m_Name: WaypointUnreachable_value
+  m_EditorClassIdentifier: 
+  isConstant: 0
+  constantValue: 
+  referenceValue: {fileID: 11400000, guid: ee0f6020e53f5824280470771cdc9880, type: 2}

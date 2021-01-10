@@ -10,7 +10,7 @@ using UnityEngine;
 namespace Robbi.Events.Levels.Elements
 {
     [AddComponentMenu("Robbi/Events/Levels/Door Event Raiser")]
-    public class DoorEventRaiser : ParameterisedEventRaiser<Door, DoorEvent, DoorUnityEvent>
+    public class DoorEventRaiser : ParameterisedEventRaiser<Door, DoorEvent>
     {
     }
 }

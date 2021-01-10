@@ -43,7 +43,7 @@ MonoBehaviour:
       _dynamic: 1
     - _fieldName: newValue
       _node: {fileID: -7711185718843370015}
-      _typeQualifiedName: Robbi.Parameters.UIntReference, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: Celeste.Parameters.UIntReference, Celeste.Parameters, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 0
@@ -240,6 +240,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -7711185718843370015}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7711185718843370015}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -258,7 +261,7 @@ MonoBehaviour:
       _dynamic: 1
     - _fieldName: newValue
       _node: {fileID: -3568495123000422322}
-      _typeQualifiedName: Robbi.Parameters.UIntReference, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: Celeste.Parameters.UIntReference, Celeste.Parameters, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 0
@@ -376,6 +379,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 4906313891727135204}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 4906313891727135204}
         reroutePoints: []
@@ -498,6 +504,7 @@ MonoBehaviour:
   - {fileID: 9176556896916982260}
   - {fileID: -5024933802071763462}
   - {fileID: 8729983699968842016}
+  - {fileID: 5224593032025778821}
 --- !u!114 &1930256409547381023
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -522,6 +529,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 6134002284731985901}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 6134002284731985901}
         reroutePoints: []
@@ -642,6 +652,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -3568495123000422322}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -3568495123000422322}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -660,15 +673,30 @@ MonoBehaviour:
       _dynamic: 1
     - _fieldName: argument
       _node: {fileID: 4906313891727135204}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
+      _typeQualifiedName: Celeste.Parameters.StringReference, Celeste.Parameters,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  argument: LevelScene
+  argument: {fileID: 5224593032025778821}
   toRaise: {fileID: 11400000, guid: 2ec219bc2c7b8ba4e882f960650ccc43, type: 2}
+--- !u!114 &5224593032025778821
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51fb886b9ab4e346897a43d978de61a, type: 3}
+  m_Name: String Event Raiser_argument
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: LevelScene
+  referenceValue: {fileID: 0}
 --- !u!114 &5923639979092176901
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -709,6 +737,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -1236162094317085931}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -1236162094317085931}
         reroutePoints: []

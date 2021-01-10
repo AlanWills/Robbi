@@ -1,4 +1,5 @@
 ﻿using Celeste.Events;
+using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,27 +11,7 @@ namespace Celeste.FSM.Nodes.Events
 {
     [Serializable]
     [CreateNodeMenu("Celeste/Events/Raisers/Vector3IntEvent Raiser")]
-    public class Vector3IntEventRaiserNode : FSMNode
+    public class Vector3IntEventRaiserNode : ParameterisedEventRaiserNode<Vector3Int, Vector3IntValue, Vector3IntReference, Vector3IntEvent>
     {
-        #region Properties and Fields
-
-        [Input]
-        public Vector3Int argument;
-
-        public Vector3IntEvent toRaise;
-
-        #endregion
-
-        #region FSM Runtime
-
-        protected override void OnEnter()
-        {
-            base.OnEnter();
-
-            Vector3Int _argument = GetInputValue(nameof(argument), argument);
-            toRaise.Raise(_argument);
-        }
-
-        #endregion
     }
 }

@@ -57,12 +57,7 @@ namespace Robbi.Movement
         public Vector3IntEvent onWaypointPlaced;
         public Vector3IntEvent onWaypointRemoved;
         public Event onInvalidWaypointPlaced;
-        public Event levelLoseWaypointUnreachable;
-        public Event levelLoseOutOfWaypoints;
         public StringEvent levelLose;
-        public StringValue waypointUnreachableReason;
-        public StringValue outOfWaypointsReason;
-        public StringValue outOfFuelReason;
 
         [Header("Parameters")]
         public IntValue remainingWaypointsPlaceable;
@@ -70,6 +65,9 @@ namespace Robbi.Movement
         public BoolValue isProgramRunning;
         public BoolValue levelRequiresFuel;
         public UIntValue remainingFuel;
+        public StringValue waypointUnreachableReason;
+        public StringValue outOfWaypointsReason;
+        public StringValue outOfFuelReason;
 
         [Header("Other")]
         public GameObjectAllocator destinationMarkerAllocator;
@@ -160,13 +158,13 @@ namespace Robbi.Movement
                 }
                 else
                 {
-                    levelLoseWaypointUnreachable.Raise();
+                    levelLose.Raise(waypointUnreachableReason.Value);
                     isProgramRunning.Value = false;
                 }
             }
             else if (waypoints.Count == 0 && remainingWaypointsPlaceable.Value == 0)
             {
-                levelLoseOutOfWaypoints.Raise();
+                levelLose.Raise(outOfWaypointsReason.Value);
             }
         }
 

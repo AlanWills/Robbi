@@ -1,4 +1,5 @@
 ﻿using Celeste.Events;
+using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,27 +11,7 @@ namespace Celeste.FSM.Nodes.Events
 {
     [Serializable]
     [CreateNodeMenu("Celeste/Events/Raisers/BoolEvent Raiser")]
-    public class BoolEventRaiserNode : FSMNode
+    public class BoolEventRaiserNode : ParameterisedEventRaiserNode<bool, BoolValue, BoolReference, BoolEvent>
     {
-        #region Properties and Fields
-
-        [Input]
-        public bool argument;
-
-        public BoolEvent toRaise;
-
-        #endregion
-
-        #region FSM Runtime
-
-        protected override void OnEnter()
-        {
-            base.OnEnter();
-
-            bool _argument = GetInputValue(nameof(argument), argument);
-            toRaise.Raise(_argument);
-        }
-
-        #endregion
     }
 }
