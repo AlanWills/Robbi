@@ -40,6 +40,24 @@ namespace Robbi.Debugging.Buttons
 
         #region Show/Hide
 
+        public void Show()
+        {
+            if (!areButtonsShown)
+            {
+                debugButtonsAnimator.SetTrigger(animateInHash);
+                areButtonsShown = true;
+            }
+        }
+
+        public void Hide()
+        {
+            if (areButtonsShown)
+            {
+                debugButtonsAnimator.SetTrigger(animateOutHash);
+                areButtonsShown = false;
+            }
+        }
+
         public void ToggleDebugButtonsVisibility()
         {
             debugButtonsAnimator.SetTrigger(areButtonsShown ? animateOutHash : animateInHash);

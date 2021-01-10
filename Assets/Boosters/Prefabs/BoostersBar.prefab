@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 550976554599489267}
   - component: {fileID: 9203225164378953762}
   - component: {fileID: 6406860980102717274}
+  - component: {fileID: 2808824607624864951}
   m_Layer: 5
   m_Name: BoostersBar
   m_TagString: Untagged
@@ -238,6 +239,34 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2808824607624864951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3474139818034112271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c2c167d8138f94b8f96ff1b82578d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 38d024a67b433dd4fb6e873bcdc109cc, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 359011580054548223}
+        m_TargetAssemblyTypeName: Robbi.Boosters.BoostersBarController, Robbi
+        m_MethodName: OnLevelWon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: AnimateOut
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &8853452884780452571

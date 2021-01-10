@@ -49,6 +49,12 @@ namespace Robbi.Boosters
             cancelButtonAnimator.SetTrigger(animateOutHash);
         }
 
+        public void OnLevelWon()
+        {
+            boosterButtonsAnimator.SetTrigger(animateOutHash);
+            cancelButtonAnimator.SetTrigger(animateOutHash);
+        }
+
         public void OnShowBoostersBar()
         {
             AnimateIn();
