@@ -1222,7 +1222,7 @@ GameObject:
   - component: {fileID: 1225807699918960357}
   - component: {fileID: 8094070047959568695}
   - component: {fileID: 1901509509604143165}
-  - component: {fileID: 7733864878521952279}
+  - component: {fileID: 6724855563332198245}
   m_Layer: 5
   m_Name: LoseOutOfFuel
   m_TagString: Untagged
@@ -1336,8 +1336,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7733864878521952279}
-        m_TargetAssemblyTypeName: Celeste.Events.EventRaiser, Celeste.Events
+      - m_Target: {fileID: 6724855563332198245}
+        m_TargetAssemblyTypeName: Celeste.Events.ParameterisedEventRaiser`3[[System.String,
+          mscorlib
         m_MethodName: Raise
         m_Mode: 1
         m_Arguments:
@@ -1348,7 +1349,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7733864878521952279
+--- !u!114 &6724855563332198245
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1357,10 +1358,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8439914213442163453}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89a0d147401428146b5daed6a3cee729, type: 3}
+  m_Script: {fileID: 11500000, guid: be51b5a008e796741a6aa3247de1c4fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 9d46f5760050e2a49b471b00f247dd82, type: 2}
+  gameEvent: {fileID: 11400000, guid: f1011e957c917144caeaffc2270ffebe, type: 2}
+  argument: {fileID: 0}
 --- !u!1 &8679584081845697491
 GameObject:
   m_ObjectHideFlags: 0

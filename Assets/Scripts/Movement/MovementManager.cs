@@ -59,7 +59,10 @@ namespace Robbi.Movement
         public Event onInvalidWaypointPlaced;
         public Event levelLoseWaypointUnreachable;
         public Event levelLoseOutOfWaypoints;
-        public Event levelLoseOutOfFuel;
+        public StringEvent levelLose;
+        public StringValue waypointUnreachableReason;
+        public StringValue outOfWaypointsReason;
+        public StringValue outOfFuelReason;
 
         [Header("Parameters")]
         public IntValue remainingWaypointsPlaceable;
@@ -119,7 +122,7 @@ namespace Robbi.Movement
                     // Don't immediately raise this when we have bingo fuel
                     // We might have moved onto a tile with a fuel pickup on it
                     // Instead wait for a new frame to see if we have no fuel
-                    levelLoseOutOfFuel.Raise();
+                    levelLose.Raise(outOfFuelReason.Value);
                 }
                 else if (aStarMovement.HasStepsToNextWaypoint)
                 {
