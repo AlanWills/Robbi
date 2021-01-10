@@ -17,7 +17,7 @@ namespace Celeste.Application
             if (isEditor != null)
             {
                 isEditor.Value = UnityEngine.Application.isEditor;
-                Debug.LogFormat("isEditor set to {0}", isEditor.Value);
+                UnityEngine.Debug.LogFormat("isEditor set to {0}", isEditor.Value);
             }
         }
 
@@ -26,7 +26,7 @@ namespace Celeste.Application
             if (isMobile != null)
             {
                 isMobile.Value = UnityEngine.Application.isMobilePlatform;
-                Debug.LogFormat("isMobile set to {0}", isMobile.Value);
+                UnityEngine.Debug.LogFormat("isMobile set to {0}", isMobile.Value);
             }
         }
 
@@ -36,8 +36,8 @@ namespace Celeste.Application
             {
                 TextAsset textAsset = Resources.Load<TextAsset>(DebugConstants.IS_DEBUG_BUILD_FILE);
                 isDebugBuild.Value = textAsset != null && textAsset.text == "1";
-                Debug.LogFormat("IS_DEBUG_BUILD_FILE file {0} ", textAsset != null ? "found with contents " + textAsset.text : "not found");
-                Debug.LogFormat("isDebugBuild set to {0}", isDebugBuild.Value);
+                UnityEngine.Debug.LogFormat("IS_DEBUG_BUILD_FILE file {0} ", textAsset != null ? "found with contents " + textAsset.text : "not found");
+                UnityEngine.Debug.LogFormat("isDebugBuild set to {0}", isDebugBuild.Value);
 
                 string settingsOverrideFile = Path.Combine(UnityEngine.Application.persistentDataPath, DebugConstants.IS_DEBUG_BUILD_FILE + ".txt");
                 if (File.Exists(settingsOverrideFile))
@@ -45,8 +45,8 @@ namespace Celeste.Application
                     // The override file is present in persistent data - we want to change this build to debug after all
                     string fileContents = File.ReadAllText(settingsOverrideFile);
                     isDebugBuild.Value = fileContents == "1" ? true : isDebugBuild.Value;
-                    Debug.LogFormat("IS_DEBUG_BUILD_FILE in pdp found with contents {0}", fileContents);
-                    Debug.LogFormat("isDebugBuild set to {0}", isDebugBuild.Value);
+                    UnityEngine.Debug.LogFormat("IS_DEBUG_BUILD_FILE in pdp found with contents {0}", fileContents);
+                    UnityEngine.Debug.LogFormat("isDebugBuild set to {0}", isDebugBuild.Value);
                 }
             }
         }

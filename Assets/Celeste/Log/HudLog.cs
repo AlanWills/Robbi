@@ -42,7 +42,7 @@ namespace Celeste.Log
             if (Instance != null)
             {
                 Instance.Log(message, Instance.infoColour);
-                Debug.Log(message);
+                UnityEngine.Debug.Log(message);
             }
         }
 
@@ -56,7 +56,7 @@ namespace Celeste.Log
             if (Instance != null)
             {
                 Instance.Log(message, Instance.warningColour);
-                Debug.LogWarning(message);
+                UnityEngine.Debug.LogWarning(message);
             }
         }
 
@@ -70,7 +70,7 @@ namespace Celeste.Log
             if (Instance != null)
             {
                 Instance.Log(message, Instance.errorColour);
-                Debug.LogError(message);
+                UnityEngine.Debug.LogError(message);
             }
         }
 
@@ -92,7 +92,7 @@ namespace Celeste.Log
             }
             else
             {
-                Debug.LogWarningFormat("Hud Message limit reached.  Message: {0}", message);
+                UnityEngine.Debug.LogWarningFormat("Hud Message limit reached.  Message: {0}", message);
             }
         }
 
