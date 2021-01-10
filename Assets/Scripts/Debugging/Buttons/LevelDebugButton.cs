@@ -33,7 +33,6 @@ namespace Robbi.Debugging.Buttons
 
         private void OnEnable()
         {
-            debugButtonsAnimator.SetTrigger(animateOutHash);
             areButtonsShown = false;
         }
 

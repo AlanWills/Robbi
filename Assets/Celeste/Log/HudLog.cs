@@ -112,6 +112,13 @@ namespace Celeste.Log
 
                 cachedMessageInstances.Push(messageText);
             }
+
+            Application.logMessageReceived += Application_logMessageReceived;
+        }
+
+        private void OnDestroy()
+        {
+            Application.logMessageReceived -= Application_logMessageReceived;
         }
 
         private void Update()
@@ -132,6 +139,18 @@ namespace Celeste.Log
                     hudMessages.RemoveAt(i - 1);
                     cachedMessageInstances.Push(messageText);
                 }
+            }
+        }
+
+        #endregion
+
+        #region Callbacks
+
+        private void Application_logMessageReceived(string logString, string stackTrace, LogType type)
+        {
+            if (type == LogType.Exception)
+            {
+                LogError(logString);
             }
         }
 
