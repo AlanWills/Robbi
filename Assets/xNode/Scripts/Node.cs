@@ -230,6 +230,17 @@ namespace XNode {
             else return fallback;
         }
 
+        public float GetNumericInputValue(string fieldName, float fallback = 0.0f)
+        {
+            NodePort port = GetPort(fieldName);
+            if (port != null && port.IsConnected)
+            {
+                object inputValue = port.GetInputValue();
+                return Convert.ToSingle(inputValue);
+            }
+            else return fallback;
+        }
+
         /// <summary> Return all input values for a specified port. Returns fallback value if no ports are connected </summary>
         /// <param name="fieldName">Field name of requested input port</param>
         /// <param name="fallback">If no ports are connected, this value will be returned</param>
