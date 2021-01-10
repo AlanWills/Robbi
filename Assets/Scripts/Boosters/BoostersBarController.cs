@@ -23,6 +23,7 @@ namespace Robbi.Boosters
 
         private int animateInHash;
         private int animateOutHash;
+        private bool boosterInUse = false;
 
         #endregion
 
@@ -40,49 +41,65 @@ namespace Robbi.Boosters
 
         public void OnLevelBegun()
         {
+            if (boosterInUse)
+            {
+                cancelButtonAnimator.SetTrigger(animateOutHash);
+            }
+
+            boosterInUse = false;
             boosterButtonsAnimator.SetTrigger(animateInHash);
         }
 
         public void OnLevelLost()
         {
-            boosterButtonsAnimator.SetTrigger(animateOutHash);
-            cancelButtonAnimator.SetTrigger(animateOutHash);
+            AnimateOutRelevantUI();
         }
 
         public void OnLevelWon()
         {
-            boosterButtonsAnimator.SetTrigger(animateOutHash);
-            cancelButtonAnimator.SetTrigger(animateOutHash);
+            AnimateOutRelevantUI();
+        }
+
+        private void AnimateOutRelevantUI()
+        {
+            if (!boosterInUse)
+            {
+                boosterButtonsAnimator.SetTrigger(animateOutHash);
+            }
+            else
+            {
+                cancelButtonAnimator.SetTrigger(animateOutHash);
+            }
+
+            boosterInUse = false;
         }
 
         public void OnShowBoostersBar()
         {
-            AnimateIn();
+            ShowBoostersHideCancel();
         }
 
         public void OnHideBoostersBar()
         {
-            AnimateOut();
+            HideBoostersShowCancel();
         }
 
         #endregion
 
         #region Animation Methods
 
-        public void AnimateIn()
+        public void ShowBoostersHideCancel()
         {
-            doorToggleUseButton.interactable = true;
-            interactUseButton.interactable = true;
             boosterButtonsAnimator.SetTrigger(animateInHash);
             cancelButtonAnimator.SetTrigger(animateOutHash);
+            boosterInUse = false;
         }
 
-        public void AnimateOut()
+        public void HideBoostersShowCancel()
         {
-            doorToggleUseButton.interactable = false;
-            interactUseButton.interactable = false;
             boosterButtonsAnimator.SetTrigger(animateOutHash);
             cancelButtonAnimator.SetTrigger(animateInHash);
+            boosterInUse = true;
         }
 
         #endregion
