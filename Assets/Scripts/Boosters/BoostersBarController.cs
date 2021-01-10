@@ -34,14 +34,14 @@ namespace Robbi.Boosters
             animateOutHash = Animator.StringToHash(animateOutName);
         }
 
-        private void Start()
-        {
-            boosterButtonsAnimator.SetTrigger(animateInHash);
-        }
-
         #endregion
 
         #region Callbacks
+
+        public void OnLevelBegun()
+        {
+            boosterButtonsAnimator.SetTrigger(animateInHash);
+        }
 
         public void OnShowBoostersBar()
         {
