@@ -29,7 +29,7 @@ MonoBehaviour:
   m_Name: Wait
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -296, y: 280}
+  position: {x: -552, y: 40}
   ports:
     keys:
     - ' '
@@ -124,6 +124,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -6409936498837170495}
         reroutePoints: []
+      - fieldName: LevelWon
+        node: {fileID: 3730047918054533505}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -134,7 +137,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: -834722000187698709}
+        node: {fileID: 5240768988680451859}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -142,6 +145,21 @@ MonoBehaviour:
       _dynamic: 1
   time: 1
   unit: 0
+--- !u!114 &-8505491447840174007
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d362fd1cf62c548b9a5ed76f41bf89, type: 3}
+  m_Name: PlayingLatestUnlockedLevel_value
+  m_EditorClassIdentifier: 
+  isConstant: 0
+  constantValue: 0
+  referenceValue: {fileID: 11400000, guid: e444c97c99c04b04ebc3344590658ee9, type: 2}
 --- !u!114 &-8289268647676887226
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -332,7 +350,7 @@ MonoBehaviour:
   m_Name: Save Level Manager
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -8, y: 8}
+  position: {x: -40, y: 280}
   ports:
     keys:
     - ' '
@@ -379,6 +397,15 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 3232702569077234071}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3232702569077234071}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3232702569077234071}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3232702569077234071}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -389,7 +416,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: -8905485687446638094}
+        node: {fileID: 2985013080707404771}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -426,37 +453,6 @@ MonoBehaviour:
   condition: 0
   useArgument: 1
   target: {fileID: -1351710076970982888}
---- !u!114 &-5094892082007479078
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56bc3ece62848704b886ea7163ce2ece, type: 3}
-  m_Name: IsPlayingLatestUnlockedLevel
-  m_EditorClassIdentifier: 
-  value: {fileID: 1209997455033617645}
-  condition: 0
-  useArgument: 0
-  target: {fileID: 5275452295814023449}
---- !u!114 &-4787947785123063225
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41d362fd1cf62c548b9a5ed76f41bf89, type: 3}
-  m_Name: IsAtEndOfContent_target
-  m_EditorClassIdentifier: 
-  isConstant: 0
-  constantValue: 0
-  referenceValue: {fileID: 11400000, guid: 3d90bf2b2bd8c644fa1934471b7783b6, type: 2}
 --- !u!114 &-4670794823294542180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -470,6 +466,22 @@ MonoBehaviour:
   m_Name: LevelWon
   m_EditorClassIdentifier: 
   listenFor: {fileID: 11400000, guid: 38d024a67b433dd4fb6e873bcdc109cc, type: 2}
+--- !u!114 &-4549530807219810707
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56bc3ece62848704b886ea7163ce2ece, type: 3}
+  m_Name: PlayingLatestUnlockedLevel
+  m_EditorClassIdentifier: 
+  value: {fileID: -8505491447840174007}
+  condition: 0
+  useArgument: 0
+  target: {fileID: 5563267731313286159}
 --- !u!114 &-4059770096825495587
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1157,21 +1169,6 @@ MonoBehaviour:
     customDialogEvents:
     - {fileID: 11400000, guid: b8412f65d2677e54398df94f7e10771e, type: 2}
     - {fileID: 11400000, guid: 421463337f1ed284a83b6ad48c142b25, type: 2}
---- !u!114 &-3890517857185380882
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41d362fd1cf62c548b9a5ed76f41bf89, type: 3}
-  m_Name: IsAtEndOfContent_value
-  m_EditorClassIdentifier: 
-  isConstant: 0
-  constantValue: 0
-  referenceValue: {fileID: 11400000, guid: 9ed928b056454724c8b6b734ca744281, type: 2}
 --- !u!114 &-3501626637358735313
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1201,6 +1198,15 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 579046110899267143}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 579046110899267143}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 579046110899267143}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 579046110899267143}
         reroutePoints: []
@@ -1650,6 +1656,15 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 5839260897526431212}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5839260897526431212}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5839260897526431212}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5839260897526431212}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -1705,7 +1720,7 @@ MonoBehaviour:
   m_Name: Show Dialog
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 344, y: 200}
+  position: {x: 456, y: 248}
   ports:
     keys:
     - ' '
@@ -1719,8 +1734,11 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: IsAtEndOfContent
-        node: {fileID: -834722000187698709}
+      - fieldName: 
+        node: {fileID: 2985013080707404771}
+        reroutePoints: []
+      - fieldName: IsFinalLevel
+        node: {fileID: 2985013080707404771}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -1867,420 +1885,6 @@ MonoBehaviour:
   m_Name: RunProgram
   m_EditorClassIdentifier: 
   listenFor: {fileID: 11400000, guid: 6b4a72f1879c01b41a7a4d34b806e2ae, type: 2}
---- !u!114 &-834722000187698709
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 737d89550a2e2194db247d1e3f3c19db, type: 3}
-  m_Name: If
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 8, y: 248}
-  ports:
-    keys:
-    - ' '
-    - 
-    - inArgument
-    - outArgument
-    - IsAtEndOfContent
-    values:
-    - _fieldName: ' '
-      _node: {fileID: -834722000187698709}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -8905485687446638094}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -8905485687446638094}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -8905485687446638094}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -8905485687446638094}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -8905485687446638094}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -8905485687446638094}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -8905485687446638094}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -8905485687446638094}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -8905485687446638094}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -8905485687446638094}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -8905485687446638094}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -8905485687446638094}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -8905485687446638094}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -8905485687446638094}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -8905485687446638094}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -8905485687446638094}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -8905485687446638094}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: 
-      _node: {fileID: -834722000187698709}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: 684878852792894563}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: inArgument
-      _node: {fileID: -834722000187698709}
-      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: outArgument
-      _node: {fileID: -834722000187698709}
-      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: IsAtEndOfContent
-      _node: {fileID: -834722000187698709}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: -2474427975326801510}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-  conditions:
-  - {fileID: 2649113543978673005}
 --- !u!114 &-510933039686519604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3032,6 +2636,15 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 3803761984178024064}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3803761984178024064}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3803761984178024064}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3803761984178024064}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -3081,7 +2694,6 @@ MonoBehaviour:
   - {fileID: -7458260853049364313}
   - {fileID: 3730047918054533505}
   - {fileID: 1716119031614927340}
-  - {fileID: -834722000187698709}
   - {fileID: -2137335984731195356}
   - {fileID: -510933039686519604}
   - {fileID: -2474427975326801510}
@@ -3096,24 +2708,25 @@ MonoBehaviour:
   - {fileID: -6409936498837170495}
   - {fileID: 3803761984178024064}
   - {fileID: -3501626637358735313}
+  - {fileID: 5240768988680451859}
   startNode: {fileID: -3226388243556060441}
   parameters:
   - {fileID: -2854666521814719882}
   - {fileID: -8289268647676887226}
-  - {fileID: -3890517857185380882}
-  - {fileID: -4787947785123063225}
   - {fileID: -6722983557574717435}
   - {fileID: 1213216274181547262}
   - {fileID: -6906485563265514096}
   - {fileID: 7484388059132627773}
-  - {fileID: 1209997455033617645}
-  - {fileID: 5275452295814023449}
   - {fileID: -6925941892507308875}
   - {fileID: -7196231432485600049}
   - {fileID: 3303028535022403138}
   - {fileID: 4672732524546067498}
   - {fileID: 5090145593468370193}
   - {fileID: -1351710076970982888}
+  - {fileID: 4651326483123400368}
+  - {fileID: 4977776935770639125}
+  - {fileID: -8505491447840174007}
+  - {fileID: 5563267731313286159}
 --- !u!114 &329677710248236872
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3295,7 +2908,7 @@ MonoBehaviour:
   m_Name: Show Dialog
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 344, y: -216}
+  position: {x: 456, y: -200}
   ports:
     keys:
     - ' '
@@ -3989,409 +3602,418 @@ MonoBehaviour:
         node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -834722000187698709}
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6409936498837170495}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 2985013080707404771}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 2985013080707404771}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -4480,21 +4102,6 @@ MonoBehaviour:
   m_Name: LevelLost
   m_EditorClassIdentifier: 
   listenFor: {fileID: 11400000, guid: f1011e957c917144caeaffc2270ffebe, type: 2}
---- !u!114 &1209997455033617645
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41d362fd1cf62c548b9a5ed76f41bf89, type: 3}
-  m_Name: IsPlayingLatestUnlockedLevel_value
-  m_EditorClassIdentifier: 
-  isConstant: 0
-  constantValue: 0
-  referenceValue: {fileID: 11400000, guid: e444c97c99c04b04ebc3344590658ee9, type: 2}
 --- !u!114 &1213216274181547262
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4584,22 +4191,6 @@ MonoBehaviour:
   value: {fileID: 11400000, guid: 4129d939c3be32249934c9c778306861, type: 2}
   newValue: {fileID: -8289268647676887226}
   setMode: 1
---- !u!114 &2649113543978673005
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56bc3ece62848704b886ea7163ce2ece, type: 3}
-  m_Name: IsAtEndOfContent
-  m_EditorClassIdentifier: 
-  value: {fileID: -3890517857185380882}
-  condition: 2
-  useArgument: 0
-  target: {fileID: -4787947785123063225}
 --- !u!114 &2985013080707404771
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4613,22 +4204,34 @@ MonoBehaviour:
   m_Name: If
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -584, y: 168}
+  position: {x: 200, y: 216}
   ports:
     keys:
     - ' '
     - 
     - inArgument
     - outArgument
-    - IsPlayingLatestUnlockedLevel
+    - IsFinalLevel
     values:
     - _fieldName: ' '
       _node: {fileID: 2985013080707404771}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: LevelWon
-        node: {fileID: 3730047918054533505}
+      - fieldName: 
+        node: {fileID: -8905485687446638094}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6409936498837170495}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6409936498837170495}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5240768988680451859}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -4640,7 +4243,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: -8905485687446638094}
+        node: {fileID: 684878852792894563}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -4664,20 +4267,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: IsPlayingLatestUnlockedLevel
+    - _fieldName: IsFinalLevel
       _node: {fileID: 2985013080707404771}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: 3232702569077234071}
+        node: {fileID: -2474427975326801510}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
   conditions:
-  - {fileID: -5094892082007479078}
+  - {fileID: 6479849108952954745}
 --- !u!114 &3232702569077234071
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4691,7 +4294,7 @@ MonoBehaviour:
   m_Name: Unlock Next Level
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -296, y: 24}
+  position: {x: -312, y: 312}
   ports:
     keys:
     - ' '
@@ -4703,8 +4306,8 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: IsPlayingLatestUnlockedLevel
-        node: {fileID: 2985013080707404771}
+      - fieldName: PlayingLatestUnlockedLevel
+        node: {fileID: 5240768988680451859}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -7706,6 +7309,33 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -510933039686519604}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 1716119031614927340}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2137335984731195356}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -510933039686519604}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 1716119031614927340}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2137335984731195356}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -510933039686519604}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 1716119031614927340}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2137335984731195356}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -510933039686519604}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -7755,7 +7385,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: 2985013080707404771}
+        node: {fileID: -8905485687446638094}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -7870,6 +7500,15 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -3226388243556060441}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -3226388243556060441}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -3226388243556060441}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -3226388243556060441}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -7887,6 +7526,21 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   toRaise: {fileID: 11400000, guid: 5439f8a4d174d354796a828c88bfe3c0, type: 2}
+--- !u!114 &4651326483123400368
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d362fd1cf62c548b9a5ed76f41bf89, type: 3}
+  m_Name: IsFinalLevel_value
+  m_EditorClassIdentifier: 
+  isConstant: 0
+  constantValue: 0
+  referenceValue: {fileID: 11400000, guid: e444c97c99c04b04ebc3344590658ee9, type: 2}
 --- !u!114 &4672732524546067498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7902,6 +7556,21 @@ MonoBehaviour:
   isConstant: 1
   constantValue: 
   referenceValue: {fileID: 0}
+--- !u!114 &4977776935770639125
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d362fd1cf62c548b9a5ed76f41bf89, type: 3}
+  m_Name: IsFinalLevel_target
+  m_EditorClassIdentifier: 
+  isConstant: 0
+  constantValue: 0
+  referenceValue: {fileID: 11400000, guid: 3d90bf2b2bd8c644fa1934471b7783b6, type: 2}
 --- !u!114 &5090145593468370193
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7917,7 +7586,85 @@ MonoBehaviour:
   isConstant: 0
   constantValue: 
   referenceValue: {fileID: 11400000, guid: 9842410d9af3d844ebf15325b9de70c5, type: 2}
---- !u!114 &5275452295814023449
+--- !u!114 &5240768988680451859
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 737d89550a2e2194db247d1e3f3c19db, type: 3}
+  m_Name: If
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -552, y: 248}
+  ports:
+    keys:
+    - ' '
+    - 
+    - inArgument
+    - outArgument
+    - PlayingLatestUnlockedLevel
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 5240768988680451859}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: -8905485687446638094}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 5240768988680451859}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 2985013080707404771}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: inArgument
+      _node: {fileID: 5240768988680451859}
+      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outArgument
+      _node: {fileID: 5240768988680451859}
+      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: PlayingLatestUnlockedLevel
+      _node: {fileID: 5240768988680451859}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 3232702569077234071}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  conditions:
+  - {fileID: -4549530807219810707}
+--- !u!114 &5563267731313286159
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7927,7 +7674,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41d362fd1cf62c548b9a5ed76f41bf89, type: 3}
-  m_Name: IsPlayingLatestUnlockedLevel_target
+  m_Name: PlayingLatestUnlockedLevel_target
   m_EditorClassIdentifier: 
   isConstant: 0
   constantValue: 0
@@ -8286,6 +8033,15 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 7565992513338367243}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7565992513338367243}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7565992513338367243}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7565992513338367243}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -8304,6 +8060,22 @@ MonoBehaviour:
       _dynamic: 1
   time: 0.1
   unit: 0
+--- !u!114 &6479849108952954745
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56bc3ece62848704b886ea7163ce2ece, type: 3}
+  m_Name: IsFinalLevel
+  m_EditorClassIdentifier: 
+  value: {fileID: 4651326483123400368}
+  condition: 0
+  useArgument: 0
+  target: {fileID: 4977776935770639125}
 --- !u!114 &7484388059132627773
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8655,6 +8427,24 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -3501626637358735313}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 8436268370696886818}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -3501626637358735313}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 8436268370696886818}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -3501626637358735313}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 8436268370696886818}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -3501626637358735313}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -8697,6 +8487,15 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -7458260853049364313}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7458260853049364313}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7458260853049364313}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -7458260853049364313}
         reroutePoints: []
