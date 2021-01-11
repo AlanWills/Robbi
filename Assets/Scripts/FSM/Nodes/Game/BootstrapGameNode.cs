@@ -6,6 +6,7 @@ using Celeste.Log;
 using Celeste.FSM;
 using Robbi.Boosters;
 using Celeste.Tips;
+using Robbi.Currency;
 
 namespace Robbi.FSM.Nodes.Game
 {
@@ -44,10 +45,11 @@ namespace Robbi.FSM.Nodes.Game
             HudLog.LogInfo("Beginning bootstrap");
 
             loadManagers.Clear();
-            loadManagers.Add(LevelManager.Load());
-            loadManagers.Add(OptionsManager.Load());
-            loadManagers.Add(BoostersManager.Load());
-            loadManagers.Add(TipsManager.Load());
+            loadManagers.Add(LevelManager.LoadAsync());
+            loadManagers.Add(OptionsManager.LoadAsync());
+            loadManagers.Add(BoostersManager.LoadAsync());
+            loadManagers.Add(TipsManager.LoadAsync());
+            loadManagers.Add(CurrencyManager.LoadAsync());
         }
 
         protected override FSMNode OnUpdate()

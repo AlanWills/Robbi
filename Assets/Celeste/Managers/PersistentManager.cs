@@ -11,7 +11,6 @@ namespace Celeste.Managers
 {
     public abstract class PersistentManager<T, TDTO> : ScriptableObject 
         where T : PersistentManager<T, TDTO>
-        where TDTO : new()
     {
         #region Properties and Fields
         
@@ -50,7 +49,7 @@ namespace Celeste.Managers
 
         #endregion
 
-        protected static AsyncOperationHandle Load(string addressablePath, string persistentFilePath)
+        protected static AsyncOperationHandle LoadAsync(string addressablePath, string persistentFilePath)
         {
             AsyncOperationHandle asyncOperationHandle = Addressables.LoadAssetAsync<T>(addressablePath);
             asyncOperationHandle.Completed += (AsyncOperationHandle obj) => { Load_Completed(obj, persistentFilePath); };

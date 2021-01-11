@@ -78,9 +78,9 @@ namespace Robbi.Levels
 
 #endregion
 
-        public static AsyncOperationHandle Load()
+        public static AsyncOperationHandle LoadAsync()
         {
-            return Load(ADDRESS, DefaultSavePath);
+            return LoadAsync(ADDRESS, DefaultSavePath);
         }
 
         public void Save()

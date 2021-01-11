@@ -50,6 +50,7 @@ namespace RobbiEditor.Tools
 
         [Header("Parameters")]
         public int maxWaypointsPlaceable = 3;
+        public uint softCurrencyPrize = 50;
         public bool requiresFuel = false;
         [ShowIf("requiresFuel")]
         public uint startingFuel = 0;
@@ -495,6 +496,7 @@ namespace RobbiEditor.Tools
             level.maxWaypointsPlaceable = levelInfo.maxWaypointsPlaceable;
             level.requiresFuel = levelInfo.requiresFuel;
             level.startingFuel = levelInfo.startingFuel;
+            level.softCurrencyPrize = levelInfo.softCurrencyPrize;
             
             Debug.Assert(level.levelPrefab != null, "Level Prefab could not be found automatically");
 

@@ -15,6 +15,7 @@ namespace Robbi.Levels
         public IntValue remainingWaypointsPlaceable;
         public BoolValue levelRequiresFuel;
         public UIntValue remainingFuel;
+        public UIntValue softCurrencyPrize;
     }
 
     [CreateAssetMenu(fileName = "Level", menuName = "Robbi/Levels/Level")]
@@ -39,6 +40,7 @@ namespace Robbi.Levels
         public int maxWaypointsPlaceable;
         public bool requiresFuel = false;
         public uint startingFuel;
+        public uint softCurrencyPrize;
 
         #endregion
 
@@ -61,6 +63,7 @@ namespace Robbi.Levels
             levelData.remainingWaypointsPlaceable.Value = maxWaypointsPlaceable;
             levelData.levelRequiresFuel.Value = requiresFuel;
             levelData.remainingFuel.Value = startingFuel;
+            levelData.softCurrencyPrize.Value = softCurrencyPrize;
 
             managers.Initialize(collectables, doors, interactables, portals);
         }

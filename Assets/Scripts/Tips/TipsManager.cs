@@ -79,9 +79,9 @@ namespace Celeste.Tips
 
         #region Save/Load Methods
 
-        public static AsyncOperationHandle Load()
+        public static AsyncOperationHandle LoadAsync()
         {
-            return Load(ADDRESS, DefaultSavePath);
+            return LoadAsync(ADDRESS, DefaultSavePath);
         }
 
         public static void Reset()
