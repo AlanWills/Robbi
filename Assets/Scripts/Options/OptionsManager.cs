@@ -146,6 +146,28 @@ namespace Robbi.Options
             HudLog.LogInfoFormat("Drag Speed: {0}", DragSpeed);
         }
 
+        protected override void SetDefaultValues()
+        {
+#if UNITY_ANDROID || UNITY_IOS
+            MinZoom = 0.75f;
+            MaxZoom = 1.5f;
+            ZoomSpeed = 0.02f;
+            DragSpeed = 0.05f;
+#elif UNITY_STANDALONE
+            MinZoom = 0.5f;
+            MaxZoom = 1.5f;
+            ZoomSpeed = 0.85f;
+            DragSpeed = 0.1f;
+#elif UNITY_WEBGL
+            MinZoom = 0.5f;
+            MaxZoom = 1.5f;
+            ZoomSpeed = 0.85f;
+            DragSpeed = 0.1f;
+#endif
+
+            SyncBatterySaverOptions();
+        }
+
         #endregion
 
         #region Utility Methods
@@ -161,31 +183,17 @@ namespace Robbi.Options
     }
 
     [Serializable]
-    public class OptionsManagerDTO
+    public struct OptionsManagerDTO
     {
-        public bool musicEnabled = true;
-        public bool sfxEnabled = true;
-        public bool batterySaver = false;
-        public float defaultMovementSpeed = 4;
-
-#if UNITY_ANDROID || UNITY_IOS
-        public float minZoom = 0.75f;
-        public float maxZoom = 1.5f;
-        public float zoomSpeed = 0.02f;
-        public float dragSpeed = 0.05f;
-#elif UNITY_STANDALONE
-        public float minZoom = 0.5f;
-        public float maxZoom = 1.5f;
-        public float zoomSpeed = 0.85f;
-        public float dragSpeed = 0.1f;
-#elif UNITY_WEBGL
-        public float minZoom = 0.5f;
-        public float maxZoom = 1.5f;
-        public float zoomSpeed = 0.85f;
-        public float dragSpeed = 0.1f;
-#endif
-        public OptionsManagerDTO() { }
-
+        public bool musicEnabled;
+        public bool sfxEnabled;
+        public bool batterySaver;
+        public float defaultMovementSpeed;
+        public float minZoom;
+        public float maxZoom;
+        public float zoomSpeed;
+        public float dragSpeed;
+      
         public OptionsManagerDTO(OptionsManager optionsManager)
         {
             musicEnabled = optionsManager.MusicEnabled;

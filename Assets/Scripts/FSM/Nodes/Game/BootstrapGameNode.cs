@@ -5,6 +5,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using Celeste.Log;
 using Celeste.FSM;
 using Robbi.Boosters;
+using Celeste.Tips;
 
 namespace Robbi.FSM.Nodes.Game
 {
@@ -46,6 +47,7 @@ namespace Robbi.FSM.Nodes.Game
             loadManagers.Add(LevelManager.Load());
             loadManagers.Add(OptionsManager.Load());
             loadManagers.Add(BoostersManager.Load());
+            loadManagers.Add(TipsManager.Load());
         }
 
         protected override FSMNode OnUpdate()

@@ -148,7 +148,7 @@ namespace Celeste.Log
 
         private void Application_logMessageReceived(string logString, string stackTrace, LogType type)
         {
-            if (type == LogType.Exception)
+            if (type == LogType.Exception || type == LogType.Assert)
             {
                 LogError(logString);
             }

@@ -95,17 +95,17 @@ namespace Robbi.Boosters
             NumInteractBoosters = optionsManagerDTO.numInteractBoosters;
         }
 
+        protected override void SetDefaultValues() { }
+
         #endregion
     }
 
     [Serializable]
-    public class BoostersManagerDTO
+    public struct BoostersManagerDTO
     {
-        public uint numWaypointBoosters = 3;
-        public uint numDoorToggleBoosters = 3;
-        public uint numInteractBoosters = 3;
-
-        public BoostersManagerDTO() { }
+        public uint numWaypointBoosters;
+        public uint numDoorToggleBoosters;
+        public uint numInteractBoosters;
 
         public BoostersManagerDTO(BoostersManager boostersManager)
         {

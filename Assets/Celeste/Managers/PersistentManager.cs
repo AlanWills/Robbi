@@ -1,6 +1,7 @@
 ﻿using Celeste.Log;
 using Celeste.Tools;
 using System.IO;
+using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -75,14 +76,14 @@ namespace Celeste.Managers
                     }
                     else
                     {
-                        Debug.LogFormat("Error deserialization data in {0}.  Using default DTO.", persistentFilePath);
-                        Instance.Deserialize(new TDTO());
+                        Debug.LogFormat("Error deserialization data in {0}.  Using default manager values.", persistentFilePath);
+                        Instance.SetDefaultValues();
                     }
                 }
                 else
                 {
-                    Debug.LogFormat("{0} not found for manager {1}", persistentFilePath, Instance.name);
-                    Instance.Deserialize(new TDTO());
+                    Debug.LogFormat("{0} not found for manager {1}.  Using default manager values.", persistentFilePath, Instance.name);
+                    Instance.SetDefaultValues();
                 }
             }
             else
@@ -102,8 +103,18 @@ namespace Celeste.Managers
             HudLog.LogInfoFormat("{0} saved", Instance.name);
         }
 
+        public async Task SaveAsync(string filePath)
+        {
+            string serializedData = Instance.Serialize();
+            using (StreamWriter outputFileWriter = new StreamWriter(new FileStream(filePath, FileMode.Create)))
+            {
+                await outputFileWriter.WriteAsync(serializedData);
+            }
+        }
+
         protected abstract string Serialize();
         protected abstract void Deserialize(TDTO dto);
+        protected abstract void SetDefaultValues();
 
 #endregion
     }

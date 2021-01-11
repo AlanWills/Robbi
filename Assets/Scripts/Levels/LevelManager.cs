@@ -101,15 +101,15 @@ namespace Robbi.Levels
             HudLog.LogInfoFormat("Latest Available Level Index: {0}", LatestAvailableLevel);
         }
 
+        protected override void SetDefaultValues() { }
+
         #endregion
     }
 
     [Serializable]
-    public class LevelManagerDTO
+    public struct LevelManagerDTO
     {
-        public uint latestUnlockedLevelIndex = 0;
-
-        public LevelManagerDTO() { }
+        public uint latestUnlockedLevelIndex;
 
         public LevelManagerDTO(LevelManager levelManager)
         {
