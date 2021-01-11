@@ -24,6 +24,7 @@ namespace RobbiEditor.Migration
                         if (boolNode.argument == null)
                         {
                             boolNode.AddToGraph();
+                            EditorUtility.SetDirty(boolNode);
                         }
                     }
                     else if (node is StringEventRaiserNode)
@@ -32,6 +33,7 @@ namespace RobbiEditor.Migration
                         if (stringNode.argument == null)
                         {
                             stringNode.AddToGraph();
+                            EditorUtility.SetDirty(stringNode);
                         }
                     }
                     else if (node is FloatEventRaiserNode)
@@ -40,6 +42,7 @@ namespace RobbiEditor.Migration
                         if (floatNode.argument == null)
                         {
                             floatNode.AddToGraph();
+                            EditorUtility.SetDirty(floatNode);
                         }
                     }
                     else if (node is Vector3IntEventRaiserNode)
@@ -48,6 +51,7 @@ namespace RobbiEditor.Migration
                         if (vector3IntNode.argument == null)
                         {
                             vector3IntNode.AddToGraph();
+                            EditorUtility.SetDirty(vector3IntNode);
                         }
                     }
                 }
