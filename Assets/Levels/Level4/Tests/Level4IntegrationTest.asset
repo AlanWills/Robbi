@@ -154,7 +154,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  time: 1
+  time: {fileID: -5004116833270578012}
   unit: 0
 --- !u!114 &-6824762061055604043
 MonoBehaviour:
@@ -229,6 +229,21 @@ MonoBehaviour:
   inputEvent: {fileID: 11400000, guid: 74245c4526e3f0144b8534774b224924, type: 2}
   inputPosition: {x: -1, y: 2, z: 0}
   gameObjectName: MovementManager
+--- !u!114 &-5004116833270578012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: Wait_Time
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 1
+  referenceValue: {fileID: 0}
 --- !u!114 &-2397528401922097347
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -275,7 +290,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  time: 0.1
+  time: {fileID: 337004738045347754}
   unit: 0
 --- !u!114 &11400000
 MonoBehaviour:
@@ -302,7 +317,40 @@ MonoBehaviour:
   - {fileID: 8742776692219943069}
   - {fileID: -2397528401922097347}
   startNode: {fileID: -6891784997698276944}
-  parameters: []
+  parameters:
+  - {fileID: -5004116833270578012}
+  - {fileID: 600858407694438777}
+  - {fileID: 337004738045347754}
+--- !u!114 &337004738045347754
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: Wait_Time
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 0.1
+  referenceValue: {fileID: 0}
+--- !u!114 &600858407694438777
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: Wait_Time
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 0.1
+  referenceValue: {fileID: 0}
 --- !u!114 &1666104130434916190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -646,7 +694,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  time: 0.1
+  time: {fileID: 600858407694438777}
   unit: 0
 --- !u!114 &8783651510360124662
 MonoBehaviour:

@@ -143,7 +143,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  time: 1
+  time: {fileID: 1438448210207957096}
   unit: 0
 --- !u!114 &-8505491447840174007
 MonoBehaviour:
@@ -2727,6 +2727,9 @@ MonoBehaviour:
   - {fileID: 4977776935770639125}
   - {fileID: -8505491447840174007}
   - {fileID: 5563267731313286159}
+  - {fileID: 8245683988062811574}
+  - {fileID: 8941141912467444913}
+  - {fileID: 1438448210207957096}
 --- !u!114 &329677710248236872
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2893,7 +2896,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  time: 1
+  time: {fileID: 8941141912467444913}
   unit: 0
 --- !u!114 &684878852792894563
 MonoBehaviour:
@@ -4131,6 +4134,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isConstant: 1
   constantValue: LoadingScene
+  referenceValue: {fileID: 0}
+--- !u!114 &1438448210207957096
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: Wait_Time
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 1
   referenceValue: {fileID: 0}
 --- !u!114 &1716119031614927340
 MonoBehaviour:
@@ -7336,6 +7354,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -510933039686519604}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -510933039686519604}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -7479,6 +7500,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -3226388243556060441}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -3226388243556060441}
         reroutePoints: []
@@ -8042,6 +8066,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 7565992513338367243}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7565992513338367243}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -8058,7 +8085,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  time: 0.1
+  time: {fileID: 8245683988062811574}
   unit: 0
 --- !u!114 &6479849108952954745
 MonoBehaviour:
@@ -8462,6 +8489,21 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   levelGameObject: {fileID: 11400000, guid: 61b0e2ee9b58f3b45be83c48f6ee6934, type: 2}
+--- !u!114 &8245683988062811574
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: Wait_Time
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 0.1
+  referenceValue: {fileID: 0}
 --- !u!114 &8435693903720371869
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8958,6 +9000,21 @@ MonoBehaviour:
   m_Name: RestartButtonPressed
   m_EditorClassIdentifier: 
   listenFor: {fileID: 11400000, guid: 1c88015a68dfada4cb03bcb4a3a52587, type: 2}
+--- !u!114 &8941141912467444913
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: Wait_Time
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 1
+  referenceValue: {fileID: 0}
 --- !u!114 &9213852190274206339
 MonoBehaviour:
   m_ObjectHideFlags: 1

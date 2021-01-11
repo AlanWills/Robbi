@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6840780201864176319
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: Wait_Time
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 1
+  referenceValue: {fileID: 0}
 --- !u!114 &-6419930194099167628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -284,7 +299,8 @@ MonoBehaviour:
   - {fileID: -255462331487528712}
   - {fileID: -5031678981176431504}
   startNode: {fileID: 7530909406027538204}
-  parameters: []
+  parameters:
+  - {fileID: -6840780201864176319}
 --- !u!114 &4884246851003362145
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -380,7 +396,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  time: 1
+  time: {fileID: -6840780201864176319}
   unit: 0
 --- !u!114 &7788488612879082632
 MonoBehaviour:

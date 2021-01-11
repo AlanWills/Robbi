@@ -203,6 +203,21 @@ MonoBehaviour:
   isConstant: 0
   constantValue: 0
   referenceValue: {fileID: 11400000, guid: 4129d939c3be32249934c9c778306861, type: 2}
+--- !u!114 &-6941914341879707510
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: Wait_Time
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 0.1
+  referenceValue: {fileID: 0}
 --- !u!114 &-6152490731255896441
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -586,6 +601,21 @@ MonoBehaviour:
   isConstant: 1
   constantValue: 8
   referenceValue: {fileID: 0}
+--- !u!114 &-234849191316639156
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: Wait_Time
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 0.1
+  referenceValue: {fileID: 0}
 --- !u!114 &-178245354278973814
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -629,7 +659,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  time: 0.1
+  time: {fileID: -6941914341879707510}
   unit: 0
 --- !u!114 &-125398274572605464
 MonoBehaviour:
@@ -792,6 +822,8 @@ MonoBehaviour:
   - {fileID: 2778651056704561462}
   - {fileID: 7693769673109876374}
   - {fileID: 4762148542339951363}
+  - {fileID: -234849191316639156}
+  - {fileID: -6941914341879707510}
 --- !u!114 &275166075558113127
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -835,7 +867,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  time: 0.1
+  time: {fileID: -234849191316639156}
   unit: 0
 --- !u!114 &1616425148639846048
 MonoBehaviour:
@@ -880,8 +912,8 @@ MonoBehaviour:
       _dynamic: 1
     - _fieldName: newValue
       _node: {fileID: 1616425148639846048}
-      _typeQualifiedName: Robbi.Parameters.FloatReference, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
+      _typeQualifiedName: Celeste.Parameters.FloatReference, Celeste.Parameters,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 0
       _connectionType: 0

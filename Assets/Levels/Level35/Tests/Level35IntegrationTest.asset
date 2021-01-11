@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8380589312952254533
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: Wait_Time
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 1
+  referenceValue: {fileID: 0}
 --- !u!114 &-7684161083205725244
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -180,7 +195,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  time: 0.1
+  time: {fileID: 6546229975858024491}
   unit: 0
 --- !u!114 &-5644515538928078586
 MonoBehaviour:
@@ -315,7 +330,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  time: 1
+  time: {fileID: -8380589312952254533}
   unit: 0
 --- !u!114 &-1225688832751362039
 MonoBehaviour:
@@ -384,7 +399,10 @@ MonoBehaviour:
   - {fileID: 4390249237150861570}
   - {fileID: -5667244943516506926}
   startNode: {fileID: -1660190557220809543}
-  parameters: []
+  parameters:
+  - {fileID: -8380589312952254533}
+  - {fileID: 6360097261116756301}
+  - {fileID: 6546229975858024491}
 --- !u!114 &2796880496292308337
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -513,7 +531,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  time: 0.1
+  time: {fileID: 6360097261116756301}
   unit: 0
 --- !u!114 &5405174347674444695
 MonoBehaviour:
@@ -528,6 +546,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listenFor: {fileID: 11400000, guid: f1011e957c917144caeaffc2270ffebe, type: 2}
+--- !u!114 &6360097261116756301
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: Wait_Time
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 0.1
+  referenceValue: {fileID: 0}
 --- !u!114 &6387374399024050370
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -572,6 +605,21 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   toRaise: {fileID: 11400000, guid: 093849f859ca2654b8f4b007c2b23782, type: 2}
+--- !u!114 &6546229975858024491
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: Wait_Time
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 0.1
+  referenceValue: {fileID: 0}
 --- !u!114 &8582477743317399743
 MonoBehaviour:
   m_ObjectHideFlags: 1

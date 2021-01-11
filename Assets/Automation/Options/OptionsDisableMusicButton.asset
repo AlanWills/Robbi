@@ -175,6 +175,21 @@ MonoBehaviour:
   gameObjectPath:
     path: Options.AudioSettings.MusicEnabledButton
   attemptWindow: 2
+--- !u!114 &-5779885633671756001
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: Wait_Time
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 0.1
+  referenceValue: {fileID: 0}
 --- !u!114 &-3443217561231219503
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -551,7 +566,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  time: 0.1
+  time: {fileID: -5779885633671756001}
   unit: 0
 --- !u!114 &-125398274572605464
 MonoBehaviour:
@@ -703,6 +718,8 @@ MonoBehaviour:
   - {fileID: -7858947254522064304}
   - {fileID: 131275561142714993}
   - {fileID: -2876918372678406609}
+  - {fileID: 4207008120331256402}
+  - {fileID: -5779885633671756001}
 --- !u!114 &131275561142714993
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -761,8 +778,23 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  time: 0.1
+  time: {fileID: 4207008120331256402}
   unit: 0
+--- !u!114 &4207008120331256402
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: Wait_Time
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 0.1
+  referenceValue: {fileID: 0}
 --- !u!114 &4612918566794032184
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -822,7 +854,7 @@ MonoBehaviour:
       _dynamic: 1
     - _fieldName: newValue
       _node: {fileID: 6905361961377371754}
-      _typeQualifiedName: Robbi.Parameters.BoolReference, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: Celeste.Parameters.BoolReference, Celeste.Parameters, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 0

@@ -121,7 +121,8 @@ MonoBehaviour:
   - {fileID: -9090759410522421293}
   - {fileID: 4128446483466136283}
   startNode: {fileID: 7860315323290595438}
-  parameters: []
+  parameters:
+  - {fileID: 1071846635681129670}
 --- !u!114 &371978477338719267
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -168,6 +169,21 @@ MonoBehaviour:
   inputEvent: {fileID: 11400000, guid: 74245c4526e3f0144b8534774b224924, type: 2}
   inputPosition: {x: 3, y: 0, z: 0}
   gameObjectName: MovementManager
+--- !u!114 &1071846635681129670
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: Wait_Time
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 1
+  referenceValue: {fileID: 0}
 --- !u!114 &4128446483466136283
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -306,7 +322,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  time: 1
+  time: {fileID: 1071846635681129670}
   unit: 0
 --- !u!114 &8971653563307486426
 MonoBehaviour:

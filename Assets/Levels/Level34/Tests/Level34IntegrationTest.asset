@@ -163,7 +163,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  time: 1
+  time: {fileID: 4298759062755246667}
   unit: 0
 --- !u!114 &11400000
 MonoBehaviour:
@@ -188,7 +188,8 @@ MonoBehaviour:
   - {fileID: 91997090405329636}
   - {fileID: -6546312387933468541}
   startNode: {fileID: -2080521987862667128}
-  parameters: []
+  parameters:
+  - {fileID: 4298759062755246667}
 --- !u!114 &54203860662775944
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -458,6 +459,21 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   toRaise: {fileID: 11400000, guid: 6b4a72f1879c01b41a7a4d34b806e2ae, type: 2}
+--- !u!114 &4298759062755246667
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: Wait_Time
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 1
+  referenceValue: {fileID: 0}
 --- !u!114 &5353539830743754005
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -104,6 +104,21 @@ MonoBehaviour:
   gameObjectPath:
     path: Options.AudioSettings.SFXDisabledButton
   attemptWindow: 2
+--- !u!114 &-3644531855385817373
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: Wait_Time
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 0.1
+  referenceValue: {fileID: 0}
 --- !u!114 &-3443217561231219503
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -456,7 +471,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  time: 0.1
+  time: {fileID: -3644531855385817373}
   unit: 0
 --- !u!114 &-125398274572605464
 MonoBehaviour:
@@ -655,6 +670,8 @@ MonoBehaviour:
   - {fileID: -7858947254522064304}
   - {fileID: 5467605699974560437}
   - {fileID: -2727071419338629108}
+  - {fileID: 3689941295517425805}
+  - {fileID: -3644531855385817373}
 --- !u!114 &275166075558113127
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -698,7 +715,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  time: 0.1
+  time: {fileID: 3689941295517425805}
   unit: 0
 --- !u!114 &1306275009795807241
 MonoBehaviour:
@@ -716,6 +733,21 @@ MonoBehaviour:
   condition: 0
   useArgument: 0
   target: {fileID: -2727071419338629108}
+--- !u!114 &3689941295517425805
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: Wait_Time
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 0.1
+  referenceValue: {fileID: 0}
 --- !u!114 &5467605699974560437
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -774,7 +806,7 @@ MonoBehaviour:
       _dynamic: 1
     - _fieldName: newValue
       _node: {fileID: 6905361961377371754}
-      _typeQualifiedName: Robbi.Parameters.BoolReference, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: Celeste.Parameters.BoolReference, Celeste.Parameters, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 0

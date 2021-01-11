@@ -237,6 +237,21 @@ MonoBehaviour:
       _dynamic: 1
   conditions:
   - {fileID: 5923639979092176901}
+--- !u!114 &-5991662576223181819
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: Wait_Time
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 1
+  referenceValue: {fileID: 0}
 --- !u!114 &-5673390395035228719
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -587,8 +602,23 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  time: 1
+  time: {fileID: -5991662576223181819}
   unit: 0
+--- !u!114 &-1050376730588467367
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: Wait_Time
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 0.2
+  referenceValue: {fileID: 0}
 --- !u!114 &-306447875139265483
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -633,6 +663,8 @@ MonoBehaviour:
   - {fileID: -5024933802071763462}
   - {fileID: -4796176077830055528}
   - {fileID: -306447875139265483}
+  - {fileID: -1050376730588467367}
+  - {fileID: -5991662576223181819}
 --- !u!114 &1930256409547381023
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -715,7 +747,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  time: 0.2
+  time: {fileID: -1050376730588467367}
   unit: 0
 --- !u!114 &3510125424551117212
 MonoBehaviour:

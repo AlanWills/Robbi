@@ -41,6 +41,21 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   testResult: {fileID: 11400000, guid: d026f6890dbc6ab4c9a19df9dc4f6a8d, type: 2}
+--- !u!114 &-7731851425112267452
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: Wait_Time
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 3
+  referenceValue: {fileID: 0}
 --- !u!114 &-6944882505255497744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -288,6 +303,8 @@ MonoBehaviour:
   - {fileID: 6770476239442404197}
   - {fileID: -785696923743648976}
   - {fileID: 697879859495331764}
+  - {fileID: -7731851425112267452}
+  - {fileID: 4853929103110514945}
 --- !u!114 &697879859495331764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -469,6 +486,21 @@ MonoBehaviour:
   value: {fileID: 11400000, guid: 13769d90d377c5840b52f4c0c13a2fc3, type: 2}
   newValue: {fileID: 6770476239442404197}
   setMode: 0
+--- !u!114 &4853929103110514945
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: Wait_Time
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 1
+  referenceValue: {fileID: 0}
 --- !u!114 &4912352177089864144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -539,7 +571,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  time: 3
+  time: {fileID: -7731851425112267452}
   unit: 0
 --- !u!114 &5032689901493012802
 MonoBehaviour:
@@ -599,7 +631,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  time: 1
+  time: {fileID: 4853929103110514945}
   unit: 0
 --- !u!114 &6770476239442404197
 MonoBehaviour:

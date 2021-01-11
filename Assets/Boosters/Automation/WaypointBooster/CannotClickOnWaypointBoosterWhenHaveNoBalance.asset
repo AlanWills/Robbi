@@ -296,7 +296,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  time: 1
+  time: {fileID: 1831723600815101892}
   unit: 0
 --- !u!114 &-785696923743648976
 MonoBehaviour:
@@ -339,6 +339,23 @@ MonoBehaviour:
   - {fileID: 6770476239442404197}
   - {fileID: -785696923743648976}
   - {fileID: 4524355087354636007}
+  - {fileID: 2573744648313024719}
+  - {fileID: 1831723600815101892}
+--- !u!114 &1831723600815101892
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: Wait_Time
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 1
+  referenceValue: {fileID: 0}
 --- !u!114 &2513862922424607181
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -425,6 +442,21 @@ MonoBehaviour:
   gameObjectPath:
     path: BoostersBar.WaypointBooster.UseButton
   attemptWindow: 1
+--- !u!114 &2573744648313024719
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: Wait_Time
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 3
+  referenceValue: {fileID: 0}
 --- !u!114 &3064040456630849902
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -575,7 +607,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  time: 3
+  time: {fileID: 2573744648313024719}
   unit: 0
 --- !u!114 &6770476239442404197
 MonoBehaviour:

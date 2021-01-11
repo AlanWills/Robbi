@@ -52,7 +52,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  time: 1
+  time: {fileID: -243264438934031776}
   unit: 0
 --- !u!114 &-6051312378683620010
 MonoBehaviour:
@@ -284,6 +284,21 @@ MonoBehaviour:
   gameObjectPath:
     path: HomeButton
   attemptWindow: 1
+--- !u!114 &-243264438934031776
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: Wait_Time
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 1
+  referenceValue: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,6 +325,7 @@ MonoBehaviour:
   parameters:
   - {fileID: 6999303796859246222}
   - {fileID: 8260157296386013143}
+  - {fileID: -243264438934031776}
 --- !u!114 &201769546689002387
 MonoBehaviour:
   m_ObjectHideFlags: 1

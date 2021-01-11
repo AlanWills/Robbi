@@ -194,6 +194,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 5723566340032133567}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5723566340032133567}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -250,6 +253,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -4581395533522610615}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -4581395533522610615}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -260,7 +266,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: 5219799710629473994}
+        node: {fileID: 1518294260349488370}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -375,6 +381,7 @@ MonoBehaviour:
   - {fileID: -8231235129927574898}
   - {fileID: 2003141201359507406}
   - {fileID: -3276521639422923127}
+  - {fileID: 1518294260349488370}
   startNode: {fileID: 5723566340032133567}
   parameters:
   - {fileID: 8704993889510921263}
@@ -382,6 +389,7 @@ MonoBehaviour:
   - {fileID: 1082887952077415261}
   - {fileID: -6502961891069375261}
   - {fileID: -1194208081758609187}
+  - {fileID: 2726006916082051285}
 --- !u!114 &1082887952077415261
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -397,6 +405,62 @@ MonoBehaviour:
   isConstant: 0
   constantValue: 0
   referenceValue: {fileID: 11400000, guid: e444c97c99c04b04ebc3344590658ee9, type: 2}
+--- !u!114 &1518294260349488370
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f03f524ed5c1ff449e38657dad7f239, type: 3}
+  m_Name: Set Float Value
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -392, y: 504}
+  ports:
+    keys:
+    - ' '
+    - 
+    - newValue
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 1518294260349488370}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: -3276521639422923127}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 1518294260349488370}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 5219799710629473994}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: newValue
+      _node: {fileID: 1518294260349488370}
+      _typeQualifiedName: Celeste.Parameters.FloatReference, Celeste.Parameters,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: {fileID: 11400000, guid: e399bf25342cce441b2cd12ed9b68add, type: 2}
+  newValue: {fileID: 2726006916082051285}
+  setMode: 0
 --- !u!114 &2003141201359507406
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -475,6 +539,21 @@ MonoBehaviour:
       _dynamic: 1
   conditions:
   - {fileID: -7124477305733999475}
+--- !u!114 &2726006916082051285
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: _newValue
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 0
+  referenceValue: {fileID: 0}
 --- !u!114 &2887898549752504976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -609,6 +688,9 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: 
         node: {fileID: -3276521639422923127}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 1518294260349488370}
         reroutePoints: []
       _direction: 0
       _connectionType: 0

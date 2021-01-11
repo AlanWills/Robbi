@@ -47,7 +47,7 @@ namespace RobbiEditor.Tools
 
             // Add Wait node
             WaitNode waitNode = CreateNode<WaitNode>(fsmGraphEditor, new Vector2());
-            waitNode.time = 1;
+            waitNode.time.Value = 1;
             previousNode = waitNode;
 
             // Add Input node for each waypoint
