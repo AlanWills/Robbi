@@ -7,12 +7,12 @@ using UnityEditor;
 
 namespace RobbiEditor.Testing
 {
-    public class WinOldLevelGivesReward : IIntegrationTest
+    public class WinOldLevelDoesNotGiveReward : IIntegrationTest
     {
-        [MenuItem("Robbi/Testing/Currency/Win Old Level Gives Reward")]
+        [MenuItem("Robbi/Testing/Currency/Win Old Level Does Not Give Reward")]
         public static void MenuItem()
         {
-            IntegrationTestEditorAPI.RunTest<WinNewLevelGivesReward>();
+            IntegrationTestEditorAPI.RunTest<WinOldLevelDoesNotGiveReward>();
         }
     }
 }
