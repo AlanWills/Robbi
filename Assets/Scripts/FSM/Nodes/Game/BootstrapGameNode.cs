@@ -7,6 +7,7 @@ using Celeste.FSM;
 using Robbi.Boosters;
 using Celeste.Tips;
 using Robbi.Currency;
+using Robbi.Shop;
 
 namespace Robbi.FSM.Nodes.Game
 {
@@ -50,6 +51,7 @@ namespace Robbi.FSM.Nodes.Game
             loadManagers.Add(BoostersManager.LoadAsync());
             loadManagers.Add(TipsManager.LoadAsync());
             loadManagers.Add(CurrencyManager.LoadAsync());
+            loadManagers.Add(ShopItemManager.LoadAsync());
         }
 
         protected override FSMNode OnUpdate()

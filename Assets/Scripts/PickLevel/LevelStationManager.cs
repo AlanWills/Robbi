@@ -19,9 +19,6 @@ namespace Robbi.PickLevel
         [SerializeField]
         private RecyclableScrollRect scrollRect;
 
-        [SerializeField]
-        private GameObject levelStationPrefab;
-
         [Header("Parameters")]
         [SerializeField]
         private UIntValue latestUnlockedLevel;

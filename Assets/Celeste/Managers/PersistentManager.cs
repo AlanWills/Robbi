@@ -115,6 +115,6 @@ namespace Celeste.Managers
         protected abstract void Deserialize(TDTO dto);
         protected abstract void SetDefaultValues();
 
-#endregion
+        #endregion
     }
 }
