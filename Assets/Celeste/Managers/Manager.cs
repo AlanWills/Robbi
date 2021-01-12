@@ -49,7 +49,7 @@ namespace Celeste.Managers
 
         #endregion
 
-        protected static AsyncOperationHandle LoadAsync(string addressablePath)
+        protected static AsyncOperationHandle LoadAsyncImpl(string addressablePath)
         {
             AsyncOperationHandle asyncOperationHandle = Addressables.LoadAssetAsync<T>(addressablePath);
             asyncOperationHandle.Completed += Load_Completed;

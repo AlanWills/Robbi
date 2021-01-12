@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using XNode;
 
+
 namespace Celeste.FSM.Nodes.Logic
 {
     [Serializable]
@@ -28,7 +29,7 @@ namespace Celeste.FSM.Nodes.Logic
         }
 
         [SerializeField]
-        private List<Condition> conditions = new List<Condition>();
+        private List<Conditions.Condition> conditions = new List<Conditions.Condition>();
 
         #endregion
 
@@ -42,8 +43,8 @@ namespace Celeste.FSM.Nodes.Logic
 
             for (uint i = 0; i < originalIfNode.NumConditions; ++i)
             {
-                Condition originalCondition = originalIfNode.GetCondition(i);
-                Condition newCondition = AddCondition(originalCondition.name, originalCondition.GetType());
+                Conditions.Condition originalCondition = originalIfNode.GetCondition(i);
+                Conditions.Condition newCondition = AddCondition(originalCondition.name, originalCondition.GetType());
                 newCondition.CopyFrom(originalCondition);
             }
         }
@@ -62,9 +63,9 @@ namespace Celeste.FSM.Nodes.Logic
 
         #region Condition Methods
 
-        public Condition AddCondition(string conditionName, Type conditionType)
+        public Conditions.Condition AddCondition(string conditionName, Type conditionType)
         {
-            Condition valueCondition = ScriptableObject.CreateInstance(conditionType) as Condition;
+            Conditions.Condition valueCondition = ScriptableObject.CreateInstance(conditionType) as Conditions.Condition;
             valueCondition.name = conditionName;
             conditions.Add(valueCondition);
 
@@ -81,12 +82,12 @@ namespace Celeste.FSM.Nodes.Logic
             return valueCondition;
         }
 
-        public T AddCondition<T>(string conditionName) where T : Condition
+        public T AddCondition<T>(string conditionName) where T : Conditions.Condition
         {
             return AddCondition(conditionName, typeof(T)) as T;
         }
 
-        public void RemoveCondition(Condition condition)
+        public void RemoveCondition(Conditions.Condition condition)
         {
             if (HasPort(condition.name))
             {
@@ -103,7 +104,7 @@ namespace Celeste.FSM.Nodes.Logic
 #endif
         }
 
-        public Condition GetCondition(uint conditionIndex)
+        public Conditions.Condition GetCondition(uint conditionIndex)
         {
             return conditionIndex < NumConditions ? conditions[(int)conditionIndex] : null;
         }
@@ -126,7 +127,7 @@ namespace Celeste.FSM.Nodes.Logic
             object _argument = GetInputValue(nameof(inArgument), inArgument);
             outArgument = _argument;
 
-            foreach (Condition condition in conditions)
+            foreach (Conditions.Condition condition in conditions)
             {
                 if (condition.Check(_argument))
                 {

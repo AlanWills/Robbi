@@ -46,6 +46,7 @@ namespace Robbi.Shop
             this.shopItemData = shopItemData;
 
             ShopItem shopItem = shopItemData.shopItem;
+            name = shopItem.name;
             displayNameText.text = shopItem.DisplayName;
             softCurrencyCostText.text = shopItem.SoftCurrencyCost.ToString();
             unlockAtLevelText.text = string.Format("Unlocks At Level {0}", shopItem.UnlockAtLevel);

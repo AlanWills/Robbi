@@ -34,7 +34,7 @@ namespace Robbi.Shop
         {
             foreach (ShopItem shopItem in ShopItemManager.Instance.ShopItems)
             {
-                shopItemData.Add(new ShopItemData(shopItem, shopItem.UnlockAtLevel < latestUnlockedLevel.Value));
+                shopItemData.Add(new ShopItemData(shopItem, shopItem.UnlockAtLevel <= latestUnlockedLevel.Value));
             }
 
             scrollRect.DataSource = this;
