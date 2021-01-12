@@ -15,7 +15,7 @@ namespace RobbiEditor.Testing
         public static void FindMenuItem()
         {
             System.Diagnostics.Stopwatch stopWatch = System.Diagnostics.Stopwatch.StartNew();
-            List<Type> integrationTests = FindIntegrationTests();
+            List<Type> integrationTests = IntegrationTests.AllIntegrationTests;
 
             stopWatch.Stop();
             Debug.LogFormat("Found {0} Integration Tests in {1} seconds", integrationTests.Count, stopWatch.ElapsedMilliseconds / 1000.0f);
@@ -29,26 +29,7 @@ namespace RobbiEditor.Testing
         [MenuItem("Robbi/Testing/Run All Integration Tests")]
         public static void RunMenuItem()
         {
-            IntegrationTestEditorAPI.RunTests(FindIntegrationTests().ToArray());
-        }
-
-        private static List<Type> FindIntegrationTests()
-        {
-            Type integrationTestType = typeof(IIntegrationTest);
-            List<Type> integrationTests = new List<Type>();
-
-            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
-            {
-                foreach (Type t in assembly.GetTypes())
-                {
-                    if (integrationTestType.IsAssignableFrom(t) && !t.IsAbstract)
-                    {
-                        integrationTests.Add(t);
-                    }
-                }
-            }
-
-            return integrationTests;
+            IntegrationTestEditorAPI.RunTests(IntegrationTests.AllIntegrationTests.ToArray());
         }
     }
 }
