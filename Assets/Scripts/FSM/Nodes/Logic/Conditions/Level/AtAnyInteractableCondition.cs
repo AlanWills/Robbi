@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Celeste.FSM.Nodes.Logic.Conditions;
 using Celeste.Logic;
+using System.ComponentModel;
 
 namespace Robbi.FSM.Nodes.Logic.Conditions
 {
+    [DisplayName("At Any Interactable")]
     public class AtAnyInteractableCondition : Condition
     {
         #region Properties and Fields

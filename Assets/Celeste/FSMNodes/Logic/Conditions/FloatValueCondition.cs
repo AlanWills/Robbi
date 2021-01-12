@@ -2,6 +2,7 @@
 using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ using UnityEngine;
 namespace Celeste.FSM.Nodes.Logic.Conditions
 {
     [Serializable]
+    [DisplayName("Float")]
     public class FloatValueCondition : ParameterizedValueCondition<float, FloatValue, FloatReference>
     {
         #region Condition Methods

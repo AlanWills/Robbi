@@ -2,6 +2,7 @@
 using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,8 @@ using UnityEngine;
 
 namespace Celeste.FSM.Nodes.Logic.Conditions
 {
+    [Serializable]
+    [DisplayName("In Vector3 Int Array")]
     public class InVector3IntArrayCondition : Condition
     {
         #region Properties and Fields

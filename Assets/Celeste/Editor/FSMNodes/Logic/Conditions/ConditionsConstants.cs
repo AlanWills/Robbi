@@ -1,4 +1,5 @@
 ﻿using Celeste.FSM.Nodes.Logic.Conditions;
+using Celeste.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace CelesteEditor.FSM.Nodes.Logic.Conditions
                     {
                         Debug.LogFormat("Found Condition type: {0}", t.Name);
                         ConditionOptions.Add(t);
-                        ConditionDisplayNames.Add(t.Name.Replace(condition.Name, "")); // Remove the Condition string from the type names for the display name
+                        ConditionDisplayNames.Add(t.GetDisplayName());
                     }
                 }
             }

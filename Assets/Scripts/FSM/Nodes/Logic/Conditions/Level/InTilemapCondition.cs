@@ -3,9 +3,11 @@ using UnityEngine;
 using Celeste.FSM.Nodes.Logic.Conditions;
 using Celeste.Logic;
 using Celeste.Tilemaps;
+using System.ComponentModel;
 
 namespace Robbi.FSM.Nodes.Logic.Conditions
 {
+    [DisplayName("In Tilemap")]
     public class InTilemapCondition : Condition
     {
         #region Properties and Fields

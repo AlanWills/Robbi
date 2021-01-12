@@ -6,6 +6,7 @@ using Robbi.Levels.Elements;
 using Robbi.Tilemaps.Tiles;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using UnityEngine;
 
 namespace Robbi.FSM.Nodes.Logic.Conditions
 {
+    [DisplayName("Door State")]
     public class DoorStateCondition : Condition
     {
         #region Properties and Fields

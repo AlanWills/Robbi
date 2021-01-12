@@ -3,9 +3,11 @@ using Celeste.Parameters;
 using UnityEngine;
 using Celeste.FSM.Nodes.Logic.Conditions;
 using Celeste.Logic;
+using System.ComponentModel;
 
 namespace Robbi.FSM.Nodes.Logic.Conditions
 {
+    [DisplayName("At Collectable")]
     public class AtCollectableCondition : Condition
     {
         #region Properties and Fields
