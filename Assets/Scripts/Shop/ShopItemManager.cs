@@ -1,4 +1,5 @@
-﻿using Celeste.FSM.Nodes.Objects;
+﻿using Celeste.Assets;
+using Celeste.FSM.Nodes.Objects;
 using Celeste.Managers;
 using System;
 using System.Collections.Generic;
@@ -32,14 +33,15 @@ namespace Robbi.Shop
 
         #region Save/Load
 
-        public static AsyncOperationHandle LoadAsync()
+        public static AsyncOperationHandleWrapper LoadAsync()
         {
             return LoadAsyncImpl(ADDRESS);
         }
 
-        public static void LoadAsync(string address, HandleWrapper handleWrapper)
+        // Used by FSMs
+        public static void LoadAsync(string addressablePath, AsyncOperationHandleWrapper wrapper)
         {
-            handleWrapper.handle = LoadAsyncImpl(address);
+            LoadAsyncImpl(addressablePath, wrapper);
         }
 
         #endregion

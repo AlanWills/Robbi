@@ -1,4 +1,5 @@
-﻿using Celeste.Managers;
+﻿using Celeste.Assets;
+using Celeste.Managers;
 using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
@@ -35,9 +36,9 @@ namespace Robbi.Currency
 
         #region Save/Load
 
-        public static AsyncOperationHandle LoadAsync()
+        public static AsyncOperationHandleWrapper LoadAsync()
         {
-            return LoadAsync(ADDRESS, DefaultSavePath);
+            return LoadAsyncImpl(ADDRESS, DefaultSavePath);
         }
 
         public static void Reset()

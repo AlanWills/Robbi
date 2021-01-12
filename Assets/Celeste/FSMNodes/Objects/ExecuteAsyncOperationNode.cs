@@ -1,4 +1,5 @@
-﻿using Celeste.Log;
+﻿using Celeste.Assets;
+using Celeste.Log;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,8 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Celeste.FSM.Nodes.Objects
 {
-    public class HandleWrapper
-    {
-        public AsyncOperationHandle handle;
-    }
-
     [Serializable]
-    public class AsyncOperationHandleUnityEvent : UnityEvent<string, HandleWrapper> { }
+    public class AsyncOperationHandleWrapperUnityEvent : UnityEvent<string, AsyncOperationHandleWrapper> { }
 
     [Serializable]
     [CreateNodeMenu("Celeste/Objects/Execute Async Operation")]
@@ -24,9 +20,9 @@ namespace Celeste.FSM.Nodes.Objects
         #region Properties and Fields
 
         public string address;
-        public AsyncOperationHandleUnityEvent function;
+        public AsyncOperationHandleWrapperUnityEvent function;
 
-        private HandleWrapper handleWrapper = new HandleWrapper();
+        private AsyncOperationHandleWrapper handleWrapper = new AsyncOperationHandleWrapper();
 
         #endregion
 
@@ -41,20 +37,14 @@ namespace Celeste.FSM.Nodes.Objects
 
         protected override FSMNode OnUpdate()
         {
-            if (handleWrapper.handle.IsValid() &&
-                (handleWrapper.handle.IsDone || handleWrapper.handle.Status != AsyncOperationStatus.None))
-            {
-                return base.OnUpdate();
-            }
-
-            return this;
+            return handleWrapper.IsDone ? base.OnUpdate() : this;
         }
 
         protected override void OnExit()
         {
             base.OnExit();
 
-            if (handleWrapper.handle.IsValid() && handleWrapper.handle.Status == AsyncOperationStatus.Failed)
+            if (handleWrapper.HasError)
             {
                 HudLog.LogError("Async Operation failed");
             }

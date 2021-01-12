@@ -1,4 +1,5 @@
-﻿using Celeste.Log;
+﻿using Celeste.Assets;
+using Celeste.Log;
 using Celeste.Tools;
 using System.IO;
 using System.Threading.Tasks;
@@ -49,12 +50,18 @@ namespace Celeste.Managers
 
         #endregion
 
-        protected static AsyncOperationHandle LoadAsyncImpl(string addressablePath)
+        protected static AsyncOperationHandleWrapper LoadAsyncImpl(string addressablePath)
         {
-            AsyncOperationHandle asyncOperationHandle = Addressables.LoadAssetAsync<T>(addressablePath);
-            asyncOperationHandle.Completed += Load_Completed;
+            AsyncOperationHandleWrapper wrapper = new AsyncOperationHandleWrapper();
+            LoadAsyncImpl(addressablePath, wrapper);
             
-            return asyncOperationHandle;
+            return wrapper;
+        }
+
+        protected static void LoadAsyncImpl(string addressablePath, AsyncOperationHandleWrapper wrapper)
+        {
+            wrapper.handle = Addressables.LoadAssetAsync<T>(addressablePath);
+            wrapper.handle.Completed += Load_Completed;
         }
 
         private static void Load_Completed(AsyncOperationHandle obj)

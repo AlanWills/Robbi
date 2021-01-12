@@ -1,4 +1,5 @@
-﻿using Celeste.Log;
+﻿using Celeste.Assets;
+using Celeste.Log;
 using Celeste.Managers;
 using Celeste.Parameters;
 using System;
@@ -65,7 +66,7 @@ namespace Robbi.Levels
 
         #region Save/Load Methods
 
-#region Editor Only
+        #region Editor Only
 
 #if UNITY_EDITOR
 
@@ -78,9 +79,9 @@ namespace Robbi.Levels
 
 #endregion
 
-        public static AsyncOperationHandle LoadAsync()
+        public static AsyncOperationHandleWrapper LoadAsync()
         {
-            return LoadAsync(ADDRESS, DefaultSavePath);
+            return LoadAsyncImpl(ADDRESS, DefaultSavePath);
         }
 
         public void Save()

@@ -1,4 +1,5 @@
-﻿using Celeste.Managers;
+﻿using Celeste.Assets;
+using Celeste.Managers;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -79,9 +80,9 @@ namespace Celeste.Tips
 
         #region Save/Load Methods
 
-        public static AsyncOperationHandle LoadAsync()
+        public static AsyncOperationHandleWrapper LoadAsync()
         {
-            return LoadAsync(ADDRESS, DefaultSavePath);
+            return LoadAsyncImpl(ADDRESS, DefaultSavePath);
         }
 
         public static void Reset()

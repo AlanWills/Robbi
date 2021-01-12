@@ -8,6 +8,7 @@ using Robbi.Boosters;
 using Celeste.Tips;
 using Robbi.Currency;
 using Robbi.Shop;
+using Celeste.Assets;
 
 namespace Robbi.FSM.Nodes.Game
 {
@@ -21,9 +22,9 @@ namespace Robbi.FSM.Nodes.Game
         {
             get
             {
-                foreach (AsyncOperationHandle managerHandle in loadManagers)
+                foreach (AsyncOperationHandleWrapper managerHandle in loadManagers)
                 {
-                    if (!IsLoaded(managerHandle))
+                    if (!managerHandle.IsDone)
                     {
                         return false;
                     }
@@ -33,7 +34,7 @@ namespace Robbi.FSM.Nodes.Game
             }
         }
 
-        private List<AsyncOperationHandle> loadManagers = new List<AsyncOperationHandle>();
+        private List<AsyncOperationHandleWrapper> loadManagers = new List<AsyncOperationHandleWrapper>();
 
         #endregion
 
@@ -63,27 +64,12 @@ namespace Robbi.FSM.Nodes.Game
         {
             base.OnExit();
 
-            foreach (AsyncOperationHandle managerHandle in loadManagers)
+            foreach (AsyncOperationHandleWrapper managerHandle in loadManagers)
             {
-                CheckError(managerHandle);
-            }
-        }
-
-        #endregion
-
-        #region Utility Methods
-
-        private bool IsLoaded(AsyncOperationHandle loadingHandle)
-        {
-            return loadingHandle.IsValid() &&
-                   (loadingHandle.IsDone || loadingHandle.Status != AsyncOperationStatus.None);
-        }
-
-        private void CheckError(AsyncOperationHandle loadingHandle)
-        {
-            if (loadingHandle.IsValid() && loadingHandle.Status == AsyncOperationStatus.Failed)
-            {
-                HudLog.LogError("Failed to load manager");
+                if (managerHandle.HasError)
+                {
+                    HudLog.LogError("Failed to load manager");
+                }
             }
         }
 

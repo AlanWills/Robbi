@@ -25,8 +25,17 @@ namespace Robbi.Shop
         [SerializeField] private GameObject buttonDisabledBlocker;
         [SerializeField] private Button buyButton;
         [SerializeField] private TextMeshProUGUI unlockAtLevelText;
+
+        [Header("Waypoint Booster")]
+        [SerializeField] private GameObject waypointBoosterInfo;
         [SerializeField] private TextMeshProUGUI numWaypointBoostersText;
+
+        [Header("Door Toggle Booster")]
+        [SerializeField] private GameObject doorToggleBoosterInfo;
         [SerializeField] private TextMeshProUGUI numDoorToggleBoostersText;
+        
+        [Header("Interact Booster")]
+        [SerializeField] private GameObject interactBoosterInfo;
         [SerializeField] private TextMeshProUGUI numInteractBoostersText;
 
         [Header("Parameters")]
@@ -50,8 +59,14 @@ namespace Robbi.Shop
             displayNameText.text = shopItem.DisplayName;
             softCurrencyCostText.text = shopItem.SoftCurrencyCost.ToString();
             unlockAtLevelText.text = string.Format("Unlocks At Level {0}", shopItem.UnlockAtLevel);
+
+            waypointBoosterInfo.SetActive(shopItem.NumWaypointBoosters > 0);
             numWaypointBoostersText.text = shopItem.NumWaypointBoosters.ToString();
+
+            doorToggleBoosterInfo.SetActive(shopItem.NumDoorToggleBoosters > 0);
             numDoorToggleBoostersText.text = shopItem.NumDoorToggleBoosters.ToString();
+
+            interactBoosterInfo.SetActive(shopItem.NumInteractBoosters > 0);
             numInteractBoostersText.text = shopItem.NumInteractBoosters.ToString();
 
             UpdateBlockerUI();
