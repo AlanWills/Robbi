@@ -22,7 +22,7 @@ namespace Robbi.FSM.Nodes
 
         private bool IsDone
         {
-            get { return levelLoadingHandle.IsDone || collectionTargetManagerHandle.IsDone; }
+            get { return levelLoadingHandle.IsDone && collectionTargetManagerHandle.IsDone; }
         }
 
         private bool HasError
