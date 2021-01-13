@@ -36,16 +36,11 @@ namespace Robbi.Levels
         public GameObject levelPrefab;
 
         [Header("Level Elements")]
-        [SerializeField]
-        private List<Portal> portals = new List<Portal>();
-        [SerializeField]
-        private List<Door> doors = new List<Door>();
-        [SerializeField]
-        private List<ScriptableObject> interactables = new List<ScriptableObject>();
-        [SerializeField]
-        private List<Collectable> collectables = new List<Collectable>();
-        [SerializeField]
-        private List<LevelCollectionTarget> collectionTargets = new List<LevelCollectionTarget>();
+        [SerializeField] private List<Portal> portals = new List<Portal>();
+        [SerializeField] private List<Door> doors = new List<Door>();
+        [SerializeField] private List<ScriptableObject> interactables = new List<ScriptableObject>();
+        [SerializeField] private List<Collectable> collectables = new List<Collectable>();
+        [SerializeField] public List<LevelCollectionTarget> collectionTargets = new List<LevelCollectionTarget>();
 
         [Header("Level Parameters")]
         public Vector3Int playerStartPosition;
