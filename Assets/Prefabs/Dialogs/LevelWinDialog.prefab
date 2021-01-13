@@ -171,6 +171,7 @@ GameObject:
   - component: {fileID: 6913535291552579332}
   - component: {fileID: 5537005025506808975}
   - component: {fileID: 8726343217700350136}
+  - component: {fileID: 2615949840257139770}
   - component: {fileID: 3604312151627464688}
   m_Layer: 5
   m_Name: CloseButton
@@ -293,6 +294,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2615949840257139770}
+        m_TargetAssemblyTypeName: Celeste.Events.ParameterisedEventRaiser`2[[UnityEngine.AudioClip,
+          UnityEngine
+        m_MethodName: Raise
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 716f39b7146b6094ba190a1a09f9b8cf,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8726343217700350136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,6 +321,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 421463337f1ed284a83b6ad48c142b25, type: 2}
+--- !u!114 &2615949840257139770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 118113811367358665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 824b3c7c4715e7342983d0a67ee53827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 4f0b2c3d823d7984aab5a8ec3741664c, type: 2}
 --- !u!114 &3604312151627464688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1009,6 +1037,7 @@ GameObject:
   - component: {fileID: 7559833378542983820}
   - component: {fileID: 17602342147744678}
   - component: {fileID: 8009782652482443181}
+  - component: {fileID: 2229759624858676160}
   - component: {fileID: 9110315105468350101}
   m_Layer: 5
   m_Name: ConfirmButton
@@ -1131,6 +1160,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2229759624858676160}
+        m_TargetAssemblyTypeName: Celeste.Events.ParameterisedEventRaiser`2[[UnityEngine.AudioClip,
+          UnityEngine
+        m_MethodName: Raise
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 716f39b7146b6094ba190a1a09f9b8cf,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8009782652482443181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1144,6 +1187,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: b8412f65d2677e54398df94f7e10771e, type: 2}
+--- !u!114 &2229759624858676160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3128440520470316389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 824b3c7c4715e7342983d0a67ee53827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 4f0b2c3d823d7984aab5a8ec3741664c, type: 2}
 --- !u!114 &9110315105468350101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1430,6 +1486,7 @@ GameObject:
   - component: {fileID: 1571720153080472239}
   - component: {fileID: 3482316095058928191}
   - component: {fileID: 8048802460270076662}
+  - component: {fileID: 2847271696213129211}
   m_Layer: 5
   m_Name: RetryButton
   m_TagString: Untagged
@@ -1539,12 +1596,26 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8048802460270076662}
-        m_TargetAssemblyTypeName: Robbi.Events.EventRaiser, Assembly-CSharp
+        m_TargetAssemblyTypeName: Celeste.Events.EventRaiser, Celeste.Events
         m_MethodName: Raise
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2847271696213129211}
+        m_TargetAssemblyTypeName: Celeste.Events.ParameterisedEventRaiser`2[[UnityEngine.AudioClip,
+          UnityEngine
+        m_MethodName: Raise
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 716f39b7146b6094ba190a1a09f9b8cf,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1583,6 +1654,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 1c88015a68dfada4cb03bcb4a3a52587, type: 2}
+--- !u!114 &2847271696213129211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4068766129445118449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 824b3c7c4715e7342983d0a67ee53827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 4f0b2c3d823d7984aab5a8ec3741664c, type: 2}
 --- !u!1 &4321846469856235826
 GameObject:
   m_ObjectHideFlags: 0
