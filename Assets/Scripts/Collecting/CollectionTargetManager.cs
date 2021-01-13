@@ -79,7 +79,7 @@ namespace Robbi.Collecting
             }
 
             // Set all the other unused parameters to 0
-            for (int index = i; index < collectionTargetData.Count; ++i)
+            for (int index = i; index < collectionTargetData.Count; ++index)
             {
                 collectionTargetData[index].collectedAmount.Value = 0;
                 collectionTargetData[index].requiredAmount.Value = 0;
