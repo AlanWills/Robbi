@@ -80,5 +80,10 @@ namespace Celeste.Managers
         }
 
         #endregion
+
+        public static void Unload()
+        {
+            instance = null;
+        }
     }
 }

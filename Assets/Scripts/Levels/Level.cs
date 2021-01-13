@@ -1,9 +1,12 @@
-﻿using Robbi.Environment;
+﻿using Robbi.Runtime;
 using Robbi.Levels.Elements;
 using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Robbi.Collecting;
+using Celeste.Assets;
+using UnityEngine.AddressableAssets;
 
 namespace Robbi.Levels
 {
@@ -16,6 +19,13 @@ namespace Robbi.Levels
         public BoolValue levelRequiresFuel;
         public UIntValue remainingFuel;
         public UIntValue softCurrencyPrize;
+    }
+
+    [Serializable]
+    public struct LevelCollectionTarget
+    {
+        public CollectionTarget collectionTarget;
+        public uint target;
     }
 
     [CreateAssetMenu(fileName = "Level", menuName = "Robbi/Levels/Level")]
@@ -34,6 +44,8 @@ namespace Robbi.Levels
         private List<ScriptableObject> interactables = new List<ScriptableObject>();
         [SerializeField]
         private List<Collectable> collectables = new List<Collectable>();
+        [SerializeField]
+        private List<LevelCollectionTarget> collectionTargets = new List<LevelCollectionTarget>();
 
         [Header("Level Parameters")]
         public Vector3Int playerStartPosition;
@@ -46,7 +58,7 @@ namespace Robbi.Levels
 
         #region Initialization
 
-        public void Begin(LevelData levelData, GameObjectValue levelGameObject, EnvironmentManagers managers)
+        public void Begin(LevelData levelData, GameObjectValue levelGameObject, LevelRuntimeManagers managers, CollectionTargetManager collectionTargetManager)
         {
             // Set this before instantiating the level so the UI will correctly adapt
             levelData.tutorialProgression.Value = 0;
@@ -66,6 +78,16 @@ namespace Robbi.Levels
             levelData.softCurrencyPrize.Value = softCurrencyPrize;
 
             managers.Initialize(collectables, doors, interactables, portals);
+            collectionTargetManager.Initialize(collectionTargets);
+        }
+
+        #endregion
+
+        #region Loading
+
+        public static AsyncOperationHandleWrapper LoadAsync(uint levelIndex)
+        {
+            return new AsyncOperationHandleWrapper(Addressables.LoadAssetAsync<Level>(string.Format("Level{0}Data", levelIndex)));
         }
 
         #endregion

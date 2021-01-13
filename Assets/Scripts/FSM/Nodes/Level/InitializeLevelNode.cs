@@ -1,13 +1,15 @@
 ﻿using Celeste.FSM;
 using Celeste.Log;
 using Celeste.Parameters;
-using Robbi.Environment;
+using Robbi.Runtime;
 using Robbi.Levels;
 using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using static XNode.Node;
+using Celeste.Assets;
+using Robbi.Collecting;
 
 namespace Robbi.FSM.Nodes
 {
@@ -18,11 +20,22 @@ namespace Robbi.FSM.Nodes
     {
         #region Properties and Fields
 
+        private bool IsDone
+        {
+            get { return levelLoadingHandle.IsDone || collectionTargetManagerHandle.IsDone; }
+        }
+
+        private bool HasError
+        {
+            get { return levelLoadingHandle.HasError || collectionTargetManagerHandle.HasError; }
+        }
+
         [Header("Parameters")]
         public LevelData levelData;
         public GameObjectValue levelGameObject;
 
-        private AsyncOperationHandle<Level> levelLoadingHandle;
+        private AsyncOperationHandleWrapper levelLoadingHandle;
+        private AsyncOperationHandleWrapper collectionTargetManagerHandle;
 
         #endregion
 
@@ -32,52 +45,32 @@ namespace Robbi.FSM.Nodes
         {
             base.OnEnter();
 
-            levelLoadingHandle = Addressables.LoadAssetAsync<Level>(string.Format("Level{0}Data", LevelManager.Instance.CurrentLevel));
+            levelLoadingHandle = Level.LoadAsync(LevelManager.Instance.CurrentLevel);
+            collectionTargetManagerHandle = CollectionTargetManager.LoadAsync();
         }
 
         protected override FSMNode OnUpdate()
         {
-            if (IsInvalid())
+            if (IsDone)
             {
-                HudLog.LogError("Error loading Level - Invalid Handle");
-                return base.OnUpdate();
-            }
-            else if (IsDone())
-            {
-                if (IsBeginable())
+                if (!HasError)
                 {
                     // Don't love it, but sometimes you have to do a little evil to do a greater good
-                    EnvironmentManagers managers = GameObject.Find(EnvironmentManagers.NAME).GetComponent<EnvironmentManagers>();
-                    levelLoadingHandle.Result.Begin(levelData, levelGameObject, managers);
+                    LevelRuntimeManagers managers = GameObject.Find(LevelRuntimeManagers.NAME).GetComponent<LevelRuntimeManagers>();
+                    Level level = levelLoadingHandle.Get<Level>();
+                    CollectionTargetManager collectionTargetManager = collectionTargetManagerHandle.Get<CollectionTargetManager>();
+
+                    level.Begin(levelData, levelGameObject, managers, collectionTargetManager);
                 }
                 else
                 {
-                    HudLog.LogError("Error loading Level - Result Null");
+                    HudLog.LogError("Error loading Level");
                 }
 
                 return base.OnUpdate();
             }
 
             return this;
-        }
-
-        #endregion
-
-        #region Utility Methods
-
-        private bool IsInvalid()
-        {
-            return !levelLoadingHandle.IsValid();
-        }
-
-        private bool IsDone()
-        {
-            return levelLoadingHandle.IsDone;
-        }
-
-        private bool IsBeginable()
-        {
-            return levelLoadingHandle.Result != null;
         }
 
         #endregion

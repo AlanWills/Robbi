@@ -10,7 +10,6 @@ using Celeste.Log;
 using Celeste.Managers;
 using Celeste.Tilemaps;
 using Celeste.Memory;
-using Robbi.Environment;
 
 namespace Robbi.Movement
 {

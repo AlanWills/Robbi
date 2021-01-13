@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Robbi.Levels.Modifiers
+namespace Robbi.Levels.Effects
 {
     public class ModifyFuel : PickupEffect
     {

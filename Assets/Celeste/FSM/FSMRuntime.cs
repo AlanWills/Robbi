@@ -26,6 +26,13 @@ namespace Celeste.FSM
                 return;
             }
 
+            if (CurrentNode != null)
+            {
+                // Allows us to handle the FSM being restarting with one function and
+                // help avoid people being caught out
+                CurrentNode.Exit();
+            }
+
             Debug.Assert(graph.nodes.Count == 0 || graph.startNode != null, "FSMRuntime graph contains nodes, but no start node so will be disabled.");
             CurrentNode = graph.startNode;
 

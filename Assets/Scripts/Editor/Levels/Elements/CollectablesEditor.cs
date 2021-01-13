@@ -30,11 +30,13 @@ namespace RobbiEditor.Levels.Elements
         private static Type[] effectTypes = new Type[]
         {
             typeof(ModifyFuel),
+            typeof(AddCollectionTarget)
         };
 
         private static string[] modifierDisplayNames = new string[]
         {
             "Modify Fuel",
+            "Add Collection Target",
         };
 
         #endregion

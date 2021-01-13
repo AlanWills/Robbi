@@ -145,6 +145,94 @@ MonoBehaviour:
       _dynamic: 1
   time: {fileID: 1438448210207957096}
   unit: 0
+--- !u!114 &-8686081068856502578
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 782fbac58d8c2a54ab423895f63a4938, type: 3}
+  m_Name: Show Dialog
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 344, y: -1768}
+  ports:
+    keys:
+    - ' '
+    - DialogConfirmPressed
+    - DialogClosePressed
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -8686081068856502578}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: MissingCollectionTarget
+        node: {fileID: -3501626637358735313}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: DialogConfirmPressed
+      _node: {fileID: -8686081068856502578}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 7565992513338367243}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: DialogClosePressed
+      _node: {fileID: -8686081068856502578}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -7458260853049364313}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  dialog: {fileID: 595162996696123630, guid: 42ef8d43b2d2fb247beec774ed8157fc, type: 3}
+  parameters:
+    title: Level Lose
+    image: {fileID: 0}
+    description: 'Robbi missed a collection target!
+
+
+      Make sure you pick up
+      everything that''s needed before reaching the exit.'
+    confirmButtonText: Retry
+    closeButtonText: Main Menu
+    showConfirmButton: 1
+    showCloseButton: 1
+    customDialogEvents:
+    - {fileID: 11400000, guid: b8412f65d2677e54398df94f7e10771e, type: 2}
+    - {fileID: 11400000, guid: 421463337f1ed284a83b6ad48c142b25, type: 2}
+--- !u!114 &-8671087792579152573
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 540d499c9d649a2469332062a9135260, type: 3}
+  m_Name: MissingCollectionTarget
+  m_EditorClassIdentifier: 
+  value: {fileID: 1922261930317692719}
+  condition: 0
+  useArgument: 1
+  target: {fileID: -964596576741130587}
 --- !u!114 &-8505491447840174007
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -200,6 +288,15 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 5240768988680451859}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5240768988680451859}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5240768988680451859}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 5240768988680451859}
         reroutePoints: []
@@ -308,6 +405,9 @@ MonoBehaviour:
       - fieldName: DialogClosePressed
         node: {fileID: 329677710248236872}
         reroutePoints: []
+      - fieldName: DialogClosePressed
+        node: {fileID: -8686081068856502578}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -349,7 +449,7 @@ MonoBehaviour:
   m_Name: OutOfWaypoints_target
   m_EditorClassIdentifier: 
   isConstant: 1
-  constantValue: 
+  constantValue: MissingCollectionTarget
   referenceValue: {fileID: 0}
 --- !u!114 &-6925941892507308875
 MonoBehaviour:
@@ -435,6 +535,15 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 3232702569077234071}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3232702569077234071}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3232702569077234071}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 3232702569077234071}
         reroutePoints: []
@@ -1192,6 +1301,9 @@ MonoBehaviour:
       - fieldName: WaypointUnreachable
         node: {fileID: -3501626637358735313}
         reroutePoints: []
+      - fieldName: WaypointUnreachable
+        node: {fileID: -3501626637358735313}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -1284,12 +1396,22 @@ MonoBehaviour:
     - OutOfWaypoints
     - WaypointUnreachable
     - OutOfFuel
+    - MissingCollectionTarget
     values:
     - _fieldName: ' '
       _node: {fileID: -3501626637358735313}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 579046110899267143}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 579046110899267143}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 579046110899267143}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 579046110899267143}
         reroutePoints: []
@@ -1399,10 +1521,23 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
+    - _fieldName: MissingCollectionTarget
+      _node: {fileID: -3501626637358735313}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -8686081068856502578}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
   conditions:
   - {fileID: -9216423210524795832}
   - {fileID: 8725160330400157820}
   - {fileID: -5847570453937774588}
+  - {fileID: -8671087792579152573}
 --- !u!114 &-3226388243556060441
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1435,6 +1570,15 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: 
         node: {fileID: 7565992513338367243}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5839260897526431212}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5839260897526431212}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5839260897526431212}
         reroutePoints: []
       - fieldName: 
         node: {fileID: 5839260897526431212}
@@ -1867,6 +2011,15 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 7421645661234266259}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7421645661234266259}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7421645661234266259}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7421645661234266259}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -2061,7 +2214,7 @@ MonoBehaviour:
   m_Name: OutOfFuel_target
   m_EditorClassIdentifier: 
   isConstant: 1
-  constantValue: 
+  constantValue: MissingCollectionTarget
   referenceValue: {fileID: 0}
 --- !u!114 &-1348522027888343336
 MonoBehaviour:
@@ -2076,6 +2229,21 @@ MonoBehaviour:
   m_Name: RunProgram
   m_EditorClassIdentifier: 
   listenFor: {fileID: 11400000, guid: 6b4a72f1879c01b41a7a4d34b806e2ae, type: 2}
+--- !u!114 &-964596576741130587
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51fb886b9ab4e346897a43d978de61a, type: 3}
+  m_Name: MissingCollectionTarget_target
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: MissingCollectionTarget
+  referenceValue: {fileID: 0}
 --- !u!114 &-510933039686519604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2854,6 +3022,15 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 3803761984178024064}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3803761984178024064}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3803761984178024064}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3803761984178024064}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -2921,6 +3098,7 @@ MonoBehaviour:
   - {fileID: -7974636090476005525}
   - {fileID: 7421645661234266259}
   - {fileID: -2743964503726391963}
+  - {fileID: -8686081068856502578}
   startNode: {fileID: -3226388243556060441}
   parameters:
   - {fileID: -2854666521814719882}
@@ -2944,6 +3122,8 @@ MonoBehaviour:
   - {fileID: 1438448210207957096}
   - {fileID: 4278182847286595212}
   - {fileID: -6466637394930299293}
+  - {fileID: 1922261930317692719}
+  - {fileID: -964596576741130587}
 --- !u!114 &329677710248236872
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3019,6 +3199,9 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: 
         node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: OutOfFuel
+        node: {fileID: -3501626637358735313}
         reroutePoints: []
       - fieldName: OutOfFuel
         node: {fileID: -3501626637358735313}
@@ -3125,7 +3308,7 @@ MonoBehaviour:
   m_Name: Show Dialog
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 456, y: -200}
+  position: {x: 472, y: 8}
   ports:
     keys:
     - ' '
@@ -4250,6 +4433,15 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 2985013080707404771}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 2985013080707404771}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 2985013080707404771}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 2985013080707404771}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -4441,6 +4633,21 @@ MonoBehaviour:
   value: {fileID: 11400000, guid: 4129d939c3be32249934c9c778306861, type: 2}
   newValue: {fileID: -8289268647676887226}
   setMode: 1
+--- !u!114 &1922261930317692719
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51fb886b9ab4e346897a43d978de61a, type: 3}
+  m_Name: MissingCollectionTarget_value
+  m_EditorClassIdentifier: 
+  isConstant: 0
+  constantValue: 
+  referenceValue: {fileID: 11400000, guid: e0e1b84ec208f6a4798fba5b4cff37d8, type: 2}
 --- !u!114 &2985013080707404771
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4506,6 +4713,24 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: 
         node: {fileID: 5240768988680451859}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7974636090476005525}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2743964503726391963}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7974636090476005525}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2743964503726391963}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7974636090476005525}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2743964503726391963}
         reroutePoints: []
       - fieldName: 
         node: {fileID: -7974636090476005525}
@@ -7673,6 +7898,33 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -510933039686519604}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 1716119031614927340}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2137335984731195356}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -510933039686519604}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 1716119031614927340}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2137335984731195356}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -510933039686519604}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 1716119031614927340}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2137335984731195356}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -510933039686519604}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -7867,6 +8119,15 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -3226388243556060441}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -3226388243556060441}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -3226388243556060441}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -3226388243556060441}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -7927,7 +8188,7 @@ MonoBehaviour:
   m_Name: WaypointUnreachable_target
   m_EditorClassIdentifier: 
   isConstant: 1
-  constantValue: 
+  constantValue: MissingCollectionTarget
   referenceValue: {fileID: 0}
 --- !u!114 &4977776935770639125
 MonoBehaviour:
@@ -7986,6 +8247,15 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -8905485687446638094}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -8905485687446638094}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -8905485687446638094}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -8905485687446638094}
         reroutePoints: []
@@ -8454,6 +8724,15 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 7565992513338367243}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7565992513338367243}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7565992513338367243}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7565992513338367243}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -8513,6 +8792,15 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -6409936498837170495}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6409936498837170495}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -6409936498837170495}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -6409936498837170495}
         reroutePoints: []
@@ -8949,6 +9237,27 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -3501626637358735313}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 8436268370696886818}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -3501626637358735313}
+        reroutePoints: []
+      - fieldName: DialogConfirmPressed
+        node: {fileID: -8686081068856502578}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 8436268370696886818}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -3501626637358735313}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 8436268370696886818}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -3501626637358735313}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -9006,6 +9315,15 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -7458260853049364313}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7458260853049364313}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7458260853049364313}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -7458260853049364313}
         reroutePoints: []
@@ -10256,6 +10574,9 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: 
         node: {fileID: 579046110899267143}
+        reroutePoints: []
+      - fieldName: OutOfWaypoints
+        node: {fileID: -3501626637358735313}
         reroutePoints: []
       - fieldName: OutOfWaypoints
         node: {fileID: -3501626637358735313}

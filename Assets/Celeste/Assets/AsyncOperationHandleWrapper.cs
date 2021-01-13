@@ -28,5 +28,10 @@ namespace Celeste.Assets
         {
             handle = asyncOperationHandle;
         }
+
+        public T Get<T>() where T : UnityEngine.Object
+        {
+            return handle.Result as T;
+        }
     }
 }
