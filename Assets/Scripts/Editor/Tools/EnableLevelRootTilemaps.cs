@@ -8,6 +8,7 @@ using System;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using static RobbiEditor.LevelDirectories;
 
 namespace RobbiEditor.Tools
@@ -21,21 +22,27 @@ namespace RobbiEditor.Tools
             {
                 GameObject gameObject = AssetDatabase.LoadAssetAtPath<GameObject>(levelFolder.PrefabPath);
                 LevelRoot levelRoot = gameObject.GetComponent<LevelRoot>();
-                levelRoot.corridorsTilemap.gameObject.SetActive(true);
-                levelRoot.destructibleCorridorsTilemap.gameObject.SetActive(true);
-                levelRoot.portalsTilemap.gameObject.SetActive(true);
-                levelRoot.exitsTilemap.gameObject.SetActive(true);
-                levelRoot.doorsTilemap.gameObject.SetActive(true);
-                levelRoot.interactablesTilemap.gameObject.SetActive(true);
-                levelRoot.collectablesTilemap.gameObject.SetActive(true);
-                levelRoot.movementTilemap.gameObject.SetActive(true);
-
-                EditorUtility.SetDirty(levelRoot);
-                EditorUtility.SetDirty(gameObject);
+                CheckTilemap(levelRoot.corridorsTilemap);
+                CheckTilemap(levelRoot.destructibleCorridorsTilemap);
+                CheckTilemap(levelRoot.portalsTilemap);
+                CheckTilemap(levelRoot.exitsTilemap);
+                CheckTilemap(levelRoot.doorsTilemap);
+                CheckTilemap(levelRoot.interactablesTilemap);
+                CheckTilemap(levelRoot.collectablesTilemap);
+                CheckTilemap(levelRoot.movementTilemap);
             }
 
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
+        }
+
+        private static void CheckTilemap(Tilemap tilemap)
+        {
+            if (!tilemap.gameObject.activeSelf)
+            {
+                tilemap.gameObject.SetActive(true);
+                EditorUtility.SetDirty(tilemap.gameObject);
+            }
         }
     }
 }

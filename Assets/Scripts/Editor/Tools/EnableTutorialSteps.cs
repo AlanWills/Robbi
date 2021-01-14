@@ -23,13 +23,16 @@ namespace RobbiEditor.Tools
                     continue;
                 }
 
-                GameObject gameObject = AssetDatabase.LoadAssetAtPath<GameObject>(levelFolder.TutorialsFolderPath);
+                GameObject gameObject = AssetDatabase.LoadAssetAtPath<GameObject>(levelFolder.TutorialsPrefabPath);
                 for (int i = 0; i < gameObject.transform.childCount; ++i)
                 {
-                    gameObject.transform.GetChild(i).gameObject.SetActive(true);
+                    GameObject childGameObject = gameObject.transform.GetChild(i).gameObject;
+                    if (!childGameObject.activeSelf)
+                    {
+                        childGameObject.SetActive(true);
+                        EditorUtility.SetDirty(gameObject);
+                    }
                 }
-
-                EditorUtility.SetDirty(gameObject);
             }
 
             AssetDatabase.SaveAssets();
