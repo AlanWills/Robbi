@@ -79,8 +79,8 @@ namespace RobbiEditor.Tools
             MultiEventListenerNode multiEventListenerNode = CreateNode<MultiEventListenerNode>(fsmGraphEditor, previousNode);
 
             // Level Lose
-            VoidEventCondition levelLostEvent = multiEventListenerNode.AddEvent<VoidEventCondition>();
-            levelLostEvent.listenFor = AssetDatabase.LoadAssetAtPath<Event>(EventFiles.LEVEL_LOST_EVENT);
+            StringEventCondition levelLostEvent = multiEventListenerNode.AddEvent<StringEventCondition>();
+            levelLostEvent.listenFor = AssetDatabase.LoadAssetAtPath<StringEvent>(EventFiles.LEVEL_LOST_EVENT);
             Debug.Assert(levelLostEvent.listenFor != null, "Default LevelLost event could not be found for MultiEventListenerNode");
             NodePort levelLostOutputPort = multiEventListenerNode.AddEventConditionPort(levelLostEvent.listenFor.name);
             

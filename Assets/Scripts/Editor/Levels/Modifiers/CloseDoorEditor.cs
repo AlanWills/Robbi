@@ -27,7 +27,7 @@ namespace RobbiEditor.Levels.Modifiers
             doorEventProperty = serializedObject.FindProperty("doorEvent");
             if (doorEventProperty != null && doorEventProperty.objectReferenceValue == null)
             {
-                doorEventProperty.objectReferenceValue = AssetDatabase.LoadAssetAtPath<DoorEvent>(EventFiles.DOOR_TOGGLED_EVENT);
+                doorEventProperty.objectReferenceValue = AssetDatabase.LoadAssetAtPath<DoorEvent>(EventFiles.DOOR_CLOSED_EVENT);
             }
 
             serializedObject.ApplyModifiedProperties();
