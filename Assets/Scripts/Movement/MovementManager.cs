@@ -22,17 +22,24 @@ namespace Robbi.Movement
         public class Waypoint
         {
             public Vector3Int gridPosition;
-            public GameObject destinationMarkerInstance;
+            public WaypointMarker destinationMarker;
 
-            public Waypoint(Vector3Int gridPosition, GameObject destinationMarkerInstance)
+            public Waypoint(Vector3Int gridPosition, WaypointMarker destinationMarker, int index)
             {
                 this.gridPosition = gridPosition;
-                this.destinationMarkerInstance = destinationMarkerInstance;
+                this.destinationMarker = destinationMarker;
+
+                SetWaypointNumber(index);
             }
 
             public void OnRemoved()
             {
-                destinationMarkerInstance.SetActive(false);
+                destinationMarker.gameObject.SetActive(false);
+            }
+
+            public void SetWaypointNumber(int index)
+            {
+                destinationMarker.SetWaypointNumber(index);
             }
         }
 
@@ -259,6 +266,23 @@ namespace Robbi.Movement
             }
         }
 
+        #endregion
+
+        #region Waypoint Management
+
+        private void UpdateWaypointNumbers()
+        {
+            for (int i = 0; i < waypoints.Count; ++i)
+            {
+                waypoints[i].SetWaypointNumber(i + 1);
+            }
+        }
+
+        public Waypoint GetWaypoint(int waypointIndex)
+        {
+            return 0 <= waypointIndex && waypointIndex < NumWaypoints ? waypoints[waypointIndex] : null;
+        }
+
         public void AddWaypoint(Vector3 waypointWorldPosition)
         {
             if (isProgramRunning.Value)
@@ -293,7 +317,7 @@ namespace Robbi.Movement
                 GameObject destinationMarkerInstance = destinationMarkerAllocator.Allocate();
                 destinationMarkerInstance.transform.position = movementTilemap.Value.GetCellCenterLocal(waypointGridPosition);
 
-                waypoints.Add(new Waypoint(waypointGridPosition, destinationMarkerInstance));
+                waypoints.Add(new Waypoint(waypointGridPosition, destinationMarkerInstance.GetComponent<WaypointMarker>(), waypoints.Count + 1));
                 --remainingWaypointsPlaceable.Value;
                 ++waypointsPlaced.Value;
                 onWaypointPlaced.Raise(waypointGridPosition);
@@ -341,15 +365,8 @@ namespace Robbi.Movement
             waypoints.RemoveAt(waypointIndex);
             --waypointsPlaced.Value;
             onWaypointRemoved.Raise(waypoint.gridPosition);
-        }
 
-        #endregion
-
-        #region Waypoint Access
-
-        public Waypoint GetWaypoint(int waypointIndex)
-        {
-            return 0 <= waypointIndex && waypointIndex < NumWaypoints ? waypoints[waypointIndex] : null;
+            UpdateWaypointNumbers();
         }
 
         #endregion
