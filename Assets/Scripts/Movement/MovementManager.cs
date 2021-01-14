@@ -114,7 +114,7 @@ namespace Robbi.Movement
 
         #region Unity Methods
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (isProgramRunning.Value)
             {
@@ -133,7 +133,11 @@ namespace Robbi.Movement
                     // We are moving towards our next waypoint along the steps
                     Vector3 nextStepPosition = aStarMovement.NextStep;
                     Vector3 newPosition = Vector3.MoveTowards(playerLocalPos, nextStepPosition, movementSpeed.Value * Time.deltaTime);
-                    Vector3Int movedTo = new Vector3Int(Mathf.RoundToInt(newPosition.x - 0.5f), Mathf.RoundToInt(newPosition.y - 0.5f), Mathf.RoundToInt(newPosition.z));
+                    Vector3Int movedTo = new Vector3Int(
+                        Mathf.RoundToInt(newPosition.x - 0.5f), 
+                        Mathf.RoundToInt(newPosition.y - 0.5f), 
+                        Mathf.RoundToInt(newPosition.z));
+                    playerLocalPosition.Value = newPosition;
                     
                     if (newPosition == nextStepPosition)
                     {
@@ -154,8 +158,6 @@ namespace Robbi.Movement
                     }
                     else
                     {
-                        playerLocalPosition.Value = newPosition;
-
                         if (movedFrom != movedTo)
                         {
                             onMovedFrom.Raise(movedFrom);
@@ -272,9 +274,12 @@ namespace Robbi.Movement
 
         private void UpdateWaypointNumbers()
         {
-            for (int i = 0; i < waypoints.Count; ++i)
+            if (!isProgramRunning.Value)
             {
-                waypoints[i].SetWaypointNumber(i + 1);
+                for (int i = 0; i < waypoints.Count; ++i)
+                {
+                    waypoints[i].SetWaypointNumber(i + 1);
+                }
             }
         }
 
