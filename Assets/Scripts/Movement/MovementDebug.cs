@@ -27,9 +27,7 @@ namespace Robbi.Movement
 
         private void Awake()
         {
-            SetDebugMovementImpl(false);
-
-#if DEVELOPMENT_BUILD || UNITY_EDITOR
+#if DEVELOPMENT_BUILD
             Debug.Assert(instance == null, "Multiple MovementDebug scripts found");
             instance = this;
 #else

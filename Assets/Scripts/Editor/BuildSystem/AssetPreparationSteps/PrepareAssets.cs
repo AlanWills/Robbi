@@ -16,7 +16,7 @@ namespace RobbiEditor.BuildSystem.AssetPreparationSteps
             FindAllLevelObjects.MenuItem();
             FixupInteractableModifiers.MenuItem();
             EnableTutorialSteps.MenuItem();
-            EnableLevelRootTilemaps.MenuItem();
+            ConfigureLevelRootTilemaps.MenuItem();
             SetAddressablePaths.MenuItem();
             SetCurrentLevelToZero();
         }
