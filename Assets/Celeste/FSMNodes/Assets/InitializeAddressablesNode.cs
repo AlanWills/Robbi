@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.AddressableAssets.ResourceLocators;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Celeste.FSMNodes.Assets
 {
@@ -15,7 +17,7 @@ namespace Celeste.FSMNodes.Assets
     {
         #region Properties and Fields
 
-        private AsyncOperationHandleWrapper operationHandle;
+        private AsyncOperationHandle<IResourceLocator> operationHandle;
 
         #endregion
 
@@ -30,22 +32,22 @@ namespace Celeste.FSMNodes.Assets
             PlayerPrefs.DeleteKey(Addressables.kAddressablesRuntimeDataPath);
 #endif
 
-            operationHandle = new AsyncOperationHandleWrapper(Addressables.InitializeAsync());
+            operationHandle = Addressables.InitializeAsync();
         }
 
         protected override FSMNode OnUpdate()
         {
-            return operationHandle.IsDone ? base.OnUpdate() : this;
+            return !operationHandle.IsValid() || operationHandle.IsDone ? base.OnUpdate() : this;
         }
 
         protected override void OnExit()
         {
             base.OnExit();
 
-            if (operationHandle.HasError)
+            if (!operationHandle.IsValid() || operationHandle.Status == AsyncOperationStatus.Failed)
             {
                 Debug.LogErrorFormat("Failed to initialize Addressables: {0}", 
-                    operationHandle.handle.OperationException != null ? operationHandle.handle.OperationException.Message : "No exception found");
+                    (operationHandle.IsValid() && operationHandle.OperationException != null) ? operationHandle.OperationException.Message : "No exception found");
             }
         }
 
