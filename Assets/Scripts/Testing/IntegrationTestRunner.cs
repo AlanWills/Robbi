@@ -6,6 +6,7 @@ using System.IO;
 using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEngine.Application;
 
 namespace Robbi.Testing
 {
@@ -109,13 +110,20 @@ namespace Robbi.Testing
 #if UNITY_EDITOR
             testInProgress = true;
             testResult = false;
+            bool errorFree = true;
 
             while (!UnityEditor.EditorApplication.isPlaying) { yield return null; }
 
-            UnityEngine.Application.logMessageReceived += (string logString, string stackTrace, LogType type) =>
+            LogCallback logCallback = (string logString, string stackTrace, LogType type) =>
             {
                 logContents.AppendLine(logString);
+
+                if (type == LogType.Assert || type == LogType.Error || type == LogType.Exception)
+                {
+                    errorFree = false;
+                }
             };
+            Application.logMessageReceived += logCallback;
 
             // Can only do this in Play Mode
             DontDestroyOnLoad(this);
@@ -139,7 +147,13 @@ namespace Robbi.Testing
 
             while (testInProgress) { yield return null; }
 
-            string testResultsDirectory = Path.Combine(UnityEngine.Application.dataPath, "..", "TestResults");
+            Application.logMessageReceived -= logCallback;
+
+            // After the test is finished, we check to see if we had an issue raised from the log
+            // If there was, we override the result of the test
+            testResult &= errorFree;
+
+            string testResultsDirectory = Path.Combine(Application.dataPath, "..", "TestResults");
             Directory.CreateDirectory(testResultsDirectory);
             File.WriteAllText(
                 Path.Combine(testResultsDirectory, string.Format("{0}-{1}.txt", integrationTestNames[currentTestIndex], testResult ? "Passed" : "Failed")),
