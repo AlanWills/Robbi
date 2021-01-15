@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6361450844082573863}
   - component: {fileID: 6240816010183057626}
   - component: {fileID: 7274916261873397869}
+  - component: {fileID: 4116451579532124787}
   m_Layer: 0
   m_Name: TutorialDialogButton
   m_TagString: Untagged
@@ -137,6 +138,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4116451579532124787}
+        m_TargetAssemblyTypeName: Celeste.Events.ParameterisedEventRaiser`2[[UnityEngine.AudioClip,
+          UnityEngine
+        m_MethodName: Raise
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 6a79aa06477bbce428cc2199f18f29a5,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7274916261873397869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,3 +165,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 421463337f1ed284a83b6ad48c142b25, type: 2}
+--- !u!114 &4116451579532124787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4327638402273935786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 824b3c7c4715e7342983d0a67ee53827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 4f0b2c3d823d7984aab5a8ec3741664c, type: 2}
