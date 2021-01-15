@@ -37,17 +37,17 @@ namespace Celeste.FSMNodes.Assets
 
         protected override FSMNode OnUpdate()
         {
-            return !operationHandle.IsValid() || operationHandle.IsDone ? base.OnUpdate() : this;
+            return operationHandle.IsDone ? base.OnUpdate() : this;
         }
 
         protected override void OnExit()
         {
             base.OnExit();
 
-            if (!operationHandle.IsValid() || operationHandle.Status == AsyncOperationStatus.Failed)
+            if (operationHandle.IsValid() && operationHandle.Status == AsyncOperationStatus.Failed)
             {
                 Debug.LogErrorFormat("Failed to initialize Addressables: {0}", 
-                    (operationHandle.IsValid() && operationHandle.OperationException != null) ? operationHandle.OperationException.Message : "No exception found");
+                    operationHandle.OperationException != null ? operationHandle.OperationException.Message : "No exception found");
             }
         }
 
