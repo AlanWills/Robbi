@@ -8,6 +8,7 @@ using UnityEngine.Tilemaps;
 
 namespace Celeste.Tilemaps.WaveFunctionCollapse
 {
+    [CreateAssetMenu(fileName = "TileDescription", menuName = "Celeste/Tilemaps/Wave Function Collapse/Tile Description")]
     public class TileDescription : ScriptableObject
     {
         #region Serialized Fields
@@ -33,6 +34,7 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
 #if UNITY_EDITOR
             UnityEditor.AssetDatabase.AddObjectToAsset(rule, this);
+            UnityEditor.EditorUtility.SetDirty(this);
 #endif
 
             return rule;
@@ -44,6 +46,7 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             {
 #if UNITY_EDITOR
                 UnityEditor.AssetDatabase.RemoveObjectFromAsset(rules[ruleIndex]);
+                UnityEditor.EditorUtility.SetDirty(this);
 #endif
                 rules.RemoveAt(ruleIndex);
             }

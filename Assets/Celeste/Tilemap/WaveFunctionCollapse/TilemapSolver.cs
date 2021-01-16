@@ -25,7 +25,9 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
         public TileDescription FindTileDescription(TileBase tile)
         {
-            return tileDescriptions.Find(x => x.tile == tile);
+            TileDescription tileDescription = tileDescriptions.Find(x => x.tile == tile);
+            Debug.AssertFormat(tileDescription != null, "No TileDescription found for tile {0}", tile.name);
+            return tileDescription;
         }
 
         #endregion

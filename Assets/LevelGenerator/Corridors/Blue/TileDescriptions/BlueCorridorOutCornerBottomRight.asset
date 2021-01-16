@@ -1,6 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8545729634341126225
+--- !u!114 &-8764890960860869086
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5fe75fa879593d42ad1d9006de90d54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: 1
+  otherTile: {fileID: 11400000, guid: 059e2d9c9e409e64f89713d9a90af4c0, type: 2}
+--- !u!114 &-8488692243966416630
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13,8 +27,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 3
-  otherTile: {fileID: 0}
---- !u!114 &-3151210802344860368
+  otherTile: {fileID: 11400000, guid: 5211ca135bf8c6646acd0fe6fd6e8cf9, type: 2}
+--- !u!114 &-6657755774525348588
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5fe75fa879593d42ad1d9006de90d54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: 1
+  otherTile: {fileID: 11400000, guid: 059e2d9c9e409e64f89713d9a90af4c0, type: 2}
+--- !u!114 &-5301968624653559172
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5fe75fa879593d42ad1d9006de90d54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: 0
+  otherTile: {fileID: 11400000, guid: 399affb3a6d7ca548be4190412568a25, type: 2}
+--- !u!114 &-2219622628448745150
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -27,7 +69,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 2
-  otherTile: {fileID: 0}
+  otherTile: {fileID: 11400000, guid: 5211ca135bf8c6646acd0fe6fd6e8cf9, type: 2}
+--- !u!114 &-192381450527100621
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5fe75fa879593d42ad1d9006de90d54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: 1
+  otherTile: {fileID: 11400000, guid: 059e2d9c9e409e64f89713d9a90af4c0, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41,13 +97,17 @@ MonoBehaviour:
   m_Name: BlueCorridorOutCornerBottomRight
   m_EditorClassIdentifier: 
   weight: 1
-  tile: {fileID: 0}
+  tile: {fileID: 11400000, guid: 8947a8cbbd2f69b4082c1cdcc3ac23eb, type: 2}
   rules:
-  - {fileID: 8161415336401672693}
-  - {fileID: -3151210802344860368}
-  - {fileID: 8999222531599564604}
-  - {fileID: -8545729634341126225}
---- !u!114 &8161415336401672693
+  - {fileID: 1852744792081336510}
+  - {fileID: 7752842910551265785}
+  - {fileID: -8488692243966416630}
+  - {fileID: -6657755774525348588}
+  - {fileID: -2219622628448745150}
+  - {fileID: -8764890960860869086}
+  - {fileID: -192381450527100621}
+  - {fileID: -5301968624653559172}
+--- !u!114 &1852744792081336510
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -60,8 +120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 0
-  otherTile: {fileID: 0}
---- !u!114 &8999222531599564604
+  otherTile: {fileID: 11400000, guid: 059e2d9c9e409e64f89713d9a90af4c0, type: 2}
+--- !u!114 &7752842910551265785
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,5 +133,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5fe75fa879593d42ad1d9006de90d54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 1
-  otherTile: {fileID: 0}
+  direction: 0
+  otherTile: {fileID: 11400000, guid: 1371553318f5f6c40a4aacaa44d5432d, type: 2}

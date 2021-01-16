@@ -23,51 +23,7 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
         }
 
         private SerializedProperty rulesProperty;
-
-        #endregion
-
-        #region Menu Items
-
-        [MenuItem("Assets/Create/Celeste/Tilemaps/Wave Function Collapse/Tile Description")]
-        public static void CreateDoor()
-        {
-            CreateTileDescription(GetSelectionObjectPath());
-        }
-
-        private static void CreateTileDescription(string path)
-        {
-            TileDescription tileDescription = ScriptableObject.CreateInstance<TileDescription>();
-            tileDescription.name = "TileDescription";
-            AssetUtility.CreateAsset(tileDescription, path);
-
-            // Add rules after creating the asset since rules are sub-assets and the tile description must be persistent
-            AddRule(tileDescription, Direction.LeftOf);
-            AddRule(tileDescription, Direction.RightOf);
-            AddRule(tileDescription, Direction.Above);
-            AddRule(tileDescription, Direction.Below);
-        }
-
-        private static void AddRule(TileDescription tileDescription, Direction direction)
-        {
-            Rule rule = tileDescription.AddRule();
-            rule.direction = direction;
-            EditorUtility.SetDirty(rule);
-        }
-
-        private static string GetSelectionObjectPath()
-        {
-            string path = AssetDatabase.GetAssetPath(Selection.activeObject);
-            if (path == "")
-            {
-                path = "Assets";
-            }
-            else if (Path.GetExtension(path) != "")
-            {
-                path = path.Replace(Path.GetFileName(AssetDatabase.GetAssetPath(Selection.activeObject)), "");
-            }
-
-            return path;
-        }
+        private Vector2 scrollPosition;
 
         #endregion
 
@@ -92,6 +48,7 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
             }
 
             EditorGUILayout.EndHorizontal();
+            scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
 
             for (int i = rulesProperty.arraySize - 1; i >= 0; --i)
             {
@@ -102,6 +59,8 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
                     TileDescription.RemoveRule(i);
                 }
             }
+
+            EditorGUILayout.EndScrollView();
 
             serializedObject.ApplyModifiedProperties();
         }

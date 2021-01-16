@@ -95,31 +95,26 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
         {
             foreach (TileDescription thisTileDescription in Tilemap.tileDescriptions)
             {
-                foreach (TileDescription otherTileDescription in Tilemap.tileDescriptions)
+                foreach (Rule rule in thisTileDescription.Rules)
                 {
-                    if (thisTileDescription == otherTileDescription)
+                    if (thisTileDescription == rule.otherTile || rule.otherTile == null)
                     {
                         continue;
                     }
 
-                    Rule ruleAboutOtherTile = thisTileDescription.FindRule(x => x.otherTile == otherTileDescription);
-                    if (ruleAboutOtherTile == null)
-                    {
-                        // We don't have a rule about the other tile, so forget about it
-                        continue;
-                    }
-
-                    Rule ruleAboutThisTile = otherTileDescription.FindRule(x => x.otherTile == thisTileDescription);
-                    if (ruleAboutThisTile != null && ruleAboutThisTile.direction == ruleAboutOtherTile.direction.Opposite())
+                    Rule ruleAboutThisTile = rule.otherTile.FindRule(x => x.otherTile == thisTileDescription);
+                    if (ruleAboutThisTile != null && ruleAboutThisTile.direction == rule.direction.Opposite())
                     {
                         // We have the symmetric rule in the other tile description
                         continue;
                     }
 
                     // We add a symmetric rule to the other tile for the one we have in this tile description
-                    Rule symmetricRule = otherTileDescription.AddRule();
-                    symmetricRule.direction = ruleAboutOtherTile.direction.Opposite();
+                    Rule symmetricRule = rule.otherTile.AddRule();
+                    symmetricRule.direction = rule.direction.Opposite();
                     symmetricRule.otherTile = thisTileDescription;
+
+                    Debug.LogWarningFormat("Adding missing symmetric rule {0}-{1} for this tile {2}-{3}", symmetricRule.direction, rule.otherTile.name, rule.direction, thisTileDescription.name);
                     EditorUtility.SetDirty(symmetricRule);
                 }
             }
