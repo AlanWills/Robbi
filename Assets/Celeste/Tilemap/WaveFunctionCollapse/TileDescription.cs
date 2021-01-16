@@ -1,0 +1,67 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.Tilemaps;
+
+namespace Celeste.Tilemaps.WaveFunctionCollapse
+{
+    public class TileDescription : ScriptableObject
+    {
+        #region Serialized Fields
+
+        public float weight = 1;
+        public TileBase tile;
+        [SerializeField, HideInInspector] private List<Rule> rules = new List<Rule>();
+
+        #endregion
+
+        #region Rules Functions
+
+        public Rule AddRule()
+        {
+            Rule rule = ScriptableObject.CreateInstance<Rule>();
+            rule.hideFlags = HideFlags.HideInHierarchy;
+            rules.Add(rule);
+
+#if UNITY_EDITOR
+            UnityEditor.AssetDatabase.AddObjectToAsset(rule, this);
+#endif
+
+            return rule;
+        }
+
+        public void RemoveRule(int ruleIndex)
+        {
+            if (0 <= ruleIndex && ruleIndex < rules.Count)
+            {
+#if UNITY_EDITOR
+                UnityEditor.AssetDatabase.RemoveObjectFromAsset(rules[ruleIndex]);
+#endif
+                rules.RemoveAt(ruleIndex);
+            }
+        }
+
+        public Rule FindRule(Predicate<Rule> predicate)
+        {
+            return rules.Find(predicate);
+        }
+
+        public bool SupportsTile(TileDescription tile, Direction direction)
+        {
+            foreach (Rule rule in rules)
+            {
+                if (rule.otherTile == tile && rule.direction == direction)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        #endregion
+    }
+}

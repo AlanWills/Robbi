@@ -18,14 +18,19 @@ namespace CelesteEditor.Tools
 
 		public static void CreateAsset<T>(T asset, string path) where T : ScriptableObject
 		{
+            if (string.IsNullOrEmpty(asset.name))
+            {
+                asset.name = typeof(T).Name;
+            }
+
 			string assetPathAndName = AssetDatabase.GenerateUniqueAssetPath(string.Format("{0}/{1}.asset", path, asset.name));
 
 			AssetDatabase.CreateAsset(asset, assetPathAndName);
 			AssetDatabase.SaveAssets();
 			AssetDatabase.Refresh();
 
-			EditorUtility.FocusProjectWindow();
 			Selection.activeObject = asset;
+			EditorUtility.FocusProjectWindow();
 		}
 
 		public static void CreateFolder(string parent, string folderName)
