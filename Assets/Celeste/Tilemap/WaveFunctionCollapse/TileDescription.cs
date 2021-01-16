@@ -12,6 +12,11 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
     {
         #region Serialized Fields
 
+        public IEnumerable<Rule> Rules
+        {
+            get { return rules; }
+        }
+
         public float weight = 1;
         public TileBase tile;
         [SerializeField, HideInInspector] private List<Rule> rules = new List<Rule>();
@@ -44,6 +49,18 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             }
         }
 
+        public void ClearRules()
+        {
+#if UNITY_EDITOR
+            foreach (Rule rule in rules)
+            {
+                UnityEditor.AssetDatabase.RemoveObjectFromAsset(rule);
+            }
+#endif
+
+            rules.Clear();
+        }
+
         public Rule FindRule(Predicate<Rule> predicate)
         {
             return rules.Find(predicate);
@@ -62,6 +79,6 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             return false;
         }
 
-        #endregion
+#endregion
     }
 }
