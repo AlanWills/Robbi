@@ -102,8 +102,8 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
                         continue;
                     }
 
-                    Rule ruleAboutThisTile = rule.otherTile.FindRule(x => x.otherTile == thisTileDescription);
-                    if (ruleAboutThisTile != null && ruleAboutThisTile.direction == rule.direction.Opposite())
+                    Rule ruleAboutThisTile = rule.otherTile.FindRule(x => x.otherTile == thisTileDescription && x.direction == rule.direction.Opposite());
+                    if (ruleAboutThisTile != null)
                     {
                         // We have the symmetric rule in the other tile description
                         continue;
@@ -114,7 +114,7 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
                     symmetricRule.direction = rule.direction.Opposite();
                     symmetricRule.otherTile = thisTileDescription;
 
-                    Debug.LogWarningFormat("Adding missing symmetric rule {0}-{1} for this tile {2}-{3}", symmetricRule.direction, rule.otherTile.name, rule.direction, thisTileDescription.name);
+                    Debug.LogErrorFormat("Adding missing symmetric rule {0}-{1} for this tile {2}-{3}", symmetricRule.direction, rule.otherTile.name, rule.direction, thisTileDescription.name);
                     EditorUtility.SetDirty(symmetricRule);
                 }
             }
