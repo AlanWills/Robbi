@@ -17,7 +17,11 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
             "Can Go To The Left Of",
             "Can Go Above",
             "Can Go To The Right Of",
-            "Can Go Below"
+            "Can Go Below",
+            "Can Go Above Left Of",
+            "Can Go Above Right Of",
+            "Can Go Below Right Of",
+            "Can Go Below Left Of"
         };
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
