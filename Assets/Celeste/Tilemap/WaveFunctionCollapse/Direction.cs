@@ -14,7 +14,11 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
         LeftOf,
         Above,
         RightOf,
-        Below
+        Below,
+        AboveLeftOf,
+        AboveRightOf,
+        BelowRightOf,
+        BelowLeftOf
     }
 
     public static class DirectionExtensions
@@ -34,6 +38,18 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
                 case Direction.RightOf:
                     return Direction.LeftOf;
+
+                case Direction.AboveLeftOf:
+                    return Direction.BelowRightOf;
+
+                case Direction.AboveRightOf:
+                    return Direction.BelowLeftOf;
+
+                case Direction.BelowLeftOf:
+                    return Direction.AboveRightOf;
+
+                case Direction.BelowRightOf:
+                    return Direction.AboveLeftOf;
 
                 default:
                     Debug.LogErrorFormat("Unhandled Direction: {0}", direction);

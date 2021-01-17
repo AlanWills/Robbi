@@ -13,6 +13,11 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
     [CustomEditor(typeof(RulePainter))]
     public class RulePainterEditor : Editor
     {
+        public RulePainter RulePainter
+        {
+            get { return target as RulePainter; }
+        }
+
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
@@ -29,8 +34,6 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
 
             EditorGUILayout.BeginHorizontal();
 
-            RulePainter rulePainter = target as RulePainter;
-
             if (GUILayout.Button("Show Rules", GUILayout.ExpandWidth(false)))
             {
                 ShowRules();
@@ -39,54 +42,28 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
             if (GUILayout.Button("New Rule", GUILayout.ExpandWidth(false)))
             {
                 int index = 0;
-                while (rulePainter.tilemap.HasTile(new Vector3Int(index * 3, 0, 0)))
+                while (RulePainter.tilemap.HasTile(new Vector3Int(index * 3, 0, 0)))
                 {
                     ++index;
                 }
 
-                rulePainter.tilemap.SetTile(new Vector3Int(index * 3, 0, 0), rulePainter.tileDescription.tile);
+                RulePainter.tilemap.SetTile(new Vector3Int(index * 3, 0, 0), RulePainter.tileDescription.tile);
+            }
+
+            if (GUILayout.Button("New Rules For Solver", GUILayout.ExpandWidth(false)))
+            {
+                RulePainter.tilemap.ClearAllTiles();
+                
+                // +1 for null tile
+                for (int i = 0; i < RulePainter.tilemapSolver.tileDescriptions.Count + 1; ++i)
+                {
+                    RulePainter.tilemap.SetTile(new Vector3Int(i * 3, 0, 0), RulePainter.tileDescription.tile);
+                }
             }
 
             if (GUILayout.Button("Save Rules", GUILayout.ExpandWidth(false)))
             {
-                Tilemap tilemap = rulePainter.tilemap;
-                TileDescription tileDescription = rulePainter.tileDescription;
-                tileDescription.ClearRules();
-
-                int index = 0;
-                while (tilemap.HasTile(new Vector3Int(index * 3, 0, 0)))
-                {
-                    Vector3Int currentTilePosition = new Vector3Int(index * 3, 0, 0);
-                    
-                    if (CheckDirection(tilemap, currentTilePosition, new Vector3Int(1, 0, 0), Direction.LeftOf, tileDescription))
-                    {
-                        // Check LeftOf relationship (to the right)
-                    }
-                    
-                    if (CheckDirection(tilemap, currentTilePosition, new Vector3Int(-1, 0, 0), Direction.RightOf, tileDescription))
-                    {
-                        // Check RightOf relationship (to the left)
-                    }
-                    
-                    if (CheckDirection(tilemap, currentTilePosition, new Vector3Int(0, -1, 0), Direction.Above, tileDescription))
-                    {
-                        // Check Above relationship (to the bottom)
-                    }
-                    
-                    if (CheckDirection(tilemap, currentTilePosition, new Vector3Int(0, 1, 0), Direction.Below, tileDescription))
-                    {
-                        // Check Below relationship (to the top)
-                    }
-
-                    ++index;
-                }
-
-                AssetDatabase.SaveAssets();
-            }
-
-            if (GUILayout.Button("Compress Rules", GUILayout.ExpandWidth(false)))
-            {
-                CompressRules();
+                SaveRules();
             }
 
             EditorGUILayout.EndHorizontal();
@@ -96,17 +73,22 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
 
         private void ShowRules()
         {
-            RulePainter rulePainter = target as RulePainter;
-            Tilemap tilemap = rulePainter.tilemap;
-            TileDescription tileDescription = rulePainter.tileDescription;
+            Tilemap tilemap = RulePainter.tilemap;
+            TileDescription tileDescription = RulePainter.tileDescription;
 
             tilemap.ClearAllTiles();
 
-            int index = 0;
+            Vector3Int position = new Vector3Int();
+            TileBase currentOther = null;
+
             foreach (Rule rule in tileDescription.Rules)
             {
-                Vector3Int position = new Vector3Int(index * 3, 0, 0);
-                tilemap.SetTile(position, tileDescription.tile);
+                TileBase ruleOther = rule.otherTile == null ? null : rule.otherTile.tile;
+                if (ruleOther != currentOther)
+                {
+                    position.x += 3;
+                    currentOther = ruleOther;
+                }
 
                 Vector3Int otherPosition = position;
 
@@ -128,84 +110,92 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
                         otherPosition.y += 1;
                         break;
 
+                    case Direction.AboveLeftOf:
+                        otherPosition.x += 1;
+                        otherPosition.y -= 1;
+                        break;
+
+                    case Direction.AboveRightOf:
+                        otherPosition.x -= 1;
+                        otherPosition.y -= 1;
+                        break;
+
+                    case Direction.BelowLeftOf:
+                        otherPosition.x += 1;
+                        otherPosition.y += 1;
+                        break;
+
+                    case Direction.BelowRightOf:
+                        otherPosition.x -= 1;
+                        otherPosition.y += 1;
+                        break;
+
                     default:
                         Debug.LogAssertionFormat("Unhandled direction: {0}", rule.direction);
                         break;
                 }
 
-                if (tilemap.HasTile(position))
-                {
-                    position.x += 3;
-                }
-
-                tilemap.SetTile(otherPosition, rule.otherTile != null ? rule.otherTile.tile : rulePainter.nullTile);
+                Debug.Assert(!tilemap.HasTile(otherPosition));
+                tilemap.SetTile(position, tileDescription.tile);
+                tilemap.SetTile(otherPosition, rule.otherTile != null ? rule.otherTile.tile : RulePainter.nullTile);
             }
         }
 
-        private void CompressRules()
+        private void SaveRules()
         {
-            Tilemap tilemap = (target as RulePainter).tilemap;
-
-            TileBase centreTile = tilemap.GetTile(new Vector3Int(0, 0, 0));
-            List<TileBase> leftRules = new List<TileBase>();
-            List<TileBase> upRules = new List<TileBase>();
-            List<TileBase> rightRules = new List<TileBase>();
-            List<TileBase> downRules = new List<TileBase>();
+            Tilemap tilemap = RulePainter.tilemap;
+            TileDescription tileDescription = RulePainter.tileDescription;
+            tileDescription.ClearRules();
 
             int index = 0;
             while (tilemap.HasTile(new Vector3Int(index * 3, 0, 0)))
             {
                 Vector3Int currentTilePosition = new Vector3Int(index * 3, 0, 0);
 
-                if (tilemap.HasTile(currentTilePosition + new Vector3Int(-1, 0, 0)))
+                if (CheckDirection(tilemap, currentTilePosition, new Vector3Int(1, 0, 0), Direction.LeftOf, tileDescription))
                 {
-                    leftRules.Add(tilemap.GetTile(currentTilePosition + new Vector3Int(-1, 0, 0)));
+                    // Check LeftOf relationship (to the right)
                 }
 
-                if (tilemap.HasTile(currentTilePosition + new Vector3Int(1, 0, 0)))
+                if (CheckDirection(tilemap, currentTilePosition, new Vector3Int(-1, 0, 0), Direction.RightOf, tileDescription))
                 {
-                    rightRules.Add(tilemap.GetTile(currentTilePosition + new Vector3Int(1, 0, 0)));
+                    // Check RightOf relationship (to the left)
                 }
 
-                if (tilemap.HasTile(currentTilePosition + new Vector3Int(0, 1, 0)))
+                if (CheckDirection(tilemap, currentTilePosition, new Vector3Int(0, -1, 0), Direction.Above, tileDescription))
                 {
-                    upRules.Add(tilemap.GetTile(currentTilePosition + new Vector3Int(0, 1, 0)));
+                    // Check Above relationship (to the bottom)
                 }
 
-                if (tilemap.HasTile(currentTilePosition + new Vector3Int(0, -1, 0)))
+                if (CheckDirection(tilemap, currentTilePosition, new Vector3Int(0, 1, 0), Direction.Below, tileDescription))
                 {
-                    downRules.Add(tilemap.GetTile(currentTilePosition + new Vector3Int(0, -1, 0)));
+                    // Check Below relationship (to the top)
+                }
+
+                if (CheckDirection(tilemap, currentTilePosition, new Vector3Int(1, -1, 0), Direction.AboveLeftOf, tileDescription))
+                {
+                    // Check AboveLeftOf relationship (to the right)
+                }
+
+                if (CheckDirection(tilemap, currentTilePosition, new Vector3Int(-1, -1, 0), Direction.AboveRightOf, tileDescription))
+                {
+                    // Check AboveRightOf relationship (to the left)
+                }
+
+                if (CheckDirection(tilemap, currentTilePosition, new Vector3Int(1, 1, 0), Direction.BelowLeftOf, tileDescription))
+                {
+                    // Check BelowLeftOf relationship (to the bottom)
+                }
+
+                if (CheckDirection(tilemap, currentTilePosition, new Vector3Int(-1, 1, 0), Direction.BelowRightOf, tileDescription))
+                {
+                    // Check BelowRightOf relationship (to the top)
                 }
 
                 ++index;
             }
 
-            for (int i = 0; i < index; ++i)
-            {
-                Vector3Int currentTilePosition = new Vector3Int(index * 3, 0, 0);
-
-                tilemap.SetTile(currentTilePosition, centreTile);
-
-                if (leftRules.Count > i)
-                {
-                    tilemap.SetTile(currentTilePosition + new Vector3Int(-1, 0, 0), leftRules[i]);
-                }
-
-                if (rightRules.Count > i)
-                {
-                    tilemap.SetTile(currentTilePosition + new Vector3Int(1, 0, 0), rightRules[i]);
-                }
-
-                if (upRules.Count > i)
-                {
-                    tilemap.SetTile(currentTilePosition + new Vector3Int(0, 1, 0), upRules[i]);
-                }
-
-                if (downRules.Count > i)
-                {
-                    tilemap.SetTile(currentTilePosition + new Vector3Int(0, -1, 0), downRules[i]);
-                }
-            }
+            AssetDatabase.SaveAssets();
         }
 
         private bool CheckDirection(
@@ -219,7 +209,7 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
             {
                 Rule rule = tileDescription.AddRule();
                 TileBase tile = tilemap.GetTile(currentTilePosition + offset);
-                rule.otherTile = tile == (target as RulePainter).nullTile ? null : (target as RulePainter).tilemapSolver.FindTileDescription(tile);
+                rule.otherTile = tile == RulePainter.nullTile ? null : RulePainter.tilemapSolver.FindTileDescription(tile);
                 rule.direction = direction;
 
                 EditorUtility.SetDirty(rule);

@@ -52,7 +52,7 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             return chosenTile;
         }
 
-        public void RemoveUnsupportedPossibilitiesFor(Direction direction, TileDescription other)
+        public void RemoveUnsupportedPossibilitiesBecause(Direction direction, TileDescription other)
         {
             for (int i = possibleTiles.Count - 1; i >= 0; --i)
             {

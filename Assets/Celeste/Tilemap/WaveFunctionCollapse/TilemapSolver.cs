@@ -202,33 +202,29 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
         private void UpdateFromNeighbours(int x, int y)
         {
-            Debug.Assert(y < Solution.Count);
-            List<TilePossibilities> row = Solution[y];
-
-            Debug.Assert(x < row.Count);
-            TilePossibilities location = row[x];
+            TilePossibilities location = Solution[y][x];
 
             // Check left
             {
                 if (x == 0)
                 {
-                    location.RemoveUnsupportedPossibilitiesFor(Direction.RightOf, null);
+                    location.RemoveUnsupportedPossibilitiesBecause(Direction.RightOf, null);
                 }
-                else if (row[x - 1].HasCollapsed)
+                else if (Solution[y][x - 1].HasCollapsed)
                 {
-                    location.RemoveUnsupportedPossibilitiesFor(Direction.RightOf, row[x - 1].possibleTiles[0]);
+                    location.RemoveUnsupportedPossibilitiesBecause(Direction.RightOf, Solution[y][x - 1].possibleTiles[0]);
                 }
             }
 
             // Check Right
             {
-                if (x == row.Count - 1)
+                if (x == Solution[y].Count - 1)
                 {
-                    location.RemoveUnsupportedPossibilitiesFor(Direction.LeftOf, null);
+                    location.RemoveUnsupportedPossibilitiesBecause(Direction.LeftOf, null);
                 }
-                else if (row[x + 1].HasCollapsed)
+                else if (Solution[y][x + 1].HasCollapsed)
                 {
-                    location.RemoveUnsupportedPossibilitiesFor(Direction.LeftOf, row[x + 1].possibleTiles[0]);
+                    location.RemoveUnsupportedPossibilitiesBecause(Direction.LeftOf, Solution[y][x + 1].possibleTiles[0]);
                 }
             }
 
@@ -236,11 +232,11 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             {
                 if (y == 0)
                 {
-                    location.RemoveUnsupportedPossibilitiesFor(Direction.Above, null);
+                    location.RemoveUnsupportedPossibilitiesBecause(Direction.Above, null);
                 }
                 else if (Solution[y - 1][x].HasCollapsed)
                 {
-                    location.RemoveUnsupportedPossibilitiesFor(Direction.Above, Solution[y - 1][x].possibleTiles[0]);
+                    location.RemoveUnsupportedPossibilitiesBecause(Direction.Above, Solution[y - 1][x].possibleTiles[0]);
                 }
             }
 
@@ -248,11 +244,59 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             {
                 if (y == Solution.Count - 1)
                 {
-                    location.RemoveUnsupportedPossibilitiesFor(Direction.Below, null);
+                    location.RemoveUnsupportedPossibilitiesBecause(Direction.Below, null);
                 }
                 else if (Solution[y + 1][x].HasCollapsed)
                 {
-                    location.RemoveUnsupportedPossibilitiesFor(Direction.Below, Solution[y + 1][x].possibleTiles[0]);
+                    location.RemoveUnsupportedPossibilitiesBecause(Direction.Below, Solution[y + 1][x].possibleTiles[0]);
+                }
+            }
+
+            // Check TopLeft
+            {
+                if (y == Solution.Count - 1 || x == 0)
+                {
+                    location.RemoveUnsupportedPossibilitiesBecause(Direction.BelowRightOf, null);
+                }
+                else if (Solution[y + 1][x - 1].HasCollapsed)
+                {
+                    location.RemoveUnsupportedPossibilitiesBecause(Direction.BelowRightOf, Solution[y + 1][x - 1].possibleTiles[0]);
+                }
+            }
+
+            // Check TopRight
+            {
+                if (y == Solution.Count - 1 || x == Solution[y].Count - 1)
+                {
+                    location.RemoveUnsupportedPossibilitiesBecause(Direction.BelowLeftOf, null);
+                }
+                else if (Solution[y + 1][x + 1].HasCollapsed)
+                {
+                    location.RemoveUnsupportedPossibilitiesBecause(Direction.BelowLeftOf, Solution[y + 1][x + 1].possibleTiles[0]);
+                }
+            }
+
+            // Check BelowLeft
+            {
+                if (y == 0 || x == 0)
+                {
+                    location.RemoveUnsupportedPossibilitiesBecause(Direction.AboveRightOf, null);
+                }
+                else if (Solution[y - 1][x - 1].HasCollapsed)
+                {
+                    location.RemoveUnsupportedPossibilitiesBecause(Direction.AboveRightOf, Solution[y - 1][x - 1].possibleTiles[0]);
+                }
+            }
+
+            // Check BelowRight
+            {
+                if (y == 0 || x == Solution[y].Count - 1)
+                {
+                    location.RemoveUnsupportedPossibilitiesBecause(Direction.AboveLeftOf, null);
+                }
+                else if (Solution[y - 1][x + 1].HasCollapsed)
+                {
+                    location.RemoveUnsupportedPossibilitiesBecause(Direction.AboveLeftOf, Solution[y - 1][x + 1].possibleTiles[0]);
                 }
             }
         }
@@ -263,44 +307,100 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
             if (x != 0)
             {
-                Solution[y][x - 1].RemoveUnsupportedPossibilitiesFor(Direction.LeftOf, collapsedTile);
+                Solution[y][x - 1].RemoveUnsupportedPossibilitiesBecause(Direction.LeftOf, collapsedTile);
             }
 
             if (x < tilemapBounds.Width() - 1)
             {
-                Solution[y][x + 1].RemoveUnsupportedPossibilitiesFor(Direction.RightOf, collapsedTile);
+                Solution[y][x + 1].RemoveUnsupportedPossibilitiesBecause(Direction.RightOf, collapsedTile);
             }
 
             if (y != 0)
             {
-                Solution[y - 1][x].RemoveUnsupportedPossibilitiesFor(Direction.Below, collapsedTile);
+                Solution[y - 1][x].RemoveUnsupportedPossibilitiesBecause(Direction.Below, collapsedTile);
             }
 
             if (y < tilemapBounds.Height() - 1)
             {
-                Solution[y + 1][x].RemoveUnsupportedPossibilitiesFor(Direction.Above, collapsedTile);
+                Solution[y + 1][x].RemoveUnsupportedPossibilitiesBecause(Direction.Above, collapsedTile);
+            }
+
+            if (x != 0 && y < tilemapBounds.Height() - 1)
+            {
+                Solution[y + 1][x - 1].RemoveUnsupportedPossibilitiesBecause(Direction.AboveLeftOf, collapsedTile);
+            }
+
+            if (x != 0 && y != 0)
+            {
+                Solution[y - 1][x - 1].RemoveUnsupportedPossibilitiesBecause(Direction.BelowLeftOf, collapsedTile);
+            }
+
+            if (x < tilemapBounds.Width() - 1 && y < tilemapBounds.Height() - 1)
+            {
+                Solution[y + 1][x + 1].RemoveUnsupportedPossibilitiesBecause(Direction.AboveRightOf, collapsedTile);
+            }
+
+            if (x < tilemapBounds.Width() - 1 && y != 0)
+            {
+                Solution[y - 1][x + 1].RemoveUnsupportedPossibilitiesBecause(Direction.BelowRightOf, collapsedTile);
             }
         }
 
         private bool DoAllNeighboursHavePossibilities(int x, int y, BoundsInt tilemapBounds)
         {
+            // Left
             if (x != 0 && !Solution[y][x - 1].HasPossibilities)
             {
+                Debug.LogErrorFormat("Location Left of ({0},{1}) has no possibilities", x, y);
                 return false;
             }
 
+            // Right
             if (x < tilemapBounds.Width() - 1 && !Solution[y][x + 1].HasPossibilities)
             {
+                Debug.LogErrorFormat("Location Right of ({0},{1}) has no possibilities", x, y);
                 return false;
             }
 
+            // Below
             if (y != 0 && !Solution[y - 1][x].HasPossibilities)
             {
+                Debug.LogErrorFormat("Location Below ({0},{1}) has no possibilities", x, y);
                 return false;
             }
 
+            // Above
             if (y < tilemapBounds.Height() - 1 && !Solution[y + 1][x].HasPossibilities)
             {
+                Debug.LogErrorFormat("Location Above ({0},{1}) has no possibilities", x, y);
+                return false;
+            }
+
+            // Above Left
+            if (x != 0 && y < tilemapBounds.Height() - 1 && !Solution[y + 1][x - 1].HasPossibilities)
+            {
+                Debug.LogErrorFormat("Location Above Left of ({0},{1}) has no possibilities", x, y);
+                return false;
+            }
+
+            // Above Right
+            if (x < tilemapBounds.Width() - 1 && y < tilemapBounds.Height() - 1 && !Solution[y + 1][x + 1].HasPossibilities)
+            {
+                Debug.LogErrorFormat("Location Above Right of ({0},{1}) has no possibilities", x, y);
+                return false;
+            }
+
+            // Below Left
+            if (x != 0 && y != 0 && !Solution[y - 1][x - 1].HasPossibilities)
+            {
+                Debug.LogErrorFormat("Location Below Left of ({0},{1}) has no possibilities", x, y);
+                return false;
+            }
+
+            // Below Right
+            if (x < tilemapBounds.Width() - 1 && y != 0 && !Solution[y - 1][x + 1].HasPossibilities)
+            {
+                Debug.LogErrorFormat("Location Below Right of ({0},{1}) has no possibilities", x, y);
                 return false;
             }
 
