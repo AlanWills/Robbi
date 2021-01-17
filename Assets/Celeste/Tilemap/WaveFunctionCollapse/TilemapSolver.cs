@@ -21,13 +21,42 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
         #endregion
 
-        #region Tile Description
+        #region Utility
 
         public TileDescription FindTileDescription(TileBase tile)
         {
             TileDescription tileDescription = tileDescriptions.Find(x => x.tile == tile);
             Debug.AssertFormat(tileDescription != null, "No TileDescription found for tile {0}", tile.name);
             return tileDescription;
+        }
+
+        public void Reset(Tilemap tilemap)
+        {
+            SortTileDescriptions();
+            Solution.Clear();
+
+            for (int row = 0; row < tilemap.Height(); ++row)
+            {
+                List<TilePossibilities> rowPossibilities = new List<TilePossibilities>();
+                Solution.Add(rowPossibilities);
+
+                for (int column = 0; column < tilemap.Width(); ++column)
+                {
+                    rowPossibilities.Add(new TilePossibilities(column, row, tileDescriptions));
+                }
+            }
+
+            tilemap.ClearAllTilesNoResize();
+        }
+
+        public void SortTileDescriptions()
+        {
+            tileDescriptions.Sort((x, y) =>
+            {
+                if (x.weight < y.weight) return 1;
+                else if (x.weight == y.weight) return 0;
+                else return -1;
+            });
         }
 
         #endregion
@@ -41,7 +70,6 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
             Reset(tilemap);
 
-            // IMPROVEMENT: Use entropy to order the starting positions from lowest to highest
             Vector2Int startingLocation = GetRandomLocation(tilemapBounds);
             Debug.Log(string.Format("Starting at {0}, {1}", startingLocation.x, startingLocation.y));
 
@@ -73,24 +101,6 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             }
 
             return false;
-        }
-
-        public void Reset(Tilemap tilemap)
-        {
-            Solution.Clear();
-
-            for (int row = 0; row < tilemap.Height(); ++row)
-            {
-                List<TilePossibilities> rowPossibilities = new List<TilePossibilities>();
-                Solution.Add(rowPossibilities);
-
-                for (int column = 0; column < tilemap.Width(); ++column)
-                {
-                    rowPossibilities.Add(new TilePossibilities(column, row, tileDescriptions));
-                }
-            }
-
-            tilemap.ClearAllTilesNoResize();
         }
 
         public void RemoveInvalidPossibilities(BoundsInt tilemapBounds)
@@ -154,8 +164,9 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             return false;
         }
 
-        private Vector2 GetLowEntropyLocation(BoundsInt tilemapBounds)
+        private Vector2Int GetLowEntropyLocation(BoundsInt tilemapBounds)
         {
+            // Fix to make random amongst lowest entropy tiles
             int x = 0, y = 0;
             int currentPossibilityCount = int.MaxValue;
 
@@ -174,7 +185,7 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
                 }
             }
 
-            return new Vector2(x, y);
+            return new Vector2Int(x, y);
         }
 
         private Vector2Int GetRandomLocation(BoundsInt tilemapBounds)
@@ -303,7 +314,15 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
         private void UpdateNeighbours(int x, int y, BoundsInt tilemapBounds, TileDescription collapsedTile)
         {
-            // IMPROVEMENT: Allow holes - not necessarily all neighbours need a gap.  Or make a null tile which you have to specify rules for too?
+            if (x < 0 || x >= tilemapBounds.Width())
+            {
+                Debug.LogAssertionFormat("Invalid x coordinate: {0}.  Width: {1}", x, tilemapBounds.Width());
+            }
+
+            if (y < 0 || y >= tilemapBounds.Height())
+            {
+                Debug.LogAssertionFormat("Invalid y coordinate: {0}.  Height: {1}", y, tilemapBounds.Height());
+            }
 
             if (x != 0)
             {

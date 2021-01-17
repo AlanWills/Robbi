@@ -16,7 +16,7 @@ namespace Celeste.Tilemaps
             int width = tilemap.Width();
 
             tilemap.ClearAllTiles();
-            tilemap.size = new Vector3Int(height, width, 1);
+            tilemap.size = new Vector3Int(width, height, 1);
             tilemap.ResizeBounds();
         }
 

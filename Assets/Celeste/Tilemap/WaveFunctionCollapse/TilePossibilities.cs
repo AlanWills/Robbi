@@ -11,7 +11,7 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
     {
         #region Serialized Fields
 
-        public List<TileDescription> possibleTiles;
+        public List<TileDescription> possibleTiles = new List<TileDescription>();
 
         #endregion
 
@@ -33,17 +33,22 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
         {
             this.x = x;
             this.y = y;
-            possibleTiles = new List<TileDescription>(tiles);
+            possibleTiles.AddRange(tiles);
         }
 
         #region Possibility Functions
 
         public TileDescription Collapse()
         {
-            // IMPROVEMENT: NEED TO USE WEIGHT
-
             Debug.Assert(HasPossibilities);
-            TileDescription chosenTile = possibleTiles[UnityEngine.Random.Range(0, possibleTiles.Count)];
+
+            // The possible tiles are sorted so that the highest weights are at the front
+            // This makes it easy for us to choose a random tile from the ones with the highest weight
+            float highestWeight = possibleTiles[0].weight;
+            int indexOfFirstNonHighestTile = possibleTiles.FindIndex(x => x.weight < highestWeight);
+
+            // Remember if all tiles have equal weight the index will be -1, so we adjust for that
+            TileDescription chosenTile = possibleTiles[UnityEngine.Random.Range(0, indexOfFirstNonHighestTile < 0 ? possibleTiles.Count : indexOfFirstNonHighestTile)];
 
             possibleTiles.Clear();
             possibleTiles.Add(chosenTile);

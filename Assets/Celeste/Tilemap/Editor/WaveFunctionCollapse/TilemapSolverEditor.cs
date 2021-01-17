@@ -15,7 +15,7 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
     {
         #region Properties and Fields
 
-        private TilemapSolver Tilemap
+        private TilemapSolver TilemapSolver
         {
             get { return target as TilemapSolver; }
         }
@@ -33,6 +33,12 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
             if (GUILayout.Button("Find Tile Descriptions", GUILayout.ExpandWidth(false)))
             {
                 FindTileDescriptions();
+            }
+
+            if (GUILayout.Button("Sort Tile Descriptions (H -> L)", GUILayout.ExpandWidth(false)))
+            {
+                TilemapSolver.SortTileDescriptions();
+                EditorUtility.SetDirty(TilemapSolver);
             }
 
             if (GUILayout.Button("Check Symmetric Rules", GUILayout.ExpandWidth(false)))
@@ -84,7 +90,7 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
 
         private void CheckSymmetricRules()
         {
-            foreach (TileDescription thisTileDescription in Tilemap.tileDescriptions)
+            foreach (TileDescription thisTileDescription in TilemapSolver.tileDescriptions)
             {
                 foreach (Rule rule in thisTileDescription.Rules)
                 {
