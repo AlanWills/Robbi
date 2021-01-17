@@ -14,6 +14,7 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
     {
         public Tilemap tilemap;
         public TilemapSolver tilemapSolver;
+        public uint maxRetryCount = 3;
 
         private void OnValidate()
         {
@@ -34,8 +35,16 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
         public void Solve()
         {
-            if (!tilemapSolver.Solve(tilemap))
+            uint currentRetryCount = 0;
+
+            while (currentRetryCount < maxRetryCount)
             {
+                if (tilemapSolver.Solve(tilemap))
+                {
+                    break;
+                }
+                
+                ++currentRetryCount;
                 Debug.LogError("No solution could be found for configuration");
             }
         }

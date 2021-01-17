@@ -9,12 +9,6 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 {
     public class TilePossibilities
     {
-        #region Serialized Fields
-
-        public List<TileDescription> possibleTiles = new List<TileDescription>();
-
-        #endregion
-
         #region Properties and Fields
 
         public bool HasPossibilities
@@ -24,15 +18,12 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
         public bool HasCollapsed { get; private set; } = false;
 
-        private int x;
-        private int y;
+        public List<TileDescription> possibleTiles = new List<TileDescription>();
 
         #endregion
 
-        public TilePossibilities(int x, int y, List<TileDescription> tiles)
+        public TilePossibilities(List<TileDescription> tiles)
         {
-            this.x = x;
-            this.y = y;
             possibleTiles.AddRange(tiles);
         }
 
@@ -42,19 +33,31 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
         {
             Debug.Assert(HasPossibilities);
 
-            // The possible tiles are sorted so that the highest weights are at the front
-            // This makes it easy for us to choose a random tile from the ones with the highest weight
-            float highestWeight = possibleTiles[0].weight;
-            int indexOfFirstNonHighestTile = possibleTiles.FindIndex(x => x.weight < highestWeight);
+            float totalWeight = 0;
+            foreach (TileDescription tileDescription in possibleTiles)
+            {
+                totalWeight += tileDescription.weight;
+            }
 
-            // Remember if all tiles have equal weight the index will be -1, so we adjust for that
-            TileDescription chosenTile = possibleTiles[UnityEngine.Random.Range(0, indexOfFirstNonHighestTile < 0 ? possibleTiles.Count : indexOfFirstNonHighestTile)];
+            float currentWeight = 0;
+            float randomChance = UnityEngine.Random.Range(0, totalWeight);
+            
+            foreach (TileDescription tileDescription in possibleTiles)
+            {
+                if (randomChance >= currentWeight && randomChance < (currentWeight + tileDescription.weight))
+                {
+                    possibleTiles.Clear();
+                    possibleTiles.Add(tileDescription);
+                    HasCollapsed = true;
 
-            possibleTiles.Clear();
-            possibleTiles.Add(chosenTile);
-            HasCollapsed = true;
+                    return tileDescription;
+                }
 
-            return chosenTile;
+                currentWeight += tileDescription.weight;
+            }
+
+            Debug.LogAssertion("Failed to collapse a tile");
+            return null;
         }
 
         public void RemoveUnsupportedPossibilitiesBecause(Direction direction, TileDescription other)
@@ -63,7 +66,6 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             {
                 if (!possibleTiles[i].SupportsTile(other, direction))
                 {
-                    Debug.Log(string.Format("Removing possibility: {0} from {1}, {2} because of unsupported Tile {3} in Direction {4}", possibleTiles[i].name, x, y, other?.name, direction));
                     possibleTiles.RemoveAt(i);
                 }
             }

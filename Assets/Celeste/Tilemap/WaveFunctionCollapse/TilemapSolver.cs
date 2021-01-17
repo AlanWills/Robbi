@@ -19,6 +19,8 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
         public List<TileDescription> tileDescriptions = new List<TileDescription>();
 
+        private List<Vector2Int> lowEntropyCache = new List<Vector2Int>();
+
         #endregion
 
         #region Utility
@@ -32,7 +34,6 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
         public void Reset(Tilemap tilemap)
         {
-            SortTileDescriptions();
             Solution.Clear();
 
             for (int row = 0; row < tilemap.Height(); ++row)
@@ -42,21 +43,11 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
                 for (int column = 0; column < tilemap.Width(); ++column)
                 {
-                    rowPossibilities.Add(new TilePossibilities(column, row, tileDescriptions));
+                    rowPossibilities.Add(new TilePossibilities(tileDescriptions));
                 }
             }
 
             tilemap.ClearAllTilesNoResize();
-        }
-
-        public void SortTileDescriptions()
-        {
-            tileDescriptions.Sort((x, y) =>
-            {
-                if (x.weight < y.weight) return 1;
-                else if (x.weight == y.weight) return 0;
-                else return -1;
-            });
         }
 
         #endregion
@@ -70,22 +61,15 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
             Reset(tilemap);
 
-            Vector2Int startingLocation = GetRandomLocation(tilemapBounds);
-            Debug.Log(string.Format("Starting at {0}, {1}", startingLocation.x, startingLocation.y));
-
             while (ShouldContinueSolving(tilemapBounds))
             {
-                Debug.Log(string.Format("Starting to collapse {0}, {1}", startingLocation.x, startingLocation.y));
-                if (!CollapseLocation(startingLocation.x, startingLocation.y, tilemap))
+                Vector2Int location = GetLowEntropyLocation(tilemapBounds);
+                if (!CollapseLocation(location, tilemap))
                 {
                     // Our algorithm has failed
                     // OPTIMIZATION: Possibility to backtrack here and collapse to a different choice
                     return false;
                 }
-
-                Vector2 location = GetLowEntropyLocation(tilemapBounds);
-                startingLocation.x = (int)location.x;
-                startingLocation.y = (int)location.y;
             }
 
             return true;
@@ -95,9 +79,8 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
         {
             while (ShouldContinueSolving(tilemap.cellBounds))
             {
-                Vector2Int randomPosition = GetRandomLocation(tilemap.cellBounds);
-                Debug.Log(string.Format("Starting to collapse {0}, {1}", randomPosition.x, randomPosition.y));
-                return CollapseLocation(randomPosition.x, randomPosition.y, tilemap);
+                Vector2Int randomPosition = GetLowEntropyLocation(tilemap.cellBounds);
+                return CollapseLocation(randomPosition, tilemap);
             }
 
             return false;
@@ -114,8 +97,13 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             }
         }
 
-        public bool CollapseLocation(int x, int y, Tilemap tilemap)
+        public bool CollapseLocation(Vector2Int locationCoords, Tilemap tilemap)
         {
+            int x = locationCoords.x;
+            int y = locationCoords.y;
+
+            Debug.Log(string.Format("Starting to collapse ({0}, {1})", x, y));
+
             Debug.Assert(y < Solution.Count);
             List<TilePossibilities> row = Solution[y];
             
@@ -166,9 +154,11 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
         private Vector2Int GetLowEntropyLocation(BoundsInt tilemapBounds)
         {
+            lowEntropyCache.Clear();
+
             // Fix to make random amongst lowest entropy tiles
-            int x = 0, y = 0;
-            int currentPossibilityCount = int.MaxValue;
+            int lowestPossibilityCount = int.MaxValue;
+            int hint = 0;
 
             for (int row = 0; row < tilemapBounds.Height(); ++row)
             {
@@ -176,35 +166,35 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
                 {
                     TilePossibilities location = Solution[row][column];
 
-                    if (!location.HasCollapsed && location.HasPossibilities && location.possibleTiles.Count < currentPossibilityCount)
+                    if (!location.HasCollapsed && location.HasPossibilities && location.possibleTiles.Count < lowestPossibilityCount)
                     {
-                        x = column;
-                        y = row;
-                        currentPossibilityCount = location.possibleTiles.Count;
+                        lowestPossibilityCount = location.possibleTiles.Count;
+
+                        if (lowestPossibilityCount == 1)
+                        {
+                            // Small optimisation - if lowest possibility count is 1 we will never be able to get any lower
+                            hint = row * tilemapBounds.Width() + column;
+                            break;
+                        }
                     }
                 }
             }
 
-            return new Vector2Int(x, y);
-        }
-
-        private Vector2Int GetRandomLocation(BoundsInt tilemapBounds)
-        {
-            List<int> validPositions = new List<int>();
-
-            for (int y = 0; y < tilemapBounds.Height(); ++y)
+            for (int row = hint / tilemapBounds.Width(); row < tilemapBounds.Height(); ++row)
             {
-                for (int x = 0; x < tilemapBounds.Width(); ++x)
+                for (int column = hint % tilemapBounds.Width(); column < tilemapBounds.Width(); ++column)
                 {
-                    if (!Solution[y][x].HasCollapsed && Solution[y][x].HasPossibilities)
+                    TilePossibilities location = Solution[row][column];
+
+                    if (!location.HasCollapsed && location.HasPossibilities && location.possibleTiles.Count == lowestPossibilityCount)
                     {
-                        validPositions.Add(y * tilemapBounds.Width() + x);
+                        lowEntropyCache.Add(new Vector2Int(column, row));
                     }
                 }
             }
 
-            int startingPositionIndex = Random.Range(0, validPositions.Count);
-            return new Vector2Int(startingPositionIndex % tilemapBounds.Width(), startingPositionIndex / tilemapBounds.Width());
+            Debug.Assert(lowEntropyCache.Count > 0, "No low entropy tiles could be found");
+            return lowEntropyCache[Random.Range(0, lowEntropyCache.Count)];
         }
 
         #endregion

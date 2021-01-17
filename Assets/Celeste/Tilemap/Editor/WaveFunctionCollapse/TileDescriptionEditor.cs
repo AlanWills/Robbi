@@ -13,6 +13,7 @@ using UnityEngine;
 namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
 {
     [CustomEditor(typeof(TileDescription))]
+    [CanEditMultipleObjects]
     public class TileDescriptionEditor : Editor
     {
         #region Properties and Fields

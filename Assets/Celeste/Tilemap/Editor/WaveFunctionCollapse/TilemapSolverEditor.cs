@@ -35,12 +35,6 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
                 FindTileDescriptions();
             }
 
-            if (GUILayout.Button("Sort Tile Descriptions (H -> L)", GUILayout.ExpandWidth(false)))
-            {
-                TilemapSolver.SortTileDescriptions();
-                EditorUtility.SetDirty(TilemapSolver);
-            }
-
             if (GUILayout.Button("Check Symmetric Rules", GUILayout.ExpandWidth(false)))
             {
                 CheckSymmetricRules();
