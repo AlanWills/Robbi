@@ -57,21 +57,23 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
                 while (tilemap.HasTile(new Vector3Int(index * 3, 0, 0)))
                 {
                     Vector3Int currentTilePosition = new Vector3Int(index * 3, 0, 0);
-                    Rule rule = tileDescription.AddRule();
                     
-                    if (CheckDirection(tilemap, currentTilePosition, new Vector3Int(1, 0, 0), Direction.LeftOf, rule))
+                    if (CheckDirection(tilemap, currentTilePosition, new Vector3Int(1, 0, 0), Direction.LeftOf, tileDescription))
                     {
                         // Check LeftOf relationship (to the right)
                     }
-                    else if (CheckDirection(tilemap, currentTilePosition, new Vector3Int(-1, 0, 0), Direction.RightOf, rule))
+                    
+                    if (CheckDirection(tilemap, currentTilePosition, new Vector3Int(-1, 0, 0), Direction.RightOf, tileDescription))
                     {
                         // Check RightOf relationship (to the left)
                     }
-                    else if (CheckDirection(tilemap, currentTilePosition, new Vector3Int(0, -1, 0), Direction.Above, rule))
+                    
+                    if (CheckDirection(tilemap, currentTilePosition, new Vector3Int(0, -1, 0), Direction.Above, tileDescription))
                     {
                         // Check Above relationship (to the bottom)
                     }
-                    else if (CheckDirection(tilemap, currentTilePosition, new Vector3Int(0, 1, 0), Direction.Below, rule))
+                    
+                    if (CheckDirection(tilemap, currentTilePosition, new Vector3Int(0, 1, 0), Direction.Below, tileDescription))
                     {
                         // Check Below relationship (to the top)
                     }
@@ -80,6 +82,11 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
                 }
 
                 AssetDatabase.SaveAssets();
+            }
+
+            if (GUILayout.Button("Compress Rules", GUILayout.ExpandWidth(false)))
+            {
+                CompressRules();
             }
 
             EditorGUILayout.EndHorizontal();
@@ -126,15 +133,91 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
                         break;
                 }
 
+                if (tilemap.HasTile(position))
+                {
+                    position.x += 3;
+                }
+
                 tilemap.SetTile(otherPosition, rule.otherTile != null ? rule.otherTile.tile : rulePainter.nullTile);
-                ++index;
             }
         }
 
-        private bool CheckDirection(Tilemap tilemap, Vector3Int currentTilePosition, Vector3Int offset, Direction direction, Rule rule)
+        private void CompressRules()
+        {
+            Tilemap tilemap = (target as RulePainter).tilemap;
+
+            TileBase centreTile = tilemap.GetTile(new Vector3Int(0, 0, 0));
+            List<TileBase> leftRules = new List<TileBase>();
+            List<TileBase> upRules = new List<TileBase>();
+            List<TileBase> rightRules = new List<TileBase>();
+            List<TileBase> downRules = new List<TileBase>();
+
+            int index = 0;
+            while (tilemap.HasTile(new Vector3Int(index * 3, 0, 0)))
+            {
+                Vector3Int currentTilePosition = new Vector3Int(index * 3, 0, 0);
+
+                if (tilemap.HasTile(currentTilePosition + new Vector3Int(-1, 0, 0)))
+                {
+                    leftRules.Add(tilemap.GetTile(currentTilePosition + new Vector3Int(-1, 0, 0)));
+                }
+
+                if (tilemap.HasTile(currentTilePosition + new Vector3Int(1, 0, 0)))
+                {
+                    rightRules.Add(tilemap.GetTile(currentTilePosition + new Vector3Int(1, 0, 0)));
+                }
+
+                if (tilemap.HasTile(currentTilePosition + new Vector3Int(0, 1, 0)))
+                {
+                    upRules.Add(tilemap.GetTile(currentTilePosition + new Vector3Int(0, 1, 0)));
+                }
+
+                if (tilemap.HasTile(currentTilePosition + new Vector3Int(0, -1, 0)))
+                {
+                    downRules.Add(tilemap.GetTile(currentTilePosition + new Vector3Int(0, -1, 0)));
+                }
+
+                ++index;
+            }
+
+            for (int i = 0; i < index; ++i)
+            {
+                Vector3Int currentTilePosition = new Vector3Int(index * 3, 0, 0);
+
+                tilemap.SetTile(currentTilePosition, centreTile);
+
+                if (leftRules.Count > i)
+                {
+                    tilemap.SetTile(currentTilePosition + new Vector3Int(-1, 0, 0), leftRules[i]);
+                }
+
+                if (rightRules.Count > i)
+                {
+                    tilemap.SetTile(currentTilePosition + new Vector3Int(1, 0, 0), rightRules[i]);
+                }
+
+                if (upRules.Count > i)
+                {
+                    tilemap.SetTile(currentTilePosition + new Vector3Int(0, 1, 0), upRules[i]);
+                }
+
+                if (downRules.Count > i)
+                {
+                    tilemap.SetTile(currentTilePosition + new Vector3Int(0, -1, 0), downRules[i]);
+                }
+            }
+        }
+
+        private bool CheckDirection(
+            Tilemap tilemap, 
+            Vector3Int currentTilePosition, 
+            Vector3Int offset, 
+            Direction direction, 
+            TileDescription tileDescription)
         {
             if (tilemap.HasTile(currentTilePosition + offset))
             {
+                Rule rule = tileDescription.AddRule();
                 TileBase tile = tilemap.GetTile(currentTilePosition + offset);
                 rule.otherTile = tile == (target as RulePainter).nullTile ? null : (target as RulePainter).tilemapSolver.FindTileDescription(tile);
                 rule.direction = direction;

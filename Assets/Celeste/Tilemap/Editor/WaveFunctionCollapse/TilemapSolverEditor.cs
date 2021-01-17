@@ -20,15 +20,6 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
             get { return target as TilemapSolver; }
         }
 
-        private bool useCustomStartPoint;
-        private int customStartPointX;
-        private int customStartPointY;
-        
-        private int collapseLocationX;
-        private int collapseLocationY;
-
-        private bool tileInfoSectionOpen = false;
-
         #endregion
 
         #region Editor Methods
