@@ -80,7 +80,7 @@ namespace RobbiEditor.BuildSystem
             {
                 // 0 = everything OK
                 // 1 = everything NOT OK
-                EditorApplication.Exit(hasThrownAnException ? 0 : 1);
+                EditorApplication.Exit(hasThrownAnException ? 1 : 0);
             }
             else
             {
