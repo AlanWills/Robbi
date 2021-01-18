@@ -28,7 +28,7 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             }
         }
 
-        public void Reset()
+        public void ResetTilemap()
         {
             tilemapSolver.Reset(tilemap);
         }

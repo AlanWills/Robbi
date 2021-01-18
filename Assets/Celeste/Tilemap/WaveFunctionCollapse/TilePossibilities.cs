@@ -71,6 +71,8 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             if (HasCollapsed)
             {
                 // We have already chosen so altering possibilities is not necessary
+                // NB: If you want to find bugs in your rules, uncomment this - this is VERY useful for debugging as
+                // collapsed tiles by definition must be valid
                 return;
             }
 

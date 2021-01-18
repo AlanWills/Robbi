@@ -366,6 +366,7 @@ GameObject:
   - component: {fileID: 1659248276011110128}
   - component: {fileID: -6332435396821417006}
   - component: {fileID: 3982048808983937085}
+  - component: {fileID: 1045042829508028637}
   m_Layer: 0
   m_Name: Level50
   m_TagString: Untagged
@@ -456,6 +457,48 @@ MonoBehaviour:
   tilemap: {fileID: 5430281326657908745}
   tilemapSolver: {fileID: 11400000, guid: 3f791c528025b744cb3cb5c340375a4e, type: 2}
   maxRetryCount: 1
+--- !u!114 &1045042829508028637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2911907112548866011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c2c167d8138f94b8f96ff1b82578d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: cde3978a5c8642b409b24cfef5e61aa1, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3982048808983937085}
+        m_TargetAssemblyTypeName: Celeste.Tilemaps.WaveFunctionCollapse.TilemapSolverComponent,
+          Celeste.Tilemaps
+        m_MethodName: ResetTilemap
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3982048808983937085}
+        m_TargetAssemblyTypeName: Celeste.Tilemaps.WaveFunctionCollapse.TilemapSolverComponent,
+          Celeste.Tilemaps
+        m_MethodName: Solve
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5559415607600513887
 GameObject:
   m_ObjectHideFlags: 0

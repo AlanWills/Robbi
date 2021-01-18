@@ -51,7 +51,7 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
             if (GUILayout.Button("Reset", GUILayout.ExpandWidth(false)))
             {
                 LogUtility.Clear();
-                tilemapSolver.Reset();
+                tilemapSolver.ResetTilemap();
                 EditorUtility.SetDirty(tilemapSolver);
             }
 
