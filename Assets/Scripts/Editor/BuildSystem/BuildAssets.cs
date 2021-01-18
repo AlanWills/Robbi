@@ -57,17 +57,24 @@ namespace RobbiEditor.BuildSystem
 
         private static void BuildAssetsAndExit(this PlatformSettings platformSettings)
         {
+            string exceptionMessage = "";
             bool hasThrownAnException = false;
             LogCallback logDelegate = (string logString, string stackTrace, LogType type) =>
             {
                 if (type == LogType.Exception)
                 {
                     hasThrownAnException = true;
+                    exceptionMessage = logString;
                 }
             };
             Application.logMessageReceived += logDelegate;
             platformSettings.BuildAssets();
             Application.logMessageReceived -= logDelegate;
+
+            if (hasThrownAnException)
+            {
+                Debug.LogErrorFormat("Exception thrown during asset building: {0}", exceptionMessage);
+            }
 
             if (Application.isBatchMode)
             {
