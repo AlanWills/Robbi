@@ -84,7 +84,7 @@ namespace RobbiEditor.BuildSystem
             }
             else
             {
-                EditorUtility.DisplayDialog("Asset Build result", string.Format("Assets Built {0}", hasThrownAnException ? "Successfully" : "Unsuccessfully"), "OK");
+                EditorUtility.DisplayDialog("Asset Build result", string.Format("Assets Built {0}", hasThrownAnException ? "Unsuccessfully" : "Successfully"), "OK");
             }
         }
     }
