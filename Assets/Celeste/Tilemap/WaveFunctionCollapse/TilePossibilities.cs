@@ -80,13 +80,15 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             {
                 if (!possibleTiles[i].SupportsTile(other, direction))
                 {
+#if UNITY_EDITOR
                     Debug.LogFormat("Removing possible tile {0} due to not supporting {1} in direction {2}", possibleTiles[i], other != null ? other.name : "null", direction);
+#endif
                     possibleTiles.RemoveAt(i);
                     Debug.AssertFormat(HasPossibilities, "No more possibilities");
                 }
             }
         }
 
-        #endregion
+#endregion
     }
 }

@@ -45,7 +45,7 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
                 }
                 
                 ++currentRetryCount;
-                Debug.LogError("No solution could be found for configuration");
+                Debug.LogAssertion("No solution could be found for configuration");
             }
         }
 
@@ -53,7 +53,7 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
         {
             if (!tilemapSolver.SolveStep(tilemap))
             {
-                Debug.LogError("Step failed to solve");
+                Debug.LogAssertion("Step failed to solve");
             }
         }
     }

@@ -43,7 +43,7 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
                         continue;
                     }
 
-                    Debug.LogErrorFormat("Missing symmetric rule {0}-{1} for this tile {2}-{3}", rule.direction.Opposite(), rule.otherTile.name, rule.direction, thisTileDescription.name);
+                    Debug.LogAssertionFormat("Missing symmetric rule {0}-{1} for this tile {2}-{3}", rule.direction.Opposite(), rule.otherTile.name, rule.direction, thisTileDescription.name);
                 }
             }
         }
@@ -168,8 +168,9 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             int x = locationCoords.x;
             int y = locationCoords.y;
 
+#if UNITY_EDITOR
             Debug.Log(string.Format("Starting to collapse ({0}, {1})", x, y));
-
+#endif
             Debug.Assert(y < Solution.Count);
             List<TilePossibilities> row = Solution[y];
             
@@ -187,7 +188,9 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             TileDescription chosenTile = location.Collapse();
             
             Debug.Assert(location.HasCollapsed, "Invalid number of possible tiles after collapse");
+#if UNITY_EDITOR
             Debug.Log(string.Format("Location {0}, {1} collapsed to {2}", x, y, chosenTile.name));
+#endif
             tilemap.SetTile(new Vector3Int(x, y, 0), chosenTile.tile);
 
             UpdateNeighbours(x, y, tilemap.cellBounds, location.possibleTiles[0]);
@@ -197,9 +200,9 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             return DoAllNeighboursHavePossibilities(x, y, tilemap.cellBounds);
         }
 
-        #endregion
+#endregion
 
-        #region Entropy Functions
+#region Entropy Functions
 
         private bool ShouldContinueSolving(BoundsInt tilemapBounds)
         {
@@ -264,9 +267,9 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             return lowEntropyCache[Random.Range(0, lowEntropyCache.Count)];
         }
 
-        #endregion
+#endregion
 
-        #region Neighbour Functions
+#region Neighbour Functions
 
         private void UpdateFromNeighbours(int x, int y)
         {
@@ -441,62 +444,62 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             // Left
             if (x != 0 && !Solution[y][x - 1].HasCollapsed && !Solution[y][x - 1].HasPossibilities)
             {
-                Debug.LogErrorFormat("Location Left of ({0},{1}) has no possibilities", x, y);
+                Debug.LogAssertionFormat("Location Left of ({0},{1}) has no possibilities", x, y);
                 return false;
             }
 
             // Right
             if (x < tilemapBounds.Width() - 1 && !Solution[y][x + 1].HasCollapsed && !Solution[y][x + 1].HasPossibilities)
             {
-                Debug.LogErrorFormat("Location Right of ({0},{1}) has no possibilities", x, y);
+                Debug.LogAssertionFormat("Location Right of ({0},{1}) has no possibilities", x, y);
                 return false;
             }
 
             // Below
             if (y != 0 && !Solution[y - 1][x].HasCollapsed && !Solution[y - 1][x].HasPossibilities)
             {
-                Debug.LogErrorFormat("Location Below ({0},{1}) has no possibilities", x, y);
+                Debug.LogAssertionFormat("Location Below ({0},{1}) has no possibilities", x, y);
                 return false;
             }
 
             // Above
             if (y < tilemapBounds.Height() - 1 && !Solution[y + 1][x].HasCollapsed && !Solution[y + 1][x].HasPossibilities)
             {
-                Debug.LogErrorFormat("Location Above ({0},{1}) has no possibilities", x, y);
+                Debug.LogAssertionFormat("Location Above ({0},{1}) has no possibilities", x, y);
                 return false;
             }
 
             // Above Left
             if (x != 0 && y < tilemapBounds.Height() - 1 && !Solution[y + 1][x - 1].HasCollapsed && !Solution[y + 1][x - 1].HasPossibilities)
             {
-                Debug.LogErrorFormat("Location Above Left of ({0},{1}) has no possibilities", x, y);
+                Debug.LogAssertionFormat("Location Above Left of ({0},{1}) has no possibilities", x, y);
                 return false;
             }
 
             // Above Right
             if (x < tilemapBounds.Width() - 1 && y < tilemapBounds.Height() - 1 && !Solution[y + 1][x + 1].HasCollapsed && !Solution[y + 1][x + 1].HasPossibilities)
             {
-                Debug.LogErrorFormat("Location Above Right of ({0},{1}) has no possibilities", x, y);
+                Debug.LogAssertionFormat("Location Above Right of ({0},{1}) has no possibilities", x, y);
                 return false;
             }
 
             // Below Left
             if (x != 0 && y != 0 && !Solution[y - 1][x - 1].HasCollapsed && !Solution[y - 1][x - 1].HasPossibilities)
             {
-                Debug.LogErrorFormat("Location Below Left of ({0},{1}) has no possibilities", x, y);
+                Debug.LogAssertionFormat("Location Below Left of ({0},{1}) has no possibilities", x, y);
                 return false;
             }
 
             // Below Right
             if (x < tilemapBounds.Width() - 1 && y != 0 && !Solution[y - 1][x + 1].HasCollapsed && !Solution[y - 1][x + 1].HasPossibilities)
             {
-                Debug.LogErrorFormat("Location Below Right of ({0},{1}) has no possibilities", x, y);
+                Debug.LogAssertionFormat("Location Below Right of ({0},{1}) has no possibilities", x, y);
                 return false;
             }
 
             return true;
         }
 
-        #endregion
+#endregion
     }
 }
