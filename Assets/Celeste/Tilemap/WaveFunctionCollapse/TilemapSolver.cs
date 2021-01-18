@@ -73,6 +73,49 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             tilemap.ClearAllTilesNoResize();
         }
 
+        public void SetUpFrom(Tilemap tilemap)
+        {
+            Solution.Clear();
+
+            bool hasAlreadyCollapsedLocation = false;
+
+            for (int row = 0; row < tilemap.Height(); ++row)
+            {
+                List<TilePossibilities> rowPossibilities = new List<TilePossibilities>();
+                Solution.Add(rowPossibilities);
+
+                for (int column = 0; column < tilemap.Width(); ++column)
+                {
+                    if (tilemap.HasTile(new Vector3Int(column, row, 0)))
+                    {
+                        TileDescription foundTileDescription = FindTileDescription(tilemap.GetTile(new Vector3Int(column, row, 0)));
+                        rowPossibilities.Add(new TilePossibilities(foundTileDescription));
+
+                        hasAlreadyCollapsedLocation = true;
+                    }
+                    else
+                    {
+                        rowPossibilities.Add(new TilePossibilities(tileDescriptions));
+                    }
+                }
+            }
+
+            if (hasAlreadyCollapsedLocation)
+            {
+                for (int row = 0; row < tilemap.Height(); ++row)
+                {
+                    for (int column = 0; column < tilemap.Width(); ++column)
+                    {
+                        Debug.AssertFormat(Solution[row][column].HasPossibilities, "({0},{1}) has no possibilities", column, row);
+                        if (Solution[row][column].HasCollapsed)
+                        {
+                            UpdateNeighbours(column, row, tilemap.cellBounds, Solution[row][column].possibleTiles[0]);
+                        }
+                    }
+                }
+            }
+        }
+
         #endregion
 
         #region Solve Functions
@@ -82,7 +125,7 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             BoundsInt tilemapBounds = tilemap.cellBounds;
             Debug.Assert(tilemapBounds.Area() > 0, "Tilemap Bounds have 0 area and will fail solving");
 
-            Reset(tilemap);
+            SetUpFrom(tilemap);
 
             while (ShouldContinueSolving(tilemapBounds))
             {
@@ -133,6 +176,7 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             Debug.Assert(x < row.Count);
             TilePossibilities location = row[x];
 
+            // Do we still need this step?
             UpdateFromNeighbours(x, y);
 
             if (!location.HasPossibilities)
@@ -228,6 +272,7 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
         {
             TilePossibilities location = Solution[y][x];
 
+            Debug.AssertFormat(location != null, "Tile Possibility at ({0},{1}) is null", x, y);
             Debug.AssertFormat(y >= 0, "y: {0} is less than 0", y);
             Debug.AssertFormat(y < Solution.Count, "y: {0} is more than {1}", y, Solution.Count - 1);
             Debug.AssertFormat(x >= 0, "x: {0} is less than 0", x);
@@ -345,41 +390,49 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
             if (x != 0)
             {
+                Debug.LogFormat("Beginning to update neighbour ({0},{1})", x - 1, y);
                 Solution[y][x - 1].RemoveUnsupportedPossibilitiesBecause(Direction.LeftOf, collapsedTile);
             }
 
             if (x < tilemapBounds.Width() - 1)
             {
+                Debug.LogFormat("Beginning to update neighbour ({0},{1})", x + 1, y);
                 Solution[y][x + 1].RemoveUnsupportedPossibilitiesBecause(Direction.RightOf, collapsedTile);
             }
 
             if (y != 0)
             {
+                Debug.LogFormat("Beginning to update neighbour ({0},{1})", x, y - 1);
                 Solution[y - 1][x].RemoveUnsupportedPossibilitiesBecause(Direction.Below, collapsedTile);
             }
 
             if (y < tilemapBounds.Height() - 1)
             {
+                Debug.LogFormat("Beginning to update neighbour ({0},{1})", x, y + 1);
                 Solution[y + 1][x].RemoveUnsupportedPossibilitiesBecause(Direction.Above, collapsedTile);
             }
 
             if (x != 0 && y < tilemapBounds.Height() - 1)
             {
+                Debug.LogFormat("Beginning to update neighbour ({0},{1})", x - 1, y + 1);
                 Solution[y + 1][x - 1].RemoveUnsupportedPossibilitiesBecause(Direction.AboveLeftOf, collapsedTile);
             }
 
             if (x != 0 && y != 0)
             {
+                Debug.LogFormat("Beginning to update neighbour ({0},{1})", x - 1, y - 1);
                 Solution[y - 1][x - 1].RemoveUnsupportedPossibilitiesBecause(Direction.BelowLeftOf, collapsedTile);
             }
 
             if (x < tilemapBounds.Width() - 1 && y < tilemapBounds.Height() - 1)
             {
+                Debug.LogFormat("Beginning to update neighbour ({0},{1})", x + 1, y + 1);
                 Solution[y + 1][x + 1].RemoveUnsupportedPossibilitiesBecause(Direction.AboveRightOf, collapsedTile);
             }
 
             if (x < tilemapBounds.Width() - 1 && y != 0)
             {
+                Debug.LogFormat("Beginning to update neighbour ({0},{1})", x + 1, y - 1);
                 Solution[y - 1][x + 1].RemoveUnsupportedPossibilitiesBecause(Direction.BelowRightOf, collapsedTile);
             }
         }

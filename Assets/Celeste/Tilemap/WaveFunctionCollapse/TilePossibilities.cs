@@ -22,6 +22,12 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
         #endregion
 
+        public TilePossibilities(TileDescription collapsedTile)
+        {
+            possibleTiles.Add(collapsedTile);
+            HasCollapsed = true;
+        }
+
         public TilePossibilities(List<TileDescription> tiles)
         {
             possibleTiles.AddRange(tiles);
@@ -66,6 +72,7 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             {
                 if (!possibleTiles[i].SupportsTile(other, direction))
                 {
+                    Debug.LogFormat("Removing possible tile {0} due to not supporting {1} in direction {2}", possibleTiles[i], other != null ? other.name : "null", direction);
                     possibleTiles.RemoveAt(i);
                 }
             }

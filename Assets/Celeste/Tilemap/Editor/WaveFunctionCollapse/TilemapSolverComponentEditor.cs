@@ -1,4 +1,5 @@
 ﻿using Celeste.Tilemaps.WaveFunctionCollapse;
+using CelesteEditor.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,17 +50,23 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
 
             if (GUILayout.Button("Reset", GUILayout.ExpandWidth(false)))
             {
+                LogUtility.Clear();
                 tilemapSolver.Reset();
+                EditorUtility.SetDirty(tilemapSolver);
             }
 
             if (GUILayout.Button("Solve", GUILayout.ExpandWidth(false)))
             {
+                LogUtility.Clear();
                 tilemapSolver.Solve();
+                EditorUtility.SetDirty(tilemapSolver);
             }
 
             if (GUILayout.Button("Solve Step", GUILayout.ExpandWidth(false)))
             {
+                LogUtility.Clear();
                 tilemapSolver.SolveStep();
+                EditorUtility.SetDirty(tilemapSolver);
             }
 
             EditorGUILayout.EndHorizontal();

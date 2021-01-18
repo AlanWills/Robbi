@@ -95,20 +95,25 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
 
             tilemap.ClearAllTiles();
 
-            Vector3Int position = new Vector3Int();
-            TileBase currentOther = null;
+            Vector3Int latestPosition = new Vector3Int(3, 0, 0);
+            Vector3Int tilePosition;
+            Dictionary<TileDescription, Vector3Int> tileLookup = new Dictionary<TileDescription, Vector3Int>();
 
             foreach (Rule rule in tileDescription.Rules)
             {
-                TileBase ruleOther = rule.otherTile == null ? null : rule.otherTile.tile;
-                if (ruleOther != currentOther)
+                if (rule.otherTile == null)
                 {
-                    position.x += 3;
-                    currentOther = ruleOther;
+                    tilePosition = new Vector3Int();
+                }
+                else if (!tileLookup.TryGetValue(rule.otherTile, out tilePosition))
+                {
+                    tileLookup.Add(rule.otherTile, latestPosition);
+                    tilePosition = latestPosition;
+                    latestPosition.x += 3;
                 }
 
-                Vector3Int otherPosition = position;
-
+                Vector3Int otherPosition = tilePosition;
+                
                 switch (rule.direction)
                 {
                     case Direction.LeftOf:
@@ -153,7 +158,7 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
                 }
 
                 Debug.Assert(!tilemap.HasTile(otherPosition));
-                tilemap.SetTile(position, tileDescription.tile);
+                tilemap.SetTile(tilePosition, tileDescription.tile);
                 tilemap.SetTile(otherPosition, rule.otherTile != null ? rule.otherTile.tile : RulePainter.nullTile);
             }
         }
@@ -240,24 +245,25 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
             TileDescription currentTile = RulePainter.tileDescription;
             TilemapSolver tilemapSolver = RulePainter.tilemapSolver;
 
-            foreach (TileDescription tileDescription in tilemapSolver.tileDescriptions)
+            foreach (Rule rule in currentTile.Rules)
             {
-                if (tileDescription == currentTile)
+                if (rule.otherTile == null || rule.otherTile == currentTile)
                 {
                     continue;
                 }
 
-                foreach (Rule rule in currentTile.Rules)
+                // We have found a rule which applies to another tile
+                TileDescription otherTile = tilemapSolver.FindTileDescription(rule.otherTile.tile);
+                Rule oppositeRule = otherTile.FindRule(x => x.otherTile == currentTile && x.direction == rule.direction.Opposite());
+                
+                if (oppositeRule == null)
                 {
-                    if (rule.otherTile == tileDescription.tile)
-                    {
-                        // We have found a rule which applies to this tile so add it's opposite
-                        Rule oppositeRule = tileDescription.AddRule();
-                        oppositeRule.direction = rule.direction.Opposite();
-                        oppositeRule.otherTile = currentTile;
+                    oppositeRule = otherTile.AddRule();
+                    oppositeRule.direction = rule.direction.Opposite();
+                    oppositeRule.otherTile = currentTile;
+                    EditorUtility.SetDirty(oppositeRule);
 
-                        EditorUtility.SetDirty(oppositeRule);
-                    }
+                    Debug.LogFormat("Adding opposite rule to {0}", otherTile.name);
                 }
             }
 
