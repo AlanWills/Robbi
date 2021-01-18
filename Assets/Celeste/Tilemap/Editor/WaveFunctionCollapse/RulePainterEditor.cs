@@ -1,4 +1,5 @@
 ﻿using Celeste.Tilemaps.WaveFunctionCollapse;
+using CelesteEditor.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,9 +62,25 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
                 }
             }
 
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+
             if (GUILayout.Button("Save Rules", GUILayout.ExpandWidth(false)))
             {
                 SaveRules();
+            }
+
+            if (GUILayout.Button("Apply Rules To Solver", GUILayout.ExpandWidth(false)))
+            {
+                SaveRules();
+                ApplyRulesToSolver();
+            }
+
+            if (GUILayout.Button("Check Symmetric Rules", GUILayout.ExpandWidth(false)))
+            {
+                LogUtility.Clear();
+                RulePainter.tilemapSolver.CheckSymmetricRules();
             }
 
             EditorGUILayout.EndHorizontal();
@@ -71,7 +88,7 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
             serializedObject.ApplyModifiedProperties();
         }
 
-        private void ShowRules()
+        public void ShowRules()
         {
             Tilemap tilemap = RulePainter.tilemap;
             TileDescription tileDescription = RulePainter.tileDescription;
@@ -216,6 +233,35 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
             }
 
             return false;
+        }
+
+        private void ApplyRulesToSolver()
+        {
+            TileDescription currentTile = RulePainter.tileDescription;
+            TilemapSolver tilemapSolver = RulePainter.tilemapSolver;
+
+            foreach (TileDescription tileDescription in tilemapSolver.tileDescriptions)
+            {
+                if (tileDescription == currentTile)
+                {
+                    continue;
+                }
+
+                foreach (Rule rule in currentTile.Rules)
+                {
+                    if (rule.otherTile == tileDescription.tile)
+                    {
+                        // We have found a rule which applies to this tile so add it's opposite
+                        Rule oppositeRule = tileDescription.AddRule();
+                        oppositeRule.direction = rule.direction.Opposite();
+                        oppositeRule.otherTile = currentTile;
+
+                        EditorUtility.SetDirty(oppositeRule);
+                    }
+                }
+            }
+
+            AssetDatabase.SaveAssets();
         }
     }
 }

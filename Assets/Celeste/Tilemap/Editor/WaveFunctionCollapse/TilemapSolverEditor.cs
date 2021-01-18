@@ -37,7 +37,7 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
 
             if (GUILayout.Button("Check Symmetric Rules", GUILayout.ExpandWidth(false)))
             {
-                CheckSymmetricRules();
+                TilemapSolver.CheckSymmetricRules();
             }
 
             EditorGUILayout.EndHorizontal();
@@ -79,29 +79,6 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
             if (dirty)
             {
                 EditorUtility.SetDirty(target);
-            }
-        }
-
-        private void CheckSymmetricRules()
-        {
-            foreach (TileDescription thisTileDescription in TilemapSolver.tileDescriptions)
-            {
-                foreach (Rule rule in thisTileDescription.Rules)
-                {
-                    if (thisTileDescription == rule.otherTile || rule.otherTile == null)
-                    {
-                        continue;
-                    }
-
-                    Rule ruleAboutThisTile = rule.otherTile.FindRule(x => x.otherTile == thisTileDescription && x.direction == rule.direction.Opposite());
-                    if (ruleAboutThisTile != null)
-                    {
-                        // We have the symmetric rule in the other tile description
-                        continue;
-                    }
-
-                    Debug.LogErrorFormat("Missing symmetric rule {0}-{1} for this tile {2}-{3}", rule.direction.Opposite(), rule.otherTile.name, rule.direction, thisTileDescription.name);
-                }
             }
         }
 

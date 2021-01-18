@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
@@ -33,6 +34,7 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
         private void OnEnable()
         {
             rulesProperty = serializedObject.FindProperty("rules");
+            scrollPosition = new Vector2();
         }
 
         public override void OnInspectorGUI()
@@ -42,6 +44,18 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
             base.OnInspectorGUI();
 
             EditorGUILayout.BeginHorizontal();
+
+            if (GUILayout.Button("Open Rule Painter", GUILayout.ExpandWidth(false)))
+            {
+                GameObject rulePainterGameObject = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/LevelGenerator/RulePainter.prefab");
+                AssetDatabase.OpenAsset(rulePainterGameObject);
+
+                RulePainter rulePainter = StageUtility.GetCurrentStage().FindComponentOfType<RulePainter>();
+                rulePainter.tileDescription = TileDescription;
+                
+                RulePainterEditor rulePainterEditor = Editor.CreateEditor(rulePainter) as RulePainterEditor;
+                rulePainterEditor.ShowRules();
+            }
 
             if (GUILayout.Button("Add Rule", GUILayout.ExpandWidth(false)))
             {
