@@ -68,12 +68,19 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
         public void RemoveUnsupportedPossibilitiesBecause(Direction direction, TileDescription other)
         {
+            if (HasCollapsed)
+            {
+                // We have already chosen so altering possibilities is not necessary
+                return;
+            }
+
             for (int i = possibleTiles.Count - 1; i >= 0; --i)
             {
                 if (!possibleTiles[i].SupportsTile(other, direction))
                 {
                     Debug.LogFormat("Removing possible tile {0} due to not supporting {1} in direction {2}", possibleTiles[i], other != null ? other.name : "null", direction);
                     possibleTiles.RemoveAt(i);
+                    Debug.AssertFormat(HasPossibilities, "No more possibilities");
                 }
             }
         }

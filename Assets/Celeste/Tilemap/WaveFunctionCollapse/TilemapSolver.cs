@@ -280,7 +280,6 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
             // Check left
             {
-                Debug.AssertFormat(x >= 0, "x: {0} is less than 0", x);
                 if (x == 0)
                 {
                     location.RemoveUnsupportedPossibilitiesBecause(Direction.RightOf, null);
