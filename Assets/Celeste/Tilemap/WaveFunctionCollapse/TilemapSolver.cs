@@ -158,13 +158,26 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
         public bool SolveStep(Tilemap tilemap)
         {
-            while (ShouldContinueSolving(tilemap.cellBounds))
+            if (ShouldContinueSolving(tilemap.cellBounds))
             {
                 Vector2Int randomPosition = GetLowEntropyLocation(tilemap.cellBounds);
                 return CollapseLocation(randomPosition, tilemap);
             }
 
             return false;
+        }
+
+        public IEnumerator SolveCoroutine(Tilemap tilemap)
+        {
+            SetUpFrom(tilemap);
+
+            bool isRunning = SolveStep(tilemap);
+            while (isRunning)
+            {
+                yield return null;
+
+                isRunning = SolveStep(tilemap);
+            }
         }
 
         public void RemoveInvalidPossibilities(BoundsInt tilemapBounds)
@@ -219,7 +232,7 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
 #region Entropy Functions
 
-        private bool ShouldContinueSolving(BoundsInt tilemapBounds)
+        public bool ShouldContinueSolving(BoundsInt tilemapBounds)
         {
             for (int row = 0; row < tilemapBounds.Height(); ++row)
             {

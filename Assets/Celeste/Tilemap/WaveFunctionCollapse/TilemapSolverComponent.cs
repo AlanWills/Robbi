@@ -1,5 +1,6 @@
 ﻿using Celeste.Tilemaps.WaveFunctionCollapse;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,17 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
     [AddComponentMenu("Celeste/Tilemaps/Wave Function Collapse/Tilemap Solver Component")]
     public class TilemapSolverComponent : MonoBehaviour
     {
+        #region Properties and Fields
+
         public Tilemap tilemap;
         public TilemapSolver tilemapSolver;
         public uint maxRetryCount = 3;
+
+        private Coroutine solveCoroutine;
+
+        #endregion
+
+        #region Unity Methods
 
         private void OnValidate()
         {
@@ -27,6 +36,8 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 #endif
             }
         }
+
+        #endregion
 
         public void ResetTilemap()
         {
@@ -70,6 +81,17 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
                 ++currentRetryCount;
                 Debug.LogAssertion("No solution could be found for configuration");
             }
+        }
+
+        public void SolveCoroutine()
+        {
+            if (solveCoroutine != null)
+            {
+                StopCoroutine(solveCoroutine);
+                solveCoroutine = null;
+            }
+
+            solveCoroutine = StartCoroutine(tilemapSolver.SolveCoroutine(tilemap));
         }
 
         public void SolveStep()
