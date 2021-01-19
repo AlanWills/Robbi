@@ -73,7 +73,7 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
             while (currentRetryCount < maxRetryCount)
             {
-                if (tilemapSolver.Solve(tilemap))
+                if (tilemapSolver.Solve(tilemap) && tilemapSolver.IsSolved(tilemap.cellBounds))
                 {
                     break;
                 }
@@ -81,6 +81,8 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
                 ++currentRetryCount;
                 Debug.LogAssertion("No solution could be found for configuration");
             }
+
+            CheckSolved();
         }
 
         public void SolveCoroutine()
@@ -100,12 +102,19 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             {
                 Debug.LogAssertion("Step failed to solve");
             }
+
+            CheckSolved();
         }
 
         private IEnumerator SolveCoroutineImpl()
         {
             yield return tilemapSolver.SolveCoroutine(tilemap);
 
+            CheckSolved();
+        }
+
+        private void CheckSolved()
+        {
             if (tilemapSolver.IsSolved(tilemap.cellBounds))
             {
                 Debug.Log("Tilemap solved completely");
