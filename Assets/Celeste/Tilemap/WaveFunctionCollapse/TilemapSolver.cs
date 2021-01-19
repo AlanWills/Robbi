@@ -10,11 +10,6 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
     {
         #region Properties and Fields
 
-        public bool HasSolutionInfo
-        {
-            get { return Solution.Count != 0; }
-        }
-
         public List<List<TilePossibilities>> Solution { get; } = new List<List<TilePossibilities>>();
 
         public List<TileDescription> tileDescriptions = new List<TileDescription>();
@@ -176,7 +171,10 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             {
                 yield return null;
 
-                isRunning = SolveStep(tilemap);
+                for (int i = 0; i < 5 && isRunning; ++i)
+                {
+                    isRunning = SolveStep(tilemap);
+                }
             }
         }
 
@@ -228,9 +226,25 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             return DoAllNeighboursHavePossibilities(x, y, tilemap.cellBounds);
         }
 
-#endregion
+        public bool IsSolved(BoundsInt tilemapBounds)
+        {
+            for (int row = 0; row < tilemapBounds.Height(); ++row)
+            {
+                for (int column = 0; column < tilemapBounds.Width(); ++column)
+                {
+                    if (!Solution[row][column].HasCollapsed)
+                    {
+                        return false;
+                    }
+                }
+            }
 
-#region Entropy Functions
+            return true;
+        }
+
+        #endregion
+
+        #region Entropy Functions
 
         public bool ShouldContinueSolving(BoundsInt tilemapBounds)
         {
