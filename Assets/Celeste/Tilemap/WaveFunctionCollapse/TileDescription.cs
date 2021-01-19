@@ -85,6 +85,12 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             return rules.Find(predicate);
         }
 
+        /// <summary>
+        /// Attempts to find a rule within this tile description which has the inputted otherTile set and direction Opposite to the inputted direction.
+        /// </summary>
+        /// <param name="otherTile">The rule must have this tile set</param>
+        /// <param name="direction">The rule must have the opposite of this direction set</param>
+        /// <returns></returns>
         public Rule FindOppositeRule(TileDescription otherTile, Direction direction)
         {
             return FindRule(x => x.otherTile == otherTile && x.direction == direction.Opposite());

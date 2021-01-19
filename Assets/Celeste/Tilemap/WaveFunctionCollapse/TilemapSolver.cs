@@ -19,9 +19,20 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
         public List<TileDescription> tileDescriptions = new List<TileDescription>();
 
+        private Dictionary<TileBase, TileDescription> tileLookup = new Dictionary<TileBase, TileDescription>();
         private List<Vector2Int> lowEntropyCache = new List<Vector2Int>();
 
         #endregion
+
+        private void OnEnable()
+        {
+            tileLookup.Clear();
+
+            foreach (TileDescription tileDescription in tileDescriptions)
+            {
+                tileLookup.Add(tileDescription.tile, tileDescription);
+            }
+        }
 
         #region Utility
 
@@ -36,7 +47,7 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
                         continue;
                     }
 
-                    Rule ruleAboutThisTile = rule.otherTile.FindRule(x => x.otherTile == thisTileDescription && x.direction == rule.direction.Opposite());
+                    Rule ruleAboutThisTile = rule.otherTile.FindOppositeRule(thisTileDescription, rule.direction);
                     if (ruleAboutThisTile != null)
                     {
                         // We have the symmetric rule in the other tile description
@@ -50,9 +61,13 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
         public TileDescription FindTileDescription(TileBase tile)
         {
-            TileDescription tileDescription = tileDescriptions.Find(x => x.tile == tile);
-            Debug.AssertFormat(tileDescription != null, "No TileDescription found for tile {0}", tile.name);
-            return tileDescription;
+            TileDescription description;
+            if (!tileLookup.TryGetValue(tile, out description))
+            {
+                Debug.LogAssertionFormat("No TileDescription found for tile {0}", tile.name);
+            }
+
+            return description;
         }
 
         public void Reset(Tilemap tilemap)
