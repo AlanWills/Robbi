@@ -33,6 +33,29 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             tilemapSolver.Reset(tilemap);
         }
 
+        public void SetUpFromTilemap()
+        {
+            tilemapSolver.SetUpFrom(tilemap);
+        }
+
+        public void Analyse(Vector2Int location)
+        {
+            TilePossibilities tilePossibilities = new TilePossibilities(tilemapSolver.tileDescriptions);
+            tilemapSolver.UpdateFromNeighbours(location.x, location.y, tilePossibilities);
+
+            if (tilePossibilities.HasPossibilities)
+            {
+                foreach (TileDescription tileDescription in tilePossibilities.possibleTiles)
+                {
+                    Debug.LogFormat("Possibility: {0}", tileDescription.name);
+                }
+            }
+            else
+            {
+                Debug.LogError("No possibilities remaining after analysis");
+            }
+        }
+
         public void Solve()
         {
             uint currentRetryCount = 0;

@@ -16,13 +16,14 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
         #region Properties and Fields
 
         private Vector2Int tilemapBounds = new Vector2Int();
+        private Vector2Int location = new Vector2Int();
 
         #endregion
 
         private void OnEnable()
         {
             TilemapSolverComponent tilemapSolver = target as TilemapSolverComponent;
-            if (tilemapSolver.tilemap != null)
+            if (tilemapSolver.tilemap != null && tilemapBounds == Vector2.zero)
             {
                 tilemapBounds.x = tilemapSolver.tilemap.cellBounds.size.x;
                 tilemapBounds.y = tilemapSolver.tilemap.cellBounds.size.y;
@@ -48,11 +49,28 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
 
             EditorGUILayout.BeginHorizontal();
 
+            location = EditorGUILayout.Vector2IntField("Location", location);
+            if (GUILayout.Button("Analyse", GUILayout.ExpandWidth(false)))
+            {
+                LogUtility.Clear();
+                tilemapSolver.Analyse(location);
+            }
+
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+
             if (GUILayout.Button("Reset", GUILayout.ExpandWidth(false)))
             {
                 LogUtility.Clear();
                 tilemapSolver.ResetTilemap();
                 EditorUtility.SetDirty(tilemapSolver);
+            }
+
+            if (GUILayout.Button("Set Up From Tilemap", GUILayout.ExpandWidth(false)))
+            {
+                LogUtility.Clear();
+                tilemapSolver.SetUpFromTilemap();
             }
 
             if (GUILayout.Button("Solve", GUILayout.ExpandWidth(false)))

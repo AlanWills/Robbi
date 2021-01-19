@@ -271,10 +271,8 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
 #region Neighbour Functions
 
-        private void UpdateFromNeighbours(int x, int y)
+        public void UpdateFromNeighbours(int x, int y, TilePossibilities location)
         {
-            TilePossibilities location = Solution[y][x];
-
             Debug.AssertFormat(location != null, "Tile Possibility at ({0},{1}) is null", x, y);
             Debug.AssertFormat(y >= 0, "y: {0} is less than 0", y);
             Debug.AssertFormat(y < Solution.Count, "y: {0} is more than {1}", y, Solution.Count - 1);
@@ -376,6 +374,11 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
                     location.RemoveUnsupportedPossibilitiesBecause(Direction.AboveLeftOf, Solution[y - 1][x + 1].possibleTiles[0]);
                 }
             }
+        }
+
+        private void UpdateFromNeighbours(int x, int y)
+        {
+            UpdateFromNeighbours(x, y, Solution[y][x]);
         }
 
         private void UpdateNeighbours(int x, int y, BoundsInt tilemapBounds, TileDescription collapsedTile)
