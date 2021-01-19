@@ -26,8 +26,6 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
 
         public override void OnInspectorGUI()
         {
-            base.OnInspectorGUI();
-
             EditorGUILayout.BeginHorizontal();
 
             if (GUILayout.Button("Find Tile Descriptions", GUILayout.ExpandWidth(false)))
@@ -41,6 +39,8 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
             }
 
             EditorGUILayout.EndHorizontal();
+            
+            base.OnInspectorGUI();
         }
 
         private void FindTileDescriptions()
