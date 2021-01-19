@@ -267,6 +267,27 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
                 }
             }
 
+            foreach (TileDescription tileDescription in RulePainter.tilemapSolver.tileDescriptions)
+            {
+                if (tileDescription.tile == currentTile)
+                {
+                    continue;
+                }
+
+                // Try and find rules in other tiles that do not exist in this one
+                Rule otherRule = tileDescription.FindRule(x => x.otherTile == currentTile);
+                while (otherRule != null)
+                {
+                    Rule oppositeRule = currentTile.FindRule(x => x.otherTile == tileDescription && x.direction == otherRule.direction.Opposite());
+                    if (oppositeRule == null)
+                    {
+                        tileDescription.RemoveRule(otherRule);
+                    }
+
+                    otherRule = tileDescription.FindRule(x => x.otherTile == currentTile);
+                }
+            }
+
             AssetDatabase.SaveAssets();
         }
     }

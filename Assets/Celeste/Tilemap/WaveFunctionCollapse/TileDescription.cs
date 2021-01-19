@@ -53,6 +53,16 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             }
         }
 
+        public void RemoveRule(Rule rule)
+        {
+
+#if UNITY_EDITOR
+            UnityEditor.AssetDatabase.RemoveObjectFromAsset(rule);
+            UnityEditor.EditorUtility.SetDirty(this);
+#endif
+            rules.Remove(rule);
+        }
+
         public void ClearRules()
         {
 #if UNITY_EDITOR
