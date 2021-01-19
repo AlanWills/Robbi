@@ -19,6 +19,11 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             get { return rules; }
         }
 
+        public int NumRules
+        {
+            get { return rules.Count; }
+        }
+
         public float weight = 1;
         public TileBase tile;
         [SerializeField, HideInInspector] private List<Rule> rules = new List<Rule>();
@@ -78,6 +83,16 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
         public Rule FindRule(Predicate<Rule> predicate)
         {
             return rules.Find(predicate);
+        }
+
+        public Rule FindOppositeRule(TileDescription otherTile, Direction direction)
+        {
+            return FindRule(x => x.otherTile == otherTile && x.direction == direction.Opposite());
+        }
+
+        public Rule GetRule(int ruleIndex)
+        {
+            return 0 <= ruleIndex && ruleIndex < NumRules ? rules[ruleIndex] : null;
         }
 
         public bool SupportsTile(TileDescription tile, Direction direction)

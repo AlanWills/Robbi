@@ -269,22 +269,19 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
 
             foreach (TileDescription tileDescription in RulePainter.tilemapSolver.tileDescriptions)
             {
-                if (tileDescription.tile == currentTile)
+                if (tileDescription == currentTile)
                 {
                     continue;
                 }
 
-                // Try and find rules in other tiles that do not exist in this one
-                Rule otherRule = tileDescription.FindRule(x => x.otherTile == currentTile);
-                while (otherRule != null)
+                for (int i = tileDescription.NumRules - 1; i >= 0; --i)
                 {
-                    Rule oppositeRule = currentTile.FindRule(x => x.otherTile == tileDescription && x.direction == otherRule.direction.Opposite());
-                    if (oppositeRule == null)
+                    Rule tileRule = tileDescription.GetRule(i);
+                    if (tileRule.otherTile == currentTile && currentTile.FindOppositeRule(tileDescription, tileRule.direction) == null)
                     {
-                        tileDescription.RemoveRule(otherRule);
+                        // This rule does not have an opposite in our current tile so we need to delete it
+                        tileDescription.RemoveRule(i);
                     }
-
-                    otherRule = tileDescription.FindRule(x => x.otherTile == currentTile);
                 }
             }
 
