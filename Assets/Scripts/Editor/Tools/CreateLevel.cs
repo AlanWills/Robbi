@@ -49,7 +49,7 @@ namespace RobbiEditor.Tools
         public bool clearLevel = true;
 
         [Header("Parameters")]
-        public int maxWaypointsPlaceable = 3;
+        public int maxWaypointsPlaceable = 10;
         public uint softCurrencyPrize = 50;
         public bool requiresFuel = false;
         [ShowIf("requiresFuel")]
