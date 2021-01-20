@@ -55,6 +55,21 @@ namespace CelesteEditor.Tools
             AssetDatabase.SaveAssets();
         }
 
+        public static string GetSelectionObjectPath()
+        {
+            string path = AssetDatabase.GetAssetPath(Selection.activeObject);
+            if (path == "")
+            {
+                path = "Assets";
+            }
+            else if (Path.GetExtension(path) != "")
+            {
+                path = path.Replace(Path.GetFileName(AssetDatabase.GetAssetPath(Selection.activeObject)), "");
+            }
+
+            return path;
+        }
+
         public static string GetAssetFolderPath(Object obj)
         {
             string assetPath = AssetDatabase.GetAssetPath(obj);
