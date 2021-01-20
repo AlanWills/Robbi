@@ -1,4 +1,5 @@
-﻿using Robbi.Levels;
+﻿using CelesteEditor.Tools;
+using Robbi.Levels;
 using Robbi.Levels.Elements;
 using System;
 using System.Collections.Generic;
@@ -89,12 +90,12 @@ namespace RobbiEditor.Levels
 
         private static void FindPortals(Level level)
         {
-            Find<Portal>(level, LevelDirectories.PORTALS_NAME, "portals");
+            level.FindAssets<Portal>("portals", LevelDirectories.PORTALS_NAME);
         }
 
         private static void FindDoors(Level level)
         {
-            Find<Door>(level, LevelDirectories.DOORS_NAME, "doors");
+            level.FindAssets<Door>("doors", LevelDirectories.DOORS_NAME);
         }
 
         private static void FindInteractables(Level level)
@@ -149,47 +150,7 @@ namespace RobbiEditor.Levels
 
         private static void FindCollectables(Level level)
         {
-            Find<Collectable>(level, LevelDirectories.COLLECTABLES_NAME, "collectables");
-        }
-
-        private static void Find<T>(Level level, string directoryName, string propertyName) where T : ScriptableObject
-        {
-            string location = AssetDatabase.GetAssetPath(level);
-            string objectFolder = string.Format("{0}/{1}", Path.GetDirectoryName(location).Replace('\\', '/'), directoryName);
-            objectFolder = objectFolder.EndsWith("/") ? objectFolder.Substring(0, objectFolder.Length - 1) : objectFolder;
-            string[] objectGuids = AssetDatabase.FindAssets("t:" + typeof(T).Name, new string[] { objectFolder });
-
-            SerializedObject serializedObject = new SerializedObject(level);
-            serializedObject.Update();
-
-            SerializedProperty objectsProperty = serializedObject.FindProperty(propertyName);
-            bool dirty = false;
-
-            if (objectsProperty.arraySize != objectGuids.Length)
-            {
-                objectsProperty.arraySize = objectGuids.Length;
-            }
-
-            for (int i = 0; i < objectGuids.Length; ++i)
-            {
-                string objectPath = AssetDatabase.GUIDToAssetPath(objectGuids[i]);
-                T obj = AssetDatabase.LoadAssetAtPath<T>(objectPath);
-
-                SerializedProperty arrayElement = objectsProperty.GetArrayElementAtIndex(i);
-
-                if (obj != arrayElement.objectReferenceValue)
-                {
-                    arrayElement.objectReferenceValue = obj;
-                    dirty = true;
-                }
-            }
-
-            serializedObject.ApplyModifiedProperties();
-
-            if (dirty)
-            {
-                EditorUtility.SetDirty(level);
-            }
+            level.FindAssets<Collectable>("collectables", LevelDirectories.COLLECTABLES_NAME);
         }
 
         #endregion

@@ -61,5 +61,54 @@ namespace CelesteEditor.Tools
             int indexOfSlash = assetPath.LastIndexOf('/');
             return indexOfSlash > 0 ? assetPath.Substring(0, indexOfSlash) : assetPath;
         }
-	}
+
+        public static void FindAssets<T>(this Object target, string propertyName, string subDirectoryName) where T : ScriptableObject
+        {
+            string targetFolder = GetAssetFolderPath(target);
+            if (!string.IsNullOrEmpty(subDirectoryName))
+            {
+                targetFolder = string.Format("{0}/{1}", targetFolder, subDirectoryName);
+                targetFolder = targetFolder.EndsWith("/") ? targetFolder.Substring(0, targetFolder.Length - 1) : targetFolder;
+            }
+
+            string[] objectGuids = AssetDatabase.FindAssets("t:" + typeof(T).Name, new string[] { targetFolder });
+
+            SerializedObject serializedObject = new SerializedObject(target);
+            serializedObject.Update();
+
+            SerializedProperty objectsProperty = serializedObject.FindProperty(propertyName);
+            bool dirty = false;
+
+            if (objectsProperty.arraySize != objectGuids.Length)
+            {
+                objectsProperty.arraySize = objectGuids.Length;
+            }
+
+            for (int i = 0; i < objectGuids.Length; ++i)
+            {
+                string objectPath = AssetDatabase.GUIDToAssetPath(objectGuids[i]);
+                T asset = AssetDatabase.LoadAssetAtPath<T>(objectPath);
+
+                SerializedProperty arrayElement = objectsProperty.GetArrayElementAtIndex(i);
+
+                if (asset != arrayElement.objectReferenceValue)
+                {
+                    arrayElement.objectReferenceValue = asset;
+                    dirty = true;
+                }
+            }
+
+            serializedObject.ApplyModifiedProperties();
+
+            if (dirty)
+            {
+                EditorUtility.SetDirty(target);
+            }
+        }
+
+        public static void FindAssets<T>(this Object target, string propertyName) where T : ScriptableObject
+        {
+            FindAssets<T>(target, propertyName, "");
+        }
+    }
 }

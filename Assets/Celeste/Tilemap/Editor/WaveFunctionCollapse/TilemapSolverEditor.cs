@@ -1,4 +1,5 @@
 ﻿using Celeste.Tilemaps.WaveFunctionCollapse;
+using CelesteEditor.Tools;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,7 +31,7 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
 
             if (GUILayout.Button("Find Tile Descriptions", GUILayout.ExpandWidth(false)))
             {
-                FindTileDescriptions();
+                target.FindAssets<TileDescription>("tileDescriptions");
             }
 
             if (GUILayout.Button("Check Symmetric Rules", GUILayout.ExpandWidth(false)))
@@ -58,45 +59,6 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
             EditorGUILayout.EndHorizontal();
             
             base.OnInspectorGUI();
-        }
-
-        private void FindTileDescriptions()
-        {
-            string location = AssetDatabase.GetAssetPath(target);
-            string objectFolder = Path.GetDirectoryName(location).Replace('\\', '/');
-            objectFolder = objectFolder.EndsWith("/") ? objectFolder.Substring(0, objectFolder.Length - 1) : objectFolder;
-            string[] objectGuids = AssetDatabase.FindAssets("t:" + typeof(TileDescription).Name, new string[] { objectFolder });
-
-            serializedObject.Update();
-
-            SerializedProperty objectsProperty = serializedObject.FindProperty("tileDescriptions");
-            bool dirty = false;
-
-            if (objectsProperty.arraySize != objectGuids.Length)
-            {
-                objectsProperty.arraySize = objectGuids.Length;
-            }
-
-            for (int i = 0; i < objectGuids.Length; ++i)
-            {
-                string objectPath = AssetDatabase.GUIDToAssetPath(objectGuids[i]);
-                TileDescription obj = AssetDatabase.LoadAssetAtPath<TileDescription>(objectPath);
-
-                SerializedProperty arrayElement = objectsProperty.GetArrayElementAtIndex(i);
-
-                if (obj != arrayElement.objectReferenceValue)
-                {
-                    arrayElement.objectReferenceValue = obj;
-                    dirty = true;
-                }
-            }
-
-            serializedObject.ApplyModifiedProperties();
-
-            if (dirty)
-            {
-                EditorUtility.SetDirty(target);
-            }
         }
 
         #endregion
