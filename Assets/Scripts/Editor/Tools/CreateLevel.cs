@@ -262,7 +262,7 @@ namespace RobbiEditor.Tools
         {
             AssetUtility.CreateFolder(levelInfo.destinationFolder, LevelFolderName);
 
-            string levelFolderPath = string.Format("{0}{1}", levelInfo.destinationFolder, LevelFolderName);
+            string levelFolderPath = LevelFolderFullPath;
             
             if (levelInfo.doors.Count > 0)
             {
@@ -426,7 +426,7 @@ namespace RobbiEditor.Tools
             string portalsPath = string.Format("{0}{1}", LevelFolderFullPath, PORTALS_NAME);
             if (!Directory.Exists(portalsPath))
             {
-                AssetDatabase.CreateFolder(LevelFolderFullPath, PORTALS_NAME);
+                AssetUtility.CreateFolder(LevelFolderFullPath, PORTALS_NAME);
             }
 
             for (int i = 0; i < levelInfo.numPortals; ++i)
