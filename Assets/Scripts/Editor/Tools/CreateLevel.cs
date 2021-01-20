@@ -162,9 +162,9 @@ namespace RobbiEditor.Tools
             EditorGUILayout.Space();
             EditorGUILayout.BeginHorizontal();
 
-            if (GUILayout.Button("Create Directories", GUILayout.ExpandWidth(false)))
+            if (GUILayout.Button("Create Level Directory", GUILayout.ExpandWidth(false)))
             {
-                CreateDirectories();
+                CreateLevelDirectory();
             }
 
             if (levelInfo.hasFsm && GUILayout.Button("Create FSM", GUILayout.ExpandWidth(false)))
@@ -229,7 +229,7 @@ namespace RobbiEditor.Tools
 
             LogUtility.Clear();
 
-            CreateDirectories();
+            CreateLevelDirectory();
             CreateFSM();
             CreateTutorial();
             CreatePrefab();
@@ -258,36 +258,9 @@ namespace RobbiEditor.Tools
 
         #region Creation Methods
 
-        private void CreateDirectories()
+        private void CreateLevelDirectory()
         {
             AssetUtility.CreateFolder(levelInfo.destinationFolder, LevelFolderName);
-
-            string levelFolderPath = LevelFolderFullPath;
-            
-            if (levelInfo.doors.Count > 0)
-            {
-                AssetUtility.CreateFolder(levelFolderPath, DOORS_NAME);
-            }
-
-            if (levelInfo.hasTutorial)
-            {
-                AssetUtility.CreateFolder(levelFolderPath, TUTORIALS_NAME);
-            }
-
-            if (levelInfo.numInteractables > 0 || levelInfo.numInteractableStateMachines > 0)
-            {
-                AssetUtility.CreateFolder(levelFolderPath, INTERACTABLES_NAME);
-            }
-
-            if (levelInfo.numCollectables > 0)
-            {
-                AssetUtility.CreateFolder(levelFolderPath, COLLECTABLES_NAME);
-            }
-
-            if (levelInfo.numPortals > 0)
-            {
-                AssetUtility.CreateFolder(levelFolderPath, PORTALS_NAME);
-            }
         }
 
         private void CreateFSM()
@@ -374,7 +347,16 @@ namespace RobbiEditor.Tools
 
         private void CreateDoors()
         {
+            if (levelInfo.doors.Count == 0)
+            {
+                return;
+            }
+
             string doorsPath = string.Format("{0}{1}", LevelFolderFullPath, DOORS_NAME);
+            if (!Directory.Exists(doorsPath))
+            {
+                AssetUtility.CreateFolder(LevelFolderFullPath, DOORS_NAME);
+            }
 
             foreach (DoorInfo doorInfo in levelInfo.doors)
             {
@@ -384,7 +366,16 @@ namespace RobbiEditor.Tools
 
         private void CreateInteractables()
         {
+            if (levelInfo.numInteractables == 0)
+            {
+                return;
+            }
+
             string interactablesPath = string.Format("{0}{1}", LevelFolderFullPath, INTERACTABLES_NAME);
+            if (!Directory.Exists(interactablesPath))
+            {
+                AssetUtility.CreateFolder(LevelFolderFullPath, INTERACTABLES_NAME);
+            }
 
             for (int i = 0; i < levelInfo.numInteractables; ++i)
             {
@@ -397,7 +388,16 @@ namespace RobbiEditor.Tools
 
         private void CreateInteractableStateMachines()
         {
+            if (levelInfo.numInteractableStateMachines == 0)
+            {
+                return;
+            }
+
             string interactablesPath = string.Format("{0}{1}", LevelFolderFullPath, INTERACTABLES_NAME);
+            if (!Directory.Exists(interactablesPath))
+            {
+                AssetUtility.CreateFolder(LevelFolderFullPath, INTERACTABLES_NAME);
+            }
 
             for (int i = 0; i < levelInfo.numInteractableStateMachines; ++i)
             {
@@ -410,7 +410,16 @@ namespace RobbiEditor.Tools
 
         private void CreateCollectables()
         {
+            if (levelInfo.numCollectables == 0)
+            {
+                return;
+            }
+
             string collectablesPath = string.Format("{0}{1}", LevelFolderFullPath, COLLECTABLES_NAME);
+            if (!Directory.Exists(collectablesPath))
+            {
+                AssetUtility.CreateFolder(LevelFolderFullPath, COLLECTABLES_NAME);
+            }
 
             for (int i = 0; i < levelInfo.numCollectables; ++i)
             {
@@ -423,6 +432,11 @@ namespace RobbiEditor.Tools
 
         private void CreatePortals()
         {
+            if (levelInfo.numPortals == 0)
+            {
+                return;
+            }
+
             string portalsPath = string.Format("{0}{1}", LevelFolderFullPath, PORTALS_NAME);
             if (!Directory.Exists(portalsPath))
             {
