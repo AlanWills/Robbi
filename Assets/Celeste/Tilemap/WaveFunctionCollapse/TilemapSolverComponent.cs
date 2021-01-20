@@ -16,6 +16,7 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
         #region Properties and Fields
 
         public Tilemap tilemap;
+        public Tilemap collapsedTilemap;
         public TilemapSolver tilemapSolver;
         public uint maxRetryCount = 3;
 

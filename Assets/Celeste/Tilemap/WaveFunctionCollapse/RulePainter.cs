@@ -14,6 +14,5 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
         public Tilemap tilemap;
         public TileDescription tileDescription;
         public TilemapSolver tilemapSolver;
-        public Tile nullTile;
     }
 }

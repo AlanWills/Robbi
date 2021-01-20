@@ -48,7 +48,7 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
                     ++index;
                 }
 
-                RulePainter.tilemap.SetTile(new Vector3Int(index * 3, 0, 0), RulePainter.tileDescription.tile);
+                RulePainter.tilemap.SetTile(new Vector3Int(index * 3, 0, 0), RulePainter.tileDescription == RulePainter.tilemapSolver.nullTile ? RulePainter.tilemapSolver.nullTilePreview : RulePainter.tileDescription.tile);
             }
 
             if (GUILayout.Button("New Rules For Solver", GUILayout.ExpandWidth(false)))
@@ -58,7 +58,7 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
                 // +1 for null tile
                 for (int i = 0; i < RulePainter.tilemapSolver.tileDescriptions.Count + 1; ++i)
                 {
-                    RulePainter.tilemap.SetTile(new Vector3Int(i * 3, 0, 0), RulePainter.tileDescription.tile);
+                    RulePainter.tilemap.SetTile(new Vector3Int(i * 3, 0, 0), RulePainter.tileDescription == RulePainter.tilemapSolver.nullTile ? RulePainter.tilemapSolver.nullTilePreview : RulePainter.tileDescription.tile);
                 }
             }
 
@@ -95,17 +95,13 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
 
             tilemap.ClearAllTiles();
 
-            Vector3Int latestPosition = new Vector3Int(3, 0, 0);
+            Vector3Int latestPosition = new Vector3Int();
             Vector3Int tilePosition;
             Dictionary<TileDescription, Vector3Int> tileLookup = new Dictionary<TileDescription, Vector3Int>();
 
             foreach (Rule rule in tileDescription.Rules)
             {
-                if (rule.otherTile == null)
-                {
-                    tilePosition = new Vector3Int();
-                }
-                else if (!tileLookup.TryGetValue(rule.otherTile, out tilePosition))
+                if (!tileLookup.TryGetValue(rule.otherTile, out tilePosition))
                 {
                     tileLookup.Add(rule.otherTile, latestPosition);
                     tilePosition = latestPosition;
@@ -158,8 +154,8 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
                 }
 
                 Debug.Assert(!tilemap.HasTile(otherPosition));
-                tilemap.SetTile(tilePosition, tileDescription.tile);
-                tilemap.SetTile(otherPosition, rule.otherTile != null ? rule.otherTile.tile : RulePainter.nullTile);
+                tilemap.SetTile(tilePosition, tileDescription == RulePainter.tilemapSolver.nullTile ? RulePainter.tilemapSolver.nullTilePreview : tileDescription.tile);
+                tilemap.SetTile(otherPosition, rule.otherTile == RulePainter.tilemapSolver.nullTile ? RulePainter.tilemapSolver.nullTilePreview : rule.otherTile.tile);
             }
         }
 
@@ -231,7 +227,7 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
             {
                 Rule rule = tileDescription.AddRule();
                 TileBase tile = tilemap.GetTile(currentTilePosition + offset);
-                rule.otherTile = tile == RulePainter.nullTile ? null : RulePainter.tilemapSolver.FindTileDescription(tile);
+                rule.otherTile = RulePainter.tilemapSolver.FindTileDescription(tile);
                 rule.direction = direction;
 
                 EditorUtility.SetDirty(rule);
@@ -247,7 +243,7 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
 
             foreach (Rule rule in currentTile.Rules)
             {
-                if (rule.otherTile == null || rule.otherTile == currentTile)
+                if (rule.otherTile == currentTile)
                 {
                     continue;
                 }

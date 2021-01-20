@@ -25,8 +25,9 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
             TilemapSolverComponent tilemapSolver = target as TilemapSolverComponent;
             if (tilemapSolver.tilemap != null && tilemapBounds == Vector2.zero)
             {
-                tilemapBounds.x = tilemapSolver.tilemap.cellBounds.size.x;
-                tilemapBounds.y = tilemapSolver.tilemap.cellBounds.size.y;
+                // Need to take into account the boundary
+                tilemapBounds.x = tilemapSolver.tilemap.cellBounds.size.x - 1;
+                tilemapBounds.y = tilemapSolver.tilemap.cellBounds.size.y - 1;
             }
         }
 
@@ -34,15 +35,16 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
         {
             base.OnInspectorGUI();
 
-            TilemapSolverComponent tilemapSolver = target as TilemapSolverComponent;
+            TilemapSolverComponent tilemapSolverComponent = target as TilemapSolverComponent;
 
             EditorGUILayout.BeginHorizontal();
 
             tilemapBounds = EditorGUILayout.Vector2IntField("Tilemap Bounds", tilemapBounds);
             if (GUILayout.Button("Apply", GUILayout.ExpandWidth(false)))
             {
-                tilemapSolver.tilemap.size = new Vector3Int(tilemapBounds.x, tilemapBounds.y, 1);
-                tilemapSolver.tilemap.ResizeBounds();
+                // Compensate for boundary
+                tilemapSolverComponent.tilemap.size = new Vector3Int(tilemapBounds.x + 1, tilemapBounds.y + 1, 1);
+                tilemapSolverComponent.tilemap.ResizeBounds();
             }
 
             EditorGUILayout.EndHorizontal();
@@ -53,7 +55,7 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
             if (GUILayout.Button("Analyse", GUILayout.ExpandWidth(false)))
             {
                 LogUtility.Clear();
-                tilemapSolver.Analyse(location);
+                tilemapSolverComponent.Analyse(location);
             }
 
             EditorGUILayout.EndHorizontal();
@@ -63,28 +65,47 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
             if (GUILayout.Button("Reset", GUILayout.ExpandWidth(false)))
             {
                 LogUtility.Clear();
-                tilemapSolver.ResetTilemap();
-                EditorUtility.SetDirty(tilemapSolver);
+                tilemapSolverComponent.ResetTilemap();
+                EditorUtility.SetDirty(tilemapSolverComponent);
             }
 
             if (GUILayout.Button("Set Up From Tilemap", GUILayout.ExpandWidth(false)))
             {
                 LogUtility.Clear();
-                tilemapSolver.SetUpFromTilemap();
+                tilemapSolverComponent.SetUpFromTilemap();
             }
 
             if (GUILayout.Button("Solve", GUILayout.ExpandWidth(false)))
             {
                 LogUtility.Clear();
-                tilemapSolver.Solve();
-                EditorUtility.SetDirty(tilemapSolver);
+                tilemapSolverComponent.Solve();
+                EditorUtility.SetDirty(tilemapSolverComponent);
             }
 
             if (GUILayout.Button("Solve Step", GUILayout.ExpandWidth(false)))
             {
                 LogUtility.Clear();
-                tilemapSolver.SolveStep();
-                EditorUtility.SetDirty(tilemapSolver);
+                tilemapSolverComponent.SolveStep();
+                EditorUtility.SetDirty(tilemapSolverComponent);
+            }
+
+            if (GUILayout.Button("Show Collapsed", GUILayout.ExpandWidth(false)))
+            {
+                LogUtility.Clear();
+                tilemapSolverComponent.collapsedTilemap.ClearAllTiles();
+
+                for (int row = 0; row < tilemapSolverComponent.tilemapSolver.Solution.Count; ++row)
+                {
+                    List<TilePossibilities> rowPossibilities = tilemapSolverComponent.tilemapSolver.Solution[row];
+
+                    for (int column = 0; column < rowPossibilities.Count; ++column)
+                    {
+                        if (rowPossibilities[column].HasCollapsed)
+                        {
+                            tilemapSolverComponent.collapsedTilemap.SetTile(new Vector3Int(column, row, 0), tilemapSolverComponent.tilemapSolver.nullTilePreview);
+                        }
+                    }
+                }
             }
 
             EditorGUILayout.EndHorizontal();

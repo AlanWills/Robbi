@@ -38,6 +38,23 @@ namespace CelesteEditor.Tilemaps.WaveFunctionCollapse
                 TilemapSolver.CheckSymmetricRules();
             }
 
+            if (GUILayout.Button("Fix Null", GUILayout.ExpandWidth(false)))
+            {
+                foreach (TileDescription tileDescription in TilemapSolver.tileDescriptions)
+                {
+                    foreach (Rule rule in tileDescription.Rules)
+                    {
+                        if (rule.otherTile == null)
+                        {
+                            rule.otherTile = TilemapSolver.nullTile;
+                            EditorUtility.SetDirty(rule);
+                        }
+                    }
+                }
+
+                AssetDatabase.SaveAssets();
+            }
+
             EditorGUILayout.EndHorizontal();
             
             base.OnInspectorGUI();
