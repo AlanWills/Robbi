@@ -171,18 +171,6 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
                     lastRowPossibilities.Add(new TilePossibilities(nullTile));
                 }
             }
-
-            //for (int row = 0; row < tilemap.Height(); ++row)
-            //{
-            //    for (int column = 0; column < tilemap.Width(); ++column)
-            //    {
-            //        Debug.AssertFormat(Solution[row][column].HasPossibilities, "({0},{1}) has no possibilities", column, row);
-            //        if (Solution[row][column].HasCollapsed)
-            //        {
-            //            UpdateNeighbours(column, row, tilemap.cellBounds, Solution[row][column].possibleTiles[0]);
-            //        }
-            //    }
-            //}
         }
 
         #endregion
@@ -199,11 +187,6 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
             while (ShouldContinueSolving(tilemapBounds))
             {
                 Vector2Int location = GetLowEntropyLocation(tilemapBounds);
-                if (location.x == 0 || location.x == 15 || location.y == 0 || location.y == 15)
-                {
-                    Debug.LogAssertion("Got here");
-                }
-
                 if (!CollapseLocation(location, tilemap))
                 {
                     // Our algorithm has failed

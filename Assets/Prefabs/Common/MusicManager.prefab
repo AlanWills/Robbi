@@ -9,13 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1611918794444853179}
-  - component: {fileID: 1611918794444853124}
-  - component: {fileID: 1611918794444853125}
-  - component: {fileID: 2904599960294701197}
-  - component: {fileID: 4520732936008426246}
+  - component: {fileID: 8691798698856683727}
+  - component: {fileID: 3770534418325879534}
+  - component: {fileID: 6518531948456336793}
+  - component: {fileID: -1888294857510989497}
+  - component: {fileID: 4589253779048020253}
   - component: {fileID: 1611918794444853126}
   m_Layer: 0
-  m_Name: SFXManager
+  m_Name: MusicManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,7 +36,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1611918794444853124
+--- !u!114 &8691798698856683727
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,12 +45,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1611918794444853127}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bebff7779b475942aba9ecfadc7cc65, type: 3}
+  m_Script: {fileID: 11500000, guid: 720439431f3c9804f87cad17e7f5986d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shuffle: 0
+  music: []
   audioSource: {fileID: 1611918794444853126}
-  sfxEnabled: {fileID: 11400000, guid: 6a71f921388147946967d8ee5ba6e612, type: 2}
---- !u!114 &1611918794444853125
+  musicEnabled: {fileID: 11400000, guid: 22c508dcd0a0194409f2ccc61816d685, type: 2}
+--- !u!114 &3770534418325879534
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,13 +64,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a70e38b5680cb844388493b4f8753c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 257f2ff4a01cec34ca12dd5c3a315dd6, type: 2}
+  gameEvent: {fileID: 11400000, guid: b32c8afbb63fa9a4b94966ff9d2660de, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1611918794444853124}
-        m_TargetAssemblyTypeName: Robbi.Sound.SFXManager, Assembly-CSharp
-        m_MethodName: OnSFXEnabledChanged
+      - m_Target: {fileID: 8691798698856683727}
+        m_TargetAssemblyTypeName: Robbi.Sound.MusicManager, Robbi
+        m_MethodName: OnMusicEnabledChanged
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -77,7 +80,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2904599960294701197
+--- !u!114 &6518531948456336793
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,12 +92,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ede93ec8f2038c43841a9c5673cd2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 4f0b2c3d823d7984aab5a8ec3741664c, type: 2}
+  gameEvent: {fileID: 11400000, guid: c654c37df2f8cbb4791507d712802380, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1611918794444853124}
-        m_TargetAssemblyTypeName: Robbi.Sound.SFXManager, Robbi
+      - m_Target: {fileID: 8691798698856683727}
+        m_TargetAssemblyTypeName: Robbi.Sound.MusicManager, Robbi
         m_MethodName: Play
         m_Mode: 0
         m_Arguments:
@@ -105,7 +108,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4520732936008426246
+--- !u!114 &-1888294857510989497
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,14 +120,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ede93ec8f2038c43841a9c5673cd2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 38816506095b0b345bca27fd40eb8cd1, type: 2}
+  gameEvent: {fileID: 11400000, guid: d2726643193b5d24a80484b7f24562d7, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1611918794444853124}
-        m_TargetAssemblyTypeName: Robbi.Sound.SFXManager, Robbi
+      - m_Target: {fileID: 8691798698856683727}
+        m_TargetAssemblyTypeName: Robbi.Sound.MusicManager, Robbi
         m_MethodName: PlayOneShot
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4589253779048020253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611918794444853127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c2c167d8138f94b8f96ff1b82578d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 1a24a100dffeb1b459f2eb27a90294d9, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8691798698856683727}
+        m_TargetAssemblyTypeName: Robbi.Sound.MusicManager, Robbi
+        m_MethodName: NextTrack
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -144,10 +175,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
