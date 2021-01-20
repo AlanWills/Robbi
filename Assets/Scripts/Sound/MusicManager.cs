@@ -47,16 +47,31 @@ namespace Robbi.Sound
 
         public void NextTrack()
         {
-            if (music.Count > 0 && musicEnabled.Value)
+            NextTrack(musicEnabled.Value);
+        }
+
+        private void NextTrack(bool isMusicEnabled)
+        {
+            if (music.Count > 0 && isMusicEnabled)
             {
                 currentTrackIndex = shuffle ? Random.Range(0, music.Count) : (++currentTrackIndex % music.Count);
                 Debug.AssertFormat(0 <= currentTrackIndex & currentTrackIndex < music.Count, "Invalid track index {0}", currentTrackIndex);
-                PlayOneShot(music[currentTrackIndex]);
+                audioSource.clip = music[currentTrackIndex];
+                audioSource.Play();
             }
         }
 
         public void OnMusicEnabledChanged(bool isEnabled)
         {
+            if (isEnabled)
+            {
+                NextTrack(isEnabled);
+            }
+            else
+            {
+                audioSource.Stop();
+            }
+
             for (int i = 0; i < transform.childCount; ++i)
             {
                 transform.GetChild(i).gameObject.SetActive(isEnabled);

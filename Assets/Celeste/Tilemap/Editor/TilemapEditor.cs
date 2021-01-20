@@ -79,6 +79,28 @@ namespace CelesteEditor.Tilemaps
 
             EditorGUILayout.EndHorizontal();
 
+            EditorGUILayout.BeginHorizontal();
+
+            if (GUILayout.Button("Copy", GUILayout.ExpandWidth(false)))
+            {
+                BoundsInt tilemapDims = copyFrom.cellBounds;
+
+                for (int y = tilemapDims.yMin; y < tilemapDims.yMax; ++y)
+                {
+                    for (int x = tilemapDims.xMin; x < tilemapDims.xMax; ++x)
+                    {
+                        if (copyFrom.HasTile(new Vector3Int(x, y, 0)))
+                        {
+                            Tilemap.SetTile(new Vector3Int(x, y, 0), copyFrom.GetTile(new Vector3Int(x, y, 0)));
+                        }
+                    }
+                }
+            }
+
+            copyFrom = EditorGUILayout.ObjectField(copyFrom, typeof(Tilemap), true) as Tilemap;
+
+            EditorGUILayout.EndHorizontal();
+
             base.OnInspectorGUI();
         }
     }
