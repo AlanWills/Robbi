@@ -81,7 +81,7 @@ namespace CelesteEditor.Tilemaps
 
             EditorGUILayout.BeginHorizontal();
 
-            if (GUILayout.Button("Copy", GUILayout.ExpandWidth(false)))
+            if (GUILayout.Button("Copy From", GUILayout.ExpandWidth(false)))
             {
                 BoundsInt tilemapDims = copyFrom.cellBounds;
 
