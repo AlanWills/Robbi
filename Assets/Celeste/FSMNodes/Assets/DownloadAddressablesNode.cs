@@ -46,7 +46,7 @@ namespace Celeste.FSM.Nodes.Assets
         {
             if (progress != null && downloadOperation.IsValid() && !downloadOperation.IsDone)
             {
-                progress.Value = downloadOperation.PercentComplete;
+                progress.Value = downloadOperation.PercentComplete * 100;
             }
 
             if (complete)

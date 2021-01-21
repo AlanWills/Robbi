@@ -1,4 +1,5 @@
 ﻿using Celeste.FSM;
+using CelesteEditor.Tools;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -45,25 +46,7 @@ namespace RobbiEditor.Testing
 
             if (GUILayout.Button("Find Tests", GUILayout.ExpandWidth(false)))
             {
-                string location = AssetDatabase.GetAssetPath(target);
-                string parentDirectory = location.Substring(0, location.LastIndexOf('/'));
-                string[] integrationTestGuids = AssetDatabase.FindAssets("t:FSMGraph", new string[] { parentDirectory });
-
-                serializedObject.Update();
-
-                SerializedProperty integrationTestsProperty = serializedObject.FindProperty("integrationTests");
-                integrationTestsProperty.arraySize = integrationTestGuids.Length;
-
-                for (int i = 0; i < integrationTestGuids.Length; ++i)
-                {
-                    string integrationTestPath = AssetDatabase.GUIDToAssetPath(integrationTestGuids[i]);
-                    FSMGraph integrationTest = AssetDatabase.LoadAssetAtPath<FSMGraph>(integrationTestPath);
-
-                    SerializedProperty arrayElement = integrationTestsProperty.GetArrayElementAtIndex(i);
-                    arrayElement.objectReferenceValue = integrationTest;
-                }
-
-                serializedObject.ApplyModifiedProperties();
+                target.FindAssets<FSMGraph>("integrationTests");
             }
         }
 

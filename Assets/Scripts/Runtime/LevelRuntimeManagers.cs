@@ -36,11 +36,6 @@ namespace Robbi.Runtime
             IEnumerable<ScriptableObject> interactables,
             IEnumerable<Portal> portals)
         {
-            for (int i = 0; i < transform.childCount; ++i)
-            {
-                transform.GetChild(i).gameObject.SetActive(true);
-            }
-
             collectablesManager.Initialize(collectables);
             destructibleCorridorsManager.Initialize();
             doorsManager.Initialize(doors);
@@ -50,6 +45,11 @@ namespace Robbi.Runtime
             portalsManager.Initialize(portals);
             timeManager.Initialize();
             levelResultManager.Initialize();
+            
+            for (int i = 0; i < transform.childCount; ++i)
+            {
+                transform.GetChild(i).gameObject.SetActive(true);
+            }
         }
 
         public void Cleanup()

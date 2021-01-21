@@ -12,6 +12,7 @@ using UnityEditor.AddressableAssets.Build;
 using UnityEditor.AddressableAssets.Settings;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
+using static UnityEngine.Application;
 
 namespace CelesteEditor.Platform
 {
@@ -209,7 +210,6 @@ namespace CelesteEditor.Platform
             Switch();
 
             Debug.Log("Beginning to build content");
-
             AddressableAssetSettings.BuildPlayerContent();
 
             StringBuilder locationInfo = new StringBuilder();

@@ -96,7 +96,9 @@ namespace Robbi.Levels.Elements
             if (0 <= index && index < NumInteractedModifiers)
             {
 #if UNITY_EDITOR
-                Object.DestroyImmediate(interactedModifiers[index], true);
+                LevelModifier modifier = interactedModifiers[index];
+                UnityEditor.AssetDatabase.RemoveObjectFromAsset(modifier);
+                Object.DestroyImmediate(modifier, true);
 #endif
                 interactedModifiers.RemoveAt(index);
             }

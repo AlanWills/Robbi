@@ -1,4 +1,5 @@
-﻿using Robbi.Options;
+﻿using Celeste.Parameters;
+using Robbi.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace Robbi.Sound
         #region Properties and Fields
 
         public AudioSource audioSource;
+        public BoolValue sfxEnabled;
 
         #endregion
 
@@ -34,7 +36,7 @@ namespace Robbi.Sound
 
         public void Play(AudioClip audioClip)
         {
-            if (OptionsManager.Instance.SfxEnabled && !audioSource.isPlaying)
+            if (sfxEnabled.Value && !audioSource.isPlaying)
             {
                 audioSource.clip = audioClip;
                 audioSource.Play();
@@ -43,7 +45,7 @@ namespace Robbi.Sound
 
         public void PlayOneShot(AudioClip audioClip)
         {
-            if (OptionsManager.Instance.SfxEnabled)
+            if (sfxEnabled.Value)
             {
                 audioSource.PlayOneShot(audioClip);
             }

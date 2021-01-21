@@ -6,7 +6,7 @@ using Celeste.Tilemaps;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace CelesteEditor.Tilemap
+namespace CelesteEditor.Tilemaps
 {
     [CustomEditor(typeof(SimpleAnimatedTile))]
     public class SimpleAnimatedTileEditor : Editor

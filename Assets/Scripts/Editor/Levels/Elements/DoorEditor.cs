@@ -16,7 +16,7 @@ namespace RobbiEditor.Levels.Elements
         [MenuItem("Assets/Create/Robbi/Level/Door")]
         public static void CreateDoor()
         {
-            CreateDoor("Door", GetSelectionObjectPath(), DoorState.Closed);
+            CreateDoor("Door", AssetUtility.GetSelectionObjectPath(), DoorState.Closed);
         }
 
         #endregion
@@ -31,21 +31,6 @@ namespace RobbiEditor.Levels.Elements
 
             AssetUtility.CreateAsset(door, path);
             door.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
-        }
-
-        private static string GetSelectionObjectPath()
-        {
-            string path = AssetDatabase.GetAssetPath(Selection.activeObject);
-            if (path == "")
-            {
-                path = "Assets";
-            }
-            else if (Path.GetExtension(path) != "")
-            {
-                path = path.Replace(Path.GetFileName(AssetDatabase.GetAssetPath(Selection.activeObject)), "");
-            }
-
-            return path;
         }
 
         #endregion

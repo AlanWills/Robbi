@@ -74,7 +74,9 @@ namespace Robbi.Levels.Elements
             if (0 <= index && index < NumStates)
             {
 #if UNITY_EDITOR
-                Object.DestroyImmediate(states[index], true);
+                Interactable interactable = states[index];
+                UnityEditor.AssetDatabase.RemoveObjectFromAsset(interactable);
+                Object.DestroyImmediate(interactable, true);
 #endif
                 states.RemoveAt(index);
             }
