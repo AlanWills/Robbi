@@ -7,12 +7,12 @@ using UnityEditor;
 
 namespace RobbiEditor.Testing
 {
-    public class LevelOptionsBackButton : IIntegrationTest
+    public class LevelShopButton : IIntegrationTest
     {
-        [MenuItem("Robbi/Testing/Level/Level Options Back Button")]
+        [MenuItem("Robbi/Testing/Level/Level Shop Button")]
         public static void MenuItem()
         {
-            IntegrationTestEditorAPI.RunTest<LevelOptionsBackButton>();
+            IntegrationTestEditorAPI.RunTest<LevelShopButton>();
         }
     }
 }

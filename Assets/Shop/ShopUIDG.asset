@@ -1,0 +1,823 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8873258776952750285
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ff3c0bb35764f4e9ed6c18f3b188b8, type: 3}
+  m_Name: Num Door Toggle Boosters
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -184, y: 488}
+  ports:
+    keys:
+    - value
+    - output
+    values:
+    - _fieldName: value
+      _node: {fileID: -8873258776952750285}
+      _typeQualifiedName: Celeste.Parameters.UIntValue, Celeste.Parameters, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: -8873258776952750285}
+      _typeQualifiedName: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: input
+        node: {fileID: 3006756901745476867}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: {fileID: 11400000, guid: 28cdcca9bda9453418a635199b19b694, type: 2}
+  output: 0
+--- !u!114 &-5779967244235149389
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07e7581688620d44298ab28a617a8531, type: 3}
+  m_Name: TMP Text
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 376, y: 488}
+  ports:
+    keys:
+    - value
+    - format
+    - text
+    values:
+    - _fieldName: value
+      _node: {fileID: -5779967244235149389}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: output
+        node: {fileID: 3006756901745476867}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: format
+      _node: {fileID: -5779967244235149389}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: text
+      _node: {fileID: -5779967244235149389}
+      _typeQualifiedName: TMPro.TMP_Text, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: child
+        node: {fileID: 5649568081267391338}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: 
+  format: 
+  text: {fileID: 0}
+--- !u!114 &-5494993718222454002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ff3c0bb35764f4e9ed6c18f3b188b8, type: 3}
+  m_Name: Num Waypoint Boosters
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -200, y: 168}
+  ports:
+    keys:
+    - value
+    - output
+    values:
+    - _fieldName: value
+      _node: {fileID: -5494993718222454002}
+      _typeQualifiedName: Celeste.Parameters.UIntValue, Celeste.Parameters, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: -5494993718222454002}
+      _typeQualifiedName: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: input
+        node: {fileID: 4670034080023258818}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: {fileID: 11400000, guid: e5a9d69ba7358f64bb309adb980c3acd, type: 2}
+  output: 0
+--- !u!114 &-3806177637615369981
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e970f1db87201f40a31bb3924fd248d, type: 3}
+  m_Name: U Int To String
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 120, y: 776}
+  ports:
+    keys:
+    - input
+    - format
+    - output
+    values:
+    - _fieldName: input
+      _node: {fileID: -3806177637615369981}
+      _typeQualifiedName: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: output
+        node: {fileID: 2106139877056945998}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: format
+      _node: {fileID: -3806177637615369981}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: -3806177637615369981}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: value
+        node: {fileID: 5451796468425412099}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: 0
+  format: 
+  output: 
+--- !u!114 &-2388667578134578759
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dcd5c5d1aae7744e8a0935fdfdfdabc, type: 3}
+  m_Name: Find Game Object
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 376, y: 8}
+  ports:
+    keys:
+    - childName
+    - child
+    values:
+    - _fieldName: childName
+      _node: {fileID: -2388667578134578759}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: child
+      _node: {fileID: -2388667578134578759}
+      _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: text
+        node: {fileID: 35719289507681360}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  childName: ShopUI.CurrencyInfo.SoftCurrencyBalance
+  findConstraint: 0
+  cache: 1
+  child: {fileID: 0}
+--- !u!114 &-32397676495354437
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e970f1db87201f40a31bb3924fd248d, type: 3}
+  m_Name: U Int To String
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 104, y: -120}
+  ports:
+    keys:
+    - input
+    - format
+    - output
+    values:
+    - _fieldName: input
+      _node: {fileID: -32397676495354437}
+      _typeQualifiedName: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: output
+        node: {fileID: 3105016463354537606}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: format
+      _node: {fileID: -32397676495354437}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: -32397676495354437}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: value
+        node: {fileID: 35719289507681360}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: 0
+  format: 
+  output: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a72f06e35a5389418d857b340813945, type: 3}
+  m_Name: ShopUIDG
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 3105016463354537606}
+  - {fileID: -5494993718222454002}
+  - {fileID: -8873258776952750285}
+  - {fileID: 2106139877056945998}
+  - {fileID: -32397676495354437}
+  - {fileID: 35719289507681360}
+  - {fileID: -2388667578134578759}
+  - {fileID: 4670034080023258818}
+  - {fileID: 3006756901745476867}
+  - {fileID: -3806177637615369981}
+  - {fileID: 3120593051589042264}
+  - {fileID: -5779967244235149389}
+  - {fileID: 5451796468425412099}
+  - {fileID: 8942322473168714178}
+  - {fileID: 5649568081267391338}
+  - {fileID: 439733326448369346}
+--- !u!114 &35719289507681360
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07e7581688620d44298ab28a617a8531, type: 3}
+  m_Name: TMP Text
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 376, y: -120}
+  ports:
+    keys:
+    - value
+    - format
+    - text
+    values:
+    - _fieldName: value
+      _node: {fileID: 35719289507681360}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: output
+        node: {fileID: -32397676495354437}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: format
+      _node: {fileID: 35719289507681360}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: text
+      _node: {fileID: 35719289507681360}
+      _typeQualifiedName: TMPro.TMP_Text, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: child
+        node: {fileID: -2388667578134578759}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: 
+  format: 
+  text: {fileID: 0}
+--- !u!114 &439733326448369346
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dcd5c5d1aae7744e8a0935fdfdfdabc, type: 3}
+  m_Name: Find Game Object
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 376, y: 904}
+  ports:
+    keys:
+    - childName
+    - child
+    values:
+    - _fieldName: childName
+      _node: {fileID: 439733326448369346}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: child
+      _node: {fileID: 439733326448369346}
+      _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: text
+        node: {fileID: 5451796468425412099}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  childName: ShopUI.BoostersInfo.InteractBoosterQuantity
+  findConstraint: 0
+  cache: 1
+  child: {fileID: 0}
+--- !u!114 &2106139877056945998
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ff3c0bb35764f4e9ed6c18f3b188b8, type: 3}
+  m_Name: Num Interact Boosters
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -184, y: 792}
+  ports:
+    keys:
+    - value
+    - output
+    values:
+    - _fieldName: value
+      _node: {fileID: 2106139877056945998}
+      _typeQualifiedName: Celeste.Parameters.UIntValue, Celeste.Parameters, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 2106139877056945998}
+      _typeQualifiedName: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: input
+        node: {fileID: -3806177637615369981}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: {fileID: 11400000, guid: 13769d90d377c5840b52f4c0c13a2fc3, type: 2}
+  output: 0
+--- !u!114 &3006756901745476867
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e970f1db87201f40a31bb3924fd248d, type: 3}
+  m_Name: U Int To String
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 120, y: 488}
+  ports:
+    keys:
+    - input
+    - format
+    - output
+    values:
+    - _fieldName: input
+      _node: {fileID: 3006756901745476867}
+      _typeQualifiedName: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: output
+        node: {fileID: -8873258776952750285}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: format
+      _node: {fileID: 3006756901745476867}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 3006756901745476867}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: value
+        node: {fileID: -5779967244235149389}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: 0
+  format: 
+  output: 
+--- !u!114 &3105016463354537606
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ff3c0bb35764f4e9ed6c18f3b188b8, type: 3}
+  m_Name: Soft Currency Balance
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -168, y: -120}
+  ports:
+    keys:
+    - value
+    - output
+    values:
+    - _fieldName: value
+      _node: {fileID: 3105016463354537606}
+      _typeQualifiedName: Celeste.Parameters.UIntValue, Celeste.Parameters, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 3105016463354537606}
+      _typeQualifiedName: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: input
+        node: {fileID: -32397676495354437}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: {fileID: 11400000, guid: 3e1918b9569104f4a84ac3d22244727a, type: 2}
+  output: 0
+--- !u!114 &3120593051589042264
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07e7581688620d44298ab28a617a8531, type: 3}
+  m_Name: TMP Text
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 376, y: 152}
+  ports:
+    keys:
+    - value
+    - format
+    - text
+    values:
+    - _fieldName: value
+      _node: {fileID: 3120593051589042264}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: output
+        node: {fileID: 4670034080023258818}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: format
+      _node: {fileID: 3120593051589042264}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: text
+      _node: {fileID: 3120593051589042264}
+      _typeQualifiedName: TMPro.TMP_Text, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: child
+        node: {fileID: 8942322473168714178}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: 
+  format: 
+  text: {fileID: 0}
+--- !u!114 &4670034080023258818
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e970f1db87201f40a31bb3924fd248d, type: 3}
+  m_Name: U Int To String
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 104, y: 152}
+  ports:
+    keys:
+    - input
+    - format
+    - output
+    values:
+    - _fieldName: input
+      _node: {fileID: 4670034080023258818}
+      _typeQualifiedName: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: output
+        node: {fileID: -5494993718222454002}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: format
+      _node: {fileID: 4670034080023258818}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 4670034080023258818}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: value
+        node: {fileID: 3120593051589042264}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  input: 0
+  format: 
+  output: 
+--- !u!114 &5451796468425412099
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07e7581688620d44298ab28a617a8531, type: 3}
+  m_Name: TMP Text
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 376, y: 776}
+  ports:
+    keys:
+    - value
+    - format
+    - text
+    values:
+    - _fieldName: value
+      _node: {fileID: 5451796468425412099}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: output
+        node: {fileID: -3806177637615369981}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: format
+      _node: {fileID: 5451796468425412099}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: text
+      _node: {fileID: 5451796468425412099}
+      _typeQualifiedName: TMPro.TMP_Text, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: child
+        node: {fileID: 439733326448369346}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: 
+  format: 
+  text: {fileID: 0}
+--- !u!114 &5649568081267391338
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dcd5c5d1aae7744e8a0935fdfdfdabc, type: 3}
+  m_Name: Find Game Object
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 376, y: 600}
+  ports:
+    keys:
+    - childName
+    - child
+    values:
+    - _fieldName: childName
+      _node: {fileID: 5649568081267391338}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: child
+      _node: {fileID: 5649568081267391338}
+      _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: text
+        node: {fileID: -5779967244235149389}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  childName: ShopUI.BoostersInfo.DoorToggleBoosterQuantity
+  findConstraint: 0
+  cache: 1
+  child: {fileID: 0}
+--- !u!114 &8942322473168714178
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dcd5c5d1aae7744e8a0935fdfdfdabc, type: 3}
+  m_Name: Find Game Object
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 376, y: 280}
+  ports:
+    keys:
+    - childName
+    - child
+    values:
+    - _fieldName: childName
+      _node: {fileID: 8942322473168714178}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: child
+      _node: {fileID: 8942322473168714178}
+      _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: text
+        node: {fileID: 3120593051589042264}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  childName: ShopUI.BoostersInfo.WaypointBoosterQuantity
+  findConstraint: 0
+  cache: 1
+  child: {fileID: 0}

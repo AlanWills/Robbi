@@ -36,7 +36,7 @@ namespace PolyAndCode.UI
         {
             set
             {
-                _segments = Math.Max(value, 2);
+                _segments = value;
             }
             get
             {

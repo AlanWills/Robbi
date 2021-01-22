@@ -1,0 +1,418 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8829818743740259396
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51fb886b9ab4e346897a43d978de61a, type: 3}
+  m_Name: FromShop_target
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 
+  referenceValue: {fileID: 0}
+--- !u!114 &-6223359422184284926
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51fb886b9ab4e346897a43d978de61a, type: 3}
+  m_Name: ToShop_value
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: ToShopTransition
+  referenceValue: {fileID: 0}
+--- !u!114 &-4356862137358392911
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51fb886b9ab4e346897a43d978de61a, type: 3}
+  m_Name: ToShop_target
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 
+  referenceValue: {fileID: 0}
+--- !u!114 &-3106609074687647419
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91fbcb00880084198d2bdba88a374f, type: 3}
+  m_Name: Set Bool Value
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 344, y: -120}
+  ports:
+    keys:
+    - ' '
+    - 
+    - newValue
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -3106609074687647419}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: FromShop
+        node: {fileID: -878081621743200308}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -3106609074687647419}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 5702959709353385228}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: newValue
+      _node: {fileID: -3106609074687647419}
+      _typeQualifiedName: Celeste.Parameters.BoolReference, Celeste.Parameters, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: {fileID: 11400000, guid: c117b7af578bb6a4d80837cb976d8339, type: 2}
+  newValue: {fileID: -1734029722145652319}
+--- !u!114 &-2766848702689487074
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 540d499c9d649a2469332062a9135260, type: 3}
+  m_Name: FromShop
+  m_EditorClassIdentifier: 
+  value: {fileID: -2746600353406382489}
+  condition: 0
+  useArgument: 1
+  target: {fileID: -8829818743740259396}
+--- !u!114 &-2746600353406382489
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51fb886b9ab4e346897a43d978de61a, type: 3}
+  m_Name: FromShop_value
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: FromShopTransition
+  referenceValue: {fileID: 0}
+--- !u!114 &-1734029722145652319
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec718764ed3a234cb86bb3efc892b05, type: 3}
+  m_Name: _newValue
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 0
+  referenceValue: {fileID: 0}
+--- !u!114 &-878081621743200308
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 737d89550a2e2194db247d1e3f3c19db, type: 3}
+  m_Name: If
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 72, y: -120}
+  ports:
+    keys:
+    - ' '
+    - 
+    - inArgument
+    - outArgument
+    - ToShop
+    - FromShop
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -878081621743200308}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: 5702959709353385228}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -878081621743200308}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 5702959709353385228}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: inArgument
+      _node: {fileID: -878081621743200308}
+      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: argument
+        node: {fileID: 5702959709353385228}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outArgument
+      _node: {fileID: -878081621743200308}
+      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: ToShop
+      _node: {fileID: -878081621743200308}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 7817815330472887361}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: FromShop
+      _node: {fileID: -878081621743200308}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -3106609074687647419}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  conditions:
+  - {fileID: 14322057695534481}
+  - {fileID: -2766848702689487074}
+--- !u!114 &-247630195737649673
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec718764ed3a234cb86bb3efc892b05, type: 3}
+  m_Name: _newValue
+  m_EditorClassIdentifier: 
+  isConstant: 1
+  constantValue: 1
+  referenceValue: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae22ebe00c8798d4bb46b12fbdcffdfb, type: 3}
+  m_Name: ShopVisibleFSM
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 5702959709353385228}
+  - {fileID: -878081621743200308}
+  - {fileID: -3106609074687647419}
+  - {fileID: 7817815330472887361}
+  startNode: {fileID: 5702959709353385228}
+  parameters:
+  - {fileID: -6223359422184284926}
+  - {fileID: -4356862137358392911}
+  - {fileID: -2746600353406382489}
+  - {fileID: -8829818743740259396}
+  - {fileID: -1734029722145652319}
+  - {fileID: -247630195737649673}
+--- !u!114 &14322057695534481
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 540d499c9d649a2469332062a9135260, type: 3}
+  m_Name: ToShop
+  m_EditorClassIdentifier: 
+  value: {fileID: -6223359422184284926}
+  condition: 0
+  useArgument: 1
+  target: {fileID: -4356862137358392911}
+--- !u!114 &5702959709353385228
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1091cfd54654b754388a1457f5195665, type: 3}
+  m_Name: String Event Listener
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -181.52711, y: -106.16437}
+  ports:
+    keys:
+    - ' '
+    - 
+    - argument
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 5702959709353385228}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: -878081621743200308}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -3106609074687647419}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 7817815330472887361}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 5702959709353385228}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -878081621743200308}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: argument
+      _node: {fileID: 5702959709353385228}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: inArgument
+        node: {fileID: -878081621743200308}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  argument: 
+  listenFor: {fileID: 11400000, guid: 2ec219bc2c7b8ba4e882f960650ccc43, type: 2}
+--- !u!114 &7817815330472887361
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91fbcb00880084198d2bdba88a374f, type: 3}
+  m_Name: Set Bool Value
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 344, y: 40}
+  ports:
+    keys:
+    - ' '
+    - 
+    - newValue
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 7817815330472887361}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ToShop
+        node: {fileID: -878081621743200308}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 7817815330472887361}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 5702959709353385228}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: newValue
+      _node: {fileID: 7817815330472887361}
+      _typeQualifiedName: Celeste.Parameters.BoolReference, Celeste.Parameters, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: {fileID: 11400000, guid: c117b7af578bb6a4d80837cb976d8339, type: 2}
+  newValue: {fileID: -247630195737649673}

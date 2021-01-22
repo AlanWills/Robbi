@@ -1,61 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8018709098269628762
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e295ed475d4fc14baf9165869777e35, type: 3}
-  m_Name: Scene Loader
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 56, y: 56}
-  ports:
-    keys:
-    - ' '
-    - 
-    - sceneName
-    values:
-    - _fieldName: ' '
-      _node: {fileID: -8018709098269628762}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: Transition
-        node: {fileID: -1806014956986160259}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: 
-      _node: {fileID: -8018709098269628762}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: sceneName
-      _node: {fileID: -8018709098269628762}
-      _typeQualifiedName: Celeste.Parameters.StringReference, Celeste.Parameters,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: argument
-        node: {fileID: -1806014956986160259}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  sceneName: {fileID: -3232464207414105027}
-  loadMode: 0
-  isAddressable: 1
 --- !u!114 &-7492573491575721064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -69,7 +13,7 @@ MonoBehaviour:
   m_Name: Save Currency Manager
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 280, y: -152}
+  position: {x: 264, y: -72}
   ports:
     keys:
     - ' '
@@ -80,6 +24,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 957204821570884262}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 957204821570884262}
         reroutePoints: []
@@ -120,34 +67,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &-3232464207414105027
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f51fb886b9ab4e346897a43d978de61a, type: 3}
-  m_Name: _sceneName
-  m_EditorClassIdentifier: 
-  isConstant: 1
-  constantValue: 
-  referenceValue: {fileID: 0}
---- !u!114 &-2680059066845720895
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab4121048931d3046996695921603148, type: 3}
-  m_Name: Transition
-  m_EditorClassIdentifier: 
-  listenFor: {fileID: 11400000, guid: 2ec219bc2c7b8ba4e882f960650ccc43, type: 2}
 --- !u!114 &-1806014956986160259
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -161,12 +80,11 @@ MonoBehaviour:
   m_Name: Multi Event Listener
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -232, y: -40}
+  position: {x: -184, y: -40}
   ports:
     keys:
     - ' '
     - argument
-    - Transition
     - ShopItemPurchased
     values:
     - _fieldName: ' '
@@ -174,6 +92,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -7492573491575721064}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -7492573491575721064}
         reroutePoints: []
@@ -191,26 +112,11 @@ MonoBehaviour:
       _node: {fileID: -1806014956986160259}
       _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: sceneName
-        node: {fileID: -8018709098269628762}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: Transition
-      _node: {fileID: -1806014956986160259}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: -8018709098269628762}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
     - _fieldName: ShopItemPurchased
       _node: {fileID: -1806014956986160259}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
@@ -224,7 +130,6 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   events:
-  - {fileID: -2680059066845720895}
   - {fileID: -1625701716914562648}
 --- !u!114 &-1625701716914562648
 MonoBehaviour:
@@ -249,16 +154,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae22ebe00c8798d4bb46b12fbdcffdfb, type: 3}
-  m_Name: ShopFSM
+  m_Name: ShopUIFSM
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: -1806014956986160259}
-  - {fileID: -8018709098269628762}
   - {fileID: 957204821570884262}
   - {fileID: -7492573491575721064}
   startNode: {fileID: -1806014956986160259}
-  parameters:
-  - {fileID: -3232464207414105027}
+  parameters: []
 --- !u!114 &957204821570884262
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -272,7 +175,7 @@ MonoBehaviour:
   m_Name: Save Boosters Manager
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 56, y: -152}
+  position: {x: 40, y: -72}
   ports:
     keys:
     - ' '
