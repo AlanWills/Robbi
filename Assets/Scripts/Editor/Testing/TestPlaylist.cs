@@ -42,12 +42,12 @@ namespace RobbiEditor.Testing
 
         public override void OnInspectorGUI()
         {
-            base.OnInspectorGUI();
-
             if (GUILayout.Button("Find Tests", GUILayout.ExpandWidth(false)))
             {
                 target.FindAssets<FSMGraph>("integrationTests");
             }
+
+            base.OnInspectorGUI();
         }
 
         #endregion

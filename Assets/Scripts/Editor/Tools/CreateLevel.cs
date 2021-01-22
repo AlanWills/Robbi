@@ -512,7 +512,7 @@ namespace RobbiEditor.Tools
             level.requiresFuel = levelInfo.requiresFuel;
             level.startingFuel = levelInfo.startingFuel;
             level.softCurrencyPrize = levelInfo.softCurrencyPrize;
-            level.collectionTargets.AddRange(levelInfo.collectionTargets);
+            level.CollectionTargets_EditorOnly.AddRange(levelInfo.collectionTargets);
             
             Debug.Assert(level.levelPrefab != null, "Level Prefab could not be found automatically");
 

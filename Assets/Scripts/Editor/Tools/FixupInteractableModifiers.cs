@@ -23,7 +23,7 @@ namespace RobbiEditor.Tools
             {
                 Level level = AssetDatabase.LoadAssetAtPath<Level>(levelFolder.LevelDataPath);
 
-                foreach (ScriptableObject interactableObject in level.interactables)
+                foreach (ScriptableObject interactableObject in level.Interactables_EditorOnly)
                 {
                     Interactable interactable = interactableObject as Interactable;
                     if (interactable != null)
