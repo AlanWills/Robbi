@@ -50,9 +50,9 @@ namespace Robbi.Currency
             }
         }
 
-        public void Save()
+        public static void Save()
         {
-            Save(DefaultSavePath);
+            Instance.Save(DefaultSavePath);
         }
 
         protected override void Deserialize(CurrencyManagerDTO dto)

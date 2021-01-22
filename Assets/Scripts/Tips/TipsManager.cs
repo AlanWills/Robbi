@@ -94,9 +94,9 @@ namespace Celeste.Tips
             }
         }
 
-        public void Save()
+        public static void Save()
         {
-            Save(DefaultSavePath);
+            Instance.Save(DefaultSavePath);
         }
 
         protected override TipsManagerDTO Serialize()

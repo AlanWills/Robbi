@@ -117,9 +117,9 @@ namespace Robbi.Options
             }
         }
 
-        public void Save()
+        public static void Save()
         {
-            Save(DefaultSavePath);
+            Instance.Save(DefaultSavePath);
         }
 
         protected override OptionsManagerDTO Serialize()

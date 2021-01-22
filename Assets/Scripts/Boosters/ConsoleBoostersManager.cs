@@ -27,7 +27,7 @@ namespace Robbi.Boosters
                     if (uint.TryParse(parameters[1], out uint result))
                     {
                         BoostersManager.Instance.NumWaypointBoosters = result;
-                        BoostersManager.Instance.Save();
+                        BoostersManager.Save();
 
                         output.AppendLineFormat("Num Waypoint Boosters now {0}", BoostersManager.Instance.NumWaypointBoosters);
                         return true;
@@ -43,7 +43,7 @@ namespace Robbi.Boosters
                     if (uint.TryParse(parameters[1], out uint result))
                     {
                         BoostersManager.Instance.NumDoorToggleBoosters = result;
-                        BoostersManager.Instance.Save();
+                        BoostersManager.Save();
 
                         output.AppendLineFormat("Num Door Toggle Boosters now {0}", BoostersManager.Instance.NumDoorToggleBoosters);
                         return true;
@@ -59,7 +59,7 @@ namespace Robbi.Boosters
                     if (uint.TryParse(parameters[1], out uint result))
                     {
                         BoostersManager.Instance.NumInteractBoosters = result;
-                        BoostersManager.Instance.Save();
+                        BoostersManager.Save();
 
                         output.AppendLineFormat("Num Interact Boosters now {0}", BoostersManager.Instance.NumInteractBoosters);
                         return true;

@@ -85,9 +85,9 @@ namespace Robbi.Levels
             return LoadAsyncImpl(ADDRESS, DefaultSavePath);
         }
 
-        public void Save()
+        public static void Save()
         {
-            Save(DefaultSavePath);
+            Instance.Save(DefaultSavePath);
         }
 
         protected override LevelManagerDTO Serialize()

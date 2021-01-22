@@ -81,9 +81,9 @@ namespace Robbi.Boosters
             }
         }
 
-        public void Save()
+        public static void Save()
         {
-            Save(DefaultSavePath);
+            Instance.Save(DefaultSavePath);
         }
 
         protected override BoostersManagerDTO Serialize()
