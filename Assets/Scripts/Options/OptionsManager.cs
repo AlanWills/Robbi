@@ -1,6 +1,7 @@
 ﻿using Celeste.Assets;
 using Celeste.Log;
 using Celeste.Managers;
+using Celeste.Managers.DTOs;
 using Celeste.Parameters;
 using System;
 using System.IO;
@@ -18,7 +19,7 @@ namespace Robbi.Options
         
         public static string DefaultSavePath
         {
-            get { return Path.Combine(Application.persistentDataPath, "OptionsManager.json"); }
+            get { return Path.Combine(Application.persistentDataPath, "OptionsManager.dat"); }
         }
 
         public bool MusicEnabled
@@ -121,9 +122,9 @@ namespace Robbi.Options
             Save(DefaultSavePath);
         }
 
-        protected override string Serialize()
+        protected override OptionsManagerDTO Serialize()
         {
-            return JsonUtility.ToJson(new OptionsManagerDTO(this));
+            return new OptionsManagerDTO(this);
         }
 
         protected override void Deserialize(OptionsManagerDTO optionsManagerDTO)
@@ -184,7 +185,7 @@ namespace Robbi.Options
     }
 
     [Serializable]
-    public struct OptionsManagerDTO
+    public struct OptionsManagerDTO : IPersistentManagerDTO<OptionsManager, OptionsManagerDTO>
     {
         public bool musicEnabled;
         public bool sfxEnabled;
