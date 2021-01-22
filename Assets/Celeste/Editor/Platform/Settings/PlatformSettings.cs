@@ -13,6 +13,7 @@ using UnityEditor.AddressableAssets.Settings;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 using static UnityEngine.Application;
+using UnityEditor.AddressableAssets.Settings.GroupSchemas;
 
 namespace CelesteEditor.Platform
 {
@@ -110,6 +111,9 @@ namespace CelesteEditor.Platform
         }
 
         [SerializeField]
+        private List<string> addressableGroupsInBuild = new List<string>();
+
+        [SerializeField]
         private List<AssetPreparationStep> assetPreparationSteps = new List<AssetPreparationStep>();
 
         #endregion
@@ -139,6 +143,19 @@ namespace CelesteEditor.Platform
             settings.OverridePlayerVersion = PlayerOverrideVersion;
             settings.profileSettings.SetValue(settings.activeProfileId, "RemoteBuildPath", AddressablesBuildDirectory);
             settings.profileSettings.SetValue(settings.activeProfileId, "RemoteLoadPath", AddressablesLoadDirectory);
+            settings.DefaultGroup = addressableGroupsInBuild.Count > 0 ? settings.FindGroup(addressableGroupsInBuild[0]) : null;
+
+            foreach (AddressableAssetGroup group in settings.groups)
+            {
+                BundledAssetGroupSchema bundledAssetGroupSchema = group.GetSchema<BundledAssetGroupSchema>();
+                bool included = addressableGroupsInBuild.Contains(group.Name);
+
+                if (bundledAssetGroupSchema != null && bundledAssetGroupSchema.IncludeInBuild != included)
+                {
+                    bundledAssetGroupSchema.IncludeInBuild = included;
+                    EditorUtility.SetDirty(group);
+                }
+            }
 
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
