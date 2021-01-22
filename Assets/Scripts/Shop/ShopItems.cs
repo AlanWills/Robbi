@@ -24,6 +24,9 @@ namespace Robbi.Shop
         [SerializeField]
         private UIntValue latestUnlockedLevel;
 
+        [SerializeField] private int portraitGridSegments;
+        [SerializeField] private int landscapeGridSegments;
+
         private List<ShopItemData> shopItemData = new List<ShopItemData>();
 
         #endregion
@@ -32,6 +35,8 @@ namespace Robbi.Shop
 
         private void Awake()
         {
+            scrollRect.Segments = Screen.width > Screen.height ? landscapeGridSegments : portraitGridSegments;
+            
             foreach (ShopItem shopItem in ShopItemManager.Instance.ShopItems)
             {
                 shopItemData.Add(new ShopItemData(shopItem, shopItem.UnlockAtLevel <= latestUnlockedLevel.Value));

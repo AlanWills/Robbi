@@ -2452,10 +2452,10 @@ RectTransform:
   m_Father: {fileID: 4040336099793378551}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.1, y: 0.15}
-  m_AnchorMax: {x: 0.9, y: 0.85}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.1, y: 0}
+  m_AnchorMax: {x: 0.9, y: 0.8}
+  m_AnchoredPosition: {x: 0, y: 75}
+  m_SizeDelta: {x: 0, y: -150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3820868278990411110
 GameObject:
@@ -2525,6 +2525,8 @@ MonoBehaviour:
   scrollRect: {fileID: 5284016672615431568}
   latestUnlockedLevel: {fileID: 11400000, guid: 9ed928b056454724c8b6b734ca744281,
     type: 2}
+  portraitGridSegments: 1
+  landscapeGridSegments: 2
 --- !u!223 &3820868279966859608
 Canvas:
   m_ObjectHideFlags: 0
@@ -2816,12 +2818,12 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  IsGrid: 0
+  IsGrid: 1
   PrototypeCell: {fileID: 841988590021318646, guid: d2bb9fce009b1a64ca371f35f1579bb5,
     type: 3}
   SelfInitialize: 1
   Direction: 0
-  _segments: 4
+  _segments: 2
 --- !u!224 &5667181095441671208
 RectTransform:
   m_ObjectHideFlags: 0
