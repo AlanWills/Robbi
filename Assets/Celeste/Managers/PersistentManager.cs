@@ -80,15 +80,24 @@ namespace Celeste.Managers
                 {
                     using (FileStream fileStream = new FileStream(persistentFilePath, FileMode.Open))
                     {
-                        BinaryFormatter bf = new BinaryFormatter();
-                        TDTO tDTO = bf.Deserialize(fileStream) as TDTO;
-                        if (tDTO != null)
+                        if (fileStream.Length > 0)
                         {
-                            Instance.Deserialize(tDTO);
+                            BinaryFormatter bf = new BinaryFormatter();
+                            TDTO tDTO = bf.Deserialize(fileStream) as TDTO;
+                            
+                            if (tDTO != null)
+                            {
+                                Instance.Deserialize(tDTO);
+                            }
+                            else
+                            {
+                                Debug.LogFormat("Error deserializing data in {0}.  Using default manager values.", persistentFilePath);
+                                Instance.SetDefaultValues();
+                            }
                         }
                         else
                         {
-                            Debug.LogFormat("Error deserialization data in {0}.  Using default manager values.", persistentFilePath);
+                            Debug.LogFormat("No data saved to persistent file for {0}.  Using default manager values.", persistentFilePath);
                             Instance.SetDefaultValues();
                         }
                     }
@@ -113,27 +122,7 @@ namespace Celeste.Managers
                 BinaryFormatter bf = new BinaryFormatter();
                 bf.Serialize(fileStream, Instance.Serialize());
             }
-            PostSave();
-        }
 
-        public async Task SaveAsync(string filePath)
-        {
-            // OPTIMIZATION: Batch this?
-            using (FileStream fileStream = new FileStream(filePath, FileMode.Create))
-            using (MemoryStream ms = new MemoryStream(512))
-            {
-                BinaryFormatter bf = new BinaryFormatter();
-                bf.Serialize(ms, Instance.Serialize());
-
-                byte[] data = ms.ToArray();
-                await fileStream.WriteAsync(data, 0, data.Length);
-            }
-
-            PostSave();
-        }
-
-        private void PostSave()
-        {
             // Needed to deal with browser async saving
             WebGLUtils.SyncFiles();
             HudLog.LogInfoFormat("{0} saved", Instance.name);

@@ -99,11 +99,6 @@ namespace Celeste.Tips
             Save(DefaultSavePath);
         }
 
-        public Task SaveAsync()
-        {
-            return SaveAsync(DefaultSavePath);
-        }
-
         protected override TipsManagerDTO Serialize()
         {
             UnityEngine.Debug.AssertFormat(allTips.Count == (unseenIndexes.Count + seenIndexes.Count), 

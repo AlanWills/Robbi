@@ -55,11 +55,6 @@ namespace Robbi.Currency
             Save(DefaultSavePath);
         }
 
-        public void SaveAsync()
-        {
-            SaveAsync(DefaultSavePath);
-        }
-
         protected override void Deserialize(CurrencyManagerDTO dto)
         {
             softCurrency.Value = dto.softCurrency;
