@@ -9,7 +9,7 @@ namespace Celeste.Managers.DTOs
 {
     public interface IPersistentManagerDTO<T, TDTO>
         where T : PersistentManager<T, TDTO>
-        where TDTO : IPersistentManagerDTO<T, TDTO>
+        where TDTO : class, IPersistentManagerDTO<T, TDTO>
     {
     }
 }

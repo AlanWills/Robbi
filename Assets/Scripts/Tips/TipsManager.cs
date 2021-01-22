@@ -167,7 +167,7 @@ namespace Celeste.Tips
     }
 
     [System.Serializable]
-    public struct TipsManagerDTO : IPersistentManagerDTO<TipsManager, TipsManagerDTO>
+    public class TipsManagerDTO : IPersistentManagerDTO<TipsManager, TipsManagerDTO>
     {
         public List<uint> unseenIndexes;
         public List<uint> seenIndexes;

@@ -109,7 +109,7 @@ namespace Robbi.Levels
     }
 
     [Serializable]
-    public struct LevelManagerDTO : IPersistentManagerDTO<LevelManager, LevelManagerDTO>
+    public class LevelManagerDTO : IPersistentManagerDTO<LevelManager, LevelManagerDTO>
     {
         public uint latestUnlockedLevelIndex;
 

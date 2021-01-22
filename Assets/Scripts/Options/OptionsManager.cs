@@ -185,7 +185,7 @@ namespace Robbi.Options
     }
 
     [Serializable]
-    public struct OptionsManagerDTO : IPersistentManagerDTO<OptionsManager, OptionsManagerDTO>
+    public class OptionsManagerDTO : IPersistentManagerDTO<OptionsManager, OptionsManagerDTO>
     {
         public bool musicEnabled;
         public bool sfxEnabled;

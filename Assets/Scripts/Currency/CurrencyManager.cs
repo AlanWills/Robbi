@@ -76,7 +76,7 @@ namespace Robbi.Currency
     }
 
     [Serializable]
-    public struct CurrencyManagerDTO : IPersistentManagerDTO<CurrencyManager, CurrencyManagerDTO>
+    public class CurrencyManagerDTO : IPersistentManagerDTO<CurrencyManager, CurrencyManagerDTO>
     {
         public uint softCurrency;
 

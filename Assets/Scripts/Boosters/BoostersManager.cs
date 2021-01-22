@@ -104,7 +104,7 @@ namespace Robbi.Boosters
     }
 
     [Serializable]
-    public struct BoostersManagerDTO : IPersistentManagerDTO<BoostersManager, BoostersManagerDTO>
+    public class BoostersManagerDTO : IPersistentManagerDTO<BoostersManager, BoostersManagerDTO>
     {
         public uint numWaypointBoosters;
         public uint numDoorToggleBoosters;

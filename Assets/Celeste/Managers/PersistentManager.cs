@@ -14,7 +14,7 @@ namespace Celeste.Managers
 {
     public abstract class PersistentManager<T, TDTO> : ScriptableObject 
         where T : PersistentManager<T, TDTO>
-        where TDTO : IPersistentManagerDTO<T, TDTO>
+        where TDTO : class, IPersistentManagerDTO<T, TDTO>
     {
         #region Properties and Fields
         
@@ -78,15 +78,19 @@ namespace Celeste.Managers
 
                 if (File.Exists(persistentFilePath))
                 {
-                    TDTO tDTO = JsonUtility.FromJson<TDTO>(File.ReadAllText(persistentFilePath));
-                    if (tDTO != null)
+                    using (FileStream fileStream = new FileStream(persistentFilePath, FileMode.Open))
                     {
-                        Instance.Deserialize(tDTO);
-                    }
-                    else
-                    {
-                        Debug.LogFormat("Error deserialization data in {0}.  Using default manager values.", persistentFilePath);
-                        Instance.SetDefaultValues();
+                        BinaryFormatter bf = new BinaryFormatter();
+                        TDTO tDTO = bf.Deserialize(fileStream) as TDTO;
+                        if (tDTO != null)
+                        {
+                            Instance.Deserialize(tDTO);
+                        }
+                        else
+                        {
+                            Debug.LogFormat("Error deserialization data in {0}.  Using default manager values.", persistentFilePath);
+                            Instance.SetDefaultValues();
+                        }
                     }
                 }
                 else
