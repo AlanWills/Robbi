@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wait
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 56, y: 184}
+  position: {x: 376, y: 24}
   ports:
     keys:
     - ' '
@@ -24,6 +24,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: -2868456186406338467}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: -2868456186406338467}
         reroutePoints: []
@@ -71,6 +74,9 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
+      - fieldName: 
+        node: {fileID: 948345544204406820}
+        reroutePoints: []
       - fieldName: 
         node: {fileID: 948345544204406820}
         reroutePoints: []
@@ -196,7 +202,7 @@ MonoBehaviour:
   m_Name: Input Raiser
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 300, y: 0}
+  position: {x: 744, y: 8}
   ports:
     keys:
     - ' '
@@ -209,6 +215,9 @@ MonoBehaviour:
       connections:
       - fieldName: 
         node: {fileID: -2935494699457021350}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -9122359071960853332}
         reroutePoints: []
       - fieldName: 
         node: {fileID: -9122359071960853332}
@@ -230,7 +239,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   inputEvent: {fileID: 11400000, guid: 74245c4526e3f0144b8534774b224924, type: 2}
-  inputPosition: {x: -1, y: -7, z: 0}
+  inputPosition: {x: 0, y: -7, z: 0}
   gameObjectName: MovementManager
 --- !u!114 &-2935494699457021350
 MonoBehaviour:
@@ -301,6 +310,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 258009434514266775}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 258009434514266775}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -345,6 +357,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -2935494699457021350}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2935494699457021350}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -362,55 +377,6 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   toRaise: {fileID: 11400000, guid: 37afef787bc4a1c449d4fe44c33866eb, type: 2}
---- !u!114 &-1541761260176255820
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01777c487707d36458826a6b99449e12, type: 3}
-  m_Name: Input Raiser
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 900, y: 0}
-  ports:
-    keys:
-    - ' '
-    - 
-    values:
-    - _fieldName: ' '
-      _node: {fileID: -1541761260176255820}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: 
-        node: {fileID: 3321944331612759933}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 3321944331612759933}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: 
-      _node: {fileID: -1541761260176255820}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: -1175510921206019324}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-  inputEvent: {fileID: 11400000, guid: 74245c4526e3f0144b8534774b224924, type: 2}
-  inputPosition: {x: 3, y: 2, z: 0}
-  gameObjectName: MovementManager
 --- !u!114 &-1517614319377422603
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -426,55 +392,6 @@ MonoBehaviour:
   isConstant: 1
   constantValue: 0.1
   referenceValue: {fileID: 0}
---- !u!114 &-1175510921206019324
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01777c487707d36458826a6b99449e12, type: 3}
-  m_Name: Input Raiser
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 1200, y: 0}
-  ports:
-    keys:
-    - ' '
-    - 
-    values:
-    - _fieldName: ' '
-      _node: {fileID: -1175510921206019324}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: 
-        node: {fileID: -1541761260176255820}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -1541761260176255820}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: 
-      _node: {fileID: -1175510921206019324}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: 948345544204406820}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-  inputEvent: {fileID: 11400000, guid: 74245c4526e3f0144b8534774b224924, type: 2}
-  inputPosition: {x: 0, y: 10, z: 0}
-  gameObjectName: MovementManager
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,8 +408,6 @@ MonoBehaviour:
   - {fileID: -2935494699457021350}
   - {fileID: -3462387325937853341}
   - {fileID: 3321944331612759933}
-  - {fileID: -1541761260176255820}
-  - {fileID: -1175510921206019324}
   - {fileID: 948345544204406820}
   - {fileID: -6962197556295491415}
   - {fileID: 3557620531559531323}
@@ -548,6 +463,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -2758633828009066157}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2758633828009066157}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -591,10 +509,13 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: 
-        node: {fileID: -1175510921206019324}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -1175510921206019324}
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 3321944331612759933}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -626,7 +547,7 @@ MonoBehaviour:
   m_Name: Input Raiser
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 600, y: 0}
+  position: {x: 1048, y: 8}
   ports:
     keys:
     - ' '
@@ -643,6 +564,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -3462387325937853341}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -3462387325937853341}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -653,14 +577,14 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: -1541761260176255820}
+        node: {fileID: 948345544204406820}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
   inputEvent: {fileID: 11400000, guid: 74245c4526e3f0144b8534774b224924, type: 2}
-  inputPosition: {x: 3, y: -5, z: 0}
+  inputPosition: {x: 0, y: 10, z: 0}
   gameObjectName: MovementManager
 --- !u!114 &3557620531559531323
 MonoBehaviour:
