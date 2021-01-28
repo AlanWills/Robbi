@@ -88,6 +88,13 @@ namespace CelesteEditor.Platform
         }
 
         [SerializeField]
+        private bool buildSymbols;
+        private bool BuildSymbols
+        {
+            get { return buildSymbols; }
+        }
+
+        [SerializeField]
         private bool minifyRelease;
         public bool MinifyRelease
         {
@@ -130,6 +137,7 @@ namespace CelesteEditor.Platform
             PlayerSettings.Android.targetArchitectures = Architecture;
             PlayerSettings.Android.minifyRelease = MinifyRelease;
             EditorUserBuildSettings.buildAppBundle = BuildAppBundle;
+            EditorUserBuildSettings.androidCreateSymbolsZip = BuildSymbols;
         }
     }
 }
