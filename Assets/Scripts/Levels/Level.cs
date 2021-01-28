@@ -7,6 +7,7 @@ using UnityEngine;
 using Robbi.Collecting;
 using Celeste.Assets;
 using UnityEngine.AddressableAssets;
+using Celeste.Attributes.GUI;
 
 namespace Robbi.Levels
 {
@@ -63,7 +64,7 @@ namespace Robbi.Levels
         public Vector3Int playerStartPosition;
         public int maxWaypointsPlaceable;
         public bool requiresFuel = false;
-        public uint startingFuel;
+        [ShowIf("requiresFuel")] public uint startingFuel;
         public uint softCurrencyPrize;
 
 #endregion

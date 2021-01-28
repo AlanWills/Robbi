@@ -14,21 +14,7 @@ namespace Robbi.Levels.Elements
         Vertical
     }
 
-    [CreateAssetMenu(fileName = "New Laser", menuName = "Robbi/Level/Laser")]
-    public class LaserDefinition : ScriptableObject
-    {
-        [Header("Active")]
-        public Tile startActiveTile;
-        public Tile middleActiveTile;
-        public Tile endActiveTile;
-
-        [Header("Inactive")]
-        public Tile startInactiveTile;
-        public Tile middleInactiveTile;
-        public Tile endInactiveTile;
-    }
-
-    [CreateAssetMenu(fileName = "New Laser", menuName = "Robbi/Level/Laser")]
+    [CreateAssetMenu(fileName = "New Laser", menuName = "Robbi/Levels/Laser")]
     public class Laser : ScriptableObject
     {
         #region Properties and Fields

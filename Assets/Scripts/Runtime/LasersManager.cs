@@ -18,8 +18,8 @@ namespace Robbi.Runtime
         public TilemapValue laserTilemap;
         
         [Header("Level Lose")]
-        public StringEvent levelLoseEvent;
-        public StringValue laserHitReason;
+        public StringEvent levelLostEvent;
+        public StringValue hitLaserReason;
 
         private List<Laser> lasers = new List<Laser>();
 
@@ -51,7 +51,7 @@ namespace Robbi.Runtime
         {
             if (laserTilemap.Value.HasTile(position))
             {
-                levelLoseEvent.Raise(laserHitReason.Value);
+                levelLostEvent.Raise(hitLaserReason.Value);
             }
         }
 

@@ -70,6 +70,9 @@ namespace RobbiEditor.Tools
         [Header("Portals")]
         public int numPortals;
 
+        [Header("Lasers")]
+        public List<LaserDefinition> lasers = new List<LaserDefinition>();
+
         [Header("Tutorials")]
         public bool hasTutorial = false;
         [ShowIf("hasTutorial")]
@@ -177,6 +180,20 @@ namespace RobbiEditor.Tools
                 CreatePrefab();
             }
 
+            if (levelInfo.hasTutorial && GUILayout.Button("Create Tutorial", GUILayout.ExpandWidth(false)))
+            {
+                CreateTutorial();
+            }
+
+            if (GUILayout.Button("Create Level Data", GUILayout.ExpandWidth(false)))
+            {
+                CreateLevelData();
+            }
+
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.Space();
+            EditorGUILayout.BeginHorizontal();
+
             if (GUILayout.Button("Create Doors", GUILayout.ExpandWidth(false)))
             {
                 CreateDoors();
@@ -202,14 +219,9 @@ namespace RobbiEditor.Tools
                 CreatePortals();
             }
 
-            if (levelInfo.hasTutorial && GUILayout.Button("Create Tutorial", GUILayout.ExpandWidth(false)))
+            if (GUILayout.Button("Create Lasers", GUILayout.ExpandWidth(false)))
             {
-                CreateTutorial();
-            }
-
-            if (GUILayout.Button("Create Level Data", GUILayout.ExpandWidth(false)))
-            {
-                CreateLevelData();
+                CreateLasers();
             }
 
             EditorGUILayout.EndHorizontal();
@@ -238,6 +250,7 @@ namespace RobbiEditor.Tools
             CreateInteractableStateMachines();
             CreateCollectables();
             CreatePortals();
+            CreateLasers();
             CreateLevelData();
 
             if (levelInfo.increaseMaxLevel)
@@ -449,6 +462,29 @@ namespace RobbiEditor.Tools
                 portal.name = string.Format("Level{0}Portal{1}", levelInfo.levelIndex, i);
                 AssetDatabase.CreateAsset(portal, string.Format("{0}{1}.asset", portalsPath, portal.name));
                 portal.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
+            }
+        }
+
+        private void CreateLasers()
+        {
+            if (levelInfo.lasers.Count == 0)
+            {
+                return;
+            }
+
+            string lasersPath = string.Format("{0}{1}", LevelFolderFullPath, LASERS_NAME);
+            if (!Directory.Exists(lasersPath))
+            {
+                AssetUtility.CreateFolder(LevelFolderFullPath, LASERS_NAME);
+            }
+
+            foreach (LaserDefinition laserDefinition in levelInfo.lasers)
+            {
+                Laser laser = ScriptableObject.CreateInstance<Laser>();
+                laser.name = string.Format("Level{0}{1}", levelInfo.levelIndex, laserDefinition.name);
+                laser.laserDefinition = laserDefinition;
+                AssetDatabase.CreateAsset(laser, string.Format("{0}{1}.asset", lasersPath, laser.name));
+                laser.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
             }
         }
 
