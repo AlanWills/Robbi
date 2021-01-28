@@ -54,9 +54,30 @@ namespace Robbi.Levels
             Camera.main.GetComponent<TilemapZoom>().FullZoomOut();
         }
 
-        #endregion
+        private void OnValidate()
+        {
+#if UNITY_EDITOR
+            if (lasersTilemap == null)
+            {
+                Transform lasersTransform = transform.Find("Lasers");
+                if (lasersTransform != null)
+                {
+                    lasersTilemap = lasersTransform.GetComponent<Tilemap>();
+                    UnityEditor.EditorUtility.SetDirty(this);
+                }
+            }
 
-        #region Editor Only Functions
+            if (lasersTilemapValue == null)
+            {
+                lasersTilemapValue = UnityEditor.AssetDatabase.LoadAssetAtPath<TilemapValue>("Assets/Parameters/Level/Tilemaps/Lasers.asset");
+                UnityEditor.EditorUtility.SetDirty(this);
+            }
+#endif
+        }
+
+#endregion
+
+#region Editor Only Functions
 
 #if UNITY_EDITOR
         public void EditorOnly_CompressAllTilemaps()
