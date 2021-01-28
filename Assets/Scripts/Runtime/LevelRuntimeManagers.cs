@@ -25,6 +25,7 @@ namespace Robbi.Runtime
         public InteractablesManager interactablesManager;
         public MovementManager movementManager;
         public PortalsManager portalsManager;
+        public LasersManager lasersManager;
         public TimeManager timeManager;
         public LevelResultManager levelResultManager;
 
@@ -34,7 +35,8 @@ namespace Robbi.Runtime
             IEnumerable<Collectable> collectables,
             IEnumerable<Door> doors,
             IEnumerable<ScriptableObject> interactables,
-            IEnumerable<Portal> portals)
+            IEnumerable<Portal> portals,
+            IEnumerable<Laser> lasers)
         {
             collectablesManager.Initialize(collectables);
             destructibleCorridorsManager.Initialize();
@@ -43,6 +45,7 @@ namespace Robbi.Runtime
             interactablesManager.Initialize(interactables);
             movementManager.Initialize();
             portalsManager.Initialize(portals);
+            lasersManager.Initialize(lasers);
             timeManager.Initialize();
             levelResultManager.Initialize();
             
@@ -61,7 +64,9 @@ namespace Robbi.Runtime
             interactablesManager.Cleanup();
             movementManager.Cleanup();
             portalsManager.Cleanup();
+            lasersManager.Cleanup();
             timeManager.Cleanup();
+            levelResultManager.Cleanup();
 
             for (int i = 0; i < transform.childCount; ++i)
             {
