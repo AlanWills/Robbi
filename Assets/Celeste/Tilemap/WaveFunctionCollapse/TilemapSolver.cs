@@ -118,6 +118,23 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
                 }
             }
 
+            // Now all boundaries are set, we update the neighbours of the boundary
+            // Don't care about the corners
+
+            // Bottom & Top rows
+            for (int column = 1; column < tilemap.Width() - 1; ++column)
+            {
+                UpdateFromNeighbours(column, 1);
+                UpdateFromNeighbours(column, tilemap.Height() - 2);
+            }
+
+            // Left & Right columns
+            for (int row = 1; row < tilemap.Height() - 1; ++row)
+            {
+                UpdateFromNeighbours(1, row);
+                UpdateFromNeighbours(tilemap.Width() - 2, row);
+            }
+
             tilemap.ClearAllTilesNoResize();
         }
 
