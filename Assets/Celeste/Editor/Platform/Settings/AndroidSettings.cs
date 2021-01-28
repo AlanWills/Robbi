@@ -61,11 +61,37 @@ namespace CelesteEditor.Platform
             }
         }
 
+        [SerializeField, HideInInspector]
+        private ScriptingImplementation scriptingBackend;
+        public ScriptingImplementation ScriptingBackend
+        {
+            get { return scriptingBackend; }
+        }
+
+        [SerializeField, HideInInspector]
+        private AndroidArchitecture architecture;
+        public AndroidArchitecture Architecture
+        {
+            get { return architecture; }
+            set 
+            { 
+                architecture = value;
+                EditorUtility.SetDirty(this);
+            }
+        }
+
         [SerializeField]
         private bool buildAppBundle;
         private bool BuildAppBundle
         {
             get { return buildAppBundle; }
+        }
+
+        [SerializeField]
+        private bool minifyRelease;
+        public bool MinifyRelease
+        {
+            get { return minifyRelease; }
         }
 
         [SerializeField]
@@ -100,6 +126,9 @@ namespace CelesteEditor.Platform
             PlayerSettings.Android.keystorePass = KeystorePassword;
             PlayerSettings.Android.keyaliasName = KeyAliasName;
             PlayerSettings.Android.keyaliasPass = KeyAliasPassword;
+            PlayerSettings.SetScriptingBackend(BuildTargetGroup.Android, ScriptingBackend);
+            PlayerSettings.Android.targetArchitectures = Architecture;
+            PlayerSettings.Android.minifyRelease = MinifyRelease;
             EditorUserBuildSettings.buildAppBundle = BuildAppBundle;
         }
     }
