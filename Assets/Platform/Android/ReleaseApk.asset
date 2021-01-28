@@ -10,28 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c74a5d4f56a1af4cbc67534ab81fb82, type: 3}
-  m_Name: Debug
+  m_Name: ReleaseApk
   m_EditorClassIdentifier: 
-  version: 0.9.0
+  version: 0.9.1
   playerOverrideVersion: '{major}.{minor}'
   buildDirectory: Builds/Android
   gDriveBuildUploadDirectory: 1rza9nRi2z5UTbzt8qF3ugU6ZsD8PfmLf
-  outputName: Debug/Robbi-{version}-Debug.apk
+  outputName: Release/Robbi-{version}-Release.apk
   addressablesBuildDirectory: ServerData/Android/{major}.{minor}
-  addressablesLoadDirectory: https://robbi-assets.s3-eu-west-1.amazonaws.com/Android/Debug/{major}.{minor}
-  addressablesS3UploadBucket: robbi-assets/Android/Debug/{major}.{minor}
+  addressablesLoadDirectory: https://robbi-assets.s3-eu-west-1.amazonaws.com/Android/{major}.{minor}
+  addressablesS3UploadBucket: robbi-assets/Android/{major}.{minor}
   buildTarget: 13
   buildTargetGroup: 7
-  development: 1
-  isDebugBuild: 1
-  buildOptions: 2097665
+  development: 0
+  isDebugBuild: 0
+  buildOptions: 2097152
   addressableGroupsInBuild:
   - bootstrap
   - levels
-  - tests
   assetPreparationSteps:
   - {fileID: 11400000, guid: de224b1cc19c1ec4c988b4ed8d93eb69, type: 2}
   - {fileID: 11400000, guid: 36dbb79c6d116fb4885c7b0a790fad75, type: 2}
+  buildAppBundle: 0
   keystorePassword: Celeste111929
   keyAliasName: robbi
   keyAliasPassword: Robbi111929

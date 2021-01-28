@@ -137,7 +137,6 @@ namespace CelesteEditor.Platform
             ApplyImpl();
 
             EditorUserBuildSettings.development = development;
-
             PlayerSettings.bundleVersion = version;
             AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.Settings;
             settings.OverridePlayerVersion = PlayerOverrideVersion;

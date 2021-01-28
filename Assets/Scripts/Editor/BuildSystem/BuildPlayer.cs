@@ -11,10 +11,16 @@ namespace RobbiEditor.BuildSystem
             AndroidSettings.Debug.BuildPlayer();
         }
 
-        [MenuItem("Robbi/Builds/Android Release")]
-        public static void BuildAndroidRelease()
+        [MenuItem("Robbi/Builds/Android Release Apk")]
+        public static void BuildAndroidReleaseApk()
         {
-            AndroidSettings.Release.BuildPlayer();
+            AndroidSettings.ReleaseApk.BuildPlayer();
+        }
+
+        [MenuItem("Robbi/Builds/Android Release Bundle")]
+        public static void BuildAndroidReleaseBundle()
+        {
+            AndroidSettings.ReleaseBundle.BuildPlayer();
         }
 
         [MenuItem("Robbi/Builds/Windows Debug")]
