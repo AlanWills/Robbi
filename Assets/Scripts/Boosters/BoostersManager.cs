@@ -1,10 +1,12 @@
 ﻿using Celeste.Assets;
 using Celeste.Managers;
+using Celeste.Managers.DTOs;
 using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -21,7 +23,7 @@ namespace Robbi.Boosters
 
         public static string DefaultSavePath
         {
-            get { return Path.Combine(Application.persistentDataPath, "BoostersManager.json"); }
+            get { return Path.Combine(Application.persistentDataPath, "BoostersManager.dat"); }
         }
 
         public uint NumWaypointBoosters
@@ -79,14 +81,14 @@ namespace Robbi.Boosters
             }
         }
 
-        public void Save()
+        public static void Save()
         {
-            Save(DefaultSavePath);
+            Instance.Save(DefaultSavePath);
         }
 
-        protected override string Serialize()
+        protected override BoostersManagerDTO Serialize()
         {
-            return JsonUtility.ToJson(new BoostersManagerDTO(this));
+            return new BoostersManagerDTO(this);
         }
 
         protected override void Deserialize(BoostersManagerDTO optionsManagerDTO)
@@ -102,7 +104,7 @@ namespace Robbi.Boosters
     }
 
     [Serializable]
-    public struct BoostersManagerDTO
+    public class BoostersManagerDTO : IPersistentManagerDTO<BoostersManager, BoostersManagerDTO>
     {
         public uint numWaypointBoosters;
         public uint numDoorToggleBoosters;

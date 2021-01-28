@@ -1,5 +1,6 @@
 ﻿using Celeste.Assets;
 using Celeste.Managers;
+using Celeste.Managers.DTOs;
 using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace Robbi.Currency
 
         public static string DefaultSavePath
         {
-            get { return Path.Combine(Application.persistentDataPath, "Currency.json"); }
+            get { return Path.Combine(Application.persistentDataPath, "Currency.dat"); }
         }
 
         public uint SoftCurrency
@@ -49,14 +50,9 @@ namespace Robbi.Currency
             }
         }
 
-        public void Save()
+        public static void Save()
         {
-            Save(DefaultSavePath);
-        }
-
-        public void SaveAsync()
-        {
-            SaveAsync(DefaultSavePath);
+            Instance.Save(DefaultSavePath);
         }
 
         protected override void Deserialize(CurrencyManagerDTO dto)
@@ -64,9 +60,9 @@ namespace Robbi.Currency
             softCurrency.Value = dto.softCurrency;
         }
 
-        protected override string Serialize()
+        protected override CurrencyManagerDTO Serialize()
         {
-            return JsonUtility.ToJson(new CurrencyManagerDTO(this));
+            return new CurrencyManagerDTO(this);
         }
 
         protected override void SetDefaultValues() { }
@@ -75,7 +71,7 @@ namespace Robbi.Currency
     }
 
     [Serializable]
-    public struct CurrencyManagerDTO
+    public class CurrencyManagerDTO : IPersistentManagerDTO<CurrencyManager, CurrencyManagerDTO>
     {
         public uint softCurrency;
 

@@ -1,6 +1,7 @@
 ﻿using Celeste.Assets;
 using Celeste.Log;
 using Celeste.Managers;
+using Celeste.Managers.DTOs;
 using Celeste.Parameters;
 using System;
 using System.IO;
@@ -18,7 +19,7 @@ namespace Robbi.Levels
 
         public static string DefaultSavePath
         {
-            get { return Path.Combine(UnityEngine.Application.persistentDataPath, "LevelManager.json"); }
+            get { return Path.Combine(UnityEngine.Application.persistentDataPath, "LevelManager.dat"); }
         }
 
         public uint CurrentLevel
@@ -84,14 +85,14 @@ namespace Robbi.Levels
             return LoadAsyncImpl(ADDRESS, DefaultSavePath);
         }
 
-        public void Save()
+        public static void Save()
         {
-            Save(DefaultSavePath);
+            Instance.Save(DefaultSavePath);
         }
 
-        protected override string Serialize()
+        protected override LevelManagerDTO Serialize()
         {
-            return JsonUtility.ToJson(new LevelManagerDTO(this));
+            return new LevelManagerDTO(this);
         }
 
         protected override void Deserialize(LevelManagerDTO levelManagerDTO)
@@ -108,7 +109,7 @@ namespace Robbi.Levels
     }
 
     [Serializable]
-    public struct LevelManagerDTO
+    public class LevelManagerDTO : IPersistentManagerDTO<LevelManager, LevelManagerDTO>
     {
         public uint latestUnlockedLevelIndex;
 

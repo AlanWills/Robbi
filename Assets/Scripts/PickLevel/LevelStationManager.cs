@@ -16,15 +16,15 @@ namespace Robbi.PickLevel
         #region Properties and Fields
 
         [Header("UI")]
-        [SerializeField]
-        private RecyclableScrollRect scrollRect;
+        [SerializeField] private RecyclableScrollRect scrollRect;
 
         [Header("Parameters")]
-        [SerializeField]
-        private UIntValue latestUnlockedLevel;
+        [SerializeField] private UIntValue latestUnlockedLevel;
 
-        [SerializeField]
-        private UIntValue latestAvailableLevel;
+        [SerializeField] private UIntValue latestAvailableLevel;
+
+        [SerializeField] private int portraitGridSegments;
+        [SerializeField] private int landscapeGridSegments;
 
         private List<LevelStationData> levelStationData = new List<LevelStationData>();
 
@@ -34,6 +34,8 @@ namespace Robbi.PickLevel
 
         private void Awake()
         {
+            scrollRect.Segments = Screen.width > Screen.height ? landscapeGridSegments : portraitGridSegments;
+
             uint latestLevel = Math.Min(latestUnlockedLevel.Value, latestAvailableLevel.Value);
             uint instantiationCount = latestLevel + 1;
 

@@ -26,7 +26,7 @@ namespace Robbi.Levels
                 if (uint.TryParse(parameters[0], out uint result))
                 {
                     levelManager.LatestUnlockedLevel = result;
-                    levelManager.Save();
+                    LevelManager.Save();
 
                     output.Append(string.Format("Latest Unlocked Level successfully set to {0}", levelManager.LatestUnlockedLevel));
                     return true;
@@ -44,7 +44,7 @@ namespace Robbi.Levels
                     if (uint.TryParse(parameters[1], out uint result))
                     {
                         levelManager.LatestAvailableLevel = result;
-                        levelManager.Save();
+                        LevelManager.Save();
 
                         output.Append(string.Format("Latest Available Level successfully set to {0}", levelManager.LatestAvailableLevel));
                         return true;

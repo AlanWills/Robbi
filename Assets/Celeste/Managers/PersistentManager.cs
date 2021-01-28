@@ -1,7 +1,9 @@
 ﻿using Celeste.Assets;
 using Celeste.Log;
+using Celeste.Managers.DTOs;
 using Celeste.Tools;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
@@ -12,6 +14,7 @@ namespace Celeste.Managers
 {
     public abstract class PersistentManager<T, TDTO> : ScriptableObject 
         where T : PersistentManager<T, TDTO>
+        where TDTO : class, IPersistentManagerDTO<T, TDTO>
     {
         #region Properties and Fields
         
@@ -75,15 +78,28 @@ namespace Celeste.Managers
 
                 if (File.Exists(persistentFilePath))
                 {
-                    TDTO tDTO = JsonUtility.FromJson<TDTO>(File.ReadAllText(persistentFilePath));
-                    if (tDTO != null)
+                    using (FileStream fileStream = new FileStream(persistentFilePath, FileMode.Open))
                     {
-                        Instance.Deserialize(tDTO);
-                    }
-                    else
-                    {
-                        Debug.LogFormat("Error deserialization data in {0}.  Using default manager values.", persistentFilePath);
-                        Instance.SetDefaultValues();
+                        if (fileStream.Length > 0)
+                        {
+                            BinaryFormatter bf = new BinaryFormatter();
+                            TDTO tDTO = bf.Deserialize(fileStream) as TDTO;
+                            
+                            if (tDTO != null)
+                            {
+                                Instance.Deserialize(tDTO);
+                            }
+                            else
+                            {
+                                Debug.LogFormat("Error deserializing data in {0}.  Using default manager values.", persistentFilePath);
+                                Instance.SetDefaultValues();
+                            }
+                        }
+                        else
+                        {
+                            Debug.LogFormat("No data saved to persistent file for {0}.  Using default manager values.", persistentFilePath);
+                            Instance.SetDefaultValues();
+                        }
                     }
                 }
                 else
@@ -100,25 +116,19 @@ namespace Celeste.Managers
 
         public void Save(string filePath)
         {
-            string serializedData = Instance.Serialize();
-            File.WriteAllText(filePath, serializedData);
-            
+            // OPTIMIZATION: Batch this?
+            using (FileStream fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                bf.Serialize(fileStream, Instance.Serialize());
+            }
+
             // Needed to deal with browser async saving
             WebGLUtils.SyncFiles();
-
             HudLog.LogInfoFormat("{0} saved", Instance.name);
         }
 
-        public async Task SaveAsync(string filePath)
-        {
-            string serializedData = Instance.Serialize();
-            using (StreamWriter outputFileWriter = new StreamWriter(new FileStream(filePath, FileMode.Create)))
-            {
-                await outputFileWriter.WriteAsync(serializedData);
-            }
-        }
-
-        protected abstract string Serialize();
+        protected abstract TDTO Serialize();
         protected abstract void Deserialize(TDTO dto);
         protected abstract void SetDefaultValues();
 

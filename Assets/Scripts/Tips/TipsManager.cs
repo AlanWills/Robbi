@@ -1,5 +1,6 @@
 ﻿using Celeste.Assets;
 using Celeste.Managers;
+using Celeste.Managers.DTOs;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Celeste.Tips
 
         public static string DefaultSavePath
         {
-            get { return Path.Combine(UnityEngine.Application.persistentDataPath, "Tips.json"); }
+            get { return Path.Combine(UnityEngine.Application.persistentDataPath, "Tips.dat"); }
         }
 
         public IEnumerable<uint> UnseenIndexes
@@ -93,21 +94,16 @@ namespace Celeste.Tips
             }
         }
 
-        public void Save()
+        public static void Save()
         {
-            Save(DefaultSavePath);
+            Instance.Save(DefaultSavePath);
         }
 
-        public Task SaveAsync()
-        {
-            return SaveAsync(DefaultSavePath);
-        }
-
-        protected override string Serialize()
+        protected override TipsManagerDTO Serialize()
         {
             UnityEngine.Debug.AssertFormat(allTips.Count == (unseenIndexes.Count + seenIndexes.Count), 
                 "Tip index mismatch.  All: {0}.  Unseen: {1}.  Seen: {2}", allTips.Count, unseenIndexes.Count, seenIndexes.Count);
-            return JsonUtility.ToJson(new TipsManagerDTO(this));
+            return new TipsManagerDTO(this);
         }
 
         protected override void Deserialize(TipsManagerDTO tipsManagerDTO)
@@ -166,7 +162,7 @@ namespace Celeste.Tips
     }
 
     [System.Serializable]
-    public struct TipsManagerDTO
+    public class TipsManagerDTO : IPersistentManagerDTO<TipsManager, TipsManagerDTO>
     {
         public List<uint> unseenIndexes;
         public List<uint> seenIndexes;

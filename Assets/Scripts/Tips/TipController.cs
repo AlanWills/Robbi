@@ -30,7 +30,7 @@ namespace Celeste.Tips
         private void OnEnable()
         {
             tipText.text = TipsManager.Instance.RandomTip;
-            TipsManager.Instance.SaveAsync();
+            TipsManager.Save();
         }
 
         #endregion

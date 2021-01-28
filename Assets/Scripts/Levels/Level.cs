@@ -19,6 +19,8 @@ namespace Robbi.Levels
         public BoolValue levelRequiresFuel;
         public UIntValue remainingFuel;
         public UIntValue softCurrencyPrize;
+        public BoolValue doorToggleBoosterUsable;
+        public BoolValue interactBoosterUsable;
     }
 
     [Serializable]
@@ -33,14 +35,28 @@ namespace Robbi.Levels
     {
         #region Properties and Fields
 
+#if UNITY_EDITOR
+
+        public List<ScriptableObject> Interactables_EditorOnly
+        {
+            get { return interactables; }
+        }
+
+        public List<LevelCollectionTarget> CollectionTargets_EditorOnly
+        {
+            get { return collectionTargets; }
+        }
+
+#endif
+
         public GameObject levelPrefab;
 
         [Header("Level Elements")]
         [SerializeField] private List<Portal> portals = new List<Portal>();
         [SerializeField] private List<Door> doors = new List<Door>();
-        [SerializeField] public List<ScriptableObject> interactables = new List<ScriptableObject>();
+        [SerializeField] private List<ScriptableObject> interactables = new List<ScriptableObject>();
         [SerializeField] private List<Collectable> collectables = new List<Collectable>();
-        [SerializeField] public List<LevelCollectionTarget> collectionTargets = new List<LevelCollectionTarget>();
+        [SerializeField] private List<LevelCollectionTarget> collectionTargets = new List<LevelCollectionTarget>();
 
         [Header("Level Parameters")]
         public Vector3Int playerStartPosition;
@@ -49,9 +65,9 @@ namespace Robbi.Levels
         public uint startingFuel;
         public uint softCurrencyPrize;
 
-        #endregion
+#endregion
 
-        #region Initialization
+#region Initialization
 
         public void Begin(LevelData levelData, GameObjectValue levelGameObject, LevelRuntimeManagers managers, CollectionTargetManager collectionTargetManager)
         {
@@ -71,20 +87,22 @@ namespace Robbi.Levels
             levelData.levelRequiresFuel.Value = requiresFuel;
             levelData.remainingFuel.Value = startingFuel;
             levelData.softCurrencyPrize.Value = softCurrencyPrize;
+            levelData.doorToggleBoosterUsable.Value = doors.Count > 0;
+            levelData.interactBoosterUsable.Value = interactables.Count > 0;
 
             managers.Initialize(collectables, doors, interactables, portals);
             collectionTargetManager.Initialize(collectionTargets);
         }
 
-        #endregion
+#endregion
 
-        #region Loading
+#region Loading
 
         public static AsyncOperationHandleWrapper LoadAsync(uint levelIndex)
         {
             return new AsyncOperationHandleWrapper(Addressables.LoadAssetAsync<Level>(string.Format("Level{0}Data", levelIndex)));
         }
 
-        #endregion
+#endregion
     }
 }

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6db639775df3fa42b938c8a1d6c785f, type: 3}
   m_Name: Release
   m_EditorClassIdentifier: 
-  version: 0.8.0
+  version: 0.9.1
   playerOverrideVersion: '{major}.{minor}'
   buildDirectory: Builds/Windows
   gDriveBuildUploadDirectory: 1KUjSjRkRRHltzM_YSp-LQ0EDRfxCxbNq
-  outputName: Release/{version}/Robbi-{version}-Release.exe
+  outputName: Release/{version}-Release/Robbi-{version}-Release.exe
   addressablesBuildDirectory: ServerData/Windows/{major}.{minor}
   addressablesLoadDirectory: https://robbi-assets.s3-eu-west-1.amazonaws.com/Windows/{major}.{minor}
   addressablesS3UploadBucket: robbi-assets/Windows/{major}.{minor}
@@ -25,6 +25,9 @@ MonoBehaviour:
   development: 0
   isDebugBuild: 0
   buildOptions: 2097152
+  addressableGroupsInBuild:
+  - bootstrap
+  - levels
   assetPreparationSteps:
   - {fileID: 11400000, guid: de224b1cc19c1ec4c988b4ed8d93eb69, type: 2}
   - {fileID: 11400000, guid: 36dbb79c6d116fb4885c7b0a790fad75, type: 2}
