@@ -52,7 +52,7 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
         public void Analyse(Vector2Int location)
         {
-            TilePossibilities tilePossibilities = new TilePossibilities(tilemapSolver.tileDescriptions);
+            TilePossibilities tilePossibilities = new TilePossibilities(location.x, location.y, tilemapSolver.tileDescriptions);
             tilemapSolver.UpdateFromNeighbours(location.x, location.y, tilePossibilities);
 
             if (tilePossibilities.HasPossibilities)
