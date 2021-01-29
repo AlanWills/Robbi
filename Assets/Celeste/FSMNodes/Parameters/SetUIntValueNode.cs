@@ -30,7 +30,7 @@ namespace Celeste.FSM.Nodes.Parameters
                     break;
 
                 case SetMode.Increment:
-                    value.Value += newValue;
+                    value += newValue;
                     break;
 
                 case SetMode.Decrement:

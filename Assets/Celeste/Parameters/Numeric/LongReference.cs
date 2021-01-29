@@ -10,5 +10,40 @@ namespace Celeste.Parameters
     [CreateAssetMenu(fileName = "LongReference", menuName = "Celeste/Parameters/Numeric/Long Reference")]
     public class LongReference : ParameterReference<long, LongValue, LongReference>
     {
+        #region Operators
+
+        public static bool operator ==(LongReference reference, long l)
+        {
+            return reference.Value == l;
+        }
+
+        public static bool operator ==(long l, LongReference reference)
+        {
+            return reference.Value == l;
+        }
+
+        public static LongReference operator +(LongReference reference, long l)
+        {
+            reference.Value += l;
+            return reference;
+        }
+
+        public static LongReference operator -(LongReference reference, long l)
+        {
+            reference.Value -= l;
+            return reference;
+        }
+
+        public static bool operator !=(LongReference reference, long l)
+        {
+            return reference.Value != l;
+        }
+
+        public static bool operator !=(long l, LongReference reference)
+        {
+            return reference.Value != l;
+        }
+
+        #endregion
     }
 }

@@ -11,5 +11,34 @@ namespace Celeste.Parameters
     [CreateAssetMenu(fileName = "StringValue", menuName = "Celeste/Parameters/String/String Value")]
     public class StringValue : ParameterValue<string>
     {
+        #region Operators
+
+        public static bool operator ==(StringValue value, string s)
+        {
+            return value.Value == s;
+        }
+
+        public static bool operator ==(string s, StringValue value)
+        {
+            return value.Value == s;
+        }
+
+        public static StringValue operator +(StringValue value, string s)
+        {
+            value.Value += s;
+            return value;
+        }
+
+        public static bool operator !=(StringValue value, string s)
+        {
+            return value.Value != s;
+        }
+
+        public static bool operator !=(string s, StringValue value)
+        {
+            return value.Value != s;
+        }
+
+        #endregion
     }
 }
