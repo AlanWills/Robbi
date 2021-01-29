@@ -478,12 +478,13 @@ namespace RobbiEditor.Tools
                 AssetUtility.CreateFolder(LevelFolderFullPath, LASERS_NAME);
             }
 
+            int index = 0;
             foreach (LaserDefinition laserDefinition in levelInfo.lasers)
             {
                 Laser laser = ScriptableObject.CreateInstance<Laser>();
                 laser.name = string.Format("Level{0}{1}", levelInfo.levelIndex, laserDefinition.name.Replace("Definition", ""));
                 laser.laserDefinition = laserDefinition;
-                AssetDatabase.CreateAsset(laser, string.Format("{0}{1}.asset", lasersPath, laser.name));
+                AssetDatabase.CreateAsset(laser, string.Format("{0}{1}{2}.asset", lasersPath, laser.name, index++));
                 laser.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
             }
         }
