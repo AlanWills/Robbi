@@ -17,11 +17,6 @@ namespace Celeste.Parameters
             return value.Value == v;
         }
 
-        public static bool operator ==(Vector3 v, Vector3Value value)
-        {
-            return value.Value == v;
-        }
-
         public static Vector3Value operator +(Vector3Value value, Vector3 v)
         {
             value.Value += v;
@@ -35,11 +30,6 @@ namespace Celeste.Parameters
         }
 
         public static bool operator !=(Vector3Value value, Vector3 v)
-        {
-            return value.Value != v;
-        }
-
-        public static bool operator !=(Vector3 v, Vector3Value value)
         {
             return value.Value != v;
         }

@@ -18,11 +18,6 @@ namespace Celeste.Parameters
             return reference.Value == s;
         }
 
-        public static bool operator ==(string s, StringReference reference)
-        {
-            return reference.Value == s;
-        }
-
         public static StringReference operator +(StringReference reference, string s)
         {
             reference.Value += s;
@@ -30,11 +25,6 @@ namespace Celeste.Parameters
         }
 
         public static bool operator !=(StringReference reference, string s)
-        {
-            return reference.Value != s;
-        }
-
-        public static bool operator !=(string s, StringReference reference)
         {
             return reference.Value != s;
         }

@@ -18,11 +18,6 @@ namespace Celeste.Parameters
             return value.Value == s;
         }
 
-        public static bool operator ==(string s, StringValue value)
-        {
-            return value.Value == s;
-        }
-
         public static StringValue operator +(StringValue value, string s)
         {
             value.Value += s;
@@ -30,11 +25,6 @@ namespace Celeste.Parameters
         }
 
         public static bool operator !=(StringValue value, string s)
-        {
-            return value.Value != s;
-        }
-
-        public static bool operator !=(string s, StringValue value)
         {
             return value.Value != s;
         }

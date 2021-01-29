@@ -17,11 +17,6 @@ namespace Celeste.Parameters
             return value.Value == i;
         }
 
-        public static bool operator ==(int i, IntValue value)
-        {
-            return value.Value == i;
-        }
-
         public static IntValue operator +(IntValue value, int i)
         {
             value.Value += i;
@@ -35,11 +30,6 @@ namespace Celeste.Parameters
         }
 
         public static bool operator !=(IntValue value, int i)
-        {
-            return value.Value != i;
-        }
-
-        public static bool operator !=(int i, IntValue value)
         {
             return value.Value != i;
         }

@@ -17,11 +17,6 @@ namespace Celeste.Parameters
             return reference.Value == i;
         }
 
-        public static bool operator ==(int i, IntReference reference)
-        {
-            return reference.Value == i;
-        }
-
         public static IntReference operator +(IntReference reference, int i)
         {
             reference.Value += i;
@@ -35,11 +30,6 @@ namespace Celeste.Parameters
         }
 
         public static bool operator !=(IntReference reference, int i)
-        {
-            return reference.Value != i;
-        }
-
-        public static bool operator !=(int i, IntReference reference)
         {
             return reference.Value != i;
         }

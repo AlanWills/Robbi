@@ -14,11 +14,6 @@ namespace Celeste.Parameters
             return reference.Value == v;
         }
 
-        public static bool operator ==(Vector3Int v, Vector3IntReference reference)
-        {
-            return reference.Value == v;
-        }
-
         public static Vector3IntReference operator +(Vector3IntReference reference, Vector3Int v)
         {
             reference.Value += v;
@@ -32,11 +27,6 @@ namespace Celeste.Parameters
         }
 
         public static bool operator !=(Vector3IntReference reference, Vector3Int v)
-        {
-            return reference.Value != v;
-        }
-
-        public static bool operator !=(Vector3Int v, Vector3IntReference reference)
         {
             return reference.Value != v;
         }

@@ -17,11 +17,6 @@ namespace Celeste.Parameters
             return reference.Value == f;
         }
 
-        public static bool operator ==(float f, FloatReference reference)
-        {
-            return reference.Value == f;
-        }
-
         public static FloatReference operator +(FloatReference reference, float f)
         {
             reference.Value += f;
@@ -35,11 +30,6 @@ namespace Celeste.Parameters
         }
 
         public static bool operator !=(FloatReference reference, float f)
-        {
-            return reference.Value != f;
-        }
-
-        public static bool operator !=(float f, FloatReference reference)
         {
             return reference.Value != f;
         }

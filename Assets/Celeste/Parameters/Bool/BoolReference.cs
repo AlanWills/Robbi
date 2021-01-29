@@ -17,17 +17,7 @@ namespace Celeste.Parameters
             return reference.Value == b;
         }
 
-        public static bool operator ==(bool b, BoolReference reference)
-        {
-            return reference.Value == b;
-        }
-
         public static bool operator !=(BoolReference reference, bool b)
-        {
-            return reference.Value != b;
-        }
-
-        public static bool operator !=(bool b, BoolReference reference)
         {
             return reference.Value != b;
         }

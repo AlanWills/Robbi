@@ -17,11 +17,6 @@ namespace Celeste.Parameters
             return reference.Value == l;
         }
 
-        public static bool operator ==(long l, LongReference reference)
-        {
-            return reference.Value == l;
-        }
-
         public static LongReference operator +(LongReference reference, long l)
         {
             reference.Value += l;
@@ -35,11 +30,6 @@ namespace Celeste.Parameters
         }
 
         public static bool operator !=(LongReference reference, long l)
-        {
-            return reference.Value != l;
-        }
-
-        public static bool operator !=(long l, LongReference reference)
         {
             return reference.Value != l;
         }

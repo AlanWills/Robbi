@@ -17,11 +17,6 @@ namespace Celeste.Parameters
             return value.Value == f;
         }
 
-        public static bool operator ==(float f, FloatValue value)
-        {
-            return value.Value == f;
-        }
-
         public static FloatValue operator +(FloatValue value, float f)
         {
             value.Value += f;
@@ -35,11 +30,6 @@ namespace Celeste.Parameters
         }
 
         public static bool operator !=(FloatValue value, float f)
-        {
-            return value.Value != f;
-        }
-
-        public static bool operator !=(float f, FloatValue value)
         {
             return value.Value != f;
         }
