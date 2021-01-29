@@ -55,6 +55,21 @@ namespace Robbi.Runtime
             }
         }
 
+        public void OnActivateLaser(Laser laser)
+        {
+            laser.Activate(laserTilemap.Value);
+        }
+
+        public void OnDeactivateLaser(Laser laser)
+        {
+            laser.Deactivate(laserTilemap.Value);
+        }
+
+        public void OnToggleLaser(Laser laser)
+        {
+            laser.Toggle(laserTilemap.Value);
+        }
+
         #endregion
     }
 }

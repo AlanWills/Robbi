@@ -1426,6 +1426,9 @@ GameObject:
   - component: {fileID: 5788878857070568888}
   - component: {fileID: 7859679017641654441}
   - component: {fileID: 5748442160347411925}
+  - component: {fileID: 5589263170544904571}
+  - component: {fileID: 3736121703532956818}
+  - component: {fileID: 5010414411061015527}
   m_Layer: 0
   m_Name: LasersManager
   m_TagString: Untagged
@@ -1481,6 +1484,90 @@ MonoBehaviour:
       - m_Target: {fileID: 7859679017641654441}
         m_TargetAssemblyTypeName: Robbi.Runtime.LasersManager, Robbi
         m_MethodName: OnMovedTo
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5589263170544904571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5284056565412097216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb107a7de8fe104784378f88152b817, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 0fc057235bee9534aa268ae608c31fc6, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7859679017641654441}
+        m_TargetAssemblyTypeName: Robbi.Runtime.LasersManager, Robbi
+        m_MethodName: OnActivateLaser
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3736121703532956818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5284056565412097216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb107a7de8fe104784378f88152b817, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: ef2c91330824bb74aa4461503e8c6f7c, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7859679017641654441}
+        m_TargetAssemblyTypeName: Robbi.Runtime.LasersManager, Robbi
+        m_MethodName: OnDeactivateLaser
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5010414411061015527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5284056565412097216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb107a7de8fe104784378f88152b817, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 1bb562e74c73bf547af2c9cbf785bd98, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7859679017641654441}
+        m_TargetAssemblyTypeName: Robbi.Runtime.LasersManager, Robbi
+        m_MethodName: OnToggleLaser
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

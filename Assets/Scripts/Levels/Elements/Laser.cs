@@ -29,6 +29,8 @@ namespace Robbi.Levels.Elements
         public Vector3Int endLocation;
         public bool startsActive = true;
 
+        private bool isActive = true;
+
         #endregion
 
         public void Initialize(Tilemap tilemap)
@@ -47,9 +49,39 @@ namespace Robbi.Levels.Elements
 
         public void Activate(Tilemap tilemap)
         {
+            if (!isActive)
+            {
+                SetLaserTiles(tilemap, laserDefinition.startActiveTile, laserDefinition.middleActiveTile, laserDefinition.endActiveTile);
+                isActive = true;
+            }
+        }
+
+        public void Deactivate(Tilemap tilemap)
+        {
+            if (isActive)
+            {
+                SetLaserTiles(tilemap, laserDefinition.startInactiveTile, laserDefinition.middleInactiveTile, laserDefinition.endInactiveTile);
+                isActive = false;
+            }
+        }
+
+        public void Toggle(Tilemap tilemap)
+        {
+            if (isActive)
+            {
+                Deactivate(tilemap);
+            }
+            else
+            {
+                Activate(tilemap);
+            }
+        }
+
+        private void SetLaserTiles(Tilemap tilemap, TileBase startTile, TileBase middleTile, TileBase endTile)
+        {
             Debug.AssertFormat(laserDefinition != null, "{0} has no Laser Definition set", name);
-            tilemap.SetTile(startLocation, laserDefinition.startActiveTile);
-            tilemap.SetTile(endLocation, laserDefinition.endActiveTile);
+            tilemap.SetTile(startLocation, startTile);
+            tilemap.SetTile(endLocation, endTile);
 
             if (LaserDirection == LaserDirection.Horizontal)
             {
@@ -79,22 +111,7 @@ namespace Robbi.Levels.Elements
 
             while (tilemapLocation != endLocation)
             {
-                tilemap.SetTile(tilemapLocation, laserDefinition.middleActiveTile);
-                tilemapLocation += diff;
-            }
-        }
-
-        public void Deactivate(Tilemap tilemap)
-        {
-            tilemap.SetTile(startLocation, laserDefinition.startInactiveTile);
-            tilemap.SetTile(endLocation, laserDefinition.endInactiveTile);
-
-            Vector3Int diff = LaserDirection == LaserDirection.Horizontal ? new Vector3Int(1, 0, 0) : new Vector3Int(0, 1, 0);
-            Vector3Int tilemapLocation = startLocation + diff;
-
-            while (tilemapLocation != endLocation)
-            {
-                tilemap.SetTile(tilemapLocation, laserDefinition.middleInactiveTile);
+                tilemap.SetTile(tilemapLocation, middleTile);
                 tilemapLocation += diff;
             }
         }
