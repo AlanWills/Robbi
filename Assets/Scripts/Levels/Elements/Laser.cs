@@ -58,6 +58,12 @@ namespace Robbi.Levels.Elements
                     Debug.LogAssertionFormat("{0} has a start location which is to the right of the end location.  This will cause a break in laser logic", name);
                     return;
                 }
+                else if (startLocation.y != endLocation.y)
+                {
+                    // Extra check for horizontal lasers since they are the fallback case
+                    Debug.LogAssertionFormat("{0} has a start location which is not at the same height as the end location.  This will cause a break in laser logic", name);
+                    return;
+                }
             }
             else if (LaserDirection == LaserDirection.Vertical)
             {
