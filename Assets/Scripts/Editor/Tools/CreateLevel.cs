@@ -481,7 +481,7 @@ namespace RobbiEditor.Tools
             foreach (LaserDefinition laserDefinition in levelInfo.lasers)
             {
                 Laser laser = ScriptableObject.CreateInstance<Laser>();
-                laser.name = string.Format("Level{0}{1}", levelInfo.levelIndex, laserDefinition.name);
+                laser.name = string.Format("Level{0}{1}", levelInfo.levelIndex, laserDefinition.name.Replace("Definition", ""));
                 laser.laserDefinition = laserDefinition;
                 AssetDatabase.CreateAsset(laser, string.Format("{0}{1}.asset", lasersPath, laser.name));
                 laser.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);

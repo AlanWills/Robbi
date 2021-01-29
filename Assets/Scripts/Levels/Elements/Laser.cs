@@ -55,7 +55,7 @@ namespace Robbi.Levels.Elements
             {
                 if (startLocation.x >= endLocation.x)
                 {
-                    Debug.LogAssertionFormat("{0} has a start location which is to the right of the end location.  This will cause a break in laser logic");
+                    Debug.LogAssertionFormat("{0} has a start location which is to the right of the end location.  This will cause a break in laser logic", name);
                     return;
                 }
             }
@@ -63,7 +63,7 @@ namespace Robbi.Levels.Elements
             {
                 if (startLocation.y >= endLocation.y)
                 {
-                    Debug.LogAssertionFormat("{0} has a start location which is above the end location.  This will cause a break in laser logic");
+                    Debug.LogAssertionFormat("{0} has a start location which is above the end location.  This will cause a break in laser logic", name);
                     return;
                 }
             }
