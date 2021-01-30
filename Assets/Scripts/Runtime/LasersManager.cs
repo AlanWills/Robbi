@@ -49,9 +49,18 @@ namespace Robbi.Runtime
 
         public void OnMovedTo(Vector3Int position)
         {
-            if (laserTilemap.Value.HasTile(position))
+            if (!laserTilemap.Value.HasTile(position))
             {
-                levelLostEvent.Raise(hitLaserReason.Value);
+                return;
+            }
+
+            for (int i = 0; i < lasers.Count; ++i)
+            {
+                // Check the lasers to see if they're on
+                if (lasers[i].WouldAffectPosition(position))
+                {
+                    levelLostEvent.Raise(hitLaserReason.Value);
+                }
             }
         }
 

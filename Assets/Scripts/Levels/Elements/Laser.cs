@@ -45,6 +45,23 @@ namespace Robbi.Levels.Elements
             }
         }
 
+        public bool WouldAffectPosition(Vector3Int position)
+        {
+            if (!isActive)
+            {
+                return false;
+            }
+            
+            if (LaserDirection == LaserDirection.Horizontal)
+            {
+                return startLocation.y == position.y && startLocation.x <= position.x && position.x <= endLocation.x;
+            }
+            else
+            {
+                return startLocation.x == position.x && startLocation.y <= position.y && position.y <= endLocation.y;
+            }
+        }
+
         #region Activation Methods
 
         public void Activate(Tilemap tilemap)
