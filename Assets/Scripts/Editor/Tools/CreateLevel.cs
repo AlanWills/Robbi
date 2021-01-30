@@ -22,7 +22,7 @@ namespace RobbiEditor.Tools
     {
         OpenDoor,
         CloseDoor,
-        ToggleDoor,
+        ToggleDoor
     }
 
     [Serializable]
