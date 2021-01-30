@@ -35,6 +35,9 @@ namespace Robbi.Levels.Elements
 
         public void Initialize(Tilemap tilemap)
         {
+            // Need this so that the Activate or Deactivate calls succeed
+            isActive = !startsActive;
+
             if (startsActive)
             {
                 Activate(tilemap);
