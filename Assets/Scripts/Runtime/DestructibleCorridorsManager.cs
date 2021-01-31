@@ -28,7 +28,6 @@ namespace Robbi.Runtime
         {
             if (destructibleCorridorsTilemap.Value.HasTile(tileCoords))
             {
-                var tile = destructibleCorridorsTilemap.Value.GetTile(tileCoords);
                 destructibleCorridorsTilemap.Value.SetTile(tileCoords, null);
                 movementTilemap.Value.SetTile(tileCoords, null);
             }

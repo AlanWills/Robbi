@@ -197,7 +197,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   portalsTilemap: {fileID: 11400000, guid: 87945437681cceb4e91277c09bfaba4b, type: 2}
   playerPosition: {fileID: 11400000, guid: ddb88a6bd2594e6419cb8c238d69285a, type: 2}
-  levelChangedEvent: {fileID: 11400000, guid: 5bb336e8d44fa7f4e9895bfdf197a063, type: 2}
+  portalEntered: {fileID: 11400000, guid: 49784da589b5f8643aae39898048da51, type: 2}
+  portalExited: {fileID: 11400000, guid: 59d5400f5776b1048b2b8201934eaf9f, type: 2}
 --- !u!114 &7494773778310601239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,6 +248,7 @@ GameObject:
   - component: {fileID: 3458020385244659024}
   - component: {fileID: 3398818866761533935}
   - component: {fileID: 5273468936645031076}
+  - component: {fileID: 4632566323217754145}
   - component: {fileID: 2185254429373469848}
   m_Layer: 0
   m_Name: MovementManager
@@ -605,6 +607,34 @@ MonoBehaviour:
       - m_Target: {fileID: 2772506934692611030}
         m_TargetAssemblyTypeName: Robbi.Movement.MovementManager, Robbi
         m_MethodName: OnRemoveWaypoints
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4632566323217754145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2772506934692611051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 59d5400f5776b1048b2b8201934eaf9f, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2772506934692611030}
+        m_TargetAssemblyTypeName: Robbi.Movement.MovementManager, Robbi
+        m_MethodName: OnPortalExited
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1426,6 +1456,7 @@ GameObject:
   - component: {fileID: 5788878857070568888}
   - component: {fileID: 7859679017641654441}
   - component: {fileID: 5748442160347411925}
+  - component: {fileID: 7679744951776096445}
   - component: {fileID: 5589263170544904571}
   - component: {fileID: 3736121703532956818}
   - component: {fileID: 5010414411061015527}
@@ -1484,6 +1515,34 @@ MonoBehaviour:
       - m_Target: {fileID: 7859679017641654441}
         m_TargetAssemblyTypeName: Robbi.Runtime.LasersManager, Robbi
         m_MethodName: OnMovedTo
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7679744951776096445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5284056565412097216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 59d5400f5776b1048b2b8201934eaf9f, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7859679017641654441}
+        m_TargetAssemblyTypeName: Robbi.Runtime.LasersManager, Robbi
+        m_MethodName: OnPortalExited
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

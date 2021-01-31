@@ -43,11 +43,7 @@ namespace Robbi.Runtime
             lasers.Clear();
         }
 
-        #endregion
-
-        #region Callbacks
-
-        public void OnMovedTo(Vector3Int position)
+        private void CheckForLaserHit(Vector3Int position)
         {
             if (!laserTilemap.Value.HasTile(position))
             {
@@ -62,6 +58,20 @@ namespace Robbi.Runtime
                     levelLostEvent.Raise(hitLaserReason.Value);
                 }
             }
+        }
+
+        #endregion
+
+        #region Callbacks
+
+        public void OnMovedTo(Vector3Int position)
+        {
+            CheckForLaserHit(position);
+        }
+
+        public void OnPortalExited(Vector3Int position)
+        {
+            CheckForLaserHit(position);
         }
 
         public void OnActivateLaser(Laser laser)

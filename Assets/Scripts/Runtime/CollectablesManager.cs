@@ -38,8 +38,10 @@ namespace Robbi.Runtime
 
         public void OnMovedTo(Vector3Int location)
         {
-            foreach (Collectable collectable in collectables)
+            for (int i = 0; i < collectables.Count; ++i)
             {
+                Collectable collectable = collectables[i];
+
                 // Only pickup if we have not already done so (tilemap has value)
                 if (collectable.Position == location && collectablesTilemap.Value.HasTile(location))
                 {
