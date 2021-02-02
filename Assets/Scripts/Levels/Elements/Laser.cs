@@ -15,7 +15,7 @@ namespace Robbi.Levels.Elements
     }
 
     [CreateAssetMenu(fileName = "New Laser", menuName = "Robbi/Levels/Laser")]
-    public class Laser : ScriptableObject
+    public class Laser : ScriptableObject, ILevelElement
     {
         #region Properties and Fields
 

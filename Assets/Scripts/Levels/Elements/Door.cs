@@ -16,7 +16,7 @@ namespace Robbi.Levels.Elements
         Closed
     }
 
-    public class Door : ScriptableObject
+    public class Door : ScriptableObject, ILevelElement
     {
         #region Properties and Fields
 

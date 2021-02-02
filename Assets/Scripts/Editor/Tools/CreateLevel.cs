@@ -40,6 +40,13 @@ namespace RobbiEditor.Tools
     }
 
     [Serializable]
+    public struct EnemyInfo
+    {
+        public Vector3Int startingPosition;
+        public GameObject prefab;
+    }
+
+    [Serializable]
     public class LevelInfo : ScriptableObject
     {
         public string destinationFolder = LevelDirectories.LEVELS_PATH;
@@ -72,6 +79,9 @@ namespace RobbiEditor.Tools
 
         [Header("Lasers")]
         public List<LaserDefinition> lasers = new List<LaserDefinition>();
+
+        [Header("Lasers")]
+        public List<EnemyInfo> enemies = new List<EnemyInfo>();
 
         [Header("Tutorials")]
         public bool hasTutorial = false;
@@ -224,6 +234,11 @@ namespace RobbiEditor.Tools
                 CreateLasers();
             }
 
+            if (GUILayout.Button("Create Enemies", GUILayout.ExpandWidth(false)))
+            {
+                CreateEnemies();
+            }
+
             EditorGUILayout.EndHorizontal();
 
             levelInfoObject.ApplyModifiedProperties();
@@ -251,6 +266,7 @@ namespace RobbiEditor.Tools
             CreateCollectables();
             CreatePortals();
             CreateLasers();
+            CreateEnemies();
             CreateLevelData();
 
             if (levelInfo.increaseMaxLevel)
@@ -486,6 +502,31 @@ namespace RobbiEditor.Tools
                 laser.laserDefinition = laserDefinition;
                 AssetDatabase.CreateAsset(laser, string.Format("{0}{1}{2}.asset", lasersPath, laser.name, index++));
                 laser.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
+            }
+        }
+
+        private void CreateEnemies()
+        {
+            if (levelInfo.enemies.Count == 0)
+            {
+                return;
+            }
+
+            string enemiesPath = string.Format("{0}{1}", LevelFolderFullPath, ENEMIES_NAME);
+            if (!Directory.Exists(enemiesPath))
+            {
+                AssetUtility.CreateFolder(LevelFolderFullPath, ENEMIES_NAME);
+            }
+
+            int index = 0;
+            foreach (EnemyInfo enemyInfo in levelInfo.enemies)
+            {
+                Enemy enemy = ScriptableObject.CreateInstance<Enemy>();
+                enemy.name = string.Format("Level{0}{1}", levelInfo.levelIndex, index++);
+                enemy.startingPosition = enemyInfo.startingPosition;
+                enemy.prefab = enemyInfo.prefab;
+                AssetDatabase.CreateAsset(enemy, string.Format("{0}{1}.asset", enemiesPath, enemy.name));
+                enemy.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
             }
         }
 

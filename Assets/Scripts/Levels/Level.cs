@@ -59,6 +59,7 @@ namespace Robbi.Levels
         [SerializeField] private List<Collectable> collectables = new List<Collectable>();
         [SerializeField] private List<LevelCollectionTarget> collectionTargets = new List<LevelCollectionTarget>();
         [SerializeField] private List<Laser> lasers = new List<Laser>();
+        [SerializeField] private List<Enemy> enemies = new List<Enemy>();
 
         [Header("Level Parameters")]
         public Vector3Int playerStartPosition;
@@ -92,7 +93,7 @@ namespace Robbi.Levels
             levelData.doorToggleBoosterUsable.Value = doors.Count > 0;
             levelData.interactBoosterUsable.Value = interactables.Count > 0;
 
-            managers.Initialize(collectables, doors, interactables, portals, lasers);
+            managers.Initialize(collectables, doors, interactables, portals, lasers, enemies);
             collectionTargetManager.Initialize(collectionTargets);
         }
 

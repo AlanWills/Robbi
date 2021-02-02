@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1664423317556566638
 MonoBehaviour:
@@ -1145,6 +1145,7 @@ Transform:
   - {fileID: 2772506934692611050}
   - {fileID: 5966350632234475573}
   - {fileID: 2270789002046526372}
+  - {fileID: 2880203462078893977}
   - {fileID: 531814673809321884}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1169,6 +1170,7 @@ MonoBehaviour:
   movementManager: {fileID: 2772506934692611030}
   portalsManager: {fileID: 2359638522097945808}
   lasersManager: {fileID: 7859679017641654441}
+  enemiesManager: {fileID: 3578985312075365774}
   timeManager: {fileID: 5483510007092365298}
   levelResultManager: {fileID: 1664423317556566638}
 --- !u!114 &9202785352855056089
@@ -1255,6 +1257,55 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &4373123464863523286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2880203462078893977}
+  - component: {fileID: 3578985312075365774}
+  m_Layer: 0
+  m_Name: EnemiesManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2880203462078893977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4373123464863523286}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4253851984974408785}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3578985312075365774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4373123464863523286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b964a4bf24af0a46aab11495dedf786, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementTilemap: {fileID: 11400000, guid: 383b6f4d91bf25e4a924c5ca0f937a9a, type: 2}
+  levelLostEvent: {fileID: 11400000, guid: f1011e957c917144caeaffc2270ffebe, type: 2}
+  caughtByEnemyReason: {fileID: 11400000, guid: 6fab5162a0a2dcf4591082084cff3cc9,
+    type: 2}
+  playerPosition: {fileID: 11400000, guid: ddb88a6bd2594e6419cb8c238d69285a, type: 2}
+  enemiesMoving: {fileID: 11400000, guid: 36c66e683e05d134495c04803619774f, type: 2}
 --- !u!1 &4443659954887257874
 GameObject:
   m_ObjectHideFlags: 0

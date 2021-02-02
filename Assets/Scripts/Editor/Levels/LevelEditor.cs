@@ -66,6 +66,7 @@ namespace RobbiEditor.Levels
             FindInteractables(level);
             FindCollectables(level);
             FindLasers(level);
+            FindEnemies(level);
         }
 
         private static void FindPortals(Level level)
@@ -136,6 +137,11 @@ namespace RobbiEditor.Levels
         private static void FindLasers(Level level)
         {
             level.FindAssets<Laser>("lasers", LevelDirectories.LASERS_NAME);
+        }
+
+        private static void FindEnemies(Level level)
+        {
+            level.FindAssets<Enemy>("enemies", LevelDirectories.ENEMIES_NAME);
         }
 
         #endregion

@@ -13,7 +13,7 @@ namespace Robbi.Levels.Elements
         public Tilemap interactablesTilemap;
     }
 
-    public interface IInteractable
+    public interface IInteractable : ILevelElement
     {
         #region Properties and Fields
 
