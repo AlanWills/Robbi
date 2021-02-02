@@ -79,6 +79,14 @@ namespace RobbiEditor.Tools
                         AddressablesUtility.SetAddressableInfo(doorPath, AddressablesConstants.LEVELS_GROUP);
                     }
                 }
+
+                // Lasers
+                {
+                    foreach (string lasersPath in levelFolder.Lasers)
+                    {
+                        AddressablesUtility.SetAddressableInfo(lasersPath, AddressablesConstants.LEVELS_GROUP);
+                    }
+                }
             }
 
             AssetDatabase.SaveAssets();

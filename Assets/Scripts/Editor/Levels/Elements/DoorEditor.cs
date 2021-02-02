@@ -13,7 +13,7 @@ namespace RobbiEditor.Levels.Elements
     {
         #region Menu Items
 
-        [MenuItem("Assets/Create/Robbi/Level/Door")]
+        [MenuItem("Assets/Create/Robbi/Levels/Door")]
         public static void CreateDoor()
         {
             CreateDoor("Door", AssetUtility.GetSelectionObjectPath(), DoorState.Closed);

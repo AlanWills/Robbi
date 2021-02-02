@@ -53,6 +53,9 @@ namespace RobbiEditor.Levels
         public string DoorsFolderPath { get { return string.Format("{0}/{1}", Path, LevelDirectories.DOORS_NAME); } }
         public FindAssets<Door> Doors { get { return new FindAssets<Door>(DoorsFolderPath); } }
 
+        public string LasersFolderPath { get { return string.Format("{0}/{1}", Path, LevelDirectories.LASERS_NAME); } }
+        public FindAssets<Laser> Lasers { get { return new FindAssets<Laser>(LasersFolderPath); } }
+
         public LevelFolder(uint index)
         {
             Index = index;

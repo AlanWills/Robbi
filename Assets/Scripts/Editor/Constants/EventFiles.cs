@@ -13,6 +13,9 @@ namespace RobbiEditor
         public const string DOOR_OPENED_EVENT = FULL_PATH + LEVEL + DOORS + "DoorOpened.asset";
         public const string DOOR_CLOSED_EVENT = FULL_PATH + LEVEL + DOORS + "DoorClosed.asset";
         public const string DOOR_TOGGLED_EVENT = FULL_PATH + LEVEL + DOORS + "DoorToggled.asset";
+        public const string LASER_ACTIVATED_EVENT = FULL_PATH + LEVEL + LASERS + "LaserActivated.asset";
+        public const string LASER_DEACTIVATED_EVENT = FULL_PATH + LEVEL + LASERS + "LaserDeactivated.asset";
+        public const string LASER_TOGGLED_EVENT = FULL_PATH + LEVEL + LASERS + "LaserToggled.asset";
         public const string MOVED_TO_EVENT = FULL_PATH + LEVEL + "MovedTo.asset";
         public const string MODIFY_SPEED_EVENT = FULL_PATH + LEVEL + "ModifySpeed.asset";
         public const string ADD_FUEL_EVENT = FULL_PATH + LEVEL + "AddFuel.asset";

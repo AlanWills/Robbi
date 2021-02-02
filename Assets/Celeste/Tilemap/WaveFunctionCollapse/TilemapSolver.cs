@@ -86,7 +86,7 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
                 for (int column = 0; column < tilemap.Width(); ++column)
                 {
-                    firstRowPossibilities.Add(new TilePossibilities(nullTile));
+                    firstRowPossibilities.Add(new TilePossibilities(column, 0, nullTile));
                 }
             }
 
@@ -96,15 +96,15 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
                 Solution.Add(rowPossibilities);
 
                 // Left boundary
-                rowPossibilities.Add(new TilePossibilities(nullTile));
+                rowPossibilities.Add(new TilePossibilities(0, row, nullTile));
 
                 for (int column = 1; column < tilemap.Width() - 1; ++column)
                 {
-                    rowPossibilities.Add(new TilePossibilities(tileDescriptions));
+                    rowPossibilities.Add(new TilePossibilities(column, row, tileDescriptions));
                 }
 
                 // Right boundary
-                rowPossibilities.Add(new TilePossibilities(nullTile));
+                rowPossibilities.Add(new TilePossibilities(tilemap.Width() - 1, row, nullTile));
             }
 
             // Add top boundary
@@ -114,8 +114,25 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
                 for (int column = 0; column < tilemap.Width(); ++column)
                 {
-                    lastRowPossibilities.Add(new TilePossibilities(nullTile));
+                    lastRowPossibilities.Add(new TilePossibilities(column, tilemap.Height() - 1, nullTile));
                 }
+            }
+
+            // Now all boundaries are set, we update the neighbours of the boundary
+            // Don't care about the corners
+
+            // Bottom & Top rows
+            for (int column = 1; column < tilemap.Width() - 1; ++column)
+            {
+                UpdateFromNeighbours(column, 1);
+                UpdateFromNeighbours(column, tilemap.Height() - 2);
+            }
+
+            // Left & Right columns
+            for (int row = 1; row < tilemap.Height() - 1; ++row)
+            {
+                UpdateFromNeighbours(1, row);
+                UpdateFromNeighbours(tilemap.Width() - 2, row);
             }
 
             tilemap.ClearAllTilesNoResize();
@@ -132,7 +149,7 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
                 for (int column = 0; column < tilemap.Width(); ++column)
                 {
-                    firstRowPossibilities.Add(new TilePossibilities(nullTile));
+                    firstRowPossibilities.Add(new TilePossibilities(column, 0, nullTile));
                 }
             }
 
@@ -142,23 +159,23 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
                 Solution.Add(rowPossibilities);
 
                 // Left boundary
-                rowPossibilities.Add(new TilePossibilities(nullTile));
+                rowPossibilities.Add(new TilePossibilities(0, row, nullTile));
 
                 for (int column = 1; column < tilemap.Width() - 1; ++column)
                 {
                     if (tilemap.HasTile(new Vector3Int(column, row, 0)))
                     {
                         TileDescription foundTileDescription = FindTileDescription(tilemap.GetTile(new Vector3Int(column, row, 0)));
-                        rowPossibilities.Add(new TilePossibilities(foundTileDescription));
+                        rowPossibilities.Add(new TilePossibilities(column, row, foundTileDescription));
                     }
                     else
                     {
-                        rowPossibilities.Add(new TilePossibilities(tileDescriptions));
+                        rowPossibilities.Add(new TilePossibilities(column, row, tileDescriptions));
                     }
                 }
 
                 // Right boundary
-                rowPossibilities.Add(new TilePossibilities(nullTile));
+                rowPossibilities.Add(new TilePossibilities(tilemap.Width() - 1, row, nullTile));
             }
 
             // Add top boundary
@@ -168,7 +185,7 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
                 for (int column = 0; column < tilemap.Width(); ++column)
                 {
-                    lastRowPossibilities.Add(new TilePossibilities(nullTile));
+                    lastRowPossibilities.Add(new TilePossibilities(column, tilemap.Height() - 1, nullTile));
                 }
             }
         }

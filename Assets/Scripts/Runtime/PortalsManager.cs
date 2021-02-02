@@ -1,4 +1,5 @@
-﻿using Celeste.Parameters;
+﻿using Celeste.Events;
+using Celeste.Parameters;
 using Celeste.Tilemaps;
 using Robbi.Levels.Elements;
 using System;
@@ -17,7 +18,8 @@ namespace Robbi.Runtime
 
         public TilemapValue portalsTilemap;
         public Vector3Value playerPosition;
-        public Celeste.Events.Event levelChangedEvent;
+        public Vector3IntEvent portalEntered;
+        public Vector3IntEvent portalExited;
 
         private List<Portal> portals = new List<Portal>();
 
@@ -55,12 +57,16 @@ namespace Robbi.Runtime
 
         public void OnMovedTo(Vector3Int location)
         {
-            foreach (Portal portal in portals)
+            for (int i = 0; i < portals.Count; ++i)
             {
+                Portal portal = portals[i];
+
                 if (portal.IsAtEntrance(location))
                 {
-                    playerPosition.Value = portalsTilemap.Value.GetCellCenterWorld(portal.GetExit(location));
-                    levelChangedEvent.Raise();
+                    Vector3Int exit = portal.GetExit(location);
+                    portalEntered.Raise(location);
+                    playerPosition.Value = portalsTilemap.Value.GetCellCenterWorld(exit);
+                    portalExited.Raise(exit);
                 }
             }
         }

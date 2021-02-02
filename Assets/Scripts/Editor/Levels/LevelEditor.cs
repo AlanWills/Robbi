@@ -40,35 +40,14 @@ namespace RobbiEditor.Levels
 
             Level level = target as Level;
 
-            DrawPropertiesExcluding(serializedObject, "m_Script", "requiresFuel", "startingFuel");
-
-            EditorGUILayout.PropertyField(requiresFuelProperty);
-            if (requiresFuelProperty.boolValue)
-            {
-                EditorGUILayout.PropertyField(startingFuelProperty);
-            }
+            DrawPropertiesExcluding(serializedObject, "m_Script");
 
             EditorGUILayout.Space();
             EditorGUILayout.BeginHorizontal();
 
-            if (GUILayout.Button("Find Portals", GUILayout.ExpandWidth(false)))
+            if (GUILayout.Button("Find Level Objects", GUILayout.ExpandWidth(false)))
             {
-                FindPortals(level);
-            }
-
-            if (GUILayout.Button("Find Doors", GUILayout.ExpandWidth(false)))
-            {
-                FindDoors(level);
-            }
-
-            if (GUILayout.Button("Find Interactables", GUILayout.ExpandWidth(false)))
-            {
-                FindInteractables(level);
-            }
-
-            if (GUILayout.Button("Find Collectables", GUILayout.ExpandWidth(false)))
-            {
-                FindCollectables(level);
+                FindAllLevelObjects(level);
             }
 
             EditorGUILayout.EndHorizontal();
@@ -86,6 +65,7 @@ namespace RobbiEditor.Levels
             FindDoors(level);
             FindInteractables(level);
             FindCollectables(level);
+            FindLasers(level);
         }
 
         private static void FindPortals(Level level)
@@ -151,6 +131,11 @@ namespace RobbiEditor.Levels
         private static void FindCollectables(Level level)
         {
             level.FindAssets<Collectable>("collectables", LevelDirectories.COLLECTABLES_NAME);
+        }
+
+        private static void FindLasers(Level level)
+        {
+            level.FindAssets<Laser>("lasers", LevelDirectories.LASERS_NAME);
         }
 
         #endregion

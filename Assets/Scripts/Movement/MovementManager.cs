@@ -213,6 +213,11 @@ namespace Robbi.Movement
             MoveToNextWaypoint();
         }
 
+        public void OnPortalExited(Vector3Int position)
+        {
+            MoveToNextWaypoint();
+        }
+
         public void OnBoosterStart()
         {
             boundingBox.enabled = false;

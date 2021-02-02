@@ -81,8 +81,10 @@ namespace Robbi.Runtime
 
         private bool TryInteract(Vector3Int location)
         {
-            foreach (IInteractable interactable in interactables)
+            for (int i = 0; i < interactables.Count; ++i)
             {
+                IInteractable interactable = interactables[i];
+
                 if (interactable.Position == location)
                 {
                     InteractArgs interact = new InteractArgs()

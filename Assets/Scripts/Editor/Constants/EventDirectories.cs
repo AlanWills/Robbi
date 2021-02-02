@@ -12,6 +12,7 @@ namespace RobbiEditor
         public const string DEBUG = "Debug/";
         public const string LEVEL = "Level/";
         public const string DOORS = "Doors/";
+        public const string LASERS = "Lasers/";
         public const string INPUT = "Input/";
         public const string COMMON = "Common/";
         public const string TESTING = "Testing/";

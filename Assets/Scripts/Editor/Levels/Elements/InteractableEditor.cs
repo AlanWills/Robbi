@@ -31,6 +31,9 @@ namespace RobbiEditor.Levels.Elements
             typeof(OpenDoor),
             typeof(CloseDoor),
             typeof(ToggleDoor),
+            typeof(ActivateLaser),
+            typeof(DeactivateLaser),
+            typeof(ToggleLaser),
         };
 
         private static string[] modifierDisplayNames = new string[]
@@ -38,6 +41,9 @@ namespace RobbiEditor.Levels.Elements
             "Open Door",
             "Close Door",
             "Toggle Door",
+            "Activate Laser",
+            "Deactivate Laser",
+            "Toggle Laser"
         };
 
         #endregion

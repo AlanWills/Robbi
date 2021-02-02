@@ -16,7 +16,7 @@ namespace RobbiEditor.BuildSystem
         [MenuItem("Robbi/Assets/Build/Release Android Assets")]
         public static void BuildReleaseAndroidAssets()
         {
-            AndroidSettings.Release.BuildAssetsAndExit();
+            AndroidSettings.ReleaseBundle.BuildAssetsAndExit();
         }
 
         [MenuItem("Robbi/Assets/Build/Debug Windows Assets")]

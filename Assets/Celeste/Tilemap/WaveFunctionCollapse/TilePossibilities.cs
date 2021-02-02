@@ -20,17 +20,24 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
 
         public List<TileDescription> possibleTiles = new List<TileDescription>();
 
+        private Vector2Int coords = new Vector2Int();
+
         #endregion
 
-        public TilePossibilities(TileDescription collapsedTile)
+        public TilePossibilities(int x, int y, TileDescription collapsedTile)
         {
             possibleTiles.Add(collapsedTile);
+            coords.x = x;
+            coords.y = y;
+
             HasCollapsed = true;
         }
 
-        public TilePossibilities(List<TileDescription> tiles)
+        public TilePossibilities(int x, int y, List<TileDescription> tiles)
         {
             possibleTiles.AddRange(tiles);
+            coords.x = x;
+            coords.y = y;
         }
 
         #region Possibility Functions
@@ -62,7 +69,7 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
                 currentWeight += tileDescription.weight;
             }
 
-            Debug.LogAssertion("Failed to collapse a tile");
+            Debug.LogAssertionFormat("Failed to collapse tile at location {0}", coords);
             return null;
         }
 
@@ -84,7 +91,7 @@ namespace Celeste.Tilemaps.WaveFunctionCollapse
                     Debug.LogFormat("Removing possible tile {0} due to not supporting {1} in direction {2}", possibleTiles[i], other != null ? other.name : "null", direction);
 #endif
                     possibleTiles.RemoveAt(i);
-                    Debug.AssertFormat(HasPossibilities, "No more possibilities");
+                    Debug.AssertFormat(HasPossibilities, "No more possibilities at location {0}", coords);
                 }
             }
         }

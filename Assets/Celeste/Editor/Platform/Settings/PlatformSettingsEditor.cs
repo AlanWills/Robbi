@@ -18,6 +18,8 @@ namespace CelesteEditor.Platform
 
         public override void OnInspectorGUI()
         {
+            serializedObject.Update();
+
             PlatformSettings platformSettings = target as PlatformSettings;
 
             EditorGUILayout.BeginHorizontal();
@@ -68,6 +70,8 @@ namespace CelesteEditor.Platform
             EditorGUILayout.EndHorizontal();
 
             base.OnInspectorGUI();
+
+            serializedObject.ApplyModifiedProperties();
         }
 
         #endregion

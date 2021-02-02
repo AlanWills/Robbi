@@ -17,6 +17,7 @@ namespace Robbi.Levels
         public Tilemap doorsTilemap;
         public Tilemap interactablesTilemap;
         public Tilemap collectablesTilemap;
+        public Tilemap lasersTilemap;
         public Tilemap movementTilemap;
 
         [Header("Parameters")]
@@ -27,6 +28,7 @@ namespace Robbi.Levels
         [SerializeField] private TilemapValue doorsTilemapValue;
         [SerializeField] private TilemapValue interactablesTilemapValue;
         [SerializeField] private TilemapValue collectablesTilemapValue;
+        [SerializeField] private TilemapValue lasersTilemapValue;
         [SerializeField] private TilemapValue movementTilemapValue;
 
         #endregion
@@ -42,6 +44,7 @@ namespace Robbi.Levels
             doorsTilemapValue.Value = doorsTilemap;
             interactablesTilemapValue.Value = interactablesTilemap;
             collectablesTilemapValue.Value = collectablesTilemap;
+            lasersTilemapValue.Value = lasersTilemap;
             movementTilemapValue.Value = movementTilemap;
 
             // Not great, but a hacky workaround for the fact the camera can't start zoomed out and centred
@@ -51,9 +54,30 @@ namespace Robbi.Levels
             Camera.main.GetComponent<TilemapZoom>().FullZoomOut();
         }
 
-        #endregion
+        private void OnValidate()
+        {
+#if UNITY_EDITOR
+            if (lasersTilemap == null)
+            {
+                Transform lasersTransform = transform.Find("Lasers");
+                if (lasersTransform != null)
+                {
+                    lasersTilemap = lasersTransform.GetComponent<Tilemap>();
+                    UnityEditor.EditorUtility.SetDirty(this);
+                }
+            }
 
-        #region Editor Only Functions
+            if (lasersTilemapValue == null)
+            {
+                lasersTilemapValue = UnityEditor.AssetDatabase.LoadAssetAtPath<TilemapValue>("Assets/Parameters/Level/Tilemaps/Lasers.asset");
+                UnityEditor.EditorUtility.SetDirty(this);
+            }
+#endif
+        }
+
+#endregion
+
+#region Editor Only Functions
 
 #if UNITY_EDITOR
         public void EditorOnly_CompressAllTilemaps()
@@ -65,6 +89,7 @@ namespace Robbi.Levels
             EditorOnly_CompressBounds(doorsTilemap);
             EditorOnly_CompressBounds(interactablesTilemap);
             EditorOnly_CompressBounds(collectablesTilemap);
+            EditorOnly_CompressBounds(lasersTilemap);
             EditorOnly_CompressBounds(movementTilemap);
         }
 

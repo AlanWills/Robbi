@@ -146,6 +146,7 @@ namespace RobbiEditor.Levels.Elements
                 Interactable originalState = copyFrom.GetState(i);
                 Interactable copyState = copyTo.AddState(originalState.name);
                 CopyState(originalState, copyState);
+                AddStateEditor(copyState);
             }
 
             EditorUtility.SetDirty(copyTo);
@@ -163,6 +164,7 @@ namespace RobbiEditor.Levels.Elements
 
                 EditorUtility.SetDirty(copyModifier);
             }
+
         }
 
         private void AddStateEditor(Interactable state)
