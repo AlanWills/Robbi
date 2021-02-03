@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1664423317556566638
 MonoBehaviour:
@@ -58,6 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000, guid: 71433badef6b1d34a9fc7c06f94a34e8, type: 2}
+  lateUpdate: 0
 --- !u!1 &826757606942007927
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,7 +88,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2772506934692611050}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4521093251867499218
 MonoBehaviour:
@@ -134,7 +135,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5483510007092365298
 MonoBehaviour:
@@ -268,7 +269,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2313395599210072945}
   - {fileID: 489147806951875998}
   m_Father: {fileID: 4253851984974408785}
   m_RootOrder: 6
@@ -300,13 +300,10 @@ MonoBehaviour:
     type: 2}
   waypointsPlaced: {fileID: 11400000, guid: ab2db721a5c983a40963c20d01bb3cc3, type: 2}
   isProgramRunning: {fileID: 11400000, guid: 36c66e683e05d134495c04803619774f, type: 2}
-  levelRequiresFuel: {fileID: 11400000, guid: ad4d3f76ba9af9640a612ed9416e725a, type: 2}
-  remainingFuel: {fileID: 11400000, guid: 665dc865d1fb88d498d7a87fba272bf5, type: 2}
   waypointUnreachableReason: {fileID: 11400000, guid: ee0f6020e53f5824280470771cdc9880,
     type: 2}
   outOfWaypointsReason: {fileID: 11400000, guid: 9a485ede45730c94d89e94f413fa72e4,
     type: 2}
-  outOfFuelReason: {fileID: 11400000, guid: 9842410d9af3d844ebf15325b9de70c5, type: 2}
   destinationMarkerAllocator: {fileID: 2185254429373469848}
   movementSpeed: {fileID: 11400000, guid: 4129d939c3be32249934c9c778306861, type: 2}
   boundingBox: {fileID: 2507852983745413843}
@@ -985,7 +982,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1416014576783674456
 MonoBehaviour:
@@ -1143,6 +1140,7 @@ Transform:
   - {fileID: 8622111944718057574}
   - {fileID: 5788878857070568888}
   - {fileID: 2772506934692611050}
+  - {fileID: 2313395599210072945}
   - {fileID: 5966350632234475573}
   - {fileID: 2270789002046526372}
   - {fileID: 2880203462078893977}
@@ -1168,11 +1166,13 @@ MonoBehaviour:
   exitsManager: {fileID: 5480487922313451854}
   interactablesManager: {fileID: 2915932516500803445}
   movementManager: {fileID: 2772506934692611030}
+  fuelManager: {fileID: 3237753975910320855}
   portalsManager: {fileID: 2359638522097945808}
   lasersManager: {fileID: 7859679017641654441}
   enemiesManager: {fileID: 3578985312075365774}
   timeManager: {fileID: 5483510007092365298}
   levelResultManager: {fileID: 1664423317556566638}
+  playerRuntime: {fileID: 0}
 --- !u!114 &9202785352855056089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1286,7 +1286,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3578985312075365774
 MonoBehaviour:
@@ -1696,15 +1696,17 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2313395599210072945}
+  - component: {fileID: 3237753975910320855}
   - component: {fileID: 636940202103362761}
   - component: {fileID: 2772260310311972934}
+  - component: {fileID: 2350409101671836571}
   m_Layer: 0
-  m_Name: FuelEventListeners
+  m_Name: FuelManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2313395599210072945
 Transform:
   m_ObjectHideFlags: 0
@@ -1712,13 +1714,27 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6440900456115497864}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2772506934692611050}
-  m_RootOrder: 0
+  m_Father: {fileID: 4253851984974408785}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3237753975910320855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6440900456115497864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97a50f8a860be5b4589a4bfb2c8e48b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelRequiresFuel: {fileID: 11400000, guid: ad4d3f76ba9af9640a612ed9416e725a, type: 2}
+  remainingFuel: {fileID: 11400000, guid: 665dc865d1fb88d498d7a87fba272bf5, type: 2}
 --- !u!114 &636940202103362761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1735,8 +1751,8 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2772506934692611030}
-        m_TargetAssemblyTypeName: Robbi.Movement.MovementManager, Assembly-CSharp
+      - m_Target: {fileID: 3237753975910320855}
+        m_TargetAssemblyTypeName: Robbi.Runtime.FuelManager, Robbi
         m_MethodName: AddFuel
         m_Mode: 0
         m_Arguments:
@@ -1763,9 +1779,37 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2772506934692611030}
-        m_TargetAssemblyTypeName: Robbi.Movement.MovementManager, Assembly-CSharp
+      - m_Target: {fileID: 3237753975910320855}
+        m_TargetAssemblyTypeName: Robbi.Runtime.FuelManager, Robbi
         m_MethodName: RemoveFuel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2350409101671836571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6440900456115497864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3237753975910320855}
+        m_TargetAssemblyTypeName: Robbi.Runtime.FuelManager, Robbi
+        m_MethodName: OnMovedTo
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

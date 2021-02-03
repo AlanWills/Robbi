@@ -16,6 +16,11 @@ namespace Celeste.Managers
             name = GetType().Name;
         }
 
+        private void OnValidate()
+        {
+            name = GetType().Name;
+        }
+
         #endregion
     }
 }

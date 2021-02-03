@@ -19,6 +19,8 @@ namespace CelesteEditor.FSM
 
         public override void OnInspectorGUI()
         {
+            serializedObject.Update();
+
             EditorGUI.BeginChangeCheck();
 
             FSMRuntime fsmRuntime = (target as FSMRuntime);
@@ -36,7 +38,10 @@ namespace CelesteEditor.FSM
 
             CelesteEditorGUILayout.HorizontalLine();
 
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("lateUpdate"));
             EditorGUILayout.LabelField(string.Format("Current Node: {0}", fsmRuntime.CurrentNode != null ? fsmRuntime.CurrentNode.name : "null"));
+
+            serializedObject.ApplyModifiedProperties();
         }
 
         #endregion

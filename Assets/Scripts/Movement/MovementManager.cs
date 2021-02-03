@@ -69,11 +69,8 @@ namespace Robbi.Movement
         public IntValue remainingWaypointsPlaceable;
         public IntValue waypointsPlaced;
         public BoolValue isProgramRunning;
-        public BoolValue levelRequiresFuel;
-        public UIntValue remainingFuel;
         public StringValue waypointUnreachableReason;
         public StringValue outOfWaypointsReason;
-        public StringValue outOfFuelReason;
 
         [Header("Other")]
         public GameObjectAllocator destinationMarkerAllocator;
@@ -105,6 +102,7 @@ namespace Robbi.Movement
         {
             waypoints.Clear();
             destinationMarkerAllocator.DeallocateAll();
+            isProgramRunning.Value = false;
 
             aStarMovement.MovementTilemap = null;
             aStarMovement.DoorsTilemap = null;
@@ -121,14 +119,7 @@ namespace Robbi.Movement
                 Vector3 playerLocalPos = playerLocalPosition.Value;
                 Vector3Int movedFrom = new Vector3Int(Mathf.RoundToInt(playerLocalPos.x - 0.5f), Mathf.RoundToInt(playerLocalPos.y - 0.5f), Mathf.RoundToInt(playerLocalPos.z));
 
-                if (levelRequiresFuel.Value && remainingFuel.Value == 0)
-                {
-                    // Don't immediately raise this when we have bingo fuel
-                    // We might have moved onto a tile with a fuel pickup on it
-                    // Instead wait for a new frame to see if we have no fuel
-                    levelLose.Raise(outOfFuelReason.Value);
-                }
-                else if (aStarMovement.HasStepsToNextWaypoint)
+                if (aStarMovement.HasStepsToNextWaypoint)
                 {
                     // We are moving towards our next waypoint along the steps
                     Vector3 nextStepPosition = aStarMovement.NextStep;
@@ -144,9 +135,6 @@ namespace Robbi.Movement
                         // This step of movement is completed
                         aStarMovement.CompleteStep();
                         
-                        // Pay fuel costs
-                        RemoveFuel(1);
-
                         if (movedTo == waypoints[0].gridPosition)
                         {
                             // We have reached the next waypoint
@@ -236,27 +224,6 @@ namespace Robbi.Movement
         public void OnRemoveWaypoints(uint amount)
         {
             remainingWaypointsPlaceable.Value = remainingWaypointsPlaceable.Value >= (int)amount ? remainingWaypointsPlaceable.Value - (int)amount : 0;
-        }
-
-        #endregion
-
-        #region Fuel Methods
-
-        public void AddFuel(uint amount)
-        {
-            if (levelRequiresFuel.Value)
-            {
-                remainingFuel.Value += amount;
-            }
-        }
-
-        public void RemoveFuel(uint amount)
-        {
-            if (levelRequiresFuel.Value)
-            {
-                // Make sure we don't go below 0 fuel otherwise we'll wrap around
-                remainingFuel.Value -= Math.Min(amount, remainingFuel.Value);
-            }
         }
 
         #endregion

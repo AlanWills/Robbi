@@ -2,6 +2,7 @@
 using Celeste.Managers;
 using Celeste.Parameters;
 using Celeste.Tilemaps;
+using Robbi.Runtime.Actors;
 using Robbi.Levels.Elements;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,11 @@ namespace Robbi.Runtime
     {
         #region Properties and Fields
 
+        public IEnumerable<EnemyRuntime> EnemyRuntimes
+        {
+            get { return enemyRuntimes; }
+        }
+
         [Header("Tilemaps")]
         public TilemapValue movementTilemap;
 
@@ -28,44 +34,37 @@ namespace Robbi.Runtime
         public Vector3Value playerPosition;
         public BoolValue enemiesMoving;
 
-        private List<Enemy> enemies = new List<Enemy>();
-        private List<GameObject> enemyGameObjects = new List<GameObject>();
+        private List<EnemyRuntime> enemyRuntimes = new List<EnemyRuntime>();
 
         #endregion
 
         #region IEnvironmentManager
 
-        public void Initialize(IEnumerable<Enemy> _enemies)
+        public void Initialize(IEnumerable<Enemy> enemies)
         {
-            enemies.Clear();
-            enemies.AddRange(_enemies);
-
-            // Spawn Pool this?  How do we do variable prefabs for enemies?
-            for (int i = enemyGameObjects.Count - 1; i >= 0; --i)
+            // Spawn Pool this?  How do we do support variable prefabs for enemies?
+            for (int i = enemyRuntimes.Count - 1; i >= 0; --i)
             {
-                GameObject.Destroy(enemyGameObjects[i]);
+                enemyRuntimes[i].Shutdown();
             }
-            enemyGameObjects.Clear();
+            enemyRuntimes.Clear();
 
             foreach (Enemy enemy in enemies)
             {
-                GameObject enemyGameObject = GameObject.Instantiate(enemy.prefab, transform);
-                enemyGameObject.transform.localPosition = movementTilemap.Value.GetCellCenterWorld(enemy.startingPosition);
-                enemyGameObjects.Add(enemyGameObject);
+                enemyRuntimes.Add(enemy.CreateRuntime(movementTilemap.Value));
             }
         }
 
         public void Cleanup()
         {
-            enemies.Clear();
         }
 
-        private void CheckForReachedPlayer()
+        private void CheckForEnemyReachedPlayer()
         {
             Vector3Int playerTile = movementTilemap.Value.WorldToCell(playerPosition.Value);
-            for (int i = 0; i < enemyGameObjects.Count; ++i) 
+            for (int i = 0; i < enemyRuntimes.Count; ++i) 
             {
-                Vector3Int enemyTile = movementTilemap.Value.WorldToCell(enemyGameObjects[i].transform.localPosition);
+                Vector3Int enemyTile = enemyRuntimes[i].GetTile(movementTilemap.Value);
                 if (playerTile == enemyTile)
                 {
                     levelLostEvent.Raise(caughtByEnemyReason.Value);
@@ -86,7 +85,7 @@ namespace Robbi.Runtime
         {
             if (enemiesMoving.Value)
             {
-                CheckForReachedPlayer();
+                CheckForEnemyReachedPlayer();
             }
         }
 

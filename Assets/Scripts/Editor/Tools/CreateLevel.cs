@@ -522,7 +522,7 @@ namespace RobbiEditor.Tools
             foreach (EnemyInfo enemyInfo in levelInfo.enemies)
             {
                 Enemy enemy = ScriptableObject.CreateInstance<Enemy>();
-                enemy.name = string.Format("Level{0}{1}", levelInfo.levelIndex, index++);
+                enemy.name = string.Format("Level{0}Enemy{1}", levelInfo.levelIndex, index++);
                 enemy.startingPosition = enemyInfo.startingPosition;
                 enemy.prefab = enemyInfo.prefab;
                 AssetDatabase.CreateAsset(enemy, string.Format("{0}{1}.asset", enemiesPath, enemy.name));

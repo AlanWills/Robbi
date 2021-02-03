@@ -6,10 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Robbi.Player
+namespace Robbi.Runtime.Actors
 {
-    [AddComponentMenu("Robbi/Player/Player Data")]
-    public class PlayerData : MonoBehaviour
+    [AddComponentMenu("Robbi/Runtime/Actors/Player Runtime")]
+    public class PlayerRuntime : CharacterRuntime
     {
         #region Properties and Fields
 

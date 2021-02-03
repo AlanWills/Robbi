@@ -15,6 +15,9 @@ namespace Celeste.FSM
 
         public FSMNode CurrentNode { get; private set; }
 
+        [SerializeField]
+        private bool lateUpdate = false;
+
         #endregion
 
         #region Unity Methods
@@ -49,6 +52,28 @@ namespace Celeste.FSM
 
         private void Update()
         {
+            if (lateUpdate)
+            {
+                return;
+            }
+
+            UpdateImpl();
+        }
+
+        private void LateUpdate()
+        {
+            if (!lateUpdate)
+            {
+                return;
+            }
+
+            UpdateImpl();
+        }
+
+        #endregion
+
+        private void UpdateImpl()
+        {
             if (CurrentNode == null)
             {
                 return;
@@ -68,7 +93,5 @@ namespace Celeste.FSM
                 }
             }
         }
-
-        #endregion
     }
 }

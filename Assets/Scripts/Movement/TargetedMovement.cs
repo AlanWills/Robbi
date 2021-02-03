@@ -1,4 +1,5 @@
 ﻿using Celeste.Parameters;
+using Celeste.Tilemaps;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -11,8 +12,8 @@ namespace Robbi.Movement
         #region Properties and Fields
 
         [Header("Tilemaps")]
-        public Tilemap movementTilemap;
-        public Tilemap doorsTilemap;
+        public TilemapValue movementTilemap;
+        public TilemapValue doorsTilemap;
         
         [Header("Other")]
         public Vector3Value targetPosition;
@@ -27,9 +28,9 @@ namespace Robbi.Movement
 
         private void Start()
         {
-            aStarMovement.DoorsTilemap = doorsTilemap;
-            aStarMovement.MovementTilemap = movementTilemap;
-            aStarMovement.CalculateGridSteps(transform.localPosition, movementTilemap.WorldToCell(targetPosition.Value));
+            aStarMovement.DoorsTilemap = doorsTilemap.Value;
+            aStarMovement.MovementTilemap = movementTilemap.Value;
+            aStarMovement.CalculateGridSteps(transform.localPosition, movementTilemap.Value.WorldToCell(targetPosition.Value));
         }
 
         private void Update()
@@ -59,17 +60,31 @@ namespace Robbi.Movement
             }
             else
             {
-                aStarMovement.CalculateGridSteps(transform.localPosition, movementTilemap.WorldToCell(targetPosition.Value));
+                aStarMovement.CalculateGridSteps(transform.localPosition, movementTilemap.Value.WorldToCell(targetPosition.Value));
             }
+        }
+
+        #endregion
+
+        #region Movement Methods
+
+        public void MoveToNextWaypoint()
+        {
+            aStarMovement.CalculateGridSteps(transform.localPosition, movementTilemap.Value.WorldToCell(targetPosition.Value));
         }
 
         #endregion
 
         #region Callbacks
 
+        public void OnLevelChanged()
+        {
+            MoveToNextWaypoint();
+        }
+
         public void OnMovedTo()
         {
-            aStarMovement.CalculateGridSteps(transform.localPosition, movementTilemap.WorldToCell(targetPosition.Value));
+            aStarMovement.CalculateGridSteps(transform.localPosition, movementTilemap.Value.WorldToCell(targetPosition.Value));
         }
 
         #endregion
