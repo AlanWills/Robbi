@@ -1,4 +1,5 @@
-﻿using Celeste.Parameters;
+﻿using Celeste.Events;
+using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,18 @@ namespace Robbi.Runtime.Actors
     {
         #region Properties and Fields
 
-        public Vector3Value localPosition;
+        public override Vector3 Position
+        {
+            get { return localPosition.Value; }
+            set { localPosition.Value = value; }
+        }
+
+        [SerializeField]
+        private Vector3Value localPosition;
+
+        [Header("Level Lose")]
+        public StringEvent levelLostEvent;
+        public StringValue hitLaserReason;
 
         #endregion
 
@@ -22,6 +34,15 @@ namespace Robbi.Runtime.Actors
         private void Update()
         {
             transform.localPosition = localPosition.Value;
+        }
+
+        #endregion
+
+        #region Environment Runtime
+
+        public override void OnHitByLaser()
+        {
+            levelLostEvent.Raise(hitLaserReason.Value);
         }
 
         #endregion

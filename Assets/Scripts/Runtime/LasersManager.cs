@@ -3,6 +3,7 @@ using Celeste.Managers;
 using Celeste.Parameters;
 using Celeste.Tilemaps;
 using Robbi.Levels.Elements;
+using Robbi.Runtime.Actors;
 using System.Collections.Generic;
 using UnityEngine;
 using Event = Celeste.Events.Event;
@@ -17,10 +18,6 @@ namespace Robbi.Runtime
         [Header("Tilemaps")]
         public TilemapValue laserTilemap;
         
-        [Header("Level Lose")]
-        public StringEvent levelLostEvent;
-        public StringValue hitLaserReason;
-
         private List<Laser> lasers = new List<Laser>();
 
         #endregion
@@ -41,9 +38,9 @@ namespace Robbi.Runtime
             lasers.Clear();
         }
 
-        private void CheckForLaserHit(Vector3Int position)
+        private void CheckForLaserHit(CharacterRuntime characterRuntime)
         {
-            if (!laserTilemap.Value.HasTile(position))
+            if (!laserTilemap.Value.HasTile(characterRuntime.Tile))
             {
                 return;
             }
@@ -51,23 +48,23 @@ namespace Robbi.Runtime
             for (int i = 0; i < lasers.Count; ++i)
             {
                 // Check the lasers to see if they're on
-                if (lasers[i].WouldAffectPosition(position))
+                if (lasers[i].WouldAffectPosition(characterRuntime.Tile))
                 {
-                    levelLostEvent.Raise(hitLaserReason.Value);
+                    characterRuntime.OnHitByLaser();
                 }
             }
         }
 
         #region Callbacks
 
-        public void OnMovedTo(Vector3Int position)
+        public void OnCharacterMovedTo(CharacterRuntime characterRuntime)
         {
-            CheckForLaserHit(position);
+            CheckForLaserHit(characterRuntime);
         }
 
         public void OnPortalExited(Vector3Int position)
         {
-            CheckForLaserHit(position);
+            //CheckForLaserHit(position);
         }
 
         public void OnActivateLaser(Laser laser)

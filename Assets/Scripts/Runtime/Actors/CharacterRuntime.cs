@@ -8,14 +8,26 @@ using UnityEngine.Tilemaps;
 
 namespace Robbi.Runtime.Actors
 {
-    public class CharacterRuntime : MonoBehaviour
+    public abstract class CharacterRuntime : MonoBehaviour
     {
-        #region Tilemap Utilities
+        #region Properties and Fields
 
-        public Vector3Int GetTile(Tilemap movementTilemap)
+        public abstract Vector3 Position { get; set; }
+
+        public Vector3Int Tile
         {
-            return movementTilemap.WorldToCell(transform.localPosition);
+            get 
+            {
+                Vector3 position = Position;
+                return new Vector3Int(Mathf.FloorToInt(position.x), Mathf.FloorToInt(position.y), 0);
+            }
         }
+
+        #endregion
+
+        #region Environment Runtime
+
+        public abstract void OnHitByLaser();
 
         #endregion
     }

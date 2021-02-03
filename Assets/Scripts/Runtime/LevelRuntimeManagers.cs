@@ -48,11 +48,11 @@ namespace Robbi.Runtime
             doorsManager.Initialize(doors);
             exitsManager.Initialize();
             interactablesManager.Initialize(interactables);
-            movementManager.Initialize();
+            movementManager.Initialize(playerRuntime);
             fuelManager.Initialize();
             portalsManager.Initialize(portals);
             lasersManager.Initialize(lasers);
-            enemiesManager.Initialize(enemies);
+            enemiesManager.Initialize(enemies, playerRuntime);
             timeManager.Initialize();
             levelResultManager.Initialize();
             

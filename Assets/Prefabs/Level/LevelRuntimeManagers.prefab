@@ -287,22 +287,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementTilemap: {fileID: 11400000, guid: 383b6f4d91bf25e4a924c5ca0f937a9a, type: 2}
   doorsTilemap: {fileID: 11400000, guid: 30b77989832f303478f308bf685407be, type: 2}
-  playerLocalPosition: {fileID: 11400000, guid: ddb88a6bd2594e6419cb8c238d69285a,
-    type: 2}
-  onMovedTo: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
+  onCharacterMovedTo: {fileID: 11400000, guid: 2d87e548fcd752c43b3d2e315c42e554, type: 2}
   onMovedFrom: {fileID: 11400000, guid: 7a0e4270079ee5048b10886aff50405b, type: 2}
   onWaypointPlaced: {fileID: 11400000, guid: b29c4307e71a13a4c82941ab0f1f4f80, type: 2}
   onWaypointRemoved: {fileID: 11400000, guid: 31ff3799148e3824ba5640fe14da17fb, type: 2}
   onInvalidWaypointPlaced: {fileID: 11400000, guid: da5dc9084d15a8343bea6f5becad19d7,
     type: 2}
-  levelLose: {fileID: 11400000, guid: f1011e957c917144caeaffc2270ffebe, type: 2}
   remainingWaypointsPlaceable: {fileID: 11400000, guid: 5795522ed653b6947a2cfc5b86742695,
     type: 2}
   waypointsPlaced: {fileID: 11400000, guid: ab2db721a5c983a40963c20d01bb3cc3, type: 2}
   isProgramRunning: {fileID: 11400000, guid: 36c66e683e05d134495c04803619774f, type: 2}
-  waypointUnreachableReason: {fileID: 11400000, guid: ee0f6020e53f5824280470771cdc9880,
-    type: 2}
-  outOfWaypointsReason: {fileID: 11400000, guid: 9a485ede45730c94d89e94f413fa72e4,
+  nextWaypointUnreachable: {fileID: 11400000, guid: 7e229fc40c7b080488c12a748b086b17,
     type: 2}
   destinationMarkerAllocator: {fileID: 2185254429373469848}
   movementSpeed: {fileID: 11400000, guid: 4129d939c3be32249934c9c778306861, type: 2}
@@ -1304,7 +1299,6 @@ MonoBehaviour:
   levelLostEvent: {fileID: 11400000, guid: f1011e957c917144caeaffc2270ffebe, type: 2}
   caughtByEnemyReason: {fileID: 11400000, guid: 6fab5162a0a2dcf4591082084cff3cc9,
     type: 2}
-  playerPosition: {fileID: 11400000, guid: ddb88a6bd2594e6419cb8c238d69285a, type: 2}
   enemiesMoving: {fileID: 11400000, guid: 36c66e683e05d134495c04803619774f, type: 2}
 --- !u!1 &4443659954887257874
 GameObject:
@@ -1506,11 +1500,12 @@ GameObject:
   m_Component:
   - component: {fileID: 5788878857070568888}
   - component: {fileID: 7859679017641654441}
-  - component: {fileID: 5748442160347411925}
   - component: {fileID: 7679744951776096445}
   - component: {fileID: 5589263170544904571}
   - component: {fileID: 3736121703532956818}
   - component: {fileID: 5010414411061015527}
+  - component: {fileID: 5513279394136507167}
+  - component: {fileID: 1174290810212981249}
   m_Layer: 0
   m_Name: LasersManager
   m_TagString: Untagged
@@ -1545,36 +1540,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserTilemap: {fileID: 11400000, guid: e0812fe3df489a34aa6cd94e86a98c5a, type: 2}
-  levelLostEvent: {fileID: 11400000, guid: f1011e957c917144caeaffc2270ffebe, type: 2}
-  hitLaserReason: {fileID: 11400000, guid: 38a1fae0e2406574b8ccd26d1015617e, type: 2}
---- !u!114 &5748442160347411925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5284056565412097216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7859679017641654441}
-        m_TargetAssemblyTypeName: Robbi.Runtime.LasersManager, Robbi
-        m_MethodName: OnMovedTo
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &7679744951776096445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1678,6 +1643,62 @@ MonoBehaviour:
       - m_Target: {fileID: 7859679017641654441}
         m_TargetAssemblyTypeName: Robbi.Runtime.LasersManager, Robbi
         m_MethodName: OnToggleLaser
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5513279394136507167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5284056565412097216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e165305432617224a87a00fb8d83d4ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 2d87e548fcd752c43b3d2e315c42e554, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7859679017641654441}
+        m_TargetAssemblyTypeName: Robbi.Runtime.LasersManager, Robbi
+        m_MethodName: OnCharacterMovedTo
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1174290810212981249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5284056565412097216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e165305432617224a87a00fb8d83d4ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 1be6df2d6e253eb40b4567bd9f8c4aa5, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7859679017641654441}
+        m_TargetAssemblyTypeName: Robbi.Runtime.LasersManager, Robbi
+        m_MethodName: OnCharacterMovedTo
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

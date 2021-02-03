@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5718073600887008663}
   - component: {fileID: 3579532860883834208}
   - component: {fileID: 7916390569980060855}
-  - component: {fileID: 4634271439125283932}
+  - component: {fileID: 7462966469759258075}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -112,10 +112,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementTilemap: {fileID: 11400000, guid: 383b6f4d91bf25e4a924c5ca0f937a9a, type: 2}
   doorsTilemap: {fileID: 11400000, guid: 30b77989832f303478f308bf685407be, type: 2}
+  onCharacterMovedTo: {fileID: 11400000, guid: 1be6df2d6e253eb40b4567bd9f8c4aa5, type: 2}
   targetPosition: {fileID: 11400000, guid: ddb88a6bd2594e6419cb8c238d69285a, type: 2}
   shouldMove: {fileID: 11400000, guid: 36c66e683e05d134495c04803619774f, type: 2}
   movementSpeed: {fileID: 11400000, guid: 4129d939c3be32249934c9c778306861, type: 2}
---- !u!114 &4634271439125283932
+  characterRuntime: {fileID: 3579532860883834208}
+--- !u!114 &7462966469759258075
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,17 +126,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 9014697110664690246}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
+  m_Script: {fileID: 11500000, guid: e165305432617224a87a00fb8d83d4ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
+  gameEvent: {fileID: 11400000, guid: 2d87e548fcd752c43b3d2e315c42e554, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7916390569980060855}
         m_TargetAssemblyTypeName: Robbi.Movement.TargetedMovement, Robbi
         m_MethodName: OnMovedTo
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

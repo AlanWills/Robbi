@@ -10,6 +10,8 @@ using Celeste.Log;
 using Celeste.Managers;
 using Celeste.Tilemaps;
 using Celeste.Memory;
+using Robbi.Runtime.Actors;
+using Robbi.Events.Runtime.Actors;
 
 namespace Robbi.Movement
 {
@@ -57,37 +59,35 @@ namespace Robbi.Movement
         public TilemapValue doorsTilemap;
         
         [Header("Events")]
-        public Vector3Value playerLocalPosition;
-        public Vector3IntEvent onMovedTo;
+        public CharacterRuntimeEvent onCharacterMovedTo;
         public Vector3IntEvent onMovedFrom;
         public Vector3IntEvent onWaypointPlaced;
         public Vector3IntEvent onWaypointRemoved;
         public Event onInvalidWaypointPlaced;
-        public StringEvent levelLose;
 
         [Header("Parameters")]
         public IntValue remainingWaypointsPlaceable;
         public IntValue waypointsPlaced;
         public BoolValue isProgramRunning;
-        public StringValue waypointUnreachableReason;
-        public StringValue outOfWaypointsReason;
+        public BoolValue nextWaypointUnreachable;
 
         [Header("Other")]
         public GameObjectAllocator destinationMarkerAllocator;
         public FloatValue movementSpeed;
         public BoxCollider2D boundingBox;
 
+        private CharacterRuntime characterRuntime;
         private List<Waypoint> waypoints = new List<Waypoint>();
         private AStarMovement aStarMovement = new AStarMovement();
 
         #endregion
 
-        #region IEnvironmentManager
-
-        public void Initialize()
+        public void Initialize(CharacterRuntime _characterRuntime)
         {
+            characterRuntime = _characterRuntime;
             waypointsPlaced.Value = 0;
             isProgramRunning.Value = false;
+            nextWaypointUnreachable.Value = false;
             movementSpeed.Value = OptionsManager.Instance.DefaultMovementSpeed;
             aStarMovement.MovementTilemap = movementTilemap.Value;
             aStarMovement.DoorsTilemap = doorsTilemap.Value;
@@ -104,11 +104,10 @@ namespace Robbi.Movement
             destinationMarkerAllocator.DeallocateAll();
             isProgramRunning.Value = false;
 
+            characterRuntime = null;
             aStarMovement.MovementTilemap = null;
             aStarMovement.DoorsTilemap = null;
         }
-
-        #endregion
 
         #region Unity Methods
 
@@ -116,7 +115,7 @@ namespace Robbi.Movement
         {
             if (isProgramRunning.Value)
             {
-                Vector3 playerLocalPos = playerLocalPosition.Value;
+                Vector3 playerLocalPos = characterRuntime.Position;
                 Vector3Int movedFrom = new Vector3Int(Mathf.RoundToInt(playerLocalPos.x - 0.5f), Mathf.RoundToInt(playerLocalPos.y - 0.5f), Mathf.RoundToInt(playerLocalPos.z));
 
                 if (aStarMovement.HasStepsToNextWaypoint)
@@ -128,7 +127,7 @@ namespace Robbi.Movement
                         Mathf.RoundToInt(newPosition.x - 0.5f), 
                         Mathf.RoundToInt(newPosition.y - 0.5f), 
                         Mathf.RoundToInt(newPosition.z));
-                    playerLocalPosition.Value = newPosition;
+                    characterRuntime.Position = newPosition;
                     
                     if (newPosition == nextStepPosition)
                     {
@@ -141,8 +140,8 @@ namespace Robbi.Movement
                             ConsumeWaypoint(0);
                             MoveToNextWaypoint();
                         }
-                        
-                        onMovedTo.Raise(movedTo);
+
+                        onCharacterMovedTo.Raise(characterRuntime);
                     }
                     else
                     {
@@ -154,13 +153,8 @@ namespace Robbi.Movement
                 }
                 else
                 {
-                    levelLose.Raise(waypointUnreachableReason.Value);
                     isProgramRunning.Value = false;
                 }
-            }
-            else if (waypoints.Count == 0 && remainingWaypointsPlaceable.Value == 0)
-            {
-                levelLose.Raise(outOfWaypointsReason.Value);
             }
         }
 
@@ -184,7 +178,7 @@ namespace Robbi.Movement
                 return;
             }
 
-            Vector3 currentPosition = playerLocalPosition.Value;
+            Vector3 currentPosition = characterRuntime.Position;
             foreach (Vector3 position in aStarMovement.CalculateGridStepsWithoutCaching(currentPosition, waypoints[0].gridPosition))
             {
                 Gizmos.DrawLine(currentPosition, position);
@@ -236,7 +230,8 @@ namespace Robbi.Movement
             
             if (isProgramRunning.Value)
             {
-                aStarMovement.CalculateGridSteps(playerLocalPosition.Value, waypoints[0].gridPosition);
+                aStarMovement.CalculateGridSteps(characterRuntime.Tile, waypoints[0].gridPosition);
+                nextWaypointUnreachable.Value = !aStarMovement.HasStepsToNextWaypoint;
             }
         }
 
@@ -282,7 +277,7 @@ namespace Robbi.Movement
                 return;
             }
 
-            Vector3Int lastWaypointGridPosition = waypoints.Count != 0 ? waypoints[waypoints.Count - 1].gridPosition : movementTilemap.Value.WorldToCell(playerLocalPosition.Value); ;
+            Vector3Int lastWaypointGridPosition = waypoints.Count != 0 ? waypoints[waypoints.Count - 1].gridPosition : characterRuntime.Tile;
 
             if (waypointGridPosition != lastWaypointGridPosition && movementTilemap.Value.HasTile(waypointGridPosition))
             {

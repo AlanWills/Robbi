@@ -12,11 +12,30 @@ namespace Robbi.Runtime.Actors
     [AddComponentMenu("Robbi/Runtime/Actors/Enemy Runtime")]
     public class EnemyRuntime : CharacterRuntime
     {
+        #region Properties and Fields
+
+        public override Vector3 Position
+        {
+            get { return transform.localPosition; }
+            set { transform.localPosition = value; }
+        }
+
+        #endregion
+
+        #region Environment Runtime
+
+        public override void OnHitByLaser()
+        {
+            Kill();
+        }
+
+        #endregion
+
         #region Lifetime
 
-        public void Shutdown()
+        private void Kill()
         {
-            GameObject.Destroy(gameObject);
+            gameObject.SetActive(false);
         }
 
         #endregion
