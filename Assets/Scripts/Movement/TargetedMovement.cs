@@ -1,4 +1,5 @@
-﻿using Celeste.Parameters;
+﻿using Celeste.Events;
+using Celeste.Parameters;
 using Celeste.Tilemaps;
 using Robbi.Events.Runtime.Actors;
 using Robbi.Runtime.Actors;
@@ -20,6 +21,7 @@ namespace Robbi.Movement
 
         [Header("Events")]
         public CharacterRuntimeEvent onCharacterMovedTo;
+        public Vector3IntEvent onMovedFrom;
 
         [Header("Other")]
         public Vector3Value targetPosition;
@@ -57,12 +59,17 @@ namespace Robbi.Movement
             }
 
             Vector3 playerLocalPos = characterRuntime.Position;
+            Vector3Int movedFrom = new Vector3Int(Mathf.RoundToInt(playerLocalPos.x - 0.5f), Mathf.RoundToInt(playerLocalPos.y - 0.5f), Mathf.RoundToInt(playerLocalPos.z));
 
             if (aStarMovement.HasStepsToNextWaypoint)
             {
                 // We are moving towards our next waypoint along the steps
                 Vector3 nextStepPosition = aStarMovement.NextStep;
                 Vector3 newPosition = Vector3.MoveTowards(playerLocalPos, nextStepPosition, movementSpeed.Value * Time.deltaTime);
+                Vector3Int movedTo = new Vector3Int(
+                        Mathf.RoundToInt(newPosition.x - 0.5f),
+                        Mathf.RoundToInt(newPosition.y - 0.5f),
+                        Mathf.RoundToInt(newPosition.z));
                 characterRuntime.Position = newPosition;
 
                 if (newPosition == nextStepPosition)
@@ -70,6 +77,13 @@ namespace Robbi.Movement
                     // This step of movement is completed
                     aStarMovement.CompleteStep();
                     onCharacterMovedTo.Raise(characterRuntime);
+                }
+                else
+                {
+                    if (movedFrom != movedTo)
+                    {
+                        onMovedFrom.Raise(movedFrom);
+                    }
                 }
             }
             else
@@ -96,7 +110,12 @@ namespace Robbi.Movement
             MoveToNextWaypoint();
         }
 
-        public void OnMovedTo(CharacterRuntime characterRuntime)
+        public void OnCharacterMovedTo(CharacterRuntime characterRuntime)
+        {
+            MoveToNextWaypoint();
+        }
+
+        public void OnPortalExited(CharacterRuntime characterRuntime)
         {
             MoveToNextWaypoint();
         }

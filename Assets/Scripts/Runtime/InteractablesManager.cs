@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Celeste.Managers;
 using Celeste.Tilemaps;
+using Robbi.Runtime.Actors;
 
 namespace Robbi.Runtime
 {
@@ -55,9 +56,9 @@ namespace Robbi.Runtime
 
         #region Callbacks
 
-        public void OnMovedTo(Vector3Int location)
+        public void OnCharacterMovedTo(CharacterRuntime characterRuntime)
         {
-            TryInteract(location);
+            TryInteract(characterRuntime.Tile);
         }
         
         public void OnGameObjectInput(Vector3 inputLocation)

@@ -62,9 +62,9 @@ namespace Robbi.Runtime
             CheckForLaserHit(characterRuntime);
         }
 
-        public void OnPortalExited(Vector3Int position)
+        public void OnPortalExited(CharacterRuntime characterRuntime)
         {
-            //CheckForLaserHit(position);
+            CheckForLaserHit(characterRuntime);
         }
 
         public void OnActivateLaser(Laser laser)

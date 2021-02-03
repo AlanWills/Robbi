@@ -14,17 +14,13 @@ namespace Robbi.Runtime
 
         #endregion
 
-        #region IEnvironmentManager
-
         public void Initialize() { }
 
         public void Cleanup() { }
 
-        #endregion
-
         #region Destruction Methods
 
-        public void DestroyTile(Vector3Int tileCoords)
+        public void OnMovedFrom(Vector3Int tileCoords)
         {
             if (destructibleCorridorsTilemap.Value.HasTile(tileCoords))
             {

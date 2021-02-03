@@ -3,6 +3,7 @@ using Celeste.FSM.Nodes;
 using Celeste.FSM.Nodes.Events;
 using Celeste.FSM.Nodes.Events.Conditions;
 using CelesteEditor.FSM.Nodes.Events.Conditions;
+using CelesteEditor.FSMNodes.Events.Conditions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,11 +34,11 @@ namespace CelesteEditor.FSM.Nodes.Events
                 multiEventNode.GetInputPort(FSMNode.DEFAULT_INPUT_PORT_NAME),
                 multiEventNode.GetOutputPort(nameof(multiEventNode.argument)));
 
-            selectedEventType = EditorGUILayout.Popup(selectedEventType, EventConditionEditor.EventDisplayNames);
+            selectedEventType = EditorGUILayout.Popup(selectedEventType, EventConditionsConstants.EventConditionDisplayNames.ToArray());
 
             if (GUILayout.Button("Add Condition"))
             {
-                multiEventNode.AddEvent(EventConditionEditor.EventOptions[selectedEventType]);
+                multiEventNode.AddEvent(EventConditionsConstants.EventConditionOptions[selectedEventType]);
             }
 
             for (uint i = multiEventNode.NumEvents; i > 0; --i)

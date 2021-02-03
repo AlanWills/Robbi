@@ -1,5 +1,6 @@
 ﻿using Celeste.Managers;
 using Celeste.Parameters;
+using Robbi.Runtime.Actors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,7 +50,7 @@ namespace Robbi.Runtime
 
         #region Callbacks
 
-        public void OnMovedTo(Vector3Int location)
+        public void OnCharacterMovedTo(CharacterRuntime characterRuntime)
         {
             RemoveFuel(1);
         }

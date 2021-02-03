@@ -21,8 +21,6 @@ namespace Robbi.Runtime
 
         #endregion
 
-        #region IEnvironmentManager
-
         public void Initialize(IEnumerable<Door> _doors)
         {
             doors.Clear();
@@ -43,8 +41,6 @@ namespace Robbi.Runtime
         {
             doors.Clear();
         }
-
-        #endregion
 
         #region Unity Methods
 

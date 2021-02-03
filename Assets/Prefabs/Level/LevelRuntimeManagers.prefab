@@ -162,7 +162,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4823363101833532308}
   - component: {fileID: 2359638522097945808}
-  - component: {fileID: 7494773778310601239}
+  - component: {fileID: 3658898978232442363}
+  - component: {fileID: 7061062111768452592}
   m_Layer: 0
   m_Name: PortalsManager
   m_TagString: Untagged
@@ -197,10 +198,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portalsTilemap: {fileID: 11400000, guid: 87945437681cceb4e91277c09bfaba4b, type: 2}
-  playerPosition: {fileID: 11400000, guid: ddb88a6bd2594e6419cb8c238d69285a, type: 2}
-  portalEntered: {fileID: 11400000, guid: 49784da589b5f8643aae39898048da51, type: 2}
-  portalExited: {fileID: 11400000, guid: 59d5400f5776b1048b2b8201934eaf9f, type: 2}
---- !u!114 &7494773778310601239
+  portalEntered: {fileID: 11400000, guid: bdb7fabf53b9222468384c315fd37535, type: 2}
+  portalExited: {fileID: 11400000, guid: 2d473ad45490f484686fc34cade16093, type: 2}
+--- !u!114 &3658898978232442363
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -209,16 +209,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 2563780295779354277}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
+  m_Script: {fileID: 11500000, guid: e165305432617224a87a00fb8d83d4ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
+  gameEvent: {fileID: 11400000, guid: 2d87e548fcd752c43b3d2e315c42e554, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2359638522097945808}
-        m_TargetAssemblyTypeName: Robbi.Environment.PortalsManager, Robbi
-        m_MethodName: OnMovedTo
+        m_TargetAssemblyTypeName: Robbi.Runtime.PortalsManager, Robbi
+        m_MethodName: OnCharacterMovedTo
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7061062111768452592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2563780295779354277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e165305432617224a87a00fb8d83d4ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 1be6df2d6e253eb40b4567bd9f8c4aa5, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2359638522097945808}
+        m_TargetAssemblyTypeName: Robbi.Runtime.PortalsManager, Robbi
+        m_MethodName: OnCharacterMovedTo
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -249,7 +277,7 @@ GameObject:
   - component: {fileID: 3458020385244659024}
   - component: {fileID: 3398818866761533935}
   - component: {fileID: 5273468936645031076}
-  - component: {fileID: 4632566323217754145}
+  - component: {fileID: 2945142034593163950}
   - component: {fileID: 2185254429373469848}
   m_Layer: 0
   m_Name: MovementManager
@@ -608,7 +636,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4632566323217754145
+--- !u!114 &2945142034593163950
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -617,10 +645,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2772506934692611051}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
+  m_Script: {fileID: 11500000, guid: e165305432617224a87a00fb8d83d4ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 59d5400f5776b1048b2b8201934eaf9f, type: 2}
+  gameEvent: {fileID: 11400000, guid: 2d473ad45490f484686fc34cade16093, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
@@ -957,7 +985,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2270789002046526372}
   - component: {fileID: 1416014576783674456}
-  - component: {fileID: 1319617111545245673}
+  - component: {fileID: 5677457108173709596}
   m_Layer: 0
   m_Name: CollectablesManager
   m_TagString: Untagged
@@ -993,7 +1021,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectablesTilemap: {fileID: 11400000, guid: 4f694293867c2824583d1cfb38ccf6d2,
     type: 2}
---- !u!114 &1319617111545245673
+--- !u!114 &5677457108173709596
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1002,16 +1030,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3051439433994865322}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
+  m_Script: {fileID: 11500000, guid: e165305432617224a87a00fb8d83d4ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
+  gameEvent: {fileID: 11400000, guid: 2d87e548fcd752c43b3d2e315c42e554, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1416014576783674456}
-        m_TargetAssemblyTypeName: Robbi.Environment.CollectablesManager, Assembly-CSharp
-        m_MethodName: OnMovedTo
+        m_TargetAssemblyTypeName: Robbi.Runtime.CollectablesManager, Robbi
+        m_MethodName: OnCharacterMovedTo
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1085,9 +1113,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4253851984643043839}
-        m_TargetAssemblyTypeName: Robbi.Environment.DestructibleCorridorsManager,
-          Assembly-CSharp
-        m_MethodName: DestroyTile
+        m_TargetAssemblyTypeName: Robbi.Runtime.DestructibleCorridorsManager, Robbi
+        m_MethodName: OnMovedFrom
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1296,9 +1323,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementTilemap: {fileID: 11400000, guid: 383b6f4d91bf25e4a924c5ca0f937a9a, type: 2}
-  levelLostEvent: {fileID: 11400000, guid: f1011e957c917144caeaffc2270ffebe, type: 2}
-  caughtByEnemyReason: {fileID: 11400000, guid: 6fab5162a0a2dcf4591082084cff3cc9,
-    type: 2}
   enemiesMoving: {fileID: 11400000, guid: 36c66e683e05d134495c04803619774f, type: 2}
 --- !u!1 &4443659954887257874
 GameObject:
@@ -1310,7 +1334,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8681021859159792560}
   - component: {fileID: 2915932516500803445}
-  - component: {fileID: 7415379317088757677}
+  - component: {fileID: 4721106538974144272}
   - component: {fileID: 5706301054221785813}
   - component: {fileID: 461530435887573986}
   - component: {fileID: 1521007202024112487}
@@ -1352,7 +1376,7 @@ MonoBehaviour:
     type: 2}
   boundingBox: {fileID: 5706301054221785813}
   boosterUsedEvent: {fileID: 11400000, guid: 5d377483043d5504781abada5b1f865a, type: 2}
---- !u!114 &7415379317088757677
+--- !u!114 &4721106538974144272
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1361,16 +1385,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4443659954887257874}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
+  m_Script: {fileID: 11500000, guid: e165305432617224a87a00fb8d83d4ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
+  gameEvent: {fileID: 11400000, guid: 2d87e548fcd752c43b3d2e315c42e554, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2915932516500803445}
-        m_TargetAssemblyTypeName: Robbi.Environment.InteractablesManager, Assembly-CSharp
-        m_MethodName: OnMovedTo
+        m_TargetAssemblyTypeName: Robbi.Runtime.InteractablesManager, Robbi
+        m_MethodName: OnCharacterMovedTo
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1500,12 +1524,12 @@ GameObject:
   m_Component:
   - component: {fileID: 5788878857070568888}
   - component: {fileID: 7859679017641654441}
-  - component: {fileID: 7679744951776096445}
   - component: {fileID: 5589263170544904571}
   - component: {fileID: 3736121703532956818}
   - component: {fileID: 5010414411061015527}
   - component: {fileID: 5513279394136507167}
   - component: {fileID: 1174290810212981249}
+  - component: {fileID: 6731309842260042126}
   m_Layer: 0
   m_Name: LasersManager
   m_TagString: Untagged
@@ -1540,34 +1564,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserTilemap: {fileID: 11400000, guid: e0812fe3df489a34aa6cd94e86a98c5a, type: 2}
---- !u!114 &7679744951776096445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5284056565412097216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 59d5400f5776b1048b2b8201934eaf9f, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7859679017641654441}
-        m_TargetAssemblyTypeName: Robbi.Runtime.LasersManager, Robbi
-        m_MethodName: OnPortalExited
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &5589263170544904571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1708,6 +1704,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6731309842260042126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5284056565412097216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e165305432617224a87a00fb8d83d4ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 2d473ad45490f484686fc34cade16093, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7859679017641654441}
+        m_TargetAssemblyTypeName: Robbi.Runtime.LasersManager, Robbi
+        m_MethodName: OnPortalExited
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6440900456115497864
 GameObject:
   m_ObjectHideFlags: 0
@@ -1720,7 +1744,7 @@ GameObject:
   - component: {fileID: 3237753975910320855}
   - component: {fileID: 636940202103362761}
   - component: {fileID: 2772260310311972934}
-  - component: {fileID: 2350409101671836571}
+  - component: {fileID: 4587372938822404783}
   m_Layer: 0
   m_Name: FuelManager
   m_TagString: Untagged
@@ -1812,7 +1836,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2350409101671836571
+--- !u!114 &4587372938822404783
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1821,16 +1845,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 6440900456115497864}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
+  m_Script: {fileID: 11500000, guid: e165305432617224a87a00fb8d83d4ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
+  gameEvent: {fileID: 11400000, guid: 2d87e548fcd752c43b3d2e315c42e554, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3237753975910320855}
         m_TargetAssemblyTypeName: Robbi.Runtime.FuelManager, Robbi
-        m_MethodName: OnMovedTo
+        m_MethodName: OnCharacterMovedTo
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1850,7 +1874,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3525385912014895509}
   - component: {fileID: 5480487922313451854}
-  - component: {fileID: 8194376936118275087}
+  - component: {fileID: 5393847262858929752}
   m_Layer: 0
   m_Name: ExitsManager
   m_TagString: Untagged
@@ -1886,7 +1910,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   exitsTilemap: {fileID: 11400000, guid: c5368bd6237159742b3873ab3dcfbc0e, type: 2}
   exitReachedEvent: {fileID: 11400000, guid: 67eaa24d36c76154b8bc32be0fa3d337, type: 2}
---- !u!114 &8194376936118275087
+--- !u!114 &5393847262858929752
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1895,16 +1919,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8197887247557088431}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
+  m_Script: {fileID: 11500000, guid: e165305432617224a87a00fb8d83d4ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
+  gameEvent: {fileID: 11400000, guid: 2d87e548fcd752c43b3d2e315c42e554, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5480487922313451854}
-        m_TargetAssemblyTypeName: Robbi.Environment.ExitsManager, Assembly-CSharp
-        m_MethodName: CheckForExitReached
+        m_TargetAssemblyTypeName: Robbi.Runtime.ExitsManager, Robbi
+        m_MethodName: OnCharacterMovedTo
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

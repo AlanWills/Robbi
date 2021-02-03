@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 3579532860883834208}
   - component: {fileID: 7916390569980060855}
   - component: {fileID: 7462966469759258075}
+  - component: {fileID: 7526373788663669375}
+  - component: {fileID: 6870318852596560189}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -113,6 +115,7 @@ MonoBehaviour:
   movementTilemap: {fileID: 11400000, guid: 383b6f4d91bf25e4a924c5ca0f937a9a, type: 2}
   doorsTilemap: {fileID: 11400000, guid: 30b77989832f303478f308bf685407be, type: 2}
   onCharacterMovedTo: {fileID: 11400000, guid: 1be6df2d6e253eb40b4567bd9f8c4aa5, type: 2}
+  onMovedFrom: {fileID: 11400000, guid: 7a0e4270079ee5048b10886aff50405b, type: 2}
   targetPosition: {fileID: 11400000, guid: ddb88a6bd2594e6419cb8c238d69285a, type: 2}
   shouldMove: {fileID: 11400000, guid: 36c66e683e05d134495c04803619774f, type: 2}
   movementSpeed: {fileID: 11400000, guid: 4129d939c3be32249934c9c778306861, type: 2}
@@ -135,8 +138,64 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7916390569980060855}
         m_TargetAssemblyTypeName: Robbi.Movement.TargetedMovement, Robbi
-        m_MethodName: OnMovedTo
+        m_MethodName: OnCharacterMovedTo
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7526373788663669375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9014697110664690246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e165305432617224a87a00fb8d83d4ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 2d473ad45490f484686fc34cade16093, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7916390569980060855}
+        m_TargetAssemblyTypeName: Robbi.Movement.TargetedMovement, Robbi
+        m_MethodName: OnPortalExited
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6870318852596560189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9014697110664690246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c2c167d8138f94b8f96ff1b82578d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 5bb336e8d44fa7f4e9895bfdf197a063, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7916390569980060855}
+        m_TargetAssemblyTypeName: Robbi.Movement.TargetedMovement, Robbi
+        m_MethodName: OnLevelChanged
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

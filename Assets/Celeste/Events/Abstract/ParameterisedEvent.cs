@@ -12,6 +12,7 @@ namespace Celeste.Events
         #region Properties and Fields
 
         private List<IEventListener<T>> gameEventListeners = new List<IEventListener<T>>();
+        private List<IEventListener<T>> cachedListeners = new List<IEventListener<T>>();
 
         #endregion
 
@@ -35,12 +36,17 @@ namespace Celeste.Events
 
         public void RaiseSilently(T argument)
         {
-            // Do the check for gameEventListeners to ensure that if events are unsubscribed from a callback
+            cachedListeners.Clear();
+            cachedListeners.AddRange(gameEventListeners);
+
+            // Cache the gameEventListeners to ensure that if events are unsubscribed from a callback
             // we can handle that and don't fall over
-            for (int i = gameEventListeners.Count - 1; i >= 0 && gameEventListeners.Count > 0; --i)
+            for (int i = 0; i < cachedListeners.Count; ++i)
             {
-                gameEventListeners[i].OnEventRaised(argument);
+                cachedListeners[i].OnEventRaised(argument);
             }
+
+            cachedListeners.Clear();
         }
 
         #endregion

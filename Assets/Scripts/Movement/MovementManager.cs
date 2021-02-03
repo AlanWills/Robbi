@@ -133,7 +133,8 @@ namespace Robbi.Movement
                     {
                         // This step of movement is completed
                         aStarMovement.CompleteStep();
-                        
+                        nextWaypointUnreachable.Value = !aStarMovement.HasStepsToNextWaypoint;
+
                         if (movedTo == waypoints[0].gridPosition)
                         {
                             // We have reached the next waypoint
@@ -195,7 +196,7 @@ namespace Robbi.Movement
             MoveToNextWaypoint();
         }
 
-        public void OnPortalExited(Vector3Int position)
+        public void OnPortalExited(CharacterRuntime characterRuntime)
         {
             MoveToNextWaypoint();
         }

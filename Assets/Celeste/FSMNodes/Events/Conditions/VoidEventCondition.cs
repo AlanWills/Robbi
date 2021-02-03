@@ -1,6 +1,7 @@
 ﻿using Celeste.Events;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 namespace Celeste.FSM.Nodes.Events.Conditions
 {
     [Serializable]
+    [DisplayName("Void")]
     public class VoidEventCondition : EventCondition, IEventListener
     {
         #region Properties and Fields

@@ -26,6 +26,7 @@ namespace Robbi.Runtime.Actors
         [Header("Level Lose")]
         public StringEvent levelLostEvent;
         public StringValue hitLaserReason;
+        public StringValue caughtByEnemyReason;
 
         #endregion
 
@@ -43,6 +44,11 @@ namespace Robbi.Runtime.Actors
         public override void OnHitByLaser()
         {
             levelLostEvent.Raise(hitLaserReason.Value);
+        }
+
+        public void OnReachedByEnemy()
+        {
+            levelLostEvent.Raise(caughtByEnemyReason.Value);
         }
 
         #endregion

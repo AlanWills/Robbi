@@ -18,17 +18,8 @@ namespace Robbi.Runtime
     {
         #region Properties and Fields
 
-        public IEnumerable<EnemyRuntime> EnemyRuntimes
-        {
-            get { return enemyRuntimes; }
-        }
-
         [Header("Tilemaps")]
         public TilemapValue movementTilemap;
-
-        [Header("Level Lose")]
-        public StringEvent levelLostEvent;
-        public StringValue caughtByEnemyReason;
 
         [Header("Parameters")]
         public BoolValue enemiesMoving;
@@ -68,7 +59,7 @@ namespace Robbi.Runtime
                 Vector3Int enemyTile = enemyRuntimes[i].Tile;
                 if (playerTile == enemyTile)
                 {
-                    levelLostEvent.Raise(caughtByEnemyReason.Value);
+                    playerRuntime.OnReachedByEnemy();
                 }
             }
         }

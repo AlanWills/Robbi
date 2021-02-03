@@ -14,24 +14,6 @@ namespace CelesteEditor.FSM.Nodes.Events.Conditions
     {
         #region Properties and Fields
         
-        public static Type[] EventOptions = new Type[]
-        {
-            typeof(VoidEventCondition),
-            typeof(StringEventCondition),
-            typeof(FloatEventCondition),
-            typeof(BoolEventCondition),
-            typeof(Vector3IntEventCondition),
-        };
-
-        public static string[] EventDisplayNames = new string[]
-        {
-            "Void",
-            "String",
-            "Float",
-            "Bool",
-            "Vector3Int",
-        };
-
         public static readonly EventConditionEditor DefaultEventConditionEditor = new EventConditionEditor();
 
         #endregion
