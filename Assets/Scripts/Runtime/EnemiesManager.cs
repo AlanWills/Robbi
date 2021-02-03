@@ -38,8 +38,6 @@ namespace Robbi.Runtime
 
         #endregion
 
-        #region IEnvironmentManager
-
         public void Initialize(IEnumerable<Enemy> enemies)
         {
             // Spawn Pool this?  How do we do support variable prefabs for enemies?
@@ -71,8 +69,6 @@ namespace Robbi.Runtime
                 }
             }
         }
-
-        #endregion
 
         #region Unity Methods
 

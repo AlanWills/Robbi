@@ -25,8 +25,6 @@ namespace Robbi.Runtime
 
         #endregion
 
-        #region IEnvironmentManager
-
         public void Initialize(IEnumerable<Laser> _lasers) 
         {
             lasers.Clear();
@@ -59,8 +57,6 @@ namespace Robbi.Runtime
                 }
             }
         }
-
-        #endregion
 
         #region Callbacks
 
