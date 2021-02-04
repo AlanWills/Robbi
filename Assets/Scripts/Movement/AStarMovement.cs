@@ -33,41 +33,51 @@ namespace Robbi.Movement
 
         public void CalculateGridSteps(Vector3 startingPosition, Vector3Int targetPosition)
         {
-            Vector3Int startTilePosition = MovementTilemap.WorldToCell(startingPosition);
-            CalculateGridSteps(startTilePosition, targetPosition);
-
-            // If we are on the same tile, but not at the same position add an initial first step to move to the tile centre
-            // This ensures that if we recalculate at ANY point, we will always end up in the centre of the tile
-            Vector3 targetPositionVec3 = MovementTilemap.GetCellCenterWorld(targetPosition);
-            if (startTilePosition == targetPosition && targetPositionVec3 != startingPosition)
-            {
-                stepsToNextWaypoint.Push(startingPosition);
-            }
-        }
-
-        public void CalculateGridSteps(Vector3Int startingPosition, Vector3Int targetPosition)
-        {
-            CalculateCosts(startingPosition, targetPosition);
-            ConstructGridSteps(targetPosition, stepsToNextWaypoint);
+            CalculateGridStepsImpl(startingPosition, targetPosition, stepsToNextWaypoint);
         }
 
         public Stack<Vector3> CalculateGridStepsWithoutCaching(Vector3 startingPosition, Vector3Int targetPosition)
         {
             Stack<Vector3> stepsToNextWaypoint = new Stack<Vector3>();
-            
-            Vector3Int startTilePosition = MovementTilemap.WorldToCell(startingPosition);
-            CalculateCosts(startTilePosition, targetPosition);
-            ConstructGridSteps(targetPosition, stepsToNextWaypoint);
+            CalculateGridStepsImpl(startingPosition, targetPosition, stepsToNextWaypoint);
+            return stepsToNextWaypoint;
+        }
 
-            // If we are on the same tile, but not at the same position add an initial first step to move to the tile centre
-            // This ensures that if we recalculate at ANY point, we will always end up in the centre of the tile
-            Vector3 targetPositionVec3 = MovementTilemap.GetCellCenterWorld(targetPosition);
-            if (startTilePosition == targetPosition && targetPositionVec3 != startingPosition)
+        public void CalculateGridStepsImpl(Vector3 startingPosition, Vector3Int targetPosition, Stack<Vector3> stepsToNextWaypoint)
+        {
+            Vector3Int startingTilePosition = MovementTilemap.WorldToCell(startingPosition);
+
+            if (!HasStepsToNextWaypoint)
             {
-                stepsToNextWaypoint.Push(startingPosition);
+                // We recalculated with no existing steps underway
+                // Go ahead and recalculate with impunity, everything will be gucci
+                CalculateCosts(startingTilePosition, targetPosition);
+                ConstructGridSteps(targetPosition, stepsToNextWaypoint);
+
+                return;
             }
 
-            return stepsToNextWaypoint;
+            // We are currently executing a step
+            // If we recalculate now, the progress we've made will be lost and we could possibly skip this step entirely
+            // So we cache some information
+            Vector3 firstStep = NextStep;
+            Vector3Int firstStepTilePosition = MovementTilemap.WorldToCell(firstStep);
+
+            // Calculate the new steps
+            CalculateCosts(startingTilePosition, targetPosition);
+            ConstructGridSteps(targetPosition, stepsToNextWaypoint);
+
+            // Now we check to see if our step needed completing
+            // If we are on the same tile as the discarded executing step from the perspective of the tilemap
+            // But we hadn't completed the step (actual positions different)
+            // And we haven't recalculated we need to do that step anyway
+            if (startingTilePosition == firstStepTilePosition &&
+                firstStep != startingPosition &&
+                stepsToNextWaypoint.Peek() != firstStep)
+            {
+                // We re-add the step so that it's remainder is completed
+                stepsToNextWaypoint.Push(firstStep);
+            }
         }
 
         public void CompleteStep()

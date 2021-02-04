@@ -62,7 +62,9 @@ namespace Robbi.Runtime
             for (int i = 0; i < enemyRuntimes.Count; ++i) 
             {
                 Vector3Int enemyTile = enemyRuntimes[i].Tile;
-                if (playerTile == enemyTile)
+                int cartesianDistance = CartesianDistance(enemyTile, playerTile);
+
+                if (cartesianDistance <= 1 && (playerRuntime.Position - enemyRuntimes[i].Position).sqrMagnitude < 0.25f)
                 {
                     playerRuntime.OnReachedByEnemy();
                 }
@@ -82,6 +84,15 @@ namespace Robbi.Runtime
             {
                 CheckForEnemyReachedPlayer();
             }
+        }
+
+        #endregion
+
+        #region Utility Methods
+
+        private int CartesianDistance(Vector3Int first, Vector3Int second)
+        {
+            return Math.Abs(first.x - second.x) + Math.Abs(first.y - second.y) + Math.Abs(first.z - second.z);
         }
 
         #endregion
