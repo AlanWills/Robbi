@@ -51,7 +51,7 @@ namespace Robbi.Movement
             MoveToNextWaypoint();
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (!shouldMove.Value)
             {
