@@ -115,6 +115,8 @@ namespace Robbi.Movement
         {
             if (isProgramRunning.Value)
             {
+                isProgramRunning.Value = aStarMovement.HasStepsToNextWaypoint;
+
                 Vector3 playerLocalPos = characterRuntime.Position;
                 Vector3Int movedFrom = new Vector3Int(Mathf.RoundToInt(playerLocalPos.x - 0.5f), Mathf.RoundToInt(playerLocalPos.y - 0.5f), Mathf.RoundToInt(playerLocalPos.z));
 
@@ -151,10 +153,6 @@ namespace Robbi.Movement
                             onMovedFrom.Raise(movedFrom);
                         }
                     }
-                }
-                else
-                {
-                    isProgramRunning.Value = false;
                 }
             }
         }
