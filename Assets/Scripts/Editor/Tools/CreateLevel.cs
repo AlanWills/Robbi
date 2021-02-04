@@ -80,7 +80,7 @@ namespace RobbiEditor.Tools
         [Header("Lasers")]
         public List<LaserDefinition> lasers = new List<LaserDefinition>();
 
-        [Header("Lasers")]
+        [Header("Enemies")]
         public List<EnemyInfo> enemies = new List<EnemyInfo>();
 
         [Header("Tutorials")]
