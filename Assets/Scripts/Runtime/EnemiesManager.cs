@@ -18,6 +18,11 @@ namespace Robbi.Runtime
     {
         #region Properties and Fields
 
+        public IEnumerable<EnemyRuntime> Enemies
+        {
+            get { return enemyRuntimes; }
+        }
+
         [Header("Tilemaps")]
         public TilemapValue movementTilemap;
 

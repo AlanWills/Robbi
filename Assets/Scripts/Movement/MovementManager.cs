@@ -113,45 +113,47 @@ namespace Robbi.Movement
 
         private void FixedUpdate()
         {
-            if (isProgramRunning.Value)
+            if (!isProgramRunning.Value)
             {
-                isProgramRunning.Value = aStarMovement.HasStepsToNextWaypoint;
+                return;
+            }
 
-                Vector3 playerLocalPos = characterRuntime.Position;
-                Vector3Int movedFrom = new Vector3Int(Mathf.RoundToInt(playerLocalPos.x - 0.5f), Mathf.RoundToInt(playerLocalPos.y - 0.5f), Mathf.RoundToInt(playerLocalPos.z));
+            isProgramRunning.Value = aStarMovement.HasStepsToNextWaypoint;
 
-                if (aStarMovement.HasStepsToNextWaypoint)
+            Vector3 playerLocalPos = characterRuntime.Position;
+            Vector3Int movedFrom = new Vector3Int(Mathf.RoundToInt(playerLocalPos.x - 0.5f), Mathf.RoundToInt(playerLocalPos.y - 0.5f), Mathf.RoundToInt(playerLocalPos.z));
+
+            if (aStarMovement.HasStepsToNextWaypoint)
+            {
+                // We are moving towards our next waypoint along the steps
+                Vector3 nextStepPosition = aStarMovement.NextStep;
+                Vector3 newPosition = Vector3.MoveTowards(playerLocalPos, nextStepPosition, movementSpeed.Value * Time.deltaTime);
+                Vector3Int movedTo = new Vector3Int(
+                    Mathf.RoundToInt(newPosition.x - 0.5f),
+                    Mathf.RoundToInt(newPosition.y - 0.5f),
+                    Mathf.RoundToInt(newPosition.z));
+                characterRuntime.Position = newPosition;
+
+                if (newPosition == nextStepPosition)
                 {
-                    // We are moving towards our next waypoint along the steps
-                    Vector3 nextStepPosition = aStarMovement.NextStep;
-                    Vector3 newPosition = Vector3.MoveTowards(playerLocalPos, nextStepPosition, movementSpeed.Value * Time.deltaTime);
-                    Vector3Int movedTo = new Vector3Int(
-                        Mathf.RoundToInt(newPosition.x - 0.5f), 
-                        Mathf.RoundToInt(newPosition.y - 0.5f), 
-                        Mathf.RoundToInt(newPosition.z));
-                    characterRuntime.Position = newPosition;
-                    
-                    if (newPosition == nextStepPosition)
+                    // This step of movement is completed
+                    aStarMovement.CompleteStep();
+                    nextWaypointUnreachable.Value = !aStarMovement.HasStepsToNextWaypoint;
+
+                    if (movedTo == waypoints[0].gridPosition)
                     {
-                        // This step of movement is completed
-                        aStarMovement.CompleteStep();
-                        nextWaypointUnreachable.Value = !aStarMovement.HasStepsToNextWaypoint;
-
-                        if (movedTo == waypoints[0].gridPosition)
-                        {
-                            // We have reached the next waypoint
-                            ConsumeWaypoint(0);
-                            MoveToNextWaypoint();
-                        }
-
-                        onCharacterMovedTo.Raise(characterRuntime);
+                        // We have reached the next waypoint
+                        ConsumeWaypoint(0);
+                        MoveToNextWaypoint();
                     }
-                    else
+
+                    onCharacterMovedTo.Raise(characterRuntime);
+                }
+                else
+                {
+                    if (movedFrom != movedTo)
                     {
-                        if (movedFrom != movedTo)
-                        {
-                            onMovedFrom.Raise(movedFrom);
-                        }
+                        onMovedFrom.Raise(movedFrom);
                     }
                 }
             }

@@ -19,10 +19,11 @@ namespace Robbi.Runtime
         public TilemapValue laserTilemap;
         
         private List<Laser> lasers = new List<Laser>();
+        private List<CharacterRuntime> characterRuntimes = new List<CharacterRuntime>();
 
         #endregion
 
-        public void Initialize(IEnumerable<Laser> _lasers) 
+        public void Initialize(IEnumerable<Laser> _lasers, IEnumerable<CharacterRuntime> _characterRuntimes) 
         {
             lasers.Clear();
             lasers.AddRange(_lasers);
@@ -31,11 +32,15 @@ namespace Robbi.Runtime
             {
                 laser.Initialize(laserTilemap.Value);
             }
+
+            characterRuntimes.Clear();
+            characterRuntimes.AddRange(_characterRuntimes);
         }
 
         public void Cleanup() 
         {
             lasers.Clear();
+            characterRuntimes.Clear();
         }
 
         private void CheckForLaserHit(CharacterRuntime characterRuntime)
@@ -70,6 +75,11 @@ namespace Robbi.Runtime
         public void OnActivateLaser(Laser laser)
         {
             laser.Activate(laserTilemap.Value);
+
+            foreach (CharacterRuntime characterRuntime in characterRuntimes)
+            {
+                CheckForLaserHit(characterRuntime);
+            }
         }
 
         public void OnDeactivateLaser(Laser laser)
@@ -79,7 +89,14 @@ namespace Robbi.Runtime
 
         public void OnToggleLaser(Laser laser)
         {
-            laser.Toggle(laserTilemap.Value);
+            if (laser.IsActive)
+            {
+                OnDeactivateLaser(laser);
+            }
+            else
+            {
+                OnActivateLaser(laser);
+            }
         }
 
         #endregion
