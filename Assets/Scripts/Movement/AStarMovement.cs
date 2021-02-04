@@ -24,7 +24,7 @@ namespace Robbi.Movement
         private Dictionary<Vector3Int, Vector3Int> cameFrom = new Dictionary<Vector3Int, Vector3Int>();
         private Dictionary<Vector3Int, float> costFromStart = new Dictionary<Vector3Int, float>();
         private Dictionary<Vector3Int, float> costOverall = new Dictionary<Vector3Int, float>();
-        private List<Vector3Int> newWaypoints = new List<Vector3Int>();
+        private List<Vector3Int> tilesToNextWaypoint = new List<Vector3Int>();
         private Stack<Vector3> stepsToNextWaypoint = new Stack<Vector3>();
 
         #endregion
@@ -33,7 +33,16 @@ namespace Robbi.Movement
 
         public void CalculateGridSteps(Vector3 startingPosition, Vector3Int targetPosition)
         {
-            CalculateGridSteps(MovementTilemap.LocalToCell(startingPosition), targetPosition);
+            Vector3Int startTilePosition = MovementTilemap.WorldToCell(startingPosition);
+            CalculateGridSteps(startTilePosition, targetPosition);
+
+            // If we are on the same tile, but not at the same position add an initial first step to move to the tile centre
+            // This ensures that if we recalculate at ANY point, we will always end up in the centre of the tile
+            Vector3 targetPositionVec3 = MovementTilemap.GetCellCenterWorld(targetPosition);
+            if (startTilePosition == targetPosition && targetPositionVec3 != startingPosition)
+            {
+                stepsToNextWaypoint.Push(startingPosition);
+            }
         }
 
         public void CalculateGridSteps(Vector3Int startingPosition, Vector3Int targetPosition)
@@ -46,8 +55,17 @@ namespace Robbi.Movement
         {
             Stack<Vector3> stepsToNextWaypoint = new Stack<Vector3>();
             
-            CalculateCosts(MovementTilemap.LocalToCell(startingPosition), targetPosition);
+            Vector3Int startTilePosition = MovementTilemap.WorldToCell(startingPosition);
+            CalculateCosts(startTilePosition, targetPosition);
             ConstructGridSteps(targetPosition, stepsToNextWaypoint);
+
+            // If we are on the same tile, but not at the same position add an initial first step to move to the tile centre
+            // This ensures that if we recalculate at ANY point, we will always end up in the centre of the tile
+            Vector3 targetPositionVec3 = MovementTilemap.GetCellCenterWorld(targetPosition);
+            if (startTilePosition == targetPosition && targetPositionVec3 != startingPosition)
+            {
+                stepsToNextWaypoint.Push(startingPosition);
+            }
 
             return stepsToNextWaypoint;
         }
@@ -166,33 +184,35 @@ namespace Robbi.Movement
             }
         }
 
-        private void ConstructGridSteps(Vector3Int targetGridPosition, Stack<Vector3> stepsToNextWaypoint)
+        private void ConstructGridSteps(Vector3Int targetGridPosition, Stack<Vector3> tileCentresToNextWaypoint)
         {
-            newWaypoints.Clear();
-            stepsToNextWaypoint.Clear();
+            tilesToNextWaypoint.Clear();
+            tileCentresToNextWaypoint.Clear();
 
             while (cameFrom.ContainsKey(targetGridPosition))
             {
-                newWaypoints.Add(targetGridPosition);
+                tilesToNextWaypoint.Add(targetGridPosition);
                 targetGridPosition = cameFrom[targetGridPosition];
             }
 
-            for (int i = newWaypoints.Count - 1; i >= 0; --i)
+            // If we encounter a closed door for a step, remove all steps after and including that step 
+            // (since it's not traversable, but we want to move as close to the waypoint as possible
+            for (int i = tilesToNextWaypoint.Count - 1; i >= 0; --i)
             {
-                if (DoorsTilemap.HasClosedDoor(newWaypoints[i]))
+                if (DoorsTilemap.HasClosedDoor(tilesToNextWaypoint[i]))
                 {
                     for (int j = i; j >= 0; --j)
                     {
-                        newWaypoints.RemoveAt(j);
+                        tilesToNextWaypoint.RemoveAt(j);
                     }
 
                     break;
                 }
             }
 
-            foreach (Vector3Int waypoint in newWaypoints)
+            foreach (Vector3Int waypoint in tilesToNextWaypoint)
             {
-                stepsToNextWaypoint.Push(MovementTilemap.GetCellCenterWorld(waypoint));
+                tileCentresToNextWaypoint.Push(MovementTilemap.GetCellCenterWorld(waypoint));
             }
         }
 

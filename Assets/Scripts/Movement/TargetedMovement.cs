@@ -59,8 +59,6 @@ namespace Robbi.Movement
             }
 
             Vector3 playerLocalPos = characterRuntime.Position;
-            Vector3Int movedFrom = new Vector3Int(Mathf.RoundToInt(playerLocalPos.x - 0.5f), Mathf.RoundToInt(playerLocalPos.y - 0.5f), Mathf.RoundToInt(playerLocalPos.z));
-
             if (aStarMovement.HasStepsToNextWaypoint)
             {
                 // We are moving towards our next waypoint along the steps
@@ -82,6 +80,11 @@ namespace Robbi.Movement
                 }
                 else
                 {
+                    Vector3Int movedFrom = new Vector3Int(
+                        Mathf.RoundToInt(playerLocalPos.x - 0.5f), 
+                        Mathf.RoundToInt(playerLocalPos.y - 0.5f), 
+                        Mathf.RoundToInt(playerLocalPos.z));
+                    
                     if (movedFrom != movedTo)
                     {
                         onMovedFrom.Raise(movedFrom);
@@ -100,7 +103,7 @@ namespace Robbi.Movement
 
         public void MoveToNextWaypoint()
         {
-            aStarMovement.CalculateGridSteps(characterRuntime.Tile, movementTilemap.Value.WorldToCell(targetPosition.Value));
+            aStarMovement.CalculateGridSteps(characterRuntime.Position, movementTilemap.Value.WorldToCell(targetPosition.Value));
         }
 
         #endregion

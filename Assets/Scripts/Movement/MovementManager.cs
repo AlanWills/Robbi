@@ -150,7 +150,10 @@ namespace Robbi.Movement
                 }
                 else
                 {
-                    Vector3Int movedFrom = new Vector3Int(Mathf.RoundToInt(playerOriginalPosition.x - 0.5f), Mathf.RoundToInt(playerOriginalPosition.y - 0.5f), Mathf.RoundToInt(playerOriginalPosition.z));
+                    Vector3Int movedFrom = new Vector3Int(
+                        Mathf.RoundToInt(playerOriginalPosition.x - 0.5f), 
+                        Mathf.RoundToInt(playerOriginalPosition.y - 0.5f), 
+                        Mathf.RoundToInt(playerOriginalPosition.z));
                     
                     if (movedFrom != movedTo)
                     {
@@ -232,7 +235,7 @@ namespace Robbi.Movement
             
             if (isProgramRunning.Value)
             {
-                aStarMovement.CalculateGridSteps(characterRuntime.Tile, waypoints[0].gridPosition);
+                aStarMovement.CalculateGridSteps(characterRuntime.Position, waypoints[0].gridPosition);
                 nextWaypointUnreachable.Value = !aStarMovement.HasStepsToNextWaypoint;
             }
         }
