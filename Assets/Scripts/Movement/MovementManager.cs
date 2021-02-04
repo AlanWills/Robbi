@@ -119,15 +119,13 @@ namespace Robbi.Movement
             }
 
             isProgramRunning.Value = aStarMovement.HasStepsToNextWaypoint;
-
-            Vector3 playerLocalPos = characterRuntime.Position;
-            Vector3Int movedFrom = new Vector3Int(Mathf.RoundToInt(playerLocalPos.x - 0.5f), Mathf.RoundToInt(playerLocalPos.y - 0.5f), Mathf.RoundToInt(playerLocalPos.z));
+            Vector3 playerOriginalPosition = characterRuntime.Position;
 
             if (aStarMovement.HasStepsToNextWaypoint)
             {
                 // We are moving towards our next waypoint along the steps
                 Vector3 nextStepPosition = aStarMovement.NextStep;
-                Vector3 newPosition = Vector3.MoveTowards(playerLocalPos, nextStepPosition, movementSpeed.Value * Time.deltaTime);
+                Vector3 newPosition = Vector3.MoveTowards(playerOriginalPosition, nextStepPosition, movementSpeed.Value * Time.deltaTime);
                 Vector3Int movedTo = new Vector3Int(
                     Mathf.RoundToInt(newPosition.x - 0.5f),
                     Mathf.RoundToInt(newPosition.y - 0.5f),
@@ -147,10 +145,13 @@ namespace Robbi.Movement
                         MoveToNextWaypoint();
                     }
 
-                    onCharacterMovedTo.Raise(characterRuntime);
+                    Debug.LogFormat("{0} moved to {1}", characterRuntime.name, characterRuntime.Tile);
+                    onCharacterMovedTo.RaiseSilently(characterRuntime);
                 }
                 else
                 {
+                    Vector3Int movedFrom = new Vector3Int(Mathf.RoundToInt(playerOriginalPosition.x - 0.5f), Mathf.RoundToInt(playerOriginalPosition.y - 0.5f), Mathf.RoundToInt(playerOriginalPosition.z));
+                    
                     if (movedFrom != movedTo)
                     {
                         onMovedFrom.Raise(movedFrom);

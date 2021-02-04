@@ -76,7 +76,9 @@ namespace Robbi.Movement
                 {
                     // This step of movement is completed
                     aStarMovement.CompleteStep();
-                    onCharacterMovedTo.Raise(characterRuntime);
+
+                    Debug.LogFormat("{0} moved to {1}", characterRuntime.name, characterRuntime.Tile);
+                    onCharacterMovedTo.RaiseSilently(characterRuntime);
                 }
                 else
                 {
