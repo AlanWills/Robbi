@@ -18,6 +18,7 @@ namespace Robbi.Movement
         [Header("Tilemaps")]
         public TilemapValue movementTilemap;
         public TilemapValue doorsTilemap;
+        public TilemapValue portalsTilemap;
 
         [Header("Events")]
         public CharacterRuntimeEvent onCharacterMovedTo;
@@ -47,6 +48,10 @@ namespace Robbi.Movement
         {
             aStarMovement.DoorsTilemap = doorsTilemap.Value;
             aStarMovement.MovementTilemap = movementTilemap.Value;
+            aStarMovement.PortalsTilemap = portalsTilemap.Value;
+            
+            // Add a small weight to encourage the robot to use conventional corridors.  This helps make it's behaviour more deterministic
+            aStarMovement.PortalsWeight = 50;
             
             MoveToNextWaypoint();
         }

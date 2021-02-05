@@ -938,7 +938,7 @@ PrefabInstance:
     - target: {fileID: 4008252506619596140, guid: 5a414555ca0cb0a43941df80eb95279a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4008252506619596140, guid: 5a414555ca0cb0a43941df80eb95279a,
         type: 3}
@@ -1500,6 +1500,174 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1283101418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1283101419}
+  - component: {fileID: 1283101421}
+  - component: {fileID: 1283101420}
+  m_Layer: 0
+  m_Name: Portals
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1283101419
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283101418}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9185820877808511846}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!483693784 &1283101420
+TilemapRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283101418}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 55a327d26c1b2e3459212d1ddb3a20ec, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 1471851203
+  m_SortingLayer: 2
+  m_SortingOrder: 0
+  m_ChunkSize: {x: 32, y: 32, z: 32}
+  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_MaxChunkCount: 16
+  m_MaxFrameAge: 16
+  m_SortOrder: 0
+  m_Mode: 0
+  m_DetectChunkCullingBounds: 0
+  m_MaskInteraction: 0
+--- !u!1839735485 &1283101421
+Tilemap:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283101418}
+  m_Enabled: 1
+  m_Tiles:
+  - first: {x: 0, y: -6, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 0
+  m_AnimatedTiles:
+  - first: {x: 0, y: -6, z: 0}
+    second:
+      m_AnimatedSprites:
+      - {fileID: 3144575733076137978, guid: fb92ad44e45670d4eb342aa1928ab113, type: 3}
+      - {fileID: 5701914541164946984, guid: fb92ad44e45670d4eb342aa1928ab113, type: 3}
+      - {fileID: -8517483375411004747, guid: fb92ad44e45670d4eb342aa1928ab113, type: 3}
+      - {fileID: -4736153431530059612, guid: fb92ad44e45670d4eb342aa1928ab113, type: 3}
+      - {fileID: 7088088106705927944, guid: fb92ad44e45670d4eb342aa1928ab113, type: 3}
+      - {fileID: -7010056897113009676, guid: fb92ad44e45670d4eb342aa1928ab113, type: 3}
+      - {fileID: 6418235359785273886, guid: fb92ad44e45670d4eb342aa1928ab113, type: 3}
+      - {fileID: -8096055672430481064, guid: fb92ad44e45670d4eb342aa1928ab113, type: 3}
+      - {fileID: -7307522677514182492, guid: fb92ad44e45670d4eb342aa1928ab113, type: 3}
+      - {fileID: 3044669064515152524, guid: fb92ad44e45670d4eb342aa1928ab113, type: 3}
+      m_AnimationSpeed: 1
+      m_AnimationTimeOffset: 0
+      m_IsLooping: 1
+  m_TileAssetArray:
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 995656dda16a1dd498c2e05f45f13ffc, type: 2}
+  m_TileSpriteArray:
+  - m_RefCount: 1
+    m_Data: {fileID: 3044669064515152524, guid: fb92ad44e45670d4eb342aa1928ab113,
+      type: 3}
+  m_TileMatrixArray:
+  - m_RefCount: 1
+    m_Data:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  m_TileColorArray:
+  - m_RefCount: 1
+    m_Data: {r: 1, g: 1, b: 1, a: 1}
+  m_TileObjectToInstantiateArray: []
+  m_AnimationFrameRate: 10
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Origin: {x: 0, y: -6, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
+  m_TileOrientation: 0
+  m_TileOrientationMatrix:
+    e00: 1
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 1
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 1
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
 --- !u!1 &1305505889
 GameObject:
   m_ObjectHideFlags: 0
@@ -2506,6 +2674,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementTilemap: {fileID: 8422369208073749845}
   doorsTilemap: {fileID: 4110153408930550870}
+  portalsTilemap: {fileID: 1283101421}
   robbiPosition: {fileID: 11400000, guid: ddb88a6bd2594e6419cb8c238d69285a, type: 2}
   startingPosition: {x: -4, y: -5, z: 0}
   movementSpeed: 4
@@ -2526,7 +2695,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9185820877808511846}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &2235671994086776320
 TilemapRenderer:
@@ -2588,7 +2757,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9185820877808511846}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2911907111517960773
 GameObject:
@@ -2659,7 +2828,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1234146363
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -4117,7 +4286,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9185820877808511846}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &7234430742893242465
 Transform:
@@ -4131,7 +4300,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9185820877808511846}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8126137764912107398
 GameObject:
@@ -4652,7 +4821,7 @@ Tilemap:
       - {fileID: -680686176433744951, guid: f7587147d4ae38740966476a9f776a00, type: 3}
       - {fileID: 8355950326866171117, guid: f7587147d4ae38740966476a9f776a00, type: 3}
       m_AnimationSpeed: 1
-      m_AnimationTimeOffset: 0.46781588
+      m_AnimationTimeOffset: 1.3563578
       m_IsLooping: 1
   - first: {x: 1, y: 1, z: 0}
     second:
@@ -4660,7 +4829,7 @@ Tilemap:
       - {fileID: -680686176433744951, guid: f7587147d4ae38740966476a9f776a00, type: 3}
       - {fileID: 8355950326866171117, guid: f7587147d4ae38740966476a9f776a00, type: 3}
       m_AnimationSpeed: 1
-      m_AnimationTimeOffset: 0.8827573
+      m_AnimationTimeOffset: 1.6669431
       m_IsLooping: 1
   - first: {x: -1, y: 5, z: 0}
     second:
@@ -4668,7 +4837,7 @@ Tilemap:
       - {fileID: -680686176433744951, guid: f7587147d4ae38740966476a9f776a00, type: 3}
       - {fileID: 8355950326866171117, guid: f7587147d4ae38740966476a9f776a00, type: 3}
       m_AnimationSpeed: 1
-      m_AnimationTimeOffset: 1.1627969
+      m_AnimationTimeOffset: 1.7140081
       m_IsLooping: 1
   m_TileAssetArray:
   - m_RefCount: 2
@@ -4863,6 +5032,7 @@ Transform:
   - {fileID: 465339248}
   - {fileID: 3496495811638904864}
   - {fileID: 90730739915832474}
+  - {fileID: 1283101419}
   - {fileID: 6964753482676810089}
   - {fileID: 1800170753806475741}
   - {fileID: 2817172180169564698}

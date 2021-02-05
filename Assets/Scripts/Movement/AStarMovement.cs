@@ -16,6 +16,11 @@ namespace Robbi.Movement
 
         public Tilemap MovementTilemap { get; set; }
         public Tilemap DoorsTilemap { get; set; }
+        public Tilemap PortalsTilemap { get; set; }
+
+        public float MovementWeight { get; set; } = 1;
+        public float DoorsWeight { get; set; } = 1000;
+        public float PortalsWeight { get; set; } = 0;
 
         public bool HasStepsToNextWaypoint { get { return stepsToNextWaypoint.Count > 0; } }
         public Vector3 NextStep { get { return stepsToNextWaypoint.Peek(); } }
@@ -157,7 +162,18 @@ namespace Robbi.Movement
             Vector3Int neighbour = bestPosition + delta;
             if (MovementTilemap.HasTile(neighbour))
             {
-                float distanceToNeighbour = DoorsTilemap.HasClosedDoor(neighbour) ? 1000.0f : 1.0f;
+                float distanceToNeighbour = MovementWeight;
+                
+                if (DoorsTilemap.HasTile(neighbour))
+                {
+                    distanceToNeighbour += DoorsWeight;
+                }
+
+                if (PortalsTilemap.HasTile(neighbour))
+                {
+                    distanceToNeighbour += PortalsWeight;
+                }
+
                 float tentativeCostFromStart = costFromStart[bestPosition] + distanceToNeighbour;
                 float neighbourScore = costFromStart.ContainsKey(neighbour) ? costFromStart[neighbour] : float.MaxValue;
 

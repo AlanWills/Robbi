@@ -18,7 +18,8 @@ namespace Robbi.Movement
         [Header("Tilemaps")]
         public Tilemap movementTilemap;
         public Tilemap doorsTilemap;
-        
+        public Tilemap portalsTilemap;
+
         [Header("Other")]
         public Vector3Value robbiPosition;
         public Vector3Int startingPosition;
@@ -39,6 +40,7 @@ namespace Robbi.Movement
 
             aStarMovement.DoorsTilemap = doorsTilemap;
             aStarMovement.MovementTilemap = movementTilemap;
+            aStarMovement.PortalsTilemap = portalsTilemap;
             aStarMovement.CalculateGridSteps(robbiPosition.Value, waypoints[0]);
         }
 

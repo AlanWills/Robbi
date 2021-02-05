@@ -57,7 +57,8 @@ namespace Robbi.Movement
         [Header("Tilemaps")]
         public TilemapValue movementTilemap;
         public TilemapValue doorsTilemap;
-        
+        public TilemapValue portalsTilemap;
+
         [Header("Events")]
         public CharacterRuntimeEvent onCharacterMovedTo;
         public Vector3IntEvent onMovedFrom;
@@ -91,6 +92,8 @@ namespace Robbi.Movement
             movementSpeed.Value = OptionsManager.Instance.DefaultMovementSpeed;
             aStarMovement.MovementTilemap = movementTilemap.Value;
             aStarMovement.DoorsTilemap = doorsTilemap.Value;
+            aStarMovement.PortalsTilemap = portalsTilemap.Value;
+            aStarMovement.PortalsWeight = 0;    // Add no extra cost for a tile with a portal
 
             Vector3Int movementGridSize = movementTilemap.Value.size;
             Vector3Int movementOrigin = movementTilemap.Value.origin;
