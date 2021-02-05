@@ -76,9 +76,9 @@ namespace Robbi.Runtime
         {
             laser.Activate(laserTilemap.Value);
 
-            foreach (CharacterRuntime characterRuntime in characterRuntimes)
+            for (int i = 0; i < characterRuntimes.Count; ++i)
             {
-                CheckForLaserHit(characterRuntime);
+                CheckForLaserHit(characterRuntimes[i]);
             }
         }
 

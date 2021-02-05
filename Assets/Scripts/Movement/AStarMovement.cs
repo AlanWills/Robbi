@@ -73,7 +73,7 @@ namespace Robbi.Movement
             // And we haven't recalculated we need to do that step anyway
             if (startingTilePosition == firstStepTilePosition &&
                 firstStep != startingPosition &&
-                stepsToNextWaypoint.Peek() != firstStep)
+                (!HasStepsToNextWaypoint || stepsToNextWaypoint.Peek() != firstStep))
             {
                 // We re-add the step so that it's remainder is completed
                 stepsToNextWaypoint.Push(firstStep);
