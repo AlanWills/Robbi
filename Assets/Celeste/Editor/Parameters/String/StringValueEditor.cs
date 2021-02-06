@@ -15,10 +15,20 @@ namespace CelesteEditor.Parameters.String
 
         public override void OnInspectorGUI()
         {
-            base.OnInspectorGUI();
+            EditorGUI.BeginChangeCheck();
 
-            Parameter.Value = EditorGUILayout.TextField("Value", Parameter.Value);
-            EditorUtility.SetDirty(Parameter);
+            EditorGUILayout.PrefixLabel("Default Value");
+            Parameter.DefaultValue = EditorGUILayout.TextArea(Parameter.DefaultValue);
+
+            EditorGUILayout.Space();
+
+            EditorGUILayout.PrefixLabel("Value");
+            Parameter.Value = EditorGUILayout.TextArea(Parameter.Value);
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                EditorUtility.SetDirty(Parameter);
+            }
         }
 
         #endregion

@@ -164,7 +164,7 @@ namespace Robbi.Movement
             {
                 float distanceToNeighbour = MovementWeight;
                 
-                if (DoorsTilemap.HasTile(neighbour))
+                if (DoorsTilemap.HasClosedDoor(neighbour))
                 {
                     distanceToNeighbour += DoorsWeight;
                 }

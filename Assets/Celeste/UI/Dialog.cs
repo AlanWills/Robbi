@@ -1,4 +1,5 @@
 ﻿using Celeste.Events;
+using Celeste.Parameters;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace Celeste.UI
             public Sprite image;
             [TextArea]
             public string description;
+            public StringValue descriptionValue;
             public string confirmButtonText;
             public string closeButtonText;
             public bool showConfirmButton;
@@ -79,7 +81,7 @@ namespace Celeste.UI
 
             if (description != null)
             {
-                description.text = showDialogParams.description;
+                description.text = showDialogParams.descriptionValue != null ? showDialogParams.descriptionValue.Value : showDialogParams.description;
             }
 
             if (confirmButton != null)

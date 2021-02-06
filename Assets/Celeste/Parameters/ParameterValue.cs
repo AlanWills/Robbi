@@ -37,13 +37,13 @@ namespace Celeste.Parameters
 
 #endregion
 
-#region Unity Methods
+        #region Unity Methods
         
         private void OnEnable()
         {
             Value = defaultValue;
         }
 
-#endregion
+        #endregion
     }
 }
