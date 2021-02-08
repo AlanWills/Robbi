@@ -15,32 +15,37 @@ namespace CelesteEditor.PropertyDrawers.Parameters
 
             position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
 
-            SerializedObject serializedReference = new SerializedObject(property.objectReferenceValue);
-            serializedReference.Update();
-
-            SerializedProperty isConstantProperty = serializedReference.FindProperty("isConstant");
-
-            position = new Rect(position.x, position.y, 16, position.height);
-            if (EditorGUI.PropertyField(position, isConstantProperty, GUIContent.none))
+            if (property.objectReferenceValue != null)
             {
-                if (isConstantProperty.boolValue)
+                SerializedObject serializedReference = new SerializedObject(property.objectReferenceValue);
+                serializedReference.Update();
+
+                SerializedProperty isConstantProperty = serializedReference.FindProperty("isConstant");
+                if (isConstantProperty != null)
                 {
-                    serializedReference.FindProperty("referenceValue").objectReferenceValue = null;
+                    position = new Rect(position.x, position.y, 16, position.height);
+                    if (EditorGUI.PropertyField(position, isConstantProperty, GUIContent.none))
+                    {
+                        if (isConstantProperty.boolValue)
+                        {
+                            serializedReference.FindProperty("referenceValue").objectReferenceValue = null;
+                        }
+                    }
+
+                    if (isConstantProperty.boolValue)
+                    {
+                        position = new Rect(position.x + 20, position.y, 100, position.height);
+                        EditorGUI.PropertyField(position, serializedReference.FindProperty("constantValue"), GUIContent.none);
+                    }
+                    else
+                    {
+                        position = new Rect(position.x + 20, position.y, 100, position.height);
+                        EditorGUI.PropertyField(position, serializedReference.FindProperty("referenceValue"), GUIContent.none);
+                    }
                 }
-            }
 
-            if (isConstantProperty.boolValue)
-            {
-                position = new Rect(position.x + 20, position.y, 100, position.height);
-                EditorGUI.PropertyField(position, serializedReference.FindProperty("constantValue"), GUIContent.none);
+                serializedReference.ApplyModifiedProperties();
             }
-            else
-            {
-                position = new Rect(position.x + 20, position.y, 100, position.height);
-                EditorGUI.PropertyField(position, serializedReference.FindProperty("referenceValue"), GUIContent.none);
-            }
-
-            serializedReference.ApplyModifiedProperties();
 
             EditorGUI.EndProperty();
         }

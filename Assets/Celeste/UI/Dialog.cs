@@ -81,7 +81,7 @@ namespace Celeste.UI
 
             if (description != null)
             {
-                description.text = showDialogParams.descriptionValue != null ? showDialogParams.descriptionValue.Value : showDialogParams.description;
+                description.text = showDialogParams.descriptionValue != (object)null ? showDialogParams.descriptionValue.Value : showDialogParams.description;
             }
 
             if (confirmButton != null)
