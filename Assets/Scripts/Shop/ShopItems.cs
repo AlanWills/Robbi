@@ -41,8 +41,13 @@ namespace Robbi.Shop
             {
                 shopItemData.Add(new ShopItemData(shopItem, shopItem.UnlockAtLevel <= latestUnlockedLevel.Value));
             }
-
+            
             scrollRect.DataSource = this;
+        }
+
+        private void OnEnable()
+        {
+            scrollRect.ReloadData();
         }
 
         #endregion

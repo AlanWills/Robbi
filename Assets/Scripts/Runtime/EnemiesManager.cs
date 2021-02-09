@@ -61,12 +61,15 @@ namespace Robbi.Runtime
             Vector3Int playerTile = playerRuntime.Tile;
             for (int i = 0; i < enemyRuntimes.Count; ++i) 
             {
-                Vector3Int enemyTile = enemyRuntimes[i].Tile;
-                int cartesianDistance = CartesianDistance(enemyTile, playerTile);
-
-                if (cartesianDistance <= 1 && (playerRuntime.Position - enemyRuntimes[i].Position).sqrMagnitude < 0.25f)
+                if (enemyRuntimes[i].isActiveAndEnabled)
                 {
-                    playerRuntime.OnReachedByEnemy();
+                    Vector3Int enemyTile = enemyRuntimes[i].Tile;
+                    int cartesianDistance = CartesianDistance(enemyTile, playerTile);
+
+                    if (cartesianDistance <= 1 && (playerRuntime.Position - enemyRuntimes[i].Position).sqrMagnitude < 0.25f)
+                    {
+                        playerRuntime.OnReachedByEnemy();
+                    }
                 }
             }
         }
