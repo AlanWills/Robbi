@@ -21,7 +21,7 @@ namespace Robbi.Movement
         public float MovementWeight { get; set; } = 1;
         public float DoorsWeight { get; set; } = 1000;
         public float PortalsWeight { get; set; } = 0;
-
+        
         public bool HasStepsToNextWaypoint { get { return stepsToNextWaypoint.Count > 0; } }
         public Vector3 NextStep { get { return stepsToNextWaypoint.Peek(); } }
 
@@ -108,8 +108,9 @@ namespace Robbi.Movement
             costFromStart.Add(startingPosition, 0);
             costOverall.Add(startingPosition, Math.Abs(targetPosition.x - startingPosition.x) + Math.Abs(targetPosition.y - startingPosition.y));
 
-            if (!MovementTilemap.HasTile(startingPosition))
+            if (!MovementTilemap.HasTile(startingPosition) && !PortalsTilemap.HasTile(startingPosition))
             {
+                // Movement capability = portal or movement entry in tilemap
                 // We are on a tile without movement capabilities, so we cannot move off of it
                 return;
             }
