@@ -108,6 +108,12 @@ namespace Robbi.Movement
             costFromStart.Add(startingPosition, 0);
             costOverall.Add(startingPosition, Math.Abs(targetPosition.x - startingPosition.x) + Math.Abs(targetPosition.y - startingPosition.y));
 
+            if (!MovementTilemap.HasTile(startingPosition))
+            {
+                // We are on a tile without movement capabilities, so we cannot move off of it
+                return;
+            }
+
             while (openSet.Count > 0)
             {
                 Vector3Int bestPosition = GetBestPosition(openSet, costOverall);
