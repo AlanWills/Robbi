@@ -59,7 +59,7 @@ namespace Robbi.Runtime
         private void CheckForEnemyReachedPlayer()
         {
             Vector3Int playerTile = playerRuntime.Tile;
-            for (int i = 0; i < enemyRuntimes.Count; ++i) 
+            for (int i = 0; i < enemyRuntimes.Count && playerRuntime.isActiveAndEnabled; ++i) 
             {
                 if (enemyRuntimes[i].isActiveAndEnabled)
                 {
@@ -69,6 +69,7 @@ namespace Robbi.Runtime
                     if (cartesianDistance <= 1 && (playerRuntime.Position - enemyRuntimes[i].Position).sqrMagnitude < 0.25f)
                     {
                         playerRuntime.OnReachedByEnemy();
+                        return;
                     }
                 }
             }
