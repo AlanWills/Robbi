@@ -7,7 +7,8 @@ using UnityEngine;
 using Robbi.Collecting;
 using Celeste.Assets;
 using UnityEngine.AddressableAssets;
-using Celeste.Attributes.GUI;
+using Celeste.Tools.Attributes.GUI;
+using Celeste.Tools;
 
 namespace Robbi.Levels
 {
@@ -37,20 +38,26 @@ namespace Robbi.Levels
         #region Properties and Fields
 
 #if UNITY_EDITOR
-
-        public List<ScriptableObject> Interactables_EditorOnly
-        {
-            get { return interactables; }
-        }
-
-        public List<LevelCollectionTarget> CollectionTargets_EditorOnly
-        {
-            get { return collectionTargets; }
-        }
-
+        public List<ScriptableObject> Interactables_EditorOnly => interactables;
 #endif
 
-        public GameObject levelPrefab;
+        public uint SoftCurrencyPrize
+        {
+            get => softCurrencyPrize;
+            set
+            {
+                if (value != softCurrencyPrize)
+                {
+                    softCurrencyPrize = value;
+                    EditorOnly.SetDirty(this);
+                }
+            }
+        }
+
+        [SerializeField] private GameObject levelPrefab;
+
+        [Header("Data")]
+        [SerializeField] private CollectionTargetRecord collectionTargetRecord;
 
         [Header("Level Elements")]
         [SerializeField] private List<Portal> portals = new List<Portal>();
@@ -61,17 +68,17 @@ namespace Robbi.Levels
         [SerializeField] private List<Laser> lasers = new List<Laser>();
 
         [Header("Level Parameters")]
-        public Vector3Int playerStartPosition;
-        public int maxWaypointsPlaceable;
-        public bool requiresFuel = false;
-        [ShowIf("requiresFuel")] public uint startingFuel;
-        public uint softCurrencyPrize;
+        [SerializeField] private Vector3Int playerStartPosition;
+        [SerializeField] private int maxWaypointsPlaceable;
+        [SerializeField] private bool requiresFuel = false;
+        [ShowIf("requiresFuel")][SerializeField] private uint startingFuel;
+        [SerializeField] private uint softCurrencyPrize;
 
 #endregion
 
-#region Initialization
+        #region Initialization
 
-        public void Begin(LevelData levelData, GameObjectValue levelGameObject, LevelRuntimeManagers managers, CollectionTargetManager collectionTargetManager)
+        public void Begin(LevelData levelData, GameObjectValue levelGameObject, LevelRuntimeManagers managers)
         {
             // Set this before instantiating the level so the UI will correctly adapt
             levelData.tutorialProgression.Value = 0;
@@ -93,12 +100,37 @@ namespace Robbi.Levels
             levelData.interactBoosterUsable.Value = interactables.Count > 0;
 
             managers.Initialize(collectables, doors, interactables, portals, lasers);
-            collectionTargetManager.Initialize(collectionTargets);
+            collectionTargetRecord.Initialize(collectionTargets);
         }
 
-#endregion
+        #endregion
 
-#region Loading
+        #region Factory
+
+        public static Level Create(
+            GameObject levelPrefab,
+            int maxWaypointsPlaceable,
+            bool requiresFuel,
+            uint startingFuel,
+            uint softCurrencyPrize,
+            IReadOnlyList<LevelCollectionTarget> collectionTargets)
+        {
+            Debug.Assert(levelPrefab != null, "Level Prefab could not be found.");
+
+            Level level = CreateInstance<Level>();
+            level.levelPrefab = levelPrefab;
+            level.maxWaypointsPlaceable = maxWaypointsPlaceable;
+            level.requiresFuel = requiresFuel;
+            level.startingFuel = startingFuel;
+            level.softCurrencyPrize = softCurrencyPrize;
+            level.collectionTargets.AddRange(collectionTargets);
+
+            return level;
+        }
+
+        #endregion
+
+        #region Loading
 
         public static AsyncOperationHandleWrapper LoadAsync(uint levelIndex)
         {

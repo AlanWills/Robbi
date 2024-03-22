@@ -1,27 +1,26 @@
 ﻿using Celeste.Events;
-using Celeste.Managers;
 using Celeste.Parameters;
 using Celeste.Tilemaps;
 using Robbi.Levels.Elements;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Event = Celeste.Events.Event;
 
 namespace Robbi.Runtime
 {
     [AddComponentMenu("Robbi/Runtime/Lasers Manager")]
-    public class LasersManager : NamedManager
+    public class LasersManager : MonoBehaviour
     {
         #region Properties and Fields
 
         [Header("Tilemaps")]
-        public TilemapValue laserTilemap;
+        [SerializeField] private TilemapValue laserTilemap;
         
         [Header("Level Lose")]
-        public StringEvent levelLostEvent;
-        public StringValue hitLaserReason;
+        [SerializeField] private StringEvent levelLostEvent;
+        [SerializeField] private StringValue hitLaserReason;
 
-        private List<Laser> lasers = new List<Laser>();
+        [NonSerialized] private List<Laser> lasers = new List<Laser>();
 
         #endregion
 
@@ -55,7 +54,7 @@ namespace Robbi.Runtime
                 // Check the lasers to see if they're on
                 if (lasers[i].WouldAffectPosition(position))
                 {
-                    levelLostEvent.Raise(hitLaserReason.Value);
+                    levelLostEvent.Invoke(hitLaserReason.Value);
                 }
             }
         }

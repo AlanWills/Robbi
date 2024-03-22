@@ -1,10 +1,5 @@
 ﻿using Robbi.Levels.Elements;
-using Celeste.Tools;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using CelesteEditor.Validation;
 
 namespace RobbiEditor.Validation.Interactables.Conditions
@@ -26,7 +21,7 @@ namespace RobbiEditor.Validation.Interactables.Conditions
                 if (state == null)
                 {
                     stateMachine.RemoveState(i);
-                    output.AppendLineFormat("Interactable State Machine {0} has a state removed at index {1}", stateMachine.name, i.ToString());
+                    output.AppendLine($"Interactable State Machine {stateMachine.name} has a state removed at index {i}");
                 }
             }
         }
@@ -41,7 +36,7 @@ namespace RobbiEditor.Validation.Interactables.Conditions
                 if (state == null)
                 {
                     valid = false;
-                    output.AppendLineFormat("Interactable State Machine {0} has a state at index {1} which is invalid", stateMachine.name, i.ToString());
+                    output.AppendLine($"Interactable State Machine {stateMachine.name} has a state at index {i} which is invalid");
                 }
             }
 

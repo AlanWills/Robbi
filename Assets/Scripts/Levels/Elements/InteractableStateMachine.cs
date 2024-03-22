@@ -1,8 +1,4 @@
-﻿using Robbi.Levels.Modifiers;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -62,9 +58,7 @@ namespace Robbi.Levels.Elements
             state.hideFlags = HideFlags.HideInHierarchy;
             states.Add(state);
 
-#if UNITY_EDITOR
-            Celeste.AssetUtils.EditorOnly.AddObjectToMainAsset(state, this);
-#endif
+            Celeste.Tools.EditorOnly.AddObjectToMainAsset(state, this);
 
             return state;
         }
@@ -73,11 +67,8 @@ namespace Robbi.Levels.Elements
         {
             if (0 <= index && index < NumStates)
             {
-#if UNITY_EDITOR
                 Interactable interactable = states[index];
-                UnityEditor.AssetDatabase.RemoveObjectFromAsset(interactable);
-                Object.DestroyImmediate(interactable, true);
-#endif
+                Celeste.Tools.EditorOnly.RemoveObjectFromAsset(interactable, true);
                 states.RemoveAt(index);
             }
         }

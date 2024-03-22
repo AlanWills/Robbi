@@ -1,12 +1,4 @@
 ﻿using Celeste.Events;
-using Robbi.Events.Levels.Elements;
-using Robbi.Levels.Effects;
-using Robbi.Levels.Elements;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Robbi.Levels.Effects
 {
@@ -17,7 +9,7 @@ namespace Robbi.Levels.Effects
 
         public override void Execute(PickupArgs pickupArgs)
         {
-            modifyFuelEvent.Raise(amount);
+            modifyFuelEvent.Invoke(amount);
         }
     }
 }

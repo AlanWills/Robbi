@@ -2,11 +2,7 @@
 using Celeste.Parameters;
 using Celeste.Tilemaps;
 using Robbi.Levels.Elements;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Robbi.Runtime
@@ -64,9 +60,9 @@ namespace Robbi.Runtime
                 if (portal.IsAtEntrance(location))
                 {
                     Vector3Int exit = portal.GetExit(location);
-                    portalEntered.Raise(location);
+                    portalEntered.Invoke(location);
                     playerPosition.Value = portalsTilemap.Value.GetCellCenterWorld(exit);
-                    portalExited.Raise(exit);
+                    portalExited.Invoke(exit);
                 }
             }
         }

@@ -1,12 +1,8 @@
 ﻿using Robbi.Levels;
-using Robbi.Options;
 using System.Collections.Generic;
-using UnityEngine.ResourceManagement.AsyncOperations;
 using Celeste.Log;
 using Celeste.FSM;
-using Robbi.Boosters;
 using Celeste.Tips;
-using Robbi.Currency;
 using Robbi.Shop;
 using Celeste.Assets;
 
@@ -47,12 +43,12 @@ namespace Robbi.FSM.Nodes.Game
             HudLog.LogInfo("Beginning bootstrap");
 
             loadManagers.Clear();
-            loadManagers.Add(LevelManager.LoadAsync());
-            loadManagers.Add(OptionsManager.LoadAsync());
-            loadManagers.Add(BoostersManager.LoadAsync());
-            loadManagers.Add(TipsManager.LoadAsync());
-            loadManagers.Add(CurrencyManager.LoadAsync());
-            loadManagers.Add(ShopItemManager.LoadAsync());
+            //loadManagers.Add(LevelManager.LoadAsync());
+            //loadManagers.Add(OptionsManager.LoadAsync());
+            //loadManagers.Add(BoostersManager.LoadAsync());
+            //loadManagers.Add(TipsManager.LoadAsync());
+            //loadManagers.Add(CurrencyManager.LoadAsync());
+            //loadManagers.Add(ShopItemManager.LoadAsync());
         }
 
         protected override FSMNode OnUpdate()

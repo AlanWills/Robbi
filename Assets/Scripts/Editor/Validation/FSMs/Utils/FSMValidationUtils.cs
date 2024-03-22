@@ -12,7 +12,7 @@ namespace RobbiEditor.Validation.FSM.Utils
             NodePort nodePort = fsmNode.GetOutputPort(portName);
             if (nodePort == null)
             {
-                output.AppendLineFormat("{0} {1} does not have port {2}", fsmNode.GetType().Name, fsmNode.name, portName);
+                output.AppendLine($"{fsmNode.GetType().Name} {fsmNode.name} does not have port {portName}");
                 return false;
             }
 
@@ -23,7 +23,7 @@ namespace RobbiEditor.Validation.FSM.Utils
         {
             if (!nodePort.IsConnected)
             {
-                output.AppendLineFormat("{0} {1} has port {2} which is not connected", fsmNode.GetType().Name, fsmNode.name, nodePort.fieldName);
+                output.AppendLine($"{fsmNode.GetType().Name} {fsmNode.name} does not have port {nodePort.fieldName}");
                 return false;
             }
 

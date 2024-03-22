@@ -1,21 +1,20 @@
-﻿using Celeste.Managers;
-using Celeste.Tilemaps;
-using Robbi.Collecting;
+﻿using Celeste.Tilemaps;
 using Robbi.Levels.Effects;
 using Robbi.Levels.Elements;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Robbi.Runtime
 {
     [AddComponentMenu("Robbi/Runtime/Collectables Manager")]
-    public class CollectablesManager : NamedManager
+    public class CollectablesManager : MonoBehaviour
     {
         #region Properties and Fields
 
         public TilemapValue collectablesTilemap;
 
-        private List<Collectable> collectables = new List<Collectable>();
+        [NonSerialized] private List<Collectable> collectables = new List<Collectable>();
 
         #endregion
 

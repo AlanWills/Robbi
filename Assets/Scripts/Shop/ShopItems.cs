@@ -1,13 +1,7 @@
 ﻿using PolyAndCode.UI;
 using Celeste.Parameters;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.UI;
-using Robbi.Shop;
 
 namespace Robbi.Shop
 {
@@ -35,12 +29,12 @@ namespace Robbi.Shop
 
         private void Awake()
         {
-            scrollRect.Segments = Screen.width > Screen.height ? landscapeGridSegments : portraitGridSegments;
+            //scrollRect.Segments = Screen.width > Screen.height ? landscapeGridSegments : portraitGridSegments;
             
-            foreach (ShopItem shopItem in ShopItemManager.Instance.ShopItems)
-            {
-                shopItemData.Add(new ShopItemData(shopItem, shopItem.UnlockAtLevel <= latestUnlockedLevel.Value));
-            }
+            //foreach (ShopItem shopItem in ShopItemManager.Instance.ShopItems)
+            //{
+            //    shopItemData.Add(new ShopItemData(shopItem, shopItem.UnlockAtLevel <= latestUnlockedLevel.Value));
+            //}
 
             scrollRect.DataSource = this;
         }

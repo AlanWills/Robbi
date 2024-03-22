@@ -26,14 +26,13 @@ namespace RobbiEditor.Tools
         [MenuItem("Robbi/Tools/Create Level Integration Test")]
         public static void MenuItem()
         {
-            LevelManager levelManager = LevelManager.Instance;
-
+            LevelRecord levelRecord = AssetUtility.FindAsset<LevelRecord>();
             FSMGraph integrationTest = ScriptableObject.CreateInstance<FSMGraph>();
-            integrationTest.name = string.Format("Level{0}IntegrationTest", levelManager.CurrentLevel);
+            integrationTest.name = $"Level{levelRecord.CurrentLevel}IntegrationTest";
 
-            string levelsFolderPath = string.Format("{0}Level{1}", LEVELS_PATH, levelManager.CurrentLevel);
+            string levelsFolderPath = $"{LEVELS_PATH}Level{levelRecord.CurrentLevel}";
             AssetDatabase.CreateFolder(levelsFolderPath, "Tests");
-            string integrationTestPath = string.Format("{0}/{1}{2}.asset", levelsFolderPath, TESTS_NAME, integrationTest.name);
+            string integrationTestPath = $"{levelsFolderPath}/{TESTS_NAME}{integrationTest.name}.asset";
             AssetDatabase.CreateAsset(integrationTest, integrationTestPath);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();

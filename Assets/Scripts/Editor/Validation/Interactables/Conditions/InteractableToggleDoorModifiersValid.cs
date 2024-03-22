@@ -1,11 +1,6 @@
 ﻿using Robbi.Levels.Elements;
 using Robbi.Levels.Modifiers;
-using Celeste.Tools;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using CelesteEditor.Validation;
 
 namespace RobbiEditor.Validation.Interactables.Conditions
@@ -27,13 +22,13 @@ namespace RobbiEditor.Validation.Interactables.Conditions
                     if (toggleDoor.doorEvent == null)
                     {
                         valid = false;
-                        output.AppendLineFormat("Interactable {0} has ToggleDoor modifier with no doorEvent set", obj.name);
+                        output.AppendLine($"Interactable State Machine {obj.name} has no states");
                     }
 
                     if (toggleDoor.door == null)
                     {
                         valid = false;
-                        output.AppendLineFormat("Interactable {0} has ToggleDoor modifier with no door set", obj.name);
+                        output.AppendLine($"Interactable State Machine {obj.name} has no states");
                     }
                 }
             }

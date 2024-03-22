@@ -1,6 +1,6 @@
-﻿using Celeste.Attributes.GUI;
-using Celeste.DS;
+﻿using Celeste.DS;
 using Celeste.FSM;
+using Celeste.Tools.Attributes.GUI;
 using CelesteEditor.Tools;
 using Robbi.Levels;
 using Robbi.Levels.Elements;
@@ -44,7 +44,6 @@ namespace RobbiEditor.Tools
     {
         public string destinationFolder = LevelDirectories.LEVELS_PATH;
         public uint levelIndex = 0;
-        public bool increaseMaxLevel = true;
         public GameObject levelPrefabToCopy;
         public bool clearLevel = true;
 
@@ -133,11 +132,6 @@ namespace RobbiEditor.Tools
 
         private void OnEnable()
         {
-            LevelManager levelManager = LevelManager.EditorOnly_Load();
-
-            levelInfo = ScriptableObject.CreateInstance<LevelInfo>();
-            levelInfo.levelIndex = levelManager.LatestAvailableLevel_DefaultValue + 1;
-            
             LevelFolder previousLevelFolder = new LevelFolder(levelInfo.levelIndex - 1);
             levelInfo.levelPrefabToCopy = AssetDatabase.LoadAssetAtPath<GameObject>(previousLevelFolder.PrefabPath);
 
@@ -252,11 +246,6 @@ namespace RobbiEditor.Tools
             CreatePortals();
             CreateLasers();
             CreateLevelData();
-
-            if (levelInfo.increaseMaxLevel)
-            {
-                LevelManager.EditorOnly_Load().LatestAvailableLevel_DefaultValue = levelInfo.levelIndex;
-            }
 
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
@@ -543,16 +532,8 @@ namespace RobbiEditor.Tools
         {
             string levelFolderFullPath = LevelFolderFullPath;
 
-            Level level = ScriptableObject.CreateInstance<Level>();
-            level.levelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(Path.Combine(levelFolderFullPath, string.Format("Level{0}.prefab", levelInfo.levelIndex)));
-            level.maxWaypointsPlaceable = levelInfo.maxWaypointsPlaceable;
-            level.requiresFuel = levelInfo.requiresFuel;
-            level.startingFuel = levelInfo.startingFuel;
-            level.softCurrencyPrize = levelInfo.softCurrencyPrize;
-            level.CollectionTargets_EditorOnly.AddRange(levelInfo.collectionTargets);
-            
-            Debug.Assert(level.levelPrefab != null, "Level Prefab could not be found automatically");
-
+            GameObject levelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(Path.Combine(levelFolderFullPath, $"Level{levelInfo.levelIndex}.prefab"));
+            Level level = Level.Create(levelPrefab, levelInfo.maxWaypointsPlaceable, levelInfo.requiresFuel, levelInfo.startingFuel, levelInfo.softCurrencyPrize, levelInfo.collectionTargets);
             AssetDatabase.CreateAsset(level, Path.Combine(levelFolderFullPath, string.Format("Level{0}Data", levelInfo.levelIndex) + ".asset"));
             level.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
 

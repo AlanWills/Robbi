@@ -1,17 +1,16 @@
-﻿using Celeste.Managers;
-using Celeste.Parameters;
+﻿using Celeste.Parameters;
 using UnityEngine;
 
 namespace Robbi.Timing
 {
     [AddComponentMenu("Robbi/Time/Time Manager")]
-    public class TimeManager : NamedManager
+    public class TimeManager : MonoBehaviour
     {
         #region Properties and Fields
 
-        public float speedNormalizer = 4;
-        public FloatValue movementSpeed;
-        public FloatValue timeTaken;
+        [SerializeField] private float speedNormalizer = 4;
+        [SerializeField] private FloatValue movementSpeed;
+        [SerializeField] private FloatValue timeTaken;
 
         #endregion
 

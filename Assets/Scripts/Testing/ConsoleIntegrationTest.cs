@@ -1,18 +1,15 @@
-﻿using Celeste.Debugging.Commands;
-using Celeste.FSM;
+﻿using Celeste.FSM;
 using Celeste.Log;
-using System;
+using Celeste.Testing;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Robbi.Testing
 {
-    public class ConsoleIntegrationTest : IDebugCommand
+    public class ConsoleIntegrationTest
     {
         public bool Execute(List<string> parameters, StringBuilder output)
         {
@@ -47,7 +44,7 @@ namespace Robbi.Testing
 
                                 FSMRuntime fsmRuntime = obj.Result.GetComponent<FSMRuntime>();
                                 fsmRuntime.graph = fsmObj.Result;
-                                fsmRuntime.Start();
+                                fsmRuntime.Run();
                             }
                         };
                     }
@@ -67,7 +64,7 @@ namespace Robbi.Testing
                         IntegrationTest integrationTest = integrationTestGameObject.GetComponent<IntegrationTest>();
                         if (integrationTest != null)
                         {
-                            integrationTest.StopTest();
+                            integrationTest.Cancel();
 
                             output.AppendFormat("Stopping {0} IntegrationTest", testName);
                             return true;

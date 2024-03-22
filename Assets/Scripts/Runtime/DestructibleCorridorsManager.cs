@@ -1,24 +1,15 @@
-﻿using Celeste.Managers;
-using Celeste.Tilemaps;
+﻿using Celeste.Tilemaps;
 using UnityEngine;
 
 namespace Robbi.Runtime
 {
     [AddComponentMenu("Robbi/Runtime/Destructible Corridors Manager")]
-    public class DestructibleCorridorsManager : NamedManager
+    public class DestructibleCorridorsManager : MonoBehaviour
     {
         #region Properties and Fields
 
-        public TilemapValue destructibleCorridorsTilemap;
-        public TilemapValue movementTilemap;
-
-        #endregion
-
-        #region IEnvironmentManager
-
-        public void Initialize() { }
-
-        public void Cleanup() { }
+        [SerializeField] private TilemapValue destructibleCorridorsTilemap;
+        [SerializeField] private TilemapValue movementTilemap;
 
         #endregion
 

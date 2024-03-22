@@ -1,19 +1,12 @@
 ﻿using Robbi.FSM.Nodes.Logic.Conditions;
 using Celeste.Logic;
-using Celeste.Parameters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEditor;
-using Celeste.FSM.Nodes.Logic;
-using CelesteEditor.FSM.Nodes.Logic.Conditions;
+using CelesteEditor.Logic;
 
 namespace RobbiEditor.FSM.Nodes.Logic.Conditions
 {
     [CustomEditor(typeof(AtAnyInteractableCondition))]
-    public class AtAnyInteractableConditionEditor : ConditionEditor
+    public class AtAnyInteractableConditionEditor : ParameterizedValueConditionEditor
     {
         protected override void OnInspectorGUIImpl(SerializedObject valueCondition)
         {
@@ -29,8 +22,7 @@ namespace RobbiEditor.FSM.Nodes.Logic.Conditions
                 (int)ConditionOperator.NotEquals
             };
 
-            Vector3IntReference reference = (valueCondition.targetObject as AtAnyInteractableCondition).target;
-            DrawDefaultInspectorGUI(valueCondition, operatorDisplayNames, operators, reference);
+            DrawDefaultInspectorGUI(valueCondition, operatorDisplayNames, operators);
         }
     }
 }

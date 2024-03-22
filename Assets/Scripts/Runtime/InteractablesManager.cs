@@ -1,22 +1,22 @@
 ﻿using Robbi.Levels.Elements;
 using System.Collections.Generic;
 using UnityEngine;
-using Celeste.Managers;
 using Celeste.Tilemaps;
+using System;
 
 namespace Robbi.Runtime
 {
     [AddComponentMenu("Robbi/Runtime/Interactables Manager")]
     [RequireComponent(typeof(BoxCollider2D))]
-    public class InteractablesManager : NamedManager
+    public class InteractablesManager : MonoBehaviour
     {
         #region Properties and Fields
 
-        public TilemapValue interactablesTilemap;
-        public BoxCollider2D boundingBox;
-        public Celeste.Events.Event boosterUsedEvent;
+        [SerializeField] private TilemapValue interactablesTilemap;
+        [SerializeField] private BoxCollider2D boundingBox;
+        [SerializeField] private Celeste.Events.Event boosterUsedEvent;
 
-        private List<IInteractable> interactables = new List<IInteractable>();
+        [NonSerialized] private List<IInteractable> interactables = new List<IInteractable>();
 
         #endregion
 
@@ -71,7 +71,7 @@ namespace Robbi.Runtime
 
             if (TryInteract(interactableGridPosition))
             {
-                boosterUsedEvent.Raise();
+                boosterUsedEvent.Invoke();
             }
         }
 

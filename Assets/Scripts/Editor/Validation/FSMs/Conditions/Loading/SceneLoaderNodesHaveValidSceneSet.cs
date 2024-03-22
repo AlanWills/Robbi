@@ -1,5 +1,4 @@
-﻿using Celeste.Tools;
-using CelesteEditor.Tools;
+﻿using CelesteEditor.Tools;
 using System.Text;
 using UnityEngine.SceneManagement;
 using XNode;
@@ -40,7 +39,7 @@ namespace RobbiEditor.Validation.FSM.Conditions.Loading
                             if (!AddressablesUtility.AddressableResourceExists<Scene>(sceneLoaderNode.sceneName.Value))
                             {
                                 valid = false;
-                                output.AppendLineFormat("Scene Loader Node {0} has an invalid addressable path {1} set", node.name, sceneLoaderNode.sceneName.Value);
+                                output.AppendLine($"Scene Loader Node {node.name} has an invalid addressable path {sceneLoaderNode.sceneName.Value} set");
                             }
                         }
                     }
@@ -49,7 +48,7 @@ namespace RobbiEditor.Validation.FSM.Conditions.Loading
                         if (string.IsNullOrEmpty(sceneLoaderNode.sceneName.Value))
                         {
                             valid = false;
-                            output.AppendLineFormat("Scene Loader Node {0} has no scene name set", node.name);
+                            output.AppendLine($"Interactable State Machine {node.name} has no states");
                         }
                     }
                 }

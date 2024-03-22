@@ -1,8 +1,5 @@
 ﻿using Robbi.Levels.Modifiers;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -67,10 +64,7 @@ namespace Robbi.Levels.Elements
             modifier.hideFlags = HideFlags.HideInHierarchy;
             interactedModifiers.Add(modifier);
 
-#if UNITY_EDITOR
-            Celeste.AssetUtils.EditorOnly.AddObjectToMainAsset(modifier, this);
-            UnityEditor.EditorUtility.SetDirty(this);
-#endif
+            Celeste.Tools.EditorOnly.AddObjectToMainAsset(modifier, this);
 
             return modifier;
         }
@@ -83,10 +77,7 @@ namespace Robbi.Levels.Elements
             interactedModifiers.Insert(index, modifier);
             RemoveInteractedModifier(index + 1);
 
-#if UNITY_EDITOR
-            Celeste.AssetUtils.EditorOnly.AddObjectToMainAsset(modifier, this);
-            UnityEditor.EditorUtility.SetDirty(this);
-#endif
+            Celeste.Tools.EditorOnly.AddObjectToMainAsset(modifier, this);
 
             return modifier;
         }
@@ -95,11 +86,8 @@ namespace Robbi.Levels.Elements
         {
             if (0 <= index && index < NumInteractedModifiers)
             {
-#if UNITY_EDITOR
                 LevelModifier modifier = interactedModifiers[index];
-                UnityEditor.AssetDatabase.RemoveObjectFromAsset(modifier);
-                Object.DestroyImmediate(modifier, true);
-#endif
+                Celeste.Tools.EditorOnly.RemoveObjectFromAsset(modifier, true);
                 interactedModifiers.RemoveAt(index);
             }
         }

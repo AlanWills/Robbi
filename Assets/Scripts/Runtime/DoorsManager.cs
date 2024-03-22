@@ -1,7 +1,7 @@
-﻿using Celeste.Managers;
-using Celeste.Tilemaps;
+﻿using Celeste.Tilemaps;
+using Celeste.Tools;
 using Robbi.Levels.Elements;
-using Robbi.Tilemaps.Tiles;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,15 +9,15 @@ namespace Robbi.Runtime
 {
     [AddComponentMenu("Robbi/Runtime/Doors Manager")]
     [RequireComponent(typeof(BoxCollider2D))]
-    public class DoorsManager : NamedManager
+    public class DoorsManager : MonoBehaviour
     {
         #region Properties and Fields
 
-        public TilemapValue doorsTilemap;
-        public BoxCollider2D boundingBox;
-        public Celeste.Events.Event boosterUsedEvent;
+        [SerializeField] private TilemapValue doorsTilemap;
+        [SerializeField] private BoxCollider2D boundingBox;
+        [SerializeField] private Celeste.Events.Event boosterUsedEvent;
 
-        private List<Door> doors = new List<Door>();
+        [NonSerialized] private List<Door> doors = new List<Door>();
 
         #endregion
 
@@ -50,10 +50,7 @@ namespace Robbi.Runtime
 
         private void OnValidate()
         {
-            if (boundingBox == null)
-            {
-                boundingBox = GetComponent<BoxCollider2D>();
-            }
+            this.TryGet(ref boundingBox);
         }
 
         private void Update()
@@ -76,7 +73,7 @@ namespace Robbi.Runtime
 
             if (TryToggle(doorGridPosition))
             {
-                boosterUsedEvent.Raise();
+                boosterUsedEvent.Invoke();
             }
         }
 

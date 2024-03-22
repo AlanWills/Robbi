@@ -1,12 +1,7 @@
-﻿using Robbi.Levels;
-using System;
+﻿using System;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 using Celeste.FSM;
-using Celeste.Log;
 using Celeste.Parameters;
-using Robbi.Collecting;
 
 namespace Robbi.FSM.Nodes
 {
@@ -29,7 +24,6 @@ namespace Robbi.FSM.Nodes
             base.OnEnter();
 
             GameObject.Destroy(levelGameObject.Value);
-            CollectionTargetManager.Unload();
         }
 
         #endregion

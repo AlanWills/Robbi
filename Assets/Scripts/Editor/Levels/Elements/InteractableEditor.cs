@@ -2,13 +2,10 @@
 using Robbi.Levels.Modifiers;
 using CelesteEditor.Tools;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 using CelesteEditor;
+using Celeste;
 
 namespace RobbiEditor.Levels.Elements
 {
@@ -69,7 +66,7 @@ namespace RobbiEditor.Levels.Elements
             EditorGUILayout.Space();
             EditorGUILayout.BeginHorizontal();
 
-            EditorGUILayout.LabelField("Modifiers", CelesteEditorStyles.BoldLabel);
+            EditorGUILayout.LabelField("Modifiers", CelesteGUIStyles.BoldLabel);
 
             if (isMainAsset && GUILayout.Button("Apply Hide Flags", GUILayout.ExpandWidth(false)))
             {
@@ -88,7 +85,7 @@ namespace RobbiEditor.Levels.Elements
 
                     EditorGUILayout.BeginHorizontal();
                     {
-                        EditorGUILayout.LabelField(levelModifier.name, CelesteEditorStyles.BoldLabel);
+                        EditorGUILayout.LabelField(levelModifier.name, CelesteGUIStyles.BoldLabel);
 
                         if (GUILayout.Button("Remove", GUILayout.ExpandWidth(false)))
                         {

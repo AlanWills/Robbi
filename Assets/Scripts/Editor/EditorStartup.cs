@@ -1,4 +1,5 @@
-﻿using Robbi.Testing;
+﻿using Celeste.Testing;
+using Robbi.Testing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,44 +15,44 @@ namespace RobbiEditor
     [InitializeOnLoad]
     public static class EditorStartup
     {
-        private const string STARTUP_SCENE_NAME = "Splash";
-        private const string STARTUP_SCENE_PATH = "Assets/Scenes/Splash.unity";
+        private const string STARTUP_SCENE_NAME = "Startup";
+        private const string STARTUP_SCENE_PATH = "Assets/Startup/Startup.unity";
 
         static EditorStartup()
         {
-            EditorApplication.update += OnEditorOpened;
-            EditorApplication.playModeStateChanged += (PlayModeStateChange obj) =>
-            {
-                if (obj == PlayModeStateChange.ExitingEditMode)
-                {
-                    OpenStartupScene();
-                }
-                else if (obj == PlayModeStateChange.EnteredEditMode)
-                {
-                    ClearIntegrationTest();
-                }
-            };
+            //EditorApplication.update += OnEditorOpened;
+            //EditorApplication.playModeStateChanged += (PlayModeStateChange obj) =>
+            //{
+            //    if (obj == PlayModeStateChange.ExitingEditMode)
+            //    {
+            //        OpenStartupScene();
+            //    }
+            //    else if (obj == PlayModeStateChange.EnteredEditMode)
+            //    {
+            //        ClearIntegrationTest();
+            //    }
+            //};
         }
 
         private static void OnEditorOpened()
         {
-            EditorApplication.update -= OnEditorOpened;
-            OpenStartupScene();
-            AssetDatabase.SaveAssets();
+            //EditorApplication.update -= OnEditorOpened;
+            //OpenStartupScene();
+            //AssetDatabase.SaveAssets();
         }
 
         public static void OpenStartupScene()
         {
-            if (!EditorApplication.isPlaying && SceneManager.GetActiveScene().name != STARTUP_SCENE_NAME)
-            {
-                Debug.Log("Setting active scene to " + STARTUP_SCENE_NAME);
-                EditorSceneManager.OpenScene(STARTUP_SCENE_PATH, OpenSceneMode.Single);
-            }
+            //if (!EditorApplication.isPlaying && SceneManager.GetActiveScene().name != STARTUP_SCENE_NAME)
+            //{
+            //    Debug.Log("Setting active scene to " + STARTUP_SCENE_NAME);
+            //    EditorSceneManager.OpenScene(STARTUP_SCENE_PATH, OpenSceneMode.Single);
+            //}
         }
 
         private static void ClearIntegrationTest()
         {
-            IntegrationTestRunner.Instance.ClearTests();
+            //IntegrationTestRunner.Instance.TryStopCurrentTests();
         }
     }
 }

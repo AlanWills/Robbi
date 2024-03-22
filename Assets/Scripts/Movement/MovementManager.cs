@@ -1,21 +1,19 @@
 ﻿using Celeste.Events;
 using Celeste.Parameters;
-using Robbi.Options;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
 using Event = Celeste.Events.Event;
 using Celeste.Log;
-using Celeste.Managers;
 using Celeste.Tilemaps;
 using Celeste.Memory;
+using Celeste.Options;
 
 namespace Robbi.Movement
 {
     [AddComponentMenu("Robbi/Movement/Movement Manager")]
     [RequireComponent(typeof(BoxCollider2D))]
-    public class MovementManager : NamedManager
+    public class MovementManager : MonoBehaviour
     {
         #region Waypoint
 
@@ -47,10 +45,7 @@ namespace Robbi.Movement
 
         #region Properties and Fields
 
-        public int NumWaypoints
-        {
-            get { return waypoints.Count; }
-        }
+        public int NumWaypoints => waypoints.Count;
 
         [Header("Tilemaps")]
         public TilemapValue movementTilemap;
@@ -74,11 +69,13 @@ namespace Robbi.Movement
         public StringValue waypointUnreachableReason;
         public StringValue outOfWaypointsReason;
         public StringValue outOfFuelReason;
+        [SerializeField] private IntValue defaultMovementSpeed;
 
         [Header("Other")]
         public GameObjectAllocator destinationMarkerAllocator;
         public FloatValue movementSpeed;
         public BoxCollider2D boundingBox;
+        [SerializeField] private OptionsRecord optionsRecord;
 
         private List<Waypoint> waypoints = new List<Waypoint>();
         private AStarMovement aStarMovement = new AStarMovement();
@@ -91,7 +88,7 @@ namespace Robbi.Movement
         {
             waypointsPlaced.Value = 0;
             isProgramRunning.Value = false;
-            movementSpeed.Value = OptionsManager.Instance.DefaultMovementSpeed;
+            movementSpeed.Value = defaultMovementSpeed.Value;
             aStarMovement.MovementTilemap = movementTilemap.Value;
             aStarMovement.DoorsTilemap = doorsTilemap.Value;
 
@@ -126,7 +123,7 @@ namespace Robbi.Movement
                     // Don't immediately raise this when we have bingo fuel
                     // We might have moved onto a tile with a fuel pickup on it
                     // Instead wait for a new frame to see if we have no fuel
-                    levelLose.Raise(outOfFuelReason.Value);
+                    levelLose.Invoke(outOfFuelReason.Value);
                 }
                 else if (aStarMovement.HasStepsToNextWaypoint)
                 {
@@ -154,25 +151,25 @@ namespace Robbi.Movement
                             MoveToNextWaypoint();
                         }
                         
-                        onMovedTo.Raise(movedTo);
+                        onMovedTo.Invoke(movedTo);
                     }
                     else
                     {
                         if (movedFrom != movedTo)
                         {
-                            onMovedFrom.Raise(movedFrom);
+                            onMovedFrom.Invoke(movedFrom);
                         }
                     }
                 }
                 else
                 {
-                    levelLose.Raise(waypointUnreachableReason.Value);
+                    levelLose.Invoke(waypointUnreachableReason.Value);
                     isProgramRunning.Value = false;
                 }
             }
             else if (waypoints.Count == 0 && remainingWaypointsPlaceable.Value == 0)
             {
-                levelLose.Raise(outOfWaypointsReason.Value);
+                levelLose.Invoke(outOfWaypointsReason.Value);
             }
         }
 
@@ -311,7 +308,7 @@ namespace Robbi.Movement
             if (remainingWaypointsPlaceable.Value <= 0)
             {
                 // Cannot add waypoints if we have run out of our allotted amount
-                onInvalidWaypointPlaced.Raise();
+                onInvalidWaypointPlaced.Invoke();
                 return;
             }
 
@@ -330,9 +327,9 @@ namespace Robbi.Movement
                 waypoints.Add(new Waypoint(waypointGridPosition, destinationMarkerInstance.GetComponent<WaypointMarker>(), waypoints.Count + 1));
                 --remainingWaypointsPlaceable.Value;
                 ++waypointsPlaced.Value;
-                onWaypointPlaced.Raise(waypointGridPosition);
+                onWaypointPlaced.Invoke(waypointGridPosition);
 
-                HudLog.LogInfoFormat("Waypoint added at {0}", waypointGridPosition);
+                HudLog.LogInfo($"Waypoint added at {waypointGridPosition}");
             }
         }
 
@@ -374,7 +371,7 @@ namespace Robbi.Movement
 
             waypoints.RemoveAt(waypointIndex);
             --waypointsPlaced.Value;
-            onWaypointRemoved.Raise(waypoint.gridPosition);
+            onWaypointRemoved.Invoke(waypoint.gridPosition);
 
             UpdateWaypointNumbers();
         }

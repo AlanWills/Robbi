@@ -1,33 +1,28 @@
-﻿using Celeste.Managers;
-using Robbi.Levels.Elements;
+﻿using Robbi.Levels.Elements;
 using Robbi.Movement;
 using Robbi.Timing;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Robbi.Runtime
 {
     [AddComponentMenu("Robbi/Runtime/Level Runtime Managers")]
-    public class LevelRuntimeManagers : NamedManager
+    public class LevelRuntimeManagers : MonoBehaviour
     {
         #region Properties and Fields
 
         public const string NAME = "LevelRuntimeManagers";
 
-        public CollectablesManager collectablesManager;
-        public DestructibleCorridorsManager destructibleCorridorsManager;
-        public DoorsManager doorsManager;
-        public ExitsManager exitsManager;
-        public InteractablesManager interactablesManager;
-        public MovementManager movementManager;
-        public PortalsManager portalsManager;
-        public LasersManager lasersManager;
-        public TimeManager timeManager;
-        public LevelResultManager levelResultManager;
+        [SerializeField] private CollectablesManager collectablesManager;
+        [SerializeField] private DestructibleCorridorsManager destructibleCorridorsManager;
+        [SerializeField] private DoorsManager doorsManager;
+        [SerializeField] private ExitsManager exitsManager;
+        [SerializeField] private InteractablesManager interactablesManager;
+        [SerializeField] private MovementManager movementManager;
+        [SerializeField] private PortalsManager portalsManager;
+        [SerializeField] private LasersManager lasersManager;
+        [SerializeField] private TimeManager timeManager;
+        [SerializeField] private LevelResultManager levelResultManager;
 
         #endregion
 
@@ -39,9 +34,7 @@ namespace Robbi.Runtime
             IEnumerable<Laser> lasers)
         {
             collectablesManager.Initialize(collectables);
-            destructibleCorridorsManager.Initialize();
             doorsManager.Initialize(doors);
-            exitsManager.Initialize();
             interactablesManager.Initialize(interactables);
             movementManager.Initialize();
             portalsManager.Initialize(portals);
@@ -58,9 +51,7 @@ namespace Robbi.Runtime
         public void Cleanup()
         {
             collectablesManager.Cleanup();
-            destructibleCorridorsManager.Cleanup();
             doorsManager.Cleanup();
-            exitsManager.Cleanup();
             interactablesManager.Cleanup();
             movementManager.Cleanup();
             portalsManager.Cleanup();

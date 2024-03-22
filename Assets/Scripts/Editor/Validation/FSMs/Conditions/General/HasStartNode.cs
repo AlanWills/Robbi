@@ -1,5 +1,4 @@
-﻿using Celeste.Tools;
-using System.Text;
+﻿using System.Text;
 using Celeste.FSM;
 using CelesteEditor.Validation;
 
@@ -33,7 +32,7 @@ namespace RobbiEditor.Validation.FSM.Conditions.General
         {
             if (fsmGraph.startNode == null)
             {
-                output.AppendLineFormat("{0} has no start node set", fsmGraph.name);
+                output.AppendLine($"Interactable State Machine {fsmGraph.name} has no start node");
                 return false;
             }
 

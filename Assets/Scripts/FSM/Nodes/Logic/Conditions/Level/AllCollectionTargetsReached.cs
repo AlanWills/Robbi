@@ -1,8 +1,6 @@
-﻿using Robbi.Levels.Elements;
-using Celeste.Parameters;
+﻿using Celeste.Parameters;
 using System.Collections.Generic;
 using UnityEngine;
-using Celeste.FSM.Nodes.Logic.Conditions;
 using Celeste.Logic;
 using System.ComponentModel;
 
@@ -18,19 +16,9 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
 
         #endregion
 
-#if UNITY_EDITOR
-        public override void Init_EditorOnly(IParameterContainer parameterContainer) { }
-        public override void Cleanup_EditorOnly(IParameterContainer parameterContainer) { }
-#endif
-
         #region Check Methods
 
-        public sealed override bool Check(object arg)
-        {
-            return Check();
-        }
-
-        private bool Check()
+        protected override bool DoCheck()
         {
             if (collectedAmounts.Count != requiredAmounts.Count)
             {
@@ -51,10 +39,13 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
 
         #endregion
 
-        #region ICopyable
+        public override void CopyFrom(Condition original)
+        {
+            AllCollectionTargetsReached originalCondition = original as AllCollectionTargetsReached;
+            collectedAmounts.AddRange(originalCondition.collectedAmounts);
+            requiredAmounts.AddRange(originalCondition.requiredAmounts);
+        }
 
-        public override void CopyFrom(Condition original) { }
-
-        #endregion
+        public override void SetVariable(object arg) { }
     }
 }

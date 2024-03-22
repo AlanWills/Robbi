@@ -1,12 +1,9 @@
 ﻿using Celeste.Utils;
-using Celeste.Viewport;
-using Robbi.Levels;
 using RobbiEditor.Iterators;
 using RobbiEditor.Levels;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 namespace RobbiEditor.Migration
@@ -34,7 +31,7 @@ namespace RobbiEditor.Migration
                 for (int i = 0; i < tutorialsPrefab.transform.childCount; ++i)
                 {
                     Transform child = tutorialsPrefab.transform.GetChild(i);
-                    GameObject panel = GameObjectUtils.FindGameObjectRecursive(child, "Panel", FindConstraint.NoConstraint);
+                    GameObject panel = GameObjectExtensions.FindGameObjectRecursive(child, "Panel", FindConstraint.NoConstraint);
                     
                     if (panel != null)
                     {

@@ -1,13 +1,10 @@
-﻿using CelesteEditor.Platform.Steps;
-using Robbi.Levels;
+﻿using CelesteEditor.BuildSystem.Steps;
 using RobbiEditor.Tools;
-using System.Collections;
-using UnityEditor;
 using UnityEngine;
 
 namespace RobbiEditor.BuildSystem.AssetPreparationSteps
 {
-    [CreateAssetMenu(fileName = "PrepareAssets", menuName = "Robbi/Build System/Prepare Assets")]
+    [CreateAssetMenu(fileName = nameof(PrepareAssets), menuName = "Robbi/Build System/Prepare Assets")]
     public class PrepareAssets : AssetPreparationStep
     {
         public override void Execute()
@@ -18,13 +15,6 @@ namespace RobbiEditor.BuildSystem.AssetPreparationSteps
             EnableTutorialSteps.MenuItem();
             ConfigureLevelRootTilemaps.MenuItem();
             SetAddressablePaths.MenuItem();
-            SetCurrentLevelToZero();
-        }
-
-        private void SetCurrentLevelToZero()
-        {
-            LevelManager.EditorOnly_Load().CurrentLevel_DefaultValue = 0;
-            AssetDatabase.SaveAssets();
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Celeste.Tools;
 using TMPro;
 using UnityEngine;
 
@@ -13,6 +9,7 @@ namespace Celeste.Tips
     {
         #region Properties and Fields
 
+        [SerializeField] private TipsRecord tipsRecord;
         [SerializeField] private TextMeshProUGUI tipText;
 
         #endregion
@@ -21,16 +18,12 @@ namespace Celeste.Tips
 
         private void OnValidate()
         {
-            if (tipText == null)
-            {
-                tipText = GetComponent<TextMeshProUGUI>();
-            }
+            this.TryGet(ref tipText);
         }
 
         private void OnEnable()
         {
-            tipText.text = TipsManager.Instance.RandomTip;
-            TipsManager.Save();
+            tipText.text = tipsRecord.RandomTip;
         }
 
         #endregion

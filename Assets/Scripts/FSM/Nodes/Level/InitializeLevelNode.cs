@@ -5,11 +5,7 @@ using Robbi.Runtime;
 using Robbi.Levels;
 using System;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
-using static XNode.Node;
 using Celeste.Assets;
-using Robbi.Collecting;
 
 namespace Robbi.FSM.Nodes
 {
@@ -20,22 +16,17 @@ namespace Robbi.FSM.Nodes
     {
         #region Properties and Fields
 
-        private bool IsDone
-        {
-            get { return levelLoadingHandle.IsDone && collectionTargetManagerHandle.IsDone; }
-        }
-
-        private bool HasError
-        {
-            get { return levelLoadingHandle.HasError || collectionTargetManagerHandle.HasError; }
-        }
+        private bool IsDone => levelLoadingHandle.IsDone;
+        private bool HasError => levelLoadingHandle.HasError;
 
         [Header("Parameters")]
-        public LevelData levelData;
-        public GameObjectValue levelGameObject;
+        [SerializeField] private LevelData levelData;
+        [SerializeField] private GameObjectValue levelGameObject;
+
+        [Header("Data")]
+        [SerializeField] private LevelRecord levelRecord;
 
         private AsyncOperationHandleWrapper levelLoadingHandle;
-        private AsyncOperationHandleWrapper collectionTargetManagerHandle;
 
         #endregion
 
@@ -45,8 +36,7 @@ namespace Robbi.FSM.Nodes
         {
             base.OnEnter();
 
-            levelLoadingHandle = Level.LoadAsync(LevelManager.Instance.CurrentLevel);
-            collectionTargetManagerHandle = CollectionTargetManager.LoadAsync();
+            levelLoadingHandle = Level.LoadAsync(levelRecord.CurrentLevel);
         }
 
         protected override FSMNode OnUpdate()
@@ -55,12 +45,11 @@ namespace Robbi.FSM.Nodes
             {
                 if (!HasError)
                 {
-                    // Don't love it, but sometimes you have to do a little evil to do a greater good
+                    // TODO: Use an event here instead
                     LevelRuntimeManagers managers = GameObject.Find(LevelRuntimeManagers.NAME).GetComponent<LevelRuntimeManagers>();
                     Level level = levelLoadingHandle.Get<Level>();
-                    CollectionTargetManager collectionTargetManager = collectionTargetManagerHandle.Get<CollectionTargetManager>();
 
-                    level.Begin(levelData, levelGameObject, managers, collectionTargetManager);
+                    level.Begin(levelData, levelGameObject, managers);
                 }
                 else
                 {

@@ -1,10 +1,5 @@
 ﻿using Robbi.Levels.Elements;
-using Celeste.Tools;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using CelesteEditor.Validation;
 
 namespace RobbiEditor.Validation.Interactables.Conditions
@@ -17,7 +12,7 @@ namespace RobbiEditor.Validation.Interactables.Conditions
         {
             if (obj.NumInteractedModifiers == 0)
             {
-                output.AppendLineFormat("Interactable {0} has no modifiers", obj.name);
+                output.AppendLine($"Interactable State Machine {obj.name} has no states");
                 return false;
             }
 

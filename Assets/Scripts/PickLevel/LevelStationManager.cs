@@ -2,11 +2,7 @@
 using Celeste.Parameters;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Robbi.PickLevel
 {
@@ -34,7 +30,7 @@ namespace Robbi.PickLevel
 
         private void Awake()
         {
-            scrollRect.Segments = Screen.width > Screen.height ? landscapeGridSegments : portraitGridSegments;
+            //scrollRect.Segments = Screen.width > Screen.height ? landscapeGridSegments : portraitGridSegments;
 
             uint latestLevel = Math.Min(latestUnlockedLevel.Value, latestAvailableLevel.Value);
             uint instantiationCount = latestLevel + 1;

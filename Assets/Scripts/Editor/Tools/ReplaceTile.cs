@@ -1,4 +1,5 @@
-﻿using CelesteEditor;
+﻿using Celeste.Parameters;
+using CelesteEditor;
 using CelesteEditor.Tools;
 using Robbi.Levels;
 using RobbiEditor.Iterators;
@@ -15,18 +16,13 @@ namespace RobbiEditor.Tools
         #region Properties and Fields
 
         public uint startLevelIndex = 0;
-        public uint endLevelIndex = 0;
+        public UIntValue latestAvailableLevel;
         public List<TileBase> originalTiles;
         public List<TileBase> replacementTiles;
 
         #endregion
 
         #region GUI
-
-        private void OnEnable()
-        {
-            endLevelIndex = LevelManager.EditorOnly_Load().LatestAvailableLevel_DefaultValue;
-        }
 
         private void OnWizardCreate()
         {
@@ -40,7 +36,7 @@ namespace RobbiEditor.Tools
 
             foreach (LevelFolder levelFolder in new LevelFolders())
             {
-                if (startLevelIndex <= levelFolder.Index && levelFolder.Index <= endLevelIndex)
+                if (startLevelIndex <= levelFolder.Index && levelFolder.Index <= latestAvailableLevel.DefaultValue)
                 {
                     GameObject level = AssetDatabase.LoadAssetAtPath<GameObject>(levelFolder.PrefabPath);
                     LevelRoot levelRoot = level.GetComponent<LevelRoot>();

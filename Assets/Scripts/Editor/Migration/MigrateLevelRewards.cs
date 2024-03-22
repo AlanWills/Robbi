@@ -1,10 +1,7 @@
-﻿using Celeste.Tilemaps;
-using Robbi.Levels;
+﻿using Robbi.Levels;
 using RobbiEditor.Iterators;
 using RobbiEditor.Levels;
 using UnityEditor;
-using UnityEngine;
-using UnityEngine.Tilemaps;
 
 namespace RobbiEditor.Migration
 {
@@ -16,9 +13,7 @@ namespace RobbiEditor.Migration
             foreach (LevelFolder levelFolder in new LevelFolders())
             {
                 Level level = AssetDatabase.LoadAssetAtPath<Level>(levelFolder.LevelDataPath);
-                level.softCurrencyPrize = 50;
-
-                EditorUtility.SetDirty(level);
+                level.SoftCurrencyPrize = 50;
             }
 
             AssetDatabase.SaveAssets();

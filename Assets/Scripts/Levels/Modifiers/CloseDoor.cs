@@ -1,10 +1,5 @@
 ﻿using Robbi.Events.Levels.Elements;
 using Robbi.Levels.Elements;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Robbi.Levels.Modifiers
 {
@@ -22,7 +17,7 @@ namespace Robbi.Levels.Modifiers
 
         public override void Execute(InteractArgs interactArgs)
         {
-            doorEvent.Raise(door);
+            doorEvent.Invoke(door);
         }
     }
 }

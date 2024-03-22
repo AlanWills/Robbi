@@ -1,4 +1,5 @@
-﻿using CelesteEditor;
+﻿using Celeste;
+using CelesteEditor;
 using CelesteEditor.Popups;
 using Robbi.Events.Levels.Elements;
 using Robbi.Levels.Elements;
@@ -87,7 +88,7 @@ namespace RobbiEditor.Levels.Elements
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.Space();
-            EditorGUILayout.LabelField("States", CelesteEditorStyles.BoldLabel);
+            EditorGUILayout.LabelField("States", CelesteGUIStyles.BoldLabel);
             {
                 ++EditorGUI.indentLevel;
 
@@ -97,7 +98,7 @@ namespace RobbiEditor.Levels.Elements
                     
                     EditorGUILayout.BeginHorizontal();
                     {
-                        EditorGUILayout.LabelField(string.Format("{0} (State Index {1})", state.name, i - 1), CelesteEditorStyles.BoldLabel);
+                        EditorGUILayout.LabelField(string.Format("{0} (State Index {1})", state.name, i - 1), CelesteGUIStyles.BoldLabel);
 
                         if (GUILayout.Button("Remove", GUILayout.ExpandWidth(false)))
                         {

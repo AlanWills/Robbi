@@ -1,10 +1,5 @@
 ﻿using Robbi.Levels.Elements;
-using Celeste.Tools;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using CelesteEditor.Validation;
 
 namespace RobbiEditor.Validation.Interactables.Conditions
@@ -25,7 +20,7 @@ namespace RobbiEditor.Validation.Interactables.Conditions
                 if (interactable.GetInteractedModifier(i) == null)
                 {
                     interactable.RemoveInteractedModifier(i);
-                    output.AppendLineFormat("Interactable {0} has a null modifier removed at index {1}", interactable.name, i.ToString());
+                    output.AppendLine($"Interactable {interactable.name} has a null modifier removed at index {i}");
                 }
             }
         }
@@ -39,7 +34,7 @@ namespace RobbiEditor.Validation.Interactables.Conditions
                 if (interactable.GetInteractedModifier(i) == null)
                 {
                     valid = false;
-                    output.AppendLineFormat("Interactable {0} has a null modifier at index {1}", interactable.name, i.ToString());
+                    output.AppendLine($"Interactable {interactable.name} has a null modifier removed at index {i}");
                 }
             }
 

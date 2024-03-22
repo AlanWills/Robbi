@@ -1,101 +1,34 @@
-﻿using Celeste.Assets;
-using Celeste.Managers;
-using Celeste.Managers.DTOs;
-using Celeste.Parameters;
+﻿using Celeste.Persistence;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Robbi.Boosters
 {
     [CreateAssetMenu(menuName = "Robbi/Boosters/Boosters Manager")]
-    public class BoostersManager : PersistentManager<BoostersManager, BoostersManagerDTO>
+    public class BoostersManager : PersistentSceneManager<BoostersManager, BoostersRecordDTO>
     {
         #region Properties and Fields
 
-        private const string ADDRESS = "Assets/Boosters/BoostersManager.asset";
+        public const string FILE_NAME = "BoostersManager.dat";
 
-        public static string DefaultSavePath
-        {
-            get { return Path.Combine(Application.persistentDataPath, "BoostersManager.dat"); }
-        }
+        protected override string FileName => FILE_NAME;
 
-        public uint NumWaypointBoosters
-        {
-            get { return numWaypointBoosters.Value; }
-            set { numWaypointBoosters.Value = value; }
-        }
-
-        public uint NumDoorToggleBoosters
-        {
-            get { return numDoorToggleBoosters.Value; }
-            set { numDoorToggleBoosters.Value = value; }
-        }
-
-        public uint NumInteractBoosters
-        {
-            get { return numInteractBoosters.Value; }
-            set { numInteractBoosters.Value = value; }
-        }
-
-        [SerializeField]
-        private UIntValue numWaypointBoosters;
-
-        [SerializeField]
-        private UIntValue waypointBoosterUnlockLevel;
-
-        [SerializeField]
-        private UIntValue numDoorToggleBoosters;
-
-        [SerializeField]
-        private UIntValue doorToggleBoosterUnlockLevel;
-
-        [SerializeField]
-        private UIntValue numInteractBoosters;
-
-        [SerializeField]
-        private UIntValue interactBoosterUnlockLevel;
+        [SerializeField] private BoostersRecord boostersRecord;
 
         #endregion
 
-        private BoostersManager() { }
-
         #region Save/Load Methods
 
-        public static AsyncOperationHandleWrapper LoadAsync()
+        protected override BoostersRecordDTO Serialize()
         {
-            return LoadAsyncImpl(ADDRESS, DefaultSavePath);
+            return new BoostersRecordDTO(boostersRecord);
         }
 
-        public static void Reset()
+        protected override void Deserialize(BoostersRecordDTO optionsManagerDTO)
         {
-            if (File.Exists(DefaultSavePath))
-            {
-                File.Delete(DefaultSavePath);
-            }
-        }
-
-        public static void Save()
-        {
-            Instance.Save(DefaultSavePath);
-        }
-
-        protected override BoostersManagerDTO Serialize()
-        {
-            return new BoostersManagerDTO(this);
-        }
-
-        protected override void Deserialize(BoostersManagerDTO optionsManagerDTO)
-        {
-            NumWaypointBoosters = optionsManagerDTO.numWaypointBoosters;
-            NumDoorToggleBoosters = optionsManagerDTO.numDoorToggleBoosters;
-            NumInteractBoosters = optionsManagerDTO.numInteractBoosters;
+            boostersRecord.NumWaypointBoosters = optionsManagerDTO.numWaypointBoosters;
+            boostersRecord.NumDoorToggleBoosters = optionsManagerDTO.numDoorToggleBoosters;
+            boostersRecord.NumInteractBoosters = optionsManagerDTO.numInteractBoosters;
         }
 
         protected override void SetDefaultValues() { }
@@ -104,17 +37,17 @@ namespace Robbi.Boosters
     }
 
     [Serializable]
-    public class BoostersManagerDTO : IPersistentManagerDTO<BoostersManager, BoostersManagerDTO>
+    public class BoostersRecordDTO
     {
         public uint numWaypointBoosters;
         public uint numDoorToggleBoosters;
         public uint numInteractBoosters;
 
-        public BoostersManagerDTO(BoostersManager boostersManager)
+        public BoostersRecordDTO(BoostersRecord boostersRecord)
         {
-            numWaypointBoosters = boostersManager.NumWaypointBoosters;
-            numDoorToggleBoosters = boostersManager.NumDoorToggleBoosters;
-            numInteractBoosters = boostersManager.NumInteractBoosters;
+            numWaypointBoosters = boostersRecord.NumWaypointBoosters;
+            numDoorToggleBoosters = boostersRecord.NumDoorToggleBoosters;
+            numInteractBoosters = boostersRecord.NumInteractBoosters;
         }
     }
 }

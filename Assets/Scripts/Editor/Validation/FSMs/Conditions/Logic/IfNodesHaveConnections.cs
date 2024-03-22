@@ -22,7 +22,7 @@ namespace RobbiEditor.Validation.FSM.Conditions.Logic
 
                     for (uint i = 0; i < ifNode.NumConditions; ++i)
                     {
-                        valid &= ifNode.CheckPortConnected(ifNode.GetCondition(i).name, output);
+                        valid &= ifNode.CheckPortConnected(ifNode.GetCondition(i).Name, output);
                     }
 
                     valid &= ifNode.CheckPortConnected(IfNode.DEFAULT_OUTPUT_PORT_NAME, output);

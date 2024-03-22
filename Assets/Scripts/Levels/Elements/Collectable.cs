@@ -1,8 +1,5 @@
 ﻿using Robbi.Levels.Effects;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Robbi.Levels.Elements
@@ -48,10 +45,7 @@ namespace Robbi.Levels.Elements
             modifier.hideFlags = HideFlags.HideInHierarchy;
             pickupEffects.Add(modifier);
 
-#if UNITY_EDITOR
-            Celeste.AssetUtils.EditorOnly.AddObjectToMainAsset(modifier, this);
-            UnityEditor.EditorUtility.SetDirty(this);
-#endif
+            Celeste.Tools.EditorOnly.AddObjectToMainAsset(modifier, this);
 
             return modifier;
         }
@@ -60,9 +54,7 @@ namespace Robbi.Levels.Elements
         {
             if (0 <= index && index < NumPickupEffects)
             {
-#if UNITY_EDITOR
-                Object.DestroyImmediate(pickupEffects[index], true);
-#endif
+                Celeste.Tools.EditorOnly.RemoveObjectFromAsset(pickupEffects[index], true);
                 pickupEffects.RemoveAt(index);
             }
         }

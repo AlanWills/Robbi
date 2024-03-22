@@ -1,10 +1,6 @@
 ﻿using Celeste.Parameters;
 using Celeste.Tilemaps;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -44,6 +40,16 @@ namespace Robbi.Movement
 
         #region Debug API
 
+        public static void AddPlaceableWaypoints(int waypoints)
+        {
+            instance.AddPlaceableWaypointsImpl(waypoints);
+        }
+
+        private void AddPlaceableWaypointsImpl(int waypoints)
+        {
+            remainingWaypointsPlaceable.Value += waypoints;
+        }
+
         public static void SetPlaceableWaypoints(int waypoints)
         {
             instance.SetPlaceableWaypointsImpl(waypoints);
@@ -72,6 +78,16 @@ namespace Robbi.Movement
         private void SetDebugMovementImpl(bool debugMovement)
         {
             movementTilemap.Value.GetComponent<TilemapRenderer>().enabled = debugMovement;
+        }
+
+        public static bool IsDebugMovementEnabled()
+        {
+            return instance.IsDebugMovementEnabledImpl();
+        }
+
+        private bool IsDebugMovementEnabledImpl()
+        {
+            return movementTilemap.Value.GetComponent<TilemapRenderer>().enabled;
         }
 
         #endregion

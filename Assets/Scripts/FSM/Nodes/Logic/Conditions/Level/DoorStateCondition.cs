@@ -1,15 +1,8 @@
-﻿using Celeste.FSM.Nodes.Logic.Conditions;
-using Celeste.Logic;
-using Celeste.Parameters;
+﻿using Celeste.Logic;
 using Celeste.Tilemaps;
 using Robbi.Levels.Elements;
 using Robbi.Tilemaps.Tiles;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Robbi.FSM.Nodes.Logic.Conditions
@@ -26,24 +19,9 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
 
         #endregion
 
-        #region Init Methods
-
-#if UNITY_EDITOR
-        public override void Init_EditorOnly(IParameterContainer parameterContainer) { }
-
-        public override void Cleanup_EditorOnly(IParameterContainer parameterContainer) { }
-#endif
-
-        #endregion
-
         #region Check Methods
 
-        public sealed override bool Check(object arg)
-        {
-            return Check();
-        }
-
-        private bool Check()
+        protected override bool DoCheck()
         {
             DoorTile doorTile = doorsTilemap.Value.GetTile<DoorTile>(door.position);
             if (doorTile == null)
@@ -64,6 +42,11 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
                     Debug.LogAssertionFormat("Condition Operator {0} is not supported in {1}", condition, GetType().Name);
                     return false;
             }
+        }
+
+        public override void SetVariable(object arg)
+        {
+            Debug.LogAssertion($"{nameof(SetVariable)} is not supported in condition {name}.");
         }
 
         #endregion

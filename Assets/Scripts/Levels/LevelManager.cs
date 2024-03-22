@@ -1,106 +1,35 @@
-﻿using Celeste.Assets;
-using Celeste.Log;
-using Celeste.Managers;
-using Celeste.Managers.DTOs;
-using Celeste.Parameters;
+﻿using Celeste.Log;
+using Celeste.Persistence;
 using System;
-using System.IO;
 using UnityEngine;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Robbi.Levels
 {
-    [CreateAssetMenu(menuName = "Robbi/Levels/Level Manager")]
-    public class LevelManager : PersistentManager<LevelManager, LevelManagerDTO>
+    public class LevelManager : PersistentSceneManager<LevelManager, LevelRecordDTO>
     {
         #region Properties and Fields
 
-        private const string ADDRESS = "Assets/Levels/LevelManager.asset";
+        public const string FILE_NAME = "LevelManager.dat";
 
-        public static string DefaultSavePath
-        {
-            get { return Path.Combine(UnityEngine.Application.persistentDataPath, "LevelManager.dat"); }
-        }
+        protected override string FileName => FILE_NAME;
 
-        public uint CurrentLevel
-        { 
-            get { return currentLevel.Value; }
-            set { currentLevel.Value = value; }
-        }
+        [SerializeField] private LevelRecord levelRecord;
 
-        public uint CurrentLevel_DefaultValue
-        {
-            get { return currentLevel.DefaultValue; }
-            set { currentLevel.DefaultValue = value; }
-        }
-
-        public uint LatestUnlockedLevel
-        {
-            get { return latestUnlockedLevel.Value; }
-            set { latestUnlockedLevel.Value = value; }
-        }
-
-        public uint LatestAvailableLevel
-        {
-            get { return latestAvailableLevel.Value; }
-            set { latestAvailableLevel.Value = value; }
-        }
-
-        public uint LatestAvailableLevel_DefaultValue
-        {
-            get { return latestAvailableLevel.DefaultValue; }
-            set { latestAvailableLevel.DefaultValue = value; }
-        }
-
-        [SerializeField]
-        private UIntValue currentLevel;
-
-        [SerializeField]
-        private UIntValue latestUnlockedLevel;
-
-        [SerializeField]
-        private UIntValue latestAvailableLevel;
-
-#endregion
-
-        private LevelManager() { }
+        #endregion
 
         #region Save/Load Methods
 
-        #region Editor Only
-
-#if UNITY_EDITOR
-
-        public static LevelManager EditorOnly_Load()
+        protected override LevelRecordDTO Serialize()
         {
-            return EditorOnly_Load(ADDRESS);
+            return new LevelRecordDTO(levelRecord);
         }
 
-#endif
-
-#endregion
-
-        public static AsyncOperationHandleWrapper LoadAsync()
+        protected override void Deserialize(LevelRecordDTO levelManagerDTO)
         {
-            return LoadAsyncImpl(ADDRESS, DefaultSavePath);
-        }
+            levelRecord.LatestUnlockedLevel = levelManagerDTO.latestUnlockedLevelIndex;
 
-        public static void Save()
-        {
-            Instance.Save(DefaultSavePath);
-        }
-
-        protected override LevelManagerDTO Serialize()
-        {
-            return new LevelManagerDTO(this);
-        }
-
-        protected override void Deserialize(LevelManagerDTO levelManagerDTO)
-        {
-            LatestUnlockedLevel = levelManagerDTO.latestUnlockedLevelIndex;
-
-            HudLog.LogInfoFormat("Latest Unlocked Level Index: {0}", LatestUnlockedLevel);
-            HudLog.LogInfoFormat("Latest Available Level Index: {0}", LatestAvailableLevel);
+            HudLog.LogInfo($"Latest Unlocked Level Index: {levelRecord.LatestUnlockedLevel}");
+            HudLog.LogInfo($"Latest Available Level Index: {levelRecord.LatestAvailableLevel}");
         }
 
         protected override void SetDefaultValues() { }
@@ -109,13 +38,13 @@ namespace Robbi.Levels
     }
 
     [Serializable]
-    public class LevelManagerDTO : IPersistentManagerDTO<LevelManager, LevelManagerDTO>
+    public class LevelRecordDTO
     {
         public uint latestUnlockedLevelIndex;
 
-        public LevelManagerDTO(LevelManager levelManager)
+        public LevelRecordDTO(LevelRecord levelRecord)
         {
-            latestUnlockedLevelIndex = levelManager.LatestUnlockedLevel;
+            latestUnlockedLevelIndex = levelRecord.LatestUnlockedLevel;
         }
     }
 }

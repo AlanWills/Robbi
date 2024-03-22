@@ -1,10 +1,5 @@
-﻿using Robbi.Testing;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEditor;
 
 namespace RobbiEditor.Testing
 {
@@ -13,7 +8,7 @@ namespace RobbiEditor.Testing
         public static void RunTests(IEnumerable<string> testNames)
         {
             EditorStartup.OpenStartupScene();
-            IntegrationTestRunner.Instance.RunTests(testNames);
+            //IntegrationTestRunner.Instance.RunTests(testNames);
         }
 
         public static void RunTests(params Type[] testTypes)
