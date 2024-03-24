@@ -35,10 +35,10 @@ MonoBehaviour:
   m_CheckForContentUpdateRestrictionsOption: 0
   m_MonoScriptBundleCustomNaming: 
   m_RemoteCatalogBuildPath:
-    m_Id: e73eba41b6aa3bd45a39792e75cb81f6
+    m_Id: e6b59efeabfd75a48b61d9cc5169eeaa
   m_RemoteCatalogLoadPath:
-    m_Id: 94903ecedb24bd247a855ff87721cbb5
-  m_ContentStateBuildPathProfileVariableName: 
+    m_Id: 44a9911620b6fff488a670452abd2647
+  m_ContentStateBuildPathProfileVariableName: <default settings path>
   m_CustomContentStateBuildPath: 
   m_ContentStateBuildPath: 
   m_BuildAddressablesWithPlayerBuild: 2
@@ -48,6 +48,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b0cf9453c95a2074dae2ef84ad1961fd, type: 2}
   - {fileID: 11400000, guid: 83bbb69395a9bbe448bde17fcc6e5436, type: 2}
   - {fileID: 11400000, guid: 3a738bba0d0e81c428d0d48a2811ab93, type: 2}
+  - {fileID: 11400000, guid: ada89ddb01eaf9f4183ed170a716a386, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -61,43 +62,29 @@ MonoBehaviour:
       m_Values:
       - m_Id: e6593b05222382d4c9d63dfda85fd7f2
         m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
-      - m_Id: f231bfef3943d7f4994dc6f9bd7f253b
-        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
-      - m_Id: 59ed182f900c82549b2b39f19d0a43ad
-        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
-      - m_Id: e73eba41b6aa3bd45a39792e75cb81f6
-        m_Value: ServerData/[BuildTarget]
-      - m_Id: 94903ecedb24bd247a855ff87721cbb5
-        m_Value: http://localhost/[BuildTarget]
-    - m_InheritedParent: 
-      m_Id: 66872e6be72718d429144c46faa3560a
-      m_ProfileName: AWS
-      m_Values:
-      - m_Id: e6593b05222382d4c9d63dfda85fd7f2
-        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
-      - m_Id: f231bfef3943d7f4994dc6f9bd7f253b
-        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]/[PlayerVersion]'
-      - m_Id: 59ed182f900c82549b2b39f19d0a43ad
-        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]/[PlayerVersion]'
-      - m_Id: e73eba41b6aa3bd45a39792e75cb81f6
-        m_Value: ServerData/iOS/1.1
-      - m_Id: 94903ecedb24bd247a855ff87721cbb5
-        m_Value: https://robbi-assets.s3-eu-west-1.amazonaws.com/iOS/1.1
+      - m_Id: e6b59efeabfd75a48b61d9cc5169eeaa
+        m_Value: ServerData/Android/Debug/2.0
+      - m_Id: 44a9911620b6fff488a670452abd2647
+        m_Value: https://storage.googleapis.com/celeste-games/robbi/ServerData/Android/Debug/2.0
+      - m_Id: ff6e87d8433bc2446872a02e5ce11dd4
+        m_Value: ServerData/Android/Debug/2.0
+      - m_Id: b9cc2d61c115bbd489b255c40dc312f6
+        m_Value: https://storage.googleapis.com/celeste-games/robbi/ServerData/Android/Debug/2.0
     m_ProfileEntryNames:
     - m_Id: e6593b05222382d4c9d63dfda85fd7f2
       m_Name: BuildTarget
       m_InlineUsage: 0
-    - m_Id: f231bfef3943d7f4994dc6f9bd7f253b
-      m_Name: LocalBuildPath
+    - m_Id: e6b59efeabfd75a48b61d9cc5169eeaa
+      m_Name: Remote.BuildPath
       m_InlineUsage: 0
-    - m_Id: 59ed182f900c82549b2b39f19d0a43ad
-      m_Name: LocalLoadPath
+    - m_Id: 44a9911620b6fff488a670452abd2647
+      m_Name: Remote.LoadPath
       m_InlineUsage: 0
-    - m_Id: e73eba41b6aa3bd45a39792e75cb81f6
-      m_Name: RemoteBuildPath
+    - m_Id: ff6e87d8433bc2446872a02e5ce11dd4
+      m_Name: Local.BuildPath
       m_InlineUsage: 0
-    - m_Id: 94903ecedb24bd247a855ff87721cbb5
-      m_Name: RemoteLoadPath
+    - m_Id: b9cc2d61c115bbd489b255c40dc312f6
+      m_Name: Local.LoadPath
       m_InlineUsage: 0
     m_ProfileVersion: 1
   m_LabelTable:
@@ -105,6 +92,7 @@ MonoBehaviour:
     - CommonAddressables
     - levels
     - tests
+    - Duplicate Asset Isolation
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: da83fbef34e0f2f4b9d025113ce89e4f, type: 2}
@@ -118,7 +106,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9acbe250decff254f9cb3ec29d3c04fe, type: 2}
   - {fileID: 11400000, guid: 181bc2cc37e271f4194ea84f5a27e6df, type: 2}
   - {fileID: 11400000, guid: 9970d0286e5c44f4d9767126ed62088a, type: 2}
-  m_ActiveProfileId: 66872e6be72718d429144c46faa3560a
+  m_ActiveProfileId: d485653ea541a7d479acf52adacd1ef1
   m_HostingServicesManager:
     m_HostingServiceInfos:
     - classRef: UnityEditor.AddressableAssets.HostingServices.HttpHostingService,
@@ -131,7 +119,7 @@ MonoBehaviour:
           m_Key: HostingServicePort
         - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
           m_ClassName: System.String
-          m_Data: ServerData/Android/1.1
+          m_Data: ServerData/Android/Debug/2.0;e73eba41b6aa3bd45a39792e75cb81f6;Library/com.unity.addressables/aa/Android/Android
           m_Key: ContentRoot
         - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
           m_ClassName: System.Boolean
