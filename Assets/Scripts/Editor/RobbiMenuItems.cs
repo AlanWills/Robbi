@@ -29,5 +29,29 @@ namespace RobbiEditor.Bootstrap
         {
             LoadSceneSetMenuItem(RobbiEditorConstants.LEVEL_SCENE_SET_PATH);
         }
+
+        [MenuItem(RobbiEditorConstants.PICK_LEVEL_SCENE_MENU_ITEM)]
+        public static void LoadPickLevelMenuItem()
+        {
+            LoadSceneSetMenuItem(RobbiEditorConstants.PICK_LEVEL_SCENE_SET_PATH);
+        }
+
+        [MenuItem(RobbiEditorConstants.OPTIONS_SCENE_MENU_ITEM)]
+        public static void LoadOptionsMenuItem()
+        {
+            LoadSceneSetMenuItem(RobbiEditorConstants.OPTIONS_SCENE_SET_PATH);
+        }
+
+        [MenuItem(RobbiEditorConstants.SHOP_SCENE_MENU_ITEM)]
+        public static void LoadShopMenuItem()
+        {
+            LoadSceneSetMenuItem(RobbiEditorConstants.SHOP_SCENE_SET_PATH);
+        }
+
+        [MenuItem(RobbiEditorConstants.CREDITS_SCENE_MENU_ITEM)]
+        public static void LoadCreditsMenuItem()
+        {
+            LoadSceneSetMenuItem(RobbiEditorConstants.CREDITS_SCENE_SET_PATH);
+        }
     }
 }

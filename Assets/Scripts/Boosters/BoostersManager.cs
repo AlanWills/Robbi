@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Robbi.Boosters
 {
-    [CreateAssetMenu(menuName = "Robbi/Boosters/Boosters Manager")]
+    [AddComponentMenu("Robbi/Boosters/Boosters Manager")]
     public class BoostersManager : PersistentSceneManager<BoostersManager, BoostersRecordDTO>
     {
         #region Properties and Fields

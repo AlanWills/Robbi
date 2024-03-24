@@ -13,5 +13,17 @@ namespace RobbiEditor.Bootstrap
 
         public const string LEVEL_SCENE_SET_PATH = "Assets/Level/Scenes/LevelSceneSet.asset";
         public const string LEVEL_SCENE_MENU_ITEM = "Robbi/Scenes/Load Level";
+
+        public const string OPTIONS_SCENE_SET_PATH = "Assets/Options/Scenes/OptionsSceneSet.asset";
+        public const string OPTIONS_SCENE_MENU_ITEM = "Robbi/Scenes/Load Options";
+
+        public const string CREDITS_SCENE_SET_PATH = "Assets/Credits/Scenes/CreditsSceneSet.asset";
+        public const string CREDITS_SCENE_MENU_ITEM = "Robbi/Scenes/Load Credits";
+
+        public const string SHOP_SCENE_SET_PATH = "Assets/Shop/Scenes/ShopSceneSet.asset";
+        public const string SHOP_SCENE_MENU_ITEM = "Robbi/Scenes/Load Shop";
+
+        public const string PICK_LEVEL_SCENE_SET_PATH = "Assets/PickLevel/Scenes/PickLevelSceneSet.asset";
+        public const string PICK_LEVEL_SCENE_MENU_ITEM = "Robbi/Scenes/Load Pick Level";
     }
 }
