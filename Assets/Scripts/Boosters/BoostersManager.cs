@@ -1,5 +1,4 @@
 ﻿using Celeste.Persistence;
-using System;
 using UnityEngine;
 
 namespace Robbi.Boosters
@@ -34,20 +33,5 @@ namespace Robbi.Boosters
         protected override void SetDefaultValues() { }
 
         #endregion
-    }
-
-    [Serializable]
-    public class BoostersRecordDTO
-    {
-        public uint numWaypointBoosters;
-        public uint numDoorToggleBoosters;
-        public uint numInteractBoosters;
-
-        public BoostersRecordDTO(BoostersRecord boostersRecord)
-        {
-            numWaypointBoosters = boostersRecord.NumWaypointBoosters;
-            numDoorToggleBoosters = boostersRecord.NumDoorToggleBoosters;
-            numInteractBoosters = boostersRecord.NumInteractBoosters;
-        }
     }
 }

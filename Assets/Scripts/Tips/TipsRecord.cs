@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Celeste.Tips
 {
-    [CreateAssetMenu(menuName = "Robbi/Tips/Tips Manager")]
+    [CreateAssetMenu(fileName = nameof(TipsRecord), menuName = "Robbi/Tips/Tips Record")]
     public class TipsRecord : ScriptableObject
     {
         #region Properties and Fields

@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Robbi.Levels
 {
+    [AddComponentMenu("Robbi/Levels/Level Manager")]
     public class LevelManager : PersistentSceneManager<LevelManager, LevelRecordDTO>
     {
         #region Properties and Fields

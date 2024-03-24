@@ -12,28 +12,28 @@ namespace Robbi.Boosters
 
         protected override void OnDrawMenu()
         {
-            boostersRecord.NumWaypointBoosters = DrawBoosterField(boostersRecord.NumWaypointBoosters);
-            boostersRecord.NumInteractBoosters = DrawBoosterField(boostersRecord.NumInteractBoosters);
-            boostersRecord.NumDoorToggleBoosters = DrawBoosterField(boostersRecord.NumDoorToggleBoosters);
+            boostersRecord.NumWaypointBoosters = DrawBoosterField("Waypoint", boostersRecord.NumWaypointBoosters);
+            boostersRecord.NumInteractBoosters = DrawBoosterField("Interact", boostersRecord.NumInteractBoosters);
+            boostersRecord.NumDoorToggleBoosters = DrawBoosterField("Door Toggle", boostersRecord.NumDoorToggleBoosters);
         }
 
-        private uint DrawBoosterField(uint currentBoosters)
+        private uint DrawBoosterField(string name, uint currentBoosters)
         {
             using (new GUILayout.HorizontalScope())
             {
-                uint newBoosters = GUIExtensions.UIntField(currentBoosters);
+                uint newBoosters = GUIExtensions.UIntField(name, currentBoosters);
 
-                if (GUILayout.Button("None"))
+                if (GUILayout.Button("None", GUILayout.MinWidth(40)))
                 {
                     newBoosters = 0;
                 }
 
-                if (GUILayout.Button("-1"))
+                if (GUILayout.Button("-1", GUILayout.MinWidth(40)))
                 {
                     --newBoosters;
                 }
 
-                if (GUILayout.Button("+1"))
+                if (GUILayout.Button("+1", GUILayout.MinWidth(40)))
                 {
                     ++newBoosters;
                 }
