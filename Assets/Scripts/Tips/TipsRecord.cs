@@ -19,7 +19,7 @@ namespace Celeste.Tips
             {
                 if (allTips.Count == 0)
                 {
-                    UnityEngine.Debug.LogAssertion("No tips found in TipsManager");
+                    UnityEngine.Debug.LogAssertion($"No tips found in {nameof(TipsRecord)}.");
                     return "";
                 }
 
