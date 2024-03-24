@@ -1,31 +1,19 @@
-﻿using Celeste.Managers;
-using Celeste.Parameters;
+﻿using Celeste.Parameters;
 using Robbi.Runtime.Actors;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Robbi.Runtime
 {
     [AddComponentMenu("Robbi/Runtime/Fuel Manager")]
-    public class FuelManager : NamedManager
+    public class FuelManager : MonoBehaviour
     {
         #region Properties and Fields
 
-        [SerializeField]
-        private BoolValue levelRequiresFuel;
-
-        [SerializeField]
-        private UIntValue remainingFuel;
+        [SerializeField] private BoolValue levelRequiresFuel;
+        [SerializeField] private UIntValue remainingFuel;
 
         #endregion
-
-        public void Initialize() { }
-
-        public void Cleanup() { }
 
         #region Fuel Utilities
 

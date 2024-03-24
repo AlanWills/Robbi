@@ -25,12 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 531814673809321875}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1664423317556566638
 MonoBehaviour:
@@ -58,6 +59,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000, guid: 71433badef6b1d34a9fc7c06f94a34e8, type: 2}
+  onRun:
+    m_PersistentCalls:
+      m_Calls: []
+  onStop:
+    m_PersistentCalls:
+      m_Calls: []
+  onNodeEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onNodeUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+  onNodeExit:
+    m_PersistentCalls:
+      m_Calls: []
+  startAutomatically: 1
   lateUpdate: 0
 --- !u!1 &826757606942007927
 GameObject:
@@ -69,6 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 489147806951875998}
   - component: {fileID: 4521093251867499218}
+  - component: {fileID: 639456459562677137}
   m_Layer: 0
   m_Name: MovementDebug
   m_TagString: Untagged
@@ -83,12 +101,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 826757606942007927}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2772506934692611050}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4521093251867499218
 MonoBehaviour:
@@ -106,6 +125,19 @@ MonoBehaviour:
   remainingWaypointsPlaceable: {fileID: 11400000, guid: 5795522ed653b6947a2cfc5b86742695,
     type: 2}
   remainingFuel: {fileID: 11400000, guid: 665dc865d1fb88d498d7a87fba272bf5, type: 2}
+--- !u!114 &639456459562677137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826757606942007927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfc47e8abc217b34fb517570143ddea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDebugBuild: {fileID: 11400000, guid: be4ab27445561154ab86b5e2516b75eb, type: 2}
 --- !u!1 &1716386751844523028
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,12 +162,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1716386751844523028}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5483510007092365298
 MonoBehaviour:
@@ -178,12 +211,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2563780295779354277}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2359638522097945808
 MonoBehaviour:
@@ -213,6 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 2d87e548fcd752c43b3d2e315c42e554, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -241,6 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 1be6df2d6e253eb40b4567bd9f8c4aa5, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -293,13 +329,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2772506934692611051}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 489147806951875998}
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2772506934692611030
 MonoBehaviour:
@@ -328,6 +365,8 @@ MonoBehaviour:
   isProgramRunning: {fileID: 11400000, guid: 36c66e683e05d134495c04803619774f, type: 2}
   nextWaypointUnreachable: {fileID: 11400000, guid: 7e229fc40c7b080488c12a748b086b17,
     type: 2}
+  defaultMovementSpeed: {fileID: 11400000, guid: b40005ed4400bea478a5ebba9fe921ac,
+    type: 2}
   destinationMarkerAllocator: {fileID: 2185254429373469848}
   movementSpeed: {fileID: 11400000, guid: 4129d939c3be32249934c9c778306861, type: 2}
   boundingBox: {fileID: 2507852983745413843}
@@ -341,6 +380,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -398,6 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 6b4a72f1879c01b41a7a4d34b806e2ae, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -426,6 +485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: e3c8b767428d0c646abf19d60a178be9, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -454,6 +514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 5bb336e8d44fa7f4e9895bfdf197a063, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -482,6 +543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 37afef787bc4a1c449d4fe44c33866eb, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -510,6 +572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 6b0809783d163ff4892d5e04d6f5848a, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -538,6 +601,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 093849f859ca2654b8f4b007c2b23782, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -566,6 +630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 5d377483043d5504781abada5b1f865a, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -594,6 +659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 45b0b65d2752d3843afe3667d4aaba1c, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -622,6 +688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 0b39fe8ba63f84b47a8e8c5d50f2a29e, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -650,6 +717,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 2d473ad45490f484686fc34cade16093, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -678,7 +746,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 6031862308839941411, guid: aca8e985d226d3648b1a4c98c7c70a75, type: 3}
-  chunkSize: 10
+  defaultChunkSize: 5
+  allocateOnStart: 5
 --- !u!1 &2822181663301202911
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,12 +781,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2822181663301202911}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6331695048131155978
 MonoBehaviour:
@@ -747,6 +817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: d3249d8ae5bd19141a7c3fe5b6b72ef5, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -787,6 +858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 40fd3c3b3eff16b4c88e90fe79d582dd, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -827,6 +899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 1e7ee4e625f0e1945a1a914766c3fc88, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -877,6 +950,25 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -934,6 +1026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 37afef787bc4a1c449d4fe44c33866eb, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -962,6 +1055,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 093849f859ca2654b8f4b007c2b23782, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -990,6 +1084,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 5d377483043d5504781abada5b1f865a, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -1030,12 +1125,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3051439433994865322}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1416014576783674456
 MonoBehaviour:
@@ -1064,6 +1160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 2d87e548fcd752c43b3d2e315c42e554, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -1104,12 +1201,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4253851984643043837}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4253851984643043839
 MonoBehaviour:
@@ -1139,6 +1237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 7a0e4270079ee5048b10886aff50405b, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -1181,9 +1280,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4253851984974408784}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2772506934692611050}
   - {fileID: 3525385912014895509}
@@ -1198,7 +1299,6 @@ Transform:
   - {fileID: 2880203462078893977}
   - {fileID: 531814673809321884}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6666778758544089982
 MonoBehaviour:
@@ -1238,6 +1338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 38d024a67b433dd4fb6e873bcdc109cc, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -1266,6 +1367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: f1011e957c917144caeaffc2270ffebe, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -1294,6 +1396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 1c88015a68dfada4cb03bcb4a3a52587, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -1333,12 +1436,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4373123464863523286}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3578985312075365774
 MonoBehaviour:
@@ -1385,12 +1489,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4443659954887257874}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2915932516500803445
 MonoBehaviour:
@@ -1421,6 +1526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 2d87e548fcd752c43b3d2e315c42e554, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -1449,6 +1555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 1be6df2d6e253eb40b4567bd9f8c4aa5, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -1474,6 +1581,25 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -1531,6 +1657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 6b0809783d163ff4892d5e04d6f5848a, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -1559,6 +1686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 093849f859ca2654b8f4b007c2b23782, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -1587,6 +1715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 5d377483043d5504781abada5b1f865a, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -1632,12 +1761,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5284056565412097216}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7859679017641654441
 MonoBehaviour:
@@ -1665,6 +1795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 0fc057235bee9534aa268ae608c31fc6, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -1693,6 +1824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: ef2c91330824bb74aa4461503e8c6f7c, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -1721,6 +1853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 1bb562e74c73bf547af2c9cbf785bd98, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -1749,6 +1882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 2d87e548fcd752c43b3d2e315c42e554, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -1777,6 +1911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 1be6df2d6e253eb40b4567bd9f8c4aa5, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -1805,6 +1940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 2d473ad45490f484686fc34cade16093, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -1847,12 +1983,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6440900456115497864}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3237753975910320855
 MonoBehaviour:
@@ -1881,6 +2018,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: eb18738a633d2994eafcf4d5364761d9, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -1909,6 +2047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: aff32123608f17d47a58f427d5911a6a, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -1937,6 +2076,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 2d87e548fcd752c43b3d2e315c42e554, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:
@@ -1977,12 +2117,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8197887247557088431}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5480487922313451854
 MonoBehaviour:
@@ -2011,6 +2152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 2d87e548fcd752c43b3d2e315c42e554, type: 2}
+  logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
       m_Calls:

@@ -6,6 +6,7 @@ using Robbi.Levels;
 using System;
 using UnityEngine;
 using Celeste.Assets;
+using Robbi.Collecting;
 
 namespace Robbi.FSM.Nodes
 {
@@ -25,6 +26,7 @@ namespace Robbi.FSM.Nodes
 
         [Header("Data")]
         [SerializeField] private LevelRecord levelRecord;
+        [SerializeField] private CollectionTargetRecord collectionTargetRecord;
 
         private AsyncOperationHandleWrapper levelLoadingHandle;
 
@@ -49,7 +51,7 @@ namespace Robbi.FSM.Nodes
                     LevelRuntimeManagers managers = GameObject.Find(LevelRuntimeManagers.NAME).GetComponent<LevelRuntimeManagers>();
                     Level level = levelLoadingHandle.Get<Level>();
 
-                    level.Begin(levelData, levelGameObject, managers);
+                    level.Begin(levelData, levelGameObject, managers, collectionTargetRecord);
                 }
                 else
                 {

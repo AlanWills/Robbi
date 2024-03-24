@@ -56,9 +56,6 @@ namespace Robbi.Levels
 
         [SerializeField] private GameObject levelPrefab;
 
-        [Header("Data")]
-        [SerializeField] private CollectionTargetRecord collectionTargetRecord;
-
         [Header("Level Elements")]
         [SerializeField] private List<Portal> portals = new List<Portal>();
         [SerializeField] private List<Door> doors = new List<Door>();
@@ -79,7 +76,7 @@ namespace Robbi.Levels
 
         #region Initialization
 
-        public void Begin(LevelData levelData, GameObjectValue levelGameObject, LevelRuntimeManagers managers)
+        public void Begin(LevelData levelData, GameObjectValue levelGameObject, LevelRuntimeManagers managers, CollectionTargetRecord collectionTargetRecord)
         {
             // Set this before instantiating the level so the UI will correctly adapt
             levelData.tutorialProgression.Value = 0;

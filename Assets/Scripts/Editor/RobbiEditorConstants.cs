@@ -10,5 +10,8 @@ namespace RobbiEditor.Bootstrap
 
         public const string MAIN_MENU_SCENE_SET_PATH = "Assets/MainMenu/Scenes/MainMenuSceneSet.asset";
         public const string MAIN_MENU_SCENE_MENU_ITEM = "Robbi/Scenes/Load Main Menu";
+
+        public const string LEVEL_SCENE_SET_PATH = "Assets/Level/Scenes/LevelSceneSet.asset";
+        public const string LEVEL_SCENE_MENU_ITEM = "Robbi/Scenes/Load Level";
     }
 }

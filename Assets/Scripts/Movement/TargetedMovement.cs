@@ -81,7 +81,7 @@ namespace Robbi.Movement
                     aStarMovement.CompleteStep();
 
                     Debug.LogFormat("{0} moved to {1}", characterRuntime.name, characterRuntime.Tile);
-                    onCharacterMovedTo.RaiseSilently(characterRuntime);
+                    onCharacterMovedTo.InvokeSilently(characterRuntime);
                 }
                 else
                 {
@@ -92,7 +92,7 @@ namespace Robbi.Movement
                     
                     if (movedFrom != movedTo)
                     {
-                        onMovedFrom.Raise(movedFrom);
+                        onMovedFrom.Invoke(movedFrom);
                     }
                 }
             }

@@ -30,19 +30,13 @@ namespace RobbiEditor.Levels
         {
             serializedObject.Update();
 
-            DrawPropertiesExcluding(serializedObject, "m_Script", "latestAvailableLevel");
-
-            EditorGUILayout.BeginHorizontal();
-
-            EditorGUILayout.PropertyField(latestAvailableLevelProperty);
-
             if (latestAvailableLevelProperty.objectReferenceValue != null)
             {
                 UIntValue latestLevelValue = latestAvailableLevelProperty.objectReferenceValue as UIntValue;
-                latestLevelValue.DefaultValue = CelesteEditorGUILayout.UIntField(GUIContent.none, latestLevelValue.DefaultValue);
+                latestLevelValue.DefaultValue = CelesteEditorGUILayout.UIntField("Latest Available Level", latestLevelValue.DefaultValue);
             }
 
-            EditorGUILayout.EndHorizontal();
+            DrawPropertiesExcluding(serializedObject, "m_Script");
 
             serializedObject.ApplyModifiedProperties();
         }

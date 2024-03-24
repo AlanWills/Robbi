@@ -1,9 +1,6 @@
-﻿using Robbi.Levels;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Celeste.Log;
 using Celeste.FSM;
-using Celeste.Tips;
-using Robbi.Shop;
 using Celeste.Assets;
 
 namespace Robbi.FSM.Nodes.Game

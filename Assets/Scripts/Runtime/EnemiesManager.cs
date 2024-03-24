@@ -1,27 +1,19 @@
-﻿using Celeste.Events;
-using Celeste.Managers;
-using Celeste.Parameters;
+﻿using Celeste.Parameters;
 using Celeste.Tilemaps;
 using Robbi.Runtime.Actors;
 using Robbi.Levels.Elements;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Robbi.Runtime
 {
     [AddComponentMenu("Robbi/Runtime/Enemies Manager")]
-    public class EnemiesManager : NamedManager
+    public class EnemiesManager : MonoBehaviour
     {
         #region Properties and Fields
 
-        public IEnumerable<EnemyRuntime> Enemies
-        {
-            get { return enemyRuntimes; }
-        }
+        public IEnumerable<EnemyRuntime> Enemies => enemyRuntimes;
 
         [Header("Tilemaps")]
         public TilemapValue movementTilemap;
@@ -29,8 +21,8 @@ namespace Robbi.Runtime
         [Header("Parameters")]
         public BoolValue enemiesMoving;
 
-        private PlayerRuntime playerRuntime;
-        private List<EnemyRuntime> enemyRuntimes = new List<EnemyRuntime>();
+        [NonSerialized] private PlayerRuntime playerRuntime;
+        [NonSerialized] private List<EnemyRuntime> enemyRuntimes = new List<EnemyRuntime>();
 
         #endregion
 

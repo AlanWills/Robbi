@@ -46,12 +46,9 @@ namespace Robbi.Runtime
             allCharacterRuntimes.AddRange(enemiesManager.Enemies);
 
             collectablesManager.Initialize(collectables);
-            destructibleCorridorsManager.Initialize();
             doorsManager.Initialize(doors);
-            exitsManager.Initialize();
             interactablesManager.Initialize(interactables);
             movementManager.Initialize(playerRuntime);
-            fuelManager.Initialize();
             portalsManager.Initialize(portals);
             lasersManager.Initialize(lasers, allCharacterRuntimes);
             timeManager.Initialize();
@@ -66,12 +63,9 @@ namespace Robbi.Runtime
         public void Cleanup()
         {
             collectablesManager.Cleanup();
-            destructibleCorridorsManager.Cleanup();
             doorsManager.Cleanup();
-            exitsManager.Cleanup();
             interactablesManager.Cleanup();
             movementManager.Cleanup();
-            fuelManager.Cleanup();
             portalsManager.Cleanup();
             lasersManager.Cleanup();
             enemiesManager.Cleanup();

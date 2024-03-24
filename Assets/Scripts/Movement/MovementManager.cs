@@ -66,13 +66,12 @@ namespace Robbi.Movement
         public IntValue waypointsPlaced;
         public BoolValue isProgramRunning;
         public BoolValue nextWaypointUnreachable;
-        [SerializeField] private IntValue defaultMovementSpeed;
+        [SerializeField] private FloatValue defaultMovementSpeed;
 
         [Header("Other")]
         public GameObjectAllocator destinationMarkerAllocator;
         public FloatValue movementSpeed;
         public BoxCollider2D boundingBox;
-        [SerializeField] private OptionsRecord optionsRecord;
 
         private CharacterRuntime characterRuntime;
         private List<Waypoint> waypoints = new List<Waypoint>();
@@ -86,7 +85,7 @@ namespace Robbi.Movement
             waypointsPlaced.Value = 0;
             isProgramRunning.Value = false;
             nextWaypointUnreachable.Value = false;
-            movementSpeed.Value = OptionsManager.Instance.DefaultMovementSpeed;
+            movementSpeed.Value = defaultMovementSpeed.Value;
             aStarMovement.MovementTilemap = movementTilemap.Value;
             aStarMovement.DoorsTilemap = doorsTilemap.Value;
             aStarMovement.PortalsTilemap = portalsTilemap.Value;
@@ -260,7 +259,7 @@ namespace Robbi.Movement
             return 0 <= waypointIndex && waypointIndex < NumWaypoints ? waypoints[waypointIndex] : null;
         }
 
-        public void AddWaypoint(Vector3 waypointWorldPosition)
+        public void AddWaypoint(GameObjectClickEventArgs clickEventArgs)
         {
             if (isProgramRunning.Value)
             {
@@ -268,7 +267,7 @@ namespace Robbi.Movement
                 return;
             }
 
-            Vector3Int waypointGridPosition = movementTilemap.Value.WorldToCell(waypointWorldPosition);
+            Vector3Int waypointGridPosition = movementTilemap.Value.WorldToCell(clickEventArgs.clickWorldPosition);
             if (WaypointExists(waypointGridPosition))
             {
                 // Cannot add waypoints to a position that already has one

@@ -23,5 +23,11 @@ namespace RobbiEditor.Bootstrap
         {
             LoadSceneSetMenuItem(RobbiEditorConstants.MAIN_MENU_SCENE_SET_PATH);
         }
+
+        [MenuItem(RobbiEditorConstants.LEVEL_SCENE_MENU_ITEM)]
+        public static void LoadLevelMenuItem()
+        {
+            LoadSceneSetMenuItem(RobbiEditorConstants.LEVEL_SCENE_SET_PATH);
+        }
     }
 }

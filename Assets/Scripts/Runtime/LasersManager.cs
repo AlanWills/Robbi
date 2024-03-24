@@ -1,6 +1,4 @@
-﻿using Celeste.Events;
-using Celeste.Parameters;
-using Celeste.Tilemaps;
+﻿using Celeste.Tilemaps;
 using Robbi.Levels.Elements;
 using Robbi.Runtime.Actors;
 using System;

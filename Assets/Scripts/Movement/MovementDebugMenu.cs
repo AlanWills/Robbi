@@ -18,12 +18,15 @@ namespace Robbi.Movement
                 DrawPlaceableWaypointsButton(5);
             }
 
-            bool oldDebugMovement = MovementDebug.IsDebugMovementEnabled();
-            bool debugMovement = GUILayout.Toggle(oldDebugMovement, "Debug Movement");
-
-            if (oldDebugMovement != debugMovement)
+            if (Application.isPlaying)
             {
-                MovementDebug.SetDebugMovement(debugMovement);
+                bool oldDebugMovement = MovementDebug.IsDebugMovementEnabled();
+                bool debugMovement = GUILayout.Toggle(oldDebugMovement, "Debug Movement");
+
+                if (oldDebugMovement != debugMovement)
+                {
+                    MovementDebug.SetDebugMovement(debugMovement);
+                }
             }
         }
 

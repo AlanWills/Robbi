@@ -1,10 +1,5 @@
 ﻿using Celeste.Events;
 using Celeste.Parameters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Robbi.Runtime.Actors
@@ -20,8 +15,7 @@ namespace Robbi.Runtime.Actors
             set { localPosition.Value = value; }
         }
 
-        [SerializeField]
-        private Vector3Value localPosition;
+        [SerializeField] private Vector3Value localPosition;
 
         [Header("Level Lose")]
         public StringEvent levelLostEvent;
@@ -43,12 +37,12 @@ namespace Robbi.Runtime.Actors
 
         public override void OnHitByLaser()
         {
-            levelLostEvent.Raise(hitLaserReason.Value);
+            levelLostEvent.Invoke(hitLaserReason.Value);
         }
 
         public void OnReachedByEnemy()
         {
-            levelLostEvent.Raise(caughtByEnemyReason.Value);
+            levelLostEvent.Invoke(caughtByEnemyReason.Value);
         }
 
         #endregion

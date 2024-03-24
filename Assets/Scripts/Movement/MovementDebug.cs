@@ -21,16 +21,6 @@ namespace Robbi.Movement
 
         #region Unity Methods
 
-        private void Awake()
-        {
-#if DEVELOPMENT_BUILD
-            Debug.Assert(instance == null, "Multiple MovementDebug scripts found");
-            instance = this;
-#else
-            GameObject.Destroy(gameObject);
-#endif
-        }
-
         private void OnEnable()
         {
             SetDebugMovementImpl(false);
