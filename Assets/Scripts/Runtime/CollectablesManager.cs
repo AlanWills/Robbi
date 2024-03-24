@@ -1,6 +1,7 @@
 ﻿using Celeste.Tilemaps;
 using Robbi.Levels.Effects;
 using Robbi.Levels.Elements;
+using Robbi.Runtime.Actors;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,16 +34,17 @@ namespace Robbi.Runtime
 
         #endregion
 
-        #region Pickup Methods
+        #region Callbacks
 
-        public void OnMovedTo(Vector3Int location)
+        public void OnCharacterMovedTo(CharacterRuntime characterRuntime)
         {
             for (int i = 0; i < collectables.Count; ++i)
             {
                 Collectable collectable = collectables[i];
 
                 // Only pickup if we have not already done so (tilemap has value)
-                if (collectable.Position == location && collectablesTilemap.Value.HasTile(location))
+                Vector3Int tile = characterRuntime.Tile;
+                if (collectable.Position == tile && collectablesTilemap.Value.HasTile(tile))
                 {
                     PickupArgs pickupArgs = new PickupArgs();
                     collectable.Pickup(pickupArgs);

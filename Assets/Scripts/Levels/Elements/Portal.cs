@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Robbi.Levels.Elements
 {
     [CreateAssetMenu(fileName = "New Portal", menuName = "Robbi/Levels/Portal")]
-    public class Portal : ScriptableObject
+    public class Portal : ScriptableObject, ILevelElement
     {
         #region Properties and Fields
 

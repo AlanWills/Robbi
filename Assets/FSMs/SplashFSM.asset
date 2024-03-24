@@ -458,58 +458,12 @@ MonoBehaviour:
   value: {fileID: 11400000, guid: 878a81e9e35c2a24aa8d0fd4d297fb3b, type: 2}
   newValue: {fileID: -363167446420833977}
   setMode: 0
---- !u!114 &-4236998427230904930
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f53c8e9dacd8e84abfcfb1574148c2b, type: 3}
-  m_Name: Delete Old Addressables
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 1416, y: 72}
-  ports:
-    keys:
-    - ' '
-    - 
-    values:
-    - _fieldName: ' '
-      _node: {fileID: -4236998427230904930}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: 
-        node: {fileID: 1029785457565927584}
-        reroutePoints: []
-      - fieldName: IsDownloaded
-        node: {fileID: 7913641882528729750}
-        reroutePoints: []
       - fieldName: 
         node: {fileID: 1029785457565927584}
         reroutePoints: []
       - fieldName: 
         node: {fileID: 1029785457565927584}
         reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: 
-      _node: {fileID: -4236998427230904930}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: 3339456177136296621}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
   guid: f24651e4-b6c4-46f2-b736-e46225a9689e
 --- !u!114 &-4235472334452431110
 MonoBehaviour:
@@ -727,7 +681,6 @@ MonoBehaviour:
   - {fileID: 4237619900307896010}
   - {fileID: -5247612405118800005}
   - {fileID: -4762180521014463256}
-  - {fileID: -4236998427230904930}
   startNode: {fileID: 4237619900307896010}
   parameters:
   - {fileID: -7665391561149468369}
@@ -990,7 +943,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: -4236998427230904930}
+        node: {fileID: 3339456177136296621}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -1181,7 +1134,7 @@ MonoBehaviour:
   m_Name: Scene Loader
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1672, y: 56}
+  position: {x: 1496, y: 40}
   ports:
     keys:
     - ' '
@@ -1878,7 +1831,13 @@ MonoBehaviour:
         node: {fileID: 1029785457565927584}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -4236998427230904930}
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 1029785457565927584}
+        reroutePoints: []
+      - fieldName: IsDownloaded
+        node: {fileID: 7913641882528729750}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -2421,7 +2380,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: -4236998427230904930}
+        node: {fileID: 3339456177136296621}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -2468,6 +2427,9 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: 
         node: {fileID: 4237619900307896010}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -4762180521014463256}
         reroutePoints: []
       - fieldName: 
         node: {fileID: -4762180521014463256}

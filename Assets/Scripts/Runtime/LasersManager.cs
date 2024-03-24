@@ -2,6 +2,7 @@
 using Celeste.Parameters;
 using Celeste.Tilemaps;
 using Robbi.Levels.Elements;
+using Robbi.Runtime.Actors;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,17 +17,12 @@ namespace Robbi.Runtime
         [Header("Tilemaps")]
         [SerializeField] private TilemapValue laserTilemap;
         
-        [Header("Level Lose")]
-        [SerializeField] private StringEvent levelLostEvent;
-        [SerializeField] private StringValue hitLaserReason;
-
         [NonSerialized] private List<Laser> lasers = new List<Laser>();
+        private List<CharacterRuntime> characterRuntimes = new List<CharacterRuntime>();
 
         #endregion
 
-        #region IEnvironmentManager
-
-        public void Initialize(IEnumerable<Laser> _lasers) 
+        public void Initialize(IEnumerable<Laser> _lasers, IEnumerable<CharacterRuntime> _characterRuntimes) 
         {
             lasers.Clear();
             lasers.AddRange(_lasers);
@@ -35,16 +31,20 @@ namespace Robbi.Runtime
             {
                 laser.Initialize(laserTilemap.Value);
             }
+
+            characterRuntimes.Clear();
+            characterRuntimes.AddRange(_characterRuntimes);
         }
 
         public void Cleanup() 
         {
             lasers.Clear();
+            characterRuntimes.Clear();
         }
 
-        private void CheckForLaserHit(Vector3Int position)
+        private void CheckForLaserHit(CharacterRuntime characterRuntime)
         {
-            if (!laserTilemap.Value.HasTile(position))
+            if (!laserTilemap.Value.HasTile(characterRuntime.Tile))
             {
                 return;
             }
@@ -52,30 +52,33 @@ namespace Robbi.Runtime
             for (int i = 0; i < lasers.Count; ++i)
             {
                 // Check the lasers to see if they're on
-                if (lasers[i].WouldAffectPosition(position))
+                if (lasers[i].WouldAffectPosition(characterRuntime.Tile))
                 {
-                    levelLostEvent.Invoke(hitLaserReason.Value);
+                    characterRuntime.OnHitByLaser();
                 }
             }
         }
 
-        #endregion
-
         #region Callbacks
 
-        public void OnMovedTo(Vector3Int position)
+        public void OnCharacterMovedTo(CharacterRuntime characterRuntime)
         {
-            CheckForLaserHit(position);
+            CheckForLaserHit(characterRuntime);
         }
 
-        public void OnPortalExited(Vector3Int position)
+        public void OnPortalExited(CharacterRuntime characterRuntime)
         {
-            CheckForLaserHit(position);
+            CheckForLaserHit(characterRuntime);
         }
 
         public void OnActivateLaser(Laser laser)
         {
             laser.Activate(laserTilemap.Value);
+
+            for (int i = 0; i < characterRuntimes.Count; ++i)
+            {
+                CheckForLaserHit(characterRuntimes[i]);
+            }
         }
 
         public void OnDeactivateLaser(Laser laser)
@@ -85,7 +88,14 @@ namespace Robbi.Runtime
 
         public void OnToggleLaser(Laser laser)
         {
-            laser.Toggle(laserTilemap.Value);
+            if (laser.IsActive)
+            {
+                OnDeactivateLaser(laser);
+            }
+            else
+            {
+                OnActivateLaser(laser);
+            }
         }
 
         #endregion

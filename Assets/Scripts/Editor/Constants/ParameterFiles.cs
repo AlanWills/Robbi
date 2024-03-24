@@ -10,6 +10,8 @@ namespace RobbiEditor
 {
     public static class ParameterFiles
     {
+        public const string CURRENT_LEVEL = PARAMETERS_FULL_PATH + LEVEL_NAME + "CurrentLevel.asset";
+        public const string LATEST_UNLOCKED_LEVEL = PARAMETERS_FULL_PATH + LEVEL_NAME + "LatestUnlockedLevel.asset";
         public const string PLAYER_LOCAL_POSITION_DATA = PARAMETERS_FULL_PATH + LEVEL_NAME + "PlayerLocalPosition.asset";
         public const string REMAINING_WAYPOINTS_PLACEABLE_DATA = PARAMETERS_FULL_PATH + LEVEL_NAME + "WaypointsRemaining.asset";
         public const string CORRIDORS_TILEMAP = PARAMETERS_FULL_PATH + LEVEL_NAME + TILEMAPS_NAME + "Corridors.asset";

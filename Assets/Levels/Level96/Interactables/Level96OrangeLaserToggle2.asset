@@ -1,0 +1,138 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8492366281770211602
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7dde1590a5fb684ab1c44053cae5200, type: 3}
+  m_Name: ToggleLaser
+  m_EditorClassIdentifier: 
+  laserEvent: {fileID: 11400000, guid: 1bb562e74c73bf547af2c9cbf785bd98, type: 2}
+  laser: {fileID: 11400000, guid: 1ce1a4992195f0e4e855d9ad60b80421, type: 2}
+--- !u!114 &-4844415599299924040
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7dde1590a5fb684ab1c44053cae5200, type: 3}
+  m_Name: ToggleLaser
+  m_EditorClassIdentifier: 
+  laserEvent: {fileID: 11400000, guid: 1bb562e74c73bf547af2c9cbf785bd98, type: 2}
+  laser: {fileID: 11400000, guid: 038af93921efba3458137cb773c0b1c2, type: 2}
+--- !u!114 &-4819050224143235747
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180a43e3c2714ef48a0b19e420392339, type: 3}
+  m_Name: Toggle Up
+  m_EditorClassIdentifier: 
+  position: {x: 5, y: 8, z: 0}
+  interactedTile: {fileID: 11400000, guid: 638cfe7b479d74e4f9f4c718e976e10a, type: 2}
+  interactedModifiers:
+  - {fileID: 4704023298401901666}
+  - {fileID: -4844415599299924040}
+  - {fileID: 3302826255447734544}
+--- !u!114 &-3902653265927856863
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7dde1590a5fb684ab1c44053cae5200, type: 3}
+  m_Name: ToggleLaser
+  m_EditorClassIdentifier: 
+  laserEvent: {fileID: 11400000, guid: 1bb562e74c73bf547af2c9cbf785bd98, type: 2}
+  laser: {fileID: 11400000, guid: 038af93921efba3458137cb773c0b1c2, type: 2}
+--- !u!114 &-1613499034964238518
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180a43e3c2714ef48a0b19e420392339, type: 3}
+  m_Name: Toggle Down
+  m_EditorClassIdentifier: 
+  position: {x: 5, y: 8, z: 0}
+  interactedTile: {fileID: 11400000, guid: 4a9200fab20442c4e882e43c95ed3333, type: 2}
+  interactedModifiers:
+  - {fileID: 4501482195561843857}
+  - {fileID: -3902653265927856863}
+  - {fileID: -8492366281770211602}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09ff5ea72bd8b494995e000d09a0eefa, type: 3}
+  m_Name: Level96OrangeLaserToggle2
+  m_EditorClassIdentifier: 
+  loop: 1
+  states:
+  - {fileID: -4819050224143235747}
+  - {fileID: -1613499034964238518}
+--- !u!114 &3302826255447734544
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7dde1590a5fb684ab1c44053cae5200, type: 3}
+  m_Name: ToggleLaser
+  m_EditorClassIdentifier: 
+  laserEvent: {fileID: 11400000, guid: 1bb562e74c73bf547af2c9cbf785bd98, type: 2}
+  laser: {fileID: 11400000, guid: 1ce1a4992195f0e4e855d9ad60b80421, type: 2}
+--- !u!114 &4501482195561843857
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7dde1590a5fb684ab1c44053cae5200, type: 3}
+  m_Name: ToggleLaser
+  m_EditorClassIdentifier: 
+  laserEvent: {fileID: 11400000, guid: 1bb562e74c73bf547af2c9cbf785bd98, type: 2}
+  laser: {fileID: 11400000, guid: f721b1f0b3947ce479a04eefdb897c35, type: 2}
+--- !u!114 &4704023298401901666
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7dde1590a5fb684ab1c44053cae5200, type: 3}
+  m_Name: ToggleLaser
+  m_EditorClassIdentifier: 
+  laserEvent: {fileID: 11400000, guid: 1bb562e74c73bf547af2c9cbf785bd98, type: 2}
+  laser: {fileID: 11400000, guid: f721b1f0b3947ce479a04eefdb897c35, type: 2}

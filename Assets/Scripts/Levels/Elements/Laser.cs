@@ -15,7 +15,7 @@ namespace Robbi.Levels.Elements
     }
 
     [CreateAssetMenu(fileName = "New Laser", menuName = "Robbi/Levels/Laser")]
-    public class Laser : ScriptableObject
+    public class Laser : ScriptableObject, ILevelElement
     {
         #region Properties and Fields
 
@@ -24,19 +24,19 @@ namespace Robbi.Levels.Elements
             get { return startLocation.x == endLocation.x ? LaserDirection.Vertical : LaserDirection.Horizontal; }
         }
 
+        public bool IsActive { get; private set; } = true;
+
         public LaserDefinition laserDefinition;
         public Vector3Int startLocation;
         public Vector3Int endLocation;
         public bool startsActive = true;
-
-        private bool isActive = true;
 
         #endregion
 
         public void Initialize(Tilemap tilemap)
         {
             // Need this so that the Activate or Deactivate calls succeed
-            isActive = !startsActive;
+            IsActive = !startsActive;
 
             if (startsActive)
             {
@@ -50,7 +50,7 @@ namespace Robbi.Levels.Elements
 
         public bool WouldAffectPosition(Vector3Int position)
         {
-            if (!isActive)
+            if (!IsActive)
             {
                 return false;
             }
@@ -69,31 +69,19 @@ namespace Robbi.Levels.Elements
 
         public void Activate(Tilemap tilemap)
         {
-            if (!isActive)
+            if (!IsActive)
             {
                 SetLaserTiles(tilemap, laserDefinition.startActiveTile, laserDefinition.middleActiveTile, laserDefinition.endActiveTile);
-                isActive = true;
+                IsActive = true;
             }
         }
 
         public void Deactivate(Tilemap tilemap)
         {
-            if (isActive)
+            if (IsActive)
             {
                 SetLaserTiles(tilemap, laserDefinition.startInactiveTile, laserDefinition.middleInactiveTile, laserDefinition.endInactiveTile);
-                isActive = false;
-            }
-        }
-
-        public void Toggle(Tilemap tilemap)
-        {
-            if (isActive)
-            {
-                Deactivate(tilemap);
-            }
-            else
-            {
-                Activate(tilemap);
+                IsActive = false;
             }
         }
 

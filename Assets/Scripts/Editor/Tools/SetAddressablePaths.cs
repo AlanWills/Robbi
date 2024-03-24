@@ -6,6 +6,7 @@ using RobbiEditor.Levels;
 using System;
 using System.IO;
 using UnityEditor;
+using UnityEngine;
 using static RobbiEditor.LevelDirectories;
 
 namespace RobbiEditor.Tools
@@ -47,44 +48,14 @@ namespace RobbiEditor.Tools
                         AddressablesUtility.SetAddressableInfo(levelFolder.TestFSMPath, AddressablesConstants.TESTS_GROUP);
                     }
                 }
-                
-                // Interactables
-                {
-                    foreach (string interactablePath in levelFolder.Interactables)
-                    {
-                        AddressablesUtility.SetAddressableInfo(interactablePath, AddressablesConstants.LEVELS_GROUP);
-                    }
-                }
 
-                // Collectables
+                // ILevelElements
+                foreach (string scriptableObjectPath in new FindAssets<ScriptableObject>(levelFolder.Path))
                 {
-                    foreach (string collectablePath in levelFolder.Collectables)
+                    ScriptableObject scriptableObject = AssetDatabase.LoadAssetAtPath<ScriptableObject>(scriptableObjectPath);
+                    if (scriptableObject is ILevelElement)
                     {
-                        AddressablesUtility.SetAddressableInfo(collectablePath, AddressablesConstants.LEVELS_GROUP);
-                    }
-                }
-
-                // Portals
-                {
-                    foreach (string portalPath in levelFolder.Portals)
-                    {
-                        AddressablesUtility.SetAddressableInfo(portalPath, AddressablesConstants.LEVELS_GROUP);
-                    }
-                }
-
-                // Doors
-                {
-                    foreach (string doorPath in levelFolder.Doors)
-                    {
-                        AddressablesUtility.SetAddressableInfo(doorPath, AddressablesConstants.LEVELS_GROUP);
-                    }
-                }
-
-                // Lasers
-                {
-                    foreach (string lasersPath in levelFolder.Lasers)
-                    {
-                        AddressablesUtility.SetAddressableInfo(lasersPath, AddressablesConstants.LEVELS_GROUP);
+                        AddressablesUtility.SetAddressableInfo(scriptableObject, AddressablesConstants.LEVELS_GROUP);
                     }
                 }
             }

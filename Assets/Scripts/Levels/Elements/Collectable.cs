@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Robbi.Levels.Elements
 {
     [CreateAssetMenu(fileName = "Collectable", menuName = "Robbi/Collectables/Collectable")]
-    public class Collectable : ScriptableObject
+    public class Collectable : ScriptableObject, ILevelElement
     {
         #region Properties and Fields
 

@@ -8,6 +8,8 @@ using Celeste.Log;
 using Celeste.Tilemaps;
 using Celeste.Memory;
 using Celeste.Options;
+using Robbi.Runtime.Actors;
+using Robbi.Events.Runtime.Actors;
 
 namespace Robbi.Movement
 {
@@ -50,25 +52,20 @@ namespace Robbi.Movement
         [Header("Tilemaps")]
         public TilemapValue movementTilemap;
         public TilemapValue doorsTilemap;
-        
+        public TilemapValue portalsTilemap;
+
         [Header("Events")]
-        public Vector3Value playerLocalPosition;
-        public Vector3IntEvent onMovedTo;
+        public CharacterRuntimeEvent onCharacterMovedTo;
         public Vector3IntEvent onMovedFrom;
         public Vector3IntEvent onWaypointPlaced;
         public Vector3IntEvent onWaypointRemoved;
         public Event onInvalidWaypointPlaced;
-        public StringEvent levelLose;
 
         [Header("Parameters")]
         public IntValue remainingWaypointsPlaceable;
         public IntValue waypointsPlaced;
         public BoolValue isProgramRunning;
-        public BoolValue levelRequiresFuel;
-        public UIntValue remainingFuel;
-        public StringValue waypointUnreachableReason;
-        public StringValue outOfWaypointsReason;
-        public StringValue outOfFuelReason;
+        public BoolValue nextWaypointUnreachable;
         [SerializeField] private IntValue defaultMovementSpeed;
 
         [Header("Other")]
@@ -77,20 +74,23 @@ namespace Robbi.Movement
         public BoxCollider2D boundingBox;
         [SerializeField] private OptionsRecord optionsRecord;
 
+        private CharacterRuntime characterRuntime;
         private List<Waypoint> waypoints = new List<Waypoint>();
         private AStarMovement aStarMovement = new AStarMovement();
 
         #endregion
 
-        #region IEnvironmentManager
-
-        public void Initialize()
+        public void Initialize(CharacterRuntime _characterRuntime)
         {
+            characterRuntime = _characterRuntime;
             waypointsPlaced.Value = 0;
             isProgramRunning.Value = false;
-            movementSpeed.Value = defaultMovementSpeed.Value;
+            nextWaypointUnreachable.Value = false;
+            movementSpeed.Value = OptionsManager.Instance.DefaultMovementSpeed;
             aStarMovement.MovementTilemap = movementTilemap.Value;
             aStarMovement.DoorsTilemap = doorsTilemap.Value;
+            aStarMovement.PortalsTilemap = portalsTilemap.Value;
+            aStarMovement.PortalsWeight = 0;    // Add no extra cost for a tile with a portal
 
             Vector3Int movementGridSize = movementTilemap.Value.size;
             Vector3Int movementOrigin = movementTilemap.Value.origin;
@@ -102,74 +102,64 @@ namespace Robbi.Movement
         {
             waypoints.Clear();
             destinationMarkerAllocator.DeallocateAll();
+            isProgramRunning.Value = false;
 
+            characterRuntime = null;
             aStarMovement.MovementTilemap = null;
             aStarMovement.DoorsTilemap = null;
         }
-
-        #endregion
 
         #region Unity Methods
 
         private void FixedUpdate()
         {
-            if (isProgramRunning.Value)
+            if (!isProgramRunning.Value)
             {
-                Vector3 playerLocalPos = playerLocalPosition.Value;
-                Vector3Int movedFrom = new Vector3Int(Mathf.RoundToInt(playerLocalPos.x - 0.5f), Mathf.RoundToInt(playerLocalPos.y - 0.5f), Mathf.RoundToInt(playerLocalPos.z));
+                return;
+            }
 
-                if (levelRequiresFuel.Value && remainingFuel.Value == 0)
-                {
-                    // Don't immediately raise this when we have bingo fuel
-                    // We might have moved onto a tile with a fuel pickup on it
-                    // Instead wait for a new frame to see if we have no fuel
-                    levelLose.Invoke(outOfFuelReason.Value);
-                }
-                else if (aStarMovement.HasStepsToNextWaypoint)
-                {
-                    // We are moving towards our next waypoint along the steps
-                    Vector3 nextStepPosition = aStarMovement.NextStep;
-                    Vector3 newPosition = Vector3.MoveTowards(playerLocalPos, nextStepPosition, movementSpeed.Value * Time.deltaTime);
-                    Vector3Int movedTo = new Vector3Int(
-                        Mathf.RoundToInt(newPosition.x - 0.5f), 
-                        Mathf.RoundToInt(newPosition.y - 0.5f), 
-                        Mathf.RoundToInt(newPosition.z));
-                    playerLocalPosition.Value = newPosition;
-                    
-                    if (newPosition == nextStepPosition)
-                    {
-                        // This step of movement is completed
-                        aStarMovement.CompleteStep();
-                        
-                        // Pay fuel costs
-                        RemoveFuel(1);
+            isProgramRunning.Value = aStarMovement.HasStepsToNextWaypoint;
+            Vector3 playerOriginalPosition = characterRuntime.Position;
 
-                        if (movedTo == waypoints[0].gridPosition)
-                        {
-                            // We have reached the next waypoint
-                            ConsumeWaypoint(0);
-                            MoveToNextWaypoint();
-                        }
-                        
-                        onMovedTo.Invoke(movedTo);
-                    }
-                    else
+            if (aStarMovement.HasStepsToNextWaypoint)
+            {
+                // We are moving towards our next waypoint along the steps
+                Vector3 nextStepPosition = aStarMovement.NextStep;
+                Vector3 newPosition = Vector3.MoveTowards(playerOriginalPosition, nextStepPosition, movementSpeed.Value * Time.deltaTime);
+                Vector3Int movedTo = new Vector3Int(
+                    Mathf.RoundToInt(newPosition.x - 0.5f),
+                    Mathf.RoundToInt(newPosition.y - 0.5f),
+                    Mathf.RoundToInt(newPosition.z));
+                characterRuntime.Position = newPosition;
+
+                if (newPosition == nextStepPosition)
+                {
+                    // This step of movement is completed
+                    aStarMovement.CompleteStep();
+                    nextWaypointUnreachable.Value = !aStarMovement.HasStepsToNextWaypoint;
+
+                    if (movedTo == waypoints[0].gridPosition)
                     {
-                        if (movedFrom != movedTo)
-                        {
-                            onMovedFrom.Invoke(movedFrom);
-                        }
+                        // We have reached the next waypoint
+                        ConsumeWaypoint(0);
+                        MoveToNextWaypoint();
                     }
+
+                    Debug.Log($"{characterRuntime.name} moved to {characterRuntime.Tile}");
+                    onCharacterMovedTo.InvokeSilently(characterRuntime);
                 }
                 else
                 {
-                    levelLose.Invoke(waypointUnreachableReason.Value);
-                    isProgramRunning.Value = false;
+                    Vector3Int movedFrom = new Vector3Int(
+                        Mathf.RoundToInt(playerOriginalPosition.x - 0.5f), 
+                        Mathf.RoundToInt(playerOriginalPosition.y - 0.5f), 
+                        Mathf.RoundToInt(playerOriginalPosition.z));
+                    
+                    if (movedFrom != movedTo)
+                    {
+                            onMovedFrom.Invoke(movedFrom);
+                    }
                 }
-            }
-            else if (waypoints.Count == 0 && remainingWaypointsPlaceable.Value == 0)
-            {
-                levelLose.Invoke(outOfWaypointsReason.Value);
             }
         }
 
@@ -193,7 +183,7 @@ namespace Robbi.Movement
                 return;
             }
 
-            Vector3 currentPosition = playerLocalPosition.Value;
+            Vector3 currentPosition = characterRuntime.Position;
             foreach (Vector3 position in aStarMovement.CalculateGridStepsWithoutCaching(currentPosition, waypoints[0].gridPosition))
             {
                 Gizmos.DrawLine(currentPosition, position);
@@ -210,7 +200,7 @@ namespace Robbi.Movement
             MoveToNextWaypoint();
         }
 
-        public void OnPortalExited(Vector3Int position)
+        public void OnPortalExited(CharacterRuntime characterRuntime)
         {
             MoveToNextWaypoint();
         }
@@ -237,27 +227,6 @@ namespace Robbi.Movement
 
         #endregion
 
-        #region Fuel Methods
-
-        public void AddFuel(uint amount)
-        {
-            if (levelRequiresFuel.Value)
-            {
-                remainingFuel.Value += amount;
-            }
-        }
-
-        public void RemoveFuel(uint amount)
-        {
-            if (levelRequiresFuel.Value)
-            {
-                // Make sure we don't go below 0 fuel otherwise we'll wrap around
-                remainingFuel.Value -= Math.Min(amount, remainingFuel.Value);
-            }
-        }
-
-        #endregion
-
         #region Movement Methods
 
         public void MoveToNextWaypoint()
@@ -266,7 +235,8 @@ namespace Robbi.Movement
             
             if (isProgramRunning.Value)
             {
-                aStarMovement.CalculateGridSteps(playerLocalPosition.Value, waypoints[0].gridPosition);
+                aStarMovement.CalculateGridSteps(characterRuntime.Position, waypoints[0].gridPosition);
+                nextWaypointUnreachable.Value = !aStarMovement.HasStepsToNextWaypoint;
             }
         }
 
@@ -312,7 +282,7 @@ namespace Robbi.Movement
                 return;
             }
 
-            Vector3Int lastWaypointGridPosition = waypoints.Count != 0 ? waypoints[waypoints.Count - 1].gridPosition : movementTilemap.Value.WorldToCell(playerLocalPosition.Value); ;
+            Vector3Int lastWaypointGridPosition = waypoints.Count != 0 ? waypoints[waypoints.Count - 1].gridPosition : characterRuntime.Tile;
 
             if (waypointGridPosition != lastWaypointGridPosition && movementTilemap.Value.HasTile(waypointGridPosition))
             {

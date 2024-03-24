@@ -57,6 +57,50 @@ MonoBehaviour:
   condition: 0
   rhs: 1
   result: 0
+--- !u!114 &-5817342428052102186
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dcd5c5d1aae7744e8a0935fdfdfdabc, type: 3}
+  m_Name: Find Game Object
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 248, y: 936}
+  ports:
+    keys:
+    - childName
+    - child
+    values:
+    - _fieldName: childName
+      _node: {fileID: -5817342428052102186}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: child
+      _node: {fileID: -5817342428052102186}
+      _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: gameObject
+        node: {fileID: -1752734276234058951}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  childName: PlaceWaypointAtExit
+  findConstraint: 0
+  cache: 1
+  child: {fileID: 0}
 --- !u!114 &-3878290207495285009
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -114,6 +158,51 @@ MonoBehaviour:
   condition: 0
   rhs: 0
   result: 0
+--- !u!114 &-1752734276234058951
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95601629c5903884e9b742623c69003f, type: 3}
+  m_Name: Active Controller
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 520, y: 840}
+  ports:
+    keys:
+    - isActive
+    - gameObject
+    values:
+    - _fieldName: isActive
+      _node: {fileID: -1752734276234058951}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: result
+        node: {fileID: 3971442002635614978}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: gameObject
+      _node: {fileID: -1752734276234058951}
+      _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: child
+        node: {fileID: -5817342428052102186}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isActive: 0
+  gameObject: {fileID: 0}
 --- !u!114 &-1365841894203805373
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,6 +244,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   childName: DoorsInfo
+  findConstraint: 0
   cache: 1
   child: {fileID: 0}
 --- !u!114 &11400000
@@ -177,6 +267,9 @@ MonoBehaviour:
   - {fileID: -6991070703046614974}
   - {fileID: 2169083153293726400}
   - {fileID: 1396270394798578369}
+  - {fileID: 3971442002635614978}
+  - {fileID: -1752734276234058951}
+  - {fileID: -5817342428052102186}
 --- !u!114 &1396270394798578369
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -218,6 +311,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   childName: SwitchesInfo
+  findConstraint: 0
   cache: 1
   child: {fileID: 0}
 --- !u!114 &2169083153293726400
@@ -310,6 +404,63 @@ MonoBehaviour:
       _dynamic: 0
   isActive: 0
   gameObject: {fileID: 0}
+--- !u!114 &3971442002635614978
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b54471f25fc174646b1da372f8c88006, type: 3}
+  m_Name: Int Comparer
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 248, y: 760}
+  ports:
+    keys:
+    - lhs
+    - rhs
+    - result
+    values:
+    - _fieldName: lhs
+      _node: {fileID: 3971442002635614978}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: output
+        node: {fileID: 6989040304158116308}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: rhs
+      _node: {fileID: 3971442002635614978}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: result
+      _node: {fileID: 3971442002635614978}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: isActive
+        node: {fileID: -1752734276234058951}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  lhs: 0
+  condition: 0
+  rhs: 2
+  result: 0
 --- !u!114 &6989040304158116308
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -331,7 +482,7 @@ MonoBehaviour:
     values:
     - _fieldName: value
       _node: {fileID: 6989040304158116308}
-      _typeQualifiedName: Robbi.Parameters.IntValue, Assembly-CSharp, Version=0.0.0.0,
+      _typeQualifiedName: Celeste.Parameters.IntValue, Celeste.Parameters, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 0
@@ -348,6 +499,9 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: lhs
         node: {fileID: -6991070703046614974}
+        reroutePoints: []
+      - fieldName: lhs
+        node: {fileID: 3971442002635614978}
         reroutePoints: []
       _direction: 1
       _connectionType: 0

@@ -1,4 +1,5 @@
 ﻿using Celeste.Tilemaps;
+using Robbi.Runtime.Actors;
 using UnityEngine;
 using Event = Celeste.Events.Event;
 
@@ -16,9 +17,9 @@ namespace Robbi.Runtime
 
         #region Exit Methods
 
-        public void CheckForExitReached(Vector3Int position)
+        public void OnCharacterMovedTo(CharacterRuntime characterRuntime)
         {
-            if (exitsTilemap.Value.HasTile(position))
+            if (exitsTilemap.Value.HasTile(characterRuntime.Tile))
             {
                 exitReachedEvent.Invoke();
             }

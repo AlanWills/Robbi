@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1664423317556566638
 MonoBehaviour:
@@ -58,6 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000, guid: 71433badef6b1d34a9fc7c06f94a34e8, type: 2}
+  lateUpdate: 0
 --- !u!1 &826757606942007927
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,7 +88,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2772506934692611050}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4521093251867499218
 MonoBehaviour:
@@ -134,7 +135,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5483510007092365298
 MonoBehaviour:
@@ -161,7 +162,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4823363101833532308}
   - component: {fileID: 2359638522097945808}
-  - component: {fileID: 7494773778310601239}
+  - component: {fileID: 3658898978232442363}
+  - component: {fileID: 7061062111768452592}
   m_Layer: 0
   m_Name: PortalsManager
   m_TagString: Untagged
@@ -181,7 +183,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2359638522097945808
 MonoBehaviour:
@@ -196,10 +198,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portalsTilemap: {fileID: 11400000, guid: 87945437681cceb4e91277c09bfaba4b, type: 2}
-  playerPosition: {fileID: 11400000, guid: ddb88a6bd2594e6419cb8c238d69285a, type: 2}
-  portalEntered: {fileID: 11400000, guid: 49784da589b5f8643aae39898048da51, type: 2}
-  portalExited: {fileID: 11400000, guid: 59d5400f5776b1048b2b8201934eaf9f, type: 2}
---- !u!114 &7494773778310601239
+  portalEntered: {fileID: 11400000, guid: bdb7fabf53b9222468384c315fd37535, type: 2}
+  portalExited: {fileID: 11400000, guid: 2d473ad45490f484686fc34cade16093, type: 2}
+--- !u!114 &3658898978232442363
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -208,16 +209,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 2563780295779354277}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
+  m_Script: {fileID: 11500000, guid: e165305432617224a87a00fb8d83d4ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
+  gameEvent: {fileID: 11400000, guid: 2d87e548fcd752c43b3d2e315c42e554, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2359638522097945808}
-        m_TargetAssemblyTypeName: Robbi.Environment.PortalsManager, Robbi
-        m_MethodName: OnMovedTo
+        m_TargetAssemblyTypeName: Robbi.Runtime.PortalsManager, Robbi
+        m_MethodName: OnCharacterMovedTo
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7061062111768452592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2563780295779354277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e165305432617224a87a00fb8d83d4ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 1be6df2d6e253eb40b4567bd9f8c4aa5, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2359638522097945808}
+        m_TargetAssemblyTypeName: Robbi.Runtime.PortalsManager, Robbi
+        m_MethodName: OnCharacterMovedTo
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -248,7 +277,7 @@ GameObject:
   - component: {fileID: 3458020385244659024}
   - component: {fileID: 3398818866761533935}
   - component: {fileID: 5273468936645031076}
-  - component: {fileID: 4632566323217754145}
+  - component: {fileID: 2945142034593163950}
   - component: {fileID: 2185254429373469848}
   m_Layer: 0
   m_Name: MovementManager
@@ -268,10 +297,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2313395599210072945}
   - {fileID: 489147806951875998}
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2772506934692611030
 MonoBehaviour:
@@ -287,26 +315,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementTilemap: {fileID: 11400000, guid: 383b6f4d91bf25e4a924c5ca0f937a9a, type: 2}
   doorsTilemap: {fileID: 11400000, guid: 30b77989832f303478f308bf685407be, type: 2}
-  playerLocalPosition: {fileID: 11400000, guid: ddb88a6bd2594e6419cb8c238d69285a,
-    type: 2}
-  onMovedTo: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
+  portalsTilemap: {fileID: 11400000, guid: 87945437681cceb4e91277c09bfaba4b, type: 2}
+  onCharacterMovedTo: {fileID: 11400000, guid: 2d87e548fcd752c43b3d2e315c42e554, type: 2}
   onMovedFrom: {fileID: 11400000, guid: 7a0e4270079ee5048b10886aff50405b, type: 2}
   onWaypointPlaced: {fileID: 11400000, guid: b29c4307e71a13a4c82941ab0f1f4f80, type: 2}
   onWaypointRemoved: {fileID: 11400000, guid: 31ff3799148e3824ba5640fe14da17fb, type: 2}
   onInvalidWaypointPlaced: {fileID: 11400000, guid: da5dc9084d15a8343bea6f5becad19d7,
     type: 2}
-  levelLose: {fileID: 11400000, guid: f1011e957c917144caeaffc2270ffebe, type: 2}
   remainingWaypointsPlaceable: {fileID: 11400000, guid: 5795522ed653b6947a2cfc5b86742695,
     type: 2}
   waypointsPlaced: {fileID: 11400000, guid: ab2db721a5c983a40963c20d01bb3cc3, type: 2}
   isProgramRunning: {fileID: 11400000, guid: 36c66e683e05d134495c04803619774f, type: 2}
-  levelRequiresFuel: {fileID: 11400000, guid: ad4d3f76ba9af9640a612ed9416e725a, type: 2}
-  remainingFuel: {fileID: 11400000, guid: 665dc865d1fb88d498d7a87fba272bf5, type: 2}
-  waypointUnreachableReason: {fileID: 11400000, guid: ee0f6020e53f5824280470771cdc9880,
+  nextWaypointUnreachable: {fileID: 11400000, guid: 7e229fc40c7b080488c12a748b086b17,
     type: 2}
-  outOfWaypointsReason: {fileID: 11400000, guid: 9a485ede45730c94d89e94f413fa72e4,
-    type: 2}
-  outOfFuelReason: {fileID: 11400000, guid: 9842410d9af3d844ebf15325b9de70c5, type: 2}
   destinationMarkerAllocator: {fileID: 2185254429373469848}
   movementSpeed: {fileID: 11400000, guid: 4129d939c3be32249934c9c778306861, type: 2}
   boundingBox: {fileID: 2507852983745413843}
@@ -616,7 +637,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4632566323217754145
+--- !u!114 &2945142034593163950
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -625,10 +646,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2772506934692611051}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
+  m_Script: {fileID: 11500000, guid: e165305432617224a87a00fb8d83d4ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 59d5400f5776b1048b2b8201934eaf9f, type: 2}
+  gameEvent: {fileID: 11400000, guid: 2d473ad45490f484686fc34cade16093, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
@@ -676,6 +697,7 @@ GameObject:
   - component: {fileID: 1416658237344963266}
   - component: {fileID: 3909342335744668405}
   - component: {fileID: 4716583308496907602}
+  - component: {fileID: 7834708917928677559}
   m_Layer: 0
   m_Name: DoorsManager
   m_TagString: Untagged
@@ -695,7 +717,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6331695048131155978
 MonoBehaviour:
@@ -955,6 +977,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7834708917928677559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2822181663301202911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c2c167d8138f94b8f96ff1b82578d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 5d377483043d5504781abada5b1f865a, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 646461613613246837}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3051439433994865322
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,7 +1015,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2270789002046526372}
   - component: {fileID: 1416014576783674456}
-  - component: {fileID: 1319617111545245673}
+  - component: {fileID: 5677457108173709596}
   m_Layer: 0
   m_Name: CollectablesManager
   m_TagString: Untagged
@@ -985,7 +1035,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1416014576783674456
 MonoBehaviour:
@@ -1001,7 +1051,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectablesTilemap: {fileID: 11400000, guid: 4f694293867c2824583d1cfb38ccf6d2,
     type: 2}
---- !u!114 &1319617111545245673
+--- !u!114 &5677457108173709596
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1010,16 +1060,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3051439433994865322}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
+  m_Script: {fileID: 11500000, guid: e165305432617224a87a00fb8d83d4ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
+  gameEvent: {fileID: 11400000, guid: 2d87e548fcd752c43b3d2e315c42e554, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1416014576783674456}
-        m_TargetAssemblyTypeName: Robbi.Environment.CollectablesManager, Assembly-CSharp
-        m_MethodName: OnMovedTo
+        m_TargetAssemblyTypeName: Robbi.Runtime.CollectablesManager, Robbi
+        m_MethodName: OnCharacterMovedTo
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1059,7 +1109,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4253851984643043839
 MonoBehaviour:
@@ -1093,9 +1143,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4253851984643043839}
-        m_TargetAssemblyTypeName: Robbi.Environment.DestructibleCorridorsManager,
-          Assembly-CSharp
-        m_MethodName: DestroyTile
+        m_TargetAssemblyTypeName: Robbi.Runtime.DestructibleCorridorsManager, Robbi
+        m_MethodName: OnMovedFrom
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1136,15 +1185,17 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2772506934692611050}
+  - {fileID: 3525385912014895509}
   - {fileID: 4253851984643043838}
   - {fileID: 4823363101833532308}
-  - {fileID: 3525385912014895509}
   - {fileID: 8681021859159792560}
   - {fileID: 8622111944718057574}
   - {fileID: 5788878857070568888}
-  - {fileID: 2772506934692611050}
+  - {fileID: 2313395599210072945}
   - {fileID: 5966350632234475573}
   - {fileID: 2270789002046526372}
+  - {fileID: 2880203462078893977}
   - {fileID: 531814673809321884}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1167,10 +1218,13 @@ MonoBehaviour:
   exitsManager: {fileID: 5480487922313451854}
   interactablesManager: {fileID: 2915932516500803445}
   movementManager: {fileID: 2772506934692611030}
+  fuelManager: {fileID: 3237753975910320855}
   portalsManager: {fileID: 2359638522097945808}
   lasersManager: {fileID: 7859679017641654441}
+  enemiesManager: {fileID: 3578985312075365774}
   timeManager: {fileID: 5483510007092365298}
   levelResultManager: {fileID: 1664423317556566638}
+  playerRuntime: {fileID: 0}
 --- !u!114 &9202785352855056089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1255,6 +1309,51 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &4373123464863523286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2880203462078893977}
+  - component: {fileID: 3578985312075365774}
+  m_Layer: 0
+  m_Name: EnemiesManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2880203462078893977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4373123464863523286}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4253851984974408785}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3578985312075365774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4373123464863523286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b964a4bf24af0a46aab11495dedf786, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementTilemap: {fileID: 11400000, guid: 383b6f4d91bf25e4a924c5ca0f937a9a, type: 2}
+  enemiesMoving: {fileID: 11400000, guid: 36c66e683e05d134495c04803619774f, type: 2}
 --- !u!1 &4443659954887257874
 GameObject:
   m_ObjectHideFlags: 0
@@ -1265,11 +1364,13 @@ GameObject:
   m_Component:
   - component: {fileID: 8681021859159792560}
   - component: {fileID: 2915932516500803445}
-  - component: {fileID: 7415379317088757677}
+  - component: {fileID: 4721106538974144272}
+  - component: {fileID: 4896742140206480112}
   - component: {fileID: 5706301054221785813}
   - component: {fileID: 461530435887573986}
   - component: {fileID: 1521007202024112487}
   - component: {fileID: 2500341623776587838}
+  - component: {fileID: 9131107307593818329}
   m_Layer: 0
   m_Name: InteractablesManager
   m_TagString: Untagged
@@ -1289,7 +1390,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2915932516500803445
 MonoBehaviour:
@@ -1307,7 +1408,7 @@ MonoBehaviour:
     type: 2}
   boundingBox: {fileID: 5706301054221785813}
   boosterUsedEvent: {fileID: 11400000, guid: 5d377483043d5504781abada5b1f865a, type: 2}
---- !u!114 &7415379317088757677
+--- !u!114 &4721106538974144272
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1316,16 +1417,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 4443659954887257874}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
+  m_Script: {fileID: 11500000, guid: e165305432617224a87a00fb8d83d4ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
+  gameEvent: {fileID: 11400000, guid: 2d87e548fcd752c43b3d2e315c42e554, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2915932516500803445}
-        m_TargetAssemblyTypeName: Robbi.Environment.InteractablesManager, Assembly-CSharp
-        m_MethodName: OnMovedTo
+        m_TargetAssemblyTypeName: Robbi.Runtime.InteractablesManager, Robbi
+        m_MethodName: OnCharacterMovedTo
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4896742140206480112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4443659954887257874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e165305432617224a87a00fb8d83d4ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 1be6df2d6e253eb40b4567bd9f8c4aa5, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2915932516500803445}
+        m_TargetAssemblyTypeName: Robbi.Runtime.InteractablesManager, Robbi
+        m_MethodName: OnCharacterMovedTo
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1445,6 +1574,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &9131107307593818329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4443659954887257874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c2c167d8138f94b8f96ff1b82578d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 5d377483043d5504781abada5b1f865a, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5706301054221785813}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5284056565412097216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1455,11 +1612,12 @@ GameObject:
   m_Component:
   - component: {fileID: 5788878857070568888}
   - component: {fileID: 7859679017641654441}
-  - component: {fileID: 5748442160347411925}
-  - component: {fileID: 7679744951776096445}
   - component: {fileID: 5589263170544904571}
   - component: {fileID: 3736121703532956818}
   - component: {fileID: 5010414411061015527}
+  - component: {fileID: 5513279394136507167}
+  - component: {fileID: 1174290810212981249}
+  - component: {fileID: 6731309842260042126}
   m_Layer: 0
   m_Name: LasersManager
   m_TagString: Untagged
@@ -1479,7 +1637,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7859679017641654441
 MonoBehaviour:
@@ -1494,64 +1652,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserTilemap: {fileID: 11400000, guid: e0812fe3df489a34aa6cd94e86a98c5a, type: 2}
-  levelLostEvent: {fileID: 11400000, guid: f1011e957c917144caeaffc2270ffebe, type: 2}
-  hitLaserReason: {fileID: 11400000, guid: 38a1fae0e2406574b8ccd26d1015617e, type: 2}
---- !u!114 &5748442160347411925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5284056565412097216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7859679017641654441}
-        m_TargetAssemblyTypeName: Robbi.Runtime.LasersManager, Robbi
-        m_MethodName: OnMovedTo
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &7679744951776096445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5284056565412097216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 59d5400f5776b1048b2b8201934eaf9f, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7859679017641654441}
-        m_TargetAssemblyTypeName: Robbi.Runtime.LasersManager, Robbi
-        m_MethodName: OnPortalExited
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &5589263170544904571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1636,6 +1736,90 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5513279394136507167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5284056565412097216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e165305432617224a87a00fb8d83d4ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 2d87e548fcd752c43b3d2e315c42e554, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7859679017641654441}
+        m_TargetAssemblyTypeName: Robbi.Runtime.LasersManager, Robbi
+        m_MethodName: OnCharacterMovedTo
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1174290810212981249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5284056565412097216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e165305432617224a87a00fb8d83d4ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 1be6df2d6e253eb40b4567bd9f8c4aa5, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7859679017641654441}
+        m_TargetAssemblyTypeName: Robbi.Runtime.LasersManager, Robbi
+        m_MethodName: OnCharacterMovedTo
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6731309842260042126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5284056565412097216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e165305432617224a87a00fb8d83d4ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 2d473ad45490f484686fc34cade16093, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7859679017641654441}
+        m_TargetAssemblyTypeName: Robbi.Runtime.LasersManager, Robbi
+        m_MethodName: OnPortalExited
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6440900456115497864
 GameObject:
   m_ObjectHideFlags: 0
@@ -1645,15 +1829,17 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2313395599210072945}
+  - component: {fileID: 3237753975910320855}
   - component: {fileID: 636940202103362761}
   - component: {fileID: 2772260310311972934}
+  - component: {fileID: 4587372938822404783}
   m_Layer: 0
-  m_Name: FuelEventListeners
+  m_Name: FuelManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2313395599210072945
 Transform:
   m_ObjectHideFlags: 0
@@ -1661,13 +1847,27 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6440900456115497864}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2772506934692611050}
-  m_RootOrder: 0
+  m_Father: {fileID: 4253851984974408785}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3237753975910320855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6440900456115497864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97a50f8a860be5b4589a4bfb2c8e48b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelRequiresFuel: {fileID: 11400000, guid: ad4d3f76ba9af9640a612ed9416e725a, type: 2}
+  remainingFuel: {fileID: 11400000, guid: 665dc865d1fb88d498d7a87fba272bf5, type: 2}
 --- !u!114 &636940202103362761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1684,8 +1884,8 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2772506934692611030}
-        m_TargetAssemblyTypeName: Robbi.Movement.MovementManager, Assembly-CSharp
+      - m_Target: {fileID: 3237753975910320855}
+        m_TargetAssemblyTypeName: Robbi.Runtime.FuelManager, Robbi
         m_MethodName: AddFuel
         m_Mode: 0
         m_Arguments:
@@ -1712,9 +1912,37 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2772506934692611030}
-        m_TargetAssemblyTypeName: Robbi.Movement.MovementManager, Assembly-CSharp
+      - m_Target: {fileID: 3237753975910320855}
+        m_TargetAssemblyTypeName: Robbi.Runtime.FuelManager, Robbi
         m_MethodName: RemoveFuel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4587372938822404783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6440900456115497864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e165305432617224a87a00fb8d83d4ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 2d87e548fcd752c43b3d2e315c42e554, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3237753975910320855}
+        m_TargetAssemblyTypeName: Robbi.Runtime.FuelManager, Robbi
+        m_MethodName: OnCharacterMovedTo
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1734,7 +1962,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3525385912014895509}
   - component: {fileID: 5480487922313451854}
-  - component: {fileID: 8194376936118275087}
+  - component: {fileID: 5393847262858929752}
   m_Layer: 0
   m_Name: ExitsManager
   m_TagString: Untagged
@@ -1754,7 +1982,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4253851984974408785}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5480487922313451854
 MonoBehaviour:
@@ -1770,7 +1998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   exitsTilemap: {fileID: 11400000, guid: c5368bd6237159742b3873ab3dcfbc0e, type: 2}
   exitReachedEvent: {fileID: 11400000, guid: 67eaa24d36c76154b8bc32be0fa3d337, type: 2}
---- !u!114 &8194376936118275087
+--- !u!114 &5393847262858929752
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1779,16 +2007,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8197887247557088431}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c72c2b75f0bbf84a9b2c562853447ab, type: 3}
+  m_Script: {fileID: 11500000, guid: e165305432617224a87a00fb8d83d4ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 8aa6e1102df52474e8d6192dcb7139b4, type: 2}
+  gameEvent: {fileID: 11400000, guid: 2d87e548fcd752c43b3d2e315c42e554, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5480487922313451854}
-        m_TargetAssemblyTypeName: Robbi.Environment.ExitsManager, Assembly-CSharp
-        m_MethodName: CheckForExitReached
+        m_TargetAssemblyTypeName: Robbi.Runtime.ExitsManager, Robbi
+        m_MethodName: OnCharacterMovedTo
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

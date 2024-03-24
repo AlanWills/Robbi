@@ -16,7 +16,12 @@ namespace Robbi.Movement
 
         public Tilemap MovementTilemap { get; set; }
         public Tilemap DoorsTilemap { get; set; }
+        public Tilemap PortalsTilemap { get; set; }
 
+        public float MovementWeight { get; set; } = 1;
+        public float DoorsWeight { get; set; } = 1000;
+        public float PortalsWeight { get; set; } = 0;
+        
         public bool HasStepsToNextWaypoint { get { return stepsToNextWaypoint.Count > 0; } }
         public Vector3 NextStep { get { return stepsToNextWaypoint.Peek(); } }
 
@@ -24,7 +29,7 @@ namespace Robbi.Movement
         private Dictionary<Vector3Int, Vector3Int> cameFrom = new Dictionary<Vector3Int, Vector3Int>();
         private Dictionary<Vector3Int, float> costFromStart = new Dictionary<Vector3Int, float>();
         private Dictionary<Vector3Int, float> costOverall = new Dictionary<Vector3Int, float>();
-        private List<Vector3Int> newWaypoints = new List<Vector3Int>();
+        private List<Vector3Int> tilesToNextWaypoint = new List<Vector3Int>();
         private Stack<Vector3> stepsToNextWaypoint = new Stack<Vector3>();
 
         #endregion
@@ -33,23 +38,51 @@ namespace Robbi.Movement
 
         public void CalculateGridSteps(Vector3 startingPosition, Vector3Int targetPosition)
         {
-            CalculateGridSteps(MovementTilemap.LocalToCell(startingPosition), targetPosition);
-        }
-
-        public void CalculateGridSteps(Vector3Int startingPosition, Vector3Int targetPosition)
-        {
-            CalculateCosts(startingPosition, targetPosition);
-            ConstructGridSteps(targetPosition, stepsToNextWaypoint);
+            CalculateGridStepsImpl(startingPosition, targetPosition, stepsToNextWaypoint);
         }
 
         public Stack<Vector3> CalculateGridStepsWithoutCaching(Vector3 startingPosition, Vector3Int targetPosition)
         {
             Stack<Vector3> stepsToNextWaypoint = new Stack<Vector3>();
-            
-            CalculateCosts(MovementTilemap.LocalToCell(startingPosition), targetPosition);
+            CalculateGridStepsImpl(startingPosition, targetPosition, stepsToNextWaypoint);
+            return stepsToNextWaypoint;
+        }
+
+        public void CalculateGridStepsImpl(Vector3 startingPosition, Vector3Int targetPosition, Stack<Vector3> stepsToNextWaypoint)
+        {
+            Vector3Int startingTilePosition = MovementTilemap.WorldToCell(startingPosition);
+
+            if (!HasStepsToNextWaypoint)
+            {
+                // We recalculated with no existing steps underway
+                // Go ahead and recalculate with impunity, everything will be gucci
+                CalculateCosts(startingTilePosition, targetPosition);
+                ConstructGridSteps(targetPosition, stepsToNextWaypoint);
+
+                return;
+            }
+
+            // We are currently executing a step
+            // If we recalculate now, the progress we've made will be lost and we could possibly skip this step entirely
+            // So we cache some information
+            Vector3 firstStep = NextStep;
+            Vector3Int firstStepTilePosition = MovementTilemap.WorldToCell(firstStep);
+
+            // Calculate the new steps
+            CalculateCosts(startingTilePosition, targetPosition);
             ConstructGridSteps(targetPosition, stepsToNextWaypoint);
 
-            return stepsToNextWaypoint;
+            // Now we check to see if our step needed completing
+            // If we are on the same tile as the discarded executing step from the perspective of the tilemap
+            // But we hadn't completed the step (actual positions different)
+            // And we haven't recalculated we need to do that step anyway
+            if (startingTilePosition == firstStepTilePosition &&
+                firstStep != startingPosition &&
+                (!HasStepsToNextWaypoint || stepsToNextWaypoint.Peek() != firstStep))
+            {
+                // We re-add the step so that it's remainder is completed
+                stepsToNextWaypoint.Push(firstStep);
+            }
         }
 
         public void CompleteStep()
@@ -74,6 +107,13 @@ namespace Robbi.Movement
             openSet.Add(startingPosition);
             costFromStart.Add(startingPosition, 0);
             costOverall.Add(startingPosition, Math.Abs(targetPosition.x - startingPosition.x) + Math.Abs(targetPosition.y - startingPosition.y));
+
+            if (!MovementTilemap.HasTile(startingPosition) && !PortalsTilemap.HasTile(startingPosition))
+            {
+                // Movement capability = portal or movement entry in tilemap
+                // We are on a tile without movement capabilities, so we cannot move off of it
+                return;
+            }
 
             while (openSet.Count > 0)
             {
@@ -129,7 +169,18 @@ namespace Robbi.Movement
             Vector3Int neighbour = bestPosition + delta;
             if (MovementTilemap.HasTile(neighbour))
             {
-                float distanceToNeighbour = DoorsTilemap.HasClosedDoor(neighbour) ? 1000.0f : 1.0f;
+                float distanceToNeighbour = MovementWeight;
+                
+                if (DoorsTilemap.HasClosedDoor(neighbour))
+                {
+                    distanceToNeighbour += DoorsWeight;
+                }
+
+                if (PortalsTilemap.HasTile(neighbour))
+                {
+                    distanceToNeighbour += PortalsWeight;
+                }
+
                 float tentativeCostFromStart = costFromStart[bestPosition] + distanceToNeighbour;
                 float neighbourScore = costFromStart.ContainsKey(neighbour) ? costFromStart[neighbour] : float.MaxValue;
 
@@ -166,33 +217,35 @@ namespace Robbi.Movement
             }
         }
 
-        private void ConstructGridSteps(Vector3Int targetGridPosition, Stack<Vector3> stepsToNextWaypoint)
+        private void ConstructGridSteps(Vector3Int targetGridPosition, Stack<Vector3> tileCentresToNextWaypoint)
         {
-            newWaypoints.Clear();
-            stepsToNextWaypoint.Clear();
+            tilesToNextWaypoint.Clear();
+            tileCentresToNextWaypoint.Clear();
 
             while (cameFrom.ContainsKey(targetGridPosition))
             {
-                newWaypoints.Add(targetGridPosition);
+                tilesToNextWaypoint.Add(targetGridPosition);
                 targetGridPosition = cameFrom[targetGridPosition];
             }
 
-            for (int i = newWaypoints.Count - 1; i >= 0; --i)
+            // If we encounter a closed door for a step, remove all steps after and including that step 
+            // (since it's not traversable, but we want to move as close to the waypoint as possible
+            for (int i = tilesToNextWaypoint.Count - 1; i >= 0; --i)
             {
-                if (DoorsTilemap.HasClosedDoor(newWaypoints[i]))
+                if (DoorsTilemap.HasClosedDoor(tilesToNextWaypoint[i]))
                 {
                     for (int j = i; j >= 0; --j)
                     {
-                        newWaypoints.RemoveAt(j);
+                        tilesToNextWaypoint.RemoveAt(j);
                     }
 
                     break;
                 }
             }
 
-            foreach (Vector3Int waypoint in newWaypoints)
+            foreach (Vector3Int waypoint in tilesToNextWaypoint)
             {
-                stepsToNextWaypoint.Push(MovementTilemap.GetCellCenterWorld(waypoint));
+                tileCentresToNextWaypoint.Push(MovementTilemap.GetCellCenterWorld(waypoint));
             }
         }
 

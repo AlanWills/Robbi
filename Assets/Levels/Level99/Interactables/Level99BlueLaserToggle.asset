@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8019152932015049464
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180a43e3c2714ef48a0b19e420392339, type: 3}
+  m_Name: Toggle Up
+  m_EditorClassIdentifier: 
+  position: {x: 9, y: 2, z: 0}
+  interactedTile: {fileID: 11400000, guid: 8df0bd7cef6a54d44b6df9546b015231, type: 2}
+  interactedModifiers:
+  - {fileID: -4625975141929744117}
+--- !u!114 &-6456598876967447914
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7dde1590a5fb684ab1c44053cae5200, type: 3}
+  m_Name: ToggleLaser
+  m_EditorClassIdentifier: 
+  laserEvent: {fileID: 11400000, guid: 1bb562e74c73bf547af2c9cbf785bd98, type: 2}
+  laser: {fileID: 11400000, guid: 697e4e36fd8b5a147aee61525a52d035, type: 2}
+--- !u!114 &-4625975141929744117
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7dde1590a5fb684ab1c44053cae5200, type: 3}
+  m_Name: ToggleLaser
+  m_EditorClassIdentifier: 
+  laserEvent: {fileID: 11400000, guid: 1bb562e74c73bf547af2c9cbf785bd98, type: 2}
+  laser: {fileID: 11400000, guid: 697e4e36fd8b5a147aee61525a52d035, type: 2}
+--- !u!114 &-3859961801894269182
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180a43e3c2714ef48a0b19e420392339, type: 3}
+  m_Name: Toggle Down
+  m_EditorClassIdentifier: 
+  position: {x: 9, y: 2, z: 0}
+  interactedTile: {fileID: 11400000, guid: 5d15a5b0f11cca24e8015a26078a9246, type: 2}
+  interactedModifiers:
+  - {fileID: -6456598876967447914}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09ff5ea72bd8b494995e000d09a0eefa, type: 3}
+  m_Name: Level99BlueLaserToggle
+  m_EditorClassIdentifier: 
+  loop: 1
+  states:
+  - {fileID: -8019152932015049464}
+  - {fileID: -3859961801894269182}

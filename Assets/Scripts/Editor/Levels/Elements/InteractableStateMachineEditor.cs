@@ -61,8 +61,6 @@ namespace RobbiEditor.Levels.Elements
                 {
                     Interactable toggleUp = InteractableStateMachine.AddState("Toggle Up");
                     toggleUp.InteractedTile = AssetDatabase.LoadAssetAtPath<Tile>(tileFiles.Item1);
-                    ToggleDoor toggleDoorLeft = toggleUp.AddInteractedModifier<ToggleDoor>();
-                    toggleDoorLeft.doorEvent = AssetDatabase.LoadAssetAtPath<DoorEvent>(EventFiles.DOOR_TOGGLED_EVENT);
                     
                     AddStateEditor(toggleUp);
                 }
@@ -70,8 +68,6 @@ namespace RobbiEditor.Levels.Elements
                 {
                     Interactable toggleDown = InteractableStateMachine.AddState("Toggle Down");
                     toggleDown.InteractedTile = AssetDatabase.LoadAssetAtPath<Tile>(tileFiles.Item2);
-                    ToggleDoor toggleDoorRight = toggleDown.AddInteractedModifier<ToggleDoor>();
-                    toggleDoorRight.doorEvent = AssetDatabase.LoadAssetAtPath<DoorEvent>(EventFiles.DOOR_TOGGLED_EVENT);
 
                     AddStateEditor(toggleDown);
                 }
