@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
   m_Name: _newValue
   m_EditorClassIdentifier: 
+  helpText: 
   isConstant: 1
   constantValue: 0
   referenceValue: {fileID: 0}
@@ -53,7 +54,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: -4802566181618655954}
+        node: {fileID: 5844881187645299117}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -71,6 +72,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+  guid: a6937f85-bb22-4f7e-91a0-d2e2e9aee313
   value: {fileID: 11400000, guid: e7ec242c314794443b36b46ba8769ec1, type: 2}
   newValue: {fileID: 8827547908248556457}
 --- !u!114 &-6842801601965173594
@@ -85,6 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ec718764ed3a234cb86bb3efc892b05, type: 3}
   m_Name: _newValue
   m_EditorClassIdentifier: 
+  helpText: 
   isConstant: 1
   constantValue: 0
   referenceValue: {fileID: 0}
@@ -144,6 +147,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+  guid: 66794408-3e89-4806-9d8d-845e171b15cf
   value: {fileID: 11400000, guid: b40005ed4400bea478a5ebba9fe921ac, type: 2}
   newValue: {fileID: -9116119016839835695}
   setMode: 0
@@ -194,6 +198,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+  guid: 6f5763b0-c9d7-4674-8ec8-6aa7727f6a68
   argument: {fileID: 0}
   toRaise: {fileID: 0}
 --- !u!114 &-4908873596685037346
@@ -209,7 +214,7 @@ MonoBehaviour:
   m_Name: DefaultMovementSpeedChanged
   m_EditorClassIdentifier: 
   listenFor: {fileID: 11400000, guid: 098d6b85bb438334ab0ad740abae5708, type: 2}
---- !u!114 &-4802566181618655954
+--- !u!114 &-3744488645779743610
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -218,78 +223,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c8e8793e4e9cb346b510a034d8cb2de, type: 3}
-  m_Name: Execute Function
+  m_Script: {fileID: 11500000, guid: 5d3d6eaf5230ee24aa876dc04a9cb690, type: 3}
+  m_Name: Execute Load Job
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 520, y: 296}
+  position: {x: 200, y: 168}
   ports:
     keys:
     - ' '
     - 
+    - argument
     values:
     - _fieldName: ' '
-      _node: {fileID: -4802566181618655954}
+      _node: {fileID: -3744488645779743610}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: 
-        node: {fileID: -7747806825114165996}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -7747806825114165996}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -7747806825114165996}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -7747806825114165996}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -7747806825114165996}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -7747806825114165996}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -7747806825114165996}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -7747806825114165996}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -7747806825114165996}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -7747806825114165996}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -7747806825114165996}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -7747806825114165996}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -7747806825114165996}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -7747806825114165996}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -7747806825114165996}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -7747806825114165996}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -7747806825114165996}
+      - fieldName: GoToMainMenu
+        node: {fileID: 5844881187645299117}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
     - _fieldName: 
-      _node: {fileID: -4802566181618655954}
+      _node: {fileID: -3744488645779743610}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
@@ -300,21 +258,18 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  function:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 146944de429c8e64889b9047e5b3a07e, type: 2}
-        m_TargetAssemblyTypeName: Robbi.Options.OptionsManager, Assembly-CSharp
-        m_MethodName: SyncBatterySaverOptions
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+    - _fieldName: argument
+      _node: {fileID: -3744488645779743610}
+      _typeQualifiedName: Celeste.Loading.Parameters.LoadJobReference, Celeste.Loading,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  guid: 34a15571-679c-4f5f-b04d-753f809cea47
+  argument: {fileID: 8157039721938001054}
+  toRaise: {fileID: 11400000, guid: d741abe51cde02a42837ddd5a95b1a2f, type: 2}
 --- !u!114 &-2527459945317723635
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -419,6 +374,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: -5090176750562965793}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -5090176750562965793}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -444,6 +402,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+  guid: 0c61344f-e8a9-4574-8f4f-af9ff2445580
   value: {fileID: 11400000, guid: 4129d939c3be32249934c9c778306861, type: 2}
   newValue: {fileID: 3793211434063602631}
   setMode: 0
@@ -466,7 +425,7 @@ MonoBehaviour:
   - {fileID: -5090176750562965793}
   - {fileID: -2110812225121485104}
   - {fileID: -7747806825114165996}
-  - {fileID: -4802566181618655954}
+  - {fileID: -3744488645779743610}
   startNode: {fileID: 5844881187645299117}
   parameters:
   - {fileID: 7454294442555186267}
@@ -474,6 +433,7 @@ MonoBehaviour:
   - {fileID: -9116119016839835695}
   - {fileID: 3793211434063602631}
   - {fileID: 8827547908248556457}
+  - {fileID: 8157039721938001054}
 --- !u!114 &2684914038226503453
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -499,6 +459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
   m_Name: _newValue
   m_EditorClassIdentifier: 
+  helpText: 
   isConstant: 0
   constantValue: 0
   referenceValue: {fileID: 11400000, guid: b40005ed4400bea478a5ebba9fe921ac, type: 2}
@@ -558,6 +519,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+  guid: 0b071a7d-09d8-4ec3-8d56-5297f65f6579
   value: {fileID: 11400000, guid: 22c508dcd0a0194409f2ccc61816d685, type: 2}
   newValue: {fileID: 7454294442555186267}
 --- !u!114 &5844881187645299117
@@ -582,6 +544,7 @@ MonoBehaviour:
     - SFXEnabledChanged
     - DefaultMovementSpeedChanged
     - MusicEnabledChanged
+    - GoToMainMenu
     values:
     - _fieldName: ' '
       _node: {fileID: 5844881187645299117}
@@ -1009,33 +972,6 @@ MonoBehaviour:
         node: {fileID: -2110812225121485104}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -4802566181618655954}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 5539026279439216970}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 6584139042545311320}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -2110812225121485104}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -4802566181618655954}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 5539026279439216970}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 6584139042545311320}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -2110812225121485104}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -4802566181618655954}
-        reroutePoints: []
-      - fieldName: 
         node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
@@ -1048,9 +984,6 @@ MonoBehaviour:
         node: {fileID: -2110812225121485104}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -4802566181618655954}
-        reroutePoints: []
-      - fieldName: 
         node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
@@ -1061,9 +994,6 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: 
         node: {fileID: -2110812225121485104}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -4802566181618655954}
         reroutePoints: []
       - fieldName: 
         node: {fileID: 0}
@@ -1081,9 +1011,6 @@ MonoBehaviour:
         node: {fileID: -2110812225121485104}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -4802566181618655954}
-        reroutePoints: []
-      - fieldName: 
         node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
@@ -1097,9 +1024,6 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: 
         node: {fileID: -2110812225121485104}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -4802566181618655954}
         reroutePoints: []
       - fieldName: 
         node: {fileID: 0}
@@ -1120,7 +1044,25 @@ MonoBehaviour:
         node: {fileID: -2110812225121485104}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -4802566181618655954}
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5539026279439216970}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6584139042545311320}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2110812225121485104}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
         node: {fileID: 0}
@@ -1141,28 +1083,7 @@ MonoBehaviour:
         node: {fileID: -2110812225121485104}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -4802566181618655954}
-        reroutePoints: []
-      - fieldName: 
         node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 0}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 5539026279439216970}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 6584139042545311320}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -2110812225121485104}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -4802566181618655954}
         reroutePoints: []
       - fieldName: 
         node: {fileID: 0}
@@ -1183,7 +1104,28 @@ MonoBehaviour:
         node: {fileID: -2110812225121485104}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -4802566181618655954}
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5539026279439216970}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6584139042545311320}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2110812225121485104}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
         node: {fileID: 0}
@@ -1204,7 +1146,13 @@ MonoBehaviour:
         node: {fileID: -2110812225121485104}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -4802566181618655954}
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
         node: {fileID: 0}
@@ -1219,7 +1167,7 @@ MonoBehaviour:
         node: {fileID: -2110812225121485104}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -4802566181618655954}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
         node: {fileID: 0}
@@ -1234,7 +1182,7 @@ MonoBehaviour:
         node: {fileID: -2110812225121485104}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -4802566181618655954}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
         node: {fileID: 0}
@@ -1249,7 +1197,7 @@ MonoBehaviour:
         node: {fileID: -2110812225121485104}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -4802566181618655954}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
         node: {fileID: 0}
@@ -1264,7 +1212,10 @@ MonoBehaviour:
         node: {fileID: -2110812225121485104}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -4802566181618655954}
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
         node: {fileID: 5539026279439216970}
@@ -1276,7 +1227,34 @@ MonoBehaviour:
         node: {fileID: -2110812225121485104}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -4802566181618655954}
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5539026279439216970}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6584139042545311320}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2110812225121485104}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2110812225121485104}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 5539026279439216970}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6584139042545311320}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7747806825114165996}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -3744488645779743610}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -1354,11 +1332,25 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
+    - _fieldName: GoToMainMenu
+      _node: {fileID: 5844881187645299117}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -3744488645779743610}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  guid: 0f7ba9bf-0249-4705-9644-874e0d1f2f2d
   events:
   - {fileID: 7885992062826014922}
   - {fileID: -2527459945317723635}
   - {fileID: -4908873596685037346}
   - {fileID: 2684914038226503453}
+  - {fileID: 8711820282463327625}
 --- !u!114 &6584139042545311320
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1372,7 +1364,7 @@ MonoBehaviour:
   m_Name: Set Bool Value
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 200, y: 808}
+  position: {x: 200, y: 824}
   ports:
     keys:
     - ' '
@@ -1418,6 +1410,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+  guid: cb307c0a-3ba7-417b-8719-65ee4bf9f85b
   value: {fileID: 11400000, guid: 6a71f921388147946967d8ee5ba6e612, type: 2}
   newValue: {fileID: -6842801601965173594}
 --- !u!114 &7454294442555186267
@@ -1432,6 +1425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ec718764ed3a234cb86bb3efc892b05, type: 3}
   m_Name: _newValue
   m_EditorClassIdentifier: 
+  helpText: 
   isConstant: 1
   constantValue: 0
   referenceValue: {fileID: 0}
@@ -1448,6 +1442,35 @@ MonoBehaviour:
   m_Name: SFXEnabledChanged
   m_EditorClassIdentifier: 
   listenFor: {fileID: 11400000, guid: 257f2ff4a01cec34ca12dd5c3a315dd6, type: 2}
+--- !u!114 &8157039721938001054
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cee97d5c2d98abd439777b236c735fdd, type: 3}
+  m_Name: _argument
+  m_EditorClassIdentifier: 
+  helpText: 
+  isConstant: 1
+  constantValue: {fileID: 11400000, guid: ec27ebbadb032ab44acc845d98050b42, type: 2}
+  referenceValue: {fileID: 0}
+--- !u!114 &8711820282463327625
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
+  m_Name: GoToMainMenu
+  m_EditorClassIdentifier: 
+  listenFor: {fileID: 11400000, guid: c31cf155d7bcf914a8f7fc5030f9f47e, type: 2}
 --- !u!114 &8827547908248556457
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1460,6 +1483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ec718764ed3a234cb86bb3efc892b05, type: 3}
   m_Name: _newValue
   m_EditorClassIdentifier: 
+  helpText: 
   isConstant: 1
   constantValue: 0
   referenceValue: {fileID: 0}

@@ -18,6 +18,7 @@ MonoBehaviour:
     keys:
     - value
     - output
+    - outputAsString
     values:
     - _fieldName: value
       _node: {fileID: -9015667971797496688}
@@ -43,8 +44,18 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: outputAsString
+      _node: {fileID: -9015667971797496688}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   value: {fileID: 11400000, guid: 6a71f921388147946967d8ee5ba6e612, type: 2}
   output: 0
+  outputAsString: 0
 --- !u!114 &-8635409425661878237
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -63,6 +74,7 @@ MonoBehaviour:
     keys:
     - value
     - output
+    - outputAsString
     values:
     - _fieldName: value
       _node: {fileID: -8635409425661878237}
@@ -85,8 +97,18 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: outputAsString
+      _node: {fileID: -8635409425661878237}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   value: {fileID: 11400000, guid: e7ec242c314794443b36b46ba8769ec1, type: 2}
   output: 0
+  outputAsString: 0
 --- !u!114 &-8563225055050601301
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -100,7 +122,7 @@ MonoBehaviour:
   m_Name: Toggle
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1096, y: 568}
+  position: {x: 1096, y: 504}
   ports:
     keys:
     - isChecked
@@ -123,7 +145,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.UI.Toggle, UnityEngine.UI, Version=1.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: child
+      - fieldName: gameObject
         node: {fileID: -5439309702140673368}
         reroutePoints: []
       _direction: 0
@@ -145,22 +167,13 @@ MonoBehaviour:
   m_Name: Find Child
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 472, y: -88}
+  position: {x: 472, y: -136}
   ports:
     keys:
-    - childName
-    - child
+    - gameObject
+    - gameObjectName
     values:
-    - _fieldName: childName
-      _node: {fileID: -8097911804643815898}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: child
+    - _fieldName: gameObject
       _node: {fileID: -8097911804643815898}
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -172,10 +185,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: OptionsUI.MusicEnabledButton
+    - _fieldName: gameObjectName
+      _node: {fileID: -8097911804643815898}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: MusicEnabledButton
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 0}
   findConstraint: 0
   cache: 1
-  child: {fileID: 0}
 --- !u!114 &-6482623537121346719
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -189,7 +212,7 @@ MonoBehaviour:
   m_Name: Active Controller
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 472, y: -200}
+  position: {x: 472, y: -248}
   ports:
     keys:
     - isActive
@@ -212,7 +235,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: child
+      - fieldName: gameObject
         node: {fileID: -8097911804643815898}
         reroutePoints: []
       _direction: 0
@@ -239,6 +262,7 @@ MonoBehaviour:
     keys:
     - value
     - output
+    - outputAsString
     values:
     - _fieldName: value
       _node: {fileID: -6051556970229525375}
@@ -264,8 +288,18 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: outputAsString
+      _node: {fileID: -6051556970229525375}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   value: {fileID: 11400000, guid: 22c508dcd0a0194409f2ccc61816d685, type: 2}
   output: 0
+  outputAsString: 0
 --- !u!114 &-5462341980273336648
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -279,22 +313,13 @@ MonoBehaviour:
   m_Name: Find Child
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1688, y: 184}
+  position: {x: 1688, y: 152}
   ports:
     keys:
-    - childName
-    - child
+    - gameObject
+    - gameObjectName
     values:
-    - _fieldName: childName
-      _node: {fileID: -5462341980273336648}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: child
+    - _fieldName: gameObject
       _node: {fileID: -5462341980273336648}
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -306,10 +331,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: OptionsUI.FastMovementSpeed
+    - _fieldName: gameObjectName
+      _node: {fileID: -5462341980273336648}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: FastMovementSpeed
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 0}
   findConstraint: 0
   cache: 1
-  child: {fileID: 0}
 --- !u!114 &-5439309702140673368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -323,22 +358,13 @@ MonoBehaviour:
   m_Name: Find Child
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1096, y: 680}
+  position: {x: 1096, y: 632}
   ports:
     keys:
-    - childName
-    - child
+    - gameObject
+    - gameObjectName
     values:
-    - _fieldName: childName
-      _node: {fileID: -5439309702140673368}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: child
+    - _fieldName: gameObject
       _node: {fileID: -5439309702140673368}
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -350,10 +376,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: OptionsUI.BatterySaver
+    - _fieldName: gameObjectName
+      _node: {fileID: -5439309702140673368}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: BatterySaver
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 0}
   findConstraint: 0
   cache: 1
-  child: {fileID: 0}
 --- !u!114 &-5021095748517815449
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -372,6 +408,7 @@ MonoBehaviour:
     keys:
     - value
     - output
+    - outputAsString
     values:
     - _fieldName: value
       _node: {fileID: -5021095748517815449}
@@ -400,8 +437,18 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: outputAsString
+      _node: {fileID: -5021095748517815449}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   value: {fileID: 11400000, guid: b40005ed4400bea478a5ebba9fe921ac, type: 2}
   output: 0
+  outputAsString: 0
 --- !u!114 &-4922968648563050603
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -472,22 +519,13 @@ MonoBehaviour:
   m_Name: Find Child
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1688, y: 440}
+  position: {x: 1688, y: 520}
   ports:
     keys:
-    - childName
-    - child
+    - gameObject
+    - gameObjectName
     values:
-    - _fieldName: childName
-      _node: {fileID: -3681879495271742484}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: child
+    - _fieldName: gameObject
       _node: {fileID: -3681879495271742484}
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -499,10 +537,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: OptionsUI.FastestMovementSpeed
+    - _fieldName: gameObjectName
+      _node: {fileID: -3681879495271742484}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: FastestMovementSpeed
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 0}
   findConstraint: 0
   cache: 1
-  child: {fileID: 0}
 --- !u!114 &-3452680554159591902
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -677,7 +725,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: child
+      - fieldName: gameObject
         node: {fileID: 2352840973251434034}
         reroutePoints: []
       _direction: 0
@@ -702,19 +750,10 @@ MonoBehaviour:
   position: {x: 472, y: 152}
   ports:
     keys:
-    - childName
-    - child
+    - gameObject
+    - gameObjectName
     values:
-    - _fieldName: childName
-      _node: {fileID: -282807882739517037}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: child
+    - _fieldName: gameObject
       _node: {fileID: -282807882739517037}
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -726,10 +765,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: OptionsUI.MusicDisabledButton
+    - _fieldName: gameObjectName
+      _node: {fileID: -282807882739517037}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: MusicDisabledButton
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 0}
   findConstraint: 0
   cache: 1
-  child: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -787,22 +836,13 @@ MonoBehaviour:
   m_Name: Find Child
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1688, y: -72}
+  position: {x: 1688, y: -184}
   ports:
     keys:
-    - childName
-    - child
+    - gameObject
+    - gameObjectName
     values:
-    - _fieldName: childName
-      _node: {fileID: 209580283763259965}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: child
+    - _fieldName: gameObject
       _node: {fileID: 209580283763259965}
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -814,10 +854,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: OptionsUI.NormalMovementSpeed
+    - _fieldName: gameObjectName
+      _node: {fileID: 209580283763259965}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: NormalMovementSpeed
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 0}
   findConstraint: 0
   cache: 1
-  child: {fileID: 0}
 --- !u!114 &841072417534210791
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -924,19 +974,10 @@ MonoBehaviour:
   position: {x: 1096, y: 920}
   ports:
     keys:
-    - childName
-    - child
+    - gameObject
+    - gameObjectName
     values:
-    - _fieldName: childName
-      _node: {fileID: 2352840973251434034}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: child
+    - _fieldName: gameObject
       _node: {fileID: 2352840973251434034}
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -948,10 +989,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: OptionsUI.GraphicsSettings
+    - _fieldName: gameObjectName
+      _node: {fileID: 2352840973251434034}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: GraphicsSettings
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 0}
   findConstraint: 0
   cache: 1
-  child: {fileID: 0}
 --- !u!114 &2739218000631943940
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -965,7 +1016,7 @@ MonoBehaviour:
   m_Name: Image
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1688, y: 72}
+  position: {x: 1688, y: 8}
   ports:
     keys:
     - isEnabled
@@ -998,7 +1049,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.UI.Image, UnityEngine.UI, Version=1.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: child
+      - fieldName: gameObject
         node: {fileID: -5462341980273336648}
         reroutePoints: []
       _direction: 0
@@ -1044,7 +1095,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: child
+      - fieldName: gameObject
         node: {fileID: -282807882739517037}
         reroutePoints: []
       _direction: 0
@@ -1066,22 +1117,13 @@ MonoBehaviour:
   m_Name: Find Child
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 456, y: 712}
+  position: {x: 456, y: 760}
   ports:
     keys:
-    - childName
-    - child
+    - gameObject
+    - gameObjectName
     values:
-    - _fieldName: childName
-      _node: {fileID: 6054828462966547023}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: child
+    - _fieldName: gameObject
       _node: {fileID: 6054828462966547023}
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -1093,10 +1135,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: OptionsUI.SFXDisabledButton
+    - _fieldName: gameObjectName
+      _node: {fileID: 6054828462966547023}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: SFXDisabledButton
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 0}
   findConstraint: 0
   cache: 1
-  child: {fileID: 0}
 --- !u!114 &6095596557558535645
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1115,6 +1167,7 @@ MonoBehaviour:
     keys:
     - value
     - output
+    - outputAsString
     values:
     - _fieldName: value
       _node: {fileID: 6095596557558535645}
@@ -1137,8 +1190,18 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: outputAsString
+      _node: {fileID: 6095596557558535645}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   value: {fileID: 11400000, guid: e2eb51b1797e92649b8f6af6bd28c6c7, type: 2}
   output: 0
+  outputAsString: 0
 --- !u!114 &6319138758377517661
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1338,19 +1401,10 @@ MonoBehaviour:
   position: {x: 456, y: 456}
   ports:
     keys:
-    - childName
-    - child
+    - gameObject
+    - gameObjectName
     values:
-    - _fieldName: childName
-      _node: {fileID: 7896878504117441310}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: child
+    - _fieldName: gameObject
       _node: {fileID: 7896878504117441310}
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -1362,10 +1416,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: OptionsUI.SFXEnabledButton
+    - _fieldName: gameObjectName
+      _node: {fileID: 7896878504117441310}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: SFXEnabledButton
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 0}
   findConstraint: 0
   cache: 1
-  child: {fileID: 0}
 --- !u!114 &8038487218338003320
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1379,7 +1443,7 @@ MonoBehaviour:
   m_Name: Image
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1688, y: -184}
+  position: {x: 1688, y: -328}
   ports:
     keys:
     - isEnabled
@@ -1412,7 +1476,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.UI.Image, UnityEngine.UI, Version=1.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: child
+      - fieldName: gameObject
         node: {fileID: 209580283763259965}
         reroutePoints: []
       _direction: 0
@@ -1435,7 +1499,7 @@ MonoBehaviour:
   m_Name: Image
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1688, y: 312}
+  position: {x: 1688, y: 360}
   ports:
     keys:
     - isEnabled
@@ -1468,7 +1532,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.UI.Image, UnityEngine.UI, Version=1.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: child
+      - fieldName: gameObject
         node: {fileID: -3681879495271742484}
         reroutePoints: []
       _direction: 0
@@ -1514,7 +1578,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: child
+      - fieldName: gameObject
         node: {fileID: 7896878504117441310}
         reroutePoints: []
       _direction: 0
@@ -1536,7 +1600,7 @@ MonoBehaviour:
   m_Name: Active Controller
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 456, y: 600}
+  position: {x: 456, y: 632}
   ports:
     keys:
     - isActive
@@ -1559,7 +1623,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: child
+      - fieldName: gameObject
         node: {fileID: 6054828462966547023}
         reroutePoints: []
       _direction: 0

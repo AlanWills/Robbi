@@ -1,0 +1,316 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7756387024889494139
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
+  m_Name: GoToMainMenu
+  m_EditorClassIdentifier: 
+  listenFor: {fileID: 11400000, guid: c31cf155d7bcf914a8f7fc5030f9f47e, type: 2}
+--- !u!114 &-7109019979925602783
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d3d6eaf5230ee24aa876dc04a9cb690, type: 3}
+  m_Name: Execute Load Job
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 344, y: 296}
+  ports:
+    keys:
+    - ' '
+    - 
+    - argument
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -7109019979925602783}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: GoToMainMenu
+        node: {fileID: 3904988000354529349}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -7109019979925602783}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 3904988000354529349}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: argument
+      _node: {fileID: -7109019979925602783}
+      _typeQualifiedName: Celeste.Loading.Parameters.LoadJobReference, Celeste.Loading,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  guid: 32dffbb1-3a42-4747-99b2-c2bcd962a849
+  argument: {fileID: -81623376673312681}
+  toRaise: {fileID: 11400000, guid: d741abe51cde02a42837ddd5a95b1a2f, type: 2}
+--- !u!114 &-4109786212159354411
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
+  m_Name: GoToLevel
+  m_EditorClassIdentifier: 
+  listenFor: {fileID: 11400000, guid: 94d43bd37cb462446818d56f2beaf92d, type: 2}
+--- !u!114 &-3588380244566312545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 540d499c9d649a2469332062a9135260, type: 3}
+  m_Name: LoadingLevel
+  m_EditorClassIdentifier: 
+  onIsMetChanged:
+    bakedEvent: {fileID: 0}
+  value: {fileID: -3524548792230657171}
+  condition: 0
+  target: {fileID: 5328735460708089734}
+--- !u!114 &-3524548792230657171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51fb886b9ab4e346897a43d978de61a, type: 3}
+  m_Name: LoadingLevel_value
+  m_EditorClassIdentifier: 
+  helpText: 
+  isConstant: 1
+  constantValue: LevelScene
+  referenceValue: {fileID: 0}
+--- !u!114 &-847414741902132252
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cee97d5c2d98abd439777b236c735fdd, type: 3}
+  m_Name: _argument
+  m_EditorClassIdentifier: 
+  helpText: 
+  isConstant: 1
+  constantValue: {fileID: 11400000, guid: b50893c0aced87542a84401cb7dcc8c7, type: 2}
+  referenceValue: {fileID: 0}
+--- !u!114 &-81623376673312681
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cee97d5c2d98abd439777b236c735fdd, type: 3}
+  m_Name: _argument
+  m_EditorClassIdentifier: 
+  helpText: 
+  isConstant: 1
+  constantValue: {fileID: 11400000, guid: ec27ebbadb032ab44acc845d98050b42, type: 2}
+  referenceValue: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae22ebe00c8798d4bb46b12fbdcffdfb, type: 3}
+  m_Name: PickLevelFSM
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 3904988000354529349}
+  - {fileID: -7109019979925602783}
+  - {fileID: 7896952221290227193}
+  startNode: {fileID: 3904988000354529349}
+  parameters:
+  - {fileID: -3524548792230657171}
+  - {fileID: 5328735460708089734}
+  - {fileID: -81623376673312681}
+  - {fileID: -847414741902132252}
+--- !u!114 &3904988000354529349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d3d684a2fdcd6e4e8336fa62bb135eb, type: 3}
+  m_Name: Multi Event Listener
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 33.2663, y: 151.43178}
+  ports:
+    keys:
+    - ' '
+    - argument
+    - GoToMainMenu
+    - GoToLevel
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 3904988000354529349}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: 7896952221290227193}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -7109019979925602783}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: argument
+      _node: {fileID: 3904988000354529349}
+      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: GoToMainMenu
+      _node: {fileID: 3904988000354529349}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -7109019979925602783}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: GoToLevel
+      _node: {fileID: 3904988000354529349}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 7896952221290227193}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  guid: 1ab21eb8-628f-4e33-88ee-0c51e13a0c93
+  events:
+  - {fileID: -7756387024889494139}
+  - {fileID: -4109786212159354411}
+--- !u!114 &5328735460708089734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51fb886b9ab4e346897a43d978de61a, type: 3}
+  m_Name: LoadingLevel_target
+  m_EditorClassIdentifier: 
+  helpText: 
+  isConstant: 1
+  constantValue: 
+  referenceValue: {fileID: 0}
+--- !u!114 &7896952221290227193
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d3d6eaf5230ee24aa876dc04a9cb690, type: 3}
+  m_Name: Execute Load Job
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 344, y: 88}
+  ports:
+    keys:
+    - ' '
+    - 
+    - argument
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 7896952221290227193}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: GoToLevel
+        node: {fileID: 3904988000354529349}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 7896952221290227193}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 3904988000354529349}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: argument
+      _node: {fileID: 7896952221290227193}
+      _typeQualifiedName: Celeste.Loading.Parameters.LoadJobReference, Celeste.Loading,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  guid: 8a396847-34fb-4239-ba6f-df195018610f
+  argument: {fileID: -847414741902132252}
+  toRaise: {fileID: 11400000, guid: e1ad3c596fdd9ab459e8ccb8682786ef, type: 2}

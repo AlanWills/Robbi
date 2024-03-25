@@ -123,74 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &1387152481
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1387152484}
-  - component: {fileID: 1387152483}
-  - component: {fileID: 1387152482}
-  m_Layer: 0
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1387152482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1387152481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
---- !u!114 &1387152483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1387152481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!4 &1387152484
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1387152481}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1676485102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -199,6 +131,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 66434178334713260, guid: ed4d30549febb7f45bc14c9377d7d7d2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Celeste.Sound.AudioClipEventRaiser, Celeste.Sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 66434178334713260, guid: ed4d30549febb7f45bc14c9377d7d7d2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Celeste.Parameters.AudioClipValue, Celeste.Sound
+      objectReference: {fileID: 0}
     - target: {fileID: 66434178334713262, guid: ed4d30549febb7f45bc14c9377d7d7d2,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -218,6 +160,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 66434178400977478, guid: ed4d30549febb7f45bc14c9377d7d7d2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Celeste.Sound.AudioClipEventRaiser, Celeste.Sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 66434178400977478, guid: ed4d30549febb7f45bc14c9377d7d7d2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Celeste.Parameters.AudioClipValue, Celeste.Sound
       objectReference: {fileID: 0}
     - target: {fileID: 66434178400977479, guid: ed4d30549febb7f45bc14c9377d7d7d2,
         type: 3}
@@ -292,22 +244,32 @@ PrefabInstance:
     - target: {fileID: 66434179088878634, guid: ed4d30549febb7f45bc14c9377d7d7d2,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 66434179088878634, guid: ed4d30549febb7f45bc14c9377d7d7d2,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 66434179088878634, guid: ed4d30549febb7f45bc14c9377d7d7d2,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 456.6563
       objectReference: {fileID: 0}
     - target: {fileID: 66434179088878634, guid: ed4d30549febb7f45bc14c9377d7d7d2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 228.32816
+      objectReference: {fileID: 0}
+    - target: {fileID: 66434179215400419, guid: ed4d30549febb7f45bc14c9377d7d7d2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Celeste.Sound.AudioClipEventRaiser, Celeste.Sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 66434179215400419, guid: ed4d30549febb7f45bc14c9377d7d7d2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Celeste.Parameters.AudioClipValue, Celeste.Sound
       objectReference: {fileID: 0}
     - target: {fileID: 66434179215400421, guid: ed4d30549febb7f45bc14c9377d7d7d2,
         type: 3}
@@ -492,27 +454,37 @@ PrefabInstance:
     - target: {fileID: 66434179801663907, guid: ed4d30549febb7f45bc14c9377d7d7d2,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 66434179801663907, guid: ed4d30549febb7f45bc14c9377d7d7d2,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 66434179801663907, guid: ed4d30549febb7f45bc14c9377d7d7d2,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 456.6563
       objectReference: {fileID: 0}
     - target: {fileID: 66434179801663907, guid: ed4d30549febb7f45bc14c9377d7d7d2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 228.32816
       objectReference: {fileID: 0}
     - target: {fileID: 66434179801663907, guid: ed4d30549febb7f45bc14c9377d7d7d2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -400
+      objectReference: {fileID: 0}
+    - target: {fileID: 66434180326534508, guid: ed4d30549febb7f45bc14c9377d7d7d2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Celeste.Sound.AudioClipEventRaiser, Celeste.Sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 66434180326534508, guid: ed4d30549febb7f45bc14c9377d7d7d2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Celeste.Parameters.AudioClipValue, Celeste.Sound
       objectReference: {fileID: 0}
     - target: {fileID: 66434180326534510, guid: ed4d30549febb7f45bc14c9377d7d7d2,
         type: 3}
@@ -562,27 +534,27 @@ PrefabInstance:
     - target: {fileID: 1622114580324765746, guid: ed4d30549febb7f45bc14c9377d7d7d2,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1622114580324765746, guid: ed4d30549febb7f45bc14c9377d7d7d2,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1622114580324765746, guid: ed4d30549febb7f45bc14c9377d7d7d2,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 456.6563
       objectReference: {fileID: 0}
     - target: {fileID: 1622114580324765746, guid: ed4d30549febb7f45bc14c9377d7d7d2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 228.32816
       objectReference: {fileID: 0}
     - target: {fileID: 1622114580324765746, guid: ed4d30549febb7f45bc14c9377d7d7d2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -175
       objectReference: {fileID: 0}
     - target: {fileID: 1865204194100799391, guid: ed4d30549febb7f45bc14c9377d7d7d2,
         type: 3}
@@ -629,7 +601,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2072269173}
   - component: {fileID: 2072269172}
-  - component: {fileID: 2072269171}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -637,14 +608,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &2072269171
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2072269170}
-  m_Enabled: 1
 --- !u!20 &2072269172
 Camera:
   m_ObjectHideFlags: 0
@@ -717,4 +680,3 @@ SceneRoots:
   m_Roots:
   - {fileID: 2072269173}
   - {fileID: 1676485102}
-  - {fileID: 1387152484}
