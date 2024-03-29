@@ -1,6 +1,4 @@
 ﻿using Celeste.Persistence;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Celeste.Tips
@@ -35,20 +33,5 @@ namespace Celeste.Tips
         }
 
         #endregion
-    }
-
-    [System.Serializable]
-    public class TipsManagerDTO
-    {
-        public List<uint> unseenIndexes;
-        public List<uint> seenIndexes;
-
-        public TipsManagerDTO(TipsRecord tipsRecord)
-        {
-            unseenIndexes = new List<uint>(tipsRecord.UnseenIndexes);
-            seenIndexes = new List<uint>(tipsRecord.SeenIndexes);
-            UnityEngine.Debug.Assert(tipsRecord.AllTips.Count == (unseenIndexes.Count + seenIndexes.Count), 
-                $"Tip index mismatch.  All: {tipsRecord.AllTips.Count}.  Unseen: {unseenIndexes.Count}.  Seen: {seenIndexes.Count}");
-        }
     }
 }

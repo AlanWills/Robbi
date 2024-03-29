@@ -25,9 +25,9 @@ namespace Celeste.Tips
 
                 if (unseenIndexes.Count == 0)
                 {
-                    List<uint> temp = unseenIndexes;
-                    unseenIndexes = seenIndexes;
-                    seenIndexes = temp;
+                    unseenIndexes.Clear();
+                    unseenIndexes.AddRange(seenIndexes);
+                    seenIndexes.Clear();
                 }
 
                 int chosenUnseenIndex = UnityEngine.Random.Range(0, unseenIndexes.Count);
@@ -47,7 +47,7 @@ namespace Celeste.Tips
         [SerializeField] private List<string> html5Tips = new List<string>();
 
         [Header("Events")]
-        [SerializeField] private Events.Event onChanged;
+        [SerializeField] private Celeste.Events.Event onChanged;
 
         [NonSerialized] private List<string> allTips = new List<string>();
         [NonSerialized] private List<uint> unseenIndexes = new List<uint>();

@@ -1,0 +1,172 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4344410373342531867
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dcd5c5d1aae7744e8a0935fdfdfdabc, type: 3}
+  m_Name: Find Game Object
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -616, y: -504}
+  ports:
+    keys:
+    - gameObjectName
+    - gameObject
+    values:
+    - _fieldName: gameObjectName
+      _node: {fileID: -4344410373342531867}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: gameObject
+      _node: {fileID: -4344410373342531867}
+      _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: text
+        node: {fileID: 8195498869900544007}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: Canvas.Background.Details.DescriptionText
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 0}
+  findConstraint: 0
+  cache: 1
+--- !u!114 &-714085769136065861
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b46219801419fa42a2f01c5b9dd6025, type: 3}
+  m_Name: String Reader
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -887.7275, y: -667.6006}
+  ports:
+    keys:
+    - value
+    - output
+    - outputAsString
+    values:
+    - _fieldName: value
+      _node: {fileID: -714085769136065861}
+      _typeQualifiedName: Celeste.Parameters.StringValue, Celeste.Parameters, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: -714085769136065861}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: value
+        node: {fileID: 8195498869900544007}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outputAsString
+      _node: {fileID: -714085769136065861}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: {fileID: 11400000, guid: 9034d841f9db40e4c8a81b57da6ada7c, type: 2}
+  output: 
+  outputAsString: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a72f06e35a5389418d857b340813945, type: 3}
+  m_Name: LevelLoseDialogDG
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -714085769136065861}
+  - {fileID: -4344410373342531867}
+  - {fileID: 8195498869900544007}
+--- !u!114 &8195498869900544007
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b261b4e8d9d92e4c9d97feadfa1eb18, type: 3}
+  m_Name: Text
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -616, y: -664}
+  ports:
+    keys:
+    - value
+    - format
+    - text
+    values:
+    - _fieldName: value
+      _node: {fileID: 8195498869900544007}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: output
+        node: {fileID: -714085769136065861}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: format
+      _node: {fileID: 8195498869900544007}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: text
+      _node: {fileID: 8195498869900544007}
+      _typeQualifiedName: UnityEngine.UI.Text, UnityEngine.UI, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: gameObject
+        node: {fileID: -4344410373342531867}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: 
+  format: 
+  text: {fileID: 0}
