@@ -7,6 +7,7 @@ using System.ComponentModel;
 namespace Robbi.FSM.Nodes.Logic.Conditions
 {
     [DisplayName("All Collection Targets Reached")]
+    [CreateAssetMenu(fileName = nameof(AllCollectionTargetsReached), menuName = "Robbi/Conditions/All Collection Targets Reached")]
     public class AllCollectionTargetsReached : Condition
     {
         #region Properties and Fields
@@ -22,7 +23,7 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
         {
             if (collectedAmounts.Count != requiredAmounts.Count)
             {
-                Debug.LogAssertionFormat("Collection Target parameter mismatch.  Collected: {0}, Required: {1}", collectedAmounts.Count, requiredAmounts.Count);
+                Debug.LogAssertion($"Collection Target parameter mismatch.  Collected: {collectedAmounts.Count}, Required: {requiredAmounts.Count}");
                 return false;
             }
 

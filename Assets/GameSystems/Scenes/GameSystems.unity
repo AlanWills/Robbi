@@ -123,6 +123,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &818346665
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 818346666}
+  - component: {fileID: 818346667}
+  m_Layer: 0
+  m_Name: ConditionsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &818346666
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818346665}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &818346667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818346665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a41a3084087754797dbda7818e28bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conditionSettings: {fileID: 11400000, guid: 34bc9bed404eb2946adfac1f07dcf388, type: 2}
 --- !u!1 &1057214747
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,6 +336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1248547715}
   - component: {fileID: 1248547716}
+  - component: {fileID: 1248547717}
   m_Layer: 0
   m_Name: WalletManager
   m_TagString: Untagged
@@ -330,6 +376,36 @@ MonoBehaviour:
   loadOnStart: 0
   currencyCatalogue: {fileID: 11400000, guid: bae1f1f2a0732024b8e02ac9348e7474, type: 2}
   walletRecord: {fileID: 11400000, guid: 0a5c840fd6907ec459cae8478d9787ef, type: 2}
+--- !u!114 &1248547717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248547714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c2c167d8138f94b8f96ff1b82578d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 0857bcf89b1f702499aa2c17d75c3dd4, type: 2}
+  logAddAndRemoveListener: 0
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1248547716}
+        m_TargetAssemblyTypeName: Celeste.Persistence.PersistentSceneManager`2[[Celeste.Wallet.WalletManager,
+          Celeste.Wallet
+        m_MethodName: Save
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1934930573
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,3 +543,4 @@ SceneRoots:
   - {fileID: 1934930575}
   - {fileID: 2067156055}
   - {fileID: 1248547715}
+  - {fileID: 818346666}

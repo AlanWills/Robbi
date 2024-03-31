@@ -33,7 +33,10 @@ namespace Robbi.Levels
             HudLog.LogInfo($"Latest Available Level Index: {levelRecord.LatestAvailableLevel}");
         }
 
-        protected override void SetDefaultValues() { }
+        protected override void SetDefaultValues() 
+        {
+            levelRecord.LatestUnlockedLevel = 0;
+        }
 
         #endregion
     }
