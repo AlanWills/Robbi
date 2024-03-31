@@ -296,6 +296,7 @@ namespace Robbi.Movement
 
                 GameObject destinationMarkerInstance = destinationMarkerAllocator.Allocate();
                 destinationMarkerInstance.transform.position = movementTilemap.Value.GetCellCenterLocal(waypointGridPosition);
+                destinationMarkerInstance.SetActive(true);
 
                 waypoints.Add(new Waypoint(waypointGridPosition, destinationMarkerInstance.GetComponent<WaypointMarker>(), waypoints.Count + 1));
                 --remainingWaypointsPlaceable.Value;
