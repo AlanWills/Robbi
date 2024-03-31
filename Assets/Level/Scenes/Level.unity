@@ -3555,8 +3555,8 @@ GameObject:
   - component: {fileID: 1536764606}
   - component: {fileID: 1536764608}
   - component: {fileID: 1536764609}
-  - component: {fileID: 1536764612}
-  - component: {fileID: 1536764611}
+  - component: {fileID: 1536764618}
+  - component: {fileID: 1536764617}
   - component: {fileID: 1536764610}
   - component: {fileID: 1536764613}
   - component: {fileID: 1536764614}
@@ -3680,7 +3680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b5b7ff941f32ea40a8b6f17033d5c09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 37e0aca46014b9841871ead0befaf08b, type: 2}
+  gameEvent: {fileID: 11400000, guid: 6e60b11d2a4389641b69eadaf7d97ecd, type: 2}
   logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
@@ -3688,64 +3688,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1536764608}
         m_TargetAssemblyTypeName: Robbi.Viewport.Drag, Assembly-CSharp
         m_MethodName: DragUsingTouch
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1536764611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1536764604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a15f8a86d9068a343b886c8d891866c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 6b24855a0df84f0489dad6539ff8bdaf, type: 2}
-  logAddAndRemoveListener: 0
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1536764608}
-        m_TargetAssemblyTypeName: Robbi.Viewport.Drag, Assembly-CSharp
-        m_MethodName: EndDrag
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1536764612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1536764604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a15f8a86d9068a343b886c8d891866c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: d97d5093f285431468ca545520e07264, type: 2}
-  logAddAndRemoveListener: 0
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1536764608}
-        m_TargetAssemblyTypeName: Robbi.Viewport.Drag, Assembly-CSharp
-        m_MethodName: DragUsingMouse
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3767,7 +3709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbba3fe6533080d45b74c03931ba399d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: f9dab1739fbc16d40b3c511bfe345edf, type: 2}
+  gameEvent: {fileID: 11400000, guid: f8e41487b26e73a4a8c520f166a1d589, type: 2}
   logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
@@ -3796,7 +3738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f68a0bc4df798b04589ae1071527eab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 74de251840af2d349b0b26c4666d77c7, type: 2}
+  gameEvent: {fileID: 11400000, guid: 8b044a9344308e84ab49dbcf4963122b, type: 2}
   logAddAndRemoveListener: 0
   response:
     m_PersistentCalls:
@@ -3855,6 +3797,64 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraValue: {fileID: 11400000, guid: 14ae487a7b0d7524e8df71e5b3255874, type: 2}
+--- !u!114 &1536764617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536764604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc59c2492bc9b8408bbb68edf4988a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 5a819ea16b858ac49b37e65c28d077b0, type: 2}
+  logAddAndRemoveListener: 0
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1536764608}
+        m_TargetAssemblyTypeName: Celeste.Tilemaps.TilemapDrag, Celeste.Tilemaps
+        m_MethodName: EndDrag
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1536764618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536764604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc59c2492bc9b8408bbb68edf4988a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 15b9eca4d3a0b3044923f2861faa7254, type: 2}
+  logAddAndRemoveListener: 0
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1536764608}
+        m_TargetAssemblyTypeName: Celeste.Tilemaps.TilemapDrag, Celeste.Tilemaps
+        m_MethodName: DragUsingMouse
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1544069687
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5214,7 +5214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1929722424}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: Popups
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

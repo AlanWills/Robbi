@@ -20,7 +20,7 @@ namespace Robbi.Levels
         public IntValue remainingWaypointsPlaceable;
         public BoolValue levelRequiresFuel;
         public UIntValue remainingFuel;
-        public UIntValue softCurrencyPrize;
+        public IntValue softCurrencyPrize;
         public BoolValue doorToggleBoosterUsable;
         public BoolValue interactBoosterUsable;
     }
@@ -41,7 +41,7 @@ namespace Robbi.Levels
         public List<ScriptableObject> Interactables_EditorOnly => interactables;
 #endif
 
-        public uint SoftCurrencyPrize
+        public int SoftCurrencyPrize
         {
             get => softCurrencyPrize;
             set
@@ -70,9 +70,9 @@ namespace Robbi.Levels
         [SerializeField] private int maxWaypointsPlaceable;
         [SerializeField] private bool requiresFuel = false;
         [ShowIf("requiresFuel")][SerializeField] private uint startingFuel;
-        [SerializeField] private uint softCurrencyPrize;
+        [SerializeField] private int softCurrencyPrize;
 
-#endregion
+        #endregion
 
         #region Initialization
 
@@ -81,7 +81,7 @@ namespace Robbi.Levels
             // Set this before instantiating the level so the UI will correctly adapt
             levelData.tutorialProgression.Value = 0;
 
-            GameObject level = GameObject.Instantiate(levelPrefab);
+            GameObject level = GameObject.Instantiate(levelPrefab, managers.transform);
             level.name = levelPrefab.name;
             levelGameObject.Value = level;
 
@@ -110,7 +110,7 @@ namespace Robbi.Levels
             int maxWaypointsPlaceable,
             bool requiresFuel,
             uint startingFuel,
-            uint softCurrencyPrize,
+            int softCurrencyPrize,
             IReadOnlyList<LevelCollectionTarget> collectionTargets)
         {
             Debug.Assert(levelPrefab != null, "Level Prefab could not be found.");
@@ -132,9 +132,9 @@ namespace Robbi.Levels
 
         public static AsyncOperationHandleWrapper LoadAsync(uint levelIndex)
         {
-            return new AsyncOperationHandleWrapper(Addressables.LoadAssetAsync<Level>(string.Format("Level{0}Data", levelIndex)));
+            return new AsyncOperationHandleWrapper(Addressables.LoadAssetAsync<Level>($"Level{levelIndex}Data"));
         }
 
-#endregion
+        #endregion
     }
 }

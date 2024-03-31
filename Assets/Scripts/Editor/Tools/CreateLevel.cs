@@ -56,7 +56,7 @@ namespace RobbiEditor.Tools
 
         [Header("Parameters")]
         public int maxWaypointsPlaceable = 10;
-        public uint softCurrencyPrize = 50;
+        public int softCurrencyPrize = 50;
         public bool requiresFuel = false;
         [ShowIf("requiresFuel")]
         public uint startingFuel = 0;
@@ -575,7 +575,7 @@ namespace RobbiEditor.Tools
 
             GameObject levelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(Path.Combine(levelFolderFullPath, $"Level{levelInfo.levelIndex}.prefab"));
             Level level = Level.Create(levelPrefab, levelInfo.maxWaypointsPlaceable, levelInfo.requiresFuel, levelInfo.startingFuel, levelInfo.softCurrencyPrize, levelInfo.collectionTargets);
-            AssetDatabase.CreateAsset(level, Path.Combine(levelFolderFullPath, string.Format("Level{0}Data", levelInfo.levelIndex) + ".asset"));
+            AssetDatabase.CreateAsset(level, Path.Combine(levelFolderFullPath, $"Level{levelInfo.levelIndex}Data.asset"));
             level.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
 
             // Must do this after the asset is actually created

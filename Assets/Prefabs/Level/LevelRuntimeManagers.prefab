@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 2772506934692611050}
   - component: {fileID: 2772506934692611030}
   - component: {fileID: 2507852983745413843}
-  - component: {fileID: 2720439450950104067}
+  - component: {fileID: 492149882580400746}
   - component: {fileID: 6319845372555604902}
   - component: {fileID: 6172188389121340619}
   - component: {fileID: 3819339074099286733}
@@ -415,7 +415,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1000, y: 1000}
   m_EdgeRadius: 0
---- !u!114 &2720439450950104067
+--- !u!114 &492149882580400746
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -424,16 +424,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 2772506934692611051}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08fe44caecb1a444890e076001b375c5, type: 3}
+  m_Script: {fileID: 11500000, guid: ab646f68366d74a42b16366421b6be82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 74245c4526e3f0144b8534774b224924, type: 2}
-  response:
+  onPointerEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onPointerOver:
+    m_PersistentCalls:
+      m_Calls: []
+  onPointerExit:
+    m_PersistentCalls:
+      m_Calls: []
+  onPointerFirstDown:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2772506934692611030}
-        m_TargetAssemblyTypeName: Robbi.Movement.MovementManager, Assembly-CSharp
-        m_MethodName: AddWaypoint
+        m_TargetAssemblyTypeName: Robbi.Movement.MovementManager, Robbi
+        m_MethodName: OnMovementManagerClicked
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -443,6 +451,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onPointerDown:
+    m_PersistentCalls:
+      m_Calls: []
+  onPointerFirstUp:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6319845372555604902
 MonoBehaviour:
   m_ObjectHideFlags: 0

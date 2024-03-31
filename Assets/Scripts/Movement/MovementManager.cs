@@ -1,15 +1,14 @@
 ﻿using Celeste.Events;
 using Celeste.Parameters;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Event = Celeste.Events.Event;
 using Celeste.Log;
 using Celeste.Tilemaps;
 using Celeste.Memory;
-using Celeste.Options;
 using Robbi.Runtime.Actors;
 using Robbi.Events.Runtime.Actors;
+using Celeste.Input;
 
 namespace Robbi.Movement
 {
@@ -223,6 +222,12 @@ namespace Robbi.Movement
         {
             remainingWaypointsPlaceable.Value = remainingWaypointsPlaceable.Value >= (int)amount ? remainingWaypointsPlaceable.Value - (int)amount : 0;
         }
+        
+        public void OnMovementManagerClicked(InputState inputState)
+        {
+            Vector3Int waypointGridPosition = movementTilemap.Value.WorldToCell(inputState.PointerWorldPosition);
+            AddWaypoint(waypointGridPosition);
+        }
 
         #endregion
 
@@ -259,7 +264,7 @@ namespace Robbi.Movement
             return 0 <= waypointIndex && waypointIndex < NumWaypoints ? waypoints[waypointIndex] : null;
         }
 
-        public void AddWaypoint(GameObjectClickEventArgs clickEventArgs)
+        public void AddWaypoint(Vector3Int waypointGridPosition)
         {
             if (isProgramRunning.Value)
             {
@@ -267,7 +272,6 @@ namespace Robbi.Movement
                 return;
             }
 
-            Vector3Int waypointGridPosition = movementTilemap.Value.WorldToCell(clickEventArgs.clickWorldPosition);
             if (WaypointExists(waypointGridPosition))
             {
                 // Cannot add waypoints to a position that already has one

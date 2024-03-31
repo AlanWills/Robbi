@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 6753468552517241281}
   - component: {fileID: 1059216477928049767}
   - component: {fileID: 5047806115426087420}
-  - component: {fileID: 6573740324595370327}
+  - component: {fileID: 4171964486984357535}
+  - component: {fileID: 4831118542000967304}
   m_Layer: 5
   m_Name: Disabled
   m_TagString: Untagged
@@ -30,9 +31,9 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1783134596272450145}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -91,6 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -120,11 +122,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6573740324595370327}
-        m_TargetAssemblyTypeName: Celeste.Events.ParameterisedEventRaiser`2[[System.String,
-          mscorlib
+      - m_Target: {fileID: 4171964486984357535}
+        m_TargetAssemblyTypeName: Celeste.Events.EventRaiser, Celeste.Events
         m_MethodName: Raise
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -133,7 +134,7 @@ MonoBehaviour:
           m_StringArgument: ToShopTransition
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6573740324595370327
+--- !u!114 &4171964486984357535
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,10 +143,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 2035113555796666587}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be51b5a008e796741a6aa3247de1c4fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 89a0d147401428146b5daed6a3cee729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 2ec219bc2c7b8ba4e882f960650ccc43, type: 2}
+  gameEvent: {fileID: 11400000, guid: 7d858598a3954394e89056200fe41b70, type: 2}
+--- !u!114 &4831118542000967304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035113555796666587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 953e34078e940b24c9d71f2cfe11bcda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cacheId: DoorToggleBoosterDisabled
+  gameObjectCache: {fileID: 11400000, guid: 1ddcf01b7a83d2342956a11ec0e3fe51, type: 2}
+  cacheOnAwake: 1
+  cacheOnEnable: 0
+  uncacheOnDisable: 0
 --- !u!1 &3017861213737913173
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,6 +175,7 @@ GameObject:
   - component: {fileID: 8445168740967805630}
   - component: {fileID: 2061692730649819128}
   - component: {fileID: 1269635221634891150}
+  - component: {fileID: 2444313255891847146}
   m_Layer: 0
   m_Name: BalanceText
   m_TagString: Untagged
@@ -174,9 +193,9 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1783134596272450145}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -281,6 +300,23 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &2444313255891847146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3017861213737913173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 953e34078e940b24c9d71f2cfe11bcda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cacheId: DoorToggleBoosterBalanceText
+  gameObjectCache: {fileID: 11400000, guid: 1ddcf01b7a83d2342956a11ec0e3fe51, type: 2}
+  cacheOnAwake: 1
+  cacheOnEnable: 0
+  uncacheOnDisable: 0
 --- !u!1 &8217325382143855811
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,6 +326,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1783134596272450145}
+  - component: {fileID: 3783128387740938266}
   m_Layer: 5
   m_Name: DoorToggleBooster
   m_TagString: Untagged
@@ -307,18 +344,35 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8988065914008737387}
   - {fileID: 7152544549356546279}
   - {fileID: 8445168740967805630}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3783128387740938266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8217325382143855811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 953e34078e940b24c9d71f2cfe11bcda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cacheId: DoorToggleBooster
+  gameObjectCache: {fileID: 11400000, guid: 1ddcf01b7a83d2342956a11ec0e3fe51, type: 2}
+  cacheOnAwake: 1
+  cacheOnEnable: 0
+  uncacheOnDisable: 0
 --- !u!1 &8382778331029944287
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,10 +404,10 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6646586197041747443}
   m_Father: {fileID: 1783134596272450145}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -413,6 +467,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -497,6 +552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 4f0b2c3d823d7984aab5a8ec3741664c, type: 2}
+  presetAudioClip: {fileID: 0}
 --- !u!1 &8446183372239856957
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,9 +581,9 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8988065914008737387}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

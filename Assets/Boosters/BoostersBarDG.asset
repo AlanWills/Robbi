@@ -36,7 +36,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: child
+      - fieldName: gameObject
         node: {fileID: -26031852410030577}
         reroutePoints: []
       _direction: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: U Int Comparer
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -216, y: 1064}
+  position: {x: -216, y: 1112}
   ports:
     keys:
     - lhs
@@ -121,19 +121,10 @@ MonoBehaviour:
   position: {x: 296, y: 24}
   ports:
     keys:
-    - childName
-    - child
+    - gameObject
+    - gameObjectName
     values:
-    - _fieldName: childName
-      _node: {fileID: -8499387180943745826}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: child
+    - _fieldName: gameObject
       _node: {fileID: -8499387180943745826}
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -145,10 +136,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: BoostersBar.WaypointBooster
+    - _fieldName: gameObjectName
+      _node: {fileID: -8499387180943745826}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: WaypointBooster
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 11400000, guid: 1ddcf01b7a83d2342956a11ec0e3fe51, type: 2}
   findConstraint: 2
   cache: 1
-  child: {fileID: 0}
 --- !u!114 &-7216734876250735384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -162,22 +163,13 @@ MonoBehaviour:
   m_Name: Find Game Object
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1176, y: 1000}
+  position: {x: 888, y: 1096}
   ports:
     keys:
-    - childName
-    - child
+    - gameObject
+    - gameObjectName
     values:
-    - _fieldName: childName
-      _node: {fileID: -7216734876250735384}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: child
+    - _fieldName: gameObject
       _node: {fileID: -7216734876250735384}
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -189,10 +181,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: BoostersBar.InteractBooster.BalanceText
+    - _fieldName: gameObjectName
+      _node: {fileID: -7216734876250735384}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: InteractBoosterBalanceText
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 11400000, guid: 1ddcf01b7a83d2342956a11ec0e3fe51, type: 2}
   findConstraint: 2
   cache: 1
-  child: {fileID: 0}
 --- !u!114 &-7020415675068979552
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -265,11 +267,12 @@ MonoBehaviour:
   m_Name: Bool Reader
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -216, y: 376}
+  position: {x: -168, y: 280}
   ports:
     keys:
     - value
     - output
+    - outputAsString
     values:
     - _fieldName: value
       _node: {fileID: -6613190165508207330}
@@ -295,8 +298,18 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: outputAsString
+      _node: {fileID: -6613190165508207330}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   value: {fileID: 11400000, guid: 6dede60f9f2a4b747a6b2c35d7b347e1, type: 2}
   output: 0
+  outputAsString: 0
 --- !u!114 &-5705647778567669789
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -313,19 +326,10 @@ MonoBehaviour:
   position: {x: 312, y: 488}
   ports:
     keys:
-    - childName
-    - child
+    - gameObject
+    - gameObjectName
     values:
-    - _fieldName: childName
-      _node: {fileID: -5705647778567669789}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: child
+    - _fieldName: gameObject
       _node: {fileID: -5705647778567669789}
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -337,10 +341,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: BoostersBar.DoorToggleBooster
+    - _fieldName: gameObjectName
+      _node: {fileID: -5705647778567669789}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: DoorToggleBooster
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 11400000, guid: 1ddcf01b7a83d2342956a11ec0e3fe51, type: 2}
   findConstraint: 2
   cache: 1
-  child: {fileID: 0}
 --- !u!114 &-5454218392383230481
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -359,6 +373,7 @@ MonoBehaviour:
     keys:
     - value
     - output
+    - outputAsString
     values:
     - _fieldName: value
       _node: {fileID: -5454218392383230481}
@@ -374,9 +389,6 @@ MonoBehaviour:
       _typeQualifiedName: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: input
-        node: {fileID: 6276626719158777082}
-        reroutePoints: []
       - fieldName: lhs
         node: {fileID: -2892201977371195309}
         reroutePoints: []
@@ -384,8 +396,21 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: outputAsString
+      _node: {fileID: -5454218392383230481}
+      _typeQualifiedName: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: value
+        node: {fileID: 466046073521297157}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   value: {fileID: 11400000, guid: 13769d90d377c5840b52f4c0c13a2fc3, type: 2}
   output: 0
+  outputAsString: 0
 --- !u!114 &-5264641172040714973
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -399,11 +424,12 @@ MonoBehaviour:
   m_Name: U Int Reader
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -8, y: -184}
+  position: {x: -264, y: -120}
   ports:
     keys:
     - value
     - output
+    - outputAsString
     values:
     - _fieldName: value
       _node: {fileID: -5264641172040714973}
@@ -426,8 +452,18 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: outputAsString
+      _node: {fileID: -5264641172040714973}
+      _typeQualifiedName: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   value: {fileID: 11400000, guid: 05e88d5bb7080e74982191859a874cd2, type: 2}
   output: 0
+  outputAsString: 0
 --- !u!114 &-4870221243109888540
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -441,7 +477,7 @@ MonoBehaviour:
   m_Name: Active Controller
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1176, y: 88}
+  position: {x: 1112, y: -40}
   ports:
     keys:
     - isActive
@@ -464,7 +500,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: child
+      - fieldName: gameObject
         node: {fileID: -3980082760278814397}
         reroutePoints: []
       _direction: 0
@@ -486,7 +522,7 @@ MonoBehaviour:
   m_Name: Set Waypoints Booster Balance
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1176, y: -168}
+  position: {x: 872, y: -264}
   ports:
     keys:
     - value
@@ -498,8 +534,8 @@ MonoBehaviour:
       _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: output
-        node: {fileID: 5728945061749789263}
+      - fieldName: outputAsString
+        node: {fileID: 6900585526644081427}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -519,7 +555,7 @@ MonoBehaviour:
       _typeQualifiedName: TMPro.TMP_Text, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
-      - fieldName: child
+      - fieldName: gameObject
         node: {fileID: 6937641823698042285}
         reroutePoints: []
       _direction: 0
@@ -542,22 +578,13 @@ MonoBehaviour:
   m_Name: Find Game Object
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1176, y: 200}
+  position: {x: 1112, y: 72}
   ports:
     keys:
-    - childName
-    - child
+    - gameObject
+    - gameObjectName
     values:
-    - _fieldName: childName
-      _node: {fileID: -3980082760278814397}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: child
+    - _fieldName: gameObject
       _node: {fileID: -3980082760278814397}
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -569,10 +596,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: BoostersBar.WaypointBooster.Disabled
+    - _fieldName: gameObjectName
+      _node: {fileID: -3980082760278814397}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: WaypointBoosterDisabled
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 11400000, guid: 1ddcf01b7a83d2342956a11ec0e3fe51, type: 2}
   findConstraint: 2
   cache: 1
-  child: {fileID: 0}
 --- !u!114 &-3940790848329070759
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -609,7 +646,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: child
+      - fieldName: gameObject
         node: {fileID: -8499387180943745826}
         reroutePoints: []
       _direction: 0
@@ -631,22 +668,13 @@ MonoBehaviour:
   m_Name: Find Game Object
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1176, y: 1240}
+  position: {x: 1176, y: 1288}
   ports:
     keys:
-    - childName
-    - child
+    - gameObject
+    - gameObjectName
     values:
-    - _fieldName: childName
-      _node: {fileID: -3469756927974947927}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: child
+    - _fieldName: gameObject
       _node: {fileID: -3469756927974947927}
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -658,10 +686,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: BoostersBar.InteractBooster.Disabled
+    - _fieldName: gameObjectName
+      _node: {fileID: -3469756927974947927}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: InteractBoosterDisabled
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 11400000, guid: 1ddcf01b7a83d2342956a11ec0e3fe51, type: 2}
   findConstraint: 2
   cache: 1
-  child: {fileID: 0}
 --- !u!114 &-2892201977371195309
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -675,7 +713,7 @@ MonoBehaviour:
   m_Name: U Int Comparer
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 888, y: 1272}
+  position: {x: 888, y: 1448}
   ports:
     keys:
     - lhs
@@ -732,7 +770,7 @@ MonoBehaviour:
   m_Name: Active Controller
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1176, y: 616}
+  position: {x: 1176, y: 504}
   ports:
     keys:
     - isActive
@@ -755,7 +793,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: child
+      - fieldName: gameObject
         node: {fileID: 1019576039715273895}
         reroutePoints: []
       _direction: 0
@@ -834,22 +872,13 @@ MonoBehaviour:
   m_Name: Find Game Object
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1176, y: 472}
+  position: {x: 888, y: 424}
   ports:
     keys:
-    - childName
-    - child
+    - gameObject
+    - gameObjectName
     values:
-    - _fieldName: childName
-      _node: {fileID: -1392643029497626474}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: child
+    - _fieldName: gameObject
       _node: {fileID: -1392643029497626474}
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -861,10 +890,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: BoostersBar.DoorToggleBooster.BalanceText
+    - _fieldName: gameObjectName
+      _node: {fileID: -1392643029497626474}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: DoorToggleBoosterBalanceText
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 11400000, guid: 1ddcf01b7a83d2342956a11ec0e3fe51, type: 2}
   findConstraint: 2
   cache: 1
-  child: {fileID: 0}
 --- !u!114 &-1184746208392767766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -878,7 +917,7 @@ MonoBehaviour:
   m_Name: Set Door Toggle Booster Balance
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1176, y: 344}
+  position: {x: 888, y: 280}
   ports:
     keys:
     - value
@@ -890,8 +929,8 @@ MonoBehaviour:
       _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: output
-        node: {fileID: 3817261569814717112}
+      - fieldName: outputAsString
+        node: {fileID: -302914798197975445}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -911,7 +950,7 @@ MonoBehaviour:
       _typeQualifiedName: TMPro.TMP_Text, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
-      - fieldName: child
+      - fieldName: gameObject
         node: {fileID: -1392643029497626474}
         reroutePoints: []
       _direction: 0
@@ -996,6 +1035,7 @@ MonoBehaviour:
     keys:
     - value
     - output
+    - outputAsString
     values:
     - _fieldName: value
       _node: {fileID: -302914798197975445}
@@ -1014,8 +1054,17 @@ MonoBehaviour:
       - fieldName: lhs
         node: {fileID: -2543405788289450105}
         reroutePoints: []
-      - fieldName: input
-        node: {fileID: 3817261569814717112}
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outputAsString
+      _node: {fileID: -302914798197975445}
+      _typeQualifiedName: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: value
+        node: {fileID: -1184746208392767766}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -1023,6 +1072,7 @@ MonoBehaviour:
       _dynamic: 0
   value: {fileID: 11400000, guid: 28cdcca9bda9453418a635199b19b694, type: 2}
   output: 0
+  outputAsString: 0
 --- !u!114 &-26031852410030577
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1039,19 +1089,10 @@ MonoBehaviour:
   position: {x: 312, y: 1016}
   ports:
     keys:
-    - childName
-    - child
+    - gameObject
+    - gameObjectName
     values:
-    - _fieldName: childName
-      _node: {fileID: -26031852410030577}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: child
+    - _fieldName: gameObject
       _node: {fileID: -26031852410030577}
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -1063,10 +1104,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: BoostersBar.InteractBooster
+    - _fieldName: gameObjectName
+      _node: {fileID: -26031852410030577}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: InteractBooster
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 11400000, guid: 1ddcf01b7a83d2342956a11ec0e3fe51, type: 2}
   findConstraint: 2
   cache: 1
-  child: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1088,7 +1139,6 @@ MonoBehaviour:
   - {fileID: 6900585526644081427}
   - {fileID: -780336268935335961}
   - {fileID: -4553785725393585793}
-  - {fileID: 5728945061749789263}
   - {fileID: 6937641823698042285}
   - {fileID: -4870221243109888540}
   - {fileID: -3980082760278814397}
@@ -1100,7 +1150,6 @@ MonoBehaviour:
   - {fileID: -2543405788289450105}
   - {fileID: -2843855533341639679}
   - {fileID: 1019576039715273895}
-  - {fileID: 3817261569814717112}
   - {fileID: -1184746208392767766}
   - {fileID: -1392643029497626474}
   - {fileID: 8892760236643612226}
@@ -1108,7 +1157,6 @@ MonoBehaviour:
   - {fileID: -9053411979983546732}
   - {fileID: -26031852410030577}
   - {fileID: -5454218392383230481}
-  - {fileID: 6276626719158777082}
   - {fileID: -2892201977371195309}
   - {fileID: 532043922514654297}
   - {fileID: -3469756927974947927}
@@ -1133,7 +1181,7 @@ MonoBehaviour:
   m_Name: Set Interact Booster Balance
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1176, y: 888}
+  position: {x: 888, y: 952}
   ports:
     keys:
     - value
@@ -1145,8 +1193,8 @@ MonoBehaviour:
       _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: output
-        node: {fileID: 6276626719158777082}
+      - fieldName: outputAsString
+        node: {fileID: -5454218392383230481}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -1166,7 +1214,7 @@ MonoBehaviour:
       _typeQualifiedName: TMPro.TMP_Text, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
-      - fieldName: child
+      - fieldName: gameObject
         node: {fileID: -7216734876250735384}
         reroutePoints: []
       _direction: 0
@@ -1212,7 +1260,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: child
+      - fieldName: gameObject
         node: {fileID: -3469756927974947927}
         reroutePoints: []
       _direction: 0
@@ -1234,22 +1282,13 @@ MonoBehaviour:
   m_Name: Find Game Object
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1176, y: 744}
+  position: {x: 1176, y: 616}
   ports:
     keys:
-    - childName
-    - child
+    - gameObject
+    - gameObjectName
     values:
-    - _fieldName: childName
-      _node: {fileID: 1019576039715273895}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: child
+    - _fieldName: gameObject
       _node: {fileID: 1019576039715273895}
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -1261,10 +1300,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: BoostersBar.DoorToggleBooster.Disabled
+    - _fieldName: gameObjectName
+      _node: {fileID: 1019576039715273895}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: DoorToggleBoosterDisabled
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 11400000, guid: 1ddcf01b7a83d2342956a11ec0e3fe51, type: 2}
   findConstraint: 2
   cache: 1
-  child: {fileID: 0}
 --- !u!114 &1898321596128381133
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1338,11 +1387,12 @@ MonoBehaviour:
   m_Name: Bool Reader
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -216, y: 856}
+  position: {x: -216, y: 824}
   ports:
     keys:
     - value
     - output
+    - outputAsString
     values:
     - _fieldName: value
       _node: {fileID: 3259085907607704056}
@@ -1368,8 +1418,18 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: outputAsString
+      _node: {fileID: 3259085907607704056}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   value: {fileID: 11400000, guid: 02bb6f91fd2573247bbfe27cf7ffd75e, type: 2}
   output: 0
+  outputAsString: 0
 --- !u!114 &3583823846908085803
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1429,62 +1489,6 @@ MonoBehaviour:
   input1: 0
   input2: 0
   result: 0
---- !u!114 &3817261569814717112
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e970f1db87201f40a31bb3924fd248d, type: 3}
-  m_Name: U Int To String
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 888, y: 344}
-  ports:
-    keys:
-    - input
-    - format
-    - output
-    values:
-    - _fieldName: input
-      _node: {fileID: 3817261569814717112}
-      _typeQualifiedName: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: output
-        node: {fileID: -302914798197975445}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: format
-      _node: {fileID: 3817261569814717112}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: output
-      _node: {fileID: 3817261569814717112}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: value
-        node: {fileID: -1184746208392767766}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  input: 0
-  format: 
-  output: 
 --- !u!114 &4313680064081179186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1498,11 +1502,12 @@ MonoBehaviour:
   m_Name: U Int Reader
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -216, y: 520}
+  position: {x: -216, y: 472}
   ports:
     keys:
     - value
     - output
+    - outputAsString
     values:
     - _fieldName: value
       _node: {fileID: 4313680064081179186}
@@ -1525,8 +1530,18 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: outputAsString
+      _node: {fileID: 4313680064081179186}
+      _typeQualifiedName: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   value: {fileID: 11400000, guid: 06e015e698fd52d4fb7ff961b3f7fe02, type: 2}
   output: 0
+  outputAsString: 0
 --- !u!114 &5676514508764782353
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1587,62 +1602,6 @@ MonoBehaviour:
   condition: 5
   rhs: 0
   result: 0
---- !u!114 &5728945061749789263
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e970f1db87201f40a31bb3924fd248d, type: 3}
-  m_Name: U Int To String
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 872, y: -168}
-  ports:
-    keys:
-    - input
-    - format
-    - output
-    values:
-    - _fieldName: input
-      _node: {fileID: 5728945061749789263}
-      _typeQualifiedName: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: output
-        node: {fileID: 6900585526644081427}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: format
-      _node: {fileID: 5728945061749789263}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: output
-      _node: {fileID: 5728945061749789263}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: value
-        node: {fileID: -4553785725393585793}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  input: 0
-  format: 
-  output: 
 --- !u!114 &5757814030888459680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1679,7 +1638,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: child
+      - fieldName: gameObject
         node: {fileID: -5705647778567669789}
         reroutePoints: []
       _direction: 0
@@ -1701,7 +1660,7 @@ MonoBehaviour:
   m_Name: And
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 888, y: 1144}
+  position: {x: 888, y: 1304}
   ports:
     keys:
     - input1
@@ -1747,62 +1706,6 @@ MonoBehaviour:
   input1: 0
   input2: 0
   result: 0
---- !u!114 &6276626719158777082
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e970f1db87201f40a31bb3924fd248d, type: 3}
-  m_Name: U Int To String
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 881.22534, y: 906.92285}
-  ports:
-    keys:
-    - input
-    - format
-    - output
-    values:
-    - _fieldName: input
-      _node: {fileID: 6276626719158777082}
-      _typeQualifiedName: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: output
-        node: {fileID: -5454218392383230481}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: format
-      _node: {fileID: 6276626719158777082}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: output
-      _node: {fileID: 6276626719158777082}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: value
-        node: {fileID: 466046073521297157}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  input: 0
-  format: 
-  output: 
 --- !u!114 &6900585526644081427
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1821,6 +1724,7 @@ MonoBehaviour:
     keys:
     - value
     - output
+    - outputAsString
     values:
     - _fieldName: value
       _node: {fileID: 6900585526644081427}
@@ -1839,8 +1743,17 @@ MonoBehaviour:
       - fieldName: lhs
         node: {fileID: -780336268935335961}
         reroutePoints: []
-      - fieldName: input
-        node: {fileID: 5728945061749789263}
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outputAsString
+      _node: {fileID: 6900585526644081427}
+      _typeQualifiedName: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: value
+        node: {fileID: -4553785725393585793}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -1848,6 +1761,7 @@ MonoBehaviour:
       _dynamic: 0
   value: {fileID: 11400000, guid: e5a9d69ba7358f64bb309adb980c3acd, type: 2}
   output: 0
+  outputAsString: 0
 --- !u!114 &6937641823698042285
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1861,22 +1775,13 @@ MonoBehaviour:
   m_Name: Find Game Object
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1176, y: -56}
+  position: {x: 872, y: -120}
   ports:
     keys:
-    - childName
-    - child
+    - gameObject
+    - gameObjectName
     values:
-    - _fieldName: childName
-      _node: {fileID: 6937641823698042285}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: child
+    - _fieldName: gameObject
       _node: {fileID: 6937641823698042285}
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -1888,10 +1793,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: BoostersBar.WaypointBooster.BalanceText
+    - _fieldName: gameObjectName
+      _node: {fileID: 6937641823698042285}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: WaypointBoosterBalanceText
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 11400000, guid: 1ddcf01b7a83d2342956a11ec0e3fe51, type: 2}
   findConstraint: 2
   cache: 1
-  child: {fileID: 0}
 --- !u!114 &8055255432215869337
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1969,6 +1884,7 @@ MonoBehaviour:
     keys:
     - value
     - output
+    - outputAsString
     values:
     - _fieldName: value
       _node: {fileID: 8699182612982571164}
@@ -1997,8 +1913,18 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: outputAsString
+      _node: {fileID: 8699182612982571164}
+      _typeQualifiedName: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   value: {fileID: 11400000, guid: e444c97c99c04b04ebc3344590658ee9, type: 2}
   output: 0
+  outputAsString: 0
 --- !u!114 &8892760236643612226
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2017,6 +1943,7 @@ MonoBehaviour:
     keys:
     - value
     - output
+    - outputAsString
     values:
     - _fieldName: value
       _node: {fileID: 8892760236643612226}
@@ -2039,5 +1966,15 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: outputAsString
+      _node: {fileID: 8892760236643612226}
+      _typeQualifiedName: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   value: {fileID: 11400000, guid: 6294bb07171f6df4c98ce5a1a476649c, type: 2}
   output: 0
+  outputAsString: 0

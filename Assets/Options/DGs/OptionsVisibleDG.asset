@@ -36,7 +36,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: child
+      - fieldName: gameObject
         node: {fileID: 7044148096894657779}
         reroutePoints: []
       _direction: 0
@@ -79,6 +79,7 @@ MonoBehaviour:
     keys:
     - value
     - output
+    - outputAsString
     values:
     - _fieldName: value
       _node: {fileID: 1476872206133271570}
@@ -101,8 +102,18 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: outputAsString
+      _node: {fileID: 1476872206133271570}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   value: {fileID: 11400000, guid: f3b96f94fb812b047872d41c4544c7a7, type: 2}
   output: 0
+  outputAsString: 0
 --- !u!114 &7044148096894657779
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -119,19 +130,10 @@ MonoBehaviour:
   position: {x: 56, y: 72}
   ports:
     keys:
-    - childName
-    - child
+    - gameObject
+    - gameObjectName
     values:
-    - _fieldName: childName
-      _node: {fileID: 7044148096894657779}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: child
+    - _fieldName: gameObject
       _node: {fileID: 7044148096894657779}
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -143,7 +145,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: Options.OptionsUI
+    - _fieldName: gameObjectName
+      _node: {fileID: 7044148096894657779}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: Options.OptionsUI
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 0}
   findConstraint: 2
   cache: 1
-  child: {fileID: 0}
