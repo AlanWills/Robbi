@@ -81,6 +81,8 @@ namespace Robbi.Levels
             // Set this before instantiating the level so the UI will correctly adapt
             levelData.tutorialProgression.Value = 0;
 
+            Debug.Assert(levelPrefab != null, $"No level prefab set on {name}.");
+            Debug.Assert(managers != null, $"No managers found for level {name}.");
             GameObject level = GameObject.Instantiate(levelPrefab, managers.transform);
             level.name = levelPrefab.name;
             levelGameObject.Value = level;
