@@ -45,7 +45,7 @@ namespace Robbi.Levels.Elements
             modifier.hideFlags = HideFlags.HideInHierarchy;
             pickupEffects.Add(modifier);
 
-            Celeste.Tools.EditorOnly.AddObjectToMainAsset(modifier, this);
+            Celeste.Tools.EditorOnly.AddObjectToAsset(modifier, this);
 
             return modifier;
         }

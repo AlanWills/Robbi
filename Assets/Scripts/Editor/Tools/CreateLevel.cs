@@ -278,7 +278,7 @@ namespace RobbiEditor.Tools
 
         private void CreateLevelDirectory()
         {
-            AssetUtility.CreateFolder(levelInfo.destinationFolder, LevelFolderName);
+            EditorOnly.CreateFolder(levelInfo.destinationFolder, LevelFolderName);
         }
 
         private void CreateFSM()
@@ -373,7 +373,7 @@ namespace RobbiEditor.Tools
             string doorsPath = string.Format("{0}{1}", LevelFolderFullPath, DOORS_NAME);
             if (!Directory.Exists(doorsPath))
             {
-                AssetUtility.CreateFolder(LevelFolderFullPath, DOORS_NAME);
+                EditorOnly.CreateFolder(LevelFolderFullPath, DOORS_NAME);
             }
 
             foreach (DoorInfo doorInfo in levelInfo.doors)
@@ -392,7 +392,7 @@ namespace RobbiEditor.Tools
             string interactablesPath = string.Format("{0}{1}", LevelFolderFullPath, INTERACTABLES_NAME);
             if (!Directory.Exists(interactablesPath))
             {
-                AssetUtility.CreateFolder(LevelFolderFullPath, INTERACTABLES_NAME);
+                EditorOnly.CreateFolder(LevelFolderFullPath, INTERACTABLES_NAME);
             }
 
             for (int i = 0; i < levelInfo.numInteractables; ++i)
@@ -414,7 +414,7 @@ namespace RobbiEditor.Tools
             string interactablesPath = string.Format("{0}{1}", LevelFolderFullPath, INTERACTABLES_NAME);
             if (!Directory.Exists(interactablesPath))
             {
-                AssetUtility.CreateFolder(LevelFolderFullPath, INTERACTABLES_NAME);
+                EditorOnly.CreateFolder(LevelFolderFullPath, INTERACTABLES_NAME);
             }
 
             for (int i = 0; i < levelInfo.numInteractableStateMachines; ++i)
@@ -436,7 +436,7 @@ namespace RobbiEditor.Tools
             string collectablesPath = string.Format("{0}{1}", LevelFolderFullPath, COLLECTABLES_NAME);
             if (!Directory.Exists(collectablesPath))
             {
-                AssetUtility.CreateFolder(LevelFolderFullPath, COLLECTABLES_NAME);
+                EditorOnly.CreateFolder(LevelFolderFullPath, COLLECTABLES_NAME);
             }
 
             for (int i = 0; i < levelInfo.numCollectables; ++i)
@@ -458,7 +458,7 @@ namespace RobbiEditor.Tools
             string portalsPath = string.Format("{0}{1}", LevelFolderFullPath, PORTALS_NAME);
             if (!Directory.Exists(portalsPath))
             {
-                AssetUtility.CreateFolder(LevelFolderFullPath, PORTALS_NAME);
+                EditorOnly.CreateFolder(LevelFolderFullPath, PORTALS_NAME);
             }
 
             for (int i = 0; i < levelInfo.numPortals; ++i)
@@ -480,7 +480,7 @@ namespace RobbiEditor.Tools
             string lasersPath = string.Format("{0}{1}", LevelFolderFullPath, LASERS_NAME);
             if (!Directory.Exists(lasersPath))
             {
-                AssetUtility.CreateFolder(LevelFolderFullPath, LASERS_NAME);
+                EditorOnly.CreateFolder(LevelFolderFullPath, LASERS_NAME);
             }
 
             int index = 0;
@@ -504,7 +504,7 @@ namespace RobbiEditor.Tools
             string enemiesPath = string.Format("{0}{1}", LevelFolderFullPath, ENEMIES_NAME);
             if (!Directory.Exists(enemiesPath))
             {
-                AssetUtility.CreateFolder(LevelFolderFullPath, ENEMIES_NAME);
+                EditorOnly.CreateFolder(LevelFolderFullPath, ENEMIES_NAME);
             }
 
             int index = 0;
@@ -529,7 +529,7 @@ namespace RobbiEditor.Tools
             string tutorialsPath = string.Format("{0}{1}", LevelFolderFullPath, TUTORIALS_NAME);
             if (!Directory.Exists(tutorialsPath))
             {
-                AssetUtility.CreateFolder(LevelFolderFullPath, TUTORIALS_NAME);
+                EditorOnly.CreateFolder(LevelFolderFullPath, TUTORIALS_NAME);
             }
 
             uint levelIndex = levelInfo.levelIndex;

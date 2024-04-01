@@ -16,7 +16,7 @@ namespace RobbiEditor.Levels.Elements
         [MenuItem("Assets/Create/Robbi/Levels/Door")]
         public static void CreateDoor()
         {
-            CreateDoor("Door", AssetUtility.GetSelectionObjectPath(), DoorState.Closed);
+            CreateDoor("Door", EditorOnly.GetSelectionObjectPath(), DoorState.Closed);
         }
 
         #endregion
@@ -29,7 +29,7 @@ namespace RobbiEditor.Levels.Elements
             door.name = name;
             door.startingState = startingState;
 
-            AssetUtility.CreateAsset(door, path);
+            EditorOnly.CreateAsset(door, path);
             door.SetAddressableInfo(AddressablesConstants.LEVELS_GROUP);
         }
 

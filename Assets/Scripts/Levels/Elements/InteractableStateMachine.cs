@@ -58,7 +58,7 @@ namespace Robbi.Levels.Elements
             state.hideFlags = HideFlags.HideInHierarchy;
             states.Add(state);
 
-            Celeste.Tools.EditorOnly.AddObjectToMainAsset(state, this);
+            Celeste.Tools.EditorOnly.AddObjectToAsset(state, this);
 
             return state;
         }

@@ -26,7 +26,7 @@ namespace RobbiEditor.Tools
         [MenuItem("Robbi/Tools/Create Level Integration Test")]
         public static void MenuItem()
         {
-            LevelRecord levelRecord = AssetUtility.FindAsset<LevelRecord>();
+            LevelRecord levelRecord = EditorOnly.FindAsset<LevelRecord>();
             FSMGraph integrationTest = ScriptableObject.CreateInstance<FSMGraph>();
             integrationTest.name = $"Level{levelRecord.CurrentLevel}IntegrationTest";
 

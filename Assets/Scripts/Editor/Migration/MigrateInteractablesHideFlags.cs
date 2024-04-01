@@ -15,7 +15,7 @@ namespace RobbiEditor.Migration
 
                 foreach (UnityEngine.Object obj in AssetDatabase.LoadAllAssetsAtPath(interactablePath))
                 {
-                    AssetUtility.ApplyHideFlags(obj, HideFlags.HideInHierarchy);
+                    EditorOnly.ApplyHideFlags(obj, HideFlags.HideInHierarchy);
                 }
             }
         }

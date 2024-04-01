@@ -62,7 +62,7 @@ namespace RobbiEditor.Levels.Elements
 
             if (isMainAsset && GUILayout.Button("Apply Hide Flags", GUILayout.ExpandWidth(false)))
             {
-                AssetUtility.ApplyHideFlags(Collectable, HideFlags.HideInHierarchy);
+                EditorOnly.ApplyHideFlags(Collectable, HideFlags.HideInHierarchy);
             }
 
             EditorGUILayout.EndHorizontal();

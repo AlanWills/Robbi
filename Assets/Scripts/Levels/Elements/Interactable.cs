@@ -64,7 +64,7 @@ namespace Robbi.Levels.Elements
             modifier.hideFlags = HideFlags.HideInHierarchy;
             interactedModifiers.Add(modifier);
 
-            Celeste.Tools.EditorOnly.AddObjectToMainAsset(modifier, this);
+            Celeste.Tools.EditorOnly.AddObjectToAsset(modifier, this);
 
             return modifier;
         }
@@ -77,7 +77,7 @@ namespace Robbi.Levels.Elements
             interactedModifiers.Insert(index, modifier);
             RemoveInteractedModifier(index + 1);
 
-            Celeste.Tools.EditorOnly.AddObjectToMainAsset(modifier, this);
+            Celeste.Tools.EditorOnly.AddObjectToAsset(modifier, this);
 
             return modifier;
         }
