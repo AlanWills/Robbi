@@ -1,4 +1,6 @@
-﻿using Celeste.Tilemaps;
+﻿using Celeste.Events;
+using Celeste.Tilemaps;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -31,6 +33,9 @@ namespace Robbi.Levels
         [SerializeField] private TilemapValue lasersTilemapValue;
         [SerializeField] private TilemapValue movementTilemapValue;
 
+        [Header("Events")]
+        [SerializeField] private Vector3Event centreCamera;
+
         #endregion
 
         #region Unity Methods
@@ -46,12 +51,6 @@ namespace Robbi.Levels
             collectablesTilemapValue.Value = collectablesTilemap;
             lasersTilemapValue.Value = lasersTilemap;
             movementTilemapValue.Value = movementTilemap;
-
-            // Not great, but a hacky workaround for the fact the camera can't start zoomed out and centred
-            // Maybe in the future this is resolved by a level started event or something
-            Bounds bounds = corridorsTilemap.localBounds;
-            Camera.main.transform.position = new Vector3(bounds.center.x, bounds.center.y, Camera.main.transform.position.z);
-            Camera.main.GetComponent<TilemapZoom>().FullZoomOut();
         }
 
         private void OnValidate()
@@ -75,9 +74,15 @@ namespace Robbi.Levels
 #endif
         }
 
-#endregion
+        private void Start()
+        {
+            Bounds bounds = corridorsTilemap.localBounds;
+            centreCamera.Invoke(new Vector3(bounds.center.x, bounds.center.y, -10));
+        }
 
-#region Editor Only Functions
+        #endregion
+
+        #region Editor Only Functions
 
 #if UNITY_EDITOR
         public void EditorOnly_CompressAllTilemaps()

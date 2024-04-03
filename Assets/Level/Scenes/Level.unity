@@ -3561,6 +3561,7 @@ GameObject:
   - component: {fileID: 1536764613}
   - component: {fileID: 1536764614}
   - component: {fileID: 1536764615}
+  - component: {fileID: 1536764620}
   - component: {fileID: 1536764619}
   m_Layer: 0
   m_Name: Main Camera
@@ -3854,7 +3855,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b175b9e38c183c048b03516291667277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _camera: {fileID: 1536764606}
+  useParameter: 0
   cameraValue: {fileID: 11400000, guid: 14ae487a7b0d7524e8df71e5b3255874, type: 2}
+  setInputCamera: {fileID: 11400000, guid: 89488db37115b5f4ca554e745deb3518, type: 2}
+  setInAwake: 1
+  setInOnEnable: 1
+  setInStart: 1
+  setInUpdate: 0
+--- !u!114 &1536764620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536764604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a15f8a86d9068a343b886c8d891866c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 779ea32c07e9cfb40a9e0e764edbc7cf, type: 2}
+  logAddAndRemoveListener: 0
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1536764607}
+        m_TargetAssemblyTypeName: UnityEngine.Transform, UnityEngine
+        m_MethodName: set_position
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1536764609}
+        m_TargetAssemblyTypeName: Celeste.Tilemaps.TilemapZoom, Celeste.Tilemaps
+        m_MethodName: FullZoomOut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1544069687
 MonoBehaviour:
   m_ObjectHideFlags: 1
