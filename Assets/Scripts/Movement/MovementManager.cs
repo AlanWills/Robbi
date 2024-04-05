@@ -25,6 +25,7 @@ namespace Robbi.Movement
 
             public Waypoint(Vector3Int gridPosition, WaypointMarker destinationMarker, int index)
             {
+                Debug.Assert(destinationMarker != null, $"Null {nameof(WaypointMarker)} passed into {nameof(Waypoint)}.");
                 this.gridPosition = gridPosition;
                 this.destinationMarker = destinationMarker;
 

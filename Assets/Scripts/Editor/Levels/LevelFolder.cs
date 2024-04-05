@@ -1,10 +1,5 @@
 ﻿using Robbi.Levels.Elements;
 using RobbiEditor.Iterators;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace RobbiEditor.Levels
@@ -14,7 +9,7 @@ namespace RobbiEditor.Levels
         private uint index;
         public uint Index
         {
-            get { return index; }
+            get => index;
             set
             {
                 index = value;
@@ -23,41 +18,41 @@ namespace RobbiEditor.Levels
         }
         public string Path { get; private set; }
 
-        public string LevelDataName { get { return string.Format("Level{0}Data", Index); } }
-        public string LevelDataPath { get { return string.Format("{0}/{1}.asset", Path, LevelDataName); } }
+        public string LevelDataName => $"Level{Index}Data";
+        public string LevelDataPath => $"{Path}/{LevelDataName}.asset";
 
-        public string PrefabName { get { return string.Format("Level{0}", Index); } }
-        public string PrefabPath { get { return string.Format("{0}/{1}.prefab", Path, PrefabName); } }
+        public string PrefabName => $"Level{Index}";
+        public string PrefabPath => $"{Path}/{PrefabName}.prefab";
 
-        public string TutorialsFolderPath { get { return string.Format("{0}/{1}", Path, LevelDirectories.TUTORIALS_NAME); } }
-        public string TutorialsPrefabName { get { return string.Format("Level{0}Tutorials", Index); } }
-        public string TutorialsPrefabPath { get { return string.Format("{0}{1}.prefab", TutorialsFolderPath, TutorialsPrefabName); } }
-        public string TutorialsFSMName { get { return string.Format("Level{0}TutorialsFSM", Index); } }
-        public string TutorialsFSMPath { get { return string.Format("{0}{1}.asset", TutorialsFolderPath, TutorialsFSMName); } }
-        public string TutorialsDGName { get { return string.Format("Level{0}TutorialsDG", Index); } }
-        public string TutorialsDGPath { get { return string.Format("{0}{1}.asset", TutorialsFolderPath, TutorialsDGName); } }
+        public string TutorialsFolderPath => $"{Path}/{LevelDirectories.TUTORIALS_NAME}";
+        public string TutorialsPrefabName => $"Level{Index}Tutorials";
+        public string TutorialsPrefabPath => $"{TutorialsFolderPath}{TutorialsPrefabName}.prefab";
+        public string TutorialsFSMName => $"Level{Index}TutorialsFSM";
+        public string TutorialsFSMPath => $"{TutorialsFolderPath}{TutorialsFSMName}.asset";
+        public string TutorialsDGName => $"Level{Index}TutorialsDG";
+        public string TutorialsDGPath => $"{TutorialsFolderPath}{TutorialsDGName}.asset";
 
-        public string TestsFolderPath { get { return string.Format("{0}/{1}", Path, LevelDirectories.TESTS_NAME); } }
-        public string TestFSMName { get { return string.Format("Level{0}IntegrationTest", Index); } }
-        public string TestFSMPath { get { return string.Format("{0}{1}.asset", TestsFolderPath, TestFSMName); } }
+        public string TestsFolderPath => $"{Path}/{LevelDirectories.TESTS_NAME}";
+        public string TestFSMName => $"Level{Index}IntegrationTest";
+        public string TestFSMPath => $"{TestsFolderPath}{TestFSMName}.asset";
 
-        public string InteractablesFolderPath { get { return string.Format("{0}/{1}", Path, LevelDirectories.INTERACTABLES_NAME); } }
-        public FindAssets<ScriptableObject> Interactables { get { return new FindAssets<ScriptableObject>(InteractablesFolderPath); } }
+        public string InteractablesFolderPath => $"{Path}/{LevelDirectories.INTERACTABLES_NAME}";
+        public FindAssets<ScriptableObject> Interactables => new FindAssets<ScriptableObject>(InteractablesFolderPath);
 
-        public string CollectablesFolderPath { get { return string.Format("{0}/{1}", Path, LevelDirectories.COLLECTABLES_NAME); } }
-        public FindAssets<Collectable> Collectables { get { return new FindAssets<Collectable>(CollectablesFolderPath); } }
+        public string CollectablesFolderPath => $"{Path}/{LevelDirectories.COLLECTABLES_NAME}";
+        public FindAssets<Collectable> Collectables => new FindAssets<Collectable>(CollectablesFolderPath);
 
-        public string PortalsFolderPath { get { return string.Format("{0}/{1}", Path, LevelDirectories.PORTALS_NAME); } }
-        public FindAssets<Portal> Portals { get { return new FindAssets<Portal>(PortalsFolderPath); } }
+        public string PortalsFolderPath => $"{Path}/{LevelDirectories.PORTALS_NAME}";
+        public FindAssets<Portal> Portals => new FindAssets<Portal>(PortalsFolderPath);
 
-        public string DoorsFolderPath { get { return string.Format("{0}/{1}", Path, LevelDirectories.DOORS_NAME); } }
-        public FindAssets<Door> Doors { get { return new FindAssets<Door>(DoorsFolderPath); } }
+        public string DoorsFolderPath => $"{Path}/{LevelDirectories.DOORS_NAME}";
+        public FindAssets<Door> Doors => new FindAssets<Door>(DoorsFolderPath);
 
-        public string LasersFolderPath { get { return string.Format("{0}/{1}", Path, LevelDirectories.LASERS_NAME); } }
-        public FindAssets<Laser> Lasers { get { return new FindAssets<Laser>(LasersFolderPath); } }
+        public string LasersFolderPath => $"{Path}/{LevelDirectories.LASERS_NAME}";
+        public FindAssets<Laser> Lasers => new FindAssets<Laser>(LasersFolderPath);
 
-        public string EnemiesFolderPath { get { return string.Format("{0}/{1}", Path, LevelDirectories.ENEMIES_NAME); } }
-        public FindAssets<Enemy> Enemies { get { return new FindAssets<Enemy>(EnemiesFolderPath); } }
+        public string EnemiesFolderPath => $"{Path}/{LevelDirectories.ENEMIES_NAME}";
+        public FindAssets<Enemy> Enemies => new FindAssets<Enemy>(EnemiesFolderPath);
 
         public LevelFolder(uint index)
         {

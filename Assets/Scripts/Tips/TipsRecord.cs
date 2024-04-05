@@ -61,28 +61,32 @@ namespace Celeste.Tips
             Initialize(new List<uint>(), new List<uint>());
         }
 
-        public void Initialize(IReadOnlyList<uint> unseenIndexes, IReadOnlyList<uint> seenIndexes)
+        public void Initialize(IReadOnlyList<uint> _unseenIndexes, IReadOnlyList<uint> _seenIndexes)
         {
             SetUpTips();
 
-            if (unseenIndexes.Count + seenIndexes.Count != allTips.Count)
+            seenIndexes.Clear();
+            unseenIndexes.Clear();
+
+            if (_unseenIndexes.Count + _seenIndexes.Count != allTips.Count)
             {
                 // The number of total tips has changed (either we've added more in a new update or removed some)
                 // Just wipe our indexes and start again
-                this.seenIndexes.Clear();
-                this.unseenIndexes.Clear();
-                this.unseenIndexes.Capacity = allTips.Count;
+                unseenIndexes.Capacity = allTips.Count;
 
                 for (uint i = 0; i < (uint)allTips.Count; ++i)
                 {
-                    this.unseenIndexes.Add(i);
+                    unseenIndexes.Add(i);
                 }
             }
             else
             {
-                this.unseenIndexes.AddRange(unseenIndexes);
-                this.seenIndexes.AddRange(seenIndexes);
+                unseenIndexes.AddRange(_unseenIndexes);
+                seenIndexes.AddRange(_seenIndexes);
             }
+
+            UnityEngine.Debug.Assert((unseenIndexes.Count + seenIndexes.Count) == allTips.Count, 
+                $"After initializing tips there was a mismatch between the indices {unseenIndexes.Count + seenIndexes.Count} and total tips {allTips.Count}.");
         }
 
         #endregion

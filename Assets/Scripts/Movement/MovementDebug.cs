@@ -67,6 +67,11 @@ namespace Robbi.Movement
 
         private void SetDebugMovementImpl(bool debugMovement)
         {
+            if (movementTilemap.Value == null)
+            {
+                return;
+            }
+            
             movementTilemap.Value.GetComponent<TilemapRenderer>().enabled = debugMovement;
         }
 
@@ -77,6 +82,11 @@ namespace Robbi.Movement
 
         private bool IsDebugMovementEnabledImpl()
         {
+            if (movementTilemap.Value == null)
+            {
+                return false;
+            }
+
             return movementTilemap.Value.GetComponent<TilemapRenderer>().enabled;
         }
 

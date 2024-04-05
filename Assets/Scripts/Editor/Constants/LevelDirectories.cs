@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RobbiEditor
+﻿namespace RobbiEditor
 {
     public static class LevelDirectories
     {
-        public static readonly string LEVELS_PATH = "Assets/Levels/";
+        public static readonly string LEVELS_PATH = "Assets/Level/Data/Levels/";
         public static readonly string PORTALS_NAME = "Portals/";
         public static readonly string DOORS_NAME = "Doors/";
         public static readonly string INTERACTABLES_NAME = "Interactables/";

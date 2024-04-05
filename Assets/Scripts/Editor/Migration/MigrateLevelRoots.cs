@@ -1,10 +1,10 @@
-﻿using Celeste.Tilemaps;
+﻿using Celeste.Events;
+using CelesteEditor.Tools;
 using Robbi.Levels;
 using RobbiEditor.Iterators;
 using RobbiEditor.Levels;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 namespace RobbiEditor.Migration
 {
@@ -13,34 +13,17 @@ namespace RobbiEditor.Migration
         [MenuItem("Robbi/Migration/Migrate Level Roots")]
         public static void MenuItem()
         {
-            //foreach (LevelFolder levelFolder in new LevelFolders())
-            //{
-            //    GameObject lasersGameObject = new GameObject("Lasers", typeof(Tilemap), typeof(TilemapRenderer));
-            //    lasersGameObject.GetComponent<TilemapRenderer>().sortingLayerName = "Lasers";
-            //    GameObject levelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(levelFolder.PrefabPath);
-            //    GameObject levelPrefabInstance = PrefabUtility.InstantiatePrefab(levelPrefab) as GameObject;
-            //    lasersGameObject.transform.parent = levelPrefabInstance.transform;
+            foreach (LevelFolder levelFolder in new LevelFolders())
+            {
+                GameObject levelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(levelFolder.PrefabPath);
+                LevelRoot levelRoot = levelPrefab.GetComponent<LevelRoot>();
+                levelRoot.centreCamera = EditorOnly.FindAsset<Vector3Event>("CentreCamera");
 
-            //    PrefabUtility.ApplyAddedGameObject(lasersGameObject, levelFolder.PrefabPath, InteractionMode.AutomatedAction);
-            //    UnityEngine.Object.DestroyImmediate(levelPrefabInstance);
-            //}
+                EditorUtility.SetDirty(levelPrefab);
+            }
 
-            //AssetDatabase.SaveAssets();
-            //AssetDatabase.Refresh();
-
-            //foreach (LevelFolder levelFolder in new LevelFolders())
-            //{
-            //    GameObject levelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(levelFolder.PrefabPath);
-            //    LevelRoot levelRoot = levelPrefab.GetComponent<LevelRoot>();
-            //    levelRoot.lasersTilemap = levelPrefab.transform.Find("Lasers").GetComponent<Tilemap>();
-            //    levelPrefab.transform.Find("Lasers").SetSiblingIndex(5);
-            //    levelRoot.lasersTilemapValue = AssetDatabase.LoadAssetAtPath<TilemapValue>("Assets/Parameters/Level/Tilemaps/Lasers.asset");
-
-            //    EditorUtility.SetDirty(levelPrefab);
-            //}
-
-            //AssetDatabase.SaveAssets();
-            //AssetDatabase.Refresh();
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
         }
     }
 }

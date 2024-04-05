@@ -34,7 +34,7 @@ namespace Robbi.Levels
         [SerializeField] private TilemapValue movementTilemapValue;
 
         [Header("Events")]
-        [SerializeField] private Vector3Event centreCamera;
+        [SerializeField] public Vector3Event centreCamera;
 
         #endregion
 

@@ -143,6 +143,62 @@ MonoBehaviour:
       _dynamic: 0
   input: 0
   output: 0
+--- !u!114 &-4061460194131628746
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf313e7fc931734b8e42bc5f1dc7bed, type: 3}
+  m_Name: Int Reader
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -56, y: 968}
+  ports:
+    keys:
+    - value
+    - output
+    - outputAsString
+    values:
+    - _fieldName: value
+      _node: {fileID: -4061460194131628746}
+      _typeQualifiedName: Celeste.Parameters.IntValue, Celeste.Parameters, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: -4061460194131628746}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: lhs
+        node: {fileID: -3604280217987985344}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outputAsString
+      _node: {fileID: -4061460194131628746}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: value
+        node: {fileID: 898723011604892580}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  value: {fileID: 11400000, guid: 0e9608338439be24ca922680b8f9b157, type: 2}
+  output: 0
+  outputAsString: 0
 --- !u!114 &-3604280217987985344
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -169,7 +225,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: output
-        node: {fileID: 2253627720150059364}
+        node: {fileID: -4061460194131628746}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -566,7 +622,6 @@ MonoBehaviour:
   - {fileID: 4780051652871867100}
   - {fileID: 3535084071739844279}
   - {fileID: -3513928337027077287}
-  - {fileID: 2253627720150059364}
   - {fileID: -3604280217987985344}
   - {fileID: -1762555494721061791}
   - {fileID: 3733870990858463230}
@@ -578,6 +633,7 @@ MonoBehaviour:
   - {fileID: -2915207871547422966}
   - {fileID: 8620285284336042445}
   - {fileID: -4706647291077921964}
+  - {fileID: -4061460194131628746}
 --- !u!114 &652479156604567183
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -660,8 +716,8 @@ MonoBehaviour:
       _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: output
-        node: {fileID: 2253627720150059364}
+      - fieldName: outputAsString
+        node: {fileID: -4061460194131628746}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -691,62 +747,6 @@ MonoBehaviour:
   value: 
   format: +{0}
   text: {fileID: 0}
---- !u!114 &2253627720150059364
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92ff3c0bb35764f4e9ed6c18f3b188b8, type: 3}
-  m_Name: U Int Reader
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: -40, y: 936}
-  ports:
-    keys:
-    - value
-    - output
-    - outputAsString
-    values:
-    - _fieldName: value
-      _node: {fileID: 2253627720150059364}
-      _typeQualifiedName: Celeste.Parameters.UIntValue, Celeste.Parameters, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: output
-      _node: {fileID: 2253627720150059364}
-      _typeQualifiedName: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: lhs
-        node: {fileID: -3604280217987985344}
-        reroutePoints: []
-      - fieldName: value
-        node: {fileID: 898723011604892580}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: outputAsString
-      _node: {fileID: 2253627720150059364}
-      _typeQualifiedName: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  value: {fileID: 11400000, guid: 4a1777c831535fa4d92cfe64a988fc6b, type: 2}
-  output: 0
-  outputAsString: 0
 --- !u!114 &3535084071739844279
 MonoBehaviour:
   m_ObjectHideFlags: 1

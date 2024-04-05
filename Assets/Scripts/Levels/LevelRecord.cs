@@ -1,4 +1,5 @@
-﻿using Celeste.Parameters;
+﻿using Celeste.Events;
+using Celeste.Parameters;
 using UnityEngine;
 
 namespace Robbi.Levels
@@ -54,6 +55,27 @@ namespace Robbi.Levels
 
         [Header("Events")]
         [SerializeField] private Celeste.Events.Event onChanged;
+
+        #endregion
+
+        public void Initialize()
+        {
+            Initialize(0);
+        }
+
+        public void Initialize(uint _latestUnlockedLevel)
+        {
+            currentLevel.Value = _latestUnlockedLevel;
+            latestUnlockedLevel.Value = _latestUnlockedLevel;
+            latestUnlockedLevel.AddValueChangedCallback(OnLatestUnlockedLevelChanged);
+        }
+
+        #region Callbacks
+
+        private void OnLatestUnlockedLevelChanged(ValueChangedArgs<uint> levelChangedArgs)
+        {
+            onChanged.Invoke();
+        }
 
         #endregion
     }

@@ -27,7 +27,7 @@ namespace Robbi.Levels
 
         protected override void Deserialize(LevelRecordDTO levelManagerDTO)
         {
-            levelRecord.LatestUnlockedLevel = levelManagerDTO.latestUnlockedLevelIndex;
+            levelRecord.Initialize(levelManagerDTO.latestUnlockedLevelIndex);
 
             HudLog.LogInfo($"Latest Unlocked Level Index: {levelRecord.LatestUnlockedLevel}");
             HudLog.LogInfo($"Latest Available Level Index: {levelRecord.LatestAvailableLevel}");
@@ -35,7 +35,7 @@ namespace Robbi.Levels
 
         protected override void SetDefaultValues() 
         {
-            levelRecord.LatestUnlockedLevel = 0;
+            levelRecord.Initialize();
         }
 
         #endregion
