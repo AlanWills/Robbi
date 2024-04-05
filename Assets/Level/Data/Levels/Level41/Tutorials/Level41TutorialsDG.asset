@@ -18,6 +18,7 @@ MonoBehaviour:
     keys:
     - value
     - output
+    - outputAsString
     values:
     - _fieldName: value
       _node: {fileID: -5953657659483197208}
@@ -43,8 +44,18 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: outputAsString
+      _node: {fileID: -5953657659483197208}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   value: {fileID: 11400000, guid: d37cc83f2021bad4d9d24e7b7857ed5b, type: 2}
   output: 0
+  outputAsString: 0
 --- !u!114 &-3794986864940994395
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -58,7 +69,7 @@ MonoBehaviour:
   m_Name: Active Controller
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 152, y: -24}
+  position: {x: 152, y: -56}
   ports:
     keys:
     - isActive
@@ -81,7 +92,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: child
+      - fieldName: gameObject
         node: {fileID: 6447363700478398679}
         reroutePoints: []
       _direction: 0
@@ -183,7 +194,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: child
+      - fieldName: gameObject
         node: {fileID: 9170673113479708093}
         reroutePoints: []
       _direction: 0
@@ -282,22 +293,13 @@ MonoBehaviour:
   m_Name: Find Game Object
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 152, y: 88}
+  position: {x: 152, y: 56}
   ports:
     keys:
-    - childName
-    - child
+    - gameObject
+    - gameObjectName
     values:
-    - _fieldName: childName
-      _node: {fileID: 6447363700478398679}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: child
+    - _fieldName: gameObject
       _node: {fileID: 6447363700478398679}
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -309,10 +311,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: PortalInfo
+    - _fieldName: gameObjectName
+      _node: {fileID: 6447363700478398679}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: PortalInfo
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 0}
   findConstraint: 0
   cache: 1
-  child: {fileID: 0}
 --- !u!114 &9170673113479708093
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -329,19 +341,10 @@ MonoBehaviour:
   position: {x: 152, y: 360}
   ports:
     keys:
-    - childName
-    - child
+    - gameObject
+    - gameObjectName
     values:
-    - _fieldName: childName
-      _node: {fileID: 9170673113479708093}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: child
+    - _fieldName: gameObject
       _node: {fileID: 9170673113479708093}
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -353,7 +356,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: PlaceWaypointAtPortal
+    - _fieldName: gameObjectName
+      _node: {fileID: 9170673113479708093}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: PlaceWaypointAtPortal
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 0}
   findConstraint: 0
   cache: 1
-  child: {fileID: 0}

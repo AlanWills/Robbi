@@ -13,22 +13,13 @@ MonoBehaviour:
   m_Name: Find Game Object
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 264, y: 200}
+  position: {x: 264, y: 232}
   ports:
     keys:
-    - childName
-    - child
+    - gameObject
+    - gameObjectName
     values:
-    - _fieldName: childName
-      _node: {fileID: -8424874828150213935}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: child
+    - _fieldName: gameObject
       _node: {fileID: -8424874828150213935}
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -40,10 +31,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: PortalMatchingInfo
+    - _fieldName: gameObjectName
+      _node: {fileID: -8424874828150213935}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: PortalMatchingInfo
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 0}
   findConstraint: 0
   cache: 1
-  child: {fileID: 0}
 --- !u!114 &-4316766435777066762
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -80,7 +81,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: child
+      - fieldName: gameObject
         node: {fileID: -2288049532756391359}
         reroutePoints: []
       _direction: 0
@@ -107,6 +108,7 @@ MonoBehaviour:
     keys:
     - value
     - output
+    - outputAsString
     values:
     - _fieldName: value
       _node: {fileID: -3628929596526173917}
@@ -132,8 +134,18 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: outputAsString
+      _node: {fileID: -3628929596526173917}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   value: {fileID: 11400000, guid: d37cc83f2021bad4d9d24e7b7857ed5b, type: 2}
   output: 0
+  outputAsString: 0
 --- !u!114 &-2288049532756391359
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -150,19 +162,10 @@ MonoBehaviour:
   position: {x: 264, y: -56}
   ports:
     keys:
-    - childName
-    - child
+    - gameObject
+    - gameObjectName
     values:
-    - _fieldName: childName
-      _node: {fileID: -2288049532756391359}
-      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: child
+    - _fieldName: gameObject
       _node: {fileID: -2288049532756391359}
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -174,10 +177,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  childName: PortalShapesColoursInfo
+    - _fieldName: gameObjectName
+      _node: {fileID: -2288049532756391359}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: PortalShapesColoursInfo
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 0}
   findConstraint: 0
   cache: 1
-  child: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +224,7 @@ MonoBehaviour:
   m_Name: Active Controller
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 264, y: 88}
+  position: {x: 264, y: 120}
   ports:
     keys:
     - isActive
@@ -234,7 +247,7 @@ MonoBehaviour:
       _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: child
+      - fieldName: gameObject
         node: {fileID: -8424874828150213935}
         reroutePoints: []
       _direction: 0
