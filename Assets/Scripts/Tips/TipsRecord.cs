@@ -20,12 +20,11 @@ namespace Celeste.Tips
                 if (allTips.Count == 0)
                 {
                     UnityEngine.Debug.LogAssertion($"No tips found in {nameof(TipsRecord)}.");
-                    return "";
+                    return string.Empty;
                 }
 
                 if (unseenIndexes.Count == 0)
                 {
-                    unseenIndexes.Clear();
                     unseenIndexes.AddRange(seenIndexes);
                     seenIndexes.Clear();
                 }
