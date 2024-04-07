@@ -242,6 +242,8 @@ namespace Robbi.Movement
                 RemoveWaypoint(i);
             }
 
+            remainingWaypointsPlaceable.Value = solutionWaypoints.Count;
+
             foreach (Vector3Int waypoint in solutionWaypoints)
             {
                 AddWaypoint(waypoint);

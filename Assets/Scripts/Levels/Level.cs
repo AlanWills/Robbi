@@ -60,7 +60,7 @@ namespace Robbi.Levels
             get => solutionWaypoints;
             set
             {
-                if (solutionWaypoints.Intersect(value).Any())
+                if (solutionWaypoints.Intersect(value).Count() != value.Count)
                 {
                     solutionWaypoints.Clear();
                     solutionWaypoints.AddRange(value);
