@@ -6,7 +6,8 @@ namespace Robbi.Movement
     [CreateAssetMenu(fileName = nameof(MovementDebugMenu), menuName = "Robbi/Movement/Movement Debug Menu")]
     public class MovementDebugMenu : DebugMenu
     {
-        [SerializeField] private Celeste.Events.Event exitReachedEvent;
+        [SerializeField] private Celeste.Events.Event solveLevel;
+        [SerializeField] private Celeste.Events.Event completeLevel;
 
         protected override void OnDrawMenu()
         {
@@ -31,9 +32,17 @@ namespace Robbi.Movement
                 }
             }
 
-            if (GUILayout.Button("Complete Level"))
+            using (new GUILayout.HorizontalScope())
             {
-                exitReachedEvent.Invoke();
+                if (GUILayout.Button("Solve Level"))
+                {
+                    solveLevel.Invoke();
+                }
+
+                if (GUILayout.Button("Complete Level"))
+                {
+                    completeLevel.Invoke();
+                }
             }
         }
 

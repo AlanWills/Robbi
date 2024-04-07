@@ -36,7 +36,8 @@ namespace Robbi.Runtime
             IEnumerable<ScriptableObject> interactables,
             IEnumerable<Portal> portals,
             IEnumerable<Laser> lasers,
-            IEnumerable<Enemy> enemies)
+            IEnumerable<Enemy> enemies,
+            IReadOnlyList<Vector3Int> solutionWaypoints)
         {
             // Initialize enemies first so we can pass them to other people if necessary
             enemiesManager.Initialize(enemies, playerRuntime);
@@ -48,7 +49,7 @@ namespace Robbi.Runtime
             collectablesManager.Initialize(collectables);
             doorsManager.Initialize(doors);
             interactablesManager.Initialize(interactables);
-            movementManager.Initialize(playerRuntime);
+            movementManager.Initialize(playerRuntime, solutionWaypoints);
             portalsManager.Initialize(portals);
             lasersManager.Initialize(lasers, allCharacterRuntimes);
             timeManager.Initialize();

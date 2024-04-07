@@ -9,6 +9,7 @@ using Celeste.Assets;
 using UnityEngine.AddressableAssets;
 using Celeste.Tools.Attributes.GUI;
 using Celeste.Tools;
+using System.Linq;
 
 namespace Robbi.Levels
 {
@@ -54,6 +55,20 @@ namespace Robbi.Levels
             }
         }
 
+        public List<Vector3Int> SolutionWaypoints
+        {
+            get => solutionWaypoints;
+            set
+            {
+                if (solutionWaypoints.Intersect(value).Any())
+                {
+                    solutionWaypoints.Clear();
+                    solutionWaypoints.AddRange(value);
+                    EditorOnly.SetDirty(this);
+                }
+            }
+        }
+
         [SerializeField] private GameObject levelPrefab;
 
         [Header("Level Elements")]
@@ -71,6 +86,9 @@ namespace Robbi.Levels
         [SerializeField] private bool requiresFuel = false;
         [ShowIf("requiresFuel")][SerializeField] private uint startingFuel;
         [SerializeField] private int softCurrencyPrize;
+
+        [Header("Testing")]
+        [SerializeField] private List<Vector3Int> solutionWaypoints = new List<Vector3Int>();
 
         #endregion
 
@@ -99,7 +117,7 @@ namespace Robbi.Levels
             levelData.doorToggleBoosterUsable.Value = doors.Count > 0;
             levelData.interactBoosterUsable.Value = interactables.Count > 0;
 
-            managers.Initialize(collectables, doors, interactables, portals, lasers, enemies);
+            managers.Initialize(collectables, doors, interactables, portals, lasers, enemies, solutionWaypoints);
             collectionTargetRecord.Initialize(collectionTargets);
         }
 

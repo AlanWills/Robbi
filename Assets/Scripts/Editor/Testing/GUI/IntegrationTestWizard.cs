@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Celeste.Testing;
+using CelesteEditor.Tools;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
@@ -28,39 +28,41 @@ namespace RobbiEditor.Testing.GUI
 
         protected override bool DrawWizardGUI()
         {
-            EditorGUILayout.BeginHorizontal();
-
-            if (GUILayout.Button("Select All", GUILayout.ExpandWidth(false)))
+            using (new GUILayout.HorizontalScope())
             {
-                SetSelectionStatusForAll(true);
-            }
-
-            if (GUILayout.Button("Deselect All", GUILayout.ExpandWidth(false)))
-            {
-                SetSelectionStatusForAll(false);
-            }
-
-            if (GUILayout.Button("Refresh", GUILayout.ExpandWidth(false)))
-            {
-                RefreshGUI();
-            }
-
-            EditorGUILayout.EndHorizontal();
-
-            EditorGUI.BeginChangeCheck();
-            testPlaylist = EditorGUILayout.ObjectField(testPlaylist, typeof(TestPlaylist), false) as TestPlaylist;
-            if (EditorGUI.EndChangeCheck())
-            {
-                SetSelectionStatusForAll(false);
-
-                if (testPlaylist != null)
+                if (GUILayout.Button("Select All", GUILayout.ExpandWidth(false)))
                 {
-                    HashSet<string> playlistNames = testPlaylist.IntegrationTestNames;
-                    foreach (IntegrationTestGUI testGui in testGUIs)
+                    SetSelectionStatusForAll(true);
+                }
+
+                if (GUILayout.Button("Deselect All", GUILayout.ExpandWidth(false)))
+                {
+                    SetSelectionStatusForAll(false);
+                }
+
+                if (GUILayout.Button("Refresh", GUILayout.ExpandWidth(false)))
+                {
+                    RefreshGUI();
+                }
+            }
+
+            using (var changeCheck = new EditorGUI.ChangeCheckScope())
+            {
+                testPlaylist = EditorGUILayout.ObjectField(testPlaylist, typeof(TestPlaylist), false) as TestPlaylist;
+
+                if (changeCheck.changed)
+                {
+                    SetSelectionStatusForAll(false);
+
+                    if (testPlaylist != null)
                     {
-                        if (playlistNames.Contains(testGui.TestName))
+                        HashSet<string> playlistNames = testPlaylist.IntegrationTestNames;
+                        foreach (IntegrationTestGUI testGui in testGUIs)
                         {
-                            testGui.IsSelected = true;
+                            if (playlistNames.Contains(testGui.TestName))
+                            {
+                                testGui.IsSelected = true;
+                            }
                         }
                     }
                 }
@@ -82,13 +84,13 @@ namespace RobbiEditor.Testing.GUI
 
         private void OnWizardOtherButton()
         {
-            List<string> selectedTests = new List<string>();
+            List<IntegrationTest> selectedTests = new List<IntegrationTest>();
 
             foreach (IntegrationTestGUI testGui in testGUIs)
             {
                 if (testGui.IsSelected)
                 {
-                    selectedTests.Add(testGui.TestName);
+                    selectedTests.Add(testGui.Test);
                 }
             }
 
@@ -111,16 +113,16 @@ namespace RobbiEditor.Testing.GUI
         {
             testGUIs.Clear();
 
-            foreach (Type test in IntegrationTests.AllIntegrationTests.OrderBy(x => x.Name))
+            foreach (IntegrationTest test in EditorOnly.FindAssets<IntegrationTest>().OrderBy(x => x.DisplayName))
             {
                 string testResultsDirectory = Path.Combine(Application.dataPath, "..", "TestResults");
                 TestResult result = TestResult.NotRun;
 
-                if (File.Exists(Path.Combine(testResultsDirectory, test.Name + "-Failed.txt")))
+                if (File.Exists(Path.Combine(testResultsDirectory, test.DisplayName + "-Failed.txt")))
                 {
                     result = TestResult.Failed;
                 }
-                else if (File.Exists(Path.Combine(testResultsDirectory, test.Name + "-Passed.txt")))
+                else if (File.Exists(Path.Combine(testResultsDirectory, test.DisplayName + "-Passed.txt")))
                 {
                     result = TestResult.Passed;
                 }

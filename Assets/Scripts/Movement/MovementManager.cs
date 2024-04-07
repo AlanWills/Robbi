@@ -9,6 +9,7 @@ using Celeste.Memory;
 using Robbi.Runtime.Actors;
 using Robbi.Events.Runtime.Actors;
 using Celeste.Input;
+using System;
 
 namespace Robbi.Movement
 {
@@ -73,13 +74,14 @@ namespace Robbi.Movement
         public FloatValue movementSpeed;
         public BoxCollider2D boundingBox;
 
-        private CharacterRuntime characterRuntime;
-        private List<Waypoint> waypoints = new List<Waypoint>();
-        private AStarMovement aStarMovement = new AStarMovement();
+        [NonSerialized] private CharacterRuntime characterRuntime;
+        [NonSerialized] private List<Waypoint> waypoints = new List<Waypoint>();
+        [NonSerialized] private AStarMovement aStarMovement = new AStarMovement();
+        [NonSerialized] private List<Vector3Int> solutionWaypoints = new List<Vector3Int>();
 
         #endregion
 
-        public void Initialize(CharacterRuntime _characterRuntime)
+        public void Initialize(CharacterRuntime _characterRuntime, IReadOnlyList<Vector3Int> _solutionWaypoints)
         {
             characterRuntime = _characterRuntime;
             waypointsPlaced.Value = 0;
@@ -90,6 +92,9 @@ namespace Robbi.Movement
             aStarMovement.DoorsTilemap = doorsTilemap.Value;
             aStarMovement.PortalsTilemap = portalsTilemap.Value;
             aStarMovement.PortalsWeight = 0;    // Add no extra cost for a tile with a portal
+
+            solutionWaypoints.Clear();
+            solutionWaypoints.AddRange(_solutionWaypoints);
 
             Vector3Int movementGridSize = movementTilemap.Value.size;
             Vector3Int movementOrigin = movementTilemap.Value.origin;
@@ -228,6 +233,19 @@ namespace Robbi.Movement
         {
             Vector3Int waypointGridPosition = movementTilemap.Value.WorldToCell(inputState.PointerWorldPosition);
             AddWaypoint(waypointGridPosition);
+        }
+
+        public void OnApplySolution()
+        {
+            for (int i = waypoints.Count - 1; i >= 0; --i)
+            {
+                RemoveWaypoint(i);
+            }
+
+            foreach (Vector3Int waypoint in solutionWaypoints)
+            {
+                AddWaypoint(waypoint);
+            }
         }
 
         #endregion

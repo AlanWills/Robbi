@@ -16,7 +16,7 @@ namespace RobbiEditor
     public static class EditorStartup
     {
         private const string STARTUP_SCENE_NAME = "Startup";
-        private const string STARTUP_SCENE_PATH = "Assets/Startup/Startup.unity";
+        private const string STARTUP_SCENE_PATH = "Assets/Startup/Scenes/Startup.unity";
 
         static EditorStartup()
         {
@@ -43,11 +43,11 @@ namespace RobbiEditor
 
         public static void OpenStartupScene()
         {
-            //if (!EditorApplication.isPlaying && SceneManager.GetActiveScene().name != STARTUP_SCENE_NAME)
-            //{
-            //    Debug.Log("Setting active scene to " + STARTUP_SCENE_NAME);
-            //    EditorSceneManager.OpenScene(STARTUP_SCENE_PATH, OpenSceneMode.Single);
-            //}
+            if (!EditorApplication.isPlaying && SceneManager.GetActiveScene().name != STARTUP_SCENE_NAME)
+            {
+                Debug.Log("Setting active scene to " + STARTUP_SCENE_NAME);
+                EditorSceneManager.OpenScene(STARTUP_SCENE_PATH, OpenSceneMode.Single);
+            }
         }
 
         private static void ClearIntegrationTest()

@@ -1,13 +1,32 @@
-﻿using System;
+﻿using Celeste.Testing;
+using System;
 using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
 
 namespace RobbiEditor.Testing
 {
     public static class IntegrationTestEditorAPI
     {
+        public static void RunTests(List<IntegrationTest> tests)
+        {
+            EditorApplication.EnterPlaymode();
+            //EditorApplication.playModeStateChanged += (PlayModeStateChange obj) =>
+            //{
+            //    if (obj == PlayModeStateChange.EnteredPlayMode)
+            //    {
+            //        IntegrationTestRunner integrationTestRunner = GameObject.FindFirstObjectByType<IntegrationTestRunner>();
+            //        GameObject.DontDestroyOnLoad(integrationTestRunner);
+            //        integrationTestRunner.RunTests(tests);
+            //    }
+            //};
+            //EditorStartup.OpenStartupScene();
+        }
+
         public static void RunTests(IEnumerable<string> testNames)
         {
-            EditorStartup.OpenStartupScene();
+            //EditorStartup.OpenStartupScene();
+            //GameObject.FindFirstObjectByType<IntegrationTestRunner>().RunTests()
             //IntegrationTestRunner.Instance.RunTests(testNames);
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Celeste.Testing;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -67,14 +68,16 @@ namespace RobbiEditor.Testing.GUI
         public bool IsSelected { get; set; }
         public TestResult Result { get; set; }
         public string TestName { get; private set; }
+        public IntegrationTest Test { get; private set; }
 
         #endregion
 
-        public IntegrationTestGUI(Type integrationTestType, TestResult result)
+        public IntegrationTestGUI(IntegrationTest integrationTest, TestResult result)
         {
             IsSelected = false;
             Result = result;
-            TestName = integrationTestType.Name;
+            TestName = integrationTest.DisplayName;
+            Test = integrationTest;
         }
 
         public void GUI()
