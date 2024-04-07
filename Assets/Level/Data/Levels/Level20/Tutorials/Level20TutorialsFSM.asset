@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3c9a38be80386d4ea8852ca12654382, type: 3}
   m_Name: _newValue
   m_EditorClassIdentifier: 
+  helpText: 
   isConstant: 1
   constantValue: 1
   referenceValue: {fileID: 0}
@@ -27,6 +28,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0008096ec181f524fb8ed2dac702c007, type: 3}
   m_Name: _targetPosition
   m_EditorClassIdentifier: 
+  helpText: 
   isConstant: 1
   constantValue: {x: -3, y: 0, z: 0}
   referenceValue: {fileID: 0}
@@ -61,6 +63,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 2142971830273653631}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 2142971830273653631}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -83,6 +88,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+  guid: ef625188-090e-4dec-9761-1d7f245f13b7
   value: {fileID: 11400000, guid: d37cc83f2021bad4d9d24e7b7857ed5b, type: 2}
   newValue: {fileID: 6336113398210314457}
   setMode: 0
@@ -183,8 +189,84 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
+  guid: 2878ef73-35b6-4ecf-b6da-34e795addd32
   conditions:
-  - {fileID: 9000741162066988597}
+  - Name: 
+    Condition: {fileID: 0}
+    UseArgument: 0
+--- !u!114 &-215533580508980168
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 687f22ade9886e045a3aba65adb32302, type: 3}
+  m_Name: Vector 3 Int Comparer
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 40, y: -8}
+  ports:
+    keys:
+    - ' '
+    - inputValue
+    - True
+    - False
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -215533580508980168}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: 2124457192511508135}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: inputValue
+      _node: {fileID: -215533580508980168}
+      _typeQualifiedName: UnityEngine.Vector3Int, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: argument
+        node: {fileID: 2124457192511508135}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: True
+      _node: {fileID: -215533580508980168}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 4110095994591005888}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: False
+      _node: {fileID: -215533580508980168}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 2124457192511508135}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  guid: 2fdb5037-70b6-45d8-929f-82d2d91afef8
+  inputValue: {x: 0, y: 0, z: 0}
+  condition: 0
+  targetValue: {fileID: 3903673369182090197}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,11 +281,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: 2124457192511508135}
-  - {fileID: -2729850298739085160}
   - {fileID: 4110095994591005888}
   - {fileID: 2142971830273653631}
   - {fileID: -4441776100129700030}
   - {fileID: 2009965379666263315}
+  - {fileID: -215533580508980168}
   startNode: {fileID: 2009965379666263315}
   parameters:
   - {fileID: -9155102405131551919}
@@ -211,6 +293,7 @@ MonoBehaviour:
   - {fileID: 4585377272661441881}
   - {fileID: 6336113398210314457}
   - {fileID: -8897196788013612467}
+  - {fileID: 3903673369182090197}
 --- !u!114 &2009965379666263315
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -251,6 +334,7 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
+  guid: 632cf0dc-fb72-4598-ba3c-08649f39baf3
   targetPosition: {fileID: -8897196788013612467}
   lookAxis: 2
   time: 0.5
@@ -306,6 +390,12 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 2009965379666263315}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 2009965379666263315}
+        reroutePoints: []
+      - fieldName: False
+        node: {fileID: -215533580508980168}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -316,7 +406,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: -2729850298739085160}
+        node: {fileID: -215533580508980168}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -330,10 +420,14 @@ MonoBehaviour:
       - fieldName: inArgument
         node: {fileID: -2729850298739085160}
         reroutePoints: []
+      - fieldName: inputValue
+        node: {fileID: -215533580508980168}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+  guid: d4b32345-42bd-43d6-aca6-e919f14c4a9f
   argument: {x: -3, y: 0, z: 0}
   listenFor: {fileID: 11400000, guid: b29c4307e71a13a4c82941ab0f1f4f80, type: 2}
 --- !u!114 &2142971830273653631
@@ -366,6 +460,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 4110095994591005888}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: 4110095994591005888}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -382,7 +479,24 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
+  guid: 95f7efbb-fc5d-4df0-9975-8ffb351b2084
   listenFor: {fileID: 11400000, guid: 421463337f1ed284a83b6ad48c142b25, type: 2}
+--- !u!114 &3903673369182090197
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74932df3e79c946469c896e470e3a0df, type: 3}
+  m_Name: _TargetValue
+  m_EditorClassIdentifier: 
+  helpText: 
+  isConstant: 1
+  constantValue: {x: -3, y: 0, z: 0}
+  referenceValue: {fileID: 0}
 --- !u!114 &4110095994591005888
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -396,7 +510,7 @@ MonoBehaviour:
   m_Name: Set Int Value
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 344, y: -8}
+  position: {x: 360, y: -8}
   ports:
     keys:
     - ' '
@@ -410,6 +524,9 @@ MonoBehaviour:
       connections:
       - fieldName: WaypointPlacedAtToggle
         node: {fileID: -2729850298739085160}
+        reroutePoints: []
+      - fieldName: True
+        node: {fileID: -215533580508980168}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -436,6 +553,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+  guid: 3e65d542-e473-42af-843f-5fd88e61b3d3
   value: {fileID: 11400000, guid: d37cc83f2021bad4d9d24e7b7857ed5b, type: 2}
   newValue: {fileID: -9155102405131551919}
   setMode: 0
@@ -451,6 +569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74932df3e79c946469c896e470e3a0df, type: 3}
   m_Name: WaypointPlacedAtToggle_target
   m_EditorClassIdentifier: 
+  helpText: 
   isConstant: 1
   constantValue: {x: -3, y: 0, z: 0}
   referenceValue: {fileID: 0}
@@ -466,6 +585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74932df3e79c946469c896e470e3a0df, type: 3}
   m_Name: WaypointPlacedAtToggle_value
   m_EditorClassIdentifier: 
+  helpText: 
   isConstant: 1
   constantValue: {x: -3, y: 0, z: 0}
   referenceValue: {fileID: 0}
@@ -481,6 +601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3c9a38be80386d4ea8852ca12654382, type: 3}
   m_Name: _newValue
   m_EditorClassIdentifier: 
+  helpText: 
   isConstant: 1
   constantValue: 2
   referenceValue: {fileID: 0}
@@ -496,7 +617,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f73e5c005b2c6ee4a929080332770ff6, type: 3}
   m_Name: WaypointPlacedAtToggle
   m_EditorClassIdentifier: 
+  onIsMetChanged:
+    bakedEvent: {fileID: 0}
   value: {fileID: 5276373443629415236}
   condition: 0
-  useArgument: 1
   target: {fileID: 4585377272661441881}

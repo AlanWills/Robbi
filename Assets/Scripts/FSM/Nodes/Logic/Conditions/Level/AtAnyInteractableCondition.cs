@@ -8,6 +8,7 @@ using System.ComponentModel;
 namespace Robbi.FSM.Nodes.Logic.Conditions
 {
     [DisplayName("At Any Interactable")]
+    [CreateAssetMenu(fileName = nameof(AtAnyInteractableCondition), menuName = "Robbi/Conditions/At Any Interactable")]
     public class AtAnyInteractableCondition : Condition
     {
         #region Properties and Fields

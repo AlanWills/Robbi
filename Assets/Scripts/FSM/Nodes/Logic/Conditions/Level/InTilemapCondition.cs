@@ -7,6 +7,7 @@ using System.ComponentModel;
 namespace Robbi.FSM.Nodes.Logic.Conditions
 {
     [DisplayName("In Tilemap")]
+    [CreateAssetMenu(fileName = nameof(InTilemapCondition), menuName = "Robbi/Conditions/In Tilemap")]
     public class InTilemapCondition : Condition
     {
         #region Properties and Fields

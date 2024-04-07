@@ -8,6 +8,7 @@ using UnityEngine;
 namespace Robbi.FSM.Nodes.Logic.Conditions
 {
     [DisplayName("Door State")]
+    [CreateAssetMenu(fileName = nameof(DoorStateCondition), menuName = "Robbi/Conditions/Door State")]
     public class DoorStateCondition : Condition
     {
         #region Properties and Fields

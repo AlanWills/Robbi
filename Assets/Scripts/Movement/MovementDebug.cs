@@ -11,7 +11,7 @@ namespace Robbi.Movement
     {
         #region Properties and Fields
 
-        private static MovementDebug instance;
+        [NonSerialized] private static MovementDebug instance;
 
         public TilemapValue movementTilemap;
         public IntValue remainingWaypointsPlaceable;
@@ -20,6 +20,11 @@ namespace Robbi.Movement
         #endregion
 
         #region Unity Methods
+
+        private void Awake()
+        {
+            instance = this;
+        }
 
         private void OnEnable()
         {

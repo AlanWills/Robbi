@@ -7,6 +7,7 @@ using System.ComponentModel;
 namespace Robbi.FSM.Nodes.Logic.Conditions
 {
     [DisplayName("At Collectable")]
+    [CreateAssetMenu(fileName = nameof(AtCollectableCondition), menuName = "Robbi/Conditions/At Collectable")]
     public class AtCollectableCondition : Condition
     {
         #region Properties and Fields
