@@ -47,6 +47,6 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
             requiredAmounts.AddRange(originalCondition.requiredAmounts);
         }
 
-        public override void SetVariable(object arg) { }
+        protected override void DoSetVariable(object arg) { }
     }
 }

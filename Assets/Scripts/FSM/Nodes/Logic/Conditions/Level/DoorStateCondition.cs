@@ -45,7 +45,7 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
             }
         }
 
-        public override void SetVariable(object arg)
+        protected override void DoSetVariable(object arg)
         {
             Debug.LogAssertion($"{nameof(SetVariable)} is not supported in condition {name}.");
         }

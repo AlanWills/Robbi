@@ -38,7 +38,7 @@ namespace Robbi.FSM.Nodes.Logic.Conditions
 
         #region Check Methods
 
-        public override void SetVariable(object arg)
+        protected override void DoSetVariable(object arg)
         {
             target.IsConstant = true;
             target.Value = arg != null ? (Vector3Int)arg : default;
