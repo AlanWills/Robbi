@@ -1,16 +1,11 @@
-﻿using CelesteEditor.Tools;
-using Robbi.Events.Levels.Elements;
+﻿using Robbi.Events.Levels.Elements;
 using Robbi.Levels;
 using Robbi.Levels.Elements;
 using Robbi.Levels.Modifiers;
-using RobbiEditor.Constants;
 using RobbiEditor.Iterators;
 using RobbiEditor.Levels;
-using System;
-using System.IO;
 using UnityEditor;
 using UnityEngine;
-using static RobbiEditor.LevelDirectories;
 
 namespace RobbiEditor.Tools
 {
@@ -23,7 +18,7 @@ namespace RobbiEditor.Tools
             {
                 Level level = AssetDatabase.LoadAssetAtPath<Level>(levelFolder.LevelDataPath);
 
-                foreach (ScriptableObject interactableObject in level.Interactables_EditorOnly)
+                foreach (ScriptableObject interactableObject in level.Interactables)
                 {
                     Interactable interactable = interactableObject as Interactable;
                     if (interactable != null)

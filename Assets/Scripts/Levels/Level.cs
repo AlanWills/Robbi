@@ -38,10 +38,6 @@ namespace Robbi.Levels
     {
         #region Properties and Fields
 
-#if UNITY_EDITOR
-        public List<ScriptableObject> Interactables_EditorOnly => interactables;
-#endif
-
         public int SoftCurrencyPrize
         {
             get => softCurrencyPrize;
@@ -68,6 +64,9 @@ namespace Robbi.Levels
                 }
             }
         }
+
+        public IReadOnlyList<Door> Doors => doors;
+        public IReadOnlyList<ScriptableObject> Interactables => interactables;
 
         [SerializeField] private GameObject levelPrefab;
 

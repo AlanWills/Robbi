@@ -1,5 +1,7 @@
 ﻿using Celeste.Parameters;
-using PolyAndCode.UI;
+using Celeste.Shop;
+using Celeste.Shop.Catalogue;
+using Celeste.Shop.Purchasing;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,15 +10,17 @@ namespace Robbi.Shop
 {
     [AddComponentMenu("Robbi/Shop/Shop Item Controller")]
     [RequireComponent(typeof(RectTransform))]
-    public class ShopItemController : MonoBehaviour, ICell
+    public class ShopItemController : MonoBehaviour, IShopItemUIController
     {
         #region Properties and Fields
+
+        [SerializeField] private UIntValue currentLevel;
+        [SerializeField] private ShopPurchaser shopPurchaser;
 
         [Header("UI")]
         [SerializeField] private TextMeshProUGUI displayNameText;
         [SerializeField] private TextMeshProUGUI softCurrencyCostText;
         [SerializeField] private GameObject unlocksAtLevelBlocker;
-        [SerializeField] private GameObject buttonDisabledBlocker;
         [SerializeField] private Button buyButton;
         [SerializeField] private TextMeshProUGUI unlockAtLevelText;
 
@@ -33,26 +37,25 @@ namespace Robbi.Shop
         [SerializeField] private TextMeshProUGUI numInteractBoostersText;
 
         [Header("Parameters")]
-        [SerializeField] private UIntValue numSoftCurrency;
+        [SerializeField] private IntValue numSoftCurrency;
         [SerializeField] private UIntValue numWaypointBoosters;
         [SerializeField] private UIntValue numDoorToggleBoosters;
         [SerializeField] private UIntValue numInteractBoosters;
 
-        private ShopItemData shopItemData;
+        private LockedShopItem shopItem;
 
         #endregion
 
         #region Utility Methods
 
-        public void ConfigureCell(ShopItemData shopItemData, int cellIndex)
+        public void Hookup(ShopItemLayout shopItemLayout)
         {
-            this.shopItemData = shopItemData;
+            shopItem = shopItemLayout.shopItem as LockedShopItem;
 
-            ShopItem shopItem = shopItemData.shopItem;
             name = shopItem.name;
-            displayNameText.text = shopItem.DisplayName;
-            softCurrencyCostText.text = shopItem.SoftCurrencyCost.ToString();
-            unlockAtLevelText.text = string.Format("Unlocks At Level {0}", shopItem.UnlockAtLevel);
+            displayNameText.text = shopItem.Title.Fallback;
+            softCurrencyCostText.text = $"<sprite name=\"SoftCurrencyIcon\"/> {shopItem.Cost.quantity}";
+            unlockAtLevelText.text = $"Unlocks At Level {shopItem.UnlocksAtLevel}";
 
             waypointBoosterInfo.SetActive(shopItem.NumWaypointBoosters > 0);
             numWaypointBoostersText.text = shopItem.NumWaypointBoosters.ToString();
@@ -68,9 +71,10 @@ namespace Robbi.Shop
 
         private void UpdateBlockerUI()
         {
-            unlocksAtLevelBlocker.SetActive(!shopItemData.isUnlocked);
-            buttonDisabledBlocker.SetActive(numSoftCurrency.Value < shopItemData.shopItem.SoftCurrencyCost);
-            buyButton.interactable = numSoftCurrency.Value >= shopItemData.shopItem.SoftCurrencyCost;
+            bool isUnlocked = shopItem.UnlocksAtLevel <= currentLevel.Value;
+
+            unlocksAtLevelBlocker.SetActive(!isUnlocked);
+            buyButton.interactable = numSoftCurrency.Value >= shopItem.Cost.quantity;
         }
 
         #endregion
@@ -79,14 +83,8 @@ namespace Robbi.Shop
 
         public void Purchase()
         {
-            ShopItem shopItem = shopItemData.shopItem;
-
-            Debug.AssertFormat(numSoftCurrency.Value >= shopItem.SoftCurrencyCost, 
-                "Current currency {0} less than shop item cost {1}", numSoftCurrency.Value, shopItem.SoftCurrencyCost);
-            numSoftCurrency.Value = numSoftCurrency.Value < shopItem.SoftCurrencyCost ? 0 : numSoftCurrency.Value - shopItem.SoftCurrencyCost;
-            numWaypointBoosters.Value += shopItem.NumWaypointBoosters;
-            numDoorToggleBoosters.Value += shopItem.NumDoorToggleBoosters;
-            numInteractBoosters.Value += shopItem.NumInteractBoosters;
+            Debug.Assert(numSoftCurrency.Value >= shopItem.Cost.quantity, $"Current currency {numSoftCurrency.Value} less than shop item cost {shopItem.Cost.quantity}.");
+            shopPurchaser.Purchase(shopItem);
 
             UpdateBlockerUI();
         }

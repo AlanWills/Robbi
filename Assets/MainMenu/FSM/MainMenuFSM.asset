@@ -43,22 +43,6 @@ MonoBehaviour:
   isConstant: 1
   constantValue: 0
   referenceValue: {fileID: 0}
---- !u!114 &-3420904556036423662
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cee97d5c2d98abd439777b236c735fdd, type: 3}
-  m_Name: _argument
-  m_EditorClassIdentifier: 
-  helpText: 
-  isConstant: 1
-  constantValue: {fileID: 11400000, guid: caf0e9b3759a2f64584fb3cb958a334e, type: 2}
-  referenceValue: {fileID: 0}
 --- !u!114 &-3016802901770896534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -257,9 +241,7 @@ MonoBehaviour:
   nodes:
   - {fileID: 8949057610592942275}
   - {fileID: 7959536147944065347}
-  - {fileID: 4535795596333212685}
   - {fileID: 8088142017055414669}
-  - {fileID: 7418157467907581008}
   - {fileID: -2252787134973180121}
   - {fileID: -272878281467696608}
   - {fileID: 2172051508907506694}
@@ -269,7 +251,6 @@ MonoBehaviour:
   - {fileID: -6124795526958034927}
   - {fileID: 1453882455858355907}
   - {fileID: 1419222814427036383}
-  - {fileID: -3420904556036423662}
   - {fileID: 7406445479220798437}
   - {fileID: -3016802901770896534}
   - {fileID: -353128833889147848}
@@ -357,97 +338,6 @@ MonoBehaviour:
   guid: f95ef12d-1fa7-4bf3-bb6a-921699ca99a0
   argument: {fileID: -353128833889147848}
   toRaise: {fileID: 11400000, guid: aa8053b538b3b594e8d0938f58ca2f5a, type: 2}
---- !u!114 &4535795596333212685
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 737d89550a2e2194db247d1e3f3c19db, type: 3}
-  m_Name: Check Level Index
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 24, y: 440}
-  ports:
-    keys:
-    - ' '
-    - 
-    - inArgument
-    - outArgument
-    - IsFirstLevel
-    - Is First Level
-    values:
-    - _fieldName: ' '
-      _node: {fileID: 4535795596333212685}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: Play
-        node: {fileID: 8949057610592942275}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: 
-      _node: {fileID: 4535795596333212685}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: 8088142017055414669}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: inArgument
-      _node: {fileID: 4535795596333212685}
-      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: outArgument
-      _node: {fileID: 4535795596333212685}
-      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: IsFirstLevel
-      _node: {fileID: 4535795596333212685}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: Is First Level
-      _node: {fileID: 4535795596333212685}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: 7418157467907581008}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-  guid: af8144fe-a789-4969-8b2c-a07e40ea7e23
-  conditions:
-  - Name: Is First Level
-    Condition: {fileID: 11400000, guid: 0638969423a47f84d9910cbfb4f4269c, type: 2}
-    UseArgument: 0
 --- !u!114 &5989857650873601071
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -477,62 +367,6 @@ MonoBehaviour:
   isConstant: 1
   constantValue: {fileID: 11400000, guid: 5a3f94e8142e7e741afae654be725834, type: 2}
   referenceValue: {fileID: 0}
---- !u!114 &7418157467907581008
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d3d6eaf5230ee24aa876dc04a9cb690, type: 3}
-  m_Name: Execute Load Job
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 328, y: 568}
-  ports:
-    keys:
-    - ' '
-    - 
-    - argument
-    values:
-    - _fieldName: ' '
-      _node: {fileID: 7418157467907581008}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: Is First Level
-        node: {fileID: 4535795596333212685}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: 
-      _node: {fileID: 7418157467907581008}
-      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: ' '
-        node: {fileID: 8949057610592942275}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: argument
-      _node: {fileID: 7418157467907581008}
-      _typeQualifiedName: Celeste.Loading.Parameters.LoadJobReference, Celeste.Loading,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  guid: 11d9fc44-2ba0-42b1-8ede-951402de4db4
-  argument: {fileID: -3420904556036423662}
-  toRaise: {fileID: 11400000, guid: e1ad3c596fdd9ab459e8ccb8682786ef, type: 2}
 --- !u!114 &7959536147944065347
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -590,7 +424,7 @@ MonoBehaviour:
   m_Name: Execute Load Job
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 328, y: 360}
+  position: {x: 8, y: 392}
   ports:
     keys:
     - ' '
@@ -603,28 +437,34 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: 
-        node: {fileID: 4535795596333212685}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: 4535795596333212685}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: 4535795596333212685}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: 4535795596333212685}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: 4535795596333212685}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: 4535795596333212685}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: 4535795596333212685}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: 4535795596333212685}
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: Play
+        node: {fileID: 8949057610592942275}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -799,13 +639,13 @@ MonoBehaviour:
         node: {fileID: 8088142017055414669}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: 7418157467907581008}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
         node: {fileID: 8088142017055414669}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: 7418157467907581008}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
         node: {fileID: -2252787134973180121}
@@ -823,13 +663,13 @@ MonoBehaviour:
         node: {fileID: 8088142017055414669}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: 7418157467907581008}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
         node: {fileID: 8088142017055414669}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: 7418157467907581008}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
         node: {fileID: -2252787134973180121}
@@ -841,7 +681,7 @@ MonoBehaviour:
         node: {fileID: 8088142017055414669}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: 7418157467907581008}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
         node: {fileID: -2252787134973180121}
@@ -853,7 +693,7 @@ MonoBehaviour:
         node: {fileID: 8088142017055414669}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: 7418157467907581008}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
         node: {fileID: -2252787134973180121}
@@ -865,7 +705,7 @@ MonoBehaviour:
         node: {fileID: 8088142017055414669}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: 7418157467907581008}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
         node: {fileID: -2252787134973180121}
@@ -877,7 +717,28 @@ MonoBehaviour:
         node: {fileID: 8088142017055414669}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: 7418157467907581008}
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2252787134973180121}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -272878281467696608}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 8088142017055414669}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2252787134973180121}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -272878281467696608}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 8088142017055414669}
         reroutePoints: []
       - fieldName: 
         node: {fileID: -2252787134973180121}
@@ -904,7 +765,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: 4535795596333212685}
+        node: {fileID: 8088142017055414669}
         reroutePoints: []
       _direction: 1
       _connectionType: 1

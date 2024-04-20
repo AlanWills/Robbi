@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,17 +10,16 @@ namespace Robbi.Boosters
     {
         #region Properties and Fields
 
-        public Animator boosterButtonsAnimator;
-        public Animator cancelButtonAnimator;
-        public Button doorToggleUseButton;
-        public Button interactUseButton;
+        [SerializeField] private List<GameObject> boosterBarUI = new List<GameObject>();
+        [SerializeField] private Animator boosterBarAnimator;
+        [SerializeField] private Button doorToggleUseButton;
+        [SerializeField] private Button interactUseButton;
 
-        public string animateInName = "AnimateIn";
-        public string animateOutName = "AnimateOut";
+        [SerializeField] private string animateInName = "AnimateIn";
+        [SerializeField] private string animateOutName = "AnimateOut";
 
-        private int animateInHash;
-        private int animateOutHash;
-        private bool boosterInUse = false;
+        [NonSerialized] private int animateInHash;
+        [NonSerialized] private int animateOutHash;
 
         #endregion
 
@@ -41,37 +37,30 @@ namespace Robbi.Boosters
 
         public void OnLevelBegun()
         {
-            if (boosterInUse)
+            foreach (GameObject gameObject in boosterBarUI)
             {
-                cancelButtonAnimator.SetTrigger(animateOutHash);
+                gameObject.SetActive(true);
             }
 
-            boosterInUse = false;
-            boosterButtonsAnimator.SetTrigger(animateInHash);
+            ShowBoostersHideCancel();
         }
 
         public void OnLevelLost()
         {
-            AnimateOutRelevantUI();
+            HideBoosterBarUI();
         }
 
         public void OnLevelWon()
         {
-            AnimateOutRelevantUI();
+            HideBoosterBarUI();
         }
 
-        private void AnimateOutRelevantUI()
+        private void HideBoosterBarUI()
         {
-            if (!boosterInUse)
+            foreach (GameObject gameObject in boosterBarUI)
             {
-                boosterButtonsAnimator.SetTrigger(animateOutHash);
+                gameObject.SetActive(false);
             }
-            else
-            {
-                cancelButtonAnimator.SetTrigger(animateOutHash);
-            }
-
-            boosterInUse = false;
         }
 
         public void OnShowBoostersBar()
@@ -90,16 +79,12 @@ namespace Robbi.Boosters
 
         public void ShowBoostersHideCancel()
         {
-            boosterButtonsAnimator.SetTrigger(animateInHash);
-            cancelButtonAnimator.SetTrigger(animateOutHash);
-            boosterInUse = false;
+            boosterBarAnimator.SetTrigger(animateInHash);
         }
 
         public void HideBoostersShowCancel()
         {
-            boosterButtonsAnimator.SetTrigger(animateOutHash);
-            cancelButtonAnimator.SetTrigger(animateInHash);
-            boosterInUse = true;
+            boosterBarAnimator.SetTrigger(animateOutHash);
         }
 
         #endregion
