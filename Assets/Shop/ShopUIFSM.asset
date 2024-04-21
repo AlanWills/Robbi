@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3310796118038006525
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
+  m_Name: GoToMainMenu
+  m_EditorClassIdentifier: 
+  listenFor: {fileID: 11400000, guid: c31cf155d7bcf914a8f7fc5030f9f47e, type: 2}
 --- !u!114 &-1806014956986160259
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18,7 +31,7 @@ MonoBehaviour:
     keys:
     - ' '
     - argument
-    - ShopItemPurchased
+    - GoToMainMenu
     values:
     - _fieldName: ' '
       _node: {fileID: -1806014956986160259}
@@ -36,6 +49,9 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: 
         node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: 6089059308355261084}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -50,13 +66,13 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: ShopItemPurchased
+    - _fieldName: GoToMainMenu
       _node: {fileID: -1806014956986160259}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: 957204821570884262}
+        node: {fileID: 6089059308355261084}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -64,20 +80,7 @@ MonoBehaviour:
       _dynamic: 1
   guid: 0282faf4-4d10-475b-a2dd-7628b15dc0d8
   events:
-  - {fileID: -1625701716914562648}
---- !u!114 &-1625701716914562648
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
-  m_Name: ShopItemPurchased
-  m_EditorClassIdentifier: 
-  listenFor: {fileID: 11400000, guid: 6484bdfafe868aa4599853d09fffa495, type: 2}
+  - {fileID: -3310796118038006525}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,10 +95,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: -1806014956986160259}
-  - {fileID: 957204821570884262}
+  - {fileID: 6089059308355261084}
   startNode: {fileID: -1806014956986160259}
-  parameters: []
---- !u!114 &957204821570884262
+  parameters:
+  - {fileID: 1668674903188519617}
+--- !u!114 &1668674903188519617
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,22 +108,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c8e8793e4e9cb346b510a034d8cb2de, type: 3}
-  m_Name: Save Boosters Manager
+  m_Script: {fileID: 11500000, guid: cee97d5c2d98abd439777b236c735fdd, type: 3}
+  m_Name: _argument
+  m_EditorClassIdentifier: 
+  helpText: 
+  isConstant: 1
+  constantValue: {fileID: 11400000, guid: ec27ebbadb032ab44acc845d98050b42, type: 2}
+  referenceValue: {fileID: 0}
+--- !u!114 &6089059308355261084
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d3d6eaf5230ee24aa876dc04a9cb690, type: 3}
+  m_Name: Execute Load Job
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 40, y: -72}
+  position: {x: 120, y: -24}
   ports:
     keys:
     - ' '
     - 
+    - argument
     values:
     - _fieldName: ' '
-      _node: {fileID: 957204821570884262}
+      _node: {fileID: 6089059308355261084}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: ShopItemPurchased
+      - fieldName: GoToMainMenu
         node: {fileID: -1806014956986160259}
         reroutePoints: []
       _direction: 0
@@ -127,30 +148,26 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
     - _fieldName: 
-      _node: {fileID: 957204821570884262}
+      _node: {fileID: 6089059308355261084}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: 0}
+        node: {fileID: -1806014956986160259}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  guid: 0849d594-e03e-4546-bb0a-1ba8f6908c2e
-  function:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 0a4ea0f3ed2043f4d97a685fadd9a010, type: 2}
-        m_TargetAssemblyTypeName: Robbi.Boosters.BoostersManager, Robbi
-        m_MethodName: Save
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+    - _fieldName: argument
+      _node: {fileID: 6089059308355261084}
+      _typeQualifiedName: Celeste.Loading.Parameters.LoadJobReference, Celeste.Loading,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  guid: 4cb5d995-3816-4ccf-8226-2f71fa9d0f4f
+  argument: {fileID: 1668674903188519617}
+  toRaise: {fileID: 11400000, guid: aa8053b538b3b594e8d0938f58ca2f5a, type: 2}
