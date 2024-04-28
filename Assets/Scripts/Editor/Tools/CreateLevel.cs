@@ -2,6 +2,7 @@
 using Celeste.FSM;
 using Celeste.Tools.Attributes.GUI;
 using CelesteEditor.Tools;
+using Celeste.Tools;
 using Robbi.Levels;
 using Robbi.Levels.Elements;
 using RobbiEditor.Constants;
@@ -248,7 +249,7 @@ namespace RobbiEditor.Tools
                 return;
             }
 
-            LogUtility.Clear();
+            LogExtensions.Clear();
 
             CreateLevelDirectory();
             CreateFSM();

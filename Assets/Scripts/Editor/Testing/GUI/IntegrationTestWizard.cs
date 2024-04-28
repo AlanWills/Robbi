@@ -1,6 +1,5 @@
 ﻿using Celeste.Testing;
-using CelesteEditor.Tools;
-using System;
+using Celeste.Tools;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;

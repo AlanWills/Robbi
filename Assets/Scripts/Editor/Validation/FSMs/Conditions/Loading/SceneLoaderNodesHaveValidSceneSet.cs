@@ -36,7 +36,7 @@ namespace RobbiEditor.Validation.FSM.Conditions.Loading
                         // If we are using a parameter, again we cannot check this statically as it only has a value at runtime
                         if (sceneLoaderNode.sceneName.IsConstant)
                         {
-                            if (!AddressablesUtility.AddressableResourceExists<Scene>(sceneLoaderNode.sceneName.Value))
+                            if (!AddressablesExtensions.AddressableResourceExists<Scene>(sceneLoaderNode.sceneName.Value))
                             {
                                 valid = false;
                                 output.AppendLine($"Scene Loader Node {node.name} has an invalid addressable path {sceneLoaderNode.sceneName.Value} set");

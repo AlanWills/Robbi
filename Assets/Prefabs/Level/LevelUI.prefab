@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8672022304332800238}
   - component: {fileID: 6112240001278959016}
   - component: {fileID: 1977121183941735597}
-  - component: {fileID: 1777585551083591553}
   - component: {fileID: 8652473698158545679}
+  - component: {fileID: 1080455056172811807}
   m_Layer: 5
   m_Name: ShopButton
   m_TagString: Untagged
@@ -126,45 +126,31 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1777585551083591553}
-        m_TargetAssemblyTypeName: Celeste.Events.ParameterisedEventRaiser`2[[System.String,
-          mscorlib
-        m_MethodName: Raise
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: ToShopTransition
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 8652473698158545679}
-        m_TargetAssemblyTypeName: Celeste.Events.AudioClipEventRaiser, Celeste.Events
+        m_TargetAssemblyTypeName: Celeste.Sound.AudioClipEventRaiser, Celeste.Sound
         m_MethodName: Raise
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 0d6835c8f6770bc429368abe7717aa6d,
             type: 2}
-          m_ObjectArgumentAssemblyTypeName: Celeste.Parameters.AudioClipValue, Celeste.Parameters
+          m_ObjectArgumentAssemblyTypeName: Celeste.Parameters.AudioClipValue, Celeste.Sound
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1777585551083591553
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 881156277501942568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be51b5a008e796741a6aa3247de1c4fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 2ec219bc2c7b8ba4e882f960650ccc43, type: 2}
+      - m_Target: {fileID: 1080455056172811807}
+        m_TargetAssemblyTypeName: Celeste.Events.EventRaiser, Celeste.Events
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8652473698158545679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +165,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 4f0b2c3d823d7984aab5a8ec3741664c, type: 2}
   presetAudioClip: {fileID: 0}
+--- !u!114 &1080455056172811807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881156277501942568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a0d147401428146b5daed6a3cee729, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 7d858598a3954394e89056200fe41b70, type: 2}
 --- !u!1 &1389004390340154233
 GameObject:
   m_ObjectHideFlags: 0
@@ -1353,8 +1352,8 @@ GameObject:
   - component: {fileID: 1846318695856080213}
   - component: {fileID: 1846318695856080212}
   - component: {fileID: 1846318695856080215}
-  - component: {fileID: 3939553331935871398}
   - component: {fileID: 7379542921310192324}
+  - component: {fileID: 8036234296731520463}
   m_Layer: 5
   m_Name: OptionsButton
   m_TagString: Untagged
@@ -1467,45 +1466,31 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3939553331935871398}
-        m_TargetAssemblyTypeName: Celeste.Events.ParameterisedEventRaiser`3[[System.String,
-          mscorlib
-        m_MethodName: Raise
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: ToOptionsTransition
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 7379542921310192324}
-        m_TargetAssemblyTypeName: Celeste.Events.AudioClipEventRaiser, Celeste.Events
+        m_TargetAssemblyTypeName: Celeste.Sound.AudioClipEventRaiser, Celeste.Sound
         m_MethodName: Raise
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 0d6835c8f6770bc429368abe7717aa6d,
             type: 2}
-          m_ObjectArgumentAssemblyTypeName: Celeste.Parameters.AudioClipValue, Celeste.Parameters
+          m_ObjectArgumentAssemblyTypeName: Celeste.Parameters.AudioClipValue, Celeste.Sound
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
---- !u!114 &3939553331935871398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1846318695856080200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be51b5a008e796741a6aa3247de1c4fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 2ec219bc2c7b8ba4e882f960650ccc43, type: 2}
+      - m_Target: {fileID: 8036234296731520463}
+        m_TargetAssemblyTypeName: Celeste.Events.EventRaiser, Celeste.Events
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &7379542921310192324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1520,6 +1505,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: 4f0b2c3d823d7984aab5a8ec3741664c, type: 2}
   presetAudioClip: {fileID: 0}
+--- !u!114 &8036234296731520463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846318695856080200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a0d147401428146b5daed6a3cee729, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: d1cb289ed206fa041b91eaa8a4d58536, type: 2}
 --- !u!1 &1846318696034184726
 GameObject:
   m_ObjectHideFlags: 0
@@ -1659,13 +1657,13 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 6778197980125593585}
-        m_TargetAssemblyTypeName: Celeste.Events.AudioClipEventRaiser, Celeste.Events
+        m_TargetAssemblyTypeName: Celeste.Sound.AudioClipEventRaiser, Celeste.Sound
         m_MethodName: Raise
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 0d6835c8f6770bc429368abe7717aa6d,
             type: 2}
-          m_ObjectArgumentAssemblyTypeName: Celeste.Parameters.AudioClipValue, Celeste.Parameters
+          m_ObjectArgumentAssemblyTypeName: Celeste.Parameters.AudioClipValue, Celeste.Sound
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1902,13 +1900,13 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 242394909437511186}
-        m_TargetAssemblyTypeName: Celeste.Events.AudioClipEventRaiser, Celeste.Events
+        m_TargetAssemblyTypeName: Celeste.Sound.AudioClipEventRaiser, Celeste.Sound
         m_MethodName: Raise
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 0d6835c8f6770bc429368abe7717aa6d,
             type: 2}
-          m_ObjectArgumentAssemblyTypeName: Celeste.Parameters.AudioClipValue, Celeste.Parameters
+          m_ObjectArgumentAssemblyTypeName: Celeste.Parameters.AudioClipValue, Celeste.Sound
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

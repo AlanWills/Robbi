@@ -28,7 +28,7 @@ namespace RobbiEditor.Validation.FSM.Conditions.Loading
                         NodePort addressablePathPort = prefabNode.GetInputPort(nameof(prefabNode.addressablePath));
                         bool portNotConnected = addressablePathPort == null || !addressablePathPort.IsConnected;
 
-                        if (portNotConnected && !AddressablesUtility.AddressableResourceExists<GameObject>(prefabNode.addressablePath))
+                        if (portNotConnected && !AddressablesExtensions.AddressableResourceExists<GameObject>(prefabNode.addressablePath))
                         {
                             valid = false;
                             output.AppendLine($"Scene Loader Node {node.name} has an invalid addressable path {prefabNode.addressablePath} set");

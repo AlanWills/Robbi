@@ -3,11 +3,9 @@ using Robbi.Levels.Elements;
 using RobbiEditor.Constants;
 using RobbiEditor.Iterators;
 using RobbiEditor.Levels;
-using System;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
-using static RobbiEditor.LevelDirectories;
 
 namespace RobbiEditor.Tools
 {
@@ -23,21 +21,21 @@ namespace RobbiEditor.Tools
 
                 // Level Data
                 {
-                    AddressablesUtility.SetAddressableInfo(levelFolder.LevelDataPath, AddressablesConstants.LEVELS_GROUP);
+                    AddressablesExtensions.SetAddressableInfo(levelFolder.LevelDataPath, AddressablesConstants.LEVELS_GROUP);
                 }
 
                 // Level Prefab
                 {
-                    AddressablesUtility.SetAddressableInfo(levelFolder.PrefabPath, AddressablesConstants.LEVELS_GROUP);
+                    AddressablesExtensions.SetAddressableInfo(levelFolder.PrefabPath, AddressablesConstants.LEVELS_GROUP);
                 }
 
                 // Tutorials
                 {
                     if (Directory.Exists(levelFolder.TutorialsFolderPath))
                     {
-                        AddressablesUtility.SetAddressableInfo(levelFolder.TutorialsPrefabPath, AddressablesConstants.LEVELS_GROUP);
-                        AddressablesUtility.SetAddressableInfo(levelFolder.TutorialsFSMPath, AddressablesConstants.LEVELS_GROUP);
-                        AddressablesUtility.SetAddressableInfo(levelFolder.TutorialsDGPath, AddressablesConstants.LEVELS_GROUP);
+                        AddressablesExtensions.SetAddressableInfo(levelFolder.TutorialsPrefabPath, AddressablesConstants.LEVELS_GROUP);
+                        AddressablesExtensions.SetAddressableInfo(levelFolder.TutorialsFSMPath, AddressablesConstants.LEVELS_GROUP);
+                        AddressablesExtensions.SetAddressableInfo(levelFolder.TutorialsDGPath, AddressablesConstants.LEVELS_GROUP);
                     }
                 }
 
@@ -45,7 +43,7 @@ namespace RobbiEditor.Tools
                 {
                     if (Directory.Exists(levelFolder.TestsFolderPath))
                     {
-                        AddressablesUtility.SetAddressableInfo(levelFolder.TestFSMPath, AddressablesConstants.TESTS_GROUP);
+                        AddressablesExtensions.SetAddressableInfo(levelFolder.TestFSMPath, AddressablesConstants.TESTS_GROUP);
                     }
                 }
 
@@ -55,7 +53,7 @@ namespace RobbiEditor.Tools
                     ScriptableObject scriptableObject = AssetDatabase.LoadAssetAtPath<ScriptableObject>(scriptableObjectPath);
                     if (scriptableObject is ILevelElement)
                     {
-                        AddressablesUtility.SetAddressableInfo(scriptableObject, AddressablesConstants.LEVELS_GROUP);
+                        AddressablesExtensions.SetAddressableInfo(scriptableObject, AddressablesConstants.LEVELS_GROUP);
                     }
                 }
             }

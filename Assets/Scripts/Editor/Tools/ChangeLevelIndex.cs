@@ -65,7 +65,7 @@ namespace RobbiEditor.Tools
                 return;
             }
 
-            LogUtility.Clear();
+            LogExtensions.Clear();
 
             RenameDirectory();
             RenameFSM();

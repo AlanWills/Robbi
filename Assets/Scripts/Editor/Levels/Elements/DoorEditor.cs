@@ -1,10 +1,9 @@
-﻿using CelesteEditor.Tools;
+﻿using Celeste.Tools;
+using CelesteEditor.Tools;
 using Robbi.Levels.Elements;
 using RobbiEditor.Constants;
-using System.IO;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 namespace RobbiEditor.Levels.Elements
 {

@@ -1,4 +1,4 @@
-﻿using CelesteEditor.Tools;
+﻿using Celeste.Tools;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,7 +13,7 @@ namespace RobbiEditor.Migration
             {
                 string interactablePath = AssetDatabase.GUIDToAssetPath(interactableGuid);
 
-                foreach (UnityEngine.Object obj in AssetDatabase.LoadAllAssetsAtPath(interactablePath))
+                foreach (Object obj in AssetDatabase.LoadAllAssetsAtPath(interactablePath))
                 {
                     EditorOnly.ApplyHideFlags(obj, HideFlags.HideInHierarchy);
                 }

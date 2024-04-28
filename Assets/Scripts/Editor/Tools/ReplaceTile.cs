@@ -1,5 +1,4 @@
 ﻿using Celeste.Parameters;
-using CelesteEditor;
 using CelesteEditor.Tools;
 using Robbi.Levels;
 using RobbiEditor.Iterators;
@@ -32,7 +31,7 @@ namespace RobbiEditor.Tools
         // Use other button so we can keep the wizard open after doing something
         private void OnWizardOtherButton()
         {
-            LogUtility.Clear();
+            LogExtensions.Clear();
 
             foreach (LevelFolder levelFolder in new LevelFolders())
             {
