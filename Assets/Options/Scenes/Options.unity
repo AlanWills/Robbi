@@ -298,9 +298,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 66434179387155183, guid: ed4d30549febb7f45bc14c9377d7d7d2,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 66434179387155183, guid: ed4d30549febb7f45bc14c9377d7d7d2,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 66434179387155183, guid: ed4d30549febb7f45bc14c9377d7d7d2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1676485106}
     - target: {fileID: 66434179387155183, guid: ed4d30549febb7f45bc14c9377d7d7d2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -308,13 +318,39 @@ PrefabInstance:
       objectReference: {fileID: 1676485104}
     - target: {fileID: 66434179387155183, guid: ed4d30549febb7f45bc14c9377d7d7d2,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 66434179387155183, guid: ed4d30549febb7f45bc14c9377d7d7d2,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: Raise
       objectReference: {fileID: 0}
     - target: {fileID: 66434179387155183, guid: ed4d30549febb7f45bc14c9377d7d7d2,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Celeste.Sound.AudioClipEventRaiser, Celeste.Sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 66434179387155183, guid: ed4d30549febb7f45bc14c9377d7d7d2,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: Celeste.Events.EventRaiser, Celeste.Events
+      objectReference: {fileID: 0}
+    - target: {fileID: 66434179387155183, guid: ed4d30549febb7f45bc14c9377d7d7d2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 0d6835c8f6770bc429368abe7717aa6d,
+        type: 2}
+    - target: {fileID: 66434179387155183, guid: ed4d30549febb7f45bc14c9377d7d7d2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 66434179387155183, guid: ed4d30549febb7f45bc14c9377d7d7d2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Celeste.Parameters.AudioClipValue, Celeste.Sound
       objectReference: {fileID: 0}
     - target: {fileID: 66434179387155183, guid: ed4d30549febb7f45bc14c9377d7d7d2,
         type: 3}
@@ -589,6 +625,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: c31cf155d7bcf914a8f7fc5030f9f47e, type: 2}
+--- !u!114 &1676485106 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3441539520920467100, guid: ed4d30549febb7f45bc14c9377d7d7d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1676485102}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676485103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 824b3c7c4715e7342983d0a67ee53827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2072269170
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,6 +647,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2072269173}
   - component: {fileID: 2072269172}
+  - component: {fileID: 2072269174}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -672,6 +721,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2072269174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072269170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b175b9e38c183c048b03516291667277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 2072269172}
+  useParameter: 1
+  cameraValue: {fileID: 11400000, guid: 14ae487a7b0d7524e8df71e5b3255874, type: 2}
+  setInputCamera: {fileID: 0}
+  setInAwake: 1
+  setInOnEnable: 0
+  setInStart: 0
+  setInUpdate: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
