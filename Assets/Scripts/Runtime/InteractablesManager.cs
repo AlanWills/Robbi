@@ -5,6 +5,7 @@ using Celeste.Tilemaps;
 using Robbi.Runtime.Actors;
 using System;
 using Celeste.Events;
+using Celeste.Input;
 
 namespace Robbi.Runtime
 {
@@ -62,9 +63,9 @@ namespace Robbi.Runtime
             TryInteract(characterRuntime.Tile);
         }
 
-        public void OnGameObjectInput(GameObjectClickEventArgs clickEventArgs)
+        public void OnClicked(InputState inputState)
         {
-            Vector3Int interactableGridPosition = interactablesTilemap.Value.WorldToCell(clickEventArgs.clickWorldPosition);
+            Vector3Int interactableGridPosition = interactablesTilemap.Value.WorldToCell(inputState.PointerWorldPosition);
             if (!interactablesTilemap.Value.HasTile(interactableGridPosition))
             {
                 // Not a valid location in the tilemap

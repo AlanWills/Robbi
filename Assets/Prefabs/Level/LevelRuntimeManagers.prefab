@@ -744,10 +744,10 @@ GameObject:
   - component: {fileID: 42714503784727091}
   - component: {fileID: 8587486669775914436}
   - component: {fileID: 646461613613246837}
-  - component: {fileID: 1416658237344963266}
   - component: {fileID: 3909342335744668405}
   - component: {fileID: 4716583308496907602}
   - component: {fileID: 7834708917928677559}
+  - component: {fileID: 1864820667801033271}
   m_Layer: 0
   m_Name: DoorsManager
   m_TagString: Untagged
@@ -966,34 +966,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1416658237344963266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2822181663301202911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08fe44caecb1a444890e076001b375c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 74245c4526e3f0144b8534774b224924, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6331695048131155978}
-        m_TargetAssemblyTypeName: Robbi.Environment.DoorsManager, Robbi
-        m_MethodName: OnGameObjectInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &3909342335744668405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1081,6 +1053,48 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1864820667801033271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2822181663301202911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab646f68366d74a42b16366421b6be82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onPointerEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onPointerOver:
+    m_PersistentCalls:
+      m_Calls: []
+  onPointerExit:
+    m_PersistentCalls:
+      m_Calls: []
+  onPointerFirstDown:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6331695048131155978}
+        m_TargetAssemblyTypeName: Robbi.Runtime.DoorsManager, Robbi
+        m_MethodName: OnClicked
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPointerDown:
+    m_PersistentCalls:
+      m_Calls: []
+  onPointerFirstUp:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3051439433994865322
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,10 +1406,10 @@ GameObject:
   - component: {fileID: 4721106538974144272}
   - component: {fileID: 4896742140206480112}
   - component: {fileID: 5706301054221785813}
-  - component: {fileID: 461530435887573986}
   - component: {fileID: 1521007202024112487}
   - component: {fileID: 2500341623776587838}
   - component: {fileID: 9131107307593818329}
+  - component: {fileID: 6447384175698375060}
   m_Layer: 0
   m_Name: InteractablesManager
   m_TagString: Untagged
@@ -1537,34 +1551,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &461530435887573986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4443659954887257874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08fe44caecb1a444890e076001b375c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 74245c4526e3f0144b8534774b224924, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2915932516500803445}
-        m_TargetAssemblyTypeName: Robbi.Environment.InteractablesManager, Robbi
-        m_MethodName: OnGameObjectInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1521007202024112487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1652,6 +1638,48 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6447384175698375060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4443659954887257874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab646f68366d74a42b16366421b6be82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onPointerEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onPointerOver:
+    m_PersistentCalls:
+      m_Calls: []
+  onPointerExit:
+    m_PersistentCalls:
+      m_Calls: []
+  onPointerFirstDown:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2915932516500803445}
+        m_TargetAssemblyTypeName: Robbi.Runtime.InteractablesManager, Robbi
+        m_MethodName: OnClicked
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPointerDown:
+    m_PersistentCalls:
+      m_Calls: []
+  onPointerFirstUp:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5284056565412097216
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 ﻿using Celeste.Events;
+using Celeste.Input;
 using Celeste.Tilemaps;
 using Celeste.Tools;
 using Robbi.Levels.Elements;
@@ -59,9 +60,9 @@ namespace Robbi.Runtime
 
         #region Callbacks
 
-        public void OnGameObjectInput(GameObjectClickEventArgs clickEventArgs)
+        public void OnClicked(InputState inputState)
         {
-            Vector3Int doorGridPosition = doorsTilemap.Value.WorldToCell(clickEventArgs.clickWorldPosition);
+            Vector3Int doorGridPosition = doorsTilemap.Value.WorldToCell(inputState.PointerWorldPosition);
             if (!doorsTilemap.Value.HasTile(doorGridPosition))
             {
                 // Not a valid location in the tilemap

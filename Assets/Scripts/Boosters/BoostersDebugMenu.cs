@@ -13,8 +13,8 @@ namespace Robbi.Boosters
         protected override void OnDrawMenu()
         {
             boostersRecord.NumWaypointBoosters = DrawBoosterField("Waypoint", boostersRecord.NumWaypointBoosters);
-            boostersRecord.NumInteractBoosters = DrawBoosterField("Interact", boostersRecord.NumInteractBoosters);
             boostersRecord.NumDoorToggleBoosters = DrawBoosterField("Door Toggle", boostersRecord.NumDoorToggleBoosters);
+            boostersRecord.NumInteractBoosters = DrawBoosterField("Interact", boostersRecord.NumInteractBoosters);
         }
 
         private uint DrawBoosterField(string name, uint currentBoosters)
