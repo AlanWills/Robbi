@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Robbi.Debugging.Buttons
 {
     [AddComponentMenu("Robbi/Debugging/Level Debug Button")]
-    public class LevelDebugButton : DebugOnlyMonoBehaviour
+    public class LevelDebugButton : MonoBehaviour
     {
         #region Properties and Fields
 
