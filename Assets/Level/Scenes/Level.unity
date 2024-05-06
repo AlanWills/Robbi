@@ -3632,13 +3632,14 @@ GameObject:
   - component: {fileID: 1536764606}
   - component: {fileID: 1536764608}
   - component: {fileID: 1536764609}
+  - component: {fileID: 1536764621}
   - component: {fileID: 1536764618}
   - component: {fileID: 1536764617}
+  - component: {fileID: 1536764620}
   - component: {fileID: 1536764610}
   - component: {fileID: 1536764613}
   - component: {fileID: 1536764614}
   - component: {fileID: 1536764615}
-  - component: {fileID: 1536764620}
   - component: {fileID: 1536764619}
   m_Layer: 0
   m_Name: Main Camera
@@ -3973,6 +3974,35 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Celeste.Tilemaps.TilemapZoom, Celeste.Tilemaps
         m_MethodName: FullZoomOut
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1536764621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536764604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc59c2492bc9b8408bbb68edf4988a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 13b1cee57fbb72f44a516ef604d57345, type: 2}
+  logAddAndRemoveListener: 0
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1536764608}
+        m_TargetAssemblyTypeName: Celeste.Tilemaps.TilemapDrag, Celeste.Tilemaps
+        m_MethodName: StartDrag
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
