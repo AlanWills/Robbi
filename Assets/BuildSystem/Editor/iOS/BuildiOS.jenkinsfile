@@ -63,7 +63,7 @@ pipeline
             {
 				script
 				{
-					buildScript = 'C:/Users/alawi/iOS\\ Project\\ Builder\\ for\\ Unity/build.cmd ' + "${env.WORKSPACE}/${env.BUILD_LOCATION} " + '-xcname "Unity-iPhone" -xcpname "iPhone-target" -xcconf "Release" -archs "arm64" -multicore -autoresolve -strip bitcode -pngcrush -ipa -identity "ios_distribution.cer:celeste_games.key:favouriteprimes111929" -provision "Robbi_App_Store_Provisioning_Profile.mobileprovision"'
+					buildScript = 'C:/Users/alawi/iOS\ Project\ Builder\ for\ Unity/build.cmd ' + "${env.WORKSPACE}/${env.BUILD_LOCATION} " + '-xcname "Unity-iPhone" -xcpname "iPhone-target" -xcconf "Release" -archs "arm64" -multicore -autoresolve -strip bitcode -pngcrush -ipa -identity "ios_distribution.cer:celeste_games.key:favouriteprimes111929" -provision "Robbi_App_Store_Provisioning_Profile.mobileprovision"'
 					bat buildScript
 				}
             }
