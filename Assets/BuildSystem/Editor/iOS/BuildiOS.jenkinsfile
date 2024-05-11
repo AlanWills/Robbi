@@ -1,6 +1,6 @@
 UNITY_PATH = "C:/Program\\ Files/Unity/Hub/Editor/2022.3.15f1/Editor/Unity.exe"
-IOS_PROJECT_BUILDER_BUILD_PATH = "C:/Users/alawi/iOS\\ Project\\ Builder\\ for\\ Unity/build.cmd"
-IOS_PROJECT_BUILDER_UPLOAD_PATH = "C:/Users/alawi/iOS\\ Project\\ Builder\\ for\\ Unity/build.cmd"
+IOS_PROJECT_BUILDER_BUILD_PATH = "C:/Users/alawi/iOS\ Project\ Builder\ for\ Unity/build.cmd"
+IOS_PROJECT_BUILDER_UPLOAD_PATH = "C:/Users/alawi/iOS\ Project\ Builder\ for\ Unity/build.cmd"
 
 pipeline 
 {
@@ -64,7 +64,7 @@ pipeline
 				script
 				{
 					buildLocation = "${env.WORKSPACE}/${env.BUILD_LOCATION}"
-					bat IOS_PROJECT_BUILDER_BUILD_PATH + buildLocation + '-xcname "Unity-iPhone" -xcpname "iPhone-target" -xcconf "Release" -archs "arm64" -multicore -autoresolve -strip bitcode -pngcrush -ipa -identity "ios_distribution.cer:celeste_games.key:favouriteprimes111929" -provision "Robbi_App_Store_Provisioning_Profile.mobileprovision"'
+					bat IOS_PROJECT_BUILDER_BUILD_PATH + ' ' + buildLocation + ' -xcname "Unity-iPhone" -xcpname "iPhone-target" -xcconf "Release" -archs "arm64" -multicore -autoresolve -strip bitcode -pngcrush -ipa -identity "ios_distribution.cer:celeste_games.key:favouriteprimes111929" -provision "Robbi_App_Store_Provisioning_Profile.mobileprovision"'
 				}
             }
         }
@@ -113,7 +113,7 @@ pipeline
 				script
 				{
 					uploadLocation = "${env.WORKSPACE}/${env.BUILD_LOCATION}/Packages/Robbi.ipa"
-					bat IOS_PROJECT_BUILDER_UPLOAD_PATH + '-v ' + uploadLocation + ' -asclogin "alawills@googlemail.com" -ascpassword "dkqo-aiog-high-jtpd" -ascprovider ""'
+					bat IOS_PROJECT_BUILDER_UPLOAD_PATH + ' -v ' + uploadLocation + ' -asclogin "alawills@googlemail.com" -ascpassword "dkqo-aiog-high-jtpd" -ascprovider ""'
 				}
             }
         }
