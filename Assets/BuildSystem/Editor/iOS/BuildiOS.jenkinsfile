@@ -59,7 +59,7 @@ pipeline
             }
             steps
             {
-				sh "cp -r ${env.WORKSPACE}/${env.BUILD_LOCATION} C:/iOS/Build-${env.BUILD_VERSION}-${params.CONFIGURATION}"
+				sh "cp -r ${env.WORKSPACE}.replace('\\', '/')/${env.BUILD_LOCATION} C:/iOS/Build-${env.BUILD_VERSION}-${params.CONFIGURATION}"
 				script
 				{
 					buildScript = '"C:/Users/alawi/iOS Project Builder for Unity/build.cmd" "' + "C:/iOS/Build-${env.BUILD_VERSION}-${params.CONFIGURATION}" + '" -xcname "Unity-iPhone" -xcpname "iPhone-target" -xcconf "Release" -archs "arm64" -multicore -lld -strip bitcode -pngcrush -ipa -identity "ios_distribution.cer:celeste_games.key:favouriteprimes111929" -provision "Robbi_App_Store_Provisioning_Profile.mobileprovision"'
