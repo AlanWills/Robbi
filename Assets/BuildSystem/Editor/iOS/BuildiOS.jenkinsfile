@@ -72,7 +72,7 @@ pipeline
 				script
 				{
 					projectPath = WORKSPACE.replace('\\', '/')
-					sh "cp C:/iOS/Build-${env.BUILD_VERSION}-${params.CONFIGURATION}/Packages/Robbi.ipa ${projectPath}/${env.BUILD_LOCATION}/Packages/Robbi.ipa"
+					sh "cp -r C:/iOS/Build-${env.BUILD_VERSION}-${params.CONFIGURATION}/Packages ${projectPath}/${env.BUILD_LOCATION}/Packages"
 				}
             }
         }
