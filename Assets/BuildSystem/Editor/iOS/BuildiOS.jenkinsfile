@@ -97,14 +97,14 @@ pipeline
 		{
 			steps 
 			{
-				archiveArtifacts artifacts: '${env.BUILD_LOCATION}/Packages/Robbi.ipa', onlyIfSuccessful: true
+				archiveArtifacts artifacts: "${env.BUILD_LOCATION}/Packages/Robbi.ipa", onlyIfSuccessful: true
 			}
 		}
 		stage('Artifact Assets')
 		{
 			steps 
 			{
-				archiveArtifacts artifacts: '${env.ASSETS_SOURCE}/*.*', onlyIfSuccessful: true
+				archiveArtifacts artifacts: "${env.ASSETS_SOURCE}/*.*", onlyIfSuccessful: true
 			}
 		}
         stage('Upload Build')
