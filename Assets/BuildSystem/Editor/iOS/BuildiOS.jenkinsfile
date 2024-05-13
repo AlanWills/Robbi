@@ -120,7 +120,8 @@ pipeline
             {
 				script
 				{
-					uploadScript = '"C:/Users/alawi/iOS Project Builder for Unity/upload.cmd" -v "' + "${env.WORKSPACE}/${env.BUILD_LOCATION}/Packages/Robbi.ipa" + '" -asclogin "alawills@googlemail.com" -ascpassword "dkqo-aiog-high-jtpd" -ascprovider ""'
+					projectPath = WORKSPACE.replace('\\', '/')
+					uploadScript = '"C:/Users/alawi/iOS Project Builder for Unity/upload.cmd" -v "' + "${projectPath}/${env.BUILD_LOCATION}/Packages/Robbi.ipa" + '" -asclogin "alawills@googlemail.com" -ascpassword "dkqo-aiog-high-jtpd" -ascprovider ""'
 					bat "${uploadScript}"
 				}
             }
