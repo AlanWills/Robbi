@@ -1,4 +1,6 @@
 UNITY_PATH = "C:/Program\\ Files/Unity/Hub/Editor/2022.3.15f1/Editor/Unity.exe"
+buildPath = ""
+projectPath = ""
 
 pipeline 
 {
@@ -40,6 +42,7 @@ pipeline
                 script 
                 {
                     readProperties(file: "${env.WORKSPACE}/Builds/iOS/${params.CONFIGURATION}/BUILD_ENV_VARS.txt").each {key, value -> env[key] = value }
+					buildPath = ${projectPath}/${env.BUILD_LOCATION}
                 }
                 buildName "iOS-" + CONFIGURATION + "-" + env.BUILD_VERSION
                 script 
@@ -48,6 +51,26 @@ pipeline
                 }
             }
         }
+		stage('Copy iOS Project To Temp Directory')
+		{
+			when
+            {
+                expression
+                {
+                    return currentBuild.currentResult == "SUCCESS" && env.USE_TEMP_DIRECTORY == 'true'
+                }
+            }
+			steps
+			{
+				tempBuildPath = "${env.TEMP_DIRECTORY_PATH}/Build-${env.BUILD_VERSION}-${params.CONFIGURATION}"
+				script
+				{
+					sh "rm -r ${tempBuildPath}"
+					sh "cp -r ${projectPath}/${env.BUILD_LOCATION} ${tempBuildPath}"
+					buildPath = tempBuildPath
+				}
+			}
+		}
         stage('Build iOS Project')
         {
             when
@@ -61,21 +84,28 @@ pipeline
             {
 				script
 				{
-					projectPath = WORKSPACE.replace('\\', '/')
-					sh "cp -r ${projectPath}/${env.BUILD_LOCATION} C:/iOS/Build-${env.BUILD_VERSION}-${params.CONFIGURATION}"
-				}
-				script
-				{
-					buildScript = '"C:/Users/alawi/iOS Project Builder for Unity/build.cmd" "' + "C:/iOS/Build-${env.BUILD_VERSION}-${params.CONFIGURATION}" + '" -xcname "Unity-iPhone" -xcpname "iPhone-target" -xcconf "Release" -archs "arm64" -multicore -lld -strip bitcode -pngcrush -ipa -identity "ios_distribution.cer:celeste_games.key:favouriteprimes111929" -provision "Robbi_App_Store_Provisioning_Profile.mobileprovision"'
+					buildScript = '"${env.IOS_PROJECT_BUILDER_INSTALL_PATH}/build.cmd" "' + "${buildPath}" + '" -xcname "Unity-iPhone" -xcpname "iPhone-target" -xcconf "Release" -archs "arm64" -multicore -lld -strip bitcode -pngcrush -ipa -identity "${env.DISTRIBUTION_CERTIFICATE}:{env.PRIVATE_KEY}:{env.PRIVATE_KEY_PASSWORD}" -provision "{env.PROVISIONING_PROFILE}"'
 					bat "${buildScript}"
-				}
-				script
-				{
-					projectPath = WORKSPACE.replace('\\', '/')
-					sh "cp -r C:/iOS/Build-${env.BUILD_VERSION}-${params.CONFIGURATION}/Packages ${projectPath}/${env.BUILD_LOCATION}/Packages"
 				}
             }
         }
+		stage('Copy .ipa From Temp Directory')
+		{
+			when
+            {
+                expression
+                {
+                    return currentBuild.currentResult == "SUCCESS" && env.USE_TEMP_DIRECTORY == 'true'
+                }
+            }
+			steps
+            {
+				script
+				{
+					sh "cp -r ${tempBuildPath}/Packages ${projectPath}/${env.BUILD_LOCATION}/Packages"
+				}
+            }
+		}
         stage('Commit Version')
         {
             when
@@ -97,7 +127,7 @@ pipeline
 		{
 			steps 
 			{
-				archiveArtifacts artifacts: "${env.BUILD_LOCATION}/Packages/Robbi.ipa", onlyIfSuccessful: true
+				archiveArtifacts artifacts: "${env.BUILD_LOCATION}/Packages/{env.IPA_NAME}.ipa", onlyIfSuccessful: true
 			}
 		}
 		stage('Artifact Assets')
@@ -120,8 +150,7 @@ pipeline
             {
 				script
 				{
-					projectPath = WORKSPACE.replace('\\', '/')
-					uploadScript = '"C:/Users/alawi/iOS Project Builder for Unity/upload.cmd" -v "' + "${projectPath}/${env.BUILD_LOCATION}/Packages/Robbi.ipa" + '" -asclogin "alawills@googlemail.com" -ascpassword "dkqo-aiog-high-jtpd" -ascprovider ""'
+					uploadScript = '"{env.IOS_PROJECT_BUILDER_INSTALL_PATH}/upload.cmd" -v "' + "${projectPath}/${env.BUILD_LOCATION}/Packages/{env.IPA_NAME}.ipa" + '" -asclogin "${env.ASC_USERNAME}" -ascpassword "{env.ASC_PASSWORD}" -ascprovider ""'
 					bat "${uploadScript}"
 				}
             }
@@ -137,7 +166,7 @@ pipeline
             }
             steps
             {
-                googleStorageUpload bucket: "gs://${env.ASSETS_DESTINATION}", credentialsId: 'e5a6c71c-c5f9-413e-8066-e3f8d58ee869', pattern: "${env.ASSETS_SOURCE}/*"
+                googleStorageUpload bucket: "gs://${env.ASSETS_DESTINATION}", credentialsId: "${env.ASSETS_UPLOAD_CREDENTIALS}", pattern: "${env.ASSETS_SOURCE}/*"
                 sh "rm -r ${env.ASSETS_SOURCE}"
             }
         }
