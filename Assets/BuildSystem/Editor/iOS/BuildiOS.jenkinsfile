@@ -66,6 +66,7 @@ pipeline
 				{
 					tempBuildPath = "${env.TEMP_DIRECTORY_PATH}/Build-${env.BUILD_VERSION}-${params.CONFIGURATION}"
 					sh "rm -r ${env.TEMP_DIRECTORY_PATH}"
+					sh "mkdir -p ${env.TEMP_DIRECTORY_PATH}"
 					sh "cp -r ${projectPath}/${env.BUILD_LOCATION} ${tempBuildPath}"
 					buildPath = tempBuildPath
 				}
