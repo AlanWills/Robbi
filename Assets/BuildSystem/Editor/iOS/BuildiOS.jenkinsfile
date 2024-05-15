@@ -62,9 +62,9 @@ pipeline
             }
 			steps
 			{
-				tempBuildPath = "${env.TEMP_DIRECTORY_PATH}/Build-${env.BUILD_VERSION}-${params.CONFIGURATION}"
 				script
 				{
+					tempBuildPath = "${env.TEMP_DIRECTORY_PATH}/Build-${env.BUILD_VERSION}-${params.CONFIGURATION}"
 					sh "rm -r ${tempBuildPath}"
 					sh "cp -r ${projectPath}/${env.BUILD_LOCATION} ${tempBuildPath}"
 					buildPath = tempBuildPath
