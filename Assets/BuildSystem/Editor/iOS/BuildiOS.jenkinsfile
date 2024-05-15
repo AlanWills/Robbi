@@ -67,6 +67,7 @@ pipeline
 					tempBuildPath = "${env.TEMP_DIRECTORY_PATH}/Build-${env.BUILD_VERSION}-${params.CONFIGURATION}"
 					
 					sh "find ${env.TEMP_DIRECTORY_PATH}/* -type d ! -name 'builder' -exec rm -r {} \\;"
+					sh "find ${env.TEMP_DIRECTORY_PATH}/* -not -path "${env.TEMP_DIRECTORY_PATH}/builder*" -exec rm -rf {} \\;"
 					sh "cp -r ${projectPath}/${env.BUILD_LOCATION} ${tempBuildPath}"
 					buildPath = tempBuildPath
 				}
