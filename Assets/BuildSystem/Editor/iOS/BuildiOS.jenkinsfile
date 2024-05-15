@@ -42,7 +42,7 @@ pipeline
                 script 
                 {
                     readProperties(file: "${env.WORKSPACE}/Builds/iOS/${params.CONFIGURATION}/BUILD_ENV_VARS.txt").each {key, value -> env[key] = value }
-					buildPath = ${projectPath}/${env.BUILD_LOCATION}
+					buildPath = "${projectPath}/${env.BUILD_LOCATION}"
                 }
                 buildName "iOS-" + CONFIGURATION + "-" + env.BUILD_VERSION
                 script 
