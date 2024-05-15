@@ -131,7 +131,7 @@ pipeline
 		{
 			steps 
 			{
-				archiveArtifacts artifacts: "${env.BUILD_LOCATION}/Packages/{env.IPA_NAME}.ipa", onlyIfSuccessful: true
+				archiveArtifacts artifacts: "${env.BUILD_LOCATION}/Packages/${env.IPA_NAME}.ipa", onlyIfSuccessful: true
 			}
 		}
 		stage('Artifact Assets')
@@ -154,7 +154,7 @@ pipeline
             {
 				script
 				{
-					uploadScript = '"{env.IOS_PROJECT_BUILDER_INSTALL_PATH}/upload.cmd" -v "' + "${projectPath}/${env.BUILD_LOCATION}/Packages/{env.IPA_NAME}.ipa" + '" -asclogin "${env.ASC_USERNAME}" -ascpassword "{env.ASC_PASSWORD}" -ascprovider ""'
+					uploadScript = '"${env.IOS_PROJECT_BUILDER_INSTALL_PATH}/upload.cmd" -v "' + "${projectPath}/${env.BUILD_LOCATION}/Packages/${env.IPA_NAME}.ipa" + '" -asclogin "${env.ASC_USERNAME}" -ascpassword "${env.ASC_PASSWORD}" -ascprovider ""'
 					bat "${uploadScript}"
 				}
             }
