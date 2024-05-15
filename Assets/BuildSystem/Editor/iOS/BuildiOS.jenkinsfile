@@ -65,7 +65,7 @@ pipeline
 				script
 				{
 					tempBuildPath = "${env.TEMP_DIRECTORY_PATH}/Build-${env.BUILD_VERSION}-${params.CONFIGURATION}"
-					deleteCommand = "/usr/bin/find ${env.TEMP_DIRECTORY_PATH}/* -not -path " + '"' + "${env.TEMP_DIRECTORY_PATH}/builder.lnk" + '" -prune -exec rm -rf {} \\;'
+					deleteCommand = "/usr/bin/find ${env.TEMP_DIRECTORY_PATH}/* -not -path " + '"' + "${env.TEMP_DIRECTORY_PATH}/builder*" + '" -prune -exec rm -rf {} \\;'
 					
 					echo "${deleteCommand}"
 					sh "${deleteCommand}"
