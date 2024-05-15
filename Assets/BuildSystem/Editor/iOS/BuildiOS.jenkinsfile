@@ -57,7 +57,7 @@ pipeline
             {
                 expression
                 {
-                    return currentBuild.currentResult == "SUCCESS" && env.USE_TEMP_DIRECTORY == 'true'
+                    return currentBuild.currentResult == "SUCCESS" && env.USE_TEMP_DIRECTORY == 'True'
                 }
             }
 			steps
@@ -95,7 +95,7 @@ pipeline
             {
                 expression
                 {
-                    return currentBuild.currentResult == "SUCCESS" && env.USE_TEMP_DIRECTORY == 'true'
+                    return currentBuild.currentResult == "SUCCESS" && env.USE_TEMP_DIRECTORY == 'True'
                 }
             }
 			steps
