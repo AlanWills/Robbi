@@ -156,7 +156,7 @@ pipeline
 				script
 				{
 					ipaWorkspaceLocationForUpload = "${env.BUILD_LOCATION}/Packages/${env.IPA_NAME}.ipa"
-					ipaWorkspaceLocationForUpload = ipaWorkspaceLocationForUpload.replace('\\', '/')
+					ipaWorkspaceLocationForUpload = ipaWorkspaceLocationForUpload.replace('/', '\\')
 					uploadScript = '"' + "${env.IOS_PROJECT_BUILDER_INSTALL_PATH}/upload.cmd" + '" -v "' + "${ipaWorkspaceLocationForUpload}" + '" -asclogin "' + "${env.ASC_USERNAME}" + '" -ascpassword "' + "${env.ASC_PASSWORD}" + '" -ascprovider ""'
 					echo "${uploadScript}"
 					bat "${uploadScript}"
