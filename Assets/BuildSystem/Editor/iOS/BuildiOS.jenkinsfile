@@ -123,6 +123,7 @@ pipeline
             {
                 sh "git add ."
                 sh 'git commit --allow-empty -m "Built iOS and updating version"'
+				sh 'git pull origin ${env.GIT_BRANCH} --rebase'
 				sh "git lfs push origin ${env.GIT_BRANCH} --all"
                 sh "git push --set-upstream origin ${env.GIT_BRANCH}"
             }
@@ -154,7 +155,7 @@ pipeline
             {
 				script
 				{
-					uploadScript = '"' + "${env.IOS_PROJECT_BUILDER_INSTALL_PATH}/upload.cmd" + '" "' + "${tempBuildPath}/Packages/${env.IPA_NAME}.ipa" + '" -asclogin "' + "${env.ASC_USERNAME}" + '" -ascpassword "' + "${env.ASC_PASSWORD}" + '" -ascprovider ""'
+					uploadScript = '"' + "${env.IOS_PROJECT_BUILDER_INSTALL_PATH}/upload.cmd" + '" -v "' + "${env.BUILD_LOCATION}/Packages/${env.IPA_NAME}.ipa" + '" -asclogin "' + "${env.ASC_USERNAME}" + '" -ascpassword "' + "${env.ASC_PASSWORD}" + '" -ascprovider ""'
 					echo "${uploadScript}"
 					bat "${uploadScript}"
 				}
