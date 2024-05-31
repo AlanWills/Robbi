@@ -154,7 +154,7 @@ pipeline
             {
 				script
 				{
-					uploadScript = '"' + "${env.IOS_PROJECT_BUILDER_INSTALL_PATH}/upload.cmd" + '" "' + "${projectPath}/${env.BUILD_LOCATION}/Packages/${env.IPA_NAME}.ipa" + '" -asclogin "' + "${env.ASC_USERNAME}" + '" -ascpassword "' + "${env.ASC_PASSWORD}" + '" -ascprovider ""'
+					uploadScript = '"' + "${env.IOS_PROJECT_BUILDER_INSTALL_PATH}/upload.cmd" + '" "' + "${tempBuildPath}/Packages/${env.IPA_NAME}.ipa" + '" -asclogin "' + "${env.ASC_USERNAME}" + '" -ascpassword "' + "${env.ASC_PASSWORD}" + '" -ascprovider ""'
 					echo "${uploadScript}"
 					bat "${uploadScript}"
 				}
