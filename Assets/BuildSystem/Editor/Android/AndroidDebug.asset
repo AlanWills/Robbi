@@ -14,13 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: {fileID: 11400000, guid: 2b8e1dc8283616047a37ee5d4fd04907, type: 2}
   buildDirectory: Builds/{build_target_group}/{environment}
-  buildUploadURL: celeste-games/robbi
   outputName: Robbi-{version}-{environment}.apk
+  buildUploadUrl: 
+  buildUploadCredentials: 
   addressablesEnabled: 1
-  playerOverrideVersion: res
+  playerOverrideVersion: '{major}_{minor}'
   addressablesBuildDirectory: ServerData/{build_target_group}/{environment}/{major}.{minor}
   addressablesLoadDirectory: https://storage.googleapis.com/celeste-games/robbi/ServerData/{build_target_group}/{environment}/{major}.{minor}
   addressablesUploadURL: celeste-games/robbi
+  addressablesUploadCredentials: 
   advancedAddressablesSettings: 0
   localAddressablesBuildPath: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
   localAddressablesLoadPath: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
@@ -32,11 +34,11 @@ MonoBehaviour:
   buildOptions: 2097153
   scriptingDefineSymbols: {fileID: 11400000, guid: 24d4b19c5b350da47a61bda5ea8fae0d,
     type: 2}
-  addressableGroupsInBuild: {fileID: 11400000, guid: aab59e2be5fce3842b1077373f98bf71,
-    type: 2}
   buildPreparationSteps: {fileID: 11400000, guid: 109aa077bba19a9408537c7e20512db2,
     type: 2}
   buildPostProcessSteps: {fileID: 11400000, guid: 9cf6f1fa61fa0b141a4b8510e82394af,
+    type: 2}
+  addressableGroupsInBuild: {fileID: 11400000, guid: aab59e2be5fce3842b1077373f98bf71,
     type: 2}
   buildAssetsPreparationSteps: {fileID: 11400000, guid: 5cae0d0bab4458245b03c96e4d1676fa,
     type: 2}
@@ -46,8 +48,6 @@ MonoBehaviour:
     type: 2}
   updateAssetsPostProcessSteps: {fileID: 11400000, guid: 42b51343fa22ec548bfb83dbe03c4713,
     type: 2}
-  scriptingBackend: 1
-  architecture: 2
   buildAppBundle: 0
   buildSymbols: 0
   minifyRelease: 0
@@ -57,3 +57,7 @@ MonoBehaviour:
   requiresWritePermission: 1
   minSdkVersion: 28
   targetSdkVersion: 0
+  scriptingBackend: 1
+  architecture: 2
+  useFastlane: 0
+  fastlaneUploadTrackName: internal

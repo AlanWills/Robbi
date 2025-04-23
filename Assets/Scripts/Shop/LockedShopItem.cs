@@ -1,3 +1,4 @@
+using Celeste.Shop;
 using Celeste.Shop.Catalogue;
 using UnityEngine;
 

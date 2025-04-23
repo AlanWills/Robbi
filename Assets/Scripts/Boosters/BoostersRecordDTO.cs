@@ -1,9 +1,10 @@
 using System;
+using Celeste.Persistence;
 
 namespace Robbi.Boosters
 {
     [Serializable]
-    public class BoostersRecordDTO
+    public class BoostersRecordDTO : VersionedDTO
     {
         public uint numWaypointBoosters;
         public uint numDoorToggleBoosters;

@@ -42,7 +42,7 @@ namespace Robbi.Levels
     }
 
     [Serializable]
-    public class LevelRecordDTO
+    public class LevelRecordDTO : VersionedDTO
     {
         public uint latestUnlockedLevelIndex;
 

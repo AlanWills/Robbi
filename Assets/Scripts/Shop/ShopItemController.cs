@@ -54,8 +54,8 @@ namespace Robbi.Shop
 
             name = shopItem.name;
             displayNameText.text = shopItem.Title.Fallback;
-            softCurrencyCostText.text = $"<sprite name=\"SoftCurrencyIcon\"/> {shopItem.Cost.quantity}";
-            unlockAtLevelText.text = $"Unlocks At Level {shopItem.UnlocksAtLevel}";
+
+            RefreshPrice();
 
             waypointBoosterInfo.SetActive(shopItem.NumWaypointBoosters > 0);
             numWaypointBoostersText.text = shopItem.NumWaypointBoosters.ToString();
@@ -68,6 +68,11 @@ namespace Robbi.Shop
 
             UpdateBlockerUI();
         }
+
+        public void RefreshPrice()
+        {
+            softCurrencyCostText.text = $"<sprite name=\"SoftCurrencyIcon\"/> {shopItem.Cost.quantity}";
+            unlockAtLevelText.text = $"Unlocks At Level {shopItem.UnlocksAtLevel}";}
 
         private void UpdateBlockerUI()
         {
