@@ -70,7 +70,7 @@ namespace Robbi.Movement
         [SerializeField] private FloatValue defaultMovementSpeed;
 
         [Header("Other")]
-        public GameObjectAllocator destinationMarkerAllocator;
+        public GameObjectAllocator_List destinationMarkerAllocator;
         public FloatValue movementSpeed;
         public BoxCollider2D boundingBox;
 
@@ -171,7 +171,7 @@ namespace Robbi.Movement
         {
             if (destinationMarkerAllocator == null)
             {
-                destinationMarkerAllocator = GetComponent<GameObjectAllocator>();
+                destinationMarkerAllocator = GetComponent<GameObjectAllocator_List>();
             }
 
             if (boundingBox == null)
