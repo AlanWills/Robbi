@@ -3725,7 +3725,8 @@ GameObject:
   - component: {fileID: 1536764610}
   - component: {fileID: 1536764613}
   - component: {fileID: 1536764614}
-  - component: {fileID: 1536764615}
+  - component: {fileID: 1536764622}
+  - component: {fileID: 1536764623}
   - component: {fileID: 1536764619}
   m_Layer: 0
   m_Name: Main Camera
@@ -3814,8 +3815,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 844865226}
   dragSpeed: {fileID: 205650085}
-  xPadding: 0
-  yPadding: 0
+  xPadding: 1.2
+  yPadding: 1.2
 --- !u!114 &1536764609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3830,11 +3831,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraToZoom: {fileID: 1536764606}
   tilemap: {fileID: 2049801524}
-  xPadding: 60
-  yPadding: 140
+  xPadding: 1.2
+  yPadding: 1.2
   minZoom: {fileID: 503981876}
   maxZoom: {fileID: 591599582}
   zoomSpeed: {fileID: 525710403}
+  zoomIncrement: {fileID: 2146638743}
 --- !u!114 &1536764610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3913,35 +3915,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1536764609}
         m_TargetAssemblyTypeName: Robbi.Viewport.TilemapZoom, Assembly-CSharp
         m_MethodName: ZoomUsingPinch
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1536764615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1536764604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbba3fe6533080d45b74c03931ba399d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 53aadcd28629d204292639ee2129ec2f, type: 2}
-  logAddAndRemoveListener: 0
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1536764609}
-        m_TargetAssemblyTypeName: Celeste.Tilemaps.TilemapZoom, Celeste.Tilemaps
-        m_MethodName: ZoomPercentage
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4091,6 +4064,64 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Celeste.Tilemaps.TilemapDrag, Celeste.Tilemaps
         m_MethodName: StartDrag
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1536764622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536764604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c2c167d8138f94b8f96ff1b82578d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Celeste.Events::Celeste.Events.EventListener
+  gameEvent: {fileID: 11400000, guid: c3c9c03b4333cda48b83e8b7eb8dd024, type: 2}
+  logAddAndRemoveListener: 0
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1536764609}
+        m_TargetAssemblyTypeName: Celeste.Tilemaps.TilemapZoom, Celeste.Tilemaps
+        m_MethodName: ZoomInIncrement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1536764623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536764604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c2c167d8138f94b8f96ff1b82578d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Celeste.Events::Celeste.Events.EventListener
+  gameEvent: {fileID: 11400000, guid: b7d7bf52f854c254e827cebfead37889, type: 2}
+  logAddAndRemoveListener: 0
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1536764609}
+        m_TargetAssemblyTypeName: Celeste.Tilemaps.TilemapZoom, Celeste.Tilemaps
+        m_MethodName: ZoomOutIncrement
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5929,6 +5960,22 @@ MonoBehaviour:
       _dynamic: 0
   isActive: 0
   gameObject: {fileID: 1846318695626051532}
+--- !u!114 &2146638743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6294ba561ec44204db04b891314087d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Celeste.Parameters::Celeste.Parameters.FloatReference
+  helpText: 
+  isConstant: 0
+  constantValue: 1
+  referenceValue: {fileID: 11400000, guid: 21e988d5de2d93f4ba4d0e94bf3a8f51, type: 2}
 --- !u!1001 &1846318695626051526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6036,6 +6083,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1163149186381343877, guid: 8e717b3de403cc5499fa0f157d534088,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 1219474125306006835, guid: 8e717b3de403cc5499fa0f157d534088,
         type: 3}
@@ -6292,6 +6344,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelUI
       objectReference: {fileID: 0}
+    - target: {fileID: 1846318695691501863, guid: 8e717b3de403cc5499fa0f157d534088,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
     - target: {fileID: 1972892039328212556, guid: 8e717b3de403cc5499fa0f157d534088,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -6371,6 +6428,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2298748694854350912, guid: 8e717b3de403cc5499fa0f157d534088,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 2313843265238348380, guid: 8e717b3de403cc5499fa0f157d534088,
         type: 3}
@@ -6637,6 +6699,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5442479185951362995, guid: 8e717b3de403cc5499fa0f157d534088,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
     - target: {fileID: 5512368162396111600, guid: 8e717b3de403cc5499fa0f157d534088,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -6847,6 +6914,11 @@ PrefabInstance:
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
       objectReference: {fileID: 0}
+    - target: {fileID: 7473761023829865449, guid: 8e717b3de403cc5499fa0f157d534088,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
     - target: {fileID: 7641899957693620397, guid: 8e717b3de403cc5499fa0f157d534088,
         type: 3}
       propertyPath: m_Name
@@ -6972,6 +7044,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8552920473682944691, guid: 8e717b3de403cc5499fa0f157d534088,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
     - target: {fileID: 8564848116551533808, guid: 8e717b3de403cc5499fa0f157d534088,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -7071,6 +7148,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061371253839361816, guid: 8e717b3de403cc5499fa0f157d534088,
+        type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 9091646992271848577, guid: 8e717b3de403cc5499fa0f157d534088,
         type: 3}
