@@ -16,13 +16,9 @@ namespace Robbi.PickLevel
 
         [Header("Parameters")]
         [SerializeField] private UIntValue latestUnlockedLevel;
-
         [SerializeField] private UIntValue latestAvailableLevel;
 
-        [SerializeField] private int portraitGridSegments;
-        [SerializeField] private int landscapeGridSegments;
-
-        private List<LevelStationData> levelStationData = new List<LevelStationData>();
+        private readonly List<LevelStationData> levelStationData = new();
 
         #endregion
 
@@ -30,8 +26,6 @@ namespace Robbi.PickLevel
 
         private void Awake()
         {
-            //scrollRect.Segments = Screen.width > Screen.height ? landscapeGridSegments : portraitGridSegments;
-
             uint latestLevel = Math.Min(latestUnlockedLevel.Value, latestAvailableLevel.Value);
             uint instantiationCount = latestLevel + 1;
 
@@ -40,7 +34,7 @@ namespace Robbi.PickLevel
                 levelStationData.Add(new LevelStationData(i, i < latestUnlockedLevel.Value));
             }
 
-            scrollRect.DataSource = this;
+            scrollRect.Initialize(this);
         }
 
         #endregion
@@ -54,12 +48,8 @@ namespace Robbi.PickLevel
 
         public void SetCell(ICell cell, int index)
         {
-            // Show elements in reverse order so that the latest levels will appear at the top
-            uint latestLevel = Math.Min(latestUnlockedLevel.Value, latestAvailableLevel.Value);
-            int reverseIndex = (int)latestLevel - index;
-
             LevelStation levelStation = cell as LevelStation;
-            levelStation.ConfigureCell(levelStationData[reverseIndex], reverseIndex);
+            levelStation.ConfigureCell(levelStationData[index], index);
         }
 
         #endregion
