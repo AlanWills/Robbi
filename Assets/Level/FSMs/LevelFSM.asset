@@ -1405,6 +1405,88 @@ MonoBehaviour:
   m_Name: DialogConfirmPressed
   m_EditorClassIdentifier: 
   listenFor: {fileID: 11400000, guid: b8412f65d2677e54398df94f7e10771e, type: 2}
+--- !u!114 &-2061196497417402113
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 737d89550a2e2194db247d1e3f3c19db, type: 3}
+  m_Name: If
+  m_EditorClassIdentifier: Celeste.FSM.Nodes::Celeste.FSM.Nodes.Logic.IfNode
+  graph: {fileID: 11400000}
+  position: {x: -24, y: 104}
+  ports:
+    keys:
+    - inArgument
+    - outArgument
+    - ' '
+    - 
+    - Completed Latest Unlocked Level
+    values:
+    - _fieldName: inArgument
+      _node: {fileID: -2061196497417402113}
+      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outArgument
+      _node: {fileID: -2061196497417402113}
+      _typeQualifiedName: System.Object, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: ' '
+      _node: {fileID: -2061196497417402113}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: 7164677085526315481}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -2061196497417402113}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 2777330984986939076}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: Completed Latest Unlocked Level
+      _node: {fileID: -2061196497417402113}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 4536097677878019399}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  guid: 3bcd8c99-02a8-465f-baea-7b927c5127ac
+  conditions:
+  - Name: Completed Latest Unlocked Level
+    Condition: {fileID: 11400000, guid: 004fa58245e06ef4596f2d80cad0afa4, type: 2}
+    UseArgument: 0
+    ForceCheck: 0
 --- !u!114 &-1905474601933169235
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1465,8 +1547,8 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   guid: fca47739-de01-4602-8f36-70d1b1375c4c
-  argument: {fileID: -3592520896903278029}
   toRaise: {fileID: 11400000, guid: aa8053b538b3b594e8d0938f58ca2f5a, type: 2}
+  argument: {fileID: -3592520896903278029}
 --- !u!114 &-1351710076970982888
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1750,6 +1832,7 @@ MonoBehaviour:
   - {fileID: -6559286595443200790}
   - {fileID: 8747677895205166003}
   - {fileID: 7164677085526315481}
+  - {fileID: -2061196497417402113}
   startNode: {fileID: -3226388243556060441}
   parameters:
   - {fileID: -8289268647676887226}
@@ -3180,7 +3263,7 @@ MonoBehaviour:
   m_Name: Set Int Value
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 232, y: 104}
+  position: {x: 216, y: 312}
   ports:
     keys:
     - ' '
@@ -3429,6 +3512,9 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 789040069120964131}
         reroutePoints: []
+      - fieldName: 
+        node: {fileID: -2061196497417402113}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -3480,6 +3566,7 @@ MonoBehaviour:
   - Name: Completed Last Available Level
     Condition: {fileID: 11400000, guid: 8ff808f3c00669b46a370e21d8524738, type: 2}
     UseArgument: 0
+    ForceCheck: 0
 --- !u!114 &3180146865729401304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3924,7 +4011,7 @@ MonoBehaviour:
   m_Name: Set U Int Value
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -24, y: 104}
+  position: {x: -40, y: 312}
   ports:
     keys:
     - ' '
@@ -3939,8 +4026,8 @@ MonoBehaviour:
       - fieldName: 
         node: {fileID: 7164677085526315481}
         reroutePoints: []
-      - fieldName: 
-        node: {fileID: 7164677085526315481}
+      - fieldName: Completed Latest Unlocked Level
+        node: {fileID: -2061196497417402113}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -5179,7 +5266,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: 4536097677878019399}
+        node: {fileID: -2061196497417402113}
         reroutePoints: []
       _direction: 1
       _connectionType: 1

@@ -161,7 +161,7 @@ namespace Robbi.Movement
                     
                     if (movedFrom != movedTo)
                     {
-                            onMovedFrom.Invoke(movedFrom);
+                        onMovedFrom.Invoke(movedFrom);
                     }
                 }
             }
@@ -248,6 +248,11 @@ namespace Robbi.Movement
             {
                 AddWaypoint(waypoint);
             }
+        }
+
+        public void OnExitReached()
+        {
+            isProgramRunning.Value = false;
         }
 
         #endregion
