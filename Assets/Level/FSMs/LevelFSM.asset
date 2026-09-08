@@ -1463,7 +1463,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: 2777330984986939076}
+        node: {fileID: -877749266516957874}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -1599,6 +1599,63 @@ MonoBehaviour:
   isConstant: 1
   constantValue: MissingCollectionTarget
   referenceValue: {fileID: 0}
+--- !u!114 &-877749266516957874
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06e317c46dcf91148b66e32179d2a8ff, type: 3}
+  m_Name: Set Int Value
+  m_EditorClassIdentifier: Celeste.FSM.Nodes::Celeste.FSM.Nodes.Parameters.SetIntValueNode
+  graph: {fileID: 11400000}
+  position: {x: 232, y: 104}
+  ports:
+    keys:
+    - newValue
+    - ' '
+    - 
+    values:
+    - _fieldName: newValue
+      _node: {fileID: -877749266516957874}
+      _typeQualifiedName: Celeste.Parameters.IntReference, Celeste.Parameters, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: ' '
+      _node: {fileID: -877749266516957874}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: -2061196497417402113}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -877749266516957874}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 2777330984986939076}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  guid: c5499514-8c36-4f70-b6aa-9c1668c1d2b1
+  value: {fileID: 11400000, guid: 0e9608338439be24ca922680b8f9b157, type: 2}
+  newValue: {fileID: 3014681768147951104}
+  setMode: 0
 --- !u!114 &-800556669610170847
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1833,6 +1890,7 @@ MonoBehaviour:
   - {fileID: 8747677895205166003}
   - {fileID: 7164677085526315481}
   - {fileID: -2061196497417402113}
+  - {fileID: -877749266516957874}
   startNode: {fileID: -3226388243556060441}
   parameters:
   - {fileID: -8289268647676887226}
@@ -1868,6 +1926,7 @@ MonoBehaviour:
   - {fileID: -5317579700761566759}
   - {fileID: 8343181713792226982}
   - {fileID: 7871192580313688851}
+  - {fileID: 3014681768147951104}
 --- !u!114 &565144041837966301
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3263,7 +3322,7 @@ MonoBehaviour:
   m_Name: Set Int Value
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 216, y: 312}
+  position: {x: 232, y: 312}
   ports:
     keys:
     - ' '
@@ -3275,21 +3334,6 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: 
-        node: {fileID: 4536097677878019399}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 4536097677878019399}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 4536097677878019399}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 4536097677878019399}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: 4536097677878019399}
-        reroutePoints: []
       - fieldName: 
         node: {fileID: 4536097677878019399}
         reroutePoints: []
@@ -3483,7 +3527,7 @@ MonoBehaviour:
   m_Name: If
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 504, y: 104}
+  position: {x: 536, y: 104}
   ports:
     keys:
     - ' '
@@ -3513,7 +3557,7 @@ MonoBehaviour:
         node: {fileID: 789040069120964131}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -2061196497417402113}
+        node: {fileID: -877749266516957874}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -3567,6 +3611,22 @@ MonoBehaviour:
     Condition: {fileID: 11400000, guid: 8ff808f3c00669b46a370e21d8524738, type: 2}
     UseArgument: 0
     ForceCheck: 0
+--- !u!114 &3014681768147951104
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3c9a38be80386d4ea8852ca12654382, type: 3}
+  m_Name: _newValue
+  m_EditorClassIdentifier: Celeste.Parameters::Celeste.Parameters.IntReference
+  helpText: 
+  isConstant: 1
+  constantValue: 0
+  referenceValue: {fileID: 0}
 --- !u!114 &3180146865729401304
 MonoBehaviour:
   m_ObjectHideFlags: 1
