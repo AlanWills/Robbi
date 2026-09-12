@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01c9c3693f78335499fc409c35e2647f, type: 3}
   m_Name: AtFuel
   m_EditorClassIdentifier: 
+  negate: 0
   onIsMetChanged:
     bakedEvent: {fileID: 0}
   value: {fileID: 11400000, guid: 675ea5a983237644a8af5c94ac4a478e, type: 2}
@@ -145,6 +146,7 @@ MonoBehaviour:
       _dynamic: 1
   guid: 6ed4063e-4b9f-4e11-9a20-7f71caf14a61
   targetPosition: {fileID: -8214822366331154422}
+  camera: {fileID: 11400000, guid: 47175372b09d5494086c7061552f03b3, type: 2}
   lookAxis: 2
   time: 0.5
 --- !u!114 &11400000
@@ -383,6 +385,7 @@ MonoBehaviour:
   - Name: At Fuel
     Condition: {fileID: 11400000, guid: f7e31ec591550924ca157df0c8993539, type: 2}
     UseArgument: 1
+    ForceCheck: 0
 --- !u!114 &3865167003148867284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -695,6 +698,7 @@ MonoBehaviour:
   - Name: 
     Condition: {fileID: 0}
     UseArgument: 0
+    ForceCheck: 0
 --- !u!114 &9121663728894839100
 MonoBehaviour:
   m_ObjectHideFlags: 1
