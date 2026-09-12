@@ -1,4 +1,5 @@
 using Celeste.Debug.Menus;
+using Celeste.Events;
 using Celeste.Parameters;
 using Celeste.Tools;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace Robbi.Levels
     {
         [SerializeField] private LevelRecord levelRecord;
         [SerializeField] private FloatValue dragSpeed;
+        [SerializeField] private Vector3Event centreCamera;
 
         protected override void OnDrawMenu()
         {
@@ -21,6 +23,11 @@ namespace Robbi.Levels
                 GUILayout.Label("Drag Speed");
                 dragSpeed.Value = GUILayout.HorizontalSlider(dragSpeed.Value, 0.01f, 1);
                 dragSpeed.Value = GUIExtensions.FloatField(dragSpeed.Value);
+            }
+
+            if (GUILayout.Button("Centre Camera"))
+            {
+                centreCamera.Invoke(Vector3.zero);
             }
         }
     }
