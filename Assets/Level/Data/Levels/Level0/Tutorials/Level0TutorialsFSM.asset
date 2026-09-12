@@ -664,7 +664,7 @@ MonoBehaviour:
   inputValue: {x: 0, y: 0, z: 0}
   condition: 0
   targetValue: {fileID: -2700811122537595401}
---- !u!114 &-2786065800040523597
+--- !u!114 &-3545413136826556486
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -675,16 +675,16 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4383947189a02a04ca511db26eaf214c, type: 3}
   m_Name: Look At
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Celeste.FSM.Nodes::Celeste.FSM.Nodes.Viewport.LookAtNode
   graph: {fileID: 11400000}
-  position: {x: 88, y: -296}
+  position: {x: 40, y: -296}
   ports:
     keys:
     - ' '
     - 
     values:
     - _fieldName: ' '
-      _node: {fileID: -2786065800040523597}
+      _node: {fileID: -3545413136826556486}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections: []
@@ -693,7 +693,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
     - _fieldName: 
-      _node: {fileID: -2786065800040523597}
+      _node: {fileID: -3545413136826556486}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
@@ -704,8 +704,9 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-  guid: 4dc267da-658f-4fd7-b2ef-cb78acd3894a
-  targetPosition: {fileID: -2214897692872982116}
+  guid: 32591b82-3847-4098-90d2-352a10387b46
+  targetPosition: {fileID: 1297661357950475738}
+  camera: {fileID: 11400000, guid: 47175372b09d5494086c7061552f03b3, type: 2}
   lookAxis: 2
   time: 0.5
 --- !u!114 &-2700811122537595401
@@ -719,22 +720,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74932df3e79c946469c896e470e3a0df, type: 3}
   m_Name: _TargetValue
-  m_EditorClassIdentifier: 
-  helpText: 
-  isConstant: 1
-  constantValue: {x: 2, y: -1, z: 0}
-  referenceValue: {fileID: 0}
---- !u!114 &-2214897692872982116
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0008096ec181f524fb8ed2dac702c007, type: 3}
-  m_Name: _targetPosition
   m_EditorClassIdentifier: 
   helpText: 
   isConstant: 1
@@ -836,10 +821,10 @@ MonoBehaviour:
   - {fileID: -1782701409983700444}
   - {fileID: -4684913231079393316}
   - {fileID: 1181686053045536471}
-  - {fileID: -2786065800040523597}
   - {fileID: 8846631863792498475}
   - {fileID: -4093509730229093825}
-  startNode: {fileID: -2786065800040523597}
+  - {fileID: -3545413136826556486}
+  startNode: {fileID: -3545413136826556486}
   parameters:
   - {fileID: 7487029368195046784}
   - {fileID: -8499139681128011409}
@@ -850,11 +835,11 @@ MonoBehaviour:
   - {fileID: 4224721331816200467}
   - {fileID: -6409143922596244993}
   - {fileID: -1868479701269619054}
-  - {fileID: -2214897692872982116}
   - {fileID: -5252126011433344006}
   - {fileID: 5680427712992124310}
   - {fileID: 9082912923152600826}
   - {fileID: -2700811122537595401}
+  - {fileID: 1297661357950475738}
 --- !u!114 &1181686053045536471
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -927,6 +912,22 @@ MonoBehaviour:
       _dynamic: 1
   guid: 781b3943-474f-429f-a226-a2888e94481c
   listenFor: {fileID: 11400000, guid: 6b4a72f1879c01b41a7a4d34b806e2ae, type: 2}
+--- !u!114 &1297661357950475738
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0008096ec181f524fb8ed2dac702c007, type: 3}
+  m_Name: _targetPosition
+  m_EditorClassIdentifier: Celeste.Parameters::Celeste.Parameters.Vector3Reference
+  helpText: 
+  isConstant: 1
+  constantValue: {x: 2, y: -1, z: 0}
+  referenceValue: {fileID: 0}
 --- !u!114 &3333460166109002369
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1015,25 +1016,16 @@ MonoBehaviour:
         node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -2786065800040523597}
-        reroutePoints: []
-      - fieldName: 
         node: {fileID: 0}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -2786065800040523597}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -2786065800040523597}
-        reroutePoints: []
-      - fieldName: 
-        node: {fileID: -2786065800040523597}
+        node: {fileID: 0}
         reroutePoints: []
       - fieldName: False
         node: {fileID: 8846631863792498475}
         reroutePoints: []
       - fieldName: 
-        node: {fileID: -2786065800040523597}
+        node: {fileID: -3545413136826556486}
         reroutePoints: []
       _direction: 0
       _connectionType: 0

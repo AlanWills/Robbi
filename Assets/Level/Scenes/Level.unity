@@ -3755,6 +3755,7 @@ GameObject:
   - component: {fileID: 1536764622}
   - component: {fileID: 1536764623}
   - component: {fileID: 1536764619}
+  - component: {fileID: 1536764625}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4130,6 +4131,26 @@ MonoBehaviour:
   zoomSpeed: {fileID: 179024641}
   zoomIncrement: {fileID: 364590200}
   dragSpeed: {fileID: 1018861157}
+--- !u!114 &1536764625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536764604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b175b9e38c183c048b03516291667277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Celeste.Viewport::Celeste.Viewport.SetCameraValue
+  _camera: {fileID: 1536764606}
+  useParameter: 1
+  cameraValue: {fileID: 11400000, guid: 47175372b09d5494086c7061552f03b3, type: 2}
+  setCameraEvent: {fileID: 0}
+  setInAwake: 1
+  setInOnEnable: 0
+  setInStart: 0
+  setInUpdate: 0
 --- !u!114 &1544069687
 MonoBehaviour:
   m_ObjectHideFlags: 1
