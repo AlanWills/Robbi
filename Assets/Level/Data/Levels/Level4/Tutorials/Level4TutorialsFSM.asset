@@ -60,7 +60,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   guid: b9bad419-048f-40cf-b887-2db5a59e978b
-  argument: {x: 0, y: 0, z: 0}
+  argument: {x: 1, y: 0, z: 0}
   listenFor: {fileID: 11400000, guid: b29c4307e71a13a4c82941ab0f1f4f80, type: 2}
 --- !u!114 &-8831423632647727453
 MonoBehaviour:
@@ -405,9 +405,11 @@ MonoBehaviour:
   - Name: 
     Condition: {fileID: 0}
     UseArgument: 0
+    ForceCheck: 0
   - Name: 
     Condition: {fileID: 0}
     UseArgument: 0
+    ForceCheck: 0
 --- !u!114 &-5400274196431185237
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -440,6 +442,54 @@ MonoBehaviour:
   isConstant: 1
   constantValue: {x: -1, y: 2, z: 0}
   referenceValue: {fileID: 0}
+--- !u!114 &-3277321349528589428
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4383947189a02a04ca511db26eaf214c, type: 3}
+  m_Name: Look At
+  m_EditorClassIdentifier: Celeste.FSM.Nodes::Celeste.FSM.Nodes.Viewport.LookAtNode
+  graph: {fileID: 11400000}
+  position: {x: 520, y: 616}
+  ports:
+    keys:
+    - ' '
+    - 
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -3277321349528589428}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: 9079568490339430495}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -3277321349528589428}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 8643492063088914082}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  guid: 64ddfe95-4b38-4ba1-95b0-3233c74d2a8e
+  targetPosition: {fileID: 9148651194704883057}
+  camera: {fileID: 11400000, guid: 47175372b09d5494086c7061552f03b3, type: 2}
+  lookAxis: 2
+  time: 0.5
 --- !u!114 &-3105977017907211633
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -497,6 +547,7 @@ MonoBehaviour:
   - {fileID: 8643492063088914082}
   - {fileID: 508641987298667644}
   - {fileID: 8473674751753982549}
+  - {fileID: -3277321349528589428}
   startNode: {fileID: 7634838609770183560}
   parameters:
   - {fileID: 8627044447357019551}
@@ -511,6 +562,7 @@ MonoBehaviour:
   - {fileID: 2376652397526685420}
   - {fileID: -4608983329717869522}
   - {fileID: -6035959196967277120}
+  - {fileID: 9148651194704883057}
 --- !u!114 &106036645023556932
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1077,11 +1129,11 @@ MonoBehaviour:
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: 
-        node: {fileID: 9079568490339430495}
-        reroutePoints: []
       - fieldName: False
         node: {fileID: 508641987298667644}
+        reroutePoints: []
+      - fieldName: 
+        node: {fileID: -3277321349528589428}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -1112,7 +1164,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   guid: 095118b5-47a8-4070-8096-e76ac06c88b3
-  argument: {x: 0, y: 0, z: 0}
+  argument: {x: 1, y: 0, z: 0}
   listenFor: {fileID: 11400000, guid: b29c4307e71a13a4c82941ab0f1f4f80, type: 2}
 --- !u!114 &9079568490339430495
 MonoBehaviour:
@@ -1152,7 +1204,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: ' '
-        node: {fileID: 8643492063088914082}
+        node: {fileID: -3277321349528589428}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -1171,3 +1223,19 @@ MonoBehaviour:
   value: {fileID: 11400000, guid: d37cc83f2021bad4d9d24e7b7857ed5b, type: 2}
   newValue: {fileID: 2376652397526685420}
   setMode: 1
+--- !u!114 &9148651194704883057
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0008096ec181f524fb8ed2dac702c007, type: 3}
+  m_Name: _targetPosition
+  m_EditorClassIdentifier: Celeste.Parameters::Celeste.Parameters.Vector3Reference
+  helpText: 
+  isConstant: 1
+  constantValue: {x: -1, y: 2, z: 0}
+  referenceValue: {fileID: 0}
