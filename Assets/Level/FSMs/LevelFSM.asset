@@ -1834,6 +1834,9 @@ MonoBehaviour:
       - fieldName: RestartButtonPressed
         node: {fileID: 6892155271034553611}
         reroutePoints: []
+      - fieldName: RestartButtonPressed
+        node: {fileID: 8535433320216269636}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -1927,6 +1930,19 @@ MonoBehaviour:
   - {fileID: 8343181713792226982}
   - {fileID: 7871192580313688851}
   - {fileID: 3014681768147951104}
+--- !u!114 &134603679615658109
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0efdd2cf93fbd9489957a3bb755b622, type: 3}
+  m_Name: RestartButtonPressed
+  m_EditorClassIdentifier: Celeste.FSM.Nodes::Celeste.FSM.Nodes.Events.Conditions.VoidEventCondition
+  listenFor: {fileID: 11400000, guid: 1c88015a68dfada4cb03bcb4a3a52587, type: 2}
 --- !u!114 &565144041837966301
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6249,6 +6265,7 @@ MonoBehaviour:
     - argument
     - DialogConfirmPressed
     - DialogClosePressed
+    - RestartButtonPressed
     values:
     - _fieldName: ' '
       _node: {fileID: 8535433320216269636}
@@ -6325,10 +6342,23 @@ MonoBehaviour:
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
+    - _fieldName: RestartButtonPressed
+      _node: {fileID: 8535433320216269636}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -243601501787051259}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
   guid: 9c84c350-ad32-459d-9eea-fa755af588e9
   events:
   - {fileID: 4766859081036301762}
   - {fileID: 8149004298715045550}
+  - {fileID: 134603679615658109}
 --- !u!114 &8725160330400157820
 MonoBehaviour:
   m_ObjectHideFlags: 1
