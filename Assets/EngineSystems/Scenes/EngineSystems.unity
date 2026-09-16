@@ -386,11 +386,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: a78c4d32cac64f04cb2a116b7b44ba51,
         type: 2}
-    - target: {fileID: 6162786161728091084, guid: b2406abb629933343bd3f0b6a9f3913e,
-        type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -414,7 +409,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1406283638}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1317833093620173798, guid: b2406abb629933343bd3f0b6a9f3913e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 309980509}
   m_SourcePrefab: {fileID: 100100000, guid: b2406abb629933343bd3f0b6a9f3913e, type: 3}
 --- !u!4 &309980507 stripped
 Transform:
@@ -422,6 +421,53 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 309980506}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &309980508 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1317833093620173798, guid: b2406abb629933343bd3f0b6a9f3913e,
+    type: 3}
+  m_PrefabInstance: {fileID: 309980506}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &309980509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309980508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c2c167d8138f94b8f96ff1b82578d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Celeste.Events::Celeste.Events.EventListener
+  gameEvent: {fileID: 11400000, guid: 19e1b07ad309af740b0e3e107c9925c3, type: 2}
+  logAddAndRemoveListener: 0
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 309980510}
+        m_TargetAssemblyTypeName: Celeste.Sound.MusicManager, Celeste.Sound
+        m_MethodName: NextTrack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &309980510 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5917825592102018118, guid: b2406abb629933343bd3f0b6a9f3913e,
+    type: 3}
+  m_PrefabInstance: {fileID: 309980506}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309980508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 720439431f3c9804f87cad17e7f5986d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1406283637
 GameObject:
   m_ObjectHideFlags: 0
