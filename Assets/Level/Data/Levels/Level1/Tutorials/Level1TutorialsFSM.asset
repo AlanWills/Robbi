@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Set Int Value
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -760, y: 312}
+  position: {x: -168, y: 24}
   ports:
     keys:
     - ' '
@@ -167,6 +167,67 @@ MonoBehaviour:
   isConstant: 1
   constantValue: 1
   referenceValue: {fileID: 0}
+--- !u!114 &-4121891102342069590
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3c9a38be80386d4ea8852ca12654382, type: 3}
+  m_Name: _newValue
+  m_EditorClassIdentifier: Celeste.Parameters::Celeste.Parameters.IntReference
+  helpText: 
+  isConstant: 1
+  constantValue: 1
+  referenceValue: {fileID: 0}
+--- !u!114 &-1930068535988693709
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbac607ae008c7f42814cf23fbe54582, type: 3}
+  m_Name: Event Listener
+  m_EditorClassIdentifier: Celeste.FSM.Nodes::Celeste.FSM.Nodes.Events.EventListenerNode
+  graph: {fileID: 11400000}
+  position: {x: -440, y: 824}
+  ports:
+    keys:
+    - ' '
+    - 
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -1930068535988693709}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: 2136914687059093307}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -1930068535988693709}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: 3829389429432975867}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  guid: 28fe028f-759c-4a13-88fb-cc0c9037a8b1
+  listenFor: {fileID: 11400000, guid: 6b4a72f1879c01b41a7a4d34b806e2ae, type: 2}
 --- !u!114 &-1249378096673756644
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -180,7 +241,7 @@ MonoBehaviour:
   m_Name: Wait
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -168, y: 600}
+  position: {x: 104, y: 424}
   ports:
     keys:
     - ' '
@@ -229,7 +290,7 @@ MonoBehaviour:
   m_Name: Set Float Value
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 408, y: 328}
+  position: {x: -168, y: 616}
   ports:
     keys:
     - ' '
@@ -306,6 +367,8 @@ MonoBehaviour:
   - {fileID: -1249378096673756644}
   - {fileID: 150758503494246954}
   - {fileID: 6795923749754430204}
+  - {fileID: -1930068535988693709}
+  - {fileID: 3829389429432975867}
   startNode: {fileID: 5436389057110012696}
   parameters:
   - {fileID: -5308253885854209722}
@@ -315,6 +378,7 @@ MonoBehaviour:
   - {fileID: 7729723864544486123}
   - {fileID: 9016484529359540295}
   - {fileID: 6060323546820176750}
+  - {fileID: -4121891102342069590}
 --- !u!114 &150758503494246954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -373,7 +437,7 @@ MonoBehaviour:
   m_Name: Vector 3 Int Event Listener
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 136, y: 536}
+  position: {x: -440, y: 616}
   ports:
     keys:
     - ' '
@@ -460,7 +524,7 @@ MonoBehaviour:
   m_Name: Set Int Value
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 696, y: 328}
+  position: {x: 120, y: 616}
   ports:
     keys:
     - ' '
@@ -522,7 +586,10 @@ MonoBehaviour:
       _node: {fileID: 2136914687059093307}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: ' '
+        node: {fileID: -1930068535988693709}
+        reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
@@ -603,6 +670,60 @@ MonoBehaviour:
   value: {fileID: 11400000, guid: d37cc83f2021bad4d9d24e7b7857ed5b, type: 2}
   newValue: {fileID: -4565231850287863102}
   setMode: 1
+--- !u!114 &3829389429432975867
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06e317c46dcf91148b66e32179d2a8ff, type: 3}
+  m_Name: Set Int Value
+  m_EditorClassIdentifier: Celeste.FSM.Nodes::Celeste.FSM.Nodes.Parameters.SetIntValueNode
+  graph: {fileID: 11400000}
+  position: {x: -168, y: 824}
+  ports:
+    keys:
+    - newValue
+    - ' '
+    - 
+    values:
+    - _fieldName: newValue
+      _node: {fileID: 3829389429432975867}
+      _typeQualifiedName: Celeste.Parameters.IntReference, Celeste.Parameters, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: ' '
+      _node: {fileID: 3829389429432975867}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: -1930068535988693709}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 3829389429432975867}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  guid: c2e72363-668f-460f-b1a6-bc76edd70a29
+  value: {fileID: 11400000, guid: d37cc83f2021bad4d9d24e7b7857ed5b, type: 2}
+  newValue: {fileID: -4121891102342069590}
+  setMode: 1
 --- !u!114 &4667826275793110305
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -632,7 +753,7 @@ MonoBehaviour:
   m_Name: Event Listener
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -1000, y: 344}
+  position: {x: -440, y: 56}
   ports:
     keys:
     - ' '
@@ -674,7 +795,7 @@ MonoBehaviour:
   m_Name: Look At
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 120, y: 328}
+  position: {x: 376, y: 408}
   ports:
     keys:
     - ' '
