@@ -255,6 +255,11 @@ namespace Robbi.Movement
             isProgramRunning.Value = false;
         }
 
+        public void OnLevelLost()
+        {
+            isProgramRunning.Value = false;
+        }
+
         #endregion
 
         #region Movement Methods
