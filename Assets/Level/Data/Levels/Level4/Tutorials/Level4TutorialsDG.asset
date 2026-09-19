@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8822045368616089692
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dcd5c5d1aae7744e8a0935fdfdfdabc, type: 3}
+  m_Name: Find Game Object
+  m_EditorClassIdentifier: Celeste.DS.Nodes::Celeste.DS.Nodes.Objects.FindGameObjectNode
+  graph: {fileID: 11400000}
+  position: {x: 1144, y: 1288}
+  ports:
+    keys:
+    - gameObjectName
+    - gameObject
+    values:
+    - _fieldName: gameObjectName
+      _node: {fileID: -8822045368616089692}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: gameObject
+      _node: {fileID: -8822045368616089692}
+      _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: gameObject
+        node: {fileID: -4746034698034392594}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: PressRunButton
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 0}
+  findConstraint: 0
+  cache: 1
 --- !u!114 &-8807991274279211038
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13,7 +58,7 @@ MonoBehaviour:
   m_Name: Active Controller
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1160, y: -184}
+  position: {x: 1144, y: -296}
   ports:
     keys:
     - isActive
@@ -148,6 +193,9 @@ MonoBehaviour:
       - fieldName: lhs
         node: {fileID: -1720052028092941976}
         reroutePoints: []
+      - fieldName: lhs
+        node: {fileID: -3932965300258897253}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -164,6 +212,108 @@ MonoBehaviour:
   value: {fileID: 11400000, guid: d37cc83f2021bad4d9d24e7b7857ed5b, type: 2}
   output: 0
   outputAsString: 0
+--- !u!114 &-4746034698034392594
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95601629c5903884e9b742623c69003f, type: 3}
+  m_Name: Active Controller
+  m_EditorClassIdentifier: Celeste.DS.Nodes::Celeste.DS.Nodes.Objects.ActiveControllerNode
+  graph: {fileID: 11400000}
+  position: {x: 1144, y: 1160}
+  ports:
+    keys:
+    - isActive
+    - gameObject
+    values:
+    - _fieldName: isActive
+      _node: {fileID: -4746034698034392594}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: result
+        node: {fileID: -3932965300258897253}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: gameObject
+      _node: {fileID: -4746034698034392594}
+      _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: gameObject
+        node: {fileID: -8822045368616089692}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isActive: 0
+  gameObject: {fileID: 0}
+--- !u!114 &-3932965300258897253
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b54471f25fc174646b1da372f8c88006, type: 3}
+  m_Name: Int Comparer
+  m_EditorClassIdentifier: Celeste.DS.Nodes::Celeste.DS.Nodes.Logic.IntComparerNode
+  graph: {fileID: 11400000}
+  position: {x: 776, y: 1160}
+  ports:
+    keys:
+    - lhs
+    - rhs
+    - result
+    values:
+    - _fieldName: lhs
+      _node: {fileID: -3932965300258897253}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: output
+        node: {fileID: -4958357561232363290}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: rhs
+      _node: {fileID: -3932965300258897253}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: result
+      _node: {fileID: -3932965300258897253}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: isActive
+        node: {fileID: -4746034698034392594}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  lhs: 0
+  condition: 0
+  rhs: 4
+  result: 0
 --- !u!114 &-3371387734879953036
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -177,7 +327,7 @@ MonoBehaviour:
   m_Name: Active Controller
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1160, y: 120}
+  position: {x: 1144, y: 56}
   ports:
     keys:
     - isActive
@@ -222,7 +372,7 @@ MonoBehaviour:
   m_Name: Active Controller
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1160, y: 824}
+  position: {x: 1144, y: 808}
   ports:
     keys:
     - isActive
@@ -337,6 +487,9 @@ MonoBehaviour:
   - {fileID: -1720052028092941976}
   - {fileID: -1943852299189929564}
   - {fileID: 8229003417029283423}
+  - {fileID: -3932965300258897253}
+  - {fileID: -4746034698034392594}
+  - {fileID: -8822045368616089692}
 --- !u!114 &2657810572459875674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -464,7 +617,7 @@ MonoBehaviour:
   m_Name: Find Child
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 776, y: 216}
+  position: {x: 1144, y: 184}
   ports:
     keys:
     - gameObject
@@ -509,7 +662,7 @@ MonoBehaviour:
   m_Name: Active Controller
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1160, y: 456}
+  position: {x: 1144, y: 408}
   ports:
     keys:
     - isActive
@@ -554,7 +707,7 @@ MonoBehaviour:
   m_Name: Find Game Object
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 776, y: 584}
+  position: {x: 1144, y: 536}
   ports:
     keys:
     - gameObjectName
@@ -599,7 +752,7 @@ MonoBehaviour:
   m_Name: Find Game Object
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 776, y: 984}
+  position: {x: 1144, y: 936}
   ports:
     keys:
     - gameObjectName
@@ -644,7 +797,7 @@ MonoBehaviour:
   m_Name: Find Child
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 776, y: -120}
+  position: {x: 1144, y: -168}
   ports:
     keys:
     - gameObject

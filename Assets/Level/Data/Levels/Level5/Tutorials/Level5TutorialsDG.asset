@@ -1,5 +1,107 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8566698085973678458
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b54471f25fc174646b1da372f8c88006, type: 3}
+  m_Name: Int Comparer
+  m_EditorClassIdentifier: Celeste.DS.Nodes::Celeste.DS.Nodes.Logic.IntComparerNode
+  graph: {fileID: 11400000}
+  position: {x: -8, y: 536}
+  ports:
+    keys:
+    - lhs
+    - rhs
+    - result
+    values:
+    - _fieldName: lhs
+      _node: {fileID: -8566698085973678458}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: output
+        node: {fileID: -3565497850605997864}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: rhs
+      _node: {fileID: -8566698085973678458}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: result
+      _node: {fileID: -8566698085973678458}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: isActive
+        node: {fileID: 2329426609268375706}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  lhs: 0
+  condition: 0
+  rhs: 2
+  result: 0
+--- !u!114 &-4298025353789149704
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dcd5c5d1aae7744e8a0935fdfdfdabc, type: 3}
+  m_Name: Find Game Object
+  m_EditorClassIdentifier: Celeste.DS.Nodes::Celeste.DS.Nodes.Objects.FindGameObjectNode
+  graph: {fileID: 11400000}
+  position: {x: 248, y: 648}
+  ports:
+    keys:
+    - gameObjectName
+    - gameObject
+    values:
+    - _fieldName: gameObjectName
+      _node: {fileID: -4298025353789149704}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: gameObject
+      _node: {fileID: -4298025353789149704}
+      _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: gameObject
+        node: {fileID: 2329426609268375706}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: Waypoint2Info
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 0}
+  findConstraint: 0
+  cache: 1
 --- !u!114 &-3788408316124069742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13,7 +115,7 @@ MonoBehaviour:
   m_Name: Find Child
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -8, y: 40}
+  position: {x: 248, y: 24}
   ports:
     keys:
     - gameObject
@@ -58,7 +160,7 @@ MonoBehaviour:
   m_Name: Int Reader
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -264, y: -120}
+  position: {x: -312, y: 136}
   ports:
     keys:
     - value
@@ -81,6 +183,12 @@ MonoBehaviour:
       connections:
       - fieldName: lhs
         node: {fileID: 7297880700705620947}
+        reroutePoints: []
+      - fieldName: lhs
+        node: {fileID: 3883539004545625308}
+        reroutePoints: []
+      - fieldName: lhs
+        node: {fileID: -8566698085973678458}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -115,6 +223,102 @@ MonoBehaviour:
   - {fileID: -3565497850605997864}
   - {fileID: 7297880700705620947}
   - {fileID: -3788408316124069742}
+  - {fileID: 3883539004545625308}
+  - {fileID: -8566698085973678458}
+  - {fileID: 1090994491576754274}
+  - {fileID: 4974641194982333492}
+  - {fileID: 2329426609268375706}
+  - {fileID: -4298025353789149704}
+--- !u!114 &1090994491576754274
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95601629c5903884e9b742623c69003f, type: 3}
+  m_Name: Active Controller
+  m_EditorClassIdentifier: Celeste.DS.Nodes::Celeste.DS.Nodes.Objects.ActiveControllerNode
+  graph: {fileID: 11400000}
+  position: {x: 248, y: 232}
+  ports:
+    keys:
+    - isActive
+    - gameObject
+    values:
+    - _fieldName: isActive
+      _node: {fileID: 1090994491576754274}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: result
+        node: {fileID: 3883539004545625308}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: gameObject
+      _node: {fileID: 1090994491576754274}
+      _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: gameObject
+        node: {fileID: 4974641194982333492}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isActive: 0
+  gameObject: {fileID: 0}
+--- !u!114 &2329426609268375706
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95601629c5903884e9b742623c69003f, type: 3}
+  m_Name: Active Controller
+  m_EditorClassIdentifier: Celeste.DS.Nodes::Celeste.DS.Nodes.Objects.ActiveControllerNode
+  graph: {fileID: 11400000}
+  position: {x: 248, y: 536}
+  ports:
+    keys:
+    - isActive
+    - gameObject
+    values:
+    - _fieldName: isActive
+      _node: {fileID: 2329426609268375706}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: result
+        node: {fileID: -8566698085973678458}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: gameObject
+      _node: {fileID: 2329426609268375706}
+      _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: gameObject
+        node: {fileID: -4298025353789149704}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  isActive: 0
+  gameObject: {fileID: 0}
 --- !u!114 &2681409110256971301
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,7 +332,7 @@ MonoBehaviour:
   m_Name: Active Controller
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 248, y: -8}
+  position: {x: 248, y: -104}
   ports:
     keys:
     - isActive
@@ -160,6 +364,108 @@ MonoBehaviour:
       _dynamic: 0
   isActive: 0
   gameObject: {fileID: 0}
+--- !u!114 &3883539004545625308
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b54471f25fc174646b1da372f8c88006, type: 3}
+  m_Name: Int Comparer
+  m_EditorClassIdentifier: Celeste.DS.Nodes::Celeste.DS.Nodes.Logic.IntComparerNode
+  graph: {fileID: 11400000}
+  position: {x: -8, y: 232}
+  ports:
+    keys:
+    - lhs
+    - rhs
+    - result
+    values:
+    - _fieldName: lhs
+      _node: {fileID: 3883539004545625308}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: output
+        node: {fileID: -3565497850605997864}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: rhs
+      _node: {fileID: 3883539004545625308}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: result
+      _node: {fileID: 3883539004545625308}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: isActive
+        node: {fileID: 1090994491576754274}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  lhs: 0
+  condition: 0
+  rhs: 1
+  result: 0
+--- !u!114 &4974641194982333492
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dcd5c5d1aae7744e8a0935fdfdfdabc, type: 3}
+  m_Name: Find Game Object
+  m_EditorClassIdentifier: Celeste.DS.Nodes::Celeste.DS.Nodes.Objects.FindGameObjectNode
+  graph: {fileID: 11400000}
+  position: {x: 248, y: 344}
+  ports:
+    keys:
+    - gameObjectName
+    - gameObject
+    values:
+    - _fieldName: gameObjectName
+      _node: {fileID: 4974641194982333492}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: gameObject
+      _node: {fileID: 4974641194982333492}
+      _typeQualifiedName: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: gameObject
+        node: {fileID: 1090994491576754274}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  gameObjectName: Waypoint1Info
+  gameObject: {fileID: 0}
+  gameObjectCache: {fileID: 0}
+  findConstraint: 0
+  cache: 1
 --- !u!114 &7297880700705620947
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -173,7 +479,7 @@ MonoBehaviour:
   m_Name: Int Comparer
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -8, y: -120}
+  position: {x: 8, y: -104}
   ports:
     keys:
     - lhs
