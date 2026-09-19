@@ -21,9 +21,9 @@ namespace Robbi.Levels.Elements
 
         #region Initialization
         
-        public EnemyRuntime CreateRuntime(Tilemap movementTilemap)
+        public EnemyRuntime CreateRuntime(Tilemap movementTilemap, Transform parentTransform)
         {
-            GameObject enemyGameObject = GameObject.Instantiate(prefab);
+            GameObject enemyGameObject = GameObject.Instantiate(prefab, parentTransform);
             enemyGameObject.transform.localPosition = movementTilemap.GetCellCenterWorld(startingPosition);
 
             EnemyRuntime enemyRuntime = enemyGameObject.GetComponent<EnemyRuntime>();

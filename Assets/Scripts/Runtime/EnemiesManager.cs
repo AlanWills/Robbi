@@ -22,7 +22,7 @@ namespace Robbi.Runtime
         public BoolValue enemiesMoving;
 
         [NonSerialized] private PlayerRuntime playerRuntime;
-        [NonSerialized] private List<EnemyRuntime> enemyRuntimes = new List<EnemyRuntime>();
+        [NonSerialized] private readonly List<EnemyRuntime> enemyRuntimes = new();
 
         #endregion
 
@@ -37,7 +37,7 @@ namespace Robbi.Runtime
 
             foreach (Enemy enemy in enemies)
             {
-                enemyRuntimes.Add(enemy.CreateRuntime(movementTilemap.Value));
+                enemyRuntimes.Add(enemy.CreateRuntime(movementTilemap.Value, transform));
             }
 
             playerRuntime = _playerRuntime;
