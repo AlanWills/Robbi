@@ -60,6 +60,60 @@ MonoBehaviour:
   value: {fileID: 11400000, guid: d37cc83f2021bad4d9d24e7b7857ed5b, type: 2}
   newValue: {fileID: 4469522896483089388}
   setMode: 0
+--- !u!114 &-8593616303994869988
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06e317c46dcf91148b66e32179d2a8ff, type: 3}
+  m_Name: Set Int Value
+  m_EditorClassIdentifier: Celeste.FSM.Nodes::Celeste.FSM.Nodes.Parameters.SetIntValueNode
+  graph: {fileID: 11400000}
+  position: {x: 376, y: 744}
+  ports:
+    keys:
+    - newValue
+    - ' '
+    - 
+    values:
+    - _fieldName: newValue
+      _node: {fileID: -8593616303994869988}
+      _typeQualifiedName: Celeste.Parameters.IntReference, Celeste.Parameters, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: ' '
+      _node: {fileID: -8593616303994869988}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: -5835293230599956292}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -8593616303994869988}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  guid: 2a25900a-df50-4309-99eb-ac9641ebf1f1
+  value: {fileID: 11400000, guid: d37cc83f2021bad4d9d24e7b7857ed5b, type: 2}
+  newValue: {fileID: 774741851114763019}
+  setMode: 1
 --- !u!114 &-8383505135482798924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -281,6 +335,51 @@ MonoBehaviour:
   isConstant: 1
   constantValue: {x: 0, y: 4, z: 0}
   referenceValue: {fileID: 0}
+--- !u!114 &-5835293230599956292
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbac607ae008c7f42814cf23fbe54582, type: 3}
+  m_Name: Event Listener
+  m_EditorClassIdentifier: Celeste.FSM.Nodes::Celeste.FSM.Nodes.Events.EventListenerNode
+  graph: {fileID: 11400000}
+  position: {x: 120, y: 760}
+  ports:
+    keys:
+    - ' '
+    - 
+    values:
+    - _fieldName: ' '
+      _node: {fileID: -5835293230599956292}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: -4217935839598381036}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -5835293230599956292}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -8593616303994869988}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  guid: 55aa61e5-62a4-4bce-ad2f-c8290548d179
+  listenFor: {fileID: 11400000, guid: 6b4a72f1879c01b41a7a4d34b806e2ae, type: 2}
 --- !u!114 &-5418434398755661645
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -407,7 +506,10 @@ MonoBehaviour:
       _node: {fileID: -4217935839598381036}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: ' '
+        node: {fileID: -5835293230599956292}
+        reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
@@ -723,6 +825,8 @@ MonoBehaviour:
   - {fileID: -4217935839598381036}
   - {fileID: 2107645928704337455}
   - {fileID: 6642150525805044347}
+  - {fileID: -5835293230599956292}
+  - {fileID: -8593616303994869988}
   startNode: {fileID: 105849064178770968}
   parameters:
   - {fileID: -1657933950497828601}
@@ -737,6 +841,8 @@ MonoBehaviour:
   - {fileID: -8307886127791697193}
   - {fileID: -1380215171187493457}
   - {fileID: -7250830712253694228}
+  - {fileID: 1693466050706734621}
+  - {fileID: 774741851114763019}
 --- !u!114 &105849064178770968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -813,6 +919,38 @@ MonoBehaviour:
   helpText: 
   isConstant: 1
   constantValue: {x: -2, y: 3, z: 0}
+  referenceValue: {fileID: 0}
+--- !u!114 &774741851114763019
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3c9a38be80386d4ea8852ca12654382, type: 3}
+  m_Name: _newValue
+  m_EditorClassIdentifier: Celeste.Parameters::Celeste.Parameters.IntReference
+  helpText: 
+  isConstant: 1
+  constantValue: 1
+  referenceValue: {fileID: 0}
+--- !u!114 &1693466050706734621
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74932df3e79c946469c896e470e3a0df, type: 3}
+  m_Name: _TargetValue
+  m_EditorClassIdentifier: Celeste.Parameters::Celeste.Parameters.Vector3IntReference
+  helpText: 
+  isConstant: 1
+  constantValue: {x: 0, y: 0, z: 0}
   referenceValue: {fileID: 0}
 --- !u!114 &2107645928704337455
 MonoBehaviour:
@@ -1181,5 +1319,5 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   guid: 79821e75-81b1-4895-89a3-3fd896fa2bee
-  argument: {x: -2, y: 3, z: 0}
+  argument: {x: 0, y: 5, z: 0}
   listenFor: {fileID: 11400000, guid: b29c4307e71a13a4c82941ab0f1f4f80, type: 2}
