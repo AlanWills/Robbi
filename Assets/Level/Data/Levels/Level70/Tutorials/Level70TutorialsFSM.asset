@@ -1,5 +1,75 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6559570396262723235
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06e317c46dcf91148b66e32179d2a8ff, type: 3}
+  m_Name: Set Int Value
+  m_EditorClassIdentifier: Celeste.FSM.Nodes::Celeste.FSM.Nodes.Parameters.SetIntValueNode
+  graph: {fileID: 11400000}
+  position: {x: 152, y: 728}
+  ports:
+    keys:
+    - newValue
+    - ' '
+    - 
+    values:
+    - _fieldName: newValue
+      _node: {fileID: -6559570396262723235}
+      _typeQualifiedName: Celeste.Parameters.IntReference, Celeste.Parameters, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: ' '
+      _node: {fileID: -6559570396262723235}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: 1163397371447641160}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: -6559570396262723235}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  guid: e2589507-385f-4338-9c2c-1ba98e6b092a
+  value: {fileID: 11400000, guid: d37cc83f2021bad4d9d24e7b7857ed5b, type: 2}
+  newValue: {fileID: -4520910698389898164}
+  setMode: 1
+--- !u!114 &-6530224855307010482
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3c9a38be80386d4ea8852ca12654382, type: 3}
+  m_Name: _TargetValue
+  m_EditorClassIdentifier: Celeste.Parameters::Celeste.Parameters.IntReference
+  helpText: 
+  isConstant: 1
+  constantValue: 0
+  referenceValue: {fileID: 0}
 --- !u!114 &-6170031497385215574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -60,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f73e5c005b2c6ee4a929080332770ff6, type: 3}
   m_Name: WaypointAtExit
   m_EditorClassIdentifier: 
+  negate: 0
   onIsMetChanged:
     bakedEvent: {fileID: 0}
   value: {fileID: 3970167474447444768}
@@ -145,6 +216,22 @@ MonoBehaviour:
   isConstant: 1
   constantValue: 1
   referenceValue: {fileID: 0}
+--- !u!114 &-4520910698389898164
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3c9a38be80386d4ea8852ca12654382, type: 3}
+  m_Name: _newValue
+  m_EditorClassIdentifier: Celeste.Parameters::Celeste.Parameters.IntReference
+  helpText: 
+  isConstant: 1
+  constantValue: 1
+  referenceValue: {fileID: 0}
 --- !u!114 &-4181470670157380235
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -226,7 +313,10 @@ MonoBehaviour:
       _node: {fileID: -2703444101190589789}
       _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: ' '
+        node: {fileID: 1163397371447641160}
+        reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
@@ -328,6 +418,7 @@ MonoBehaviour:
   - Name: 
     Condition: {fileID: 0}
     UseArgument: 0
+    ForceCheck: 0
 --- !u!114 &-691382872734881312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -423,6 +514,8 @@ MonoBehaviour:
   - {fileID: 1687253570908360951}
   - {fileID: -2703444101190589789}
   - {fileID: -691382872734881312}
+  - {fileID: 1163397371447641160}
+  - {fileID: -6559570396262723235}
   startNode: {fileID: -4181470670157380235}
   parameters:
   - {fileID: -5014851252572073214}
@@ -432,6 +525,8 @@ MonoBehaviour:
   - {fileID: 3171005933481562134}
   - {fileID: 2367993104774536088}
   - {fileID: 813084159077080721}
+  - {fileID: -6530224855307010482}
+  - {fileID: -4520910698389898164}
 --- !u!114 &356372408054702953
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -568,6 +663,51 @@ MonoBehaviour:
   isConstant: 1
   constantValue: {x: 5, y: 0, z: 0}
   referenceValue: {fileID: 0}
+--- !u!114 &1163397371447641160
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbac607ae008c7f42814cf23fbe54582, type: 3}
+  m_Name: Event Listener
+  m_EditorClassIdentifier: Celeste.FSM.Nodes::Celeste.FSM.Nodes.Events.EventListenerNode
+  graph: {fileID: 11400000}
+  position: {x: -120, y: 728}
+  ports:
+    keys:
+    - ' '
+    - 
+    values:
+    - _fieldName: ' '
+      _node: {fileID: 1163397371447641160}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: 
+        node: {fileID: -2703444101190589789}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: 
+      _node: {fileID: 1163397371447641160}
+      _typeQualifiedName: System.Void, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ' '
+        node: {fileID: -6559570396262723235}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+  guid: b6e827d7-a7b0-4ba1-9213-e3ee4632952b
+  listenFor: {fileID: 11400000, guid: 6b4a72f1879c01b41a7a4d34b806e2ae, type: 2}
 --- !u!114 &1687253570908360951
 MonoBehaviour:
   m_ObjectHideFlags: 1
