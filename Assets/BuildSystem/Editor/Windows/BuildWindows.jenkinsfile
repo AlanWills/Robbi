@@ -131,14 +131,14 @@ pipeline
 		{
 			steps 
 			{
-				archiveArtifacts artifacts: "${env.BUILD_DIRECTORY}/*.*", onlyIfSuccessful: true
+				archiveArtifacts artifacts: "\"${env.BUILD_DIRECTORY}/*.*\"", onlyIfSuccessful: true
 			}
 		}
 		stage('Artifact Assets')
 		{
 			steps 
 			{
-				archiveArtifacts artifacts: "${env.ASSETS_SOURCE}/*.*", onlyIfSuccessful: true
+				archiveArtifacts artifacts: "\"${env.ASSETS_SOURCE}/*.*\"", onlyIfSuccessful: true
 			}
 		}
         stage('Upload Build')
