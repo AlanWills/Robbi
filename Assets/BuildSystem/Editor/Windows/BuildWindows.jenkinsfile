@@ -92,11 +92,11 @@ pipeline
 					
 					def buildEnvFile = "${env.WORKSPACE}/Library/BUILD_ENV_VARS.txt"
 					loadEnvProperties(buildEnvFile, true)
-
-                    buildName "Windows-" + CONFIGURATION + "-" + env.BUILD_VERSION
                     
 					def assetsEnvFile = "${env.WORKSPACE}/Library/ASSETS_ENV_VARS.txt"
                     loadEnvProperties(assetsEnvFile, true)
+
+                    buildName "Windows-" + CONFIGURATION + "-" + env.BUILD_VERSION
                 }
             }
         }
