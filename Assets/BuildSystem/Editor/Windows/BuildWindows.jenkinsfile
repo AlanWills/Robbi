@@ -91,22 +91,12 @@ pipeline
                     bat unityCommand
 					
 					def buildEnvFile = "${env.WORKSPACE}/Library/BUILD_ENV_VARS.txt"
-					if (fileExists(buildEnvFile)) {
-						def props = readProperties file: buildEnvFile
-						for (entry in props) {
-							def k = entry.key.toString().trim()
-							def v = entry.value.toString().trim()
-							env[k] = v
-							echo "Set env.${k} = ${v}"
-						}
-					} 
-					else {
-						error "Properties file not found at: ${buildEnvFile}"
-					}
+					loadEnvProperties(buildEnvFile, true)
 
                     buildName "Windows-" + CONFIGURATION + "-" + env.BUILD_VERSION
                     
-                    readProperties(file: "${env.WORKSPACE}/Library/ASSETS_ENV_VARS.txt").each {key, value -> env[key] = value }
+					def assetsEnvFile = "${env.WORKSPACE}/Library/ASSETS_ENV_VARS.txt"
+                    loadEnvProperties(assetsEnvFile, true)
                 }
             }
         }
