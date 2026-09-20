@@ -1,8 +1,10 @@
-UNITY_PATH = "C:/Program\\ Files/Unity/Hub/Editor/2022.3.15f1/Editor/Unity.exe"
-
 pipeline 
 {
     agent any
+    environment 
+    {
+        UNITY_PATH = 'C:/Program Files/Unity/Hub/Editor/6000.3.5f2/Editor/Unity.exe'
+    }
     stages 
     {
         stage('Setup Parameters') 
@@ -18,7 +20,7 @@ pipeline
                                 artifactNumToKeepStr: '', 
                                 numToKeepStr: '1')), 
                         parameters([
-                            choice(choices: ['Debug', 'ReleaseApk', 'ReleaseBundle'], name: 'CONFIGURATION'), 
+                            choice(choices: ['Debug', 'Release'], name: 'CONFIGURATION'), 
                             booleanParam(defaultValue: true, name: 'UPLOAD_BUILD'), 
                             booleanParam(defaultValue: true, name: 'UPLOAD_ASSETS')
                         ])
@@ -30,21 +32,22 @@ pipeline
         {
             steps
             {
-                buildName "Android-" + CONFIGURATION
                 script
                 {
-                    methodToInvoke = "CelesteEditor.BuildSystem.BuildPlayer.Build" + params.CONFIGURATION + "AndroidPlayer"
-                    projectPath = WORKSPACE.replace('\\', '/')
-                }
-                sh UNITY_PATH + ' -quit -batchmode -nographics -executeMethod ' + methodToInvoke + ' -projectPath ' + projectPath
-                script 
-                {
-                    readProperties(file: "${env.WORKSPACE}/Builds/Android/${params.CONFIGURATION}/BUILD_ENV_VARS.txt").each {key, value -> env[key] = value }
-                }
-                buildName "Android-" + CONFIGURATION + "-" + env.BUILD_VERSION
-                script 
-                {
-                    readProperties(file: "${env.WORKSPACE}/ServerData/Android/${params.CONFIGURATION}/ASSETS_ENV_VARS.txt").each {key, value -> env[key] = value }
+                    buildName "Windows-" + CONFIGURATION
+                    
+                    def methodToInvoke = "CelesteEditor.BuildSystem.BuildPlayer.Build" + params.CONFIGURATION + "WindowsPlayer"
+                    def projectPath = WORKSPACE.replace('\\', '/')
+                    def unityCommand = "\"${env.UNITY_PATH}\" -quit -batchmode -nographics -executeMethod ${methodToInvoke} -projectPath ${projectPath}"
+                                        
+                    echo "Executing Unity Build Command: ${unityCommand}"
+                    bat unityCommand
+
+                    readProperties(file: "${env.WORKSPACE}/Library/BUILD_ENV_VARS.txt").each {key, value -> env[key] = value }
+                    
+                    buildName "Windows-" + CONFIGURATION + "-" + env.BUILD_VERSION
+                    
+                    readProperties(file: "${env.WORKSPACE}/Library/ASSETS_ENV_VARS.txt").each {key, value -> env[key] = value }
                 }
             }
         }
@@ -60,8 +63,7 @@ pipeline
             steps
             {
                 sh "git add ."
-                sh 'git commit --allow-empty -m "Built Android and updating version"'
-				sh "git lfs push origin ${env.GIT_BRANCH} --all"
+                sh 'git commit --allow-empty -m "Built Windows and updating version"'
                 sh "git push --set-upstream origin ${env.GIT_BRANCH}"
             }
         }
@@ -90,7 +92,11 @@ pipeline
             }
             steps
             {
-                googleStorageUpload bucket: "gs://${env.BUILD_UPLOAD_DIRECTORY}", credentialsId: 'e5a6c71c-c5f9-413e-8066-e3f8d58ee869', pattern: env.BUILD_LOCATION
+                googleStorageUpload(
+					bucket: "gs://${env.BUILD_UPLOAD_URL}", 
+					credentialsId: "${env.BUILD_UPLOAD_CREDENTIALS}", 
+					pattern: "${env.BUILD_LOCATION}",
+                    pathPrefix: "${env.BUILD_DIRECTORY}")
             }
         }
         stage('Upload Assets')
@@ -104,7 +110,11 @@ pipeline
             }
             steps
             {
-                googleStorageUpload bucket: "gs://${env.ASSETS_DESTINATION}", credentialsId: 'e5a6c71c-c5f9-413e-8066-e3f8d58ee869', pattern: "${env.ASSETS_SOURCE}/*"
+                googleStorageUpload(
+					bucket: "gs://${env.ASSETS_UPLOAD_URL}", 
+					credentialsId: "${env.ASSETS_UPLOAD_CREDENTIALS}",  
+					pattern: "${env.ASSETS_SOURCE}/*",
+                    pathPrefix: "${env.ASSETS_SOURCE}")
                 sh "rm -r ${env.ASSETS_SOURCE}"
             }
         }
