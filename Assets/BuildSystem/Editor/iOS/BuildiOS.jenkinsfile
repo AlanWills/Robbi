@@ -1,10 +1,21 @@
-UNITY_PATH = "C:/Program\\ Files/Unity/Hub/Editor/2022.3.15f1/Editor/Unity.exe"
-buildPath = ""
 projectPath = ""
+buildPath = ""
 
 pipeline 
 {
-    agent any
+    agent {
+		node {
+			label 'built-in'
+		}
+	}
+	options {
+		skipDefaultCheckout()
+	}
+    environment 
+    {
+        UNITY_PATH = 'C:/Program Files/Unity/Hub/Editor/6000.3.5f2/Editor/Unity.exe'
+		BRANCH = 'master'
+    }
     stages 
     {
         stage('Setup Parameters') 
@@ -16,38 +27,78 @@ pipeline
                     properties([
                         buildDiscarder(
                             logRotator(
-                                artifactDaysToKeepStr: '', 
-                                artifactNumToKeepStr: '', 
-                                numToKeepStr: '1')), 
+                                artifactDaysToKeepStr: '14', 
+                                artifactNumToKeepStr: '1', 
+                                numToKeepStr: '5')), 
                         parameters([
                             choice(choices: ['Debug', 'Release'], name: 'CONFIGURATION'), 
-                            booleanParam(defaultValue: true, name: 'UPLOAD_BUILD'), 
-                            booleanParam(defaultValue: true, name: 'UPLOAD_ASSETS')
+                            booleanParam(defaultValue: true, name: 'UPLOAD_BUILD_TO_TESTFLIGHT'), 
+                            booleanParam(defaultValue: false, name: 'UPLOAD_ASSETS_TO_STORAGE')
                         ])
                     ])
                 }
+            }
+        }
+		stage('Clean Workspace') {
+			steps {
+				dir(env.WORKSPACE) {
+					script {
+						// fileExists works for both files and directories
+						if (fileExists('.git')) {
+							bat """
+							git reset --hard HEAD
+							git clean -fdx -e Library -e Assets/Settings/PlayMode -e Logs -e Temp -e UserSettings
+							"""
+						} else {
+							echo "No .git directory found. Skipping cleanup."
+						}
+					}
+				}
+			}
+		}
+		stage('Checkout') {
+            steps {
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: "${env.BRANCH}"]],
+                    userRemoteConfigs: [[
+                        url: 'git@github.com:AlanWills/Robbi.git',
+                        credentialsId: 'git'
+                    ]],
+                    extensions: [
+						[$class: 'RelativeTargetDirectory', relativeTargetDir: '.'], // normal checkout
+						[$class: 'LocalBranch', localBranch: "${env.BRANCH}"],
+						[$class: 'SubmoduleOption', 
+							recursiveSubmodules: true,        // clone submodules recursively
+							trackingSubmodules: false,        // set to true if you want to track branches in submodules
+							disableSubmodules: false,         // ensure submodules are not disabled
+							parentCredentials: true           // use parent repo credentials for submodules
+						]
+					]
+                ])
             }
         }
         stage('Build Unity Project')
         {
             steps
             {
-                buildName "iOS-" + CONFIGURATION
                 script
                 {
+                    buildName "iOS-" + CONFIGURATION
+                    
                     methodToInvoke = "CelesteEditor.BuildSystem.BuildPlayer.Build" + params.CONFIGURATION + "iOSPlayer"
-                    projectPath = WORKSPACE.replace('\\', '/')
-                }
-                sh UNITY_PATH + ' -quit -batchmode -nographics -executeMethod ' + methodToInvoke + ' -projectPath ' + projectPath
-                script 
-                {
-                    readProperties(file: "${env.WORKSPACE}/Builds/iOS/${params.CONFIGURATION}/BUILD_ENV_VARS.txt").each {key, value -> env[key] = value }
+                    projectPath = "\"${env.WORKSPACE.replace('\\','/')}\""
+					def unityCommand = "\"${env.UNITY_PATH}\" -quit -batchmode -nographics -executeMethod ${methodToInvoke} -projectPath ${projectPath}"
+
+					echo "Executing Unity Build Command: ${unityCommand}"
+					bat unityCommand
+
+                    readProperties(file: "${env.WORKSPACE}/Library/BUILD_ENV_VARS.txt").each {key, value -> env[key] = value }
+					
 					buildPath = "${projectPath}/${env.BUILD_LOCATION}"
-                }
-                buildName "iOS-" + CONFIGURATION + "-" + env.BUILD_VERSION
-                script 
-                {
-                    readProperties(file: "${env.WORKSPACE}/ServerData/iOS/${params.CONFIGURATION}/ASSETS_ENV_VARS.txt").each {key, value -> env[key] = value }
+                    buildName "iOS-" + CONFIGURATION + "-" + env.BUILD_VERSION
+                    
+                    readProperties(file: "${env.WORKSPACE}/Library/ASSETS_ENV_VARS.txt").each {key, value -> env[key] = value }
                 }
             }
         }
@@ -64,8 +115,8 @@ pipeline
 			{
 				script
 				{
-					tempBuildPath = "${env.TEMP_DIRECTORY_PATH}/Build-${env.BUILD_VERSION}-${params.CONFIGURATION}"
-					deleteCommand = "/usr/bin/find ${env.TEMP_DIRECTORY_PATH}/* -not -path " + '"' + "${env.TEMP_DIRECTORY_PATH}/builder*" + '" -prune -exec rm -rf {} \\;'
+					def tempBuildPath = "${env.TEMP_DIRECTORY_PATH}/Build-${env.BUILD_VERSION}-${params.CONFIGURATION}"
+					def deleteCommand = "/usr/bin/find ${env.TEMP_DIRECTORY_PATH}/* -not -path " + '"' + "${env.TEMP_DIRECTORY_PATH}/builder*" + '" -prune -exec rm -rf {} \\;'
 					
 					echo "${deleteCommand}"
 					sh "${deleteCommand}"
@@ -74,25 +125,31 @@ pipeline
 				}
 			}
 		}
-        stage('Build iOS Project')
-        {
-            when
-            {
-                expression
-                {
-                    return currentBuild.currentResult == "SUCCESS"
-                }
-            }
-            steps
-            {
-				script
-				{
-					buildScript = '"' + "${env.IOS_PROJECT_BUILDER_INSTALL_PATH}/build.cmd" + '" "' + "${buildPath}" + '" -xcname "Unity-iPhone" -xcpname "iPhone-target" -xcconf "Release" -archs "arm64" -multicore -lld -strip bitcode -pngcrush -ipa -identity "' + "${env.DISTRIBUTION_CERTIFICATE}:${env.PRIVATE_KEY}:${env.PRIVATE_KEY_PASSWORD}" + '" -provision "' + "${env.PROVISIONING_PROFILE}" + '"'
-					echo "${buildScript}"
-					bat "${buildScript}"
+        stage('Build iOS Project') {
+			when {
+				expression { return currentBuild.currentResult == null || currentBuild.currentResult == "SUCCESS" }
+			}
+			steps {
+				script {
+					// 1. Define your paths (using forward slashes for safety)
+					def tool = "${env.IOS_PROJECT_BUILDER_INSTALL_PATH}/build.cmd"
+					def sdk = "${env.IOS_PROJECT_BUILDER_INSTALL_PATH}/SDK-iOS"
+					def identity = "${env.DISTRIBUTION_CERTIFICATE}:${env.PRIVATE_KEY}:${env.PRIVATE_KEY_PASSWORD}"
+					def provision = "${env.PROVISIONING_PROFILE}"
+
+					// 2. Use the dir block to change the working directory
+					dir(buildPath) {
+						echo "Current working directory is now: ${pwd()}"
+						
+						// Since we are now INSIDE buildPath, we can use "." to refer to the current folder
+						def buildCmd = "\"${tool}\" -xcname \"Unity-iPhone\" -xcpname \"Unity-iPhone\" -xcconf \"Release\" -sdk \"${sdk}\" -archs arm64 -lld -pngcrush -ipa -identity \"${identity}\" -provision \"${provision}\""
+						
+						echo "Running build command: ${buildCmd}"
+						bat "${buildCmd}"
+					}
 				}
-            }
-        }
+			}
+		}
 		stage('Copy .ipa From Temp Directory')
 		{
 			when
@@ -106,7 +163,7 @@ pipeline
             {
 				script
 				{
-					sh "cp -r ${tempBuildPath}/Packages ${projectPath}/${env.BUILD_LOCATION}/Packages"
+					sh "cp -r ${buildPath}/Packages ${projectPath}/${env.BUILD_LOCATION}/Packages"
 				}
             }
 		}
@@ -123,9 +180,8 @@ pipeline
             {
                 sh "git add ."
                 sh 'git commit --allow-empty -m "Built iOS and updating version"'
-				sh "git pull origin ${env.GIT_BRANCH} --rebase"
-				sh "git lfs push origin ${env.GIT_BRANCH} --all"
-                sh "git push --set-upstream origin ${env.GIT_BRANCH}"
+				sh "git pull origin ${env.BRANCH} --rebase -X theirs"
+                sh "git push --set-upstream origin ${env.BRANCH}"
             }
         }
 		stage('Artifact Build')
@@ -142,34 +198,46 @@ pipeline
 				archiveArtifacts artifacts: "${env.ASSETS_SOURCE}/*.*", onlyIfSuccessful: true
 			}
 		}
-        stage('Upload Build')
+        stage('Upload Build To Test Flight')
         {
             when
             {
                 expression
                 {
-                    return currentBuild.currentResult == "SUCCESS" && params.UPLOAD_BUILD
+                    return currentBuild.currentResult == "SUCCESS" && params.UPLOAD_BUILD_TO_TESTFLIGHT
                 }
             }
             steps
             {
 				script
 				{
-					ipaWorkspaceLocationForUpload = "${env.BUILD_LOCATION}/Packages/${env.IPA_NAME}.ipa"
-					ipaWorkspaceLocationForUpload = ipaWorkspaceLocationForUpload.replace('/', '\\')
-					uploadScript = '"' + "${env.IOS_PROJECT_BUILDER_INSTALL_PATH}/upload.cmd" + '" -v "' + "${ipaWorkspaceLocationForUpload}" + '" -asclogin "' + "${env.ASC_USERNAME}" + '" -ascpassword "' + "${env.ASC_PASSWORD}" + '" -ascprovider ""'
-					echo "${uploadScript}"
-					bat "${uploadScript}"
+					def uploadTool   = "${env.IOS_PROJECT_BUILDER_INSTALL_PATH}/upload.cmd"
+					def ipaPath      = "${buildPath}/Packages/${env.IPA_NAME}.ipa"
+					def identity     = "${env.DISTRIBUTION_CERTIFICATE}:${env.PRIVATE_KEY}:${env.PRIVATE_KEY_PASSWORD}"
+					def provision    = "${env.PROVISIONING_PROFILE}"
+					def user         = env.ASC_USERNAME
+					def password     = env.ASC_PASSWORD
+					def packagesPath = "${buildPath}/Packages"
+					
+					// 2. Use the dir block to change the working directory
+					dir(packagesPath) {
+						echo "Current working directory is now: ${pwd()}"
+						
+						def uploadCmd = "\"${uploadTool}\" -identity \"${identity}\" -entitlements \"\" -artwork \"\" -provision \"${provision}\" -v \"${ipaPath}\" -asclogin ${user} -ascpassword ${password} -ascprovider \"\""
+						
+						echo "Running upload command: ${uploadCmd}"
+						bat "${uploadCmd}"
+					}
 				}
             }
         }
-        stage('Upload Assets')
+        stage('Upload Assets To Storage')
         {
             when
             {
                 expression
                 {
-                    return currentBuild.currentResult == "SUCCESS" && params.UPLOAD_ASSETS
+                    return currentBuild.currentResult == "SUCCESS" && params.UPLOAD_ASSETS_TO_STORAGE
                 }
             }
             steps

@@ -1,8 +1,18 @@
-UNITY_PATH = "C:/Program\\ Files/Unity/Hub/Editor/2022.3.15f1/Editor/Unity.exe"
-
 pipeline 
 {
-    agent any
+    agent {
+		node {
+			label 'built-in'
+		}
+	}
+	options {
+		skipDefaultCheckout()
+	}
+    environment 
+    {
+        UNITY_PATH = 'C:/Program Files/Unity/Hub/Editor/6000.3.5f2/Editor/Unity.exe'
+		BRANCH = 'master'
+    }
     stages 
     {
         stage('Setup Parameters') 
@@ -18,34 +28,88 @@ pipeline
                                 artifactNumToKeepStr: '', 
                                 numToKeepStr: '1')), 
                         parameters([
-                            choice(choices: ['Debug', 'ReleaseApk', 'ReleaseBundle'], name: 'CONFIGURATION'), 
-                            booleanParam(defaultValue: true, name: 'UPLOAD_BUILD'), 
-                            booleanParam(defaultValue: true, name: 'UPLOAD_ASSETS')
+							choice(choices: ['Debug', 'Release'], name: 'CONFIGURATION'),
+							choice(choices: ['Apk', 'App Bundle'], name: 'OUTPUT_FILE'),
+                            booleanParam(defaultValue: true, name: 'UPLOAD_BUILD_TO_STORAGE'), 
+							booleanParam(defaultValue: false, name: 'UPLOAD_BUILD_TO_GOOGLE_PLAY'), 
+                            booleanParam(defaultValue: false, name: 'UPLOAD_ASSETS_TO_STORAGE'),
+							booleanParam(defaultValue: false, name: 'UPLOAD_STORE_METADATA'),
+							booleanParam(defaultValue: false, name: 'UPLOAD_STORE_CHANGE_LOGS'),
+							booleanParam(defaultValue: false, name: 'UPLOAD_STORE_IMAGES'),
+							booleanParam(defaultValue: false, name: 'UPLOAD_STORE_SCREENSHOTS')
                         ])
                     ])
                 }
+            }
+        }
+		stage('Clean Workspace') {
+			steps {
+				dir(env.WORKSPACE) {
+					script {
+						// fileExists works for both files and directories
+						if (fileExists('.git')) {
+							bat """
+							git reset --hard HEAD
+							git clean -fdx -e Library -e Assets/Settings/PlayMode -e Logs -e Temp -e UserSettings
+							"""
+						} else {
+							echo "No .git directory found. Skipping cleanup."
+						}
+					}
+				}
+			}
+		}
+		stage('Checkout') {
+            steps {
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: "${env.BRANCH}"]],
+                    userRemoteConfigs: [[
+                        url: 'git@github.com:AlanWills/Robbi.git',
+                        credentialsId: 'git'
+                    ]],
+                    extensions: [
+						[$class: 'RelativeTargetDirectory', relativeTargetDir: '.'], // normal checkout
+						[$class: 'LocalBranch', localBranch: "${env.BRANCH}"],
+						[$class: 'SubmoduleOption', 
+							recursiveSubmodules: true,        // clone submodules recursively
+							trackingSubmodules: false,        // set to true if you want to track branches in submodules
+							disableSubmodules: false,         // ensure submodules are not disabled
+							parentCredentials: true           // use parent repo credentials for submodules
+						]
+					]
+                ])
             }
         }
         stage('Build')
         {
             steps
             {
-                buildName "Android-" + CONFIGURATION
-                script
-                {
-                    methodToInvoke = "CelesteEditor.BuildSystem.BuildPlayer.Build" + params.CONFIGURATION + "AndroidPlayer"
-                    projectPath = WORKSPACE.replace('\\', '/')
-                }
-                sh UNITY_PATH + ' -quit -batchmode -nographics -executeMethod ' + methodToInvoke + ' -projectPath ' + projectPath
-                script 
-                {
-                    readProperties(file: "${env.WORKSPACE}/Builds/Android/${params.CONFIGURATION}/BUILD_ENV_VARS.txt").each {key, value -> env[key] = value }
-                }
-                buildName "Android-" + CONFIGURATION + "-" + env.BUILD_VERSION
-                script 
-                {
-                    readProperties(file: "${env.WORKSPACE}/ServerData/Android/${params.CONFIGURATION}/ASSETS_ENV_VARS.txt").each {key, value -> env[key] = value }
-                }
+				script
+				{
+					def configAndOutput = params.CONFIGURATION
+					
+					if (params.OUTPUT_FILE == 'Apk') {
+						configAndOutput = configAndOutput + 'Apk'
+					} else {
+						configAndOutput = configAndOutput + 'Bundle'
+					}
+					
+					buildName "Android-" + configAndOutput
+					
+					def methodToInvoke = "CelesteEditor.BuildSystem.BuildPlayer.Build" + configAndOutput + "AndroidPlayer"
+					def projectPath = "\"${env.WORKSPACE.replace('\\','/')}\""
+					def unityCommand = "\"${env.UNITY_PATH}\" -quit -batchmode -nographics -executeMethod ${methodToInvoke} -projectPath ${projectPath}"
+
+					echo "Executing Unity Build Command: ${unityCommand}"
+					bat unityCommand
+
+                    readProperties(file: "${env.WORKSPACE}/Library/BUILD_ENV_VARS.txt").each {key, value -> env[key] = value }
+                    
+                    buildName "Android-" + configAndOutput + "-" + env.BUILD_VERSION
+                    
+                    readProperties(file: "${env.WORKSPACE}/Library/ASSETS_ENV_VARS.txt").each {key, value -> env[key] = value }
+				}
             }
         }
         stage('Commit Version')
@@ -61,9 +125,8 @@ pipeline
             {
                 sh "git add ."
                 sh 'git commit --allow-empty -m "Built Android and updating version"'
-				sh "git pull origin ${env.GIT_BRANCH} --rebase"
-				sh "git lfs push origin ${env.GIT_BRANCH} --all"
-                sh "git push --set-upstream origin ${env.GIT_BRANCH}"
+				sh "git pull origin ${env.BRANCH} --rebase -X theirs"
+                sh "git push --set-upstream origin ${env.BRANCH}"
             }
         }
 		stage('Artifact Build')
@@ -80,33 +143,116 @@ pipeline
 				archiveArtifacts artifacts: "${env.ASSETS_SOURCE}/*.*", onlyIfSuccessful: true
 			}
 		}
-        stage('Upload Build')
+        stage('Upload Build To Storage')
         {
             when
             {
                 expression
                 {
-                    return currentBuild.currentResult == "SUCCESS" && params.UPLOAD_BUILD
+                    return currentBuild.currentResult == "SUCCESS" && params.UPLOAD_BUILD_TO_STORAGE
                 }
             }
             steps
             {
-                googleStorageUpload bucket: "gs://${env.BUILD_UPLOAD_DIRECTORY}", credentialsId: 'e5a6c71c-c5f9-413e-8066-e3f8d58ee869', pattern: env.BUILD_LOCATION
+                googleStorageUpload(
+					bucket: "gs://${env.BUILD_UPLOAD_URL}", 
+					credentialsId: "${env.BUILD_UPLOAD_CREDENTIALS}", 
+					pattern: "${env.BUILD_LOCATION}",
+                    pathPrefix: "${env.BUILD_DIRECTORY}")
             }
         }
-        stage('Upload Assets')
+        stage('Upload Build To Google Play')
         {
             when
             {
                 expression
                 {
-                    return currentBuild.currentResult == "SUCCESS" && params.UPLOAD_ASSETS
+                    return currentBuild.currentResult == "SUCCESS" && env.USE_FASTLANE && params.UPLOAD_BUILD_TO_GOOGLE_PLAY
                 }
             }
             steps
             {
-                googleStorageUpload bucket: "gs://${env.ASSETS_DESTINATION}", credentialsId: 'e5a6c71c-c5f9-413e-8066-e3f8d58ee869', pattern: "${env.ASSETS_SOURCE}/*"
+				sh "bundle install"
+				sh "bundle exec fastlane upload_aab_to_playstore track:'${env.FASTLANE_UPLOAD_TRACK_NAME}' aab:'${env.BUILD_LOCATION}'"
+            }
+        }
+        stage('Upload Assets To Storage')
+        {
+            when
+            {
+                expression
+                {
+                    return currentBuild.currentResult == "SUCCESS" && params.UPLOAD_ASSETS_TO_STORAGE
+                }
+            }
+            steps
+            {
+                googleStorageUpload(
+					bucket: "gs://${env.ASSETS_UPLOAD_URL}", 
+					credentialsId: "${env.ASSETS_UPLOAD_CREDENTIALS}",  
+					pattern: "${env.ASSETS_SOURCE}/*",
+                    pathPrefix: "${env.ASSETS_SOURCE}")
                 sh "rm -r ${env.ASSETS_SOURCE}"
+            }
+        }
+        stage('Upload Store Metadata To Google Play')
+        {
+            when
+            {
+                expression
+                {
+                    return currentBuild.currentResult == "SUCCESS" && env.USE_FASTLANE && params.UPLOAD_STORE_METADATA
+                }
+            }
+            steps
+            {
+				sh "bundle install"
+				sh "bundle exec fastlane upload_metadata_to_playstore track:'${env.FASTLANE_UPLOAD_TRACK_NAME}'"
+            }
+        }
+        stage('Upload Store Change Logs To Google Play')
+        {
+            when
+            {
+                expression
+                {
+                    return currentBuild.currentResult == "SUCCESS" && env.USE_FASTLANE && params.UPLOAD_STORE_CHANGE_LOGS
+                }
+            }
+            steps
+            {
+				sh "bundle install"
+				sh "bundle exec fastlane upload_changelogs_to_playstore track:'${env.FASTLANE_UPLOAD_TRACK_NAME}'"
+            }
+        }
+        stage('Upload Store Images To Google Play')
+        {
+            when
+            {
+                expression
+                {
+                    return currentBuild.currentResult == "SUCCESS" && env.USE_FASTLANE && params.UPLOAD_STORE_IMAGES
+                }
+            }
+            steps
+            {
+				sh "bundle install"
+				sh "bundle exec fastlane upload_images_to_playstore track:'${env.FASTLANE_UPLOAD_TRACK_NAME}'"
+            }
+        }
+        stage('Upload Store Screenshots To Google Play')
+        {
+            when
+            {
+                expression
+                {
+                    return currentBuild.currentResult == "SUCCESS" && env.USE_FASTLANE && params.UPLOAD_STORE_SCREENSHOTS
+                }
+            }
+            steps
+            {
+				sh "bundle install"
+				sh "bundle exec fastlane upload_screenshots_to_playstore track:'${env.FASTLANE_UPLOAD_TRACK_NAME}'"
             }
         }
     }   
